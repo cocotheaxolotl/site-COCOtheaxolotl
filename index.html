@@ -99,54 +99,39 @@
       100%{ transform:rotate(2.2deg) translateY(1px); }
     }
 
-    /* ===== Gill hotspots ===== */
-    .gill-link{
+    /* ===== Gill navigation buttons ===== */
+    .gill-nav{
       position:absolute;
       z-index:10;
-      display:flex;
-      align-items:center;
+      pointer-events:auto;
       text-decoration:none;
       color:var(--text);
-      pointer-events:auto;
-      transition:transform .2s ease;
-    }
-    .gill-link:hover{ transform:scale(1.08); }
-    .gill-link:hover .gill-label{ box-shadow:0 4px 18px rgba(255,105,180,.35); }
-
-    .gill-hitbox{
-      width:100%;
-      height:100%;
-      position:absolute;
-      inset:0;
-      border-radius:50%;
-    }
-    .gill-label{
-      position:absolute;
       white-space:nowrap;
       background:#fff;
-      padding:6px 14px;
-      border-radius:20px;
-      font-size:0.9em;
+      padding:10px 20px;
+      border-radius:28px;
+      font-size:1.05em;
       font-weight:800;
-      box-shadow:0 3px 12px rgba(0,0,0,.1);
-      border:2px solid rgba(255,105,180,.3);
-      transition:box-shadow .2s ease;
-      pointer-events:none;
+      box-shadow:0 4px 16px rgba(0,0,0,.12);
+      border:2.5px solid var(--pink);
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      cursor:pointer;
     }
-    /* Left gills: label on the left */
-    .gill-link.left .gill-label{ right:100%; margin-right:8px; }
-    /* Right gills: label on the right */
-    .gill-link.right .gill-label{ left:100%; margin-left:8px; }
+    .gill-nav:hover{
+      transform:scale(1.1);
+      background:var(--pink);
+      color:#fff;
+      box-shadow:0 6px 24px rgba(255,105,180,.4);
+    }
 
-    /* Positions for each gill (% relative to axolotl-container) */
-    /* Left side */
-    .gill-lt{ width:70px; height:55px; top:5%;  left:2%; }
-    .gill-lm{ width:60px; height:50px; top:18%; left:-4%; }
-    .gill-lb{ width:65px; height:45px; top:32%; left:-2%; }
-    /* Right side */
-    .gill-rt{ width:70px; height:55px; top:5%;  right:2%; }
-    .gill-rm{ width:60px; height:50px; top:18%; right:-4%; }
-    .gill-rb{ width:65px; height:45px; top:32%; right:-2%; }
+    /* Left side buttons */
+    .gill-lt{ top:2%;   left:-38%; }
+    .gill-lm{ top:17%;  left:-44%; }
+    .gill-lb{ top:33%;  left:-38%; }
+    /* Right side buttons */
+    .gill-rt{ top:2%;   right:-38%; }
+    .gill-rm{ top:17%;  right:-44%; }
+    .gill-rb{ top:33%;  right:-38%; }
 
     /* Scroll arrow */
     .scroll-arrow{
@@ -403,13 +388,13 @@
       h1{font-size:2.25em}
       h2{font-size:1.8em}
       .axolotl-img, .gills-img{ width:280px; }
-      .gill-label{ font-size:.75em; padding:4px 10px; }
-      .gill-lt{ width:46px; height:36px; top:5%;  left:2%; }
-      .gill-lm{ width:40px; height:34px; top:18%; left:-3%; }
-      .gill-lb{ width:44px; height:30px; top:32%; left:-1%; }
-      .gill-rt{ width:46px; height:36px; top:5%;  right:2%; }
-      .gill-rm{ width:40px; height:34px; top:18%; right:-3%; }
-      .gill-rb{ width:44px; height:30px; top:32%; right:-1%; }
+      .gill-nav{ font-size:.8em; padding:7px 13px; }
+      .gill-lt{ top:2%;  left:-32%; }
+      .gill-lm{ top:17%; left:-38%; }
+      .gill-lb{ top:33%; left:-32%; }
+      .gill-rt{ top:2%;  right:-32%; }
+      .gill-rm{ top:17%; right:-38%; }
+      .gill-rb{ top:33%; right:-32%; }
     }
   </style>
 </head>
@@ -425,33 +410,15 @@
       <img src="axolotl.png" alt="Coco body" class="axolotl-img">
       <img src="gills.png" alt="Coco gills" class="gills-img">
 
-      <!-- Left gills -->
-      <a href="/coloring-books/" class="gill-link left gill-lt">
-        <span class="gill-hitbox"></span>
-        <span class="gill-label">🎨 Coloring</span>
-      </a>
-      <a href="/kids-games/" class="gill-link left gill-lm">
-        <span class="gill-hitbox"></span>
-        <span class="gill-label">🎲 Games</span>
-      </a>
-      <a href="/learn-about-axolotls/" class="gill-link left gill-lb">
-        <span class="gill-hitbox"></span>
-        <span class="gill-label">🦎 Learn</span>
-      </a>
+      <!-- Left gill buttons -->
+      <a href="/coloring-books/" class="gill-nav gill-lt">🎨 Coloring</a>
+      <a href="/kids-games/" class="gill-nav gill-lm">🎲 Games</a>
+      <a href="/learn-about-axolotls/" class="gill-nav gill-lb">🦎 Learn</a>
 
-      <!-- Right gills -->
-      <a href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener" class="gill-link right gill-rt">
-        <span class="gill-hitbox"></span>
-        <span class="gill-label">📚 Books</span>
-      </a>
-      <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener" class="gill-link right gill-rm">
-        <span class="gill-hitbox"></span>
-        <span class="gill-label">📱 Social</span>
-      </a>
-      <a href="/bubble-lab/" class="gill-link right gill-rb">
-        <span class="gill-hitbox"></span>
-        <span class="gill-label">🫧 Bubble</span>
-      </a>
+      <!-- Right gill buttons -->
+      <a href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener" class="gill-nav gill-rt">📚 Books</a>
+      <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener" class="gill-nav gill-rm">📱 Social</a>
+      <a href="/bubble-lab/" class="gill-nav gill-rb">🫧 Bubble</a>
     </div>
 
     <p>
