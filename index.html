@@ -99,100 +99,86 @@
       100%{ transform:rotate(2.2deg) translateY(1px); }
     }
 
-    /* ===== Swimming fish navigation ===== */
-    .fish-lane{
+    /* ===== Hero layout: fish - Coco - fish ===== */
+    .hero-row{
       position:relative;
-      z-index:3;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0;
       width:100%;
-      max-width:700px;
-      margin:10px auto 0;
-      pointer-events:none;
+      max-width:1100px;
     }
+    .fish-col{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      flex-shrink:0;
+    }
+
+    /* ===== Fish links ===== */
     .fish-link{
       display:flex;
       align-items:center;
       text-decoration:none;
       color:var(--text);
-      pointer-events:auto;
       cursor:pointer;
-      position:relative;
-      padding:6px 0;
       transition:transform .15s ease;
     }
-    .fish-link:hover{ transform:scale(1.05); }
+    .fish-link:hover{ transform:scale(1.08); }
     .fish-link:hover .fish-banner{
       background:var(--pink);
       color:#fff;
       box-shadow:0 4px 18px rgba(255,105,180,.4);
     }
 
-    /* Fish swims left-to-right */
-    .fish-link.swim-right{ flex-direction:row; animation:swimRight var(--dur,12s) ease-in-out infinite; }
-    /* Fish swims right-to-left */
-    .fish-link.swim-left{ flex-direction:row-reverse; animation:swimLeft var(--dur,12s) ease-in-out infinite; }
+    /* Left fish point right → toward Coco */
+    .fish-col.left .fish-link{ flex-direction:row-reverse; animation:swimLeft var(--dur,12s) ease-in-out infinite; }
+    /* Right fish point left ← toward Coco, then banner after */
+    .fish-col.right .fish-link{ flex-direction:row; animation:swimRight var(--dur,12s) ease-in-out infinite; }
 
     .fish-icon{
-      font-size:2.2em;
+      font-size:2.4em;
       line-height:1;
       flex-shrink:0;
-      animation:wiggleFish 1.2s ease-in-out infinite alternate;
     }
-    .fish-link.swim-left .fish-icon{ transform:scaleX(-1); }
+    /* Left fish face right (toward Coco) */
+    .fish-col.left .fish-icon{ transform:scaleX(-1); animation:wiggleFishFlip 1.2s ease-in-out infinite alternate; }
+    /* Right fish face left (toward Coco) */
+    .fish-col.right .fish-icon{ animation:wiggleFish 1.2s ease-in-out infinite alternate; }
 
-    /* Rope connecting fish to banner */
     .fish-rope{
-      width:30px;
+      width:24px;
       height:2px;
       background:repeating-linear-gradient(90deg, var(--text) 0 4px, transparent 4px 8px);
-      opacity:.4;
+      opacity:.35;
       flex-shrink:0;
     }
 
-    /* Banner / label */
     .fish-banner{
       background:#fff;
-      padding:8px 18px;
+      padding:8px 16px;
       border-radius:8px;
-      font-size:1em;
+      font-size:.95em;
       font-weight:800;
       white-space:nowrap;
       box-shadow:0 3px 12px rgba(0,0,0,.1);
       border:2px solid var(--pink);
       transition:background .2s ease, color .2s ease, box-shadow .2s ease;
-      position:relative;
-    }
-    /* Little triangle pointing toward the fish */
-    .fish-link.swim-right .fish-banner::before{
-      content:'';
-      position:absolute;
-      left:-8px; top:50%;
-      transform:translateY(-50%);
-      border:6px solid transparent;
-      border-right-color:var(--pink);
-    }
-    .fish-link.swim-left .fish-banner::after{
-      content:'';
-      position:absolute;
-      right:-8px; top:50%;
-      transform:translateY(-50%);
-      border:6px solid transparent;
-      border-left-color:var(--pink);
     }
 
     @keyframes swimRight{
-      0%,100%{ transform:translateX(-8px); }
-      50%{ transform:translateX(16px); }
+      0%,100%{ transform:translateX(-6px); }
+      50%{ transform:translateX(6px); }
     }
     @keyframes swimLeft{
-      0%,100%{ transform:translateX(8px); }
-      50%{ transform:translateX(-16px); }
+      0%,100%{ transform:translateX(6px); }
+      50%{ transform:translateX(-6px); }
     }
     @keyframes wiggleFish{
       0%{ transform:rotate(-4deg) translateY(-1px); }
       100%{ transform:rotate(4deg) translateY(1px); }
-    }
-    .fish-link.swim-left .fish-icon{
-      animation:wiggleFishFlip 1.2s ease-in-out infinite alternate;
     }
     @keyframes wiggleFishFlip{
       0%{ transform:scaleX(-1) rotate(-4deg) translateY(-1px); }
@@ -453,10 +439,12 @@
       .quick-links{grid-template-columns:1fr}
       h1{font-size:2.25em}
       h2{font-size:1.8em}
-      .axolotl-img, .gills-img{ width:280px; }
-      .fish-icon{ font-size:1.7em; }
-      .fish-banner{ font-size:.85em; padding:6px 13px; }
-      .fish-rope{ width:20px; }
+      .axolotl-img, .gills-img{ width:200px; }
+      .hero-row{ flex-wrap:nowrap; gap:0; }
+      .fish-col{ gap:10px; }
+      .fish-icon{ font-size:1.5em; }
+      .fish-banner{ font-size:.7em; padding:5px 10px; }
+      .fish-rope{ width:12px; }
     }
   </style>
 </head>
@@ -468,50 +456,56 @@
 
     <h1>💗 Coco the Axolotl</h1>
 
-    <div class="axolotl-container" id="cocoWiggle" aria-label="Coco">
-      <img src="axolotl.png" alt="Coco body" class="axolotl-img">
-      <img src="gills.png" alt="Coco gills" class="gills-img">
+    <div class="hero-row">
+      <!-- Left fish column -->
+      <div class="fish-col left">
+        <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener" class="fish-link" style="--dur:11s">
+          <span class="fish-icon">🐠</span>
+          <span class="fish-rope"></span>
+          <span class="fish-banner">Instagram</span>
+        </a>
+        <a href="https://www.youtube.com/channel/UCxSzBMea0cfiuJlrPCNG2UA" target="_blank" rel="noopener" class="fish-link" style="--dur:13s">
+          <span class="fish-icon">🐟</span>
+          <span class="fish-rope"></span>
+          <span class="fish-banner">YouTube</span>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61587038682969" target="_blank" rel="noopener" class="fish-link" style="--dur:10s">
+          <span class="fish-icon">🐡</span>
+          <span class="fish-rope"></span>
+          <span class="fish-banner">Facebook</span>
+        </a>
+      </div>
 
+      <!-- Coco center -->
+      <div class="axolotl-container" id="cocoWiggle" aria-label="Coco">
+        <img src="axolotl.png" alt="Coco body" class="axolotl-img">
+        <img src="gills.png" alt="Coco gills" class="gills-img">
+      </div>
+
+      <!-- Right fish column -->
+      <div class="fish-col right">
+        <a href="https://www.tiktok.com/@cocotheaxolotl" target="_blank" rel="noopener" class="fish-link" style="--dur:12s">
+          <span class="fish-icon">🐠</span>
+          <span class="fish-rope"></span>
+          <span class="fish-banner">TikTok</span>
+        </a>
+        <a href="/bubble-lab/" class="fish-link" style="--dur:14s">
+          <span class="fish-icon">🐟</span>
+          <span class="fish-rope"></span>
+          <span class="fish-banner">Bubble</span>
+        </a>
+        <a href="/kids-games/" class="fish-link" style="--dur:11s">
+          <span class="fish-icon">🐡</span>
+          <span class="fish-rope"></span>
+          <span class="fish-banner">Games</span>
+        </a>
+      </div>
     </div>
 
     <p>
       The cutest and sweetest axolotl 🫧<br>
       <span class="hint">Click a fish to explore!</span>
     </p>
-
-    <!-- Swimming fish navigation -->
-    <div class="fish-lane">
-      <a href="/coloring-books/" class="fish-link swim-right" style="--dur:11s">
-        <span class="fish-icon">🐠</span>
-        <span class="fish-rope"></span>
-        <span class="fish-banner">🎨 Coloring</span>
-      </a>
-      <a href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener" class="fish-link swim-left" style="--dur:13s">
-        <span class="fish-icon">🐟</span>
-        <span class="fish-rope"></span>
-        <span class="fish-banner">📚 Books</span>
-      </a>
-      <a href="/kids-games/" class="fish-link swim-right" style="--dur:10s">
-        <span class="fish-icon">🐡</span>
-        <span class="fish-rope"></span>
-        <span class="fish-banner">🎲 Games</span>
-      </a>
-      <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener" class="fish-link swim-left" style="--dur:12s">
-        <span class="fish-icon">🐠</span>
-        <span class="fish-rope"></span>
-        <span class="fish-banner">📱 Social</span>
-      </a>
-      <a href="/learn-about-axolotls/" class="fish-link swim-right" style="--dur:14s">
-        <span class="fish-icon">🐟</span>
-        <span class="fish-rope"></span>
-        <span class="fish-banner">🦎 Learn</span>
-      </a>
-      <a href="/bubble-lab/" class="fish-link swim-left" style="--dur:11s">
-        <span class="fish-icon">🐡</span>
-        <span class="fish-rope"></span>
-        <span class="fish-banner">🫧 Bubble</span>
-      </a>
-    </div>
 
     <div class="scroll-arrow" aria-hidden="true">▼</div>
   </header>
