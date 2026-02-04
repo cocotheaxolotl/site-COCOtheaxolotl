@@ -701,9 +701,6 @@
       // ⚠️ REPLACE THIS URL with your Google Apps Script web app URL
       const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
-      // Don't show if already dismissed or subscribed
-      if(localStorage.getItem("coco_popup_dismissed")) return;
-
       // Show popup after 4 seconds
       setTimeout(()=>{
         overlay.classList.add("active");
@@ -711,7 +708,6 @@
 
       function closePopup(){
         overlay.classList.remove("active");
-        localStorage.setItem("coco_popup_dismissed", "1");
       }
 
       closeBtn.addEventListener("click", closePopup);
@@ -736,8 +732,7 @@
         })
         .then(()=>{
           form.innerHTML = '<p class="popup-success">Thank you! Check your email 💗</p>';
-          localStorage.setItem("coco_popup_dismissed", "1");
-          setTimeout(closePopup, 2500);
+            setTimeout(closePopup, 2500);
         })
         .catch(()=>{
           submitBtn.disabled = false;
