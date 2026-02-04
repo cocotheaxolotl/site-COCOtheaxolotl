@@ -55,7 +55,7 @@ body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 <p><span data-lang="en">Sweet and calming coloring books designed for kids ages 3&ndash;8.</span><span data-lang="fr">Des livres de coloriage doux et apaisants pour les enfants de 3 &agrave; 8 ans.</span><span data-lang="es">Libros para colorear dulces y relajantes dise&ntilde;ados para ni&ntilde;os de 3 a 8 a&ntilde;os.</span></p>
 <p><span data-lang="en">Simple shapes, cute characters, and stress-free fun.</span><span data-lang="fr">Des formes simples, des personnages mignons et du plaisir sans stress.</span><span data-lang="es">Formas simples, personajes adorables y diversi&oacute;n sin estr&eacute;s.</span></p>
 
-<a class="button" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank"><span data-lang="en">Buy on Amazon</span><span data-lang="fr">Acheter sur Amazon</span><span data-lang="es">Comprar en Amazon</span></a>
+<a class="button amazon-book" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" data-href-en="https://www.amazon.com/dp/B0FN7FRVV6" data-href-fr="https://www.amazon.fr/dp/B0FYMS84MR" data-href-es="https://www.amazon.com/dp/B0GCM24GF7"><span data-lang="en">Buy on Amazon</span><span data-lang="fr">Acheter sur Amazon</span><span data-lang="es">Comprar en Amazon</span></a>
 <a class="back" href="/"><span data-lang="en">&larr; Back to home</span><span data-lang="fr">&larr; Retour &agrave; l'accueil</span><span data-lang="es">&larr; Volver al inicio</span></a>
 </main>
 
@@ -66,6 +66,10 @@ function setLang(lang){
     b.classList.toggle('active', b.textContent===lang.toUpperCase());
   });
   document.documentElement.lang = lang;
+  document.querySelectorAll('.amazon-book').forEach(function(a){
+    var href = a.getAttribute('data-href-'+lang);
+    if(href) a.href = href;
+  });
 }
 </script>
 

@@ -257,7 +257,7 @@ body.fr.unlocked .success-banner,body.es.unlocked .success-banner{display:block}
       <span data-lang="fr">D&eacute;couvre le livre de coloriage complet avec 50+ pages sur Amazon !</span>
       <span data-lang="es">&iexcl;Consigue el libro de colorear completo con 50+ p&aacute;ginas en Amazon!</span>
     </p>
-    <a class="cta" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener">
+    <a class="cta amazon-book" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener" data-href-en="https://www.amazon.com/dp/B0FN7FRVV6" data-href-fr="https://www.amazon.fr/dp/B0FYMS84MR" data-href-es="https://www.amazon.com/dp/B0GCM24GF7">
       <span data-lang="en">🛒 Get the Coloring Book</span>
       <span data-lang="fr">🛒 Commander le Livre</span>
       <span data-lang="es">🛒 Comprar el Libro</span>
@@ -300,6 +300,10 @@ function setLang(lang){
     nameInput.placeholder = p[0];
     emailInput.placeholder = p[1];
   }
+  document.querySelectorAll('.amazon-book').forEach(function(a){
+    var href = a.getAttribute('data-href-'+lang);
+    if(href) a.href = href;
+  });
 }
 
 // Set initial placeholders

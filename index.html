@@ -532,7 +532,7 @@
     <div class="hero-row">
       <!-- Left fish column: Site content -->
       <div class="fish-col left">
-        <a href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener" class="fish-link" style="--dur:11s">
+        <a href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener" class="fish-link amazon-book" style="--dur:11s" data-href-en="https://www.amazon.com/dp/B0FN7FRVV6" data-href-fr="https://www.amazon.fr/dp/B0FYMS84MR" data-href-es="https://www.amazon.com/dp/B0GCM24GF7">
           <span class="fish-icon">🐠</span>
           <span class="fish-rope"></span>
           <span class="fish-banner">Coloring Book</span>
@@ -659,7 +659,7 @@
 
       <!-- ONLY ONE BUTTON -->
       <div class="cta-row">
-        <a href="https://www.amazon.com/dp/B0FN7FRVV6" class="button primary" target="_blank" rel="noopener">
+        <a href="https://www.amazon.com/dp/B0FN7FRVV6" class="button primary amazon-book" target="_blank" rel="noopener" data-href-en="https://www.amazon.com/dp/B0FN7FRVV6" data-href-fr="https://www.amazon.fr/dp/B0FYMS84MR" data-href-es="https://www.amazon.com/dp/B0GCM24GF7">
           <span data-lang="en">Discover the books</span><span data-lang="fr">D&eacute;couvrir les livres</span><span data-lang="es">Descubrir los libros</span>
         </a>
       </div>
@@ -737,6 +737,10 @@
       var pe = document.getElementById('popupEmail');
       if(pn) pn.placeholder = p[0];
       if(pe) pe.placeholder = p[1];
+      document.querySelectorAll('.amazon-book').forEach(function(a){
+        var href = a.getAttribute('data-href-'+lang);
+        if(href) a.href = href;
+      });
     }
     // Set initial placeholders
     document.getElementById('popupName').placeholder = 'Your first name';

@@ -88,7 +88,7 @@ body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
   </div>
 
   <p class="small"><span data-lang="en">More activities inside the books (perfect for ages 5&ndash;7).</span><span data-lang="fr">Plus d'activit&eacute;s dans les livres (parfait pour les 5&ndash;7 ans).</span><span data-lang="es">M&aacute;s actividades en los libros (perfecto para ni&ntilde;os de 5 a 7 a&ntilde;os).</span></p>
-  <a class="button" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener">
+  <a class="button amazon-book" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener" data-href-en="https://www.amazon.com/dp/B0FN7FRVV6" data-href-fr="https://www.amazon.fr/dp/B0FYMS84MR" data-href-es="https://www.amazon.com/dp/B0GCM24GF7">
     <span data-lang="en">Discover the books</span><span data-lang="fr">D&eacute;couvrir les livres</span><span data-lang="es">Descubrir los libros</span>
   </a>
 
@@ -104,6 +104,10 @@ function setLang(lang){
     b.classList.toggle('active', b.textContent===lang.toUpperCase());
   });
   document.documentElement.lang = lang;
+  document.querySelectorAll('.amazon-book').forEach(function(a){
+    var href = a.getAttribute('data-href-'+lang);
+    if(href) a.href = href;
+  });
 }
 </script>
 
