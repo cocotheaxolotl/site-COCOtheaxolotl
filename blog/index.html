@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Axolotl Fun Facts – Coco the Axolotl</title>
+<meta name="description" content="Discover amazing fun facts about axolotls! Learn about their habitat, superpowers, diet, colors, and why they need our help. Bilingue EN/FR.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Baloo 2',cursive;background:#fef6fb;color:#333;text-align:center}
+header{background:#f7c1cc;padding:32px 20px 20px}
+header h1{margin:0;font-size:2.2em;font-weight:800}
+header p{margin:8px 0 0;font-size:1.05em;opacity:.85}
+
+.lang-toggle{
+  display:inline-flex;gap:0;margin:18px auto 0;
+  border-radius:32px;overflow:hidden;
+  border:2px solid #ff69b4;
+}
+.lang-btn{
+  padding:8px 22px;font-family:'Baloo 2',cursive;font-size:1em;font-weight:600;
+  border:none;cursor:pointer;transition:background .2s,color .2s;
+  background:transparent;color:#ff69b4;
+}
+.lang-btn.active{background:#ff69b4;color:#fff}
+
+main{max-width:900px;margin:0 auto;padding:30px 20px 40px}
+
+.section{margin:30px 0}
+.section-title{font-size:1.5em;font-weight:800;margin:0 0 16px}
+
+.facts-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.fact{
+  background:#fff;
+  padding:18px 16px;
+  border-radius:18px;
+  box-shadow:0 6px 16px rgba(0,0,0,.05);
+  border:2px solid rgba(255,105,180,.15);
+  text-align:left;
+  font-size:.98em;
+  line-height:1.45;
+  transition:transform .15s,box-shadow .15s;
+}
+.fact:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.09)}
+.fact .emoji{font-size:1.4em;display:block;margin-bottom:6px}
+
+.section:nth-child(even){
+  background:rgba(255,105,180,.04);
+  margin-left:-20px;margin-right:-20px;
+  padding:24px 20px;
+  border-radius:24px;
+}
+
+a.back{display:block;margin-top:36px;color:#ff69b4;text-decoration:none;font-weight:800;font-size:1.05em}
+a.back:hover{text-decoration:underline}
+
+footer{padding:20px;font-size:.85em;opacity:.6}
+
+[data-lang="fr"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr [data-lang="en"]{display:none}
+/* inline spans */
+span[data-lang="fr"]{display:none}
+body.fr span[data-lang="fr"]{display:inline}
+body.fr span[data-lang="en"]{display:none}
+
+@media(max-width:700px){
+  .facts-grid{grid-template-columns:1fr}
+  header h1{font-size:1.7em}
+  .section-title{font-size:1.25em}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>
+    <span data-lang="en">🧠 Axolotl Fun Facts</span>
+    <span data-lang="fr">🧠 Faits Amusants sur les Axolotls</span>
+  </h1>
+  <p>
+    <span data-lang="en">Did you know axolotls are basically real-life superheroes? Discover 15 amazing facts!</span>
+    <span data-lang="fr">Savais-tu que les axolotls sont de vrais super-h&eacute;ros ? D&eacute;couvre 15 faits incroyables !</span>
+  </p>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== Habitat ===== -->
+  <div class="section">
+    <div class="section-title">
+      <span data-lang="en">🏠 Habitat</span>
+      <span data-lang="fr">🏠 Habitat</span>
+    </div>
+    <div class="facts-grid">
+      <div class="fact">
+        <span class="emoji">🇲🇽</span>
+        <span data-lang="en">Axolotls come from only one place in the world: Lake Xochimilco in Mexico City!</span>
+        <span data-lang="fr">Les axolotls viennent d'un seul endroit au monde : le lac Xochimilco &agrave; Mexico !</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">💧</span>
+        <span data-lang="en">They live in freshwater their whole life &mdash; never in the ocean.</span>
+        <span data-lang="fr">Ils vivent en eau douce toute leur vie &mdash; jamais dans l'oc&eacute;an.</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">🌡️</span>
+        <span data-lang="en">The water they live in stays cool, between 14&ndash;20&deg;C (57&ndash;68&deg;F).</span>
+        <span data-lang="fr">L'eau dans laquelle ils vivent reste fra&icirc;che, entre 14 et 20&deg;C.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Body & Superpowers ===== -->
+  <div class="section">
+    <div class="section-title">
+      <span data-lang="en">🦴 Body &amp; Superpowers</span>
+      <span data-lang="fr">🦴 Corps &amp; Super-pouvoirs</span>
+    </div>
+    <div class="facts-grid">
+      <div class="fact">
+        <span class="emoji">✨</span>
+        <span data-lang="en">Axolotls can regrow their legs, tail, heart, and even parts of their brain!</span>
+        <span data-lang="fr">Les axolotls peuvent r&eacute;g&eacute;n&eacute;rer leurs pattes, leur queue, leur c&oelig;ur et m&ecirc;me des parties de leur cerveau !</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">🌿</span>
+        <span data-lang="en">Their feathery gills help them breathe underwater &mdash; like built-in snorkels!</span>
+        <span data-lang="fr">Leurs branchies plumeuses les aident &agrave; respirer sous l'eau &mdash; comme des tubas int&eacute;gr&eacute;s !</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">👶</span>
+        <span data-lang="en">They never &ldquo;grow up&rdquo; &mdash; they keep their baby features for life! This is called neoteny.</span>
+        <span data-lang="fr">Ils ne &laquo; grandissent &raquo; jamais vraiment &mdash; ils gardent leurs traits de b&eacute;b&eacute; toute leur vie ! C'est la n&eacute;ot&eacute;nie.</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">🎂</span>
+        <span data-lang="en">An axolotl can live 10 to 15 years &mdash; that's a long time for a little amphibian!</span>
+        <span data-lang="fr">Un axolotl peut vivre 10 &agrave; 15 ans &mdash; c'est long pour un petit amphibien !</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Diet & Behavior ===== -->
+  <div class="section">
+    <div class="section-title">
+      <span data-lang="en">🍽️ Diet &amp; Behavior</span>
+      <span data-lang="fr">🍽️ Alimentation &amp; Comportement</span>
+    </div>
+    <div class="facts-grid">
+      <div class="fact">
+        <span class="emoji">🪱</span>
+        <span data-lang="en">They eat worms, small fish, and insects. Yummy!</span>
+        <span data-lang="fr">Ils mangent des vers, des petits poissons et des insectes. Miam !</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">🌀</span>
+        <span data-lang="en">Axolotls suck in their food like a vacuum cleaner &mdash; they don't chew!</span>
+        <span data-lang="fr">Les axolotls aspirent leur nourriture comme un aspirateur &mdash; ils ne m&acirc;chent pas !</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">🌙</span>
+        <span data-lang="en">They are mostly active at night &mdash; they're nocturnal creatures!</span>
+        <span data-lang="fr">Ils sont surtout actifs la nuit &mdash; ce sont des cr&eacute;atures nocturnes !</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Colors & Varieties ===== -->
+  <div class="section">
+    <div class="section-title">
+      <span data-lang="en">🌈 Colors &amp; Varieties</span>
+      <span data-lang="fr">🌈 Couleurs &amp; Vari&eacute;t&eacute;s</span>
+    </div>
+    <div class="facts-grid">
+      <div class="fact">
+        <span class="emoji">🤎</span>
+        <span data-lang="en">Wild axolotls are usually dark brown or black &mdash; great camouflage!</span>
+        <span data-lang="fr">Les axolotls sauvages sont g&eacute;n&eacute;ralement brun fonc&eacute; ou noirs &mdash; un super camouflage !</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">💗</span>
+        <span data-lang="en">Pink axolotls (like Coco!) are bred in captivity &mdash; they're called &ldquo;leucistic.&rdquo;</span>
+        <span data-lang="fr">Les axolotls roses (comme Coco !) sont &eacute;lev&eacute;s en captivit&eacute; &mdash; on les appelle &laquo; leucistiques &raquo;.</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">💛</span>
+        <span data-lang="en">They can also be golden, white, or even glow-in-the-dark green (GFP)!</span>
+        <span data-lang="fr">Ils peuvent aussi &ecirc;tre dor&eacute;s, blancs, ou m&ecirc;me verts fluorescents (GFP) !</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Conservation ===== -->
+  <div class="section">
+    <div class="section-title">
+      <span data-lang="en">⚠️ Conservation</span>
+      <span data-lang="fr">⚠️ Conservation</span>
+    </div>
+    <div class="facts-grid">
+      <div class="fact">
+        <span class="emoji">🚨</span>
+        <span data-lang="en">Axolotls are critically endangered in the wild &mdash; we need to protect them!</span>
+        <span data-lang="fr">Les axolotls sont en danger critique d'extinction dans la nature &mdash; il faut les prot&eacute;ger !</span>
+      </div>
+      <div class="fact">
+        <span class="emoji">🔬</span>
+        <span data-lang="en">Scientists study them to understand how humans might one day regenerate tissue too!</span>
+        <span data-lang="fr">Les scientifiques les &eacute;tudient pour comprendre comment les humains pourraient un jour r&eacute;g&eacute;n&eacute;rer des tissus !</span>
+      </div>
+    </div>
+  </div>
+
+  <a class="back" href="/">
+    <span data-lang="en">&larr; Back to home</span>
+    <span data-lang="fr">&larr; Retour &agrave; l'accueil</span>
+  </a>
+</main>
+
+<footer>&copy; 2026 Coco the Axolotl</footer>
+
+<script>
+function setLang(lang){
+  document.body.className=lang==='fr'?'fr':'';
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.textContent===lang.toUpperCase());
+  });
+  document.documentElement.lang=lang;
+}
+</script>
+</body>
+</html>
