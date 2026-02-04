@@ -64,7 +64,6 @@
     }
 
     header{
-      background: url('fond%20axolotl%20site.png') center center / cover no-repeat;
       background-color:var(--pink2);
       min-height:100vh;
       padding:40px 18px 34px;
@@ -75,9 +74,16 @@
       align-items:center;
       justify-content:center;
     }
+    .header-video{
+      position:absolute;
+      top:0;left:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      z-index:0;
+    }
 
     h1{ margin:0 0 8px; font-size:2.6em; font-weight:800; position:relative; z-index:2; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.35); }
-    header p{ margin:8px 0 0; font-size:1.05em; line-height:1.35; position:relative; z-index:2; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.4); }
+    header p{ margin:8px 0 0; font-size:1.5em; font-weight:700; line-height:1.35; position:relative; z-index:2; color:#fff; -webkit-text-stroke: 2px #000; paint-order: stroke fill; text-shadow: 0 0 10px rgba(0,0,0,.6); }
     .hint{font-size:.95em; opacity:.9}
 
     /* ===== Header bubbles (FIXED: 2 layers so CSS rise + JS push both work) ===== */
@@ -491,6 +497,9 @@
 <body>
 
   <header id="heroHeader">
+    <video class="header-video" autoplay muted loop playsinline>
+      <source src="fond%20marin%20openart.mp4" type="video/mp4">
+    </video>
     <div class="bubblesLayer" id="bubblesLayer" aria-hidden="true"></div>
 
     <h1>💗 Coco the Axolotl</h1>
