@@ -47,7 +47,7 @@ main{max-width:960px;margin:0 auto;padding:30px 20px 40px}
 body.unlocked .card-body .dl-btn{background:#ff69b4;cursor:pointer;pointer-events:auto}
 body.unlocked .card-body .dl-btn:hover{filter:brightness(.95)}
 
-/* ===== Email gate (between previews and downloads) ===== */
+/* ===== Email gate ===== */
 .gate{background:#fff;padding:30px 28px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.07);border:2px solid rgba(255,105,180,.25);max-width:520px;margin:32px auto;position:relative;overflow:hidden}
 .gate::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#ff69b4,#ffb6c1,#ff69b4)}
 .gate h2{margin:0 0 6px;font-size:1.3em;font-weight:800;color:#ff69b4}
@@ -78,16 +78,25 @@ a.back{display:block;margin-top:30px;color:#ff69b4;text-decoration:none;font-wei
 a.back:hover{text-decoration:underline}
 footer{padding:20px;font-size:.85em;opacity:.6}
 
-span[data-lang="fr"]{display:none}
-body.fr span[data-lang="fr"]{display:inline}
-body.fr span[data-lang="en"]{display:none}
-[data-lang="fr"]{display:none}
-body.fr [data-lang="fr"]{display:block}
-body.fr [data-lang="en"]{display:none}
+/* ===== Language visibility: default EN ===== */
+span[data-lang="fr"],span[data-lang="es"]{display:none}
+[data-lang="fr"],[data-lang="es"]{display:none}
 
-/* Keep unlocked class working with fr */
-body.fr.unlocked .gate{display:none}
-body.fr.unlocked .success-banner{display:block}
+/* FR active */
+body.fr span[data-lang="fr"]{display:inline}
+body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+
+/* ES active */
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+
+/* Keep unlocked class working with fr/es */
+body.fr.unlocked .gate,body.es.unlocked .gate{display:none}
+body.fr.unlocked .success-banner,body.es.unlocked .success-banner{display:block}
 
 @media(max-width:700px){
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}
@@ -105,14 +114,17 @@ body.fr.unlocked .success-banner{display:block}
   <h1>
     <span data-lang="en">🎨 Free Coloring Pages</span>
     <span data-lang="fr">🎨 Coloriages Gratuits</span>
+    <span data-lang="es">🎨 Dibujos para Colorear Gratis</span>
   </h1>
   <p>
     <span data-lang="en">6 free printable coloring pages featuring Coco the Axolotl!</span>
     <span data-lang="fr">6 coloriages gratuits &agrave; imprimer avec Coco l'Axolotl !</span>
+    <span data-lang="es">&iexcl;6 dibujos para colorear gratis con Coco el Ajolote!</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -130,10 +142,10 @@ body.fr.unlocked .success-banner{display:block}
     <div class="card">
       <img src="thank%20you%20for%20coloring%20leave%20a%20review%20sans%20texte.png" alt="Thank you for coloring - review coloring page" loading="lazy">
       <div class="card-body">
-        <h3><span data-lang="en">Thank You Card</span><span data-lang="fr">Carte de Remerciement</span></h3>
+        <h3><span data-lang="en">Thank You Card</span><span data-lang="fr">Carte de Remerciement</span><span data-lang="es">Tarjeta de Gracias</span></h3>
         <a class="dl-btn" href="thank%20you%20for%20coloring%20leave%20a%20review%20sans%20texte.png" download="thank-you-coloring-page.png">
           <span class="lock-icon">🔒</span>
-          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span><span data-lang="es">Descargar</span>
         </a>
       </div>
     </div>
@@ -141,10 +153,10 @@ body.fr.unlocked .success-banner{display:block}
     <div class="card">
       <img src="coco-and-boy.png" alt="Coco and a boy coloring page" loading="lazy">
       <div class="card-body">
-        <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Ami</span></h3>
+        <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Ami</span><span data-lang="es">Coco y su Amigo</span></h3>
         <a class="dl-btn" href="coco-and-boy.png" download="coco-and-boy-coloring-page.png">
           <span class="lock-icon">🔒</span>
-          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span><span data-lang="es">Descargar</span>
         </a>
       </div>
     </div>
@@ -152,10 +164,10 @@ body.fr.unlocked .success-banner{display:block}
     <div class="card">
       <img src="coco-and-girl.png" alt="Coco and a girl coloring page" loading="lazy">
       <div class="card-body">
-        <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Amie</span></h3>
+        <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Amie</span><span data-lang="es">Coco y su Amiga</span></h3>
         <a class="dl-btn" href="coco-and-girl.png" download="coco-and-girl-coloring-page.png">
           <span class="lock-icon">🔒</span>
-          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span><span data-lang="es">Descargar</span>
         </a>
       </div>
     </div>
@@ -164,10 +176,10 @@ body.fr.unlocked .success-banner{display:block}
     <div class="card">
       <img src="coco-christmas.png" alt="Coco Christmas coloring page" loading="lazy">
       <div class="card-body">
-        <h3><span data-lang="en">Coco's Christmas</span><span data-lang="fr">Le No&euml;l de Coco</span></h3>
+        <h3><span data-lang="en">Coco's Christmas</span><span data-lang="fr">Le No&euml;l de Coco</span><span data-lang="es">La Navidad de Coco</span></h3>
         <a class="dl-btn" href="coco-christmas.png" download="coco-christmas-coloring-page.png">
           <span class="lock-icon">🔒</span>
-          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span><span data-lang="es">Descargar</span>
         </a>
       </div>
     </div>
@@ -175,10 +187,10 @@ body.fr.unlocked .success-banner{display:block}
     <div class="card">
       <img src="underwater-scene.png" alt="Underwater scene coloring page" loading="lazy">
       <div class="card-body">
-        <h3><span data-lang="en">Underwater World</span><span data-lang="fr">Monde Sous-Marin</span></h3>
+        <h3><span data-lang="en">Underwater World</span><span data-lang="fr">Monde Sous-Marin</span><span data-lang="es">Mundo Submarino</span></h3>
         <a class="dl-btn" href="underwater-scene.png" download="underwater-scene-coloring-page.png">
           <span class="lock-icon">🔒</span>
-          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span><span data-lang="es">Descargar</span>
         </a>
       </div>
     </div>
@@ -186,10 +198,10 @@ body.fr.unlocked .success-banner{display:block}
     <div class="card">
       <img src="axolotl-emotions.png" alt="Which axolotl are you today - emotions coloring page" loading="lazy">
       <div class="card-body">
-        <h3><span data-lang="en">Axolotl Emotions</span><span data-lang="fr">&Eacute;motions Axolotl</span></h3>
+        <h3><span data-lang="en">Axolotl Emotions</span><span data-lang="fr">&Eacute;motions Axolotl</span><span data-lang="es">Emociones Ajolote</span></h3>
         <a class="dl-btn" href="axolotl-emotions.png" download="axolotl-emotions-coloring-page.png">
           <span class="lock-icon">🔒</span>
-          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span><span data-lang="es">Descargar</span>
         </a>
       </div>
     </div>
@@ -201,10 +213,12 @@ body.fr.unlocked .success-banner{display:block}
     <h2>
       <span data-lang="en">🔓 Unlock All Downloads</span>
       <span data-lang="fr">🔓 D&eacute;bloquer les T&eacute;l&eacute;chargements</span>
+      <span data-lang="es">🔓 Desbloquear las Descargas</span>
     </h2>
     <p>
       <span data-lang="en">Enter your first name and email to download all 6 coloring pages for free!</span>
       <span data-lang="fr">Entre ton pr&eacute;nom et ton email pour t&eacute;l&eacute;charger les 6 coloriages gratuitement !</span>
+      <span data-lang="es">&iexcl;Escribe tu nombre y email para descargar los 6 dibujos gratis!</span>
     </p>
     <form id="freebieForm">
       <input type="text" id="userName" required>
@@ -212,11 +226,13 @@ body.fr.unlocked .success-banner{display:block}
       <button type="submit" id="submitBtn">
         <span data-lang="en">🎁 Unlock Free Downloads</span>
         <span data-lang="fr">🎁 D&eacute;bloquer les T&eacute;l&eacute;chargements</span>
+        <span data-lang="es">🎁 Desbloquear Descargas Gratis</span>
       </button>
     </form>
     <p class="disclaimer">
       <span data-lang="en">We respect your privacy. No spam, unsubscribe anytime.</span>
       <span data-lang="fr">Nous respectons ta vie priv&eacute;e. Pas de spam, d&eacute;sinscription possible &agrave; tout moment.</span>
+      <span data-lang="es">Respetamos tu privacidad. Sin spam, cancela cuando quieras.</span>
     </p>
   </div>
 
@@ -225,6 +241,7 @@ body.fr.unlocked .success-banner{display:block}
     <p>
       <span data-lang="en">🎉 Downloads unlocked! Click the download buttons above to save each page.</span>
       <span data-lang="fr">🎉 T&eacute;l&eacute;chargements d&eacute;bloqu&eacute;s ! Clique sur les boutons ci-dessus pour enregistrer chaque page.</span>
+      <span data-lang="es">🎉 &iexcl;Descargas desbloqueadas! Haz clic en los botones de arriba para guardar cada p&aacute;gina.</span>
     </p>
   </div>
 
@@ -233,24 +250,29 @@ body.fr.unlocked .success-banner{display:block}
     <h2>
       <span data-lang="en">💗 Want more Coco?</span>
       <span data-lang="fr">💗 Tu veux plus de Coco ?</span>
+      <span data-lang="es">💗 &iquest;Quieres m&aacute;s de Coco?</span>
     </h2>
     <p>
       <span data-lang="en">Get the full coloring book with 50+ pages on Amazon!</span>
       <span data-lang="fr">D&eacute;couvre le livre de coloriage complet avec 50+ pages sur Amazon !</span>
+      <span data-lang="es">&iexcl;Consigue el libro de colorear completo con 50+ p&aacute;ginas en Amazon!</span>
     </p>
     <a class="cta" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener">
       <span data-lang="en">🛒 Get the Coloring Book</span>
       <span data-lang="fr">🛒 Commander le Livre</span>
+      <span data-lang="es">🛒 Comprar el Libro</span>
     </a>
     <a class="cta" href="/blog/" style="background:transparent;color:#ff69b4;border:2px solid #ff69b4">
       <span data-lang="en">📝 Read the Blog</span>
       <span data-lang="fr">📝 Lire le Blog</span>
+      <span data-lang="es">📝 Leer el Blog</span>
     </a>
   </div>
 
   <a class="back" href="/">
     <span data-lang="en">&larr; Back to home</span>
     <span data-lang="fr">&larr; Retour &agrave; l'accueil</span>
+    <span data-lang="es">&larr; Volver al inicio</span>
   </a>
 </main>
 
@@ -259,7 +281,8 @@ body.fr.unlocked .success-banner{display:block}
 <script>
 function setLang(lang){
   var isUnlocked = document.body.classList.contains('unlocked');
-  document.body.className = (lang==='fr' ? 'fr' : '') + (isUnlocked ? ' unlocked' : '');
+  var langClass = (lang==='fr') ? 'fr' : (lang==='es') ? 'es' : '';
+  document.body.className = langClass + (isUnlocked ? ' unlocked' : '');
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.classList.toggle('active', b.textContent===lang.toUpperCase());
   });
@@ -268,8 +291,14 @@ function setLang(lang){
   var nameInput = document.getElementById('userName');
   var emailInput = document.getElementById('userEmail');
   if(nameInput && emailInput){
-    nameInput.placeholder = lang==='fr' ? 'Ton prénom' : 'Your first name';
-    emailInput.placeholder = lang==='fr' ? 'Ton email' : 'Your email';
+    var placeholders = {
+      en: ['Your first name', 'Your email'],
+      fr: ['Ton pr\u00e9nom', 'Ton email'],
+      es: ['Tu nombre', 'Tu email']
+    };
+    var p = placeholders[lang] || placeholders.en;
+    nameInput.placeholder = p[0];
+    emailInput.placeholder = p[1];
   }
 }
 
