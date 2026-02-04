@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble Name | Coco the Axolotl</title>
+  <meta name="description" content="Type your name in bubble letters and download it to color. Free kids activity (ages 5–7).">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fef6fb;margin:0;color:#333;text-align:center}
+    header{background:#f7c1cc;padding:22px 16px}
+    h1{margin:0;font-size:2.1em;font-family:"Fredoka One",system-ui}
+    main{max-width:980px;margin:0 auto;padding:18px 16px 40px}
+    p{max-width:720px;margin:10px auto;line-height:1.4}
+    .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+    input{
+      padding:14px 16px;border-radius:14px;border:2px solid #ffd1e3;
+      font-size:1.05em;width:min(420px, 92vw);outline:none
+    }
+    button,a.btn{
+      padding:14px 18px;border-radius:16px;border:none;cursor:pointer;
+      font-weight:800;font-size:1.02em;text-decoration:none;display:inline-block
+    }
+    button{background:#ff69b4;color:#fff}
+    .secondary{background:#fff;color:#ff69b4;border:2px solid #ff69b4}
+    .card{
+      background:#fff;border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.06);
+      padding:12px;margin:14px auto;display:inline-block
+    }
+    canvas{background:#fff;border-radius:18px;max-width:96vw;height:auto}
+    .small{opacity:.85;font-size:.95em}
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>🔤 Bubble Name</h1>
+</header>
+
+<main>
+  <p><strong>Kids:</strong> type your name to get <strong>big bubble letters</strong> you can <strong>download and color</strong> (ages 5–7).</p>
+
+  <div class="row">
+    <input id="nameInput" maxlength="18" placeholder="LUCAS" aria-label="Enter your name">
+    <button id="genBtn">Make my name</button>
+  </div>
+
+  <div class="card">
+    <canvas id="c" width="2480" height="3508" aria-label="Printable bubble name"></canvas>
+  </div>
+
+  <div class="row">
+    <button class="secondary" id="dlBtn">Download (A4 PNG)</button>
+    <button id="printBtn">Print</button>
+    <a class="btn secondary" href="/" style="border:2px solid #ff69b4;color:#ff69b4;background:#fff">Home</a>
+  </div>
+
+  <p class="small">Tip: download then print. Color inside the letters ✨</p>
+</main>
+
+<script>
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+
+  function sanitizeName(s){
+    return (s || "")
+      .trim()
+      .toUpperCase()
+      .replace(/[^A-ZÀÂÄÇÉÈÊËÎÏÔÖÙÛÜŸ' -]/g, "")
+      .slice(0, 18);
+  }
+
+  function measure(text, size){
+    ctx.font = `900 ${size}px "Fredoka One", Arial Black, Arial`;
+    return ctx.measureText(text).width;
+  }
+
+  function fitSize(text, maxWidth){
+    let size = 260;
+    while(size > 80){
+      if(measure(text, size) <= maxWidth) return size;
+      size -= 8;
+    }
+    return 80;
+  }
+
+  function draw(name){
+    const W = canvas.width, H = canvas.height;
+
+    // White A4 background (2480x3508 = A4 at ~300dpi)
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0,0,W,H);
+
+    // Title
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#111";
+    ctx.font = `900 110px "Fredoka One", Arial`;
+    ctx.fillText("Color your name!", W/2, 280);
+
+    // Bubble letters (center)
+    const maxNameWidth = W * 0.82;
+    const fontSize = fitSize(name, maxNameWidth);
+    const y = Math.round(H * 0.52);
+
+    ctx.textAlign = "center";
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.miterLimit = 1;
+
+    ctx.font = `900 ${fontSize}px "Fredoka One", Arial Black, Arial`;
+
+    // Main outline (FINER than before)
+    ctx.lineWidth = Math.max(24, Math.round(fontSize * 0.11));
+    ctx.strokeStyle = "#000";
+    ctx.strokeText(name, W/2, y);
+
+    // White fill for coloring inside
+    ctx.fillStyle = "#fff";
+    ctx.fillText(name, W/2, y);
+
+    // Light second outline (clean edge)
+    ctx.lineWidth = Math.max(6, Math.round(fontSize * 0.025));
+    ctx.strokeStyle = "#000";
+    ctx.strokeText(name, W/2, y);
+
+    // Footer URL
+    ctx.font = `900 80px "Fredoka One", Arial`;
+    ctx.fillStyle = "#111";
+    ctx.fillText("cocotheaxolotl.org", W/2, H - 220);
+  }
+
+  function generate(){
+    const raw = document.getElementById("nameInput").value;
+    const name = sanitizeName(raw) || "COCO";
+    draw(name);
+  }
+
+  document.getElementById("genBtn").addEventListener("click", generate);
+  document.getElementById("nameInput").addEventListener("keydown", (e)=>{ if(e.key==="Enter") generate(); });
+
+  document.getElementById("dlBtn").addEventListener("click", ()=>{
+    const raw = document.getElementById("nameInput").value;
+    const name = sanitizeName(raw) || "COCO";
+    const a = document.createElement("a");
+    a.download = `coco-bubble-name-${name}.png`;
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  });
+
+  document.getElementById("printBtn").addEventListener("click", ()=>{
+    const dataUrl = canvas.toDataURL("image/png");
+    const w = window.open("");
+    w.document.write(`<img src="${dataUrl}" style="width:100%;max-width:900px;display:block;margin:0 auto;">`);
+    w.document.close();
+    w.focus();
+    w.print();
+  });
+
+  // Start
+  draw("COCO");
+</script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <title>Coco the Axolotl</title>
+  <meta name="description" content="Coco the Axolotl – the cutest and sweetest pink axolotl. Coloring activities for kids, calm activities, and quiet time fun.">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --pink:#ff69b4;
+      --pink2:#f7c1cc;
+      --bg:#fef6fb;
+      --card:#ffffff;
+      --text:#333;
+      --shadow:0 10px 26px rgba(0,0,0,.08);
+      --border:2px solid rgba(255,105,180,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Baloo 2', cursive;
+      background-color:var(--bg);
+      color:var(--text);
+      margin:0;
+      text-align:center;
+    }
+
+    header{
+      background-color:var(--pink2);
+      padding:28px 18px 34px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    h1{ margin:0 0 14px; font-size:2.6em; font-weight:800; position:relative; z-index:2; }
+    header p{ margin:12px 0 0; font-size:1.05em; opacity:0.92; line-height:1.35; position:relative; z-index:2; }
+    .hint{font-size:.95em; opacity:.9}
+
+    /* ===== Header bubbles (FIXED: 2 layers so CSS rise + JS push both work) ===== */
+    .bubblesLayer{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+    }
+    .bubble{
+      position:absolute;
+      bottom:-140px;
+      left:0;
+      width:44px;
+      height:44px;
+      pointer-events:none;
+      will-change: transform;
+      transform: translate3d(0,0,0); /* JS moves THIS */
+    }
+    .bubbleInner{
+      width:100%;
+      height:100%;
+      border:3px solid rgba(0,0,0,.28);
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      opacity:.32;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      will-change: transform;
+      animation: rise linear infinite; /* CSS moves THIS */
+    }
+    @keyframes rise{
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(0, calc(-1 * var(--travel, 820px)), 0); }
+    }
+
+    /* Coco */
+    .axolotl-container{
+      position:relative;
+      display:inline-block;
+      margin:14px auto 8px;
+      cursor:pointer;
+      user-select:none;
+      z-index:2;
+    }
+    .axolotl-img{ display:block; width:220px; position:relative; z-index:1; }
+    .gills-img{
+      position:absolute; top:0; left:0; width:220px;
+      z-index:2; pointer-events:none; transform-origin:center;
+    }
+    .axolotl-container:hover .gills-img,
+    .axolotl-container.wiggle .gills-img{
+      animation:gillsMove .55s ease-in-out infinite alternate;
+    }
+    @keyframes gillsMove{
+      0%{ transform:rotate(-2.2deg) translateY(-1px); }
+      100%{ transform:rotate(2.2deg) translateY(1px); }
+    }
+
+    /* Main white area */
+    main{
+      position:relative;
+      overflow:hidden;
+      padding:34px 18px 18px;
+    }
+
+    /* White explosive bubbles canvas */
+    #blastCanvas{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:auto;
+    }
+    .content{
+      position:relative;
+      z-index:1;
+      pointer-events:none;
+    }
+    .content a{ pointer-events:auto; }
+
+    h2{ font-size:2.0em; margin:0 0 10px; }
+    .intro{
+      max-width:720px;
+      margin:0 auto 18px;
+      line-height:1.5;
+      opacity:.92;
+    }
+    .seoLine{
+      max-width:900px;
+      margin:0 auto 18px;
+      font-size:14px;
+      opacity:.88;
+      line-height:1.45;
+    }
+
+    .quick-links{
+      max-width:980px;
+      margin:22px auto 0;
+      padding:0 18px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+    .card{
+      display:block;
+      text-decoration:none;
+      background:var(--card);
+      border-radius:18px;
+      padding:18px 18px 16px;
+      box-shadow:var(--shadow);
+      border: var(--border);
+      color:var(--text);
+      text-align:left;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .card:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,105,180,.65);
+      box-shadow:0 14px 30px rgba(0,0,0,.10);
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size:20px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .card p{
+      margin:0;
+      opacity:.85;
+      font-size:14px;
+      line-height:1.35;
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:22px;
+      pointer-events:auto;
+    }
+    .button{
+      display:inline-block;
+      padding:16px 34px;
+      border-radius:32px;
+      font-weight:800;
+      font-size:1.05em;
+      text-decoration:none;
+      border:2px solid var(--pink);
+      transition: filter .12s ease, transform .12s ease, background .12s ease;
+    }
+    .button.primary{ background:var(--pink); color:white; }
+    .button:hover{filter:brightness(.98)}
+    .button:active{transform:translateY(1px)}
+
+    .social{ margin-top:16px; font-size:0.95em; pointer-events:auto; }
+    .social a{ color:var(--pink); text-decoration:none; font-weight:800; }
+
+    .author-link{ margin-top:10px; font-size:0.92em; pointer-events:auto; }
+    .author-link a{ color:var(--pink); text-decoration:none; font-weight:800; }
+
+    footer{
+      margin-top:26px;
+      padding:18px;
+      font-size:0.85em;
+      color:#888;
+      pointer-events:auto;
+    }
+    footer a{color:#777; text-decoration:underline}
+
+    @media (max-width: 820px){
+      .quick-links{grid-template-columns:1fr}
+      h1{font-size:2.25em}
+      h2{font-size:1.8em}
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="heroHeader">
+    <div class="bubblesLayer" id="bubblesLayer" aria-hidden="true"></div>
+
+    <h1>💗 Coco the Axolotl</h1>
+
+    <div class="axolotl-container" id="cocoWiggle" aria-label="Coco">
+      <img src="axolotl.png" alt="Coco body" class="axolotl-img">
+      <img src="gills.png" alt="Coco gills" class="gills-img">
+    </div>
+
+    <p>
+      The cutest and sweetest axolotl 🫧<br>
+      <span class="hint">Touch my gills to make them move</span>
+    </p>
+  </header>
+
+  <main id="blastArea">
+    <canvas id="blastCanvas"></canvas>
+
+    <div class="content">
+      <h2>Welcome to Coco’s world</h2>
+
+      <p class="intro">
+        Coco the Axolotl offers calm activities for kids, including coloring activities for kids, quiet time activities, and fun printable games designed to help children relax, focus, and enjoy creative moments offline.
+        Parents can find peaceful coloring pages, screen-free quiet time activities, and educational play ideas that support learning through play in a calm and friendly environment.
+
+      </p>
+
+      <p class="seoLine">
+        Parents also search for: <strong>coloring activities for kids</strong>, <strong>calm activities for kids</strong>, and <strong>quiet time activities</strong>.
+      </p>
+
+      <div class="quick-links">
+        <a class="card" href="/coloring-books/">
+          <h3>🎨 Coloring Books</h3>
+          <p>Calming coloring activities for kids, perfect for quiet time, relaxation, and screen-free moments.
+</p>
+        </a>
+
+        <a class="card" href="/kids-games/">
+          <h3>🎲 Kids Games</h3>
+          <p>Quiet time activities and calm games designed for learning through play and focus.</p>
+        </a>
+
+        <a class="card" href="/learn-about-axolotls/">
+          <h3>🦎 Learn About Axolotls</h3>
+          <p>Educational activities for kids with fun facts that encourage calm learning and curiosity.</p>
+        </a>
+
+        <a class="card" href="/bubble-lab/">
+          <h3>🫧 Bubble Name</h3>
+          <p>Printable coloring activity for kids: create bubble letters to color during calm and quiet time.
+</p>
+        </a>
+      </div>
+
+      <!-- ONLY ONE BUTTON -->
+      <div class="cta-row">
+        <a href="https://www.amazon.com/dp/B0FN7FRVV6" class="button primary" target="_blank" rel="noopener">
+          Discover the books
+        </a>
+      </div>
+
+      <div class="social">
+        Follow Coco:
+        <a href="https://www.youtube.com/channel/UCxSzBMea0cfiuJlrPCNG2UA" target="_blank" rel="noopener">YouTube</a> ·
+        <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener">Instagram</a> ·
+        <a href="https://www.tiktok.com/@cocotheaxolotl" target="_blank" rel="noopener">TikTok</a>
+      </div>
+
+      <p class="author-link">
+        Amazon Author Page:
+        <a href="https://www.amazon.com/author/loopinky" target="_blank" rel="noopener">amazon.com/author/loopinky</a>
+      </p>
+
+      <footer>
+        © 2026 Coco the Axolotl — All rights reserved ·
+        <a href="/legal-notice/">Legal Notice</a> ·
+        <a href="/privacy-policy/">Privacy Policy</a>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    function rand(min,max){ return min + Math.random()*(max-min); }
+
+    /* ===== Gills wiggle on tap (mobile) ===== */
+    const coco = document.getElementById("cocoWiggle");
+    let wiggleT;
+    coco.addEventListener("click", () => {
+      coco.classList.add("wiggle");
+      clearTimeout(wiggleT);
+      wiggleT = setTimeout(() => coco.classList.remove("wiggle"), 1200);
+    }, { passive:true });
+
+    /* =========================================================
+       HEADER BUBBLES (FIXED): CSS rise on inner + JS push on outer
+       ========================================================= */
+    (function headerBubbles(){
+      const layer = document.getElementById("bubblesLayer");
+      const hero  = document.getElementById("heroHeader");
+      const COUNT = 18;
+      const bubbles = [];
+
+      layer.innerHTML = "";
+
+      for(let i=0;i<COUNT;i++){
+        const outer = document.createElement("div");
+        outer.className = "bubble";
+
+        const inner = document.createElement("div");
+        inner.className = "bubbleInner";
+
+        const size = Math.round(rand(18, 64));
+        const left = rand(2, 98);
+        const dur  = rand(7.5, 14.5);
+        const delay= rand(0, 9);
+        const travel = rand(560, 1100);
+
+        outer.style.width = size + "px";
+        outer.style.height = size + "px";
+        outer.style.left = left + "%";
+
+        inner.style.animationDuration = dur + "s";
+        inner.style.animationDelay = (-delay) + "s";
+        inner.style.setProperty("--travel", travel + "px");
+
+        outer.appendChild(inner);
+        layer.appendChild(outer);
+
+        bubbles.push({
+          el: outer,
+          ox: 0, oy: 0,
+          vx: 0, vy: 0,
+          phase: rand(0, Math.PI*2),
+          drift: rand(0.6, 1.4),
+          baseX: 0
+        });
+      }
+
+      let mouse = { x: 0.5, y: 0.5, active:false };
+
+      function setMouse(e){
+        const r = hero.getBoundingClientRect();
+        mouse.x = (e.clientX - r.left) / r.width;
+        mouse.y = (e.clientY - r.top) / r.height;
+        mouse.active = true;
+      }
+      function leaveMouse(){ mouse.active = false; }
+
+      window.addEventListener("mousemove", setMouse, { passive:true });
+      hero.addEventListener("mouseleave", leaveMouse, { passive:true });
+
+      function tick(){
+        const r = hero.getBoundingClientRect();
+        const W = r.width;
+        const H = r.height;
+        const mx = mouse.x * W;
+        const my = mouse.y * H;
+
+        for(const b of bubbles){
+          const t = performance.now();
+
+          // idle wobble
+          b.vx += Math.sin(t*0.0012 + b.phase) * 0.03 * b.drift;
+          b.vy += Math.cos(t*0.0010 + b.phase) * 0.02 * b.drift;
+
+          if(mouse.active){
+            // approximate bubble center from its left% (good enough)
+            const rect = b.el.getBoundingClientRect();
+            const heroRect = hero.getBoundingClientRect();
+            const bx = (rect.left - heroRect.left) + rect.width/2;
+            const by = (rect.top - heroRect.top) + rect.height/2;
+
+            const dx = bx - mx;
+            const dy = by - my;
+            const dist = Math.sqrt(dx*dx + dy*dy) + 0.0001;
+
+            const R = 270; // radius
+            if(dist < R){
+              const tt = 1 - (dist / R);
+              const force = 24 * (tt*tt);  // push (strong)
+              const swirl = 12 * (tt*tt);  // swirl (fun)
+
+              b.vx += (dx / dist) * force;
+              b.vy += (dy / dist) * force;
+
+              b.vx += (-dy / dist) * swirl;
+              b.vy += ( dx / dist) * swirl;
+            }
+          }
+
+          // damping
+          b.vx *= 0.88;
+          b.vy *= 0.88;
+
+          // integrate
+          b.ox += b.vx;
+          b.oy += b.vy;
+
+          // clamp so it stays pretty
+          b.ox = Math.max(-170, Math.min(170, b.ox));
+          b.oy = Math.max(-120, Math.min(120, b.oy));
+
+          b.el.style.transform = `translate3d(${b.ox.toFixed(1)}px, ${b.oy.toFixed(1)}px, 0)`;
+        }
+
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+
+    /* =========================================================
+       WHITE AREA = EXPLOSIVE + RISING BUBBLES (canvas)
+       ========================================================= */
+    (function whiteExplosive(){
+      const area = document.getElementById("blastArea");
+      const canvas = document.getElementById("blastCanvas");
+      const ctx = canvas.getContext("2d");
+
+      function resize(){
+        const r = area.getBoundingClientRect();
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        canvas.width = Math.floor(r.width * dpr);
+        canvas.height = Math.floor(r.height * dpr);
+        canvas.style.width = r.width + "px";
+        canvas.style.height = r.height + "px";
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+
+      const P = [];
+      let mouse = { x:-9999, y:-9999, down:false };
+
+      function spawnRiser(){
+        const r = area.getBoundingClientRect();
+        P.push({
+          x: rand(0, r.width),
+          y: r.height + rand(10, 160),
+          vx: rand(-0.25, 0.25),
+          vy: -rand(0.9, 2.0),
+          rad: rand(10, 26),
+          life: rand(220, 420),
+          lw: rand(2.0, 3.6)
+        });
+      }
+
+      function burst(x,y, power=1){
+        const count = Math.floor(28 + 36*power);
+        for(let i=0;i<count;i++){
+          const a = rand(0, Math.PI*2);
+          const sp = rand(1.8, 7.8) * (0.9 + power);
+          P.push({
+            x, y,
+            vx: Math.cos(a)*sp,
+            vy: Math.sin(a)*sp,
+            rad: rand(6, 16),
+            life: rand(45, 95),
+            lw: rand(2.2, 3.8)
+          });
+        }
+      }
+
+      function pos(e){
+        const r = area.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+      }
+
+      canvas.addEventListener("mousemove", (e)=>pos(e), { passive:true });
+      canvas.addEventListener("mouseleave", ()=>{ mouse.x=-9999; mouse.y=-9999; }, { passive:true });
+      canvas.addEventListener("mousedown", (e)=>{ pos(e); mouse.down=true; burst(mouse.x, mouse.y, 1.2); });
+      window.addEventListener("mouseup", ()=> mouse.down=false, { passive:true });
+      canvas.addEventListener("click", (e)=>{ pos(e); burst(mouse.x, mouse.y, 1.0); });
+
+      function tick(){
+        const r = area.getBoundingClientRect();
+        const W = r.width;
+        const H = r.height;
+
+        ctx.clearRect(0,0,W,H);
+
+        if(P.length < 190 && Math.random() < 0.34){
+          spawnRiser();
+        }
+
+        for(let i=P.length-1;i>=0;i--){
+          const p = P[i];
+
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx*dx + dy*dy) + 0.0001;
+          const R = mouse.down ? 260 : 190;
+
+          if(dist < R){
+            const t = 1 - dist / R;
+            const force = (mouse.down ? 2.0 : 1.1) * (t*t);
+            p.vx += (dx / dist) * (3.3 * force);
+            p.vy += (dy / dist) * (3.3 * force);
+          }
+
+          p.vx *= 0.985;
+          p.vy *= 0.985;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= 1;
+
+          ctx.beginPath();
+          ctx.lineWidth = p.lw;
+          ctx.strokeStyle = "rgba(0,0,0,0.22)";
+          ctx.fillStyle = "rgba(255,255,255,0.10)";
+          ctx.arc(p.x, p.y, p.rad, 0, Math.PI*2);
+          ctx.fill();
+          ctx.stroke();
+
+          if(p.life <= 0 || p.y < -260 || p.x < -300 || p.x > W + 300 || p.y > H + 300){
+            P.splice(i,1);
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener("resize", resize);
+      window.addEventListener("load", ()=>{ resize(); tick(); });
+    })();
+  </script>
+
+</body>
+</html>

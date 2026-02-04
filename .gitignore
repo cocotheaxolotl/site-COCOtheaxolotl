@@ -1,0 +1,17 @@
+# Large video files
+*.mov
+
+# Windows
+nul
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+
+# Claude Code local settings
+.claude/
+
+# Python
+__pycache__/
+*.pyc
