@@ -25,10 +25,27 @@ header p{margin:8px 0 0;font-size:1.05em;opacity:.85}
 .lang-btn{padding:8px 22px;font-family:'Baloo 2',cursive;font-size:1em;font-weight:600;border:none;cursor:pointer;transition:background .2s,color .2s;background:transparent;color:#ff69b4}
 .lang-btn.active{background:#ff69b4;color:#fff}
 
-main{max-width:900px;margin:0 auto;padding:30px 20px 40px}
+main{max-width:960px;margin:0 auto;padding:30px 20px 40px}
 
-/* ===== Email gate form ===== */
-.gate{background:#fff;padding:30px 24px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.07);border:2px solid rgba(255,105,180,.2);max-width:480px;margin:0 auto 30px}
+/* ===== Preview grid (always visible) ===== */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0}
+.card{background:#fff;border-radius:18px;box-shadow:0 6px 16px rgba(0,0,0,.05);border:2px solid rgba(255,105,180,.15);overflow:hidden;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.09)}
+.card img{width:100%;height:auto;display:block;border-bottom:2px solid rgba(255,105,180,.1)}
+.card-body{padding:14px}
+.card-body h3{margin:0 0 8px;font-size:1em;font-weight:800}
+
+/* Download button - locked state */
+.card-body .dl-btn{display:inline-block;padding:8px 20px;background:#ccc;color:#fff;text-decoration:none;border-radius:24px;font-weight:700;font-size:.9em;transition:background .2s,filter .2s;cursor:not-allowed;pointer-events:none}
+.card-body .dl-btn .lock-icon{margin-right:4px}
+
+/* Download button - unlocked state */
+body.unlocked .card-body .dl-btn{background:#ff69b4;cursor:pointer;pointer-events:auto}
+body.unlocked .card-body .dl-btn:hover{filter:brightness(.95)}
+
+/* ===== Email gate (between previews and downloads) ===== */
+.gate{background:#fff;padding:30px 28px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.07);border:2px solid rgba(255,105,180,.25);max-width:520px;margin:32px auto;position:relative;overflow:hidden}
+.gate::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#ff69b4,#ffb6c1,#ff69b4)}
 .gate h2{margin:0 0 6px;font-size:1.3em;font-weight:800;color:#ff69b4}
 .gate p{margin:0 0 16px;font-size:.95em;opacity:.8}
 .gate input{display:block;width:100%;padding:12px 16px;margin:10px 0;border:2px solid #f0d0e0;border-radius:14px;font-family:'Baloo 2',cursive;font-size:1em;outline:none;transition:border-color .2s}
@@ -37,20 +54,16 @@ main{max-width:900px;margin:0 auto;padding:30px 20px 40px}
 .gate button:hover{filter:brightness(.95)}
 .gate button:disabled{opacity:.6;cursor:not-allowed}
 .gate .disclaimer{font-size:.8em;opacity:.6;margin-top:12px}
-.gate .success{color:#22883e;font-weight:700;font-size:1.05em}
 
-/* ===== Coloring pages grid ===== */
-.downloads{display:none}
-.downloads.visible{display:block}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0}
-.card{background:#fff;border-radius:18px;box-shadow:0 6px 16px rgba(0,0,0,.05);border:2px solid rgba(255,105,180,.15);overflow:hidden;transition:transform .15s,box-shadow .15s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.09)}
-.card img{width:100%;height:auto;display:block;border-bottom:2px solid rgba(255,105,180,.1)}
-.card-body{padding:14px}
-.card-body h3{margin:0 0 8px;font-size:1em;font-weight:800}
-.card-body a{display:inline-block;padding:8px 20px;background:#ff69b4;color:#fff;text-decoration:none;border-radius:24px;font-weight:700;font-size:.9em;transition:filter .2s}
-.card-body a:hover{filter:brightness(.95)}
+/* Hide gate when unlocked */
+body.unlocked .gate{display:none}
 
+/* ===== Success banner ===== */
+.success-banner{display:none;background:#e8f5e9;border:2px solid #66bb6a;border-radius:18px;padding:20px;margin:24px auto;max-width:520px}
+body.unlocked .success-banner{display:block}
+.success-banner p{margin:0;font-size:1.1em;font-weight:700;color:#2e7d32}
+
+/* ===== CTA section ===== */
 .cta-section{margin-top:36px;padding:24px;background:#fff5f9;border-radius:22px}
 .cta-section h2{margin:0 0 8px;font-size:1.3em;font-weight:800;color:#ff69b4}
 .cta-section p{margin:0 0 14px;font-size:1em}
@@ -67,6 +80,10 @@ body.fr span[data-lang="en"]{display:none}
 [data-lang="fr"]{display:none}
 body.fr [data-lang="fr"]{display:block}
 body.fr [data-lang="en"]{display:none}
+
+/* Keep unlocked class working with fr */
+body.fr.unlocked .gate{display:none}
+body.fr.unlocked .success-banner{display:block}
 
 @media(max-width:700px){
   .grid{grid-template-columns:repeat(2,1fr);gap:12px}
@@ -86,8 +103,8 @@ body.fr [data-lang="en"]{display:none}
     <span data-lang="fr">🎨 Coloriages Gratuits</span>
   </h1>
   <p>
-    <span data-lang="en">Download 5 free printable coloring pages featuring Coco the Axolotl!</span>
-    <span data-lang="fr">T&eacute;l&eacute;charge 5 coloriages gratuits &agrave; imprimer avec Coco l'Axolotl !</span>
+    <span data-lang="en">5 free printable coloring pages featuring Coco the Axolotl!</span>
+    <span data-lang="fr">5 coloriages gratuits &agrave; imprimer avec Coco l'Axolotl !</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -97,15 +114,75 @@ body.fr [data-lang="en"]{display:none}
 
 <main>
 
-  <!-- ===== Email gate ===== -->
+  <!-- ===== Coloring pages grid (ALWAYS visible) ===== -->
+  <div class="grid">
+
+    <div class="card">
+      <img src="coco-christmas.png" alt="Coco Christmas coloring page" loading="lazy">
+      <div class="card-body">
+        <h3><span data-lang="en">Coco's Christmas</span><span data-lang="fr">Le No&euml;l de Coco</span></h3>
+        <a class="dl-btn" href="coco-christmas.png" download="coco-christmas-coloring-page.png">
+          <span class="lock-icon">🔒</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="underwater-scene.png" alt="Underwater scene coloring page" loading="lazy">
+      <div class="card-body">
+        <h3><span data-lang="en">Underwater World</span><span data-lang="fr">Monde Sous-Marin</span></h3>
+        <a class="dl-btn" href="underwater-scene.png" download="underwater-scene-coloring-page.png">
+          <span class="lock-icon">🔒</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="axolotl-emotions.png" alt="Which axolotl are you today - emotions coloring page" loading="lazy">
+      <div class="card-body">
+        <h3><span data-lang="en">Axolotl Emotions</span><span data-lang="fr">&Eacute;motions Axolotl</span></h3>
+        <a class="dl-btn" href="axolotl-emotions.png" download="axolotl-emotions-coloring-page.png">
+          <span class="lock-icon">🔒</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="coco-and-boy.png" alt="Coco and a boy coloring page" loading="lazy">
+      <div class="card-body">
+        <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Ami</span></h3>
+        <a class="dl-btn" href="coco-and-boy.png" download="coco-and-boy-coloring-page.png">
+          <span class="lock-icon">🔒</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="coco-and-girl.png" alt="Coco and a girl coloring page" loading="lazy">
+      <div class="card-body">
+        <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Amie</span></h3>
+        <a class="dl-btn" href="coco-and-girl.png" download="coco-and-girl-coloring-page.png">
+          <span class="lock-icon">🔒</span>
+          <span data-lang="en">Download</span><span data-lang="fr">T&eacute;l&eacute;charger</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== Email gate (below previews) ===== -->
   <div class="gate" id="emailGate">
     <h2>
-      <span data-lang="en">🔓 Get Your Free Coloring Pages</span>
-      <span data-lang="fr">🔓 Obtiens tes Coloriages Gratuits</span>
+      <span data-lang="en">🔓 Unlock All Downloads</span>
+      <span data-lang="fr">🔓 D&eacute;bloquer les T&eacute;l&eacute;chargements</span>
     </h2>
     <p>
-      <span data-lang="en">Enter your first name and email to unlock all 5 downloads!</span>
-      <span data-lang="fr">Entre ton pr&eacute;nom et ton email pour d&eacute;bloquer les 5 t&eacute;l&eacute;chargements !</span>
+      <span data-lang="en">Enter your first name and email to download all 5 coloring pages for free!</span>
+      <span data-lang="fr">Entre ton pr&eacute;nom et ton email pour t&eacute;l&eacute;charger les 5 coloriages gratuitement !</span>
     </p>
     <form id="freebieForm">
       <input type="text" id="userName" required>
@@ -121,89 +198,32 @@ body.fr [data-lang="en"]{display:none}
     </p>
   </div>
 
-  <!-- ===== Downloads (hidden until form submitted) ===== -->
-  <div class="downloads" id="downloadsSection">
+  <!-- ===== Success banner (shown after unlock) ===== -->
+  <div class="success-banner">
+    <p>
+      <span data-lang="en">🎉 Downloads unlocked! Click the download buttons above to save each page.</span>
+      <span data-lang="fr">🎉 T&eacute;l&eacute;chargements d&eacute;bloqu&eacute;s ! Clique sur les boutons ci-dessus pour enregistrer chaque page.</span>
+    </p>
+  </div>
+
+  <!-- ===== CTA section ===== -->
+  <div class="cta-section">
     <h2>
-      <span data-lang="en">🎉 Your free coloring pages are ready!</span>
-      <span data-lang="fr">🎉 Tes coloriages gratuits sont pr&ecirc;ts !</span>
+      <span data-lang="en">💗 Want more Coco?</span>
+      <span data-lang="fr">💗 Tu veux plus de Coco ?</span>
     </h2>
     <p>
-      <span data-lang="en">Click "Download" to save each page. Print and color!</span>
-      <span data-lang="fr">Clique sur &laquo; T&eacute;l&eacute;charger &raquo; pour enregistrer chaque page. Imprime et colorie !</span>
+      <span data-lang="en">Get the full coloring book with 50+ pages on Amazon!</span>
+      <span data-lang="fr">D&eacute;couvre le livre de coloriage complet avec 50+ pages sur Amazon !</span>
     </p>
-
-    <div class="grid">
-
-      <div class="card">
-        <img src="coco-christmas.png" alt="Coco Christmas coloring page" loading="lazy">
-        <div class="card-body">
-          <h3><span data-lang="en">Coco's Christmas</span><span data-lang="fr">Le No&euml;l de Coco</span></h3>
-          <a href="coco-christmas.png" download="coco-christmas-coloring-page.png">
-            <span data-lang="en">⬇ Download</span><span data-lang="fr">⬇ T&eacute;l&eacute;charger</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="underwater-scene.png" alt="Underwater scene coloring page" loading="lazy">
-        <div class="card-body">
-          <h3><span data-lang="en">Underwater World</span><span data-lang="fr">Monde Sous-Marin</span></h3>
-          <a href="underwater-scene.png" download="underwater-scene-coloring-page.png">
-            <span data-lang="en">⬇ Download</span><span data-lang="fr">⬇ T&eacute;l&eacute;charger</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="axolotl-emotions.png" alt="Which axolotl are you today - emotions coloring page" loading="lazy">
-        <div class="card-body">
-          <h3><span data-lang="en">Axolotl Emotions</span><span data-lang="fr">&Eacute;motions Axolotl</span></h3>
-          <a href="axolotl-emotions.png" download="axolotl-emotions-coloring-page.png">
-            <span data-lang="en">⬇ Download</span><span data-lang="fr">⬇ T&eacute;l&eacute;charger</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="coco-and-boy.png" alt="Coco and a boy coloring page" loading="lazy">
-        <div class="card-body">
-          <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Ami</span></h3>
-          <a href="coco-and-boy.png" download="coco-and-boy-coloring-page.png">
-            <span data-lang="en">⬇ Download</span><span data-lang="fr">⬇ T&eacute;l&eacute;charger</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="coco-and-girl.png" alt="Coco and a girl coloring page" loading="lazy">
-        <div class="card-body">
-          <h3><span data-lang="en">Coco &amp; Friend</span><span data-lang="fr">Coco &amp; son Amie</span></h3>
-          <a href="coco-and-girl.png" download="coco-and-girl-coloring-page.png">
-            <span data-lang="en">⬇ Download</span><span data-lang="fr">⬇ T&eacute;l&eacute;charger</span>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="cta-section">
-      <h2>
-        <span data-lang="en">💗 Want more Coco?</span>
-        <span data-lang="fr">💗 Tu veux plus de Coco ?</span>
-      </h2>
-      <p>
-        <span data-lang="en">Get the full coloring book with 50+ pages on Amazon!</span>
-        <span data-lang="fr">D&eacute;couvre le livre de coloriage complet avec 50+ pages sur Amazon !</span>
-      </p>
-      <a class="cta" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener">
-        <span data-lang="en">🛒 Get the Coloring Book</span>
-        <span data-lang="fr">🛒 Commander le Livre</span>
-      </a>
-      <a class="cta" href="/blog/" style="background:transparent;color:#ff69b4;border:2px solid #ff69b4">
-        <span data-lang="en">📝 Read the Blog</span>
-        <span data-lang="fr">📝 Lire le Blog</span>
-      </a>
-    </div>
+    <a class="cta" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener">
+      <span data-lang="en">🛒 Get the Coloring Book</span>
+      <span data-lang="fr">🛒 Commander le Livre</span>
+    </a>
+    <a class="cta" href="/blog/" style="background:transparent;color:#ff69b4;border:2px solid #ff69b4">
+      <span data-lang="en">📝 Read the Blog</span>
+      <span data-lang="fr">📝 Lire le Blog</span>
+    </a>
   </div>
 
   <a class="back" href="/">
@@ -216,7 +236,8 @@ body.fr [data-lang="en"]{display:none}
 
 <script>
 function setLang(lang){
-  document.body.className = lang==='fr' ? 'fr' : '';
+  var isUnlocked = document.body.classList.contains('unlocked');
+  document.body.className = (lang==='fr' ? 'fr' : '') + (isUnlocked ? ' unlocked' : '');
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.classList.toggle('active', b.textContent===lang.toUpperCase());
   });
@@ -229,17 +250,25 @@ function setLang(lang){
     emailInput.placeholder = lang==='fr' ? 'Ton email' : 'Your email';
   }
 }
+
 // Set initial placeholders
 document.getElementById('userName').placeholder = 'Your first name';
 document.getElementById('userEmail').placeholder = 'Your email';
 
-// Google Apps Script URL (same as homepage newsletter)
+// Google Apps Script URL
 var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9hCSuVnLeVNe5Lk1ry-vCToNNY1YhSQFNvxYn4UnHCKyyu8gsfttLxDpC3Faqr0XNtg/exec";
+
+function unlockDownloads(){
+  document.body.classList.add('unlocked');
+  // Change lock icons to download icons
+  document.querySelectorAll('.lock-icon').forEach(function(icon){
+    icon.textContent = '⬇';
+  });
+}
 
 // Check if already unlocked
 if(localStorage.getItem('coco_freebies_unlocked')){
-  document.getElementById('emailGate').style.display = 'none';
-  document.getElementById('downloadsSection').classList.add('visible');
+  unlockDownloads();
 }
 
 document.getElementById('freebieForm').addEventListener('submit', function(e){
@@ -260,17 +289,13 @@ document.getElementById('freebieForm').addEventListener('submit', function(e){
     body: JSON.stringify({ name: name, email: email, source: "freebies" })
   })
   .then(function(){
-    // Unlock downloads
     localStorage.setItem('coco_freebies_unlocked', '1');
-    document.getElementById('emailGate').style.display = 'none';
-    document.getElementById('downloadsSection').classList.add('visible');
-    document.getElementById('downloadsSection').scrollIntoView({ behavior: 'smooth' });
+    unlockDownloads();
+    document.querySelector('.grid').scrollIntoView({ behavior: 'smooth' });
   })
   .catch(function(){
-    // Still unlock even if script URL not configured yet
     localStorage.setItem('coco_freebies_unlocked', '1');
-    document.getElementById('emailGate').style.display = 'none';
-    document.getElementById('downloadsSection').classList.add('visible');
+    unlockDownloads();
   });
 });
 </script>
