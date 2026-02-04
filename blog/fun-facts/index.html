@@ -111,12 +111,18 @@ a.back:hover{text-decoration:underline}
 footer{padding:20px;font-size:.85em;opacity:.6}
 
 [data-lang="fr"]{display:none}
+[data-lang="es"]{display:none}
 body.fr [data-lang="fr"]{display:block}
 body.fr [data-lang="en"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 /* inline spans */
 span[data-lang="fr"]{display:none}
+span[data-lang="es"]{display:none}
 body.fr span[data-lang="fr"]{display:inline}
 body.fr span[data-lang="en"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
 
 @media(max-width:700px){
   .facts-grid{grid-template-columns:1fr}
@@ -132,14 +138,17 @@ body.fr span[data-lang="en"]{display:none}
   <h1>
     <span data-lang="en">🧠 Axolotl Fun Facts</span>
     <span data-lang="fr">🧠 Faits Amusants sur les Axolotls</span>
+    <span data-lang="es">🧠 15 Datos Curiosos del Ajolote</span>
   </h1>
   <p>
     <span data-lang="en">Did you know axolotls are basically real-life superheroes? Discover 15 amazing facts!</span>
     <span data-lang="fr">Savais-tu que les axolotls sont de vrais super-h&eacute;ros ? D&eacute;couvre 15 faits incroyables !</span>
+    <span data-lang="es">&iquest;Sab&iacute;as que los ajolotes son verdaderos superh&eacute;roes? &iexcl;Descubre 15 datos incre&iacute;bles!</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -150,22 +159,26 @@ body.fr span[data-lang="en"]{display:none}
     <div class="section-title">
       <span data-lang="en">🏠 Habitat</span>
       <span data-lang="fr">🏠 Habitat</span>
+      <span data-lang="es">🏠 H&aacute;bitat</span>
     </div>
     <div class="facts-grid">
       <div class="fact">
         <span class="emoji">🇲🇽</span>
         <span data-lang="en">Axolotls come from only one place in the world: Lake Xochimilco in Mexico City!</span>
         <span data-lang="fr">Les axolotls viennent d'un seul endroit au monde : le lac Xochimilco &agrave; Mexico !</span>
+        <span data-lang="es">&iexcl;Los ajolotes vienen de un solo lugar en el mundo: el lago Xochimilco en la Ciudad de M&eacute;xico!</span>
       </div>
       <div class="fact">
         <span class="emoji">💧</span>
         <span data-lang="en">They live in freshwater their whole life &mdash; never in the ocean.</span>
         <span data-lang="fr">Ils vivent en eau douce toute leur vie &mdash; jamais dans l'oc&eacute;an.</span>
+        <span data-lang="es">Viven en agua dulce toda su vida &mdash; nunca en el oc&eacute;ano.</span>
       </div>
       <div class="fact">
         <span class="emoji">🌡️</span>
         <span data-lang="en">The water they live in stays cool, between 14&ndash;20&deg;C (57&ndash;68&deg;F).</span>
         <span data-lang="fr">L'eau dans laquelle ils vivent reste fra&icirc;che, entre 14 et 20&deg;C.</span>
+        <span data-lang="es">El agua donde viven se mantiene fresca, entre 14&ndash;20&deg;C (57&ndash;68&deg;F).</span>
       </div>
     </div>
   </div>
@@ -175,27 +188,32 @@ body.fr span[data-lang="en"]{display:none}
     <div class="section-title">
       <span data-lang="en">🦴 Body &amp; Superpowers</span>
       <span data-lang="fr">🦴 Corps &amp; Super-pouvoirs</span>
+      <span data-lang="es">🦴 Cuerpo &amp; Superpoderes</span>
     </div>
     <div class="facts-grid">
       <div class="fact">
         <span class="emoji">✨</span>
         <span data-lang="en">Axolotls can regrow their legs, tail, heart, and even parts of their brain!</span>
         <span data-lang="fr">Les axolotls peuvent r&eacute;g&eacute;n&eacute;rer leurs pattes, leur queue, leur c&oelig;ur et m&ecirc;me des parties de leur cerveau !</span>
+        <span data-lang="es">&iexcl;Los ajolotes pueden regenerar sus patas, cola, coraz&oacute;n e incluso partes de su cerebro!</span>
       </div>
       <div class="fact">
         <span class="emoji">🌿</span>
         <span data-lang="en">Their feathery gills help them breathe underwater &mdash; like built-in snorkels!</span>
         <span data-lang="fr">Leurs branchies plumeuses les aident &agrave; respirer sous l'eau &mdash; comme des tubas int&eacute;gr&eacute;s !</span>
+        <span data-lang="es">&iexcl;Sus branquias plumosas les ayudan a respirar bajo el agua &mdash; como esn&oacute;rqueles incorporados!</span>
       </div>
       <div class="fact">
         <span class="emoji">👶</span>
         <span data-lang="en">They never &ldquo;grow up&rdquo; &mdash; they keep their baby features for life! This is called neoteny.</span>
         <span data-lang="fr">Ils ne &laquo; grandissent &raquo; jamais vraiment &mdash; ils gardent leurs traits de b&eacute;b&eacute; toute leur vie ! C'est la n&eacute;ot&eacute;nie.</span>
+        <span data-lang="es">Nunca &ldquo;crecen&rdquo; del todo &mdash; &iexcl;conservan sus rasgos de beb&eacute; toda la vida! Esto se llama neotenia.</span>
       </div>
       <div class="fact">
         <span class="emoji">🎂</span>
         <span data-lang="en">An axolotl can live 10 to 15 years &mdash; that's a long time for a little amphibian!</span>
         <span data-lang="fr">Un axolotl peut vivre 10 &agrave; 15 ans &mdash; c'est long pour un petit amphibien !</span>
+        <span data-lang="es">&iexcl;Un ajolote puede vivir de 10 a 15 a&ntilde;os &mdash; es mucho tiempo para un peque&ntilde;o anfibio!</span>
       </div>
     </div>
   </div>
@@ -205,22 +223,26 @@ body.fr span[data-lang="en"]{display:none}
     <div class="section-title">
       <span data-lang="en">🍽️ Diet &amp; Behavior</span>
       <span data-lang="fr">🍽️ Alimentation &amp; Comportement</span>
+      <span data-lang="es">🍽️ Dieta &amp; Comportamiento</span>
     </div>
     <div class="facts-grid">
       <div class="fact">
         <span class="emoji">🪱</span>
         <span data-lang="en">They eat worms, small fish, and insects. Yummy!</span>
         <span data-lang="fr">Ils mangent des vers, des petits poissons et des insectes. Miam !</span>
+        <span data-lang="es">&iexcl;Comen gusanos, peces peque&ntilde;os e insectos. &Ntilde;am!</span>
       </div>
       <div class="fact">
         <span class="emoji">🌀</span>
         <span data-lang="en">Axolotls suck in their food like a vacuum cleaner &mdash; they don't chew!</span>
         <span data-lang="fr">Les axolotls aspirent leur nourriture comme un aspirateur &mdash; ils ne m&acirc;chent pas !</span>
+        <span data-lang="es">&iexcl;Los ajolotes aspiran su comida como una aspiradora &mdash; no mastican!</span>
       </div>
       <div class="fact">
         <span class="emoji">🌙</span>
         <span data-lang="en">They are mostly active at night &mdash; they're nocturnal creatures!</span>
         <span data-lang="fr">Ils sont surtout actifs la nuit &mdash; ce sont des cr&eacute;atures nocturnes !</span>
+        <span data-lang="es">&iexcl;Son m&aacute;s activos por la noche &mdash; son criaturas nocturnas!</span>
       </div>
     </div>
   </div>
@@ -230,22 +252,26 @@ body.fr span[data-lang="en"]{display:none}
     <div class="section-title">
       <span data-lang="en">🌈 Colors &amp; Varieties</span>
       <span data-lang="fr">🌈 Couleurs &amp; Vari&eacute;t&eacute;s</span>
+      <span data-lang="es">🌈 Colores &amp; Variedades</span>
     </div>
     <div class="facts-grid">
       <div class="fact">
         <span class="emoji">🤎</span>
         <span data-lang="en">Wild axolotls are usually dark brown or black &mdash; great camouflage!</span>
         <span data-lang="fr">Les axolotls sauvages sont g&eacute;n&eacute;ralement brun fonc&eacute; ou noirs &mdash; un super camouflage !</span>
+        <span data-lang="es">&iexcl;Los ajolotes salvajes suelen ser marr&oacute;n oscuro o negros &mdash; un gran camuflaje!</span>
       </div>
       <div class="fact">
         <span class="emoji">💗</span>
         <span data-lang="en">Pink axolotls (like Coco!) are bred in captivity &mdash; they're called &ldquo;leucistic.&rdquo;</span>
         <span data-lang="fr">Les axolotls roses (comme Coco !) sont &eacute;lev&eacute;s en captivit&eacute; &mdash; on les appelle &laquo; leucistiques &raquo;.</span>
+        <span data-lang="es">Los ajolotes rosas (&iexcl;como Coco!) se cr&iacute;an en cautividad &mdash; se llaman &ldquo;leuc&iacute;sticos&rdquo;.</span>
       </div>
       <div class="fact">
         <span class="emoji">💛</span>
         <span data-lang="en">They can also be golden, white, or even glow-in-the-dark green (GFP)!</span>
         <span data-lang="fr">Ils peuvent aussi &ecirc;tre dor&eacute;s, blancs, ou m&ecirc;me verts fluorescents (GFP) !</span>
+        <span data-lang="es">&iexcl;Tambi&eacute;n pueden ser dorados, blancos o incluso verdes fluorescentes (GFP)!</span>
       </div>
     </div>
   </div>
@@ -255,17 +281,20 @@ body.fr span[data-lang="en"]{display:none}
     <div class="section-title">
       <span data-lang="en">⚠️ Conservation</span>
       <span data-lang="fr">⚠️ Conservation</span>
+      <span data-lang="es">⚠️ Conservaci&oacute;n</span>
     </div>
     <div class="facts-grid">
       <div class="fact">
         <span class="emoji">🚨</span>
         <span data-lang="en">Axolotls are critically endangered in the wild &mdash; we need to protect them!</span>
         <span data-lang="fr">Les axolotls sont en danger critique d'extinction dans la nature &mdash; il faut les prot&eacute;ger !</span>
+        <span data-lang="es">&iexcl;Los ajolotes est&aacute;n en peligro cr&iacute;tico de extinci&oacute;n en la naturaleza &mdash; necesitamos protegerlos!</span>
       </div>
       <div class="fact">
         <span class="emoji">🔬</span>
         <span data-lang="en">Scientists study them to understand how humans might one day regenerate tissue too!</span>
         <span data-lang="fr">Les scientifiques les &eacute;tudient pour comprendre comment les humains pourraient un jour r&eacute;g&eacute;n&eacute;rer des tissus !</span>
+        <span data-lang="es">&iexcl;Los cient&iacute;ficos los estudian para entender c&oacute;mo los humanos podr&iacute;an alg&uacute;n d&iacute;a regenerar tejidos tambi&eacute;n!</span>
       </div>
     </div>
   </div>
@@ -275,27 +304,32 @@ body.fr span[data-lang="en"]{display:none}
     <h2>
       <span data-lang="en">&#128218; Related Articles</span>
       <span data-lang="fr">&#128218; Articles Connexes</span>
+      <span data-lang="es">&#128218; Art&iacute;culos Relacionados</span>
     </h2>
     <div class="related-grid">
       <a class="related-card" href="/blog/what-is-an-axolotl/">
         <span class="rc-emoji">&#128062;</span>
         <span class="rc-title" data-lang="en">What Is an Axolotl?</span>
         <span class="rc-title" data-lang="fr">Qu&#39;est-ce qu&#39;un Axolotl ?</span>
+        <span class="rc-title" data-lang="es">&iquest;Qu&eacute; es un Ajolote?</span>
       </a>
       <a class="related-card" href="/blog/why-are-axolotls-endangered/">
         <span class="rc-emoji">&#128680;</span>
         <span class="rc-title" data-lang="en">Why Are Axolotls Endangered?</span>
         <span class="rc-title" data-lang="fr">Pourquoi les Axolotls Sont-ils en Danger ?</span>
+        <span class="rc-title" data-lang="es">&iquest;Por Qu&eacute; los Ajolotes Est&aacute;n en Peligro?</span>
       </a>
       <a class="related-card" href="/blog/axolotl-coloring-pages-for-kids/">
         <span class="rc-emoji">&#127912;</span>
         <span class="rc-title" data-lang="en">Axolotl Coloring Pages for Kids</span>
         <span class="rc-title" data-lang="fr">Coloriages d&#39;Axolotl pour Enfants</span>
+        <span class="rc-title" data-lang="es">P&aacute;ginas para Colorear de Ajolote para Ni&ntilde;os</span>
       </a>
       <a class="related-card" href="/blog/calm-activities-for-kids/">
         <span class="rc-emoji">&#129495;</span>
         <span class="rc-title" data-lang="en">Calm Activities for Kids</span>
         <span class="rc-title" data-lang="fr">Activit&eacute;s Calmes pour Enfants</span>
+        <span class="rc-title" data-lang="es">Actividades Tranquilas para Ni&ntilde;os</span>
       </a>
     </div>
   </div>
@@ -303,6 +337,7 @@ body.fr span[data-lang="en"]{display:none}
   <a class="back" href="/blog/">
     <span data-lang="en">&larr; Back to blog</span>
     <span data-lang="fr">&larr; Retour au blog</span>
+    <span data-lang="es">&larr; Volver al blog</span>
   </a>
 </main>
 
@@ -310,7 +345,7 @@ body.fr span[data-lang="en"]{display:none}
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.classList.toggle('active',b.textContent===lang.toUpperCase());
   });

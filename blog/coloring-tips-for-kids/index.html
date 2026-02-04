@@ -39,8 +39,8 @@ p,li{font-size:1.05em;line-height:1.6;text-align:left}
 a.back{display:block;margin-top:28px;color:#ff69b4;text-decoration:none;font-weight:800;font-size:1.05em;text-align:center}
 a.back:hover{text-decoration:underline}
 footer{padding:20px;font-size:.85em;opacity:.6;text-align:center}
-[data-lang="fr"]{display:none}body.fr [data-lang="fr"]{display:block}body.fr [data-lang="en"]{display:none}
-span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}body.fr span[data-lang="en"]{display:none}
+[data-lang="fr"]{display:none}[data-lang="es"]{display:none}body.fr [data-lang="fr"]{display:block}body.fr [data-lang="en"]{display:none}body.es [data-lang="es"]{display:block}body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+span[data-lang="fr"]{display:none}span[data-lang="es"]{display:none}body.fr span[data-lang="fr"]{display:inline}body.fr span[data-lang="en"]{display:none}body.es span[data-lang="es"]{display:inline}body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
 @media(max-width:700px){header h1{font-size:1.7em}h2{font-size:1.2em}}
 </style>
 </head>
@@ -50,14 +50,17 @@ span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}bo
   <h1>
     <span data-lang="en">🖍️ 10 Coloring Tips for Kids</span>
     <span data-lang="fr">🖍️ 10 Astuces de Coloriage pour Enfants</span>
+    <span data-lang="es">🖍️ 10 Consejos para Colorear para Ni&ntilde;os</span>
   </h1>
   <p>
     <span data-lang="en">Simple tricks to help your child color like a pro!</span>
     <span data-lang="fr">Des astuces simples pour que ton enfant colorie comme un pro !</span>
+    <span data-lang="es">&iexcl;Trucos sencillos para que tu hijo coloree como un profesional!</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -181,21 +184,80 @@ span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}bo
     </div>
   </div>
 
-  <div class="related">
-    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span></h3>
-    <a href="/blog/best-coloring-supplies-for-kids/"><span data-lang="en">🖍️ Best Coloring Supplies for Kids</span><span data-lang="fr">🖍️ Le Meilleur Mat&eacute;riel de Coloriage</span></a>
-    <a href="/blog/benefits-of-coloring-for-children/"><span data-lang="en">🧠 5 Benefits of Coloring for Children</span><span data-lang="fr">🧠 5 Bienfaits du Coloriage pour les Enfants</span></a>
-    <a href="/blog/axolotl-coloring-pages-for-kids/"><span data-lang="en">🎨 Axolotl Coloring Pages for Kids</span><span data-lang="fr">🎨 Coloriages d'Axolotl pour Enfants</span></a>
+  <div data-lang="es">
+    <p>Colorear es una de las mejores actividades para ni&ntilde;os &mdash; desarrolla la motricidad fina, estimula la creatividad y ayuda a los ni&ntilde;os a relajarse. Ya sea que tu hijo est&eacute; empezando o ya le encante colorear, &iexcl;estos 10 consejos le ayudar&aacute;n a sacarle a&uacute;n m&aacute;s provecho!</p>
+
+    <div class="tip">
+      <h3><span class="tip-number">1</span> Empieza por los Bordes</h3>
+      <p>Ense&ntilde;a a los ni&ntilde;os a colorear primero el contorno y luego rellenar el centro. Esto hace mucho m&aacute;s f&aacute;cil no salirse de las l&iacute;neas. Usa trazos cortos y suaves a lo largo del borde, luego colorea el centro con trazos m&aacute;s grandes.</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">2</span> Colorea en Una Sola Direcci&oacute;n</h3>
+      <p>En lugar de garabatear de un lado a otro, anima a los ni&ntilde;os a colorear en una sola direcci&oacute;n (de izquierda a derecha, o de arriba a abajo). Esto crea un acabado m&aacute;s suave y uniforme, y se ve mucho m&aacute;s ordenado.</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">3</span> Presi&oacute;n Suave Primero, Luego M&aacute;s Oscuro</h3>
+      <p>Empieza con presi&oacute;n suave y a&ntilde;ade m&aacute;s capas para las zonas m&aacute;s oscuras. Esto ense&ntilde;a a los ni&ntilde;os sobre el sombreado y les da m&aacute;s control. &iexcl;Es mucho m&aacute;s f&aacute;cil a&ntilde;adir color que quitarlo!</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">4</span> Usa el Agarre Correcto</h3>
+      <p>El agarre en tr&iacute;pode (pulgar + &iacute;ndice + dedo medio) da el mejor control. Para los m&aacute;s peque&ntilde;os (2&ndash;3 a&ntilde;os), los crayones gruesos o triangulares son m&aacute;s f&aacute;ciles de sostener correctamente.</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">5</span> Prueba la Mezcla de Colores</h3>
+      <p>Muestra a los ni&ntilde;os c&oacute;mo superponer dos colores para crear uno nuevo: amarillo + azul = verde, rojo + amarillo = naranja. Colorea primero suavemente con el primer color, luego pasa por encima con el segundo. &iexcl;Es como magia!</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">6</span> Usa el Espacio en Blanco a Prop&oacute;sito</h3>
+      <p>Dejar algunas zonas en blanco crea reflejos que hacen que el coloreado se vea m&aacute;s profesional. Muestra a los ni&ntilde;os que no todos los espacios necesitan ser rellenados &mdash; &iexcl;un punto blanco puede ser un reflejo o una fuente de luz!</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">7</span> Adapta los Colores al Estado de &Aacute;nimo</h3>
+      <p>Los colores c&aacute;lidos (rojo, naranja, amarillo) transmiten alegr&iacute;a y energ&iacute;a. Los colores fr&iacute;os (azul, verde, morado) transmiten calma y paz. Deja que los ni&ntilde;os elijan colores seg&uacute;n c&oacute;mo se sienten &mdash; &iexcl;no hay respuesta incorrecta!</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">8</span> Toma Descansos</h3>
+      <p>&iexcl;Las manitas se cansan! Anima a hacer descansos de 5&ndash;10 minutos durante las sesiones largas de coloreado. Esto evita la frustraci&oacute;n y la fatiga, y mantiene el coloreado divertido en lugar de una tarea.</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">9</span> Usa el Papel Adecuado</h3>
+      <p>El papel grueso (120 g/m&sup2; o m&aacute;s) funciona mejor con rotuladores para evitar que la tinta traspase. Para crayones y l&aacute;pices de colores, el papel normal funciona bien. Los libros de colorear impresos por un solo lado son ideales porque el reverso queda limpio.</p>
+    </div>
+
+    <div class="tip">
+      <h3><span class="tip-number">10</span> &iexcl;Celebra Cada P&aacute;gina!</h3>
+      <p>Cuelga las p&aacute;ginas terminadas en la nevera, crea un &ldquo;muro galer&iacute;a&rdquo; o env&iacute;alas a los abuelos. Cuando los ni&ntilde;os ven su trabajo expuesto, les da confianza y les anima a seguir creando.</p>
+    </div>
+
+    <div style="text-align:center">
+      <a class="cta" href="/coloring-books/">🎨 Libros de Colorear de Coco</a>
+      <a class="cta" href="/blog/best-coloring-supplies-for-kids/">🖍️ Los Mejores Materiales</a>
+    </div>
   </div>
 
-  <a class="back" href="/blog/"><span data-lang="en">&larr; Back to blog</span><span data-lang="fr">&larr; Retour au blog</span></a>
+  <div class="related">
+    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span><span data-lang="es">📚 Art&iacute;culos Relacionados</span></h3>
+    <a href="/blog/best-coloring-supplies-for-kids/"><span data-lang="en">🖍️ Best Coloring Supplies for Kids</span><span data-lang="fr">🖍️ Le Meilleur Mat&eacute;riel de Coloriage</span><span data-lang="es">🖍️ Los Mejores Materiales para Colorear para Ni&ntilde;os</span></a>
+    <a href="/blog/benefits-of-coloring-for-children/"><span data-lang="en">🧠 5 Benefits of Coloring for Children</span><span data-lang="fr">🧠 5 Bienfaits du Coloriage pour les Enfants</span><span data-lang="es">🧠 5 Beneficios del Colorear para Ni&ntilde;os</span></a>
+    <a href="/blog/axolotl-coloring-pages-for-kids/"><span data-lang="en">🎨 Axolotl Coloring Pages for Kids</span><span data-lang="fr">🎨 Coloriages d'Axolotl pour Enfants</span><span data-lang="es">🎨 P&aacute;ginas para Colorear de Ajolote para Ni&ntilde;os</span></a>
+  </div>
+
+  <a class="back" href="/blog/"><span data-lang="en">&larr; Back to blog</span><span data-lang="fr">&larr; Retour au blog</span><span data-lang="es">&larr; Volver al blog</span></a>
 </main>
 
 <footer>&copy; 2026 Coco the Axolotl</footer>
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase());});
   document.documentElement.lang=lang;
 }

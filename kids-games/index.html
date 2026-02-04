@@ -20,53 +20,92 @@ p{max-width:760px;margin:10px auto;line-height:1.5}
 .small{font-size:.9em;opacity:.8;margin-top:18px}
 a.back{display:inline-block;margin-top:26px;color:#ff69b4;text-decoration:none;font-weight:800}
 @media (max-width: 900px){.grid{grid-template-columns:1fr}}
+
+/* ===== Language toggle ===== */
+.lang-toggle{
+  display:inline-flex;gap:0;margin:12px auto 0;
+  border-radius:32px;overflow:hidden;border:2px solid #fff;
+}
+.lang-btn{
+  padding:6px 18px;font-family:'Baloo 2',cursive;font-size:.9em;font-weight:800;
+  border:none;cursor:pointer;transition:background .2s,color .2s;
+  background:transparent;color:#fff;
+}
+.lang-btn.active{background:#fff;color:#ff69b4}
+
+/* ===== Language visibility ===== */
+span[data-lang="fr"],span[data-lang="es"]{display:none}
+[data-lang="fr"],[data-lang="es"]{display:none}
+body.fr span[data-lang="fr"]{display:inline}
+body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 </style>
 </head>
 <body>
 
 <header>
-  <h1>🎲 Kids Games (Ages 5–7)</h1>
+  <h1>🎲 <span data-lang="en">Kids Games (Ages 5&ndash;7)</span><span data-lang="fr">Jeux pour Enfants (5&ndash;7 ans)</span><span data-lang="es">Juegos para Ni&ntilde;os (5&ndash;7 a&ntilde;os)</span></h1>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
 </header>
 
 <main>
-  <p>Quick, screen-free games for kids ages 5–7. Free printable PDFs.</p>
-<p class="small">All printables are for educational fun and should be used under parental supervision.</p>
+  <p><span data-lang="en">Quick, screen-free games for kids ages 5&ndash;7. Free printable PDFs.</span><span data-lang="fr">Jeux rapides sans &eacute;cran pour les enfants de 5 &agrave; 7 ans. PDF gratuits &agrave; imprimer.</span><span data-lang="es">Juegos r&aacute;pidos sin pantalla para ni&ntilde;os de 5 a 7 a&ntilde;os. PDF gratuitos para imprimir.</span></p>
+  <p class="small"><span data-lang="en">All printables are for educational fun and should be used under parental supervision.</span><span data-lang="fr">Tous les documents imprimables sont destin&eacute;s &agrave; un usage &eacute;ducatif et doivent &ecirc;tre utilis&eacute;s sous la supervision d'un adulte.</span><span data-lang="es">Todos los imprimibles son para diversi&oacute;n educativa y deben usarse bajo la supervisi&oacute;n de un adulto.</span></p>
 
   <div class="grid">
     <div class="card">
-      <h2>1) Axolotl Word Search</h2>
-      <p>Find easy words: COCO, WATER, PINK, MEXICO, GILLS, SMILE.</p>
+      <h2><span data-lang="en">1) Axolotl Word Search</span><span data-lang="fr">1) Mots M&ecirc;l&eacute;s Axolotl</span><span data-lang="es">1) Sopa de Letras del Ajolote</span></h2>
+      <p><span data-lang="en">Find easy words: COCO, WATER, PINK, MEXICO, GILLS, SMILE.</span><span data-lang="fr">Trouve des mots faciles : COCO, WATER, PINK, MEXICO, GILLS, SMILE.</span><span data-lang="es">Encuentra palabras f&aacute;ciles: COCO, WATER, PINK, MEXICO, GILLS, SMILE.</span></p>
       <a class="button" href="/kids-games/axolotl-word-search-5-7.pdf" target="_blank" rel="noopener">
-        Get printable (PDF)
+        <span data-lang="en">Get printable (PDF)</span><span data-lang="fr">T&eacute;l&eacute;charger (PDF)</span><span data-lang="es">Descargar (PDF)</span>
       </a>
     </div>
 
     <div class="card">
-      <h2>2) Spot the Differences</h2>
-      <p>Two Coco pictures. Find 8 differences. Great for focus.</p>
+      <h2><span data-lang="en">2) Spot the Differences</span><span data-lang="fr">2) Trouve les Diff&eacute;rences</span><span data-lang="es">2) Encuentra las Diferencias</span></h2>
+      <p><span data-lang="en">Two Coco pictures. Find 8 differences. Great for focus.</span><span data-lang="fr">Deux images de Coco. Trouve 8 diff&eacute;rences. Id&eacute;al pour la concentration.</span><span data-lang="es">Dos im&aacute;genes de Coco. Encuentra 8 diferencias. Ideal para la concentraci&oacute;n.</span></p>
       <a class="button" href="/kids-games/spot-the-differences-5-7-final.pdf" target="_blank" rel="noopener">
-        Get printable (PDF)
+        <span data-lang="en">Get printable (PDF)</span><span data-lang="fr">T&eacute;l&eacute;charger (PDF)</span><span data-lang="es">Descargar (PDF)</span>
       </a>
     </div>
 
     <div class="card">
-      <h2>3) Mini Maze</h2>
-      <p>Help Coco reach the snack without touching the walls.</p>
+      <h2><span data-lang="en">3) Mini Maze</span><span data-lang="fr">3) Mini Labyrinthe</span><span data-lang="es">3) Mini Laberinto</span></h2>
+      <p><span data-lang="en">Help Coco reach the snack without touching the walls.</span><span data-lang="fr">Aide Coco &agrave; atteindre le go&ucirc;ter sans toucher les murs.</span><span data-lang="es">Ayuda a Coco a llegar a la merienda sin tocar las paredes.</span></p>
       <a class="button" href="coco-maze-5-7-1.pdf" target="_blank" rel="noopener">
-        Get printable (PDF)
+        <span data-lang="en">Get printable (PDF)</span><span data-lang="fr">T&eacute;l&eacute;charger (PDF)</span><span data-lang="es">Descargar (PDF)</span>
       </a>
     </div>
   </div>
 
-  <p class="small">More activities inside the books (perfect for ages 5–7).</p>
+  <p class="small"><span data-lang="en">More activities inside the books (perfect for ages 5&ndash;7).</span><span data-lang="fr">Plus d'activit&eacute;s dans les livres (parfait pour les 5&ndash;7 ans).</span><span data-lang="es">M&aacute;s actividades en los libros (perfecto para ni&ntilde;os de 5 a 7 a&ntilde;os).</span></p>
   <a class="button" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank" rel="noopener">
-    Discover the books
+    <span data-lang="en">Discover the books</span><span data-lang="fr">D&eacute;couvrir les livres</span><span data-lang="es">Descubrir los libros</span>
   </a>
 
   <div>
-    <a class="back" href="/">← Back to home</a>
+    <a class="back" href="/"><span data-lang="en">&larr; Back to home</span><span data-lang="fr">&larr; Retour &agrave; l'accueil</span><span data-lang="es">&larr; Volver al inicio</span></a>
   </div>
 </main>
+
+<script>
+function setLang(lang){
+  document.body.className = (lang==='fr') ? 'fr' : (lang==='es') ? 'es' : '';
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active', b.textContent===lang.toUpperCase());
+  });
+  document.documentElement.lang = lang;
+}
+</script>
 
 </body>
 </html>

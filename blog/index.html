@@ -43,14 +43,22 @@ a.back{display:block;margin-top:36px;color:#ff69b4;text-decoration:none;font-wei
 a.back:hover{text-decoration:underline}
 footer{padding:20px;font-size:.85em;opacity:.6}
 span[data-lang="fr"]{display:none}
+span[data-lang="es"]{display:none}
 body.fr span[data-lang="fr"]{display:inline}
-body.fr span[data-lang="en"]{display:none}
+body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
 [data-lang="fr"]{display:none}
+[data-lang="es"]{display:none}
 body.fr [data-lang="fr"]{display:block}
-body.fr [data-lang="en"]{display:none}
+body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 /* keep inline card spans working */
 body.fr .article-card span[data-lang="fr"]{display:inline}
 body.fr .article-card span[data-lang="en"]{display:none}
+body.es .article-card span[data-lang="es"]{display:inline}
+body.es .article-card span[data-lang="en"]{display:none}
 @media(max-width:700px){
   .grid{grid-template-columns:1fr}
   header h1{font-size:1.7em}
@@ -63,14 +71,17 @@ body.fr .article-card span[data-lang="en"]{display:none}
   <h1>
     <span data-lang="en">📝 Coco's Blog</span>
     <span data-lang="fr">📝 Le Blog de Coco</span>
+    <span data-lang="es">📝 El Blog de Coco</span>
   </h1>
   <p>
     <span data-lang="en">Fun articles about axolotls, activities, and coloring for kids!</span>
     <span data-lang="fr">Des articles amusants sur les axolotls, activit&eacute;s et coloriages pour enfants !</span>
+    <span data-lang="es">&iexcl;Art&iacute;culos divertidos sobre ajolotes, actividades y dibujos para colorear!</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -79,58 +90,58 @@ body.fr .article-card span[data-lang="en"]{display:none}
 
     <a class="article-card" href="/blog/what-is-an-axolotl/">
       <span class="emoji">🦎</span>
-      <h2><span data-lang="en">What Is an Axolotl?</span><span data-lang="fr">Qu'est-ce qu'un Axolotl ?</span></h2>
-      <p><span data-lang="en">Everything kids need to know about the coolest amphibian on Earth &mdash; superpowers, origins, and more.</span><span data-lang="fr">Tout ce que les enfants doivent savoir sur l'amphibien le plus cool &mdash; super-pouvoirs, origines et plus.</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">What Is an Axolotl?</span><span data-lang="fr">Qu'est-ce qu'un Axolotl ?</span><span data-lang="es">&iquest;Qu&eacute; es un Ajolote?</span></h2>
+      <p><span data-lang="en">Everything kids need to know about the coolest amphibian on Earth &mdash; superpowers, origins, and more.</span><span data-lang="fr">Tout ce que les enfants doivent savoir sur l'amphibien le plus cool &mdash; super-pouvoirs, origines et plus.</span><span data-lang="es">Todo lo que los ni&ntilde;os necesitan saber sobre el anfibio m&aacute;s genial &mdash; superpoderes, or&iacute;genes y m&aacute;s.</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
     <a class="article-card" href="/blog/why-are-axolotls-endangered/">
       <span class="emoji">⚠️</span>
-      <h2><span data-lang="en">Why Are Axolotls Endangered?</span><span data-lang="fr">Pourquoi sont-ils en Danger ?</span></h2>
-      <p><span data-lang="en">Learn about the threats axolotls face in the wild and how we can help save them.</span><span data-lang="fr">D&eacute;couvre les menaces qui p&egrave;sent sur les axolotls et comment les aider.</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">Why Are Axolotls Endangered?</span><span data-lang="fr">Pourquoi sont-ils en Danger ?</span><span data-lang="es">&iquest;Por qu&eacute; est&aacute;n en Peligro?</span></h2>
+      <p><span data-lang="en">Learn about the threats axolotls face in the wild and how we can help save them.</span><span data-lang="fr">D&eacute;couvre les menaces qui p&egrave;sent sur les axolotls et comment les aider.</span><span data-lang="es">Descubre las amenazas que enfrentan los ajolotes y c&oacute;mo podemos ayudarlos.</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
     <a class="article-card" href="/blog/calm-activities-for-kids/">
       <span class="emoji">🧘</span>
-      <h2><span data-lang="en">7 Calm Activities for Kids</span><span data-lang="fr">7 Activit&eacute;s Calmes pour Enfants</span></h2>
-      <p><span data-lang="en">Screen-free quiet time ideas to help children relax, focus, and have fun.</span><span data-lang="fr">Id&eacute;es sans &eacute;cran pour aider les enfants &agrave; se d&eacute;tendre et s'amuser.</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">7 Calm Activities for Kids</span><span data-lang="fr">7 Activit&eacute;s Calmes pour Enfants</span><span data-lang="es">7 Actividades Tranquilas para Ni&ntilde;os</span></h2>
+      <p><span data-lang="en">Screen-free quiet time ideas to help children relax, focus, and have fun.</span><span data-lang="fr">Id&eacute;es sans &eacute;cran pour aider les enfants &agrave; se d&eacute;tendre et s'amuser.</span><span data-lang="es">Ideas sin pantalla para ayudar a los ni&ntilde;os a relajarse y divertirse.</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
     <a class="article-card" href="/blog/axolotl-coloring-pages-for-kids/">
       <span class="emoji">🎨</span>
-      <h2><span data-lang="en">Axolotl Coloring Pages for Kids</span><span data-lang="fr">Coloriages d'Axolotl pour Enfants</span></h2>
-      <p><span data-lang="en">Cute printable coloring activities and tips for the best coloring experience.</span><span data-lang="fr">De jolis coloriages imprimables et des conseils pour bien colorier.</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">Axolotl Coloring Pages for Kids</span><span data-lang="fr">Coloriages d'Axolotl pour Enfants</span><span data-lang="es">Dibujos de Ajolote para Colorear</span></h2>
+      <p><span data-lang="en">Cute printable coloring activities and tips for the best coloring experience.</span><span data-lang="fr">De jolis coloriages imprimables et des conseils pour bien colorier.</span><span data-lang="es">Lindos dibujos imprimibles y consejos para la mejor experiencia de colorear.</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
     <a class="article-card" href="/blog/fun-facts/">
       <span class="emoji">🧠</span>
-      <h2><span data-lang="en">15 Amazing Axolotl Fun Facts</span><span data-lang="fr">15 Faits Amusants sur les Axolotls</span></h2>
-      <p><span data-lang="en">Did you know axolotls can regrow their brain? Discover 15 incredible facts!</span><span data-lang="fr">Savais-tu que les axolotls peuvent r&eacute;g&eacute;n&eacute;rer leur cerveau ? 15 faits incroyables !</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">15 Amazing Axolotl Fun Facts</span><span data-lang="fr">15 Faits Amusants sur les Axolotls</span><span data-lang="es">15 Datos Curiosos del Ajolote</span></h2>
+      <p><span data-lang="en">Did you know axolotls can regrow their brain? Discover 15 incredible facts!</span><span data-lang="fr">Savais-tu que les axolotls peuvent r&eacute;g&eacute;n&eacute;rer leur cerveau ? 15 faits incroyables !</span><span data-lang="es">&iquest;Sab&iacute;as que los ajolotes pueden regenerar su cerebro? &iexcl;15 datos incre&iacute;bles!</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
     <a class="article-card" href="/blog/coloring-tips-for-kids/">
       <span class="emoji">🖍️</span>
-      <h2><span data-lang="en">10 Coloring Tips for Kids</span><span data-lang="fr">10 Astuces de Coloriage pour Enfants</span></h2>
-      <p><span data-lang="en">Simple tricks to help your child color like a pro &mdash; edges, blending, and more!</span><span data-lang="fr">Des astuces simples pour que ton enfant colorie comme un pro !</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">10 Coloring Tips for Kids</span><span data-lang="fr">10 Astuces de Coloriage pour Enfants</span><span data-lang="es">10 Consejos para Colorear</span></h2>
+      <p><span data-lang="en">Simple tricks to help your child color like a pro &mdash; edges, blending, and more!</span><span data-lang="fr">Des astuces simples pour que ton enfant colorie comme un pro !</span><span data-lang="es">Trucos simples para que tu hijo coloree como un profesional.</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
     <a class="article-card" href="/blog/best-coloring-supplies-for-kids/">
       <span class="emoji">✏️</span>
-      <h2><span data-lang="en">Best Coloring Supplies for Kids</span><span data-lang="fr">Le Meilleur Mat&eacute;riel de Coloriage</span></h2>
-      <p><span data-lang="en">Crayons, markers, colored pencils &mdash; the complete age-by-age guide.</span><span data-lang="fr">Crayons, feutres, crayons de couleur &mdash; le guide complet par &acirc;ge.</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">Best Coloring Supplies for Kids</span><span data-lang="fr">Le Meilleur Mat&eacute;riel de Coloriage</span><span data-lang="es">Los Mejores Materiales para Colorear</span></h2>
+      <p><span data-lang="en">Crayons, markers, colored pencils &mdash; the complete age-by-age guide.</span><span data-lang="fr">Crayons, feutres, crayons de couleur &mdash; le guide complet par &acirc;ge.</span><span data-lang="es">Crayones, marcadores, l&aacute;pices de colores &mdash; la gu&iacute;a completa por edad.</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
     <a class="article-card" href="/blog/benefits-of-coloring-for-children/">
       <span class="emoji">🧠</span>
-      <h2><span data-lang="en">5 Benefits of Coloring for Children</span><span data-lang="fr">5 Bienfaits du Coloriage pour Enfants</span></h2>
-      <p><span data-lang="en">Why coloring is brain food &mdash; motor skills, focus, stress relief, and more.</span><span data-lang="fr">Pourquoi le coloriage nourrit le cerveau &mdash; motricit&eacute;, concentration, anti-stress.</span></p>
-      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span></span>
+      <h2><span data-lang="en">5 Benefits of Coloring for Children</span><span data-lang="fr">5 Bienfaits du Coloriage pour Enfants</span><span data-lang="es">5 Beneficios del Colorear para Ni&ntilde;os</span></h2>
+      <p><span data-lang="en">Why coloring is brain food &mdash; motor skills, focus, stress relief, and more.</span><span data-lang="fr">Pourquoi le coloriage nourrit le cerveau &mdash; motricit&eacute;, concentration, anti-stress.</span><span data-lang="es">Por qu&eacute; colorear alimenta el cerebro &mdash; motricidad, concentraci&oacute;n, antiestr&eacute;s.</span></p>
+      <span class="read"><span data-lang="en">Read &rarr;</span><span data-lang="fr">Lire &rarr;</span><span data-lang="es">Leer &rarr;</span></span>
     </a>
 
   </div>
@@ -138,6 +149,7 @@ body.fr .article-card span[data-lang="en"]{display:none}
   <a class="back" href="/">
     <span data-lang="en">&larr; Back to home</span>
     <span data-lang="fr">&larr; Retour &agrave; l'accueil</span>
+    <span data-lang="es">&larr; Volver al inicio</span>
   </a>
 </main>
 
@@ -145,7 +157,7 @@ body.fr .article-card span[data-lang="en"]{display:none}
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.classList.toggle('active',b.textContent===lang.toUpperCase());
   });

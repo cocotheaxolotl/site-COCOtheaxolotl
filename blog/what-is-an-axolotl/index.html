@@ -45,6 +45,12 @@ body.fr [data-lang="en"]{display:none}
 span[data-lang="fr"]{display:none}
 body.fr span[data-lang="fr"]{display:inline}
 body.fr span[data-lang="en"]{display:none}
+span[data-lang="es"]{display:none}
+[data-lang="es"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 @media(max-width:700px){header h1{font-size:1.7em}h2{font-size:1.2em}}
 </style>
 </head>
@@ -54,14 +60,17 @@ body.fr span[data-lang="en"]{display:none}
   <h1>
     <span data-lang="en">🦎 What Is an Axolotl?</span>
     <span data-lang="fr">🦎 Qu'est-ce qu'un Axolotl ?</span>
+    <span data-lang="es">🦎 &iquest;Qu&eacute; es un Ajolote?</span>
   </h1>
   <p>
     <span data-lang="en">Everything kids need to know about the coolest amphibian on Earth!</span>
     <span data-lang="fr">Tout ce que les enfants doivent savoir sur l'amphibien le plus cool de la plan&egrave;te !</span>
+    <span data-lang="es">&iexcl;Todo lo que los ni&ntilde;os necesitan saber sobre el anfibio m&aacute;s genial del planeta!</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -121,25 +130,56 @@ body.fr span[data-lang="en"]{display:none}
     </div>
   </div>
 
+  <div data-lang="es">
+    <h2>🌊 Una Salamandra Muy Especial</h2>
+    <p>Un ajolote (se pronuncia &laquo; a-jo-LO-te &raquo;) es un tipo de salamandra que vive bajo el agua toda su vida. A diferencia de la mayor&iacute;a de las salamandras, los ajolotes nunca pasan por la metamorfosis &mdash; &iexcl;se quedan en su linda forma de beb&eacute; para siempre! Los cient&iacute;ficos llaman a esto <strong>neotenia</strong>.</p>
+    <p>Provienen de un solo lugar en la Tierra: el <strong>Lago Xochimilco</strong>, una red de canales y lagos en la Ciudad de M&eacute;xico. Los aztecas les pusieron el nombre de su dios Xolotl, quien seg&uacute;n la leyenda se disfraz&oacute; de salamandra para escapar del peligro.</p>
+
+    <h2>✨ Superpoderes de la Vida Real</h2>
+    <div class="card">
+      <p>🧬 <strong>Regeneraci&oacute;n:</strong> Los ajolotes pueden regenerar sus patas, cola, coraz&oacute;n, columna vertebral e incluso partes de su cerebro &mdash; &iexcl;sin dejar cicatrices! Ning&uacute;n otro animal en la Tierra puede hacer esto tan bien como ellos.</p>
+      <p>🌿 <strong>Branquias plumosas:</strong> Esas hermosas estructuras en forma de ramas en su cabeza son branquias externas que les permiten respirar bajo el agua &mdash; &iexcl;como esnórqueles integrados!</p>
+      <p>👀 <strong>Sentido del olfato:</strong> Tienen ojos peque&ntilde;os y mala visi&oacute;n, pero un excelente sentido del olfato que les ayuda a encontrar comida en aguas turbias.</p>
+    </div>
+
+    <h2>📏 Tama&ntilde;o y Esperanza de Vida</h2>
+    <p>Los ajolotes adultos crecen hasta unos <strong>25&ndash;30 cm</strong> de largo &mdash; &iexcl;aproximadamente del tama&ntilde;o de un pl&aacute;tano! Pueden vivir de <strong>10 a 15 a&ntilde;os</strong> con los cuidados adecuados, lo que los convierte en peque&ntilde;os compa&ntilde;eros de larga vida.</p>
+
+    <h2>🌈 &iquest;De Qu&eacute; Colores Son?</h2>
+    <p>Los ajolotes salvajes son de color marr&oacute;n oscuro o negro para camuflarse. Pero en cautiverio, se han criado en muchos colores hermosos: <strong>rosa</strong> (leuc&iacute;stico, &iexcl;como Coco!), <strong>dorado</strong>, <strong>blanco</strong> (albino), e incluso <strong>verde brillante</strong> (GFP &mdash; &iexcl;un gen tomado de las medusas!).</p>
+
+    <h2>💗 &iquest;Por Qu&eacute; los Ni&ntilde;os Aman a los Ajolotes?</h2>
+    <p>Con su sonrisa permanente, sus branquias plumosas y sus adorables manitas, los ajolotes parecen sacados directamente de una caricatura. Se hicieron a&uacute;n m&aacute;s famosos cuando aparecieron en <strong>Minecraft</strong> como criaturas acu&aacute;ticas amigables. Hoy en d&iacute;a, los ajolotes son uno de los animales m&aacute;s queridos por los ni&ntilde;os en todo el mundo.</p>
+
+    <div style="text-align:center">
+      <a class="cta" href="/blog/fun-facts/">🧠 15 Datos Curiosos</a>
+      <a class="cta" href="/coloring-books/">🎨 Libros para Colorear de Coco</a>
+    </div>
+  </div>
+
   <div class="related">
-    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span></h3>
+    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span><span data-lang="es">📚 Art&iacute;culos Relacionados</span></h3>
     <a href="/blog/why-are-axolotls-endangered/">
       <span data-lang="en">⚠️ Why Are Axolotls Endangered?</span>
       <span data-lang="fr">⚠️ Pourquoi les Axolotls sont-ils en Danger ?</span>
+      <span data-lang="es">⚠️ &iquest;Por Qu&eacute; Est&aacute;n en Peligro los Ajolotes?</span>
     </a>
     <a href="/blog/fun-facts/">
       <span data-lang="en">🧠 15 Amazing Axolotl Fun Facts</span>
       <span data-lang="fr">🧠 15 Faits Amusants sur les Axolotls</span>
+      <span data-lang="es">🧠 15 Datos Curiosos sobre los Ajolotes</span>
     </a>
     <a href="/blog/axolotl-coloring-pages-for-kids/">
       <span data-lang="en">🎨 Axolotl Coloring Pages for Kids</span>
       <span data-lang="fr">🎨 Coloriages d'Axolotl pour Enfants</span>
+      <span data-lang="es">🎨 Dibujos de Ajolote para Colorear</span>
     </a>
   </div>
 
   <a class="back" href="/blog/">
     <span data-lang="en">&larr; Back to blog</span>
     <span data-lang="fr">&larr; Retour au blog</span>
+    <span data-lang="es">&larr; Volver al blog</span>
   </a>
 </main>
 
@@ -147,7 +187,7 @@ body.fr span[data-lang="en"]{display:none}
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.classList.toggle('active',b.textContent===lang.toUpperCase());
   });

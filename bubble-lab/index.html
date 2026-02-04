@@ -313,6 +313,23 @@
       line-height:1.35;
     }
 
+    .lang-toggle{display:flex;gap:6px;align-items:center}
+    .lang-btn{padding:5px 12px;border-radius:10px;border:2px solid #ff69b4;background:#fff;color:#ff69b4;font-weight:800;cursor:pointer;font-size:.85em}
+    .lang-btn.active{background:#ff69b4;color:#fff}
+    span[data-lang="fr"]{display:none}
+    span[data-lang="es"]{display:none}
+    [data-lang="fr"]{display:none}
+    [data-lang="es"]{display:none}
+    body.fr span[data-lang="fr"]{display:inline}
+    body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+    body.fr [data-lang="fr"]{display:block}
+    body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+    body.es span[data-lang="es"]{display:inline}
+    body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+    body.es [data-lang="es"]{display:block}
+    body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+    .lang-toggle{display:flex !important}
+
     @media (max-width: 980px){
       .grid{grid-template-columns:1fr}
       .previewBox{position:relative; top:auto}
@@ -328,30 +345,35 @@
       <span>Coco Lab</span>
     </div>
     <div class="nav">
-      <a href="/">Home</a>
-      <a href="/kids-games/">Kids Games</a>
-      <a href="/coloring-books/">Books</a>
+      <a href="/"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span></a>
+      <a href="/kids-games/"><span data-lang="en">Kids Games</span><span data-lang="fr">Jeux enfants</span><span data-lang="es">Juegos ni&ntilde;os</span></a>
+      <a href="/coloring-books/"><span data-lang="en">Books</span><span data-lang="fr">Livres</span><span data-lang="es">Libros</span></a>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+      </div>
     </div>
   </div>
 
   <div class="wrap">
     <div class="hero">
-      <h1>Create Bubble Letter Coloring Pages Online</h1>
-      <p>Type text, pick a bubble font, add cute decorations, choose paper size, and download a printable page.</p>
+      <h1><span data-lang="en">Create Bubble Letter Coloring Pages Online</span><span data-lang="fr">Cr&eacute;ez des Pages de Coloriage en Lettres Bulles</span><span data-lang="es">Crea P&aacute;ginas para Colorear con Letras Burbuja</span></h1>
+      <p><span data-lang="en">Type text, pick a bubble font, add cute decorations, choose paper size, and download a printable page.</span><span data-lang="fr">Tapez du texte, choisissez une police bulle, ajoutez des d&eacute;corations, choisissez la taille du papier et t&eacute;l&eacute;chargez.</span><span data-lang="es">Escribe texto, elige una fuente burbuja, a&ntilde;ade decoraciones, elige el tama&ntilde;o del papel y descarga.</span></p>
     </div>
 
     <div class="panel">
       <div class="grid">
         <div class="box">
-          <h2>Personalize Your Page</h2>
-          <p class="help">Enter a name (or short sentence), choose a bubble font, adjust size, add decorations, then download your printable page.</p>
+          <h2><span data-lang="en">Personalize Your Page</span><span data-lang="fr">Personnalisez votre page</span><span data-lang="es">Personaliza tu p&aacute;gina</span></h2>
+          <p class="help"><span data-lang="en">Enter a name (or short sentence), choose a bubble font, adjust size, add decorations, then download your printable page.</span><span data-lang="fr">Entrez un nom (ou une courte phrase), choisissez une police bulle, ajustez la taille, ajoutez des d&eacute;corations, puis t&eacute;l&eacute;chargez.</span><span data-lang="es">Ingresa un nombre (o una frase corta), elige una fuente burbuja, ajusta el tama&ntilde;o, a&ntilde;ade decoraciones y descarga.</span></p>
 
-          <label for="textInput">Text</label>
+          <label for="textInput"><span data-lang="en">Text</span><span data-lang="fr">Texte</span><span data-lang="es">Texto</span></label>
           <textarea id="textInput" maxlength="60">WISH YOU HAPPY
 EVERY DAY!
 COCOTHEAXOLOTL.ORG</textarea>
 
-          <label for="fontSelect">Font Style</label>
+          <label for="fontSelect"><span data-lang="en">Font Style</span><span data-lang="fr">Style de police</span><span data-lang="es">Estilo de fuente</span></label>
           <select id="fontSelect">
             <option value="Fredoka One" selected>Fredoka One (Round)</option>
             <option value="Bubblegum Sans">Bubblegum Sans (Bubble)</option>
@@ -360,22 +382,22 @@ COCOTHEAXOLOTL.ORG</textarea>
             <option value="Bangers">Bangers (Bold)</option>
           </select>
 
-          <label for="sizeRange">Font Size</label>
+          <label for="sizeRange"><span data-lang="en">Font Size</span><span data-lang="fr">Taille de police</span><span data-lang="es">Tama&ntilde;o de fuente</span></label>
           <div class="rangeRow">
             <input id="sizeRange" type="range" min="70" max="220" value="140" />
             <div class="pill" id="sizeValue">140%</div>
           </div>
 
-          <label>Decoration</label>
+          <label><span data-lang="en">Decoration</span><span data-lang="fr">D&eacute;coration</span><span data-lang="es">Decoraci&oacute;n</span></label>
           <div class="decos" id="decoChips">
-            <div class="chip active" data-deco="stars"><span class="dot"></span> ⭐ Stars</div>
-            <div class="chip" data-deco="hearts"><span class="dot"></span> ❤️ Hearts</div>
-            <div class="chip" data-deco="bubbles"><span class="dot"></span> 🫧 Bubbles</div>
-            <div class="chip" data-deco="confetti"><span class="dot"></span> 🎉 Confetti</div>
-            <div class="chip" data-deco="none"><span class="dot"></span> 🚫 None</div>
+            <div class="chip active" data-deco="stars"><span class="dot"></span> ⭐ <span data-lang="en">Stars</span><span data-lang="fr">&Eacute;toiles</span><span data-lang="es">Estrellas</span></div>
+            <div class="chip" data-deco="hearts"><span class="dot"></span> ❤️ <span data-lang="en">Hearts</span><span data-lang="fr">C&oelig;urs</span><span data-lang="es">Corazones</span></div>
+            <div class="chip" data-deco="bubbles"><span class="dot"></span> 🫧 <span data-lang="en">Bubbles</span><span data-lang="fr">Bulles</span><span data-lang="es">Burbujas</span></div>
+            <div class="chip" data-deco="confetti"><span class="dot"></span> 🎉 <span data-lang="en">Confetti</span><span data-lang="fr">Confettis</span><span data-lang="es">Confeti</span></div>
+            <div class="chip" data-deco="none"><span class="dot"></span> 🚫 <span data-lang="en">None</span><span data-lang="fr">Aucune</span><span data-lang="es">Ninguna</span></div>
           </div>
 
-          <label>Paper Size</label>
+          <label><span data-lang="en">Paper Size</span><span data-lang="fr">Taille du papier</span><span data-lang="es">Tama&ntilde;o del papel</span></label>
           <div class="sizes" id="sizeBtns">
             <button class="sizeBtn active" data-ratio="1:1" type="button"><span class="sizeIcon"></span><span class="sizeLabel">1:1</span></button>
             <button class="sizeBtn" data-ratio="3:4" type="button"><span class="sizeIcon"></span><span class="sizeLabel">3:4</span></button>
@@ -385,7 +407,7 @@ COCOTHEAXOLOTL.ORG</textarea>
           </div>
 
           <div class="mini">
-            <strong>Tip:</strong> Keep it short for best results (a name or 2–3 lines). This is a simple “bubble outline” generator (no AI needed).
+            <span data-lang="en"><strong>Tip:</strong> Keep it short for best results (a name or 2&ndash;3 lines). This is a simple "bubble outline" generator (no AI needed).</span><span data-lang="fr"><strong>Astuce :</strong> Restez court pour de meilleurs r&eacute;sultats (un nom ou 2&ndash;3 lignes). C'est un simple g&eacute;n&eacute;rateur de contours bulles (pas d'IA).</span><span data-lang="es"><strong>Consejo:</strong> Mant&eacute;n el texto corto para mejores resultados (un nombre o 2&ndash;3 l&iacute;neas). Es un generador simple de contornos burbuja (sin IA).</span>
           </div>
         </div>
 
@@ -396,11 +418,11 @@ COCOTHEAXOLOTL.ORG</textarea>
 
           <div class="actions">
             <div class="leftActions">
-              <button class="btn ghost small" id="resetBtn" type="button">Reset</button>
-              <a class="btn ghost small" href="/bubble-name/" title="Simple version">Simple</a>
+              <button class="btn ghost small" id="resetBtn" type="button"><span data-lang="en">Reset</span><span data-lang="fr">R&eacute;initialiser</span><span data-lang="es">Restablecer</span></button>
+              <a class="btn ghost small" href="/bubble-name/" title="Simple version"><span data-lang="en">Simple</span><span data-lang="fr">Simple</span><span data-lang="es">Simple</span></a>
             </div>
             <!-- PRINT REMOVED -->
-            <button class="btn primary" id="downloadBtn" type="button">Download PNG</button>
+            <button class="btn primary" id="downloadBtn" type="button"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
           </div>
         </div>
       </div>
@@ -661,6 +683,9 @@ COCOTHEAXOLOTL.ORG</textarea>
     setTimeout(sync, 250);
     setTimeout(sync, 900);
   });
+</script>
+<script>
+function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
 </script>
 </body>
 </html>

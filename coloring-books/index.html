@@ -14,21 +14,60 @@ main{padding:36px 20px}
 p{max-width:620px;margin:12px auto;line-height:1.5}
 .button{display:inline-block;margin-top:24px;padding:16px 40px;background:#ff69b4;color:#fff;text-decoration:none;border-radius:32px;font-weight:800}
 a.back{display:block;margin-top:30px;color:#ff69b4;text-decoration:none;font-weight:800}
+
+/* ===== Language toggle ===== */
+.lang-toggle{
+  display:inline-flex;gap:0;margin:12px auto 0;
+  border-radius:32px;overflow:hidden;border:2px solid #fff;
+}
+.lang-btn{
+  padding:6px 18px;font-family:'Baloo 2',cursive;font-size:.9em;font-weight:800;
+  border:none;cursor:pointer;transition:background .2s,color .2s;
+  background:transparent;color:#fff;
+}
+.lang-btn.active{background:#fff;color:#ff69b4}
+
+/* ===== Language visibility ===== */
+span[data-lang="fr"],span[data-lang="es"]{display:none}
+[data-lang="fr"],[data-lang="es"]{display:none}
+body.fr span[data-lang="fr"]{display:inline}
+body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 </style>
 </head>
 <body>
 
 <header>
-<h1>🎨 Coloring Books</h1>
+<h1>🎨 <span data-lang="en">Coloring Books</span><span data-lang="fr">Livres de Coloriage</span><span data-lang="es">Libros para Colorear</span></h1>
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  <button class="lang-btn" onclick="setLang('es')">ES</button>
+</div>
 </header>
 
 <main>
-<p>Sweet and calming coloring books designed for kids ages 3–8.</p>
-<p>Simple shapes, cute characters, and stress-free fun.</p>
+<p><span data-lang="en">Sweet and calming coloring books designed for kids ages 3&ndash;8.</span><span data-lang="fr">Des livres de coloriage doux et apaisants pour les enfants de 3 &agrave; 8 ans.</span><span data-lang="es">Libros para colorear dulces y relajantes dise&ntilde;ados para ni&ntilde;os de 3 a 8 a&ntilde;os.</span></p>
+<p><span data-lang="en">Simple shapes, cute characters, and stress-free fun.</span><span data-lang="fr">Des formes simples, des personnages mignons et du plaisir sans stress.</span><span data-lang="es">Formas simples, personajes adorables y diversi&oacute;n sin estr&eacute;s.</span></p>
 
-<a class="button" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank">Buy on Amazon</a>
-<a class="back" href="/">← Back to home</a>
+<a class="button" href="https://www.amazon.com/dp/B0FN7FRVV6" target="_blank"><span data-lang="en">Buy on Amazon</span><span data-lang="fr">Acheter sur Amazon</span><span data-lang="es">Comprar en Amazon</span></a>
+<a class="back" href="/"><span data-lang="en">&larr; Back to home</span><span data-lang="fr">&larr; Retour &agrave; l'accueil</span><span data-lang="es">&larr; Volver al inicio</span></a>
 </main>
+
+<script>
+function setLang(lang){
+  document.body.className = (lang==='fr') ? 'fr' : (lang==='es') ? 'es' : '';
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active', b.textContent===lang.toUpperCase());
+  });
+  document.documentElement.lang = lang;
+}
+</script>
 
 </body>
 </html>

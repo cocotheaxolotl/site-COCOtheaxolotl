@@ -13,24 +13,47 @@ h1{margin:0;font-size:2.2em}
 main{padding:36px 20px}
 .fact{background:#fff;margin:12px auto;padding:16px;border-radius:18px;max-width:620px;box-shadow:0 6px 16px rgba(0,0,0,.05)}
 a.back{display:block;margin-top:30px;color:#ff69b4;text-decoration:none;font-weight:800}
+.lang-toggle{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.lang-btn{padding:6px 14px;border-radius:10px;border:2px solid #ff69b4;background:#fff;color:#ff69b4;font-weight:800;cursor:pointer;font-size:.95em}
+.lang-btn.active{background:#ff69b4;color:#fff}
+span[data-lang="fr"]{display:none}
+span[data-lang="es"]{display:none}
+[data-lang="fr"]{display:none}
+[data-lang="es"]{display:none}
+body.fr span[data-lang="fr"]{display:inline}
+body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+.lang-toggle{display:flex !important}
 </style>
 </head>
 <body>
 
 <header>
-<h1>🦎 Learn About Axolotls</h1>
-<p><strong>Coco the Axolotl</strong> is a kids character created to teach children about axolotls through books, games, and fun facts.</p>
-
+<h1><span data-lang="en">🦎 Learn About Axolotls</span><span data-lang="fr">🦎 D&eacute;couvre les Axolotls</span><span data-lang="es">🦎 Aprende sobre los Ajolotes</span></h1>
+<p><span data-lang="en"><strong>Coco the Axolotl</strong> is a kids character created to teach children about axolotls through books, games, and fun facts.</span><span data-lang="fr"><strong>Coco l'Axolotl</strong> est un personnage pour enfants cr&eacute;&eacute; pour leur apprendre tout sur les axolotls &agrave; travers des livres, des jeux et des faits amusants.</span><span data-lang="es"><strong>Coco el Ajolote</strong> es un personaje infantil creado para ense&ntilde;ar a los ni&ntilde;os sobre los ajolotes a trav&eacute;s de libros, juegos y datos divertidos.</span></p>
+<div class="lang-toggle">
+<button class="lang-btn active" onclick="setLang('en')">EN</button>
+<button class="lang-btn" onclick="setLang('fr')">FR</button>
+<button class="lang-btn" onclick="setLang('es')">ES</button>
+</div>
 </header>
 
 <main>
-<div class="fact">Axolotls are amphibians from Mexico.</div>
-<div class="fact">They live in water their whole life.</div>
-<div class="fact">Axolotls can regenerate parts of their body.</div>
-<div class="fact">Coco helps kids learn about axolotls through books and games.</div>
+<div class="fact"><span data-lang="en">Axolotls are amphibians from Mexico.</span><span data-lang="fr">Les axolotls sont des amphibiens originaires du Mexique.</span><span data-lang="es">Los ajolotes son anfibios originarios de M&eacute;xico.</span></div>
+<div class="fact"><span data-lang="en">They live in water their whole life.</span><span data-lang="fr">Ils vivent dans l'eau toute leur vie.</span><span data-lang="es">Viven en el agua toda su vida.</span></div>
+<div class="fact"><span data-lang="en">Axolotls can regenerate parts of their body.</span><span data-lang="fr">Les axolotls peuvent r&eacute;g&eacute;n&eacute;rer des parties de leur corps.</span><span data-lang="es">Los ajolotes pueden regenerar partes de su cuerpo.</span></div>
+<div class="fact"><span data-lang="en">Coco helps kids learn about axolotls through books and games.</span><span data-lang="fr">Coco aide les enfants &agrave; d&eacute;couvrir les axolotls gr&acirc;ce &agrave; des livres et des jeux.</span><span data-lang="es">Coco ayuda a los ni&ntilde;os a aprender sobre los ajolotes a trav&eacute;s de libros y juegos.</span></div>
 
-<a class="back" href="/">← Back to home</a>
+<a class="back" href="/"><span data-lang="en">&larr; Back to home</span><span data-lang="fr">&larr; Retour &agrave; l'accueil</span><span data-lang="es">&larr; Volver al inicio</span></a>
 </main>
 
+<script>
+function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
+</script>
 </body>
 </html>

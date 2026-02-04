@@ -36,94 +36,237 @@ footer{
   color:#888;
   padding:20px;
 }
+.lang-toggle{display:inline-flex;gap:0;margin:18px auto 0;border-radius:32px;overflow:hidden;border:2px solid #ff69b4}
+.lang-btn{padding:8px 22px;font-family:'Baloo 2',cursive;font-size:1em;font-weight:600;border:none;cursor:pointer;transition:background .2s,color .2s;background:transparent;color:#ff69b4}
+.lang-btn.active{background:#ff69b4;color:#fff}
+[data-lang="fr"],
+[data-lang="es"]{display:none}
+html[lang="fr"] [data-lang="fr"]{display:inline}
+html[lang="fr"] [data-lang="en"]{display:none}
+html[lang="fr"] [data-lang="es"]{display:none}
+html[lang="es"] [data-lang="es"]{display:inline}
+html[lang="es"] [data-lang="en"]{display:none}
+html[lang="es"] [data-lang="fr"]{display:none}
+html[lang="fr"] li [data-lang="fr"],
+html[lang="es"] li [data-lang="es"]{display:inline}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Privacy Policy</h1>
+  <h1>
+    <span data-lang="en">Privacy Policy</span>
+    <span data-lang="fr">Politique de Confidentialit&eacute;</span>
+    <span data-lang="es">Pol&iacute;tica de Privacidad</span>
+  </h1>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
 </header>
 
 <main>
 
-<h2>1. Introduction</h2>
+<h2>
+  <span data-lang="en">1. Introduction</span>
+  <span data-lang="fr">1. Introduction</span>
+  <span data-lang="es">1. Introducci&oacute;n</span>
+</h2>
 <p>
-This Privacy Policy explains how Coco the Axolotl collects, uses, and protects personal data when you visit or interact with the website cocotheaxolotl.org.
-We are committed to protecting your privacy and handling data in a transparent and secure manner.
+<span data-lang="en">This Privacy Policy explains how Coco the Axolotl collects, uses, and protects personal data when you visit or interact with the website cocotheaxolotl.org.
+We are committed to protecting your privacy and handling data in a transparent and secure manner.</span>
+<span data-lang="fr">Cette Politique de Confidentialit&eacute; explique comment Coco the Axolotl collecte, utilise et prot&egrave;ge les donn&eacute;es personnelles lorsque vous visitez ou interagissez avec le site cocotheaxolotl.org.
+Nous nous engageons &agrave; prot&eacute;ger votre vie priv&eacute;e et &agrave; traiter les donn&eacute;es de mani&egrave;re transparente et s&eacute;curis&eacute;e.</span>
+<span data-lang="es">Esta Pol&iacute;tica de Privacidad explica c&oacute;mo Coco the Axolotl recopila, utiliza y protege los datos personales cuando visita o interact&uacute;a con el sitio web cocotheaxolotl.org.
+Nos comprometemos a proteger su privacidad y a tratar los datos de manera transparente y segura.</span>
 </p>
 
-<h2>2. Data We Collect</h2>
+<h2>
+  <span data-lang="en">2. Data We Collect</span>
+  <span data-lang="fr">2. Donn&eacute;es Collect&eacute;es</span>
+  <span data-lang="es">2. Datos que Recopilamos</span>
+</h2>
 <p>
-We may collect the following personal data:
+<span data-lang="en">We may collect the following personal data:</span>
+<span data-lang="fr">Nous pouvons collecter les donn&eacute;es personnelles suivantes :</span>
+<span data-lang="es">Podemos recopilar los siguientes datos personales:</span>
+</p>
 <ul>
-  <li>First name</li>
-  <li>Email address</li>
+  <li>
+    <span data-lang="en">First name</span>
+    <span data-lang="fr">Pr&eacute;nom</span>
+    <span data-lang="es">Nombre</span>
+  </li>
+  <li>
+    <span data-lang="en">Email address</span>
+    <span data-lang="fr">Adresse e-mail</span>
+    <span data-lang="es">Direcci&oacute;n de correo electr&oacute;nico</span>
+  </li>
 </ul>
-Personal data is collected only when voluntarily provided by users, for example when requesting downloadable content or subscribing to updates.
+<p>
+<span data-lang="en">Personal data is collected only when voluntarily provided by users, for example when requesting downloadable content or subscribing to updates.</span>
+<span data-lang="fr">Les donn&eacute;es personnelles sont collect&eacute;es uniquement lorsqu'elles sont fournies volontairement par les utilisateurs, par exemple lors de la demande de contenu t&eacute;l&eacute;chargeable ou de l'inscription aux mises &agrave; jour.</span>
+<span data-lang="es">Los datos personales se recopilan &uacute;nicamente cuando los usuarios los proporcionan voluntariamente, por ejemplo, al solicitar contenido descargable o al suscribirse a actualizaciones.</span>
 </p>
 
-<h2>3. Use of Data</h2>
+<h2>
+  <span data-lang="en">3. Use of Data</span>
+  <span data-lang="fr">3. Utilisation des Donn&eacute;es</span>
+  <span data-lang="es">3. Uso de los Datos</span>
+</h2>
 <p>
-Personal data collected is used exclusively for the following purposes:
+<span data-lang="en">Personal data collected is used exclusively for the following purposes:</span>
+<span data-lang="fr">Les donn&eacute;es personnelles collect&eacute;es sont utilis&eacute;es exclusivement aux fins suivantes :</span>
+<span data-lang="es">Los datos personales recopilados se utilizan exclusivamente para los siguientes fines:</span>
+</p>
 <ul>
-  <li>Sending free printable games or educational content</li>
-  <li>Providing updates related to Coco the Axolotl books, games, or activities</li>
+  <li>
+    <span data-lang="en">Sending free printable games or educational content</span>
+    <span data-lang="fr">Envoi de jeux imprimables gratuits ou de contenu &eacute;ducatif</span>
+    <span data-lang="es">Env&iacute;o de juegos imprimibles gratuitos o contenido educativo</span>
+  </li>
+  <li>
+    <span data-lang="en">Providing updates related to Coco the Axolotl books, games, or activities</span>
+    <span data-lang="fr">Fournir des mises &agrave; jour relatives aux livres, jeux ou activit&eacute;s de Coco the Axolotl</span>
+    <span data-lang="es">Proporcionar actualizaciones relacionadas con los libros, juegos o actividades de Coco the Axolotl</span>
+  </li>
 </ul>
+
+<h2>
+  <span data-lang="en">4. Data Sharing</span>
+  <span data-lang="fr">4. Partage des Donn&eacute;es</span>
+  <span data-lang="es">4. Compartici&oacute;n de Datos</span>
+</h2>
+<p>
+<span data-lang="en">Your data is never sold, rented, or shared with third parties.</span>
+<span data-lang="fr">Vos donn&eacute;es ne sont jamais vendues, lou&eacute;es ou partag&eacute;es avec des tiers.</span>
+<span data-lang="es">Sus datos nunca se venden, alquilan ni comparten con terceros.</span>
 </p>
 
-<h2>4. Data Sharing</h2>
+<h2>
+  <span data-lang="en">5. Data Retention</span>
+  <span data-lang="fr">5. Conservation des Donn&eacute;es</span>
+  <span data-lang="es">5. Retenci&oacute;n de Datos</span>
+</h2>
 <p>
-Your data is never sold, rented, or shared with third parties.
+<span data-lang="en">Personal data is stored only for as long as necessary to fulfill the purposes described above or until you request its deletion.</span>
+<span data-lang="fr">Les donn&eacute;es personnelles sont conserv&eacute;es uniquement le temps n&eacute;cessaire pour remplir les finalit&eacute;s d&eacute;crites ci-dessus ou jusqu'&agrave; ce que vous demandiez leur suppression.</span>
+<span data-lang="es">Los datos personales se conservan solo durante el tiempo necesario para cumplir los fines descritos anteriormente o hasta que usted solicite su eliminaci&oacute;n.</span>
 </p>
 
-<h2>5. Data Retention</h2>
+<h2>
+  <span data-lang="en">6. Data Security</span>
+  <span data-lang="fr">6. S&eacute;curit&eacute; des Donn&eacute;es</span>
+  <span data-lang="es">6. Seguridad de los Datos</span>
+</h2>
 <p>
-Personal data is stored only for as long as necessary to fulfill the purposes described above or until you request its deletion.
+<span data-lang="en">We implement appropriate technical and organizational measures to protect personal data against unauthorized access, alteration, disclosure, or destruction.</span>
+<span data-lang="fr">Nous mettons en &oelig;uvre des mesures techniques et organisationnelles appropri&eacute;es pour prot&eacute;ger les donn&eacute;es personnelles contre tout acc&egrave;s non autoris&eacute;, toute modification, divulgation ou destruction.</span>
+<span data-lang="es">Implementamos medidas t&eacute;cnicas y organizativas adecuadas para proteger los datos personales contra el acceso no autorizado, la alteraci&oacute;n, la divulgaci&oacute;n o la destrucci&oacute;n.</span>
 </p>
 
-<h2>6. Data Security</h2>
+<h2>
+  <span data-lang="en">7. Your Rights</span>
+  <span data-lang="fr">7. Vos Droits</span>
+  <span data-lang="es">7. Sus Derechos</span>
+</h2>
 <p>
-We implement appropriate technical and organizational measures to protect personal data against unauthorized access, alteration, disclosure, or destruction.
+<span data-lang="en">In accordance with applicable data protection regulations, including the General Data Protection Regulation (GDPR), you have the right to:</span>
+<span data-lang="fr">Conform&eacute;ment aux r&eacute;glementations applicables en mati&egrave;re de protection des donn&eacute;es, y compris le R&egrave;glement G&eacute;n&eacute;ral sur la Protection des Donn&eacute;es (RGPD), vous avez le droit de :</span>
+<span data-lang="es">De conformidad con las normativas aplicables de protecci&oacute;n de datos, incluido el Reglamento General de Protecci&oacute;n de Datos (RGPD), usted tiene derecho a:</span>
 </p>
-
-<h2>7. Your Rights</h2>
-<p>
-In accordance with applicable data protection regulations, including the General Data Protection Regulation (GDPR), you have the right to:
 <ul>
-  <li>Access your personal data</li>
-  <li>Correct your personal data</li>
-  <li>Request deletion of your personal data</li>
+  <li>
+    <span data-lang="en">Access your personal data</span>
+    <span data-lang="fr">Acc&eacute;der &agrave; vos donn&eacute;es personnelles</span>
+    <span data-lang="es">Acceder a sus datos personales</span>
+  </li>
+  <li>
+    <span data-lang="en">Correct your personal data</span>
+    <span data-lang="fr">Corriger vos donn&eacute;es personnelles</span>
+    <span data-lang="es">Corregir sus datos personales</span>
+  </li>
+  <li>
+    <span data-lang="en">Request deletion of your personal data</span>
+    <span data-lang="fr">Demander la suppression de vos donn&eacute;es personnelles</span>
+    <span data-lang="es">Solicitar la eliminaci&oacute;n de sus datos personales</span>
+  </li>
 </ul>
-To exercise these rights, please contact:
-<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a>
-</p>
-
-<h2>8. Cookies</h2>
 <p>
-This website does not use tracking or advertising cookies.
-Only strictly necessary technical cookies may be used to ensure proper website functionality.
+<span data-lang="en">To exercise these rights, please contact:
+<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
+<span data-lang="fr">Pour exercer ces droits, veuillez contacter :
+<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
+<span data-lang="es">Para ejercer estos derechos, por favor contacte:
+<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
 </p>
 
-<h2>9. Changes to This Policy</h2>
+<h2>
+  <span data-lang="en">8. Cookies</span>
+  <span data-lang="fr">8. Cookies</span>
+  <span data-lang="es">8. Cookies</span>
+</h2>
 <p>
-This Privacy Policy may be updated at any time.
-Any changes will be posted on this page with an updated revision date.
+<span data-lang="en">This website does not use tracking or advertising cookies.
+Only strictly necessary technical cookies may be used to ensure proper website functionality.</span>
+<span data-lang="fr">Ce site web n'utilise pas de cookies de suivi ou de publicit&eacute;.
+Seuls des cookies techniques strictement n&eacute;cessaires peuvent &ecirc;tre utilis&eacute;s pour assurer le bon fonctionnement du site.</span>
+<span data-lang="es">Este sitio web no utiliza cookies de seguimiento ni de publicidad.
+Solo se pueden utilizar cookies t&eacute;cnicas estrictamente necesarias para garantizar el correcto funcionamiento del sitio web.</span>
 </p>
 
-<h2>10. Contact</h2>
+<h2>
+  <span data-lang="en">9. Changes to This Policy</span>
+  <span data-lang="fr">9. Modifications de cette Politique</span>
+  <span data-lang="es">9. Cambios en esta Pol&iacute;tica</span>
+</h2>
 <p>
-If you have any questions regarding this Privacy Policy or the processing of your personal data, you may contact us at:
-<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a>
+<span data-lang="en">This Privacy Policy may be updated at any time.
+Any changes will be posted on this page with an updated revision date.</span>
+<span data-lang="fr">Cette Politique de Confidentialit&eacute; peut &ecirc;tre mise &agrave; jour &agrave; tout moment.
+Toute modification sera publi&eacute;e sur cette page avec une date de r&eacute;vision mise &agrave; jour.</span>
+<span data-lang="es">Esta Pol&iacute;tica de Privacidad puede actualizarse en cualquier momento.
+Cualquier cambio se publicar&aacute; en esta p&aacute;gina con una fecha de revisi&oacute;n actualizada.</span>
 </p>
 
-<a class="back" href="/">← Back to home</a>
+<h2>
+  <span data-lang="en">10. Contact</span>
+  <span data-lang="fr">10. Contact</span>
+  <span data-lang="es">10. Contacto</span>
+</h2>
+<p>
+<span data-lang="en">If you have any questions regarding this Privacy Policy or the processing of your personal data, you may contact us at:
+<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
+<span data-lang="fr">Si vous avez des questions concernant cette Politique de Confidentialit&eacute; ou le traitement de vos donn&eacute;es personnelles, vous pouvez nous contacter &agrave; :
+<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
+<span data-lang="es">Si tiene alguna pregunta sobre esta Pol&iacute;tica de Privacidad o el tratamiento de sus datos personales, puede contactarnos en:
+<a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
+</p>
+
+<a class="back" href="/">
+  <span data-lang="en">&larr; Back to home</span>
+  <span data-lang="fr">&larr; Retour &agrave; l'accueil</span>
+  <span data-lang="es">&larr; Volver al inicio</span>
+</a>
 
 </main>
 
 <footer>
-© 2026 Coco the Axolotl — All rights reserved
+<span data-lang="en">&copy; 2026 Coco the Axolotl &mdash; All rights reserved</span>
+<span data-lang="fr">&copy; 2026 Coco the Axolotl &mdash; Tous droits r&eacute;serv&eacute;s</span>
+<span data-lang="es">&copy; 2026 Coco the Axolotl &mdash; Todos los derechos reservados</span>
 </footer>
+
+<script>
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.classList.toggle('active',btn.textContent===lang.toUpperCase());
+  });
+}
+</script>
 
 </body>
 </html>

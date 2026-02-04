@@ -36,61 +36,148 @@ footer{
   color:#888;
   padding:20px;
 }
+.lang-toggle{display:inline-flex;gap:0;margin:18px auto 0;border-radius:32px;overflow:hidden;border:2px solid #ff69b4}
+.lang-btn{padding:8px 22px;font-family:'Baloo 2',cursive;font-size:1em;font-weight:600;border:none;cursor:pointer;transition:background .2s,color .2s;background:transparent;color:#ff69b4}
+.lang-btn.active{background:#ff69b4;color:#fff}
+[data-lang="fr"],
+[data-lang="es"]{display:none}
+html[lang="fr"] [data-lang="fr"]{display:inline}
+html[lang="fr"] [data-lang="en"]{display:none}
+html[lang="fr"] [data-lang="es"]{display:none}
+html[lang="es"] [data-lang="es"]{display:inline}
+html[lang="es"] [data-lang="en"]{display:none}
+html[lang="es"] [data-lang="fr"]{display:none}
+html[lang="fr"] li [data-lang="fr"],
+html[lang="es"] li [data-lang="es"]{display:inline}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Legal Notice</h1>
+  <h1>
+    <span data-lang="en">Legal Notice</span>
+    <span data-lang="fr">Mentions L&eacute;gales</span>
+    <span data-lang="es">Aviso Legal</span>
+  </h1>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
 </header>
 
 <main>
 
-<h2>Website Publisher</h2>
+<h2>
+  <span data-lang="en">Website Publisher</span>
+  <span data-lang="fr">&Eacute;diteur du Site</span>
+  <span data-lang="es">Editor del Sitio Web</span>
+</h2>
 <p>
-Coco the Axolotl<br>
+<span data-lang="en">Coco the Axolotl<br>
 France<br>
-Contact: <a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a>
+Contact: <a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
+<span data-lang="fr">Coco the Axolotl<br>
+France<br>
+Contact : <a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
+<span data-lang="es">Coco the Axolotl<br>
+Francia<br>
+Contacto: <a href="mailto:contact@cocotheaxolotl.org">contact@cocotheaxolotl.org</a></span>
 </p>
 
-<h2>Website Hosting</h2>
+<h2>
+  <span data-lang="en">Website Hosting</span>
+  <span data-lang="fr">H&eacute;bergement du Site</span>
+  <span data-lang="es">Alojamiento del Sitio Web</span>
+</h2>
 <p>
-o2switch<br>
+<span data-lang="en">o2switch<br>
 222 Boulevard Gustave Flaubert<br>
 63000 Clermont-Ferrand, France<br>
-<a href="https://www.o2switch.fr" target="_blank" rel="noopener">www.o2switch.fr</a>
+<a href="https://www.o2switch.fr" target="_blank" rel="noopener">www.o2switch.fr</a></span>
+<span data-lang="fr">o2switch<br>
+222 Boulevard Gustave Flaubert<br>
+63000 Clermont-Ferrand, France<br>
+<a href="https://www.o2switch.fr" target="_blank" rel="noopener">www.o2switch.fr</a></span>
+<span data-lang="es">o2switch<br>
+222 Boulevard Gustave Flaubert<br>
+63000 Clermont-Ferrand, Francia<br>
+<a href="https://www.o2switch.fr" target="_blank" rel="noopener">www.o2switch.fr</a></span>
 </p>
 
-<h2>Intellectual Property</h2>
+<h2>
+  <span data-lang="en">Intellectual Property</span>
+  <span data-lang="fr">Propri&eacute;t&eacute; Intellectuelle</span>
+  <span data-lang="es">Propiedad Intelectual</span>
+</h2>
 <p>
-All content published on this website (texts, illustrations, games, printable PDFs, graphics, characters, logos, and visual elements) is the exclusive property of Coco the Axolotl, unless otherwise stated.
-Any unauthorized reproduction, representation, modification, publication, adaptation, or distribution is strictly prohibited.
+<span data-lang="en">All content published on this website (texts, illustrations, games, printable PDFs, graphics, characters, logos, and visual elements) is the exclusive property of Coco the Axolotl, unless otherwise stated.
+Any unauthorized reproduction, representation, modification, publication, adaptation, or distribution is strictly prohibited.</span>
+<span data-lang="fr">Tout le contenu publi&eacute; sur ce site (textes, illustrations, jeux, PDF imprimables, graphismes, personnages, logos et &eacute;l&eacute;ments visuels) est la propri&eacute;t&eacute; exclusive de Coco the Axolotl, sauf mention contraire.
+Toute reproduction, repr&eacute;sentation, modification, publication, adaptation ou distribution non autoris&eacute;e est strictement interdite.</span>
+<span data-lang="es">Todo el contenido publicado en este sitio web (textos, ilustraciones, juegos, PDF imprimibles, gr&aacute;ficos, personajes, logotipos y elementos visuales) es propiedad exclusiva de Coco the Axolotl, salvo que se indique lo contrario.
+Cualquier reproducci&oacute;n, representaci&oacute;n, modificaci&oacute;n, publicaci&oacute;n, adaptaci&oacute;n o distribuci&oacute;n no autorizada est&aacute; estrictamente prohibida.</span>
 </p>
 
-<h2>Limitation of Liability</h2>
+<h2>
+  <span data-lang="en">Limitation of Liability</span>
+  <span data-lang="fr">Limitation de Responsabilit&eacute;</span>
+  <span data-lang="es">Limitaci&oacute;n de Responsabilidad</span>
+</h2>
 <p>
-The publisher strives to provide accurate and up-to-date information but cannot be held responsible for errors, omissions, or misuse of the content.
-Games and educational materials are provided for recreational and educational purposes under parental supervision.
+<span data-lang="en">The publisher strives to provide accurate and up-to-date information but cannot be held responsible for errors, omissions, or misuse of the content.
+Games and educational materials are provided for recreational and educational purposes under parental supervision.</span>
+<span data-lang="fr">L'&eacute;diteur s'efforce de fournir des informations exactes et &agrave; jour, mais ne peut &ecirc;tre tenu responsable des erreurs, omissions ou d'une mauvaise utilisation du contenu.
+Les jeux et le mat&eacute;riel &eacute;ducatif sont fournis &agrave; des fins r&eacute;cr&eacute;atives et &eacute;ducatives sous la supervision des parents.</span>
+<span data-lang="es">El editor se esfuerza por proporcionar informaci&oacute;n precisa y actualizada, pero no puede ser considerado responsable de errores, omisiones o uso indebido del contenido.
+Los juegos y materiales educativos se proporcionan con fines recreativos y educativos bajo la supervisi&oacute;n de los padres.</span>
 </p>
 
-<h2>External Links</h2>
+<h2>
+  <span data-lang="en">External Links</span>
+  <span data-lang="fr">Liens Externes</span>
+  <span data-lang="es">Enlaces Externos</span>
+</h2>
 <p>
-This website may contain links to third-party websites. Coco the Axolotl has no control over their content and assumes no responsibility for them.
+<span data-lang="en">This website may contain links to third-party websites. Coco the Axolotl has no control over their content and assumes no responsibility for them.</span>
+<span data-lang="fr">Ce site web peut contenir des liens vers des sites tiers. Coco the Axolotl n'a aucun contr&ocirc;le sur leur contenu et d&eacute;cline toute responsabilit&eacute; &agrave; leur &eacute;gard.</span>
+<span data-lang="es">Este sitio web puede contener enlaces a sitios web de terceros. Coco the Axolotl no tiene control sobre su contenido y no asume ninguna responsabilidad por ellos.</span>
 </p>
 
-<h2>Governing Law</h2>
+<h2>
+  <span data-lang="en">Governing Law</span>
+  <span data-lang="fr">Droit Applicable</span>
+  <span data-lang="es">Ley Aplicable</span>
+</h2>
 <p>
-These legal notices are governed by French law. Any dispute shall fall under the exclusive jurisdiction of French courts.
+<span data-lang="en">These legal notices are governed by French law. Any dispute shall fall under the exclusive jurisdiction of French courts.</span>
+<span data-lang="fr">Les pr&eacute;sentes mentions l&eacute;gales sont r&eacute;gies par le droit fran&ccedil;ais. Tout litige rel&egrave;vera de la comp&eacute;tence exclusive des tribunaux fran&ccedil;ais.</span>
+<span data-lang="es">Estas menciones legales se rigen por la legislaci&oacute;n francesa. Cualquier disputa ser&aacute; de la competencia exclusiva de los tribunales franceses.</span>
 </p>
 
-<a class="back" href="/">← Back to home</a>
+<a class="back" href="/">
+  <span data-lang="en">&larr; Back to home</span>
+  <span data-lang="fr">&larr; Retour &agrave; l'accueil</span>
+  <span data-lang="es">&larr; Volver al inicio</span>
+</a>
 
 </main>
 
 <footer>
-© 2026 Coco the Axolotl — All rights reserved
+<span data-lang="en">&copy; 2026 Coco the Axolotl &mdash; All rights reserved</span>
+<span data-lang="fr">&copy; 2026 Coco the Axolotl &mdash; Tous droits r&eacute;serv&eacute;s</span>
+<span data-lang="es">&copy; 2026 Coco the Axolotl &mdash; Todos los derechos reservados</span>
 </footer>
+
+<script>
+function setLang(lang){
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.classList.toggle('active',btn.textContent===lang.toUpperCase());
+  });
+}
+</script>
 
 </body>
 </html>

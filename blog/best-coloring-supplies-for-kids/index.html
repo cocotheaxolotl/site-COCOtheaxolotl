@@ -46,8 +46,8 @@ tr:nth-child(even) td{background:#fff5f9}
 a.back{display:block;margin-top:28px;color:#ff69b4;text-decoration:none;font-weight:800;font-size:1.05em;text-align:center}
 a.back:hover{text-decoration:underline}
 footer{padding:20px;font-size:.85em;opacity:.6;text-align:center}
-[data-lang="fr"]{display:none}body.fr [data-lang="fr"]{display:block}body.fr [data-lang="en"]{display:none}
-span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}body.fr span[data-lang="en"]{display:none}
+[data-lang="fr"]{display:none}[data-lang="es"]{display:none}body.fr [data-lang="fr"]{display:block}body.fr [data-lang="en"]{display:none}body.es [data-lang="es"]{display:block}body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+span[data-lang="fr"]{display:none}span[data-lang="es"]{display:none}body.fr span[data-lang="fr"]{display:inline}body.fr span[data-lang="en"]{display:none}body.es span[data-lang="es"]{display:inline}body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
 @media(max-width:700px){header h1{font-size:1.7em}h2{font-size:1.2em}table{font-size:.85em}th,td{padding:8px 6px}}
 </style>
 </head>
@@ -57,14 +57,17 @@ span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}bo
   <h1>
     <span data-lang="en">🖍️ Best Coloring Supplies for Kids</span>
     <span data-lang="fr">🖍️ Le Meilleur Mat&eacute;riel de Coloriage</span>
+    <span data-lang="es">🖍️ Los Mejores Materiales para Colorear para Ni&ntilde;os</span>
   </h1>
   <p>
     <span data-lang="en">Crayons, markers, colored pencils &mdash; which ones are right for your child?</span>
     <span data-lang="fr">Crayons, feutres, crayons de couleur &mdash; lesquels choisir pour ton enfant ?</span>
+    <span data-lang="es">Crayones, rotuladores, l&aacute;pices de colores &mdash; &iquest;cu&aacute;les son los adecuados para tu hijo?</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -194,21 +197,83 @@ span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}bo
     </div>
   </div>
 
-  <div class="related">
-    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span></h3>
-    <a href="/blog/coloring-tips-for-kids/"><span data-lang="en">🖍️ 10 Coloring Tips for Kids</span><span data-lang="fr">🖍️ 10 Astuces de Coloriage pour Enfants</span></a>
-    <a href="/blog/benefits-of-coloring-for-children/"><span data-lang="en">🧠 5 Benefits of Coloring for Children</span><span data-lang="fr">🧠 5 Bienfaits du Coloriage pour les Enfants</span></a>
-    <a href="/blog/axolotl-coloring-pages-for-kids/"><span data-lang="en">🎨 Axolotl Coloring Pages for Kids</span><span data-lang="fr">🎨 Coloriages d'Axolotl pour Enfants</span></a>
+  <div data-lang="es">
+    <p>Elegir los materiales de colorear adecuados puede marcar una gran diferencia en la experiencia de tu hijo. La herramienta equivocada puede causar frustraci&oacute;n, mientras que la correcta hace que colorear sea f&aacute;cil y divertido. Aqu&iacute; tienes una gu&iacute;a completa por edad y nivel.</p>
+
+    <h2>📊 Comparaci&oacute;n R&aacute;pida</h2>
+    <table>
+      <tr><th>Material</th><th>Edades</th><th>Nivel de Suciedad</th><th>Ideal para</th></tr>
+      <tr><td>Crayones gruesos</td><td>1&ndash;3</td><td>Bajo</td><td>Primer coloreado</td></tr>
+      <tr><td>Crayones normales</td><td>3&ndash;6</td><td>Bajo</td><td>Coloreado diario</td></tr>
+      <tr><td>L&aacute;pices de colores</td><td>5&ndash;8+</td><td>Bajo</td><td>Detalle y sombreado</td></tr>
+      <tr><td>Rotuladores lavables</td><td>3&ndash;7</td><td>Medio</td><td>Colores vivos e intensos</td></tr>
+      <tr><td>Crayones de gel</td><td>4&ndash;8</td><td>Bajo</td><td>Mezcla suave</td></tr>
+    </table>
+
+    <div class="supply">
+      <h3>🖍️ Crayones</h3>
+      <span class="ages">Edades 1&ndash;6</span>
+      <p>&iexcl;La primera herramienta cl&aacute;sica para colorear! Los crayones son econ&oacute;micos, no t&oacute;xicos y casi imposibles de ensuciar. Para los m&aacute;s peque&ntilde;os (1&ndash;3 a&ntilde;os), elige <strong>crayones gruesos o en forma de huevo</strong> f&aacute;ciles de agarrar. Para edades de 3&ndash;6 a&ntilde;os, los crayones normales funcionan perfectamente.</p>
+      <p><span class="pros">+ </span>Baratos, seguros, lavables, no traspasan el papel</p>
+      <p><span class="cons">- </span>Los colores no son tan vivos, pueden romperse f&aacute;cilmente</p>
+      <p><strong>Consejo:</strong> &iexcl;Los crayones triangulares no ruedan de la mesa y fomentan el agarre correcto!</p>
+    </div>
+
+    <div class="supply">
+      <h3>✏️ L&aacute;pices de Colores</h3>
+      <span class="ages">Edades 5&ndash;8+</span>
+      <p>Una vez que los ni&ntilde;os han desarrollado la motricidad fina, los l&aacute;pices de colores ofrecen la mayor precisi&oacute;n. Son perfectos para libros de colorear detallados y permiten un hermoso <strong>sombreado y mezcla</strong>. Elige minas blandas para colores m&aacute;s suaves.</p>
+      <p><span class="pros">+ </span>Gran detalle, mezcla, sin suciedad, no traspasan</p>
+      <p><span class="cons">- </span>Requieren m&aacute;s fuerza en la mano, las puntas pueden romperse</p>
+      <p><strong>Consejo:</strong> Ten un buen sacapuntas a mano &mdash; &iexcl;puntas afiladas = mejor control!</p>
+    </div>
+
+    <div class="supply">
+      <h3>🎨 Rotuladores Lavables</h3>
+      <span class="ages">Edades 3&ndash;7</span>
+      <p>A los ni&ntilde;os les encantan los rotuladores por sus <strong>colores vivos e intensos</strong>. Elige siempre rotuladores lavables &mdash; se limpian f&aacute;cilmente de la piel, la ropa y la mayor&iacute;a de las superficies. Las puntas gruesas son m&aacute;s f&aacute;ciles para las manitas; las puntas finas funcionan para ni&ntilde;os mayores.</p>
+      <p><span class="pros">+ </span>Colores vivos, f&aacute;ciles de usar, les encantan a los ni&ntilde;os</p>
+      <p><span class="cons">- </span>Pueden traspasar el papel fino, se secan sin tap&oacute;n</p>
+      <p><strong>Consejo:</strong> Usa papel grueso (120 g/m&sup2;+) con rotuladores para evitar que traspasen. &iexcl;Los libros de colorear de Coco usan p&aacute;ginas impresas por un solo lado por esta raz&oacute;n!</p>
+    </div>
+
+    <div class="supply">
+      <h3>✨ Crayones de Gel &amp; Giratorios</h3>
+      <span class="ages">Edades 4&ndash;8</span>
+      <p>Los crayones de gel se deslizan como mantequilla y se mezclan f&aacute;cilmente. Los crayones giratorios nunca necesitan sacapuntas y no se rompen como los crayones normales. Ambos son excelentes opciones para ni&ntilde;os que ya superaron los crayones b&aacute;sicos.</p>
+      <p><span class="pros">+ </span>Aplicaci&oacute;n suave, sin sacapuntas, buena mezcla</p>
+      <p><span class="cons">- </span>M&aacute;s caros, pueden ser demasiado blandos para detalles</p>
+    </div>
+
+    <h2>💡 Nuestra Recomendaci&oacute;n por Edad</h2>
+    <ul>
+      <li><strong>1&ndash;2 a&ntilde;os:</strong> Crayones gruesos o en forma de huevo (menos de 8 colores para no abrumar)</li>
+      <li><strong>3&ndash;4 a&ntilde;os:</strong> Crayones normales + rotuladores lavables gruesos (12&ndash;24 colores)</li>
+      <li><strong>5&ndash;6 a&ntilde;os:</strong> Crayones + l&aacute;pices de colores + rotuladores lavables (gama completa)</li>
+      <li><strong>7&ndash;8+ a&ntilde;os:</strong> L&aacute;pices de colores + rotuladores de punta fina para trabajo detallado</li>
+    </ul>
+
+    <div style="text-align:center">
+      <a class="cta" href="/coloring-books/">🎨 Libros de Colorear de Coco</a>
+      <a class="cta" href="/blog/coloring-tips-for-kids/">🖍️ 10 Consejos para Colorear</a>
+    </div>
   </div>
 
-  <a class="back" href="/blog/"><span data-lang="en">&larr; Back to blog</span><span data-lang="fr">&larr; Retour au blog</span></a>
+  <div class="related">
+    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span><span data-lang="es">📚 Art&iacute;culos Relacionados</span></h3>
+    <a href="/blog/coloring-tips-for-kids/"><span data-lang="en">🖍️ 10 Coloring Tips for Kids</span><span data-lang="fr">🖍️ 10 Astuces de Coloriage pour Enfants</span><span data-lang="es">🖍️ 10 Consejos para Colorear para Ni&ntilde;os</span></a>
+    <a href="/blog/benefits-of-coloring-for-children/"><span data-lang="en">🧠 5 Benefits of Coloring for Children</span><span data-lang="fr">🧠 5 Bienfaits du Coloriage pour les Enfants</span><span data-lang="es">🧠 5 Beneficios del Colorear para Ni&ntilde;os</span></a>
+    <a href="/blog/axolotl-coloring-pages-for-kids/"><span data-lang="en">🎨 Axolotl Coloring Pages for Kids</span><span data-lang="fr">🎨 Coloriages d'Axolotl pour Enfants</span><span data-lang="es">🎨 P&aacute;ginas para Colorear de Ajolote para Ni&ntilde;os</span></a>
+  </div>
+
+  <a class="back" href="/blog/"><span data-lang="en">&larr; Back to blog</span><span data-lang="fr">&larr; Retour au blog</span><span data-lang="es">&larr; Volver al blog</span></a>
 </main>
 
 <footer>&copy; 2026 Coco the Axolotl</footer>
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase());});
   document.documentElement.lang=lang;
 }

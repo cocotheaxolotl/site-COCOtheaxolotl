@@ -33,20 +33,41 @@
     }
     canvas{background:#fff;border-radius:18px;max-width:96vw;height:auto}
     .small{opacity:.85;font-size:.95em}
+    .lang-toggle{display:flex;gap:6px;justify-content:center;margin-top:10px}
+    .lang-btn{padding:6px 14px;border-radius:10px;border:2px solid #ff69b4;background:#fff;color:#ff69b4;font-weight:800;cursor:pointer;font-size:.95em}
+    .lang-btn.active{background:#ff69b4;color:#fff}
+    span[data-lang="fr"]{display:none}
+    span[data-lang="es"]{display:none}
+    [data-lang="fr"]{display:none}
+    [data-lang="es"]{display:none}
+    body.fr span[data-lang="fr"]{display:inline}
+    body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+    body.fr [data-lang="fr"]{display:block}
+    body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+    body.es span[data-lang="es"]{display:inline}
+    body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+    body.es [data-lang="es"]{display:block}
+    body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+    .lang-toggle{display:flex !important}
   </style>
 </head>
 
 <body>
 <header>
-  <h1>🔤 Bubble Name</h1>
+  <h1><span data-lang="en">🔤 Bubble Name</span><span data-lang="fr">🔤 Nom en Bulles</span><span data-lang="es">🔤 Nombre en Burbujas</span></h1>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
 </header>
 
 <main>
-  <p><strong>Kids:</strong> type your name to get <strong>big bubble letters</strong> you can <strong>download and color</strong> (ages 5–7).</p>
+  <p><span data-lang="en"><strong>Kids:</strong> type your name to get <strong>big bubble letters</strong> you can <strong>download and color</strong> (ages 5&ndash;7).</span><span data-lang="fr"><strong>Enfants :</strong> tapez votre nom pour obtenir de <strong>grandes lettres bulles</strong> &agrave; <strong>t&eacute;l&eacute;charger et colorier</strong> (5&ndash;7 ans).</span><span data-lang="es"><strong>Ni&ntilde;os:</strong> escribe tu nombre para obtener <strong>grandes letras burbuja</strong> que puedes <strong>descargar y colorear</strong> (5&ndash;7 a&ntilde;os).</span></p>
 
   <div class="row">
     <input id="nameInput" maxlength="18" placeholder="LUCAS" aria-label="Enter your name">
-    <button id="genBtn">Make my name</button>
+    <button id="genBtn"><span data-lang="en">Make my name</span><span data-lang="fr">Cr&eacute;er mon nom</span><span data-lang="es">Crear mi nombre</span></button>
   </div>
 
   <div class="card">
@@ -54,12 +75,12 @@
   </div>
 
   <div class="row">
-    <button class="secondary" id="dlBtn">Download (A4 PNG)</button>
-    <button id="printBtn">Print</button>
-    <a class="btn secondary" href="/" style="border:2px solid #ff69b4;color:#ff69b4;background:#fff">Home</a>
+    <button class="secondary" id="dlBtn"><span data-lang="en">Download (A4 PNG)</span><span data-lang="fr">T&eacute;l&eacute;charger (A4 PNG)</span><span data-lang="es">Descargar (A4 PNG)</span></button>
+    <button id="printBtn"><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></button>
+    <a class="btn secondary" href="/" style="border:2px solid #ff69b4;color:#ff69b4;background:#fff"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span></a>
   </div>
 
-  <p class="small">Tip: download then print. Color inside the letters ✨</p>
+  <p class="small"><span data-lang="en">Tip: download then print. Color inside the letters ✨</span><span data-lang="fr">Astuce : t&eacute;l&eacute;chargez puis imprimez. Coloriez l'int&eacute;rieur des lettres ✨</span><span data-lang="es">Consejo: descarga y luego imprime. Colorea dentro de las letras ✨</span></p>
 </main>
 
 <script>
@@ -163,6 +184,9 @@
 
   // Start
   draw("COCO");
+</script>
+<script>
+function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
 </script>
 </body>
 </html>

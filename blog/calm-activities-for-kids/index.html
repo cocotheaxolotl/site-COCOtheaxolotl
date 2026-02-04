@@ -44,6 +44,12 @@ body.fr [data-lang="en"]{display:none}
 span[data-lang="fr"]{display:none}
 body.fr span[data-lang="fr"]{display:inline}
 body.fr span[data-lang="en"]{display:none}
+span[data-lang="es"]{display:none}
+[data-lang="es"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 @media(max-width:700px){header h1{font-size:1.7em}h2{font-size:1.2em}}
 </style>
 </head>
@@ -53,14 +59,17 @@ body.fr span[data-lang="en"]{display:none}
   <h1>
     <span data-lang="en">🧘 7 Calm Activities for Kids</span>
     <span data-lang="fr">🧘 7 Activit&eacute;s Calmes pour Enfants</span>
+    <span data-lang="es">🧘 7 Actividades Tranquilas para Ni&ntilde;os</span>
   </h1>
   <p>
     <span data-lang="en">Screen-free quiet time ideas to help children relax, focus, and have fun.</span>
     <span data-lang="fr">Id&eacute;es de temps calme sans &eacute;cran pour aider les enfants &agrave; se d&eacute;tendre et s'amuser.</span>
+    <span data-lang="es">Ideas de tiempo tranquilo sin pantallas para ayudar a los ni&ntilde;os a relajarse, concentrarse y divertirse.</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -176,25 +185,84 @@ body.fr span[data-lang="en"]{display:none}
     </div>
   </div>
 
+  <div data-lang="es">
+    <p>Cada ni&ntilde;o necesita momentos de calma durante el d&iacute;a. Ya sea despu&eacute;s de la escuela, antes de dormir o durante una tarde lluviosa, el tiempo tranquilo ayuda a los ni&ntilde;os a recargarse, desarrollar la concentraci&oacute;n y procesar sus emociones. &iexcl;Aqu&iacute; tienes 7 actividades sin pantallas que realmente funcionan!</p>
+
+    <div class="activity">
+      <h3>🎨 1. Colorear</h3>
+      <p>Colorear es una de las mejores actividades tranquilas para ni&ntilde;os de todas las edades. Desarrolla la motricidad fina, fomenta la creatividad y ralentiza naturalmente una mente ocupada. Las investigaciones muestran que colorear puede reducir la ansiedad en los ni&ntilde;os, igual que en los adultos.</p>
+      <p><strong>Pru&eacute;balo:</strong> Los <a href="/coloring-books/" style="color:#ff69b4">Libros para Colorear de Coco</a> presentan lindas ilustraciones de ajolotes dise&ntilde;adas para ni&ntilde;os de 3 a 8 a&ntilde;os, con contornos gruesos perfectos para manos peque&ntilde;as.</p>
+    </div>
+
+    <div class="activity">
+      <h3>🧩 2. Rompecabezas</h3>
+      <p>Los rompecabezas requieren concentraci&oacute;n y paciencia, lo que los hace naturalmente relajantes. Desarrollan habilidades de resoluci&oacute;n de problemas y percepci&oacute;n espacial. Empieza con rompecabezas apropiados para la edad: 12&ndash;24 piezas para 3&ndash;4 a&ntilde;os, hasta 100+ piezas para 7&ndash;8 a&ntilde;os.</p>
+    </div>
+
+    <div class="activity">
+      <h3>✏️ 3. Dibujo y Garabatos</h3>
+      <p>Dale a los ni&ntilde;os una p&aacute;gina en blanco y unos l&aacute;pices de colores, y observa c&oacute;mo fluye su imaginaci&oacute;n. Dibujar ayuda a los ni&ntilde;os a expresar sentimientos para los que a&uacute;n no tienen palabras. Sin reglas, sin presi&oacute;n &mdash; &iexcl;solo crear!</p>
+      <p><strong>Pru&eacute;balo:</strong> El <a href="/bubble-lab/" style="color:#ff69b4">Laboratorio de Burbujas de Coco</a> permite a los ni&ntilde;os crear hermosas letras burbuja para imprimir y colorear.</p>
+    </div>
+
+    <div class="activity">
+      <h3>📖 4. Lectura y Audiolibros</h3>
+      <p>Crea un rinc&oacute;n de lectura acogedor con cojines suaves y buena iluminaci&oacute;n. Incluso los ni&ntilde;os que a&uacute;n no saben leer se benefician de hojear libros ilustrados. Los audiolibros son una gran alternativa sin pantallas que desarrolla el vocabulario y la imaginaci&oacute;n.</p>
+    </div>
+
+    <div class="activity">
+      <h3>🧱 5. Construcci&oacute;n</h3>
+      <p>Los bloques, LEGO o baldosas magn&eacute;ticas ofrecen un juego tranquilo y concentrado. Construir fomenta el pensamiento espacial y la motricidad fina. La naturaleza r&iacute;tmica y repetitiva de apilar y conectar piezas es naturalmente relajante.</p>
+    </div>
+
+    <div class="activity">
+      <h3>🎲 6. Juegos Imprimibles</h3>
+      <p>Laberintos, sopas de letras, encuentra las diferencias &mdash; las actividades imprimibles mantienen a los ni&ntilde;os entretenidos sin pantallas. Tambi&eacute;n son port&aacute;tiles y perfectas para viajes en coche o salas de espera.</p>
+      <p><strong>Pru&eacute;balo:</strong> Los <a href="/kids-games/" style="color:#ff69b4">Juegos de Coco</a> tienen laberintos, sopas de letras y m&aacute;s, &iexcl;gratis e imprimibles!</p>
+    </div>
+
+    <div class="activity">
+      <h3>🌬️ 7. Respiraci&oacute;n Profunda y Yoga</h3>
+      <p>Los ejercicios simples de respiraci&oacute;n hacen maravillas. Prueba la &laquo; respiraci&oacute;n globo &raquo;: pide a tu hijo que coloque un peluche sobre su barriga y respire profundamente para hacerlo subir y bajar. Las posturas de yoga para ni&ntilde;os como el &laquo; &aacute;rbol &raquo; o la &laquo; mariposa &raquo; combinan movimiento con calma.</p>
+    </div>
+
+    <h2>💡 Consejos para un Tiempo Tranquilo Exitoso</h2>
+    <ul>
+      <li>Mant&eacute;n la <strong>constancia</strong> &mdash; la misma hora cada d&iacute;a ayuda a crear una rutina.</li>
+      <li>Deja que los ni&ntilde;os <strong>elijan</strong> su actividad (la autonom&iacute;a reduce la resistencia).</li>
+      <li>Empieza con <strong>10&ndash;15 minutos</strong> y aumenta gradualmente.</li>
+      <li>Crea un <strong>espacio acogedor</strong> &mdash; un rinc&oacute;n especial con luz suave y cojines.</li>
+    </ul>
+
+    <div style="text-align:center">
+      <a class="cta" href="/coloring-books/">🎨 Libros para Colorear de Coco</a>
+      <a class="cta" href="/kids-games/">🎲 Juegos Imprimibles Gratis</a>
+    </div>
+  </div>
+
   <div class="related">
-    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span></h3>
+    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span><span data-lang="es">📚 Art&iacute;culos Relacionados</span></h3>
     <a href="/blog/axolotl-coloring-pages-for-kids/">
       <span data-lang="en">🎨 Axolotl Coloring Pages for Kids</span>
       <span data-lang="fr">🎨 Coloriages d'Axolotl pour Enfants</span>
+      <span data-lang="es">🎨 Dibujos de Ajolote para Colorear</span>
     </a>
     <a href="/blog/what-is-an-axolotl/">
       <span data-lang="en">🦎 What Is an Axolotl?</span>
       <span data-lang="fr">🦎 Qu'est-ce qu'un Axolotl ?</span>
+      <span data-lang="es">🦎 &iquest;Qu&eacute; es un Ajolote?</span>
     </a>
     <a href="/blog/fun-facts/">
       <span data-lang="en">🧠 15 Amazing Axolotl Fun Facts</span>
       <span data-lang="fr">🧠 15 Faits Amusants sur les Axolotls</span>
+      <span data-lang="es">🧠 15 Datos Curiosos sobre los Ajolotes</span>
     </a>
   </div>
 
   <a class="back" href="/blog/">
     <span data-lang="en">&larr; Back to blog</span>
     <span data-lang="fr">&larr; Retour au blog</span>
+    <span data-lang="es">&larr; Volver al blog</span>
   </a>
 </main>
 
@@ -202,7 +270,7 @@ body.fr span[data-lang="en"]{display:none}
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.classList.toggle('active',b.textContent===lang.toUpperCase());
   });

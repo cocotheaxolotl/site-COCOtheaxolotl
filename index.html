@@ -480,6 +480,31 @@
       margin:12px 0;
     }
 
+    /* ===== Language toggle ===== */
+    .lang-toggle{
+      position:relative; z-index:3;
+      display:inline-flex; gap:0; margin:12px auto 0;
+      border-radius:32px; overflow:hidden; border:2px solid #fff;
+    }
+    .lang-btn{
+      padding:6px 18px; font-family:'Baloo 2',cursive; font-size:.9em; font-weight:800;
+      border:none; cursor:pointer; transition:background .2s,color .2s;
+      background:transparent; color:#fff;
+    }
+    .lang-btn.active{ background:#fff; color:var(--pink); }
+
+    /* ===== Language visibility ===== */
+    span[data-lang="fr"],span[data-lang="es"]{display:none}
+    [data-lang="fr"],[data-lang="es"]{display:none}
+    body.fr span[data-lang="fr"]{display:inline}
+    body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+    body.fr [data-lang="fr"]{display:block}
+    body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+    body.es span[data-lang="es"]{display:inline}
+    body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+    body.es [data-lang="es"]{display:block}
+    body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+
     @media (max-width: 820px){
       .quick-links{grid-template-columns:1fr}
       h1{font-size:2.25em}
@@ -571,9 +596,16 @@
     </div>
 
     <p>
-      The cutest and sweetest axolotl 🫧<br>
-      <span class="hint">Click a fish to explore!</span>
+      <span data-lang="en">The cutest and sweetest axolotl 🫧<br><span class="hint">Click a fish to explore!</span></span>
+      <span data-lang="fr">Le plus mignon des axolotls 🫧<br><span class="hint">Clique sur un poisson pour explorer !</span></span>
+      <span data-lang="es">El ajolote m&aacute;s lindo y dulce 🫧<br><span class="hint">&iexcl;Haz clic en un pez para explorar!</span></span>
     </p>
+
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+    </div>
 
     <div class="scroll-arrow" aria-hidden="true">▼</div>
   </header>
@@ -582,65 +614,73 @@
     <canvas id="blastCanvas"></canvas>
 
     <div class="content">
-      <h2>Welcome to Coco’s world</h2>
+      <h2>
+        <span data-lang="en">Welcome to Coco's world</span>
+        <span data-lang="fr">Bienvenue dans le monde de Coco</span>
+        <span data-lang="es">Bienvenidos al mundo de Coco</span>
+      </h2>
 
       <p class="intro">
-        Coco the Axolotl offers calm activities for kids, including coloring activities for kids, quiet time activities, and fun printable games designed to help children relax, focus, and enjoy creative moments offline.
-        Parents can find peaceful coloring pages, screen-free quiet time activities, and educational play ideas that support learning through play in a calm and friendly environment.
-
+        <span data-lang="en">Coco the Axolotl offers calm activities for kids, including coloring activities for kids, quiet time activities, and fun printable games designed to help children relax, focus, and enjoy creative moments offline.
+        Parents can find peaceful coloring pages, screen-free quiet time activities, and educational play ideas that support learning through play in a calm and friendly environment.</span>
+        <span data-lang="fr">Coco l'Axolotl propose des activit&eacute;s calmes pour les enfants : coloriages, jeux &agrave; imprimer et moments cr&eacute;atifs sans &eacute;cran pour se d&eacute;tendre, se concentrer et s'amuser.
+        Les parents trouveront des coloriages apaisants, des activit&eacute;s sans &eacute;cran et des id&eacute;es &eacute;ducatives dans un univers doux et bienveillant.</span>
+        <span data-lang="es">Coco el Ajolote ofrece actividades tranquilas para ni&ntilde;os: dibujos para colorear, juegos imprimibles y momentos creativos sin pantalla para relajarse, concentrarse y divertirse.
+        Los padres encontrar&aacute;n p&aacute;ginas para colorear, actividades sin pantalla e ideas educativas en un ambiente amigable y tranquilo.</span>
       </p>
 
       <p class="seoLine">
-        Parents also search for: <strong>coloring activities for kids</strong>, <strong>calm activities for kids</strong>, and <strong>quiet time activities</strong>.
+        <span data-lang="en">Parents also search for: <strong>coloring activities for kids</strong>, <strong>calm activities for kids</strong>, and <strong>quiet time activities</strong>.</span>
+        <span data-lang="fr">Les parents recherchent aussi : <strong>activit&eacute;s de coloriage pour enfants</strong>, <strong>activit&eacute;s calmes pour enfants</strong> et <strong>activit&eacute;s sans &eacute;cran</strong>.</span>
+        <span data-lang="es">Los padres tambi&eacute;n buscan: <strong>actividades para colorear</strong>, <strong>actividades tranquilas para ni&ntilde;os</strong> y <strong>actividades sin pantalla</strong>.</span>
       </p>
 
       <div class="quick-links">
         <a class="card" href="/coloring-books/">
-          <h3>🎨 Coloring Books</h3>
-          <p>Calming coloring activities for kids, perfect for quiet time, relaxation, and screen-free moments.
-</p>
+          <h3>🎨 <span data-lang="en">Coloring Books</span><span data-lang="fr">Livres de Coloriage</span><span data-lang="es">Libros para Colorear</span></h3>
+          <p><span data-lang="en">Calming coloring activities for kids, perfect for quiet time, relaxation, and screen-free moments.</span><span data-lang="fr">Des activit&eacute;s de coloriage apaisantes, parfaites pour les moments calmes et sans &eacute;cran.</span><span data-lang="es">Actividades de colorear relajantes, perfectas para momentos tranquilos y sin pantalla.</span></p>
         </a>
 
         <a class="card" href="/kids-games/">
-          <h3>🎲 Kids Games</h3>
-          <p>Quiet time activities and calm games designed for learning through play and focus.</p>
+          <h3>🎲 <span data-lang="en">Kids Games</span><span data-lang="fr">Jeux pour Enfants</span><span data-lang="es">Juegos para Ni&ntilde;os</span></h3>
+          <p><span data-lang="en">Quiet time activities and calm games designed for learning through play and focus.</span><span data-lang="fr">Des jeux calmes con&ccedil;us pour apprendre en jouant et se concentrer.</span><span data-lang="es">Juegos tranquilos dise&ntilde;ados para aprender jugando y concentrarse.</span></p>
         </a>
 
         <a class="card" href="/learn-about-axolotls/">
-          <h3>🦎 Learn About Axolotls</h3>
-          <p>Educational activities for kids with fun facts that encourage calm learning and curiosity.</p>
+          <h3>🦎 <span data-lang="en">Learn About Axolotls</span><span data-lang="fr">D&eacute;couvre les Axolotls</span><span data-lang="es">Aprende sobre Ajolotes</span></h3>
+          <p><span data-lang="en">Educational activities for kids with fun facts that encourage calm learning and curiosity.</span><span data-lang="fr">Des activit&eacute;s &eacute;ducatives avec des faits amusants pour apprendre en s'amusant.</span><span data-lang="es">Actividades educativas con datos divertidos que fomentan el aprendizaje y la curiosidad.</span></p>
         </a>
 
         <a class="card" href="/bubble-lab/">
-          <h3>🫧 Bubble Name</h3>
-          <p>Printable coloring activity for kids: create bubble letters to color during calm and quiet time.
-</p>
+          <h3>🫧 <span data-lang="en">Bubble Name</span><span data-lang="fr">Lettres Bulles</span><span data-lang="es">Letras Burbuja</span></h3>
+          <p><span data-lang="en">Printable coloring activity for kids: create bubble letters to color during calm and quiet time.</span><span data-lang="fr">Activit&eacute; de coloriage imprimable : cr&eacute;e des lettres bulles &agrave; colorier !</span><span data-lang="es">Actividad imprimible: &iexcl;crea letras burbuja para colorear en momentos tranquilos!</span></p>
         </a>
       </div>
 
       <!-- ONLY ONE BUTTON -->
       <div class="cta-row">
         <a href="https://www.amazon.com/dp/B0FN7FRVV6" class="button primary" target="_blank" rel="noopener">
-          Discover the books
+          <span data-lang="en">Discover the books</span><span data-lang="fr">D&eacute;couvrir les livres</span><span data-lang="es">Descubrir los libros</span>
         </a>
       </div>
 
       <div class="social">
-        Follow Coco:
+        <span data-lang="en">Follow Coco:</span><span data-lang="fr">Suivre Coco :</span><span data-lang="es">Seguir a Coco:</span>
         <a href="https://www.youtube.com/channel/UCxSzBMea0cfiuJlrPCNG2UA" target="_blank" rel="noopener">YouTube</a> ·
         <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener">Instagram</a> ·
         <a href="https://www.tiktok.com/@cocotheaxolotl" target="_blank" rel="noopener">TikTok</a>
       </div>
 
       <p class="author-link">
-        Amazon Author Page:
+        <span data-lang="en">Amazon Author Page:</span><span data-lang="fr">Page Auteur Amazon :</span><span data-lang="es">P&aacute;gina de Autor en Amazon:</span>
         <a href="https://www.amazon.com/author/loopinky" target="_blank" rel="noopener">amazon.com/author/loopinky</a>
       </p>
 
       <footer>
-        © 2026 Coco the Axolotl — All rights reserved ·
-        <a href="/legal-notice/">Legal Notice</a> ·
-        <a href="/privacy-policy/">Privacy Policy</a>
+        © 2026 Coco the Axolotl —
+        <span data-lang="en">All rights reserved</span><span data-lang="fr">Tous droits r&eacute;serv&eacute;s</span><span data-lang="es">Todos los derechos reservados</span> ·
+        <a href="/legal-notice/"><span data-lang="en">Legal Notice</span><span data-lang="fr">Mentions L&eacute;gales</span><span data-lang="es">Aviso Legal</span></a> ·
+        <a href="/privacy-policy/"><span data-lang="en">Privacy Policy</span><span data-lang="fr">Politique de Confidentialit&eacute;</span><span data-lang="es">Pol&iacute;tica de Privacidad</span></a>
       </footer>
     </div>
   </main>
@@ -649,23 +689,58 @@
   <div class="popup-overlay" id="popupOverlay">
     <div class="popup-box">
       <button class="popup-close" id="popupClose" aria-label="Close">&#10005;</button>
-      <h3>Get Free Coloring Pages</h3>
-      <p class="popup-sub">Join our newsletter for exclusive freebies!</p>
+      <h3>
+        <span data-lang="en">Get Free Coloring Pages</span>
+        <span data-lang="fr">Coloriages Gratuits</span>
+        <span data-lang="es">Dibujos para Colorear Gratis</span>
+      </h3>
+      <p class="popup-sub">
+        <span data-lang="en">Join our newsletter for exclusive freebies!</span>
+        <span data-lang="fr">Inscris-toi pour recevoir des coloriages exclusifs !</span>
+        <span data-lang="es">&iexcl;S&uacute;scribete para recibir dibujos exclusivos gratis!</span>
+      </p>
       <img src="coco.png" alt="Coco the Axolotl">
       <form id="popupForm">
-        <input type="text" id="popupName" placeholder="Your first name" required>
-        <input type="email" id="popupEmail" placeholder="Enter your email" required>
-        <button type="submit" class="popup-btn" id="popupBtn">Subscribe</button>
+        <input type="text" id="popupName" required>
+        <input type="email" id="popupEmail" required>
+        <button type="submit" class="popup-btn" id="popupBtn">
+          <span data-lang="en">Subscribe</span>
+          <span data-lang="fr">S'inscrire</span>
+          <span data-lang="es">Suscribirse</span>
+        </button>
       </form>
       <p class="popup-disclaimer">
-        By signing up, you agree to receive email newsletters for marketing purposes.<br>
-        You can unsubscribe anytime.
+        <span data-lang="en">By signing up, you agree to receive email newsletters for marketing purposes.<br>You can unsubscribe anytime.</span>
+        <span data-lang="fr">En t'inscrivant, tu acceptes de recevoir notre newsletter.<br>D&eacute;sinscription possible &agrave; tout moment.</span>
+        <span data-lang="es">Al suscribirte, aceptas recibir nuestro bolet&iacute;n.<br>Puedes cancelar en cualquier momento.</span>
       </p>
     </div>
   </div>
 
   <script>
     function rand(min,max){ return min + Math.random()*(max-min); }
+
+    /* ===== Language toggle ===== */
+    function setLang(lang){
+      document.body.className = (lang==='fr') ? 'fr' : (lang==='es') ? 'es' : '';
+      document.querySelectorAll('.lang-btn').forEach(function(b){
+        b.classList.toggle('active', b.textContent===lang.toUpperCase());
+      });
+      document.documentElement.lang = lang;
+      var placeholders = {
+        en: ['Your first name', 'Enter your email'],
+        fr: ['Ton pr\u00e9nom', 'Ton email'],
+        es: ['Tu nombre', 'Tu email']
+      };
+      var p = placeholders[lang] || placeholders.en;
+      var pn = document.getElementById('popupName');
+      var pe = document.getElementById('popupEmail');
+      if(pn) pn.placeholder = p[0];
+      if(pe) pe.placeholder = p[1];
+    }
+    // Set initial placeholders
+    document.getElementById('popupName').placeholder = 'Your first name';
+    document.getElementById('popupEmail').placeholder = 'Enter your email';
 
     /* ===== Gills wiggle on tap (mobile) ===== */
     const coco = document.getElementById("cocoWiggle");

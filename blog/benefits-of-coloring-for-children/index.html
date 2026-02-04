@@ -40,8 +40,8 @@ p,li{font-size:1.05em;line-height:1.6;text-align:left}
 a.back{display:block;margin-top:28px;color:#ff69b4;text-decoration:none;font-weight:800;font-size:1.05em;text-align:center}
 a.back:hover{text-decoration:underline}
 footer{padding:20px;font-size:.85em;opacity:.6;text-align:center}
-[data-lang="fr"]{display:none}body.fr [data-lang="fr"]{display:block}body.fr [data-lang="en"]{display:none}
-span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}body.fr span[data-lang="en"]{display:none}
+[data-lang="fr"]{display:none}[data-lang="es"]{display:none}body.fr [data-lang="fr"]{display:block}body.fr [data-lang="en"]{display:none}body.es [data-lang="es"]{display:block}body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+span[data-lang="fr"]{display:none}span[data-lang="es"]{display:none}body.fr span[data-lang="fr"]{display:inline}body.fr span[data-lang="en"]{display:none}body.es span[data-lang="es"]{display:inline}body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
 @media(max-width:700px){header h1{font-size:1.7em}h2{font-size:1.2em}}
 </style>
 </head>
@@ -51,14 +51,17 @@ span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}bo
   <h1>
     <span data-lang="en">🧠 5 Benefits of Coloring for Children</span>
     <span data-lang="fr">🧠 5 Bienfaits du Coloriage pour les Enfants</span>
+    <span data-lang="es">🧠 5 Beneficios del Colorear para Ni&ntilde;os</span>
   </h1>
   <p>
     <span data-lang="en">Why coloring is so much more than just fun &mdash; it's brain food!</span>
     <span data-lang="fr">Pourquoi le coloriage c'est bien plus que de l'amusement &mdash; c'est bon pour le cerveau !</span>
+    <span data-lang="es">&iquest;Por qu&eacute; colorear es mucho m&aacute;s que solo diversi&oacute;n? &iexcl;Es alimento para el cerebro!</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -160,21 +163,69 @@ span[data-lang="fr"]{display:none}body.fr span[data-lang="fr"]{display:inline}bo
     </div>
   </div>
 
-  <div class="related">
-    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span></h3>
-    <a href="/blog/coloring-tips-for-kids/"><span data-lang="en">🖍️ 10 Coloring Tips for Kids</span><span data-lang="fr">🖍️ 10 Astuces de Coloriage pour Enfants</span></a>
-    <a href="/blog/best-coloring-supplies-for-kids/"><span data-lang="en">🖍️ Best Coloring Supplies for Kids</span><span data-lang="fr">🖍️ Le Meilleur Mat&eacute;riel de Coloriage</span></a>
-    <a href="/blog/calm-activities-for-kids/"><span data-lang="en">🧘 7 Calm Activities for Kids</span><span data-lang="fr">🧘 7 Activit&eacute;s Calmes pour Enfants</span></a>
+  <div data-lang="es">
+    <p>Los padres suelen pensar que colorear es un simple pasatiempo, pero las investigaciones demuestran que es una de las actividades m&aacute;s valiosas para el desarrollo de los ni&ntilde;os peque&ntilde;os. Aqu&iacute; tienes 5 beneficios comprobados del colorear, respaldados por la ciencia del desarrollo infantil.</p>
+
+    <div class="benefit">
+      <h3><span class="benefit-num">1</span> Motricidad Fina &amp; Preparaci&oacute;n para la Escritura</h3>
+      <p>Colorear fortalece los peque&ntilde;os m&uacute;sculos de las manos, los dedos y las mu&ntilde;ecas que los ni&ntilde;os necesitan para escribir. El agarre usado para sostener un cray&oacute;n es el mismo agarre en tr&iacute;pode usado para los l&aacute;pices. Los estudios muestran que los ni&ntilde;os que colorean regularmente desarrollan mejor escritura en preescolar y primer grado.</p>
+      <div class="quote">Colorear es esencialmente pr&aacute;ctica de escritura disfrazada &mdash; cada trazo construye la memoria muscular que los ni&ntilde;os usar&aacute;n cuando aprendan a escribir letras.</div>
+    </div>
+
+    <div class="benefit">
+      <h3><span class="benefit-num">2</span> Concentraci&oacute;n &amp; Enfoque</h3>
+      <p>En un mundo lleno de pantallas r&aacute;pidas, colorear ense&ntilde;a a los ni&ntilde;os a <strong>ir m&aacute;s despacio y concentrarse</strong> en una sola tarea. No salirse de las l&iacute;neas, elegir colores y completar una p&aacute;gina requieren atenci&oacute;n sostenida. Esta es la misma habilidad que necesitar&aacute;n para leer, hacer matem&aacute;ticas y seguir instrucciones en la escuela.</p>
+      <p>Las investigaciones sugieren que solo 15&ndash;20 minutos de colorear al d&iacute;a pueden mejorar notablemente la capacidad de atenci&oacute;n en ni&ntilde;os de preescolar.</p>
+    </div>
+
+    <div class="benefit">
+      <h3><span class="benefit-num">3</span> Alivio del Estr&eacute;s &amp; Regulaci&oacute;n Emocional</h3>
+      <p>Colorear activa las mismas &aacute;reas del cerebro que la meditaci&oacute;n. El movimiento repetitivo y r&iacute;tmico de colorear <strong>reduce el cortisol</strong> (la hormona del estr&eacute;s) y activa la respuesta de relajaci&oacute;n. &iexcl;Por eso los libros de colorear tambi&eacute;n se hicieron populares entre los adultos!</p>
+      <p>Para los ni&ntilde;os que lidian con emociones intensas &mdash; frustraci&oacute;n, ansiedad, sobreestimulaci&oacute;n &mdash; colorear ofrece una salida saludable. Les da algo en qu&eacute; concentrarse mientras su sistema nervioso se calma.</p>
+    </div>
+
+    <div class="benefit">
+      <h3><span class="benefit-num">4</span> Creatividad &amp; Toma de Decisiones</h3>
+      <p>Cada p&aacute;gina para colorear es una serie de peque&ntilde;as decisiones: &iquest;De qu&eacute; color debe ser el cielo? &iquest;El ajolote debe ser rosa o morado? Estas elecciones parecen simples, pero construyen el <strong>pensamiento creativo y la capacidad de tomar decisiones</strong>.</p>
+      <p>A diferencia de las pantallas donde el contenido se consume pasivamente, colorear requiere una contribuci&oacute;n creativa activa. Los ni&ntilde;os aprenden que sus elecciones importan y que no hay una &uacute;nica respuesta &ldquo;correcta&rdquo; &mdash; una lecci&oacute;n de vida importante.</p>
+    </div>
+
+    <div class="benefit">
+      <h3><span class="benefit-num">5</span> Reconocimiento de Colores &amp; Conciencia Espacial</h3>
+      <p>Colorear ense&ntilde;a a los ni&ntilde;os a <strong>identificar y nombrar colores</strong>, entender l&iacute;mites (no salirse de las l&iacute;neas) y percibir relaciones espaciales (esta &aacute;rea es m&aacute;s grande que aquella). Estas son habilidades fundamentales para la lectura, las matem&aacute;ticas y las ciencias.</p>
+      <p>Cuando los ni&ntilde;os experimentan mezclando y superponiendo colores, tambi&eacute;n empiezan a comprender conceptos b&aacute;sicos de la teor&iacute;a del color &mdash; c&aacute;lidos vs. fr&iacute;os, claros vs. oscuros, complementarios vs. similares.</p>
+    </div>
+
+    <h2>💡 C&oacute;mo Aprovechar al M&aacute;ximo el Tiempo de Colorear</h2>
+    <ul>
+      <li><strong>D&eacute;jalos elegir:</strong> La libertad de elegir colores construye autonom&iacute;a y confianza.</li>
+      <li><strong>No corrijas:</strong> &iquest;Un sol verde? &iquest;Un perro morado? &iexcl;Eso es la creatividad en acci&oacute;n!</li>
+      <li><strong>Colorea junto a ellos:</strong> El tiempo de colorear compartido crea v&iacute;nculos y modela la concentraci&oacute;n.</li>
+      <li><strong>Exhibe sus obras:</strong> Celebrar las p&aacute;ginas terminadas refuerza el esfuerzo y el orgullo.</li>
+      <li><strong>Usa materiales de calidad:</strong> Los buenos libros de colorear con contornos gruesos facilitan el &eacute;xito.</li>
+    </ul>
+
+    <div style="text-align:center">
+      <a class="cta" href="/coloring-books/">🎨 Libros de Colorear de Coco</a>
+      <a class="cta" href="/blog/calm-activities-for-kids/">🧘 M&aacute;s Actividades Tranquilas</a>
+    </div>
   </div>
 
-  <a class="back" href="/blog/"><span data-lang="en">&larr; Back to blog</span><span data-lang="fr">&larr; Retour au blog</span></a>
+  <div class="related">
+    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span><span data-lang="es">📚 Art&iacute;culos Relacionados</span></h3>
+    <a href="/blog/coloring-tips-for-kids/"><span data-lang="en">🖍️ 10 Coloring Tips for Kids</span><span data-lang="fr">🖍️ 10 Astuces de Coloriage pour Enfants</span><span data-lang="es">🖍️ 10 Consejos para Colorear para Ni&ntilde;os</span></a>
+    <a href="/blog/best-coloring-supplies-for-kids/"><span data-lang="en">🖍️ Best Coloring Supplies for Kids</span><span data-lang="fr">🖍️ Le Meilleur Mat&eacute;riel de Coloriage</span><span data-lang="es">🖍️ Los Mejores Materiales para Colorear para Ni&ntilde;os</span></a>
+    <a href="/blog/calm-activities-for-kids/"><span data-lang="en">🧘 7 Calm Activities for Kids</span><span data-lang="fr">🧘 7 Activit&eacute;s Calmes pour Enfants</span><span data-lang="es">🧘 7 Actividades Tranquilas para Ni&ntilde;os</span></a>
+  </div>
+
+  <a class="back" href="/blog/"><span data-lang="en">&larr; Back to blog</span><span data-lang="fr">&larr; Retour au blog</span><span data-lang="es">&larr; Volver al blog</span></a>
 </main>
 
 <footer>&copy; 2026 Coco the Axolotl</footer>
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase());});
   document.documentElement.lang=lang;
 }

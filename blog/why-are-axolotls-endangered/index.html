@@ -45,6 +45,12 @@ body.fr [data-lang="en"]{display:none}
 span[data-lang="fr"]{display:none}
 body.fr span[data-lang="fr"]{display:inline}
 body.fr span[data-lang="en"]{display:none}
+span[data-lang="es"]{display:none}
+[data-lang="es"]{display:none}
+body.es span[data-lang="es"]{display:inline}
+body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
 @media(max-width:700px){header h1{font-size:1.7em}h2{font-size:1.2em}}
 </style>
 </head>
@@ -54,14 +60,17 @@ body.fr span[data-lang="en"]{display:none}
   <h1>
     <span data-lang="en">⚠️ Why Are Axolotls Endangered?</span>
     <span data-lang="fr">⚠️ Pourquoi les Axolotls sont-ils en Danger ?</span>
+    <span data-lang="es">⚠️ &iquest;Por Qu&eacute; Est&aacute;n en Peligro los Ajolotes?</span>
   </h1>
   <p>
     <span data-lang="en">Understanding the threats and how we can help save them.</span>
     <span data-lang="fr">Comprendre les menaces et comment les aider.</span>
+    <span data-lang="es">Comprender las amenazas y c&oacute;mo podemos ayudar a salvarlos.</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
   </div>
 </header>
 
@@ -129,25 +138,60 @@ body.fr span[data-lang="en"]{display:none}
     </div>
   </div>
 
+  <div data-lang="es">
+    <div class="card alert">
+      <p>🚨 <strong>En peligro cr&iacute;tico:</strong> El ajolote est&aacute; clasificado como <strong>En peligro cr&iacute;tico de extinci&oacute;n</strong> en la Lista Roja de la UICN &mdash; la categor&iacute;a m&aacute;s grave antes de la extinci&oacute;n. Los cient&iacute;ficos estiman que quedan menos de <strong>1.000 ajolotes</strong> en la naturaleza, posiblemente tan solo entre 50 y 200.</p>
+    </div>
+
+    <h2>🏙️ &iquest;Qu&eacute; Le Pas&oacute; a Su H&aacute;bitat?</h2>
+    <p>Los ajolotes viven &uacute;nicamente en el Lago Xochimilco en la Ciudad de M&eacute;xico. A medida que la ciudad creci&oacute; hasta convertirse en una de las m&aacute;s grandes del mundo (m&aacute;s de 21 millones de habitantes), el lago se redujo dr&aacute;sticamente. Los canales fueron drenados, el agua fue desviada y el h&aacute;bitat del ajolote casi desapareci&oacute;.</p>
+
+    <h2>🐟 Especies Invasoras</h2>
+    <p>En la d&eacute;cada de 1970, se introdujeron tilapias y carpas asi&aacute;ticas en el lago para la pesca. Estos peces invasores comen los huevos de ajolote y compiten por el alimento. Los ajolotes no ten&iacute;an forma de defenderse contra estos nuevos depredadores.</p>
+
+    <h2>🏭 Contaminaci&oacute;n</h2>
+    <p>La escorrent&iacute;a urbana, las aguas residuales y los productos qu&iacute;micos agr&iacute;colas han contaminado el agua del lago. Los ajolotes respiran a trav&eacute;s de sus branquias plumosas, lo que los hace especialmente sensibles a la mala calidad del agua. El agua sucia puede enfermarlos o matarlos.</p>
+
+    <h2>🔬 &iquest;Por Qu&eacute; los Cient&iacute;ficos Se Preocupan?</h2>
+    <p>Los ajolotes son incre&iacute;blemente importantes para la ciencia. Su capacidad para <strong>regenerar</strong> extremidades, corazones e incluso tejido cerebral est&aacute; siendo estudiada por investigadores de todo el mundo. Comprender c&oacute;mo se curan los ajolotes podr&iacute;a alg&uacute;n d&iacute;a ayudar a los humanos a recuperarse de lesiones y enfermedades. Perderlos significar&iacute;a perder una clave para futuros avances m&eacute;dicos.</p>
+
+    <h2>💚 &iquest;C&oacute;mo Podemos Ayudar?</h2>
+    <ul>
+      <li><strong>Aprender y compartir:</strong> Cuanto m&aacute;s gente conozca a los ajolotes, m&aacute;s apoyo recibir&aacute;n. &iexcl;Comparte lo que has aprendido!</li>
+      <li><strong>Apoyar la conservaci&oacute;n:</strong> Organizaciones en M&eacute;xico est&aacute;n trabajando para restaurar el Lago Xochimilco y proteger a los ajolotes salvajes.</li>
+      <li><strong>No comprar ajolotes salvajes:</strong> Si tienes un ajolote como mascota, aseg&uacute;rate de que fue criado en cautiverio.</li>
+      <li><strong>Reducir la contaminaci&oacute;n:</strong> Peque&ntilde;as acciones como reducir los desechos y mantener limpias las v&iacute;as fluviales ayudan a todas las criaturas acu&aacute;ticas.</li>
+    </ul>
+
+    <div style="text-align:center">
+      <a class="cta" href="/blog/what-is-an-axolotl/">🦎 &iquest;Qu&eacute; es un Ajolote?</a>
+      <a class="cta" href="/blog/fun-facts/">🧠 15 Datos Curiosos</a>
+    </div>
+  </div>
+
   <div class="related">
-    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span></h3>
+    <h3><span data-lang="en">📚 Related Articles</span><span data-lang="fr">📚 Articles li&eacute;s</span><span data-lang="es">📚 Art&iacute;culos Relacionados</span></h3>
     <a href="/blog/what-is-an-axolotl/">
       <span data-lang="en">🦎 What Is an Axolotl?</span>
       <span data-lang="fr">🦎 Qu'est-ce qu'un Axolotl ?</span>
+      <span data-lang="es">🦎 &iquest;Qu&eacute; es un Ajolote?</span>
     </a>
     <a href="/blog/fun-facts/">
       <span data-lang="en">🧠 15 Amazing Axolotl Fun Facts</span>
       <span data-lang="fr">🧠 15 Faits Amusants sur les Axolotls</span>
+      <span data-lang="es">🧠 15 Datos Curiosos sobre los Ajolotes</span>
     </a>
     <a href="/blog/calm-activities-for-kids/">
       <span data-lang="en">🧘 Calm Activities for Kids</span>
       <span data-lang="fr">🧘 Activit&eacute;s Calmes pour Enfants</span>
+      <span data-lang="es">🧘 Actividades Tranquilas para Ni&ntilde;os</span>
     </a>
   </div>
 
   <a class="back" href="/blog/">
     <span data-lang="en">&larr; Back to blog</span>
     <span data-lang="fr">&larr; Retour au blog</span>
+    <span data-lang="es">&larr; Volver al blog</span>
   </a>
 </main>
 
@@ -155,7 +199,7 @@ body.fr span[data-lang="en"]{display:none}
 
 <script>
 function setLang(lang){
-  document.body.className=lang==='fr'?'fr':'';
+  document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';
   document.querySelectorAll('.lang-btn').forEach(function(b){
     b.classList.toggle('active',b.textContent===lang.toUpperCase());
   });
