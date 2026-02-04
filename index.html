@@ -64,6 +64,7 @@
     }
 
     header{
+      background: url('fond%20axolotl%20site.png') center center / cover no-repeat;
       background-color:var(--pink2);
       min-height:100vh;
       padding:40px 18px 34px;
@@ -75,8 +76,8 @@
       justify-content:center;
     }
 
-    h1{ margin:0 0 8px; font-size:2.6em; font-weight:800; position:relative; z-index:2; }
-    header p{ margin:8px 0 0; font-size:1.05em; opacity:0.92; line-height:1.35; position:relative; z-index:2; }
+    h1{ margin:0 0 8px; font-size:2.6em; font-weight:800; position:relative; z-index:2; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.35); }
+    header p{ margin:8px 0 0; font-size:1.05em; line-height:1.35; position:relative; z-index:2; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.4); }
     .hint{font-size:.95em; opacity:.9}
 
     /* ===== Header bubbles (FIXED: 2 layers so CSS rise + JS push both work) ===== */
@@ -227,7 +228,9 @@
       z-index:2;
       margin-top:16px;
       font-size:1.6em;
-      opacity:.6;
+      color:#fff;
+      text-shadow:0 2px 6px rgba(0,0,0,.4);
+      opacity:.8;
       animation:bounce 1.8s ease-in-out infinite;
     }
     @keyframes bounce{
