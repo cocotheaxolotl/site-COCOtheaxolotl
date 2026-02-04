@@ -277,6 +277,7 @@
       margin:0 auto 16px;
       display:block;
     }
+    .popup-box input[type="text"],
     .popup-box input[type="email"]{
       width:100%;
       padding:14px 18px;
@@ -287,8 +288,12 @@
       outline:none;
       transition:border-color .2s ease;
     }
+    .popup-box input[type="text"]:focus,
     .popup-box input[type="email"]:focus{
       border-color:var(--pink);
+    }
+    .popup-box input[type="text"]{
+      margin-bottom:10px;
     }
     .popup-box .popup-btn{
       width:100%;
@@ -428,6 +433,7 @@
       <p class="popup-sub">Join our newsletter for exclusive freebies!</p>
       <img src="coco.png" alt="Coco the Axolotl">
       <form id="popupForm">
+        <input type="text" id="popupName" placeholder="Your first name" required>
         <input type="email" id="popupEmail" placeholder="Enter your email" required>
         <button type="submit" class="popup-btn" id="popupBtn">Subscribe</button>
       </form>
@@ -688,6 +694,7 @@
       const overlay = document.getElementById("popupOverlay");
       const closeBtn = document.getElementById("popupClose");
       const form = document.getElementById("popupForm");
+      const nameInput = document.getElementById("popupName");
       const emailInput = document.getElementById("popupEmail");
       const submitBtn = document.getElementById("popupBtn");
 
@@ -714,8 +721,9 @@
 
       form.addEventListener("submit", (e)=>{
         e.preventDefault();
+        const name = nameInput.value.trim();
         const email = emailInput.value.trim();
-        if(!email) return;
+        if(!name || !email) return;
 
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
@@ -724,7 +732,7 @@
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email })
+          body: JSON.stringify({ name: name, email: email })
         })
         .then(()=>{
           form.innerHTML = '<p class="popup-success">Thank you! Check your email 💗</p>';
