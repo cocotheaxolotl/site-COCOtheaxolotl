@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QDW91N3TER');
+</script>
 <meta charset="UTF-8">
 <title>Free Axolotl Coloring Pages – Download &amp; Print – Coco the Axolotl</title>
 <meta name="description" content="Download 6 free axolotl coloring pages for kids! Cute printable coloring sheets featuring Coco the Axolotl. Just enter your name and email to get them all.">
@@ -351,6 +359,17 @@ document.getElementById('freebieForm').addEventListener('submit', function(e){
   .catch(function(){
     localStorage.setItem('coco_freebies_unlocked', '1');
     unlockDownloads();
+  });
+});
+
+// Track downloads with Google Analytics
+document.querySelectorAll('.dl-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var fileName = this.getAttribute('download') || this.getAttribute('href');
+    gtag('event', 'file_download', {
+      file_name: fileName,
+      link_url: this.href
+    });
   });
 });
 </script>
