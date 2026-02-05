@@ -20,6 +20,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Bubblegum+Sans&family=Luckiest+Guy&family=Bangers&family=Chewy&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Valoon';
+      src: url('Valoon.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
 
   <style>
     :root{
@@ -383,7 +391,8 @@ COCOTHEAXOLOTL.ORG</textarea>
 
           <label for="fontSelect"><span data-lang="en">Font Style</span><span data-lang="fr">Style de police</span><span data-lang="es">Estilo de fuente</span></label>
           <select id="fontSelect">
-            <option value="Fredoka One" selected>Fredoka One (Round)</option>
+            <option value="Valoon" selected>Valoon (Bubble) ⭐</option>
+            <option value="Fredoka One">Fredoka One (Round)</option>
             <option value="Bubblegum Sans">Bubblegum Sans (Bubble)</option>
             <option value="Luckiest Guy">Luckiest Guy (Comic)</option>
             <option value="Chewy">Chewy (Soft)</option>
@@ -672,7 +681,7 @@ COCOTHEAXOLOTL.ORG</textarea>
 
   resetBtn.addEventListener("click", ()=>{
     textInput.value = "WISH YOU HAPPY\nEVERY DAY!\nCOCOTHEAXOLOTL.ORG";
-    fontSelect.value = "Fredoka One";
+    fontSelect.value = "Valoon";
     sizeRange.value = "140";
     state.deco = "stars";
     state.ratio = "1:1";
