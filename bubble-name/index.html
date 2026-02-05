@@ -64,36 +64,10 @@
     body.es [data-lang="es"]{display:block}
     body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
     .lang-toggle{display:flex !important}
-    /* Lead Gate Styles */
-    .lead-gate{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(254,246,251,0.97);z-index:1000;display:flex;align-items:center;justify-content:center}
-    .lead-gate.hidden{display:none}
-    .lead-box{background:#fff;border-radius:24px;box-shadow:0 12px 40px rgba(0,0,0,.12);padding:32px 28px;max-width:400px;width:90%;text-align:center}
-    .lead-box h2{font-family:"Fredoka One",system-ui;color:#ff69b4;margin:0 0 12px;font-size:1.5em}
-    .lead-box p{margin:0 0 18px;color:#555}
-    .lead-box form{display:flex;flex-direction:column;gap:12px}
-    .lead-box input{padding:14px 16px;border-radius:12px;border:2px solid #ffd1e3;font-size:1em;outline:none;width:100%;box-sizing:border-box}
-    .lead-box input:focus{border-color:#ff69b4}
-    .lead-box button{padding:16px;border-radius:14px;border:none;background:#ff69b4;color:#fff;font-weight:800;font-size:1.1em;cursor:pointer}
-    .lead-box button:hover{background:#ff4da6}
-    .lead-box .small{font-size:.85em;color:#888;margin-top:12px}
   </style>
 </head>
 
 <body>
-<!-- LEAD CAPTURE GATE -->
-<div id="leadGate" class="lead-gate">
-  <div class="lead-box">
-    <h2><span data-lang="en">🎨 Free Bubble Name Generator!</span><span data-lang="fr">🎨 Générateur Gratuit !</span><span data-lang="es">🎨 ¡Generador Gratis!</span></h2>
-    <p><span data-lang="en">Enter your name and email to unlock the tool.</span><span data-lang="fr">Entre ton prénom et email pour débloquer l'outil.</span><span data-lang="es">Ingresa tu nombre y email para desbloquear.</span></p>
-    <form id="leadForm" onsubmit="submitLead(event)">
-      <input type="text" id="leadName" required placeholder="Your first name / Ton prénom">
-      <input type="email" id="leadEmail" required placeholder="Your email / Ton email">
-      <button type="submit"><span data-lang="en">Unlock the tool!</span><span data-lang="fr">Débloquer !</span><span data-lang="es">¡Desbloquear!</span></button>
-    </form>
-    <p class="small"><span data-lang="en">No spam. We respect your privacy.</span><span data-lang="fr">Pas de spam. Respect de ta vie privée.</span><span data-lang="es">Sin spam. Respetamos tu privacidad.</span></p>
-  </div>
-</div>
-
 <header>
   <h1><span data-lang="en">🔤 Bubble Name</span><span data-lang="fr">🔤 Nom en Bulles</span><span data-lang="es">🔤 Nombre en Burbujas</span></h1>
   <div class="lang-toggle">
@@ -237,53 +211,7 @@
   draw("COCO");
 </script>
 <script>
-// Google Apps Script URL (same as freebies)
-var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9hCSuVnLeVNe5Lk1ry-vCToNNY1YhSQFNvxYn4UnHCKyyu8gsfttLxDpC3Faqr0XNtg/exec";
-
-function setLang(lang){
-  var isUnlocked = document.getElementById('leadGate').classList.contains('hidden');
-  document.body.className = lang==='fr'?'fr':lang==='es'?'es':'';
-  document.querySelectorAll('.lang-btn').forEach(function(b){
-    b.classList.toggle('active',b.textContent===lang.toUpperCase());
-  });
-  document.documentElement.lang=lang;
-}
-
-function unlockTool(){
-  document.getElementById('leadGate').classList.add('hidden');
-}
-
-// Check if already unlocked
-if(localStorage.getItem('coco_bubblename_unlocked')){
-  unlockTool();
-}
-
-function submitLead(e){
-  e.preventDefault();
-  var name = document.getElementById('leadName').value.trim();
-  var email = document.getElementById('leadEmail').value.trim();
-  if(!name || !email) return;
-
-  var btn = document.querySelector('#leadForm button');
-  btn.disabled = true;
-  btn.textContent = '...';
-
-  // Send to Google Apps Script
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name: name, email: email, source: "bubble-name" })
-  })
-  .then(function(){
-    localStorage.setItem('coco_bubblename_unlocked', '1');
-    unlockTool();
-  })
-  .catch(function(){
-    localStorage.setItem('coco_bubblename_unlocked', '1');
-    unlockTool();
-  });
-}
+function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
 </script>
 </body>
 </html>
