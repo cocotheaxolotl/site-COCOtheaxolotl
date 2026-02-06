@@ -68,7 +68,6 @@ tr:hover{background:rgba(255,105,180,.04)}
 .kw-group.coloring{background:#e8f8f5;color:#1abc9c}
 .kw-group.bubble{background:#ebf5fb;color:#3498db}
 .kw-group.axolotl{background:#fef9e7;color:#f39c12}
-.kw-group.activities{background:#f4ecf7;color:#8e44ad}
 .kw-group.games{background:#fdedec;color:#e74c3c}
 
 /* Position badges */
@@ -168,7 +167,6 @@ td .manual-marker{position:absolute;top:2px;right:4px;width:6px;height:6px;backg
         <option value="coloring">Coloring</option>
         <option value="bubble">Bubble Letters</option>
         <option value="axolotl">Axolotl</option>
-        <option value="activities">Activities</option>
         <option value="games">Games</option>
       </select>
       <input type="text" id="filterSearch" placeholder="Rechercher un mot-cle..." oninput="renderTable()">
@@ -318,13 +316,12 @@ function loadSeoData(data) {
 }
 
 function buildKeywordGroups() {
-  // Infer groups from keyword content
+  // Infer groups from keyword content (matches seo-config.js groups)
   const groupRules = [
-    { group: 'coloring', patterns: ['coloring', 'printable coloring', 'coloring sheets'] },
     { group: 'bubble', patterns: ['bubble'] },
-    { group: 'axolotl', patterns: ['axolotl facts', 'what is an axolotl', 'why are axolotls', 'axolotl fun', 'axolotl for kids'] },
-    { group: 'activities', patterns: ['calm', 'quiet', 'screen-free', 'benefits of coloring'] },
-    { group: 'games', patterns: ['games', 'tips', 'supplies', 'coloring book', 'activities printable'] },
+    { group: 'axolotl', patterns: ['axolotl facts', 'what is an axolotl', 'axolotl pet', 'axolotl', 'what is an axolotl'] },
+    { group: 'games', patterns: ['kids activities', 'activities for kids', 'word search', 'maze for kids'] },
+    { group: 'coloring', patterns: ['coloring', 'printable coloring'] },
   ];
   // Gather all keywords from all snapshots
   const allKws = new Set();
@@ -337,7 +334,7 @@ function buildKeywordGroups() {
         return;
       }
     }
-    KEYWORD_GROUPS[kw] = 'games'; // default
+    KEYWORD_GROUPS[kw] = 'coloring'; // default
   });
 }
 
@@ -784,18 +781,16 @@ function exportCSV() {
 // ============================================================
 function loadDemoData() {
   const target = 'cocotheaxolotl.org';
-  const competitors = ['supercoloring.com','crayola.com','education.com','coloring.ws','thecolor.com','natgeokids.com','dltk-kids.com','cooltext.com'];
+  const competitors = ['mondaymandala.com','homemade-gifts-made-easy.com','crayola.com','woojr.com','fontspace.com','kids.nationalgeographic.com','reallycolor.com','monkeypen.com'];
   const keywords = [
-    'axolotl coloring pages','axolotl coloring pages for kids','free printable coloring pages',
-    'coloring pages for kids','coloring activities for kids','free coloring pages animals',
-    'printable coloring sheets','cute animal coloring pages','bubble letters',
+    'axolotl coloring pages','coloring pages for kids','coloring books for kids',
+    'free printable coloring pages','animal coloring pages','printable coloring pages',
+    'coloring pages for toddlers','axolotl coloring book','bubble letters',
     'bubble letters generator','bubble letter alphabet','how to draw bubble letters',
-    'bubble letters name generator','printable bubble letters','what is an axolotl',
-    'axolotl facts for kids','why are axolotls endangered','axolotl fun facts',
-    'axolotl for kids','calm activities for kids','quiet time activities',
-    'screen-free activities for kids','benefits of coloring for children',
-    'printable games for kids','coloring tips for kids','best coloring supplies for kids',
-    'coloring books for kids ages 3-8','kids activities printable','axolotl coloring book'
+    'printable bubble letters','axolotl','what is an axolotl',
+    'axolotl facts for kids','axolotl pet','axolotl facts',
+    'kids activities','printable activities for kids','word search for kids',
+    'maze for kids printable'
   ];
 
   function randPos(domain, kw) {
