@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QDW91N3TER');
+</script>
+  <meta charset="UTF-8">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Letters Name Generator | Write Your Name in Clouds | Coco the Axolotl</title>
+  <meta name="description" content="Type your name in cloud letters and download it! Free cloud letter name generator for kids. Create fluffy cloud text instantly!">
+
+  <link rel="canonical" href="https://cocotheaxolotl.org/cloud-name/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cloud Letters Name Generator | Coco the Axolotl">
+  <meta property="og:description" content="Type your name in cloud letters and download it! Free cloud letter name generator for kids.">
+  <meta property="og:url" content="https://cocotheaxolotl.org/cloud-name/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Coco the Axolotl">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cloud Letters Name Generator">
+  <meta name="twitter:description" content="Type your name in fluffy cloud letters and download it for free!">
+
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#e8f4fd;margin:0;color:#333;text-align:center}
+    header{background:linear-gradient(135deg,#87CEEB,#b0d4f1);padding:22px 16px}
+    h1{margin:0;font-size:2.1em;font-family:"Fredoka One",system-ui;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,.15)}
+    main{max-width:980px;margin:0 auto;padding:18px 16px 40px}
+    p{max-width:720px;margin:10px auto;line-height:1.4}
+    .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+    input{
+      padding:14px 16px;border-radius:14px;border:2px solid #87CEEB;
+      font-size:1.05em;width:min(420px, 92vw);outline:none
+    }
+    input:focus{border-color:#5ba3d9}
+    button,a.btn{
+      padding:14px 18px;border-radius:16px;border:none;cursor:pointer;
+      font-weight:800;font-size:1.02em;text-decoration:none;display:inline-block
+    }
+    button{background:#5ba3d9;color:#fff}
+    button:hover{background:#4a8fc5}
+    .secondary{background:#fff;color:#5ba3d9;border:2px solid #5ba3d9}
+    .secondary:hover{background:#f0f8ff}
+    .card{
+      background:#fff;border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.06);
+      padding:12px;margin:14px auto;display:inline-block
+    }
+    canvas{background:#fff;border-radius:18px;max-width:min(500px, 90vw);height:auto}
+    .small{opacity:.85;font-size:.95em}
+    .lang-toggle{display:flex;gap:6px;justify-content:center;margin-top:10px}
+    .lang-btn{padding:6px 14px;border-radius:10px;border:2px solid #fff;background:transparent;color:#fff;font-weight:800;cursor:pointer;font-size:.95em}
+    .lang-btn.active{background:#fff;color:#5ba3d9}
+    span[data-lang="fr"]{display:none}
+    span[data-lang="es"]{display:none}
+    [data-lang="fr"]{display:none}
+    [data-lang="es"]{display:none}
+    body.fr span[data-lang="fr"]{display:inline}
+    body.fr span[data-lang="en"],body.fr span[data-lang="es"]{display:none}
+    body.fr [data-lang="fr"]{display:block}
+    body.fr [data-lang="en"],body.fr [data-lang="es"]{display:none}
+    body.es span[data-lang="es"]{display:inline}
+    body.es span[data-lang="en"],body.es span[data-lang="fr"]{display:none}
+    body.es [data-lang="es"]{display:block}
+    body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
+    .lang-toggle{display:flex !important}
+    .loading{font-size:1.1em;color:#5ba3d9;font-weight:700;margin:20px 0}
+  </style>
+</head>
+
+<body>
+<header>
+  <h1><span data-lang="en">Cloud Name</span><span data-lang="fr">Nom en Nuages</span><span data-lang="es">Nombre en Nubes</span></h1>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
+</header>
+
+<main>
+  <p><span data-lang="en"><strong>Kids:</strong> type your name to see it written in <strong>fluffy cloud letters</strong>! Download and share with friends.</span><span data-lang="fr"><strong>Enfants :</strong> tapez votre nom pour le voir &eacute;crit en <strong>lettres nuages</strong> ! T&eacute;l&eacute;chargez et partagez avec vos amis.</span><span data-lang="es"><strong>Ni&ntilde;os:</strong> escribe tu nombre para verlo en <strong>letras de nubes</strong>. &iexcl;Desc&aacute;rgalo y comp&aacute;rtelo con tus amigos!</span></p>
+
+  <div class="row">
+    <input id="nameInput" maxlength="12" placeholder="COCO" aria-label="Enter your name">
+    <button id="genBtn"><span data-lang="en">Make my name</span><span data-lang="fr">Cr&eacute;er mon nom</span><span data-lang="es">Crear mi nombre</span></button>
+  </div>
+
+  <p id="loadingMsg" class="loading" style="display:none"><span data-lang="en">Loading cloud letters...</span><span data-lang="fr">Chargement des lettres nuages...</span><span data-lang="es">Cargando letras de nubes...</span></p>
+
+  <div class="card">
+    <canvas id="c" width="2480" height="1200" aria-label="Cloud name result"></canvas>
+  </div>
+
+  <div class="row">
+    <button class="secondary" id="dlBtn"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
+    <button id="printBtn"><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></button>
+    <a class="btn secondary" href="/" style="border:2px solid #5ba3d9;color:#5ba3d9;background:#fff"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span></a>
+    <a class="btn secondary" href="/bubble-name/" style="border:2px solid #5ba3d9;color:#5ba3d9;background:#fff"><span data-lang="en">Bubble Name</span><span data-lang="fr">Nom en Bulles</span><span data-lang="es">Nombre Burbujas</span></a>
+    <a class="btn secondary" href="/freebies/" style="border:2px solid #5ba3d9;color:#5ba3d9;background:#fff"><span data-lang="en">Free Coloring</span><span data-lang="fr">Coloriages Gratuits</span><span data-lang="es">Colorear Gratis</span></a>
+  </div>
+
+  <p class="small"><span data-lang="en">Tip: download then print or share on social media!</span><span data-lang="fr">Astuce : t&eacute;l&eacute;chargez puis imprimez ou partagez sur les r&eacute;seaux !</span><span data-lang="es">Consejo: descarga y luego imprime o comparte en redes sociales.</span></p>
+</main>
+
+<script>
+  var canvas = document.getElementById("c");
+  var ctx = canvas.getContext("2d");
+  var letterImages = {};
+  var lettersLoaded = false;
+
+  // Map characters to filenames
+  var charMap = {
+    ' ': 'space', '!': 'exclamation', '?': 'question',
+    '.': 'period', ',': 'comma', '&': 'ampersand'
+  };
+  // A-Z and 0-9 map to themselves
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("").forEach(function(ch){
+    charMap[ch] = ch;
+  });
+
+  function preloadLetters(callback){
+    var keys = Object.keys(charMap);
+    var loaded = 0;
+    var total = keys.length;
+    document.getElementById("loadingMsg").style.display = "block";
+
+    keys.forEach(function(ch){
+      var img = new Image();
+      img.onload = function(){
+        letterImages[ch] = img;
+        loaded++;
+        if(loaded === total){
+          lettersLoaded = true;
+          document.getElementById("loadingMsg").style.display = "none";
+          callback();
+        }
+      };
+      img.onerror = function(){
+        loaded++;
+        if(loaded === total){
+          lettersLoaded = true;
+          document.getElementById("loadingMsg").style.display = "none";
+          callback();
+        }
+      };
+      img.src = charMap[ch] + ".png";
+    });
+  }
+
+  function sanitizeName(s){
+    return (s || "").trim().toUpperCase().replace(/[^A-Z0-9 !?.,&]/g, "").slice(0, 12);
+  }
+
+  function draw(name){
+    var W = canvas.width, H = canvas.height;
+    var chars = name.split("");
+    if(chars.length === 0) return;
+
+    // Clear canvas with sky gradient
+    var grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, "#87CEEB");
+    grad.addColorStop(1, "#e0f0ff");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Calculate letter sizes to fit
+    var padding = 80;
+    var availableWidth = W - padding * 2;
+    var maxLetterSize = Math.min(400, H - 200);
+    var letterSize = Math.min(maxLetterSize, Math.floor(availableWidth / chars.length));
+
+    // Center vertically
+    var y = Math.round((H - letterSize) / 2);
+    // Center horizontally
+    var totalWidth = letterSize * chars.length;
+    var x = Math.round((W - totalWidth) / 2);
+
+    chars.forEach(function(ch){
+      var img = letterImages[ch];
+      if(img){
+        ctx.drawImage(img, x, y, letterSize, letterSize);
+      }
+      x += letterSize;
+    });
+
+    // Footer
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(255,255,255,0.7)";
+    ctx.font = "bold 40px system-ui, Arial";
+    ctx.fillText("cocotheaxolotl.org", W / 2, H - 40);
+  }
+
+  function generate(){
+    var raw = document.getElementById("nameInput").value;
+    var name = sanitizeName(raw) || "COCO";
+    if(!lettersLoaded){
+      preloadLetters(function(){ draw(name); });
+    } else {
+      draw(name);
+    }
+  }
+
+  document.getElementById("genBtn").addEventListener("click", generate);
+  document.getElementById("nameInput").addEventListener("keydown", function(e){
+    if(e.key === "Enter") generate();
+  });
+
+  document.getElementById("dlBtn").addEventListener("click", function(){
+    var raw = document.getElementById("nameInput").value;
+    var name = sanitizeName(raw) || "COCO";
+    var a = document.createElement("a");
+    a.download = "cloud-name-" + name + ".png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+    gtag('event', 'file_download', { file_name: 'cloud-name-' + name + '.png' });
+  });
+
+  document.getElementById("printBtn").addEventListener("click", function(){
+    var dataUrl = canvas.toDataURL("image/png");
+    var w = window.open("");
+    w.document.write('<img src="' + dataUrl + '" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
+    w.document.close();
+    w.focus();
+    w.print();
+  });
+
+  // Preload and show default
+  preloadLetters(function(){ draw("COCO"); });
+</script>
+<script>
+function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
+</script>
+</body>
+</html>
