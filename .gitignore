@@ -15,3 +15,8 @@ Desktop.ini
 # Python
 __pycache__/
 *.pyc
+_coloring_backup/
+
+# SEO Tracker data & credentials
+seo-tracker/data/
+seo-tracker/seo-config.js
