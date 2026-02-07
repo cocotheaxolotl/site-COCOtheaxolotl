@@ -81,7 +81,7 @@ module.exports = async function handler(req, res) {
         + '</td></tr>'
         + '</table></td></tr></table></body></html>';
 
-      await fetch('https://api.brevo.com/v3/smtp/email', {
+      var emailRes = await fetch('https://api.brevo.com/v3/smtp/email', {
         method: 'POST',
         headers: {
           'api-key': apiKey,
@@ -94,6 +94,11 @@ module.exports = async function handler(req, res) {
           htmlContent: welcomeHtml
         })
       });
+
+      if (!emailRes.ok) {
+        var emailErr = await emailRes.json();
+        return res.status(200).json({ success: true, already: false, welcomeError: emailErr });
+      }
     }
 
     return res.status(200).json({ success: true, already: alreadyExists });
