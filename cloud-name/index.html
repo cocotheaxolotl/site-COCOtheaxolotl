@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER"></script>
+<!-- Google tag (gtag.js) - loads only after consent -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QDW91N3TER');
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-QDW91N3TER');
+    }
+  }
+  loadAnalytics();
 </script>
   <meta charset="UTF-8">
   <meta name="robots" content="index, follow">
@@ -16,6 +24,10 @@
   <meta name="description" content="Type your name in cloud letters and download it! Free cloud letter name generator for kids. Create fluffy cloud text instantly!">
 
   <link rel="canonical" href="https://cocotheaxolotl.org/cloud-name/">
+<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/cloud-name/">
+<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/cloud-name/">
+<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/cloud-name/">
+<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/cloud-name/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Cloud Letters Name Generator | Coco the Axolotl">
@@ -117,6 +129,7 @@
   var ctx = canvas.getContext("2d");
   var letterImages = {};
   var lettersLoaded = false;
+  var cocoImg = null;
 
   // Map characters to filenames
   var charMap = {
@@ -131,8 +144,29 @@
   function preloadLetters(callback){
     var keys = Object.keys(charMap);
     var loaded = 0;
-    var total = keys.length;
+    var total = keys.length + 1; // +1 for Coco image
     document.getElementById("loadingMsg").style.display = "block";
+
+    // Load Coco character
+    var cImg = new Image();
+    cImg.onload = function(){
+      cocoImg = cImg;
+      loaded++;
+      if(loaded === total){
+        lettersLoaded = true;
+        document.getElementById("loadingMsg").style.display = "none";
+        callback();
+      }
+    };
+    cImg.onerror = function(){
+      loaded++;
+      if(loaded === total){
+        lettersLoaded = true;
+        document.getElementById("loadingMsg").style.display = "none";
+        callback();
+      }
+    };
+    cImg.src = "../axolotl.png";
 
     keys.forEach(function(ch){
       var img = new Image();
@@ -173,6 +207,34 @@
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, W, H);
 
+    // Draw Coco characters in the sky
+    if(cocoImg){
+      ctx.globalAlpha = 0.45;
+      // Bottom-left Coco
+      ctx.drawImage(cocoImg, 50, H - 380, 340, 340);
+      // Bottom-right Coco (flipped)
+      ctx.save();
+      ctx.translate(W - 50, H - 380);
+      ctx.scale(-1, 1);
+      ctx.drawImage(cocoImg, 0, 0, 340, 340);
+      ctx.restore();
+      // Top-left small Coco
+      ctx.drawImage(cocoImg, 80, 30, 240, 240);
+      // Top-right small Coco (flipped)
+      ctx.save();
+      ctx.translate(W - 80, 30);
+      ctx.scale(-1, 1);
+      ctx.drawImage(cocoImg, 0, 0, 240, 240);
+      ctx.restore();
+      ctx.globalAlpha = 1.0;
+    }
+
+    // Title "Coco the Axolotl" at top
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.font = "bold 70px 'Fredoka One', system-ui, Arial";
+    ctx.fillText("Coco the Axolotl", W / 2, 80);
+
     // Calculate letter sizes to fit
     var padding = 80;
     var availableWidth = W - padding * 2;
@@ -195,7 +257,7 @@
 
     // Footer
     ctx.textAlign = "center";
-    ctx.fillStyle = "rgba(255,255,255,0.7)";
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
     ctx.font = "bold 40px system-ui, Arial";
     ctx.fillText("cocotheaxolotl.org", W / 2, H - 40);
   }
@@ -239,6 +301,48 @@
 </script>
 <script>
 function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
+</script>
+
+<!-- RGPD Cookie Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+    <p style="margin:0;flex:1;min-width:250px">
+      <span data-lang="en">We use cookies to analyze traffic. By clicking "Accept", you consent to our use of cookies.</span>
+      <span data-lang="fr">Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez à leur utilisation.</span>
+      <span data-lang="es">Usamos cookies para analizar el tráfico. Al hacer clic en "Aceptar", consientes su uso.</span>
+      <a href="/privacy-policy/" style="color:#ff69b4;margin-left:8px">
+        <span data-lang="en">Privacy Policy</span>
+        <span data-lang="fr">Politique de confidentialité</span>
+        <span data-lang="es">Política de privacidad</span>
+      </a>
+    </p>
+    <div style="display:flex;gap:10px">
+      <button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">
+        <span data-lang="en">Accept</span>
+        <span data-lang="fr">Accepter</span>
+        <span data-lang="es">Aceptar</span>
+      </button>
+      <button onclick="refuseCookies()" style="padding:10px 20px;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;font-weight:700;cursor:pointer">
+        <span data-lang="en">Refuse</span>
+        <span data-lang="fr">Refuser</span>
+        <span data-lang="es">Rechazar</span>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+  function acceptCookies(){
+    localStorage.setItem('cookies_accepted','true');
+    document.getElementById('cookieBanner').style.display='none';
+    loadAnalytics();
+  }
+  function refuseCookies(){
+    localStorage.setItem('cookies_accepted','false');
+    document.getElementById('cookieBanner').style.display='none';
+  }
+  if(!localStorage.getItem('cookies_accepted')){
+    document.getElementById('cookieBanner').style.display='block';
+  }
 </script>
 </body>
 </html>

@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER"></script>
+<!-- Google tag (gtag.js) - loads only after consent -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QDW91N3TER');
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-QDW91N3TER');
+    }
+  }
+  loadAnalytics();
 </script>
 <meta charset="UTF-8">
 <title>Privacy Policy – Coco the Axolotl</title>
@@ -276,5 +284,47 @@ function setLang(lang){
 }
 </script>
 
+
+<!-- RGPD Cookie Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+    <p style="margin:0;flex:1;min-width:250px">
+      <span data-lang="en">We use cookies to analyze traffic. By clicking "Accept", you consent to our use of cookies.</span>
+      <span data-lang="fr">Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez à leur utilisation.</span>
+      <span data-lang="es">Usamos cookies para analizar el tráfico. Al hacer clic en "Aceptar", consientes su uso.</span>
+      <a href="/privacy-policy/" style="color:#ff69b4;margin-left:8px">
+        <span data-lang="en">Privacy Policy</span>
+        <span data-lang="fr">Politique de confidentialité</span>
+        <span data-lang="es">Política de privacidad</span>
+      </a>
+    </p>
+    <div style="display:flex;gap:10px">
+      <button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">
+        <span data-lang="en">Accept</span>
+        <span data-lang="fr">Accepter</span>
+        <span data-lang="es">Aceptar</span>
+      </button>
+      <button onclick="refuseCookies()" style="padding:10px 20px;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;font-weight:700;cursor:pointer">
+        <span data-lang="en">Refuse</span>
+        <span data-lang="fr">Refuser</span>
+        <span data-lang="es">Rechazar</span>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+  function acceptCookies(){
+    localStorage.setItem('cookies_accepted','true');
+    document.getElementById('cookieBanner').style.display='none';
+    loadAnalytics();
+  }
+  function refuseCookies(){
+    localStorage.setItem('cookies_accepted','false');
+    document.getElementById('cookieBanner').style.display='none';
+  }
+  if(!localStorage.getItem('cookies_accepted')){
+    document.getElementById('cookieBanner').style.display='block';
+  }
+</script>
 </body>
 </html>

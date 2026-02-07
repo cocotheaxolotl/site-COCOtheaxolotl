@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <title>Page Not Found – Coco the Axolotl</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --pink:#ff69b4;
+      --pink2:#f7c1cc;
+      --bg:#fef6fb;
+      --text:#333;
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Baloo 2',cursive;
+      background:var(--bg);
+      color:var(--text);
+      margin:0;
+      text-align:center;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .container{
+      max-width:520px;
+    }
+    .coco-img{
+      width:180px;
+      animation:float 3s ease-in-out infinite;
+    }
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-12px)}
+    }
+    h1{
+      font-size:5em;
+      margin:0;
+      color:var(--pink);
+      line-height:1;
+    }
+    h2{
+      font-size:1.8em;
+      margin:8px 0 12px;
+      font-weight:800;
+    }
+    p{
+      font-size:1.1em;
+      opacity:.85;
+      margin:0 0 24px;
+      line-height:1.5;
+    }
+    .btn{
+      display:inline-block;
+      padding:14px 32px;
+      background:var(--pink);
+      color:#fff;
+      text-decoration:none;
+      border-radius:32px;
+      font-weight:800;
+      font-family:'Baloo 2',cursive;
+      font-size:1.05em;
+      border:2px solid var(--pink);
+      transition:filter .15s ease,transform .1s ease;
+    }
+    .btn:hover{filter:brightness(.92)}
+    .btn:active{transform:translateY(1px)}
+    .bubbles{
+      margin-top:30px;
+      font-size:2em;
+      opacity:.5;
+      letter-spacing:8px;
+    }
+    @media(max-width:500px){
+      h1{font-size:3.5em}
+      h2{font-size:1.4em}
+      .coco-img{width:130px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/coco.png" alt="Coco the Axolotl" class="coco-img">
+    <h1>404</h1>
+    <h2>Oops! Coco can't find this page</h2>
+    <p>It looks like this page swam away! Don't worry, Coco will help you find your way back.</p>
+    <a href="/" class="btn">Back to Coco's Home</a>
+    <div class="bubbles" aria-hidden="true">&#x1FAE7; &#x1FAE7; &#x1FAE7;</div>
+  </div>
+</body>
+</html>

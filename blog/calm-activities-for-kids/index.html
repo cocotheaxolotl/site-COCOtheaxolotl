@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER"></script>
+<!-- Google tag (gtag.js) - loads only after consent -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-QDW91N3TER');
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-QDW91N3TER');
+    }
+  }
+  loadAnalytics();
 </script>
 <meta charset="UTF-8">
 <title>7 Calm Activities for Kids – Screen-Free Quiet Time Ideas – Coco the Axolotl</title>
 <meta name="description" content="Looking for calm activities for kids? Discover 7 screen-free quiet time ideas including coloring, puzzles, drawing, and more to help children relax and focus.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://cocotheaxolotl.org/blog/calm-activities-for-kids/">
+<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/calm-activities-for-kids/">
+<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/blog/calm-activities-for-kids/">
+<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/blog/calm-activities-for-kids/">
+<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/calm-activities-for-kids/">
 <meta property="og:title" content="7 Calm Activities for Kids – Screen-Free Quiet Time Ideas">
 <meta property="og:description" content="Discover 7 screen-free quiet time ideas to help children relax and focus.">
 <meta property="og:url" content="https://cocotheaxolotl.org/blog/calm-activities-for-kids/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Coco the Axolotl">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://cocotheaxolotl.org/coco.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="7 Calm Activities for Kids – Screen-Free Quiet Time Ideas">
 <meta name="twitter:description" content="Discover 7 screen-free quiet time ideas to help children relax and focus.">
+<meta name="twitter:image" content="https://cocotheaxolotl.org/coco.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "7 Calm Activities for Kids – Screen-Free Quiet Time Ideas",
+  "description": "Looking for calm activities for kids? Discover 7 screen-free quiet time ideas including coloring, puzzles, drawing, and more to help children relax and focus.",
+  "author": {
+    "@type": "Organization",
+    "name": "Coco the Axolotl",
+    "url": "https://cocotheaxolotl.org"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Coco the Axolotl",
+    "url": "https://cocotheaxolotl.org"
+  },
+  "mainEntityOfPage": "https://cocotheaxolotl.org/blog/calm-activities-for-kids/",
+  "datePublished": "2025-07-10",
+  "dateModified": "2025-07-10"
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
@@ -284,6 +319,48 @@ function setLang(lang){
   });
   document.documentElement.lang=lang;
 }
+</script>
+
+<!-- RGPD Cookie Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+    <p style="margin:0;flex:1;min-width:250px">
+      <span data-lang="en">We use cookies to analyze traffic. By clicking "Accept", you consent to our use of cookies.</span>
+      <span data-lang="fr">Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez à leur utilisation.</span>
+      <span data-lang="es">Usamos cookies para analizar el tráfico. Al hacer clic en "Aceptar", consientes su uso.</span>
+      <a href="/privacy-policy/" style="color:#ff69b4;margin-left:8px">
+        <span data-lang="en">Privacy Policy</span>
+        <span data-lang="fr">Politique de confidentialité</span>
+        <span data-lang="es">Política de privacidad</span>
+      </a>
+    </p>
+    <div style="display:flex;gap:10px">
+      <button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">
+        <span data-lang="en">Accept</span>
+        <span data-lang="fr">Accepter</span>
+        <span data-lang="es">Aceptar</span>
+      </button>
+      <button onclick="refuseCookies()" style="padding:10px 20px;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;font-weight:700;cursor:pointer">
+        <span data-lang="en">Refuse</span>
+        <span data-lang="fr">Refuser</span>
+        <span data-lang="es">Rechazar</span>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+  function acceptCookies(){
+    localStorage.setItem('cookies_accepted','true');
+    document.getElementById('cookieBanner').style.display='none';
+    loadAnalytics();
+  }
+  function refuseCookies(){
+    localStorage.setItem('cookies_accepted','false');
+    document.getElementById('cookieBanner').style.display='none';
+  }
+  if(!localStorage.getItem('cookies_accepted')){
+    document.getElementById('cookieBanner').style.display='block';
+  }
 </script>
 </body>
 </html>
