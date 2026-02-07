@@ -66,8 +66,14 @@ main{padding:30px 18px 40px;max-width:740px;margin:0 auto}
 .card ul{margin:8px 0 0;padding-left:20px;line-height:1.8}
 
 .friends-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:14px}
-.friend{background:#fff0f6;border-radius:14px;padding:14px 10px;text-align:center;font-size:.95em;border:2px solid rgba(255,105,180,.15)}
+.friend{background:#fff0f6;border-radius:14px;padding:14px 10px;text-align:center;font-size:.95em;border:2px solid rgba(255,105,180,.15);text-decoration:none;color:#333;transition:transform .12s ease,border-color .12s ease}
+a.friend:hover{transform:translateY(-2px);border-color:#ff69b4}
 .friend .emoji{font-size:2em;display:block;margin-bottom:4px}
+
+.videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:14px}
+.video-link{display:block;background:#fff0f6;border-radius:14px;padding:16px 12px;text-align:center;font-size:.9em;border:2px solid rgba(255,105,180,.15);text-decoration:none;color:#333;transition:transform .12s ease,border-color .12s ease}
+.video-link:hover{transform:translateY(-2px);border-color:#ff69b4}
+.video-link .play{font-size:2em;display:block;margin-bottom:4px}
 
 .cta-card{background:#fff0f6;border:2px solid #ff69b4;margin:24px 0;padding:20px;border-radius:18px;text-align:center}
 .cta-card a{color:#ff69b4;font-weight:800;text-decoration:none}
@@ -167,10 +173,11 @@ body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
     <span data-lang="es">&iexcl;Coco tiene muchos amigos! Aqu&iacute; algunos de ellos:</span>
   </p>
   <div class="friends-grid">
-    <div class="friend"><span class="emoji">🦈</span><span data-lang="en">Sharky<br><small>A bit stinky...</small></span><span data-lang="fr">Sharky<br><small>Un peu malodorant...</small></span><span data-lang="es">Sharky<br><small>Un poco apestoso...</small></span></div>
-    <div class="friend"><span class="emoji">🐱</span><span data-lang="en">Kitty<br><small>Always passing by!</small></span><span data-lang="fr">Kitty<br><small>Toujours de passage !</small></span><span data-lang="es">Kitty<br><small>&iexcl;Siempre de paso!</small></span></div>
-    <div class="friend"><span class="emoji">🐬</span><span data-lang="en">Flippy<br><small>Pirouette partner</small></span><span data-lang="fr">Flippy<br><small>Partenaire de pirouettes</small></span><span data-lang="es">Flippy<br><small>Compa&ntilde;ero de piruetas</small></span></div>
-    <div class="friend"><span class="emoji">🐦</span><span data-lang="en">Piou<br><small>Coco's Paris pal</small></span><span data-lang="fr">Piou<br><small>Le copain parisien</small></span><span data-lang="es">Piou<br><small>El amigo parisino</small></span></div>
+    <a href="https://www.youtube.com/shorts/MCPXW3_q4dw" target="_blank" rel="noopener" class="friend"><span class="emoji">🦈</span><span data-lang="en">Sharky<br><small>A bit stinky... ▶</small></span><span data-lang="fr">Sharky<br><small>Un peu malodorant... ▶</small></span><span data-lang="es">Sharky<br><small>Un poco apestoso... ▶</small></span></a>
+    <a href="https://www.youtube.com/shorts/BRHsi4oPYSc" target="_blank" rel="noopener" class="friend"><span class="emoji">🐱</span><span data-lang="en">Kitty<br><small>Always passing by! ▶</small></span><span data-lang="fr">Kitty<br><small>Toujours de passage ! ▶</small></span><span data-lang="es">Kitty<br><small>&iexcl;Siempre de paso! ▶</small></span></a>
+    <a href="https://www.youtube.com/shorts/ILSCLgw43Xk" target="_blank" rel="noopener" class="friend"><span class="emoji">🐬</span><span data-lang="en">Flippy<br><small>Pirouette partner ▶</small></span><span data-lang="fr">Flippy<br><small>Partenaire de pirouettes ▶</small></span><span data-lang="es">Flippy<br><small>Compa&ntilde;ero de piruetas ▶</small></span></a>
+    <a href="https://www.youtube.com/shorts/nGAqfPvvtLk" target="_blank" rel="noopener" class="friend"><span class="emoji">🐦</span><span data-lang="en">Piou<br><small>Coco's Paris pal ▶</small></span><span data-lang="fr">Piou<br><small>Le copain parisien ▶</small></span><span data-lang="es">Piou<br><small>El amigo parisino ▶</small></span></a>
+    <a href="https://www.youtube.com/shorts/Y27ucZyqpCs" target="_blank" rel="noopener" class="friend"><span class="emoji">🦑</span><span data-lang="en">Manta<br><small>Surf buddy ▶</small></span><span data-lang="fr">Manta<br><small>Copain de surf ▶</small></span><span data-lang="es">Manta<br><small>Compa&ntilde;ero de surf ▶</small></span></a>
   </div>
 </div>
 
@@ -182,6 +189,23 @@ body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
     <li><span data-lang="en">Coco's big smile can light up the whole lake</span><span data-lang="fr">Le grand sourire de Coco illumine tout le lac</span><span data-lang="es">La gran sonrisa de Coco ilumina todo el lago</span></li>
     <li><span data-lang="en">Coco loves to explore — from Mexico to Paris!</span><span data-lang="fr">Coco adore explorer — du Mexique &agrave; Paris !</span><span data-lang="es">&iexcl;A Coco le encanta explorar — de M&eacute;xico a Par&iacute;s!</span></li>
   </ul>
+</div>
+
+<div class="card">
+  <h2><span data-lang="en">Watch Coco's Story</span><span data-lang="fr">Regarde l'histoire de Coco</span><span data-lang="es">Mira la historia de Coco</span></h2>
+  <p>
+    <span data-lang="en">See how it all began! Watch Coco on a swing, asking for your help to get colors back:</span>
+    <span data-lang="fr">D&eacute;couvre comment tout a commenc&eacute; ! Regarde Coco sur sa balan&ccedil;oire, qui demande ton aide pour retrouver ses couleurs :</span>
+    <span data-lang="es">&iexcl;Mira c&oacute;mo empez&oacute; todo! Mira a Coco en su columpio, pidiendo tu ayuda para recuperar sus colores:</span>
+  </p>
+  <div style="text-align:center;margin-top:12px">
+    <a href="https://www.youtube.com/shorts/gL8-ZA8G7SE" target="_blank" rel="noopener" class="video-link" style="display:inline-block;max-width:200px;margin:0 auto">
+      <span class="play">🎬</span>
+      <span data-lang="en"><strong>Coco's Origin Story</strong><br><small>Watch on YouTube ▶</small></span>
+      <span data-lang="fr"><strong>L'histoire de Coco</strong><br><small>Voir sur YouTube ▶</small></span>
+      <span data-lang="es"><strong>La historia de Coco</strong><br><small>Ver en YouTube ▶</small></span>
+    </a>
+  </div>
 </div>
 
 <div class="cta-card">
