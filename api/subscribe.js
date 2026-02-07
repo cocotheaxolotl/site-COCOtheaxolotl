@@ -64,7 +64,7 @@ module.exports = async function handler(req, res) {
         + '<a href="https://cocotheaxolotl.org/freebies/" style="display:inline-block;padding:14px 36px;background:#ff69b4;color:#fff;text-decoration:none;border-radius:30px;font-weight:800;font-size:16px">Download Free Coloring Pages</a>'
         + '</td></tr></table>'
         + '<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding-bottom:12px">'
-        + '<a href="https://cocotheaxolotl.org/about-coco/" style="display:inline-block;padding:12px 30px;background:#fff;color:#ff69b4;text-decoration:none;border-radius:30px;font-weight:800;font-size:14px;border:2px solid #ff69b4">Meet Coco &amp; Friends</a>'
+        + '<a href="https://cocotheaxolotl.org/" style="display:inline-block;padding:12px 30px;background:#fff;color:#ff69b4;text-decoration:none;border-radius:30px;font-weight:800;font-size:14px;border:2px solid #ff69b4">Visit Coco\'s Website</a>'
         + '</td></tr></table>'
         // Social links
         + '<p style="margin:20px 0 0;font-size:13px;color:#999;text-align:center">'
