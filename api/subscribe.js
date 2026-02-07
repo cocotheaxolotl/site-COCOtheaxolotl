@@ -11,7 +11,7 @@ module.exports = async function handler(req, res) {
 
   const listId = parseInt(process.env.BREVO_LIST_ID || '2');
   const apiKey = process.env.BREVO_API_KEY;
-  const senderEmail = process.env.BREVO_SENDER_EMAIL || 'hello@cocotheaxolotl.org';
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || 'coco@cocotheaxolotl.org';
   const senderName = process.env.BREVO_SENDER_NAME || 'Coco the Axolotl';
   const firstName = name || 'friend';
 
