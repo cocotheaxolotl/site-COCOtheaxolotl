@@ -523,14 +523,17 @@
 
     @media (max-width: 820px){
       .quick-links{grid-template-columns:1fr}
-      h1{font-size:2.25em}
+      h1{font-size:1.6em}
       h2{font-size:1.8em}
-      .axolotl-img, .gills-img{ width:200px; }
-      .hero-row{ flex-wrap:nowrap; gap:0; }
-      .fish-col{ gap:10px; }
-      .fish-icon{ font-size:1.5em; }
-      .fish-banner{ font-size:.7em; padding:5px 10px; }
-      .fish-rope{ width:12px; }
+      header{padding:20px 8px 24px}
+      .axolotl-img, .gills-img{ width:160px; }
+      .hero-row{ flex-wrap:nowrap; gap:0; width:100%; overflow:hidden; }
+      .fish-col{ gap:8px; min-width:0; flex:1; }
+      .fish-icon{ font-size:1.2em; }
+      .fish-banner{ font-size:.6em; padding:4px 7px; }
+      .fish-rope{ width:6px; }
+      .fish-col.left .fish-link{ justify-content:flex-start; }
+      .fish-col.right .fish-link{ justify-content:flex-end; }
     }
   </style>
 </head>
@@ -1033,13 +1036,10 @@
       const emailInput = document.getElementById("popupEmail");
       const submitBtn = document.getElementById("popupBtn");
 
-      // ⚠️ REPLACE THIS URL with your Google Apps Script web app URL
-      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx9hCSuVnLeVNe5Lk1ry-vCToNNY1YhSQFNvxYn4UnHCKyyu8gsfttLxDpC3Faqr0XNtg/exec";
-
-      // Show popup after 4 seconds
-      setTimeout(()=>{
-        overlay.classList.add("active");
-      }, 4000);
+      // Show popup after 4 seconds (only if not already subscribed)
+      if(!localStorage.getItem('coco_subscribed')){
+        setTimeout(()=>{ overlay.classList.add("active"); }, 4000);
+      }
 
       function closePopup(){
         overlay.classList.remove("active");
@@ -1059,15 +1059,21 @@
         submitBtn.disabled = true;
         submitBtn.textContent = "Sending...";
 
-        fetch(GOOGLE_SCRIPT_URL, {
+        fetch("/api/subscribe", {
           method: "POST",
-          mode: "no-cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ name: name, email: email })
         })
-        .then(()=>{
-          form.innerHTML = '<p class="popup-success">Thank you! Check your email 💗</p>';
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if(data.success){
+            localStorage.setItem('coco_subscribed','true');
+            form.innerHTML = '<p class="popup-success">Thank you! 💗</p>';
             setTimeout(closePopup, 2500);
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Try again";
+          }
         })
         .catch(()=>{
           submitBtn.disabled = false;
