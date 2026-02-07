@@ -1,0 +1,27 @@
+{
+  "name": "Coco the Axolotl",
+  "short_name": "Coco",
+  "description": "Axolotl coloring book, free coloring pages, printable games, and fun activities for kids ages 3–8.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fef6fb",
+  "theme_color": "#ff69b4",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
