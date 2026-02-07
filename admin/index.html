@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Coco Admin - Send Newsletter</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,Arial,sans-serif;background:#f8f0ff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{background:#fff;border-radius:18px;box-shadow:0 6px 20px rgba(0,0,0,.08);max-width:480px;width:100%;overflow:hidden}
+.header{background:#ff69b4;padding:24px;text-align:center;color:#fff}
+.header h1{font-size:1.3em;margin-top:8px}
+.form{padding:24px}
+label{display:block;font-weight:700;font-size:.9em;color:#555;margin-bottom:4px;margin-top:16px}
+label:first-child{margin-top:0}
+input,textarea,select{width:100%;padding:10px 14px;border:2px solid #e0e0e0;border-radius:10px;font-size:1em;font-family:inherit;transition:border-color .2s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#ff69b4}
+textarea{resize:vertical;min-height:80px}
+.row{display:flex;gap:12px}
+.row>div{flex:1}
+.hint{font-size:.8em;color:#999;margin-top:2px}
+.colors{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
+.color-btn{width:36px;height:36px;border-radius:50%;border:3px solid transparent;cursor:pointer;transition:border-color .2s,transform .1s}
+.color-btn:hover{transform:scale(1.1)}
+.color-btn.active{border-color:#333}
+button[type=submit]{display:block;width:100%;margin-top:24px;padding:14px;background:#ff69b4;color:#fff;border:none;border-radius:30px;font-size:1.1em;font-weight:800;cursor:pointer;transition:background .2s}
+button[type=submit]:hover{background:#ff4da6}
+button[type=submit]:disabled{background:#ccc;cursor:not-allowed}
+.result{margin-top:16px;padding:14px;border-radius:12px;font-size:.95em;display:none}
+.result.success{display:block;background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.result.error{display:block;background:#fce4ec;color:#c62828;border:1px solid #ef9a9a}
+.preview{margin-top:16px;padding:16px;background:#f8f8f8;border-radius:12px;border:2px dashed #e0e0e0}
+.preview h3{font-size:.85em;color:#999;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.preview-subject{font-weight:700;font-size:1.05em;margin-bottom:4px}
+.preview-desc{color:#555;font-size:.95em}
+</style>
+</head>
+<body>
+<div class="card">
+<div class="header">
+<img src="/axolotl.png" width="60" alt="Coco">
+<h1>Send Newsletter</h1>
+</div>
+<div class="form">
+<form id="nlForm">
+
+<label for="secret">Mot de passe</label>
+<input type="password" id="secret" required placeholder="Newsletter secret">
+
+<label for="title">Titre</label>
+<input type="text" id="title" required placeholder="Ex: Cloud Name Generator">
+
+<div class="row">
+<div>
+<label for="emoji">Emoji</label>
+<input type="text" id="emoji" placeholder="Ex: ☁️" maxlength="4">
+</div>
+<div>
+<label for="url">URL (chemin)</label>
+<input type="text" id="url" required placeholder="Ex: /cloud-name/">
+<div class="hint">Chemin depuis cocotheaxolotl.org</div>
+</div>
+</div>
+
+<label for="description">Description</label>
+<textarea id="description" required placeholder="Ex: Type your name in fluffy cloud letters!"></textarea>
+
+<label>Couleur du header</label>
+<div class="colors">
+<div class="color-btn active" style="background:#ff69b4" data-color="#ff69b4" title="Pink (default)"></div>
+<div class="color-btn" style="background:#7c4dff" data-color="#7c4dff" title="Purple"></div>
+<div class="color-btn" style="background:#00bcd4" data-color="#00bcd4" title="Cyan"></div>
+<div class="color-btn" style="background:#ff7043" data-color="#ff7043" title="Orange"></div>
+<div class="color-btn" style="background:#66bb6a" data-color="#66bb6a" title="Green"></div>
+<div class="color-btn" style="background:#42a5f5" data-color="#42a5f5" title="Blue"></div>
+</div>
+<input type="hidden" id="color" value="#ff69b4">
+
+<div class="preview" id="preview" style="display:none">
+<h3>Apercu du mail</h3>
+<div class="preview-subject" id="previewSubject"></div>
+<div class="preview-desc" id="previewDesc"></div>
+</div>
+
+<button type="submit" id="sendBtn">Envoyer la newsletter</button>
+
+<div class="result" id="result"></div>
+</form>
+</div>
+</div>
+
+<script>
+// Color picker
+document.querySelectorAll('.color-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.color-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('color').value = btn.dataset.color;
+  });
+});
+
+// Live preview
+var titleEl = document.getElementById('title');
+var emojiEl = document.getElementById('emoji');
+var descEl = document.getElementById('description');
+var preview = document.getElementById('preview');
+
+function updatePreview() {
+  var t = titleEl.value.trim();
+  var e = emojiEl.value.trim();
+  var d = descEl.value.trim();
+  if (t || d) {
+    preview.style.display = 'block';
+    document.getElementById('previewSubject').textContent = (e ? e + ' ' : '') + 'New on Coco the Axolotl: ' + (t || '...') + '!';
+    document.getElementById('previewDesc').textContent = d || '...';
+  } else {
+    preview.style.display = 'none';
+  }
+}
+titleEl.addEventListener('input', updatePreview);
+emojiEl.addEventListener('input', updatePreview);
+descEl.addEventListener('input', updatePreview);
+
+// Submit
+document.getElementById('nlForm').addEventListener('submit', function(ev) {
+  ev.preventDefault();
+  var btn = document.getElementById('sendBtn');
+  var result = document.getElementById('result');
+
+  if (!confirm('Tu es sur(e) ? Ca va envoyer le mail a TOUS les abonnes !')) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours...';
+  result.className = 'result';
+  result.style.display = 'none';
+
+  fetch('/api/send-newsletter', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      secret: document.getElementById('secret').value,
+      title: titleEl.value.trim(),
+      emoji: emojiEl.value.trim(),
+      description: descEl.value.trim(),
+      url: document.getElementById('url').value.trim(),
+      color: document.getElementById('color').value
+    })
+  })
+  .then(function(r) { return r.json().then(function(d) { return { ok: r.ok, data: d }; }); })
+  .then(function(res) {
+    if (res.ok && res.data.success) {
+      result.className = 'result success';
+      result.textContent = 'Newsletter envoyee ! (Campaign ID: ' + res.data.campaignId + ')';
+    } else {
+      result.className = 'result error';
+      result.textContent = 'Erreur: ' + JSON.stringify(res.data);
+    }
+    result.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Envoyer la newsletter';
+  })
+  .catch(function(err) {
+    result.className = 'result error';
+    result.textContent = 'Erreur reseau: ' + err.message;
+    result.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Envoyer la newsletter';
+  });
+});
+</script>
+</body>
+</html>
