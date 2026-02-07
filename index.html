@@ -394,13 +394,15 @@
       position:relative;
       background:#fff;
       border-radius:22px;
-      max-width:420px;
+      max-width:380px;
       width:100%;
-      padding:36px 32px 28px;
+      padding:30px 26px 22px;
       box-shadow:0 20px 60px rgba(0,0,0,.18);
       text-align:center;
       transform:translateY(20px) scale(.96);
       transition:transform .3s ease;
+      max-height:90vh;
+      overflow-y:auto;
     }
     .popup-overlay.active .popup-box{
       transform:translateY(0) scale(1);
@@ -437,8 +439,8 @@
       margin:0 0 16px;
     }
     .popup-box img{
-      width:150px;
-      margin:0 auto 16px;
+      width:100px;
+      margin:0 auto 12px;
       display:block;
     }
     .popup-box input[type="text"],
@@ -541,7 +543,7 @@
 <body>
 
   <header id="heroHeader">
-    <video class="header-video" autoplay muted loop playsinline>
+    <video class="header-video" autoplay muted loop playsinline poster="poster-hero.jpg">
       <source src="fond%20marin%20openart.mp4" type="video/mp4">
     </video>
     <div class="bubblesLayer" id="bubblesLayer" aria-hidden="true"></div>
