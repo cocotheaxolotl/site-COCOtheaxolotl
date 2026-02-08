@@ -181,9 +181,10 @@
     var padding = 80;
     var availW = W - padding*2;
     var maxSize = Math.min(400, H-200);
-    var letterSize = Math.min(maxSize, Math.floor(availW / chars.length));
+    var letterSize = Math.min(maxSize, Math.floor(availW / (chars.length * 0.78)));
+    var spacing = Math.round(letterSize * 0.78);
     var y = Math.round((H - letterSize) / 2);
-    var totalW = letterSize * chars.length;
+    var totalW = spacing * (chars.length - 1) + letterSize;
     var x = Math.round((W - totalW) / 2);
     var offC = document.createElement("canvas");
     offC.width = letterSize; offC.height = letterSize;
@@ -204,7 +205,7 @@
         offCtx.globalCompositeOperation = "source-over";
         ctx.drawImage(offC, x, y);
       }
-      x += letterSize;
+      x += spacing;
     });
     // Footer
     ctx.textAlign = "center";
