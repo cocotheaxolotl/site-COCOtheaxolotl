@@ -185,7 +185,7 @@
     var letterSize = Math.min(maxSize, Math.floor(availW / (chars.length * 0.6)));
     var spacing = Math.round(letterSize * 0.6);
     var y = Math.round((H - letterSize) / 2);
-    var apoSpacing = Math.round(spacing * 0.3);
+    var apoSpacing = Math.round(spacing * 0.2);
     var apostrophes = chars.filter(function(c){ return c === "'"; }).length;
     var totalW = spacing * (chars.length - 1 - apostrophes) + apoSpacing * apostrophes + letterSize;
     var x = Math.round((W - totalW) / 2);
