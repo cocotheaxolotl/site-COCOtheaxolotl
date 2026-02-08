@@ -113,7 +113,7 @@ function updatePreview() {
   if (t || d) {
     preview.style.display = 'block';
     document.getElementById('previewSubject').textContent = (e ? e + ' ' : '') + 'New on Coco the Axolotl: ' + (t || '...') + '!';
-    document.getElementById('previewDesc').textContent = d || '...';
+    document.getElementById('previewDesc').innerHTML = d || '...';
   } else {
     preview.style.display = 'none';
   }
