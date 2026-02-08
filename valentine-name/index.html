@@ -168,8 +168,9 @@
     // Coco Valentine
     if(cocoImg){
       ctx.globalAlpha = 0.35;
-      ctx.drawImage(cocoImg, 50, H-380, 300, 300);
-      ctx.save(); ctx.translate(W-50, H-380); ctx.scale(-1,1); ctx.drawImage(cocoImg,0,0,300,300); ctx.restore();
+      var ch = 320, cw = Math.round(ch * cocoImg.naturalWidth / cocoImg.naturalHeight);
+      ctx.drawImage(cocoImg, 40, H-ch-60, cw, ch);
+      ctx.save(); ctx.translate(W-40, H-ch-60); ctx.scale(-1,1); ctx.drawImage(cocoImg,0,0,cw,ch); ctx.restore();
       ctx.globalAlpha = 1.0;
     }
     // Title
