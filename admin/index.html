@@ -49,22 +49,22 @@ button[type=submit]:disabled{background:#ccc;cursor:not-allowed}
 <input type="password" id="secret" required placeholder="Newsletter secret">
 
 <label for="title">Titre</label>
-<input type="text" id="title" required placeholder="Ex: Cloud Name Generator">
+<input type="text" id="title" required placeholder="Ex: Cloud Name Generator" value="Valentine's Day Coloring &amp; Letters">
 
 <div class="row">
 <div>
 <label for="emoji">Emoji</label>
-<input type="text" id="emoji" placeholder="Ex: ☁️" maxlength="4">
+<input type="text" id="emoji" placeholder="Ex: ☁️" maxlength="4" value="💌">
 </div>
 <div>
 <label for="url">URL (chemin)</label>
-<input type="text" id="url" required placeholder="Ex: /cloud-name/">
+<input type="text" id="url" required placeholder="Ex: /cloud-name/" value="/valentine/">
 <div class="hint">Chemin depuis cocotheaxolotl.org</div>
 </div>
 </div>
 
 <label for="description">Description</label>
-<textarea id="description" required placeholder="Ex: Type your name in fluffy cloud letters!"></textarea>
+<textarea id="description" required placeholder="Ex: Type your name in fluffy cloud letters!"><img src="https://cocotheaxolotl.org/coco-valentine.png" width="220" style="display:block;margin:0 auto 16px;border-radius:14px" alt="Coco holding a heart"><br>Celebrate Valentine's Day with Coco!<br><br><strong>🖍️ 8 Free Coloring Pages</strong><br>Hearts, flowers, puppy love, friends & more — print and color!<br><br><strong>💌 Valentine Letters</strong><br>Type your name in pink balloon letters and download it!<br><br><a href="https://cocotheaxolotl.org/valentine-name/" style="display:inline-block;padding:12px 28px;background:#e91e63;color:#fff;text-decoration:none;border-radius:25px;font-weight:800;font-size:15px;margin-top:8px">✨ Try Valentine Letters</a></textarea>
 
 <label>Couleur du header</label>
 <div class="colors">
@@ -121,6 +121,7 @@ function updatePreview() {
 titleEl.addEventListener('input', updatePreview);
 emojiEl.addEventListener('input', updatePreview);
 descEl.addEventListener('input', updatePreview);
+updatePreview();
 
 // Submit
 document.getElementById('nlForm').addEventListener('submit', function(ev) {

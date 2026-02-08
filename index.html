@@ -1124,7 +1124,7 @@
         fetch("/api/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: name, email: email })
+          body: JSON.stringify({ name: name, email: email, lang: document.documentElement.lang || 'en' })
         })
         .then(function(r){ return r.json(); })
         .then(function(data){

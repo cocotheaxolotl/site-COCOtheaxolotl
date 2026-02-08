@@ -6,7 +6,7 @@ module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { name, email } = req.body;
+  const { name, email, lang } = req.body;
   if (!email) return res.status(400).json({ error: 'Email required' });
 
   const listId = parseInt(process.env.BREVO_LIST_ID || '2');
@@ -25,7 +25,7 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         email: email,
-        attributes: { FIRSTNAME: name || '' },
+        attributes: { FIRSTNAME: name || '', LANG: lang || 'en' },
         listIds: [listId],
         updateEnabled: true
       })

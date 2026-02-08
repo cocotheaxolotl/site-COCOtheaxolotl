@@ -471,6 +471,12 @@ document.getElementById('freebieForm').addEventListener('submit', function(e){
     localStorage.setItem('coco_freebies_unlocked', '1');
     unlockDownloads();
   });
+  // Also add to Brevo with language
+  fetch("/api/subscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name: name, email: email, lang: document.documentElement.lang || 'en' })
+  }).catch(function(){});
 });
 
 // Track downloads with Google Analytics
