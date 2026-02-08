@@ -196,6 +196,16 @@
         offCtx.globalCompositeOperation = "source-over";
         offCtx.globalAlpha = 1;
         offCtx.drawImage(img, 0, 0, letterSize, letterSize);
+        // Remove near-white background pixels
+        try {
+          var imgData = offCtx.getImageData(0, 0, letterSize, letterSize);
+          var d = imgData.data;
+          for(var i = 0; i < d.length; i += 4){
+            if(d[i] > 240 && d[i+1] > 240 && d[i+2] > 240) d[i+3] = 0;
+            else if(d[i+3] < 15) d[i+3] = 0;
+          }
+          offCtx.putImageData(imgData, 0, 0);
+        } catch(e){}
         // Overlay pink on non-transparent pixels only
         offCtx.globalCompositeOperation = "source-atop";
         offCtx.fillStyle = "#e91e63";
