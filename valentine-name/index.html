@@ -124,11 +124,13 @@
     var total = keys.length + 1;
     document.getElementById("loadingMsg").style.display = "block";
     var cImg = new Image();
+    cImg.crossOrigin = "anonymous";
     cImg.onload = function(){ cocoImg = cImg; loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
     cImg.onerror = function(){ loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
     cImg.src = "/coco-valentine.png";
     keys.forEach(function(ch){
       var img = new Image();
+      img.crossOrigin = "anonymous";
       img.onload = function(){ letterImages[ch] = img; loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
       img.onerror = function(){ loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
       img.src = "/balloon-name/" + charMap[ch] + ".png";
@@ -190,18 +192,16 @@
       var img = letterImages[ch];
       if(img){
         offCtx.clearRect(0, 0, letterSize, letterSize);
+        offCtx.globalCompositeOperation = "source-over";
+        offCtx.globalAlpha = 1;
         offCtx.drawImage(img, 0, 0, letterSize, letterSize);
-        var imgData = offCtx.getImageData(0, 0, letterSize, letterSize);
-        var d = imgData.data;
-        for(var i = 0; i < d.length; i += 4){
-          if(d[i+3] === 0) continue; // skip transparent
-          var r = d[i], g = d[i+1], b = d[i+2];
-          // Shift purple (high blue, med red) to pink (high red, low blue)
-          d[i]   = Math.min(255, Math.round(r * 1.3 + 20));
-          d[i+1] = Math.round(g * 0.6);
-          d[i+2] = Math.round(b * 0.6);
-        }
-        offCtx.putImageData(imgData, 0, 0);
+        // Overlay pink on non-transparent pixels only
+        offCtx.globalCompositeOperation = "source-atop";
+        offCtx.fillStyle = "#e91e63";
+        offCtx.globalAlpha = 0.45;
+        offCtx.fillRect(0, 0, letterSize, letterSize);
+        offCtx.globalAlpha = 1;
+        offCtx.globalCompositeOperation = "source-over";
         ctx.drawImage(offC, x, y);
       }
       x += letterSize;
