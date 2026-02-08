@@ -652,31 +652,27 @@
       <button class="lang-btn" onclick="setLang('es')">ES</button>
     </div>
 
-    <!-- Valentine's Day CTA - Heart shape -->
+    <!-- Valentine's Day CTA - Heart-shaped button -->
     <a href="/valentine/" class="valentine-cta">
-      <div class="valentine-heart">
-        <img src="/valentine/friends-colored.png" alt="Valentine coloring sample" class="valentine-img">
-      </div>
-      <span class="valentine-text">
-        <span data-lang="en">Valentine's Day<br>Coloring Pages</span>
-        <span data-lang="fr">Coloriages<br>Saint-Valentin</span>
-        <span data-lang="es">Dibujos de<br>San Valent&iacute;n</span>
-        <small>
-          <span data-lang="en">8 Free Sheets!</span>
-          <span data-lang="fr">8 Pages Gratuites !</span>
-          <span data-lang="es">&iexcl;8 Gratis!</span>
-        </small>
+      <img src="/valentine/friends-colored.png" alt="Valentine coloring sample" class="valentine-img">
+      <span class="valentine-label">
+        <span data-lang="en">Valentine<br>Coloring!</span>
+        <span data-lang="fr">Coloriages<br>Valentin !</span>
+        <span data-lang="es">Dibujos<br>Valent&iacute;n!</span>
+      </span>
+      <span class="valentine-sub">
+        <span data-lang="en">8 Free Pages</span>
+        <span data-lang="fr">8 Gratuits</span>
+        <span data-lang="es">8 Gratis</span>
       </span>
     </a>
     <style>
-    .valentine-cta{display:inline-flex;align-items:center;gap:16px;background:linear-gradient(135deg,#e91e63,#ff4081);color:#fff;text-decoration:none;padding:12px 26px 12px 14px;border-radius:26px;margin:12px auto 6px;position:relative;z-index:10;box-shadow:0 4px 20px rgba(233,30,99,.4);animation:valentinePulse 2s ease-in-out infinite;border:3px solid rgba(255,255,255,.4)}
-    .valentine-heart{width:90px;height:82px;position:relative;flex-shrink:0}
-    .valentine-heart::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:#fff;clip-path:path('M45 80 C45 80 5 55 5 28 5 12 18 2 32 8 38 11 42 16 45 22 48 16 52 11 58 8 72 2 85 12 85 28 85 55 45 80 45 80Z');z-index:0}
-    .valentine-img{position:absolute;top:4px;left:4px;width:82px;height:74px;object-fit:cover;clip-path:path('M41 74 C41 74 4 51 4 26 4 12 16 3 28 8 34 11 38 15 41 20 44 15 48 11 54 8 66 3 78 12 78 26 78 51 41 74 41 74Z');z-index:1}
-    .valentine-text{font-family:'Baloo 2',system-ui;font-weight:800;font-size:1.1em;text-align:left;line-height:1.2}
-    .valentine-text small{display:block;font-size:.7em;opacity:.9;margin-top:2px;font-weight:600}
-    @keyframes valentinePulse{0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(233,30,99,.4)}50%{transform:scale(1.04);box-shadow:0 6px 28px rgba(233,30,99,.6)}}
-    @media(max-width:480px){.valentine-heart{width:70px;height:64px}.valentine-heart::before{transform:scale(.78);transform-origin:top left}.valentine-img{width:64px;height:58px;clip-path:path('M32 58 C32 58 3 40 3 20 3 9 12 2 22 6 26 8 29 12 32 16 35 12 38 8 42 6 52 2 61 9 61 20 61 40 32 58 32 58Z')}.valentine-text{font-size:.95em}}
+    .valentine-cta{display:flex;flex-direction:column;align-items:center;justify-content:center;width:180px;height:170px;background:linear-gradient(135deg,#e91e63,#ff4081);color:#fff;text-decoration:none;margin:10px auto 4px;position:relative;z-index:10;filter:drop-shadow(0 4px 14px rgba(233,30,99,.45));animation:valentinePulse 2s ease-in-out infinite;clip-path:path('M90 155 C90 155 10 110 10 55 10 25 35 5 60 18 72 24 82 34 90 48 98 34 108 24 120 18 145 5 170 25 170 55 170 110 90 155 90 155Z');padding:30px 20px 20px}
+    .valentine-img{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.6);margin-top:4px}
+    .valentine-label{font-family:'Baloo 2',system-ui;font-weight:800;font-size:.85em;line-height:1.15;text-align:center;margin-top:2px;text-shadow:0 1px 3px rgba(0,0,0,.2)}
+    .valentine-sub{font-family:'Baloo 2',system-ui;font-weight:700;font-size:.65em;opacity:.9;text-align:center}
+    @keyframes valentinePulse{0%,100%{transform:scale(1);filter:drop-shadow(0 4px 14px rgba(233,30,99,.45))}50%{transform:scale(1.05);filter:drop-shadow(0 6px 20px rgba(233,30,99,.6))}}
+    @media(max-width:480px){.valentine-cta{width:150px;height:142px;clip-path:path('M75 130 C75 130 8 92 8 46 8 21 29 4 50 15 60 20 68 28 75 40 82 28 90 20 100 15 121 4 142 21 142 46 142 92 75 130 75 130Z');padding:24px 16px 16px}.valentine-img{width:48px;height:48px}.valentine-label{font-size:.75em}.valentine-sub{font-size:.58em}}
     </style>
 
     <div class="scroll-arrow" aria-hidden="true">▼</div>
