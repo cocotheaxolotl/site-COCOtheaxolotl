@@ -181,8 +181,8 @@
     var padding = 80;
     var availW = W - padding*2;
     var maxSize = Math.min(400, H-200);
-    var letterSize = Math.min(maxSize, Math.floor(availW / (chars.length * 0.78)));
-    var spacing = Math.round(letterSize * 0.78);
+    var letterSize = Math.min(maxSize, Math.floor(availW / (chars.length * 0.6)));
+    var spacing = Math.round(letterSize * 0.6);
     var y = Math.round((H - letterSize) / 2);
     var totalW = spacing * (chars.length - 1) + letterSize;
     var x = Math.round((W - totalW) / 2);
