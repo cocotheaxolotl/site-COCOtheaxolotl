@@ -653,12 +653,27 @@
     </div>
 
     <!-- Valentine's Day CTA -->
-    <a href="/valentine/" style="display:inline-block;background:linear-gradient(135deg,#e91e63,#ff4081);color:#fff;text-align:center;padding:14px 32px;text-decoration:none;font-family:'Baloo 2',system-ui;font-weight:800;font-size:1.2em;border-radius:40px;margin:12px auto 6px;position:relative;z-index:10;box-shadow:0 4px 20px rgba(233,30,99,.4);animation:valentinePulse 2s ease-in-out infinite;border:3px solid rgba(255,255,255,.4)">
-      <span data-lang="en">💝 Valentine's Day Coloring Pages — Free!</span>
-      <span data-lang="fr">💝 Coloriages Saint-Valentin — Gratuit !</span>
-      <span data-lang="es">💝 Dibujos San Valent&iacute;n — &iexcl;Gratis!</span>
+    <a href="/valentine/" class="valentine-cta">
+      <img src="/valentine/friends-colored.png" alt="Valentine coloring sample" class="valentine-img">
+      <span class="valentine-text">
+        <span data-lang="en">Valentine's Day<br>Coloring Pages</span>
+        <span data-lang="fr">Coloriages<br>Saint-Valentin</span>
+        <span data-lang="es">Dibujos de<br>San Valent&iacute;n</span>
+        <small>
+          <span data-lang="en">8 Free Printable Sheets!</span>
+          <span data-lang="fr">8 Pages Gratuites !</span>
+          <span data-lang="es">&iexcl;8 P&aacute;ginas Gratis!</span>
+        </small>
+      </span>
     </a>
-    <style>@keyframes valentinePulse{0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(233,30,99,.4)}50%{transform:scale(1.04);box-shadow:0 6px 28px rgba(233,30,99,.6)}}</style>
+    <style>
+    .valentine-cta{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,#e91e63,#ff4081);color:#fff;text-decoration:none;padding:10px 24px 10px 10px;border-radius:22px;margin:12px auto 6px;position:relative;z-index:10;box-shadow:0 4px 20px rgba(233,30,99,.4);animation:valentinePulse 2s ease-in-out infinite;border:3px solid rgba(255,255,255,.4)}
+    .valentine-img{width:80px;height:80px;border-radius:14px;object-fit:cover;border:2px solid rgba(255,255,255,.5)}
+    .valentine-text{font-family:'Baloo 2',system-ui;font-weight:800;font-size:1.1em;text-align:left;line-height:1.2}
+    .valentine-text small{display:block;font-size:.7em;opacity:.9;margin-top:2px;font-weight:600}
+    @keyframes valentinePulse{0%,100%{transform:scale(1);box-shadow:0 4px 20px rgba(233,30,99,.4)}50%{transform:scale(1.04);box-shadow:0 6px 28px rgba(233,30,99,.6)}}
+    @media(max-width:480px){.valentine-img{width:60px;height:60px}.valentine-text{font-size:.95em}}
+    </style>
 
     <div class="scroll-arrow" aria-hidden="true">▼</div>
   </header>
