@@ -185,10 +185,10 @@
     var letterSize = Math.min(maxSize, Math.floor(availW / (chars.length * 0.6)));
     var spacing = Math.round(letterSize * 0.6);
     var y = Math.round((H - letterSize) / 2);
-    var apoPull = Math.round(spacing * 0.3);
-    var apoAdv = Math.round(spacing * 0.35);
+    var apoSize = Math.round(letterSize * 0.35);
+    var apoW = Math.round(apoSize * 0.6);
     var apostrophes = chars.filter(function(c){ return c === "'"; }).length;
-    var totalW = spacing * (chars.length - 1) - apostrophes * (apoPull + spacing - apoAdv) + letterSize;
+    var totalW = spacing * (chars.length - 1 - apostrophes) + apoW * apostrophes + letterSize;
     var x = Math.round((W - totalW) / 2);
     var offC = document.createElement("canvas");
     offC.width = letterSize; offC.height = letterSize;
@@ -196,29 +196,43 @@
     chars.forEach(function(ch, idx){
       var img = letterImages[ch];
       if(img){
-        offCtx.clearRect(0, 0, letterSize, letterSize);
-        offCtx.drawImage(img, 0, 0, letterSize, letterSize);
-        try {
-          var imgData = offCtx.getImageData(0, 0, letterSize, letterSize);
-          var d = imgData.data;
-          for(var i = 0; i < d.length; i += 4){
-            var r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
-            // Remove white/near-white background
-            if(a < 15 || (r > 235 && g > 235 && b > 235)){ d[i+3] = 0; continue; }
-            // Shift purple to pink
-            d[i]   = Math.min(255, Math.round(r * 1.3 + 20));
-            d[i+1] = Math.round(g * 0.6);
-            d[i+2] = Math.round(b * 0.6);
-          }
-          offCtx.putImageData(imgData, 0, 0);
-        } catch(e){}
-        ctx.drawImage(offC, x, y);
+        if(ch === "'"){
+          offCtx.canvas.width = apoSize; offCtx.canvas.height = apoSize;
+          offCtx.clearRect(0, 0, apoSize, apoSize);
+          offCtx.drawImage(img, 0, 0, apoSize, apoSize);
+          try {
+            var imgData = offCtx.getImageData(0, 0, apoSize, apoSize);
+            var d = imgData.data;
+            for(var i = 0; i < d.length; i += 4){
+              var r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
+              if(a < 15 || (r > 235 && g > 235 && b > 235)){ d[i+3] = 0; continue; }
+              d[i]   = Math.min(255, Math.round(r * 1.3 + 20));
+              d[i+1] = Math.round(g * 0.6);
+              d[i+2] = Math.round(b * 0.6);
+            }
+            offCtx.putImageData(imgData, 0, 0);
+          } catch(e){}
+          ctx.drawImage(offCtx.canvas, x, y);
+          offCtx.canvas.width = letterSize; offCtx.canvas.height = letterSize;
+        } else {
+          offCtx.clearRect(0, 0, letterSize, letterSize);
+          offCtx.drawImage(img, 0, 0, letterSize, letterSize);
+          try {
+            var imgData = offCtx.getImageData(0, 0, letterSize, letterSize);
+            var d = imgData.data;
+            for(var i = 0; i < d.length; i += 4){
+              var r = d[i], g = d[i+1], b = d[i+2], a = d[i+3];
+              if(a < 15 || (r > 235 && g > 235 && b > 235)){ d[i+3] = 0; continue; }
+              d[i]   = Math.min(255, Math.round(r * 1.3 + 20));
+              d[i+1] = Math.round(g * 0.6);
+              d[i+2] = Math.round(b * 0.6);
+            }
+            offCtx.putImageData(imgData, 0, 0);
+          } catch(e){}
+          ctx.drawImage(offC, x, y);
+        }
       }
-      if(ch === "'"){
-        x += apoAdv;
-      } else {
-        x += (chars[idx + 1] === "'") ? spacing - apoPull : spacing;
-      }
+      x += (ch === "'") ? apoW : spacing;
     });
     // Footer
     ctx.textAlign = "center";
