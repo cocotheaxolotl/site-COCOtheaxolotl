@@ -112,7 +112,7 @@
 
   var charMap = {
     ' ': null, '!': 'exclamation', '?': 'interrogation',
-    '.': 'point', ',': 'virgule', '-': 'tiret'
+    '.': 'point', ',': 'virgule', '-': 'tiret', "'": 'apostrophe'
   };
   "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("").forEach(function(ch){
     charMap[ch] = ch;
@@ -135,7 +135,7 @@
     });
   }
 
-  function sanitizeName(s){ return (s||"").trim().toUpperCase().replace(/[^A-Z0-9 !?.,-]/g,"").slice(0,12); }
+  function sanitizeName(s){ return (s||"").trim().toUpperCase().replace(/[^A-Z0-9 !?.,' -]/g,"").slice(0,12); }
 
   function draw(name){
     var W = canvas.width, H = canvas.height;
