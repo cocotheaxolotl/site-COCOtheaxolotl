@@ -185,14 +185,15 @@
     var letterSize = Math.min(maxSize, Math.floor(availW / (chars.length * 0.6)));
     var spacing = Math.round(letterSize * 0.6);
     var y = Math.round((H - letterSize) / 2);
-    var apoSpacing = Math.round(spacing * 0.2);
+    var apoPull = Math.round(spacing * 0.3);
+    var apoAdv = Math.round(spacing * 0.35);
     var apostrophes = chars.filter(function(c){ return c === "'"; }).length;
-    var totalW = spacing * (chars.length - 1 - apostrophes) + apoSpacing * apostrophes + letterSize;
+    var totalW = spacing * (chars.length - 1) - apostrophes * (apoPull + spacing - apoAdv) + letterSize;
     var x = Math.round((W - totalW) / 2);
     var offC = document.createElement("canvas");
     offC.width = letterSize; offC.height = letterSize;
     var offCtx = offC.getContext("2d");
-    chars.forEach(function(ch){
+    chars.forEach(function(ch, idx){
       var img = letterImages[ch];
       if(img){
         offCtx.clearRect(0, 0, letterSize, letterSize);
@@ -213,7 +214,11 @@
         } catch(e){}
         ctx.drawImage(offC, x, y);
       }
-      x += (ch === "'") ? apoSpacing : spacing;
+      if(ch === "'"){
+        x += apoAdv;
+      } else {
+        x += (chars[idx + 1] === "'") ? spacing - apoPull : spacing;
+      }
     });
     // Footer
     ctx.textAlign = "center";
