@@ -38,7 +38,12 @@
   <url><loc>https://cocotheaxolotl.org/valentine/bouquet/</loc><priority>0.8</priority></url>
   <url><loc>https://cocotheaxolotl.org/valentine/cake/</loc><priority>0.8</priority></url>
   <url><loc>https://cocotheaxolotl.org/valentine-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/coloring/</loc><priority>0.7</priority></url>
+  <url><loc>https://cocotheaxolotl.org/about-coco/</loc><priority>0.5</priority></url>
+  <url><loc>https://cocotheaxolotl.org/balloon-name/</loc><priority>0.8</priority></url>
+  <url><loc>https://cocotheaxolotl.org/grass-name/</loc><priority>0.8</priority></url>
+  <url><loc>https://cocotheaxolotl.org/plank-name/</loc><priority>0.8</priority></url>
+  <url><loc>https://cocotheaxolotl.org/train-name/</loc><priority>0.8</priority></url>
+  <url><loc>https://cocotheaxolotl.org/toy-name/</loc><priority>0.8</priority></url>
   <url><loc>https://cocotheaxolotl.org/privacy-policy/</loc><priority>0.3</priority></url>
   <url><loc>https://cocotheaxolotl.org/legal-notice/</loc><priority>0.3</priority></url>
 </urlset>
