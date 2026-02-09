@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) - loads only after consent -->
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-QDW91N3TER');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coco's Shop – Stickers, T-Shirts, Mugs & More | Coco the Axolotl</title>
+<meta name="description" content="Shop Coco the Axolotl merchandise! Cute stickers, t-shirts, mugs, phone cases and more featuring Coco the adorable pink axolotl. Available on Redbubble.">
+
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ff69b4">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="robots" content="index, follow">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://cocotheaxolotl.org/shop/">
+<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/shop/">
+<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/shop/">
+<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/shop/">
+<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/shop/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Coco's Shop – Stickers, T-Shirts, Mugs & More">
+<meta property="og:description" content="Shop Coco the Axolotl merchandise! Cute stickers, t-shirts, mugs, phone cases and more.">
+<meta property="og:image" content="https://cocotheaxolotl.org/coco.png">
+<meta property="og:url" content="https://cocotheaxolotl.org/shop/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Coco the Axolotl">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Coco's Shop – Stickers, T-Shirts, Mugs & More">
+<meta name="twitter:description" content="Shop Coco the Axolotl merchandise on Redbubble!">
+<meta name="twitter:image" content="https://cocotheaxolotl.org/coco.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/common.css">
+<style>
+header{background:#f7c1cc;padding:28px 20px;text-align:center}
+h1{margin:0;font-size:2.2em;font-family:'Baloo 2',cursive;color:#d6006e}
+.subtitle{font-size:1.1em;margin-top:6px;color:#8b004a}
+main{max-width:800px;margin:0 auto;padding:36px 20px}
+
+.intro{text-align:center;font-size:1.05em;line-height:1.6;margin-bottom:28px}
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+  gap:16px;
+  margin-bottom:32px;
+}
+.shop-card{
+  display:flex;flex-direction:column;align-items:center;
+  text-decoration:none;color:#333;
+  background:#fff;
+  border:2px solid rgba(255,105,180,.3);
+  border-radius:18px;
+  padding:22px 14px 18px;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.shop-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,105,180,.18);
+  border-color:rgba(255,105,180,.6);
+}
+.shop-icon{font-size:2.4em;margin-bottom:8px}
+.shop-label{font-family:'Baloo 2',cursive;font-weight:800;font-size:1em;text-align:center}
+
+.cta-row{text-align:center;margin:32px 0}
+.button{
+  display:inline-block;
+  padding:14px 36px;
+  background:#ff69b4;color:#fff;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:1.15em;
+  border-radius:30px;text-decoration:none;
+  box-shadow:0 4px 16px rgba(255,105,180,.3);
+  transition:background .15s,transform .15s;
+}
+.button:hover{background:#e0559e;transform:translateY(-1px)}
+
+.back{display:block;text-align:center;margin-top:28px;color:#d6006e;font-weight:800;text-decoration:none}
+.back:hover{text-decoration:underline}
+
+/* Lang */
+[data-lang="fr"],[data-lang="es"]{display:none}
+span[data-lang="fr"],span[data-lang="es"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr span[data-lang="fr"]{display:inline}
+body.fr [data-lang="en"]{display:none}
+body.fr span[data-lang="en"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es span[data-lang="es"]{display:inline}
+body.es [data-lang="en"]{display:none}
+body.es span[data-lang="en"]{display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>
+    <span data-lang="en">Coco's Shop</span>
+    <span data-lang="fr">La Boutique de Coco</span>
+    <span data-lang="es">La Tienda de Coco</span>
+  </h1>
+  <p class="subtitle">
+    <span data-lang="en">Cute merch for axolotl fans!</span>
+    <span data-lang="fr">Des produits trop mignons pour les fans d'axolotl !</span>
+    <span data-lang="es">&iexcl;Productos adorables para fans del ajolote!</span>
+  </p>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+  </div>
+</header>
+
+<main>
+  <p class="intro">
+    <span data-lang="en">Stickers, t-shirts, mugs, phone cases and more &mdash; all featuring Coco the Axolotl! Available on Redbubble.</span>
+    <span data-lang="fr">Stickers, t-shirts, mugs, coques de t&eacute;l&eacute;phone et plus encore &mdash; tous avec Coco l'Axolotl ! Disponible sur Redbubble.</span>
+    <span data-lang="es">Stickers, camisetas, tazas, fundas de tel&eacute;fono y m&aacute;s &mdash; &iexcl;todo con Coco el Ajolote! Disponible en Redbubble.</span>
+  </p>
+
+  <!-- Redbubble portfolio embed -->
+  <div style="text-align:center;margin-bottom:32px">
+    <script type="text/javascript" src="https://www.redbubble.com/assets/external_portfolio.js"></script>
+    <script id="rb-xzfcxvzx" type="text/javascript">new RBExternalPortfolio('www.redbubble.com', 'cocotheaxolotl', 2, 2).renderIframe();</script>
+  </div>
+
+  <div class="shop-grid">
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-stickers" target="_blank" rel="noopener">
+      <span class="shop-icon">✨</span>
+      <span class="shop-label">Stickers</span>
+    </a>
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-clothing" target="_blank" rel="noopener">
+      <span class="shop-icon">👕</span>
+      <span class="shop-label">T-Shirts</span>
+    </a>
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-drinkware" target="_blank" rel="noopener">
+      <span class="shop-icon">☕</span>
+      <span class="shop-label"><span data-lang="en">Mugs</span><span data-lang="fr">Tasses</span><span data-lang="es">Tazas</span></span>
+    </a>
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-cases-skins" target="_blank" rel="noopener">
+      <span class="shop-icon">📱</span>
+      <span class="shop-label"><span data-lang="en">Phone Cases</span><span data-lang="fr">Coques</span><span data-lang="es">Fundas</span></span>
+    </a>
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-bags" target="_blank" rel="noopener">
+      <span class="shop-icon">👜</span>
+      <span class="shop-label"><span data-lang="en">Bags</span><span data-lang="fr">Sacs</span><span data-lang="es">Bolsas</span></span>
+    </a>
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-home-decor" target="_blank" rel="noopener">
+      <span class="shop-icon">🏠</span>
+      <span class="shop-label"><span data-lang="en">Home Decor</span><span data-lang="fr">D&eacute;co</span><span data-lang="es">Decoraci&oacute;n</span></span>
+    </a>
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-notebooks" target="_blank" rel="noopener">
+      <span class="shop-icon">📓</span>
+      <span class="shop-label"><span data-lang="en">Notebooks</span><span data-lang="fr">Cahiers</span><span data-lang="es">Cuadernos</span></span>
+    </a>
+    <a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-kids-clothes" target="_blank" rel="noopener">
+      <span class="shop-icon">👶</span>
+      <span class="shop-label"><span data-lang="en">Kids</span><span data-lang="fr">Enfants</span><span data-lang="es">Ni&ntilde;os</span></span>
+    </a>
+  </div>
+
+  <div class="cta-row">
+    <a class="button" href="https://www.redbubble.com/people/cocotheaxolotl" target="_blank" rel="noopener">
+      <span data-lang="en">See All Products</span>
+      <span data-lang="fr">Voir Tous les Produits</span>
+      <span data-lang="es">Ver Todos los Productos</span>
+    </a>
+  </div>
+
+  <a class="back" href="/">
+    <span data-lang="en">&larr; Back to Home</span>
+    <span data-lang="fr">&larr; Retour &agrave; l'accueil</span>
+    <span data-lang="es">&larr; Volver al inicio</span>
+  </a>
+</main>
+
+<script>
+function setLang(lang){
+  document.body.className = (lang==='fr') ? 'fr' : (lang==='es') ? 'es' : '';
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active', b.textContent===lang.toUpperCase());
+  });
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>
