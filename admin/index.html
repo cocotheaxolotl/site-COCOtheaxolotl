@@ -49,7 +49,7 @@ button[type=submit]:disabled{background:#ccc;cursor:not-allowed}
 <input type="password" id="secret" required placeholder="Newsletter secret">
 
 <label for="title">Titre</label>
-<input type="text" id="title" required placeholder="Ex: Cloud Name Generator" value="Valentine's Day Coloring &amp; Letters">
+<input type="text" id="title" required placeholder="Ex: Cloud Name Generator" value="Coloriages &amp; Lettres de Saint-Valentin">
 
 <div class="row">
 <div>
@@ -64,7 +64,7 @@ button[type=submit]:disabled{background:#ccc;cursor:not-allowed}
 </div>
 
 <label for="description">Description</label>
-<textarea id="description" required placeholder="Ex: Type your name in fluffy cloud letters!"><img src="https://cocotheaxolotl.org/coco-valentine.png" width="220" style="display:block;margin:0 auto 16px;border-radius:14px" alt="Coco holding a heart"><br>Celebrate Valentine's Day with Coco!<br><br><strong>🖍️ 8 Free Coloring Pages</strong><br>Hearts, flowers, puppy love, friends & more — print and color!<br><br><strong>💌 Valentine Letters</strong><br>Type your name in pink balloon letters and download it!<br><br><a href="https://cocotheaxolotl.org/valentine-name/" style="display:inline-block;padding:12px 28px;background:#e91e63;color:#fff;text-decoration:none;border-radius:25px;font-weight:800;font-size:15px;margin-top:8px">✨ Try Valentine Letters</a></textarea>
+<textarea id="description" required placeholder="Ex: Type your name in fluffy cloud letters!"><img src="https://cocotheaxolotl.org/coco-valentine.png" width="220" style="display:block;margin:0 auto 16px;border-radius:14px" alt="Coco avec un coeur"><br>F&ecirc;te la Saint-Valentin avec Coco !<br><br><strong>🖍️ 8 Coloriages Gratuits</strong><br>Coeurs, fleurs, amiti&eacute;, animaux et plus &mdash; imprime et colorie !<br><br><strong>💌 Lettres Valentine</strong><br>&Eacute;cris ton pr&eacute;nom en lettres ballons roses et t&eacute;l&eacute;charge-le !<br><br><a href="https://cocotheaxolotl.org/valentine-name/" style="display:inline-block;padding:12px 28px;background:#e91e63;color:#fff;text-decoration:none;border-radius:25px;font-weight:800;font-size:15px;margin-top:8px">✨ Essayer les Lettres Valentine</a></textarea>
 
 <label>Couleur du header</label>
 <div class="colors">
@@ -113,7 +113,8 @@ function updatePreview() {
   if (t || d) {
     preview.style.display = 'block';
     document.getElementById('previewSubject').textContent = (e ? e + ' ' : '') + 'New on Coco the Axolotl: ' + (t || '...') + '!';
-    document.getElementById('previewDesc').innerHTML = d || '...';
+    var sanitized = (d || '...').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\bon\w+\s*=/gi, 'data-removed=');
+    document.getElementById('previewDesc').innerHTML = sanitized;
   } else {
     preview.style.display = 'none';
   }
