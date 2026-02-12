@@ -9,8 +9,12 @@ body{
   color:#333;
 }
 
+/* ===== Home link ===== */
+.home-link{display:inline-block;color:#fff;text-decoration:none;font-weight:700;font-size:.9em;opacity:.85;transition:opacity .2s}
+.home-link:hover{opacity:1;text-decoration:underline}
+
 /* ===== Page header ===== */
-header{background:#f7c1cc;padding:32px 20px 20px;text-align:center}
+header{background:#f7c1cc;padding:12px 20px 20px;text-align:center}
 header h1{margin:0;font-size:2.2em;font-weight:800}
 header p{margin:8px 0 0;font-size:1.05em;opacity:.85}
 
