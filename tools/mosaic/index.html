@@ -405,14 +405,21 @@ function applyPromo() {
   if (!code) return;
   promoCode = code;
   localStorage.setItem('mosaic_promo', code);
-  status.textContent = 'Code applied! Unlimited generations enabled.';
+  document.getElementById('promoInput').value = '';
+  document.getElementById('promoInput').placeholder = '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022';
+  document.getElementById('promoInput').disabled = true;
+  status.textContent = '\u2705 Unlimited access activated!';
   status.style.color = '#059669';
   quotaCount.textContent = '\u221e';
 }
 if (promoCode) {
-  var pi = document.getElementById('promoInput');
-  if (pi) pi.value = promoCode;
-  quotaCount.textContent = '\u221e';
+  setTimeout(function() {
+    var pi = document.getElementById('promoInput');
+    if (pi) { pi.value = ''; pi.placeholder = '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022'; pi.disabled = true; }
+    var ps = document.getElementById('promoStatus');
+    if (ps) { ps.textContent = '\u2705 Unlimited access activated!'; ps.style.color = '#059669'; }
+    quotaCount.textContent = '\u221e';
+  }, 0);
 }
 
 /* ── Presets ── */
