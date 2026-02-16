@@ -238,14 +238,14 @@ footer a:hover{text-decoration:underline}
       <p class="result-info" id="resultInfo"></p>
     </div>
     <p class="quota-bar">Free credits remaining: <strong id="quotaCount">...</strong> / 3</p>
-    <details style="margin:12px 0 0;font-size:.82em;color:#6b7280">
-      <summary style="cursor:pointer">Have a promo code?</summary>
-      <div style="margin:8px 0;display:flex;gap:8px">
-        <input type="text" id="promoInput" placeholder="Enter code" style="flex:1;padding:7px 10px;border:2px solid #e5e7eb;border-radius:8px;font-family:'Inter',sans-serif;font-size:.92em">
-        <button onclick="applyPromo()" style="padding:7px 16px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85em">Apply</button>
+    <div style="margin:18px 0 0;background:linear-gradient(135deg,#f3e8ff,#ede9fe);border:2px solid #c4b5fd;border-radius:12px;padding:16px 18px;text-align:center">
+      <p style="margin:0 0 8px;font-weight:800;font-size:.95em;color:#5b21b6">🔑 Have a promo code? Unlock unlimited access</p>
+      <div style="display:flex;gap:8px;max-width:360px;margin:0 auto">
+        <input type="text" id="promoInput" placeholder="Enter your code" style="flex:1;padding:9px 12px;border:2px solid #c4b5fd;border-radius:8px;font-family:'Inter',sans-serif;font-size:.92em;text-align:center;font-weight:600;letter-spacing:.05em">
+        <button onclick="applyPromo()" style="padding:9px 20px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.9em;white-space:nowrap;transition:all .15s" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">Apply</button>
       </div>
-      <p id="promoStatus" style="margin:4px 0 0;font-size:.9em"></p>
-    </details>
+      <p id="promoStatus" style="margin:6px 0 0;font-size:.82em;color:#6b7280"></p>
+    </div>
   </div>
 </section>
 
