@@ -80,12 +80,19 @@ section h2{font-size:1.7em;font-weight:800;text-align:center;margin:0 0 10px;col
 .progress.active{display:block}
 .spinner{display:inline-block;width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#7c3aed;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.result{display:none;background:#ecfdf5;border:2px solid #10b981;border-radius:14px;padding:22px;text-align:center;margin:18px 0 0}
+.result{display:none;background:#f8fafc;border:2px solid #e5e7eb;border-radius:18px;padding:24px;margin:18px 0 0}
 .result.active{display:block}
-.result h3{color:#059669;margin:0 0 10px;font-size:1.05em}
-.dl-btn{display:inline-block;padding:11px 26px;background:#059669;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:.95em;transition:all .15s}
-.dl-btn:hover{background:#047857}
-.result-info{font-size:.82em;opacity:.45;margin:8px 0 0}
+.result h3{color:#059669;margin:0 0 16px;font-size:1.1em;text-align:center}
+.result-preview{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 16px}
+.result-preview .preview-card{border-radius:12px;overflow:hidden;border:2px solid #e5e7eb;background:#fff;text-align:center}
+.result-preview .preview-card img{width:100%;display:block}
+.result-preview .preview-card .label{padding:6px;font-size:.75em;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#6b7280}
+.result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.dl-btn{display:inline-block;padding:12px 28px;background:#059669;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:.95em;transition:all .15s}
+.dl-btn:hover{background:#047857;transform:translateY(-1px)}
+.dl-btn.secondary{background:#7c3aed}
+.dl-btn.secondary:hover{background:#6d28d9}
+.result-info{font-size:.82em;opacity:.45;margin:10px 0 0;text-align:center}
 .quota-bar{text-align:center;font-size:.82em;color:#6b7280;margin:14px 0 0}
 .quota-bar strong{color:#7c3aed}
 
@@ -234,7 +241,19 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="result" id="result">
       <h3>Your mosaic is ready!</h3>
-      <a class="dl-btn" id="dlLink" href="#" download>Download ZIP</a>
+      <div class="result-preview" id="resultPreview">
+        <div class="preview-card">
+          <img id="previewOriginal" src="" alt="Your original image">
+          <div class="label">Your image</div>
+        </div>
+        <div class="preview-card">
+          <img id="previewAnswer" src="" alt="Mosaic result">
+          <div class="label">Mosaic answer key</div>
+        </div>
+      </div>
+      <div class="result-actions">
+        <a class="dl-btn" id="dlLink" href="#" download>Download Full Pack (ZIP)</a>
+      </div>
       <p class="result-info" id="resultInfo"></p>
     </div>
     <p class="quota-bar">Free credits remaining: <strong id="quotaCount">...</strong> / 3</p>
@@ -503,40 +522,70 @@ fetch(API + '/api/stats').then(function(r){ return r.json(); }).then(function(d)
 }).catch(function(){ totalCounter.textContent = '0'; });
 
 /* ── Generate ── */
+function _buildFormData(outputType) {
+  var fd = new FormData();
+  var isBulk = selectedFiles.length > 1;
+  if (isBulk) {
+    selectedFiles.forEach(function(f){ fd.append('images', f); });
+  } else {
+    fd.append('image', selectedFiles[0]);
+    fd.append('output', outputType);
+  }
+  if (activePreset) fd.append('preset', activePreset);
+  fd.append('colors', colorsRange.value);
+  fd.append('cell_size', cellRange.value);
+  fd.append('page', pageSelect.value);
+  if (promoCode) fd.append('promo_code', promoCode);
+  return { fd: fd, isBulk: isBulk };
+}
+
 async function doGenerate() {
   if (!selectedFiles.length) return;
   genBtn.disabled = true;
   progress.classList.add('active');
   resultDiv.classList.remove('active');
   try {
-    var fd = new FormData();
     var isBulk = selectedFiles.length > 1;
-    if (isBulk) {
-      selectedFiles.forEach(function(f){ fd.append('images', f); });
-    } else {
-      fd.append('image', selectedFiles[0]);
-      fd.append('output', 'zip');
-    }
-    if (activePreset) fd.append('preset', activePreset);
-    fd.append('colors', colorsRange.value);
-    fd.append('cell_size', cellRange.value);
-    fd.append('page', pageSelect.value);
-    if (promoCode) fd.append('promo_code', promoCode);
 
-    var resp = await fetch((isBulk ? API+'/api/bulk' : API+'/api/generate'), {method:'POST', body:fd});
-    if (!resp.ok) {
-      var err = await resp.json();
-      throw new Error(err.detail?.message || err.detail || 'Generation failed');
+    if (isBulk) {
+      // Bulk: just get zip
+      var b = _buildFormData('zip');
+      var resp = await fetch(API+'/api/bulk', {method:'POST', body:b.fd});
+      if (!resp.ok) { var err = await resp.json(); throw new Error(err.detail?.message || err.detail || 'Generation failed'); }
+      var blob = await resp.blob();
+      dlLink.href = URL.createObjectURL(blob);
+      dlLink.download = 'mystery-mosaics-bulk.zip';
+      resultInfo.textContent = selectedFiles.length + ' mosaics generated (mystery + answer + legend each)';
+      document.getElementById('resultPreview').style.display = 'none';
+    } else {
+      // Single: get answer preview + zip in parallel (dedup quota in API)
+      var origUrl = URL.createObjectURL(selectedFiles[0]);
+      document.getElementById('previewOriginal').src = origUrl;
+
+      var fdAnswer = _buildFormData('answer');
+      var fdZip = _buildFormData('zip');
+
+      var [answerResp, zipResp] = await Promise.all([
+        fetch(API+'/api/generate', {method:'POST', body:fdAnswer.fd}),
+        fetch(API+'/api/generate', {method:'POST', body:fdZip.fd})
+      ]);
+
+      if (!answerResp.ok) { var err = await answerResp.json(); throw new Error(err.detail?.message || err.detail || 'Generation failed'); }
+
+      var answerBlob = await answerResp.blob();
+      document.getElementById('previewAnswer').src = URL.createObjectURL(answerBlob);
+      document.getElementById('resultPreview').style.display = 'grid';
+
+      var zipBlob = await zipResp.blob();
+      dlLink.href = URL.createObjectURL(zipBlob);
+      dlLink.download = selectedFiles[0].name.replace(/\.[^.]+$/, '') + '-mosaic.zip';
+      resultInfo.textContent = 'ZIP includes: mystery page, answer key, and color legend — all at 300 DPI';
     }
-    var blob = await resp.blob();
-    dlLink.href = URL.createObjectURL(blob);
-    dlLink.download = isBulk ? 'mystery-mosaics-bulk.zip' : selectedFiles[0].name.replace(/\.[^.]+$/, '') + '-mosaic.zip';
-    resultInfo.textContent = isBulk
-      ? selectedFiles.length + ' mosaics generated (mystery + answer + legend each)'
-      : 'Mystery page, answer key, and color legend included';
+
     resultDiv.classList.add('active');
+    resultDiv.scrollIntoView({behavior:'smooth', block:'center'});
     // Refresh quota + stats
-    fetch(API+'/api/quota').then(function(r){return r.json()}).then(function(d){quotaCount.textContent=d.remaining});
+    fetch(API+'/api/quota').then(function(r){return r.json()}).then(function(d){quotaCount.textContent=promoCode?'\u221e':d.remaining});
     fetch(API+'/api/stats').then(function(r){return r.json()}).then(function(d){totalCounter.textContent=(d.total_generated||0).toLocaleString('en-US')});
   } catch(e) {
     alert(e.message);
