@@ -570,18 +570,18 @@ async function doGenerate() {
       var origUrl = URL.createObjectURL(selectedFiles[0]);
       document.getElementById('previewOriginal').src = origUrl;
 
-      var fdAnswer = _buildFormData('answer');
+      var fdBeauty = _buildFormData('beauty');
       var fdZip = _buildFormData('zip');
 
-      var [answerResp, zipResp] = await Promise.all([
-        fetch(API+'/api/generate', {method:'POST', body:fdAnswer.fd}),
+      var [beautyResp, zipResp] = await Promise.all([
+        fetch(API+'/api/generate', {method:'POST', body:fdBeauty.fd}),
         fetch(API+'/api/generate', {method:'POST', body:fdZip.fd})
       ]);
 
-      if (!answerResp.ok) { var err = await answerResp.json(); throw new Error(err.detail?.message || err.detail || 'Generation failed'); }
+      if (!beautyResp.ok) { var err = await beautyResp.json(); throw new Error(err.detail?.message || err.detail || 'Generation failed'); }
 
-      var answerBlob = await answerResp.blob();
-      document.getElementById('previewAnswer').src = URL.createObjectURL(answerBlob);
+      var beautyBlob = await beautyResp.blob();
+      document.getElementById('previewAnswer').src = URL.createObjectURL(beautyBlob);
       document.getElementById('resultSlider').style.display = 'block';
 
       var zipBlob = await zipResp.blob();
