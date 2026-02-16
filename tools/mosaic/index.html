@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mystery Mosaic Generator — Printable Color by Number from Any Image</title>
+<meta name="description" content="Create printable mystery mosaic color-by-number pages from any image. 300 DPI, KDP presets, bulk generation. Works with photos, illustrations, and AI images. Try 3 free!">
+<link rel="canonical" href="https://cocotheaxolotl.org/tools/mosaic/">
+<meta property="og:title" content="Mystery Mosaic Generator — Printable Color by Number">
+<meta property="og:description" content="Create printable mystery mosaic color-by-number pages from any image. 300 DPI, KDP presets, bulk generation.">
+<meta property="og:url" content="https://cocotheaxolotl.org/tools/mosaic/">
+<meta property="og:type" content="website">
+<link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:'Inter',sans-serif;background:#fafafa;color:#1a1a2e}
+
+/* ── Hero with integrated slider ── */
+.hero{background:linear-gradient(135deg,#1a1a2e 0%,#2d1b69 50%,#4a1a8a 100%);color:#fff;padding:48px 20px 56px;text-align:center}
+.hero h1{font-size:2.5em;font-weight:800;margin:0 0 10px;letter-spacing:-.02em}
+.hero h1 span{background:linear-gradient(90deg,#a78bfa,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .subtitle{font-size:1.1em;opacity:.75;max-width:520px;margin:0 auto 24px;line-height:1.5}
+
+/* Slider inside hero */
+.hero-slider{max-width:420px;margin:0 auto 20px}
+.compare-slider{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.3);cursor:col-resize;-webkit-user-select:none;user-select:none;touch-action:none}
+.compare-slider img{display:block;width:100%;height:auto;pointer-events:none}
+.compare-overlay{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden}
+.compare-overlay img{position:absolute;top:0;left:0;width:var(--slider-w);height:auto}
+.compare-handle{position:absolute;top:0;left:50%;width:3px;height:100%;background:#fff;transform:translateX(-50%);z-index:10;box-shadow:0 0 8px rgba(0,0,0,.4)}
+.compare-handle::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;width:36px;height:36px;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,.3);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M6 10l4-4m-4 4l4 4m4-8l-4 4 4 4' stroke='%237c3aed' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.compare-label{position:absolute;bottom:10px;background:rgba(0,0,0,.6);color:#fff;padding:3px 10px;border-radius:12px;font-size:.75em;font-weight:700;z-index:5;pointer-events:none;backdrop-filter:blur(4px)}
+.compare-label.left{left:10px}
+.compare-label.right{right:10px}
+.slider-hint{font-size:.8em;opacity:.45;margin:8px 0 0;font-style:italic}
+
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0 24px}
+.btn-primary{padding:14px 32px;background:#7c3aed;color:#fff;border:none;border-radius:12px;font-size:1.1em;font-weight:700;cursor:pointer;transition:all .15s;text-decoration:none}
+.btn-primary:hover{background:#6d28d9;transform:translateY(-1px)}
+.btn-secondary{padding:14px 32px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3);border-radius:12px;font-size:1.05em;font-weight:600;cursor:pointer;transition:all .15s;text-decoration:none}
+.btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.trust-badges{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;font-size:.85em;opacity:.6}
+.trust-badges span::before{content:'✓ ';color:#a78bfa}
+
+/* ── Sections ── */
+section{max-width:900px;margin:0 auto;padding:48px 20px}
+section h2{font-size:1.7em;font-weight:800;text-align:center;margin:0 0 10px;color:#1a1a2e}
+.section-sub{text-align:center;opacity:.55;margin:0 0 32px;font-size:1em}
+
+/* ── How it works ── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:700px;margin:0 auto}
+.step{text-align:center;padding:20px 12px}
+.step-num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#7c3aed;color:#fff;font-size:1.2em;font-weight:800;margin:0 0 12px}
+.step h3{margin:0 0 6px;font-size:1em}
+.step p{font-size:.85em;opacity:.55;line-height:1.5}
+
+/* ── Generator tool ── */
+.tool{background:#fff;border:2px solid #e5e7eb;border-radius:20px;padding:28px;margin:0 auto;max-width:700px}
+.upload-zone{border:2px dashed #d1d5db;border-radius:14px;padding:36px 20px;text-align:center;cursor:pointer;transition:all .2s;background:#fafafa}
+.upload-zone:hover,.upload-zone.dragover{background:#f3e8ff;border-color:#7c3aed}
+.upload-zone.has-file{border-style:solid;background:#ecfdf5;border-color:#10b981}
+.upload-icon{font-size:2.2em;margin:0 0 4px}
+.upload-zone p{margin:2px 0;font-size:.92em}
+.upload-zone .filename{font-weight:700;color:#7c3aed}
+.preview-row{display:flex;gap:10px;align-items:flex-start;margin:14px 0;flex-wrap:wrap}
+.preview-img{max-width:100px;max-height:100px;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.field label{display:block;font-weight:700;margin:0 0 5px;font-size:.8em;text-transform:uppercase;letter-spacing:.04em;color:#6b7280}
+.field select,.field input[type=range]{width:100%;font-family:'Inter',sans-serif;font-size:.92em;padding:7px 10px;border:2px solid #e5e7eb;border-radius:8px;background:#fff}
+.range-val{font-weight:800;color:#7c3aed}
+.presets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:16px 0 0}
+.preset-btn{padding:9px 6px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700;font-size:.78em;text-align:center;transition:all .12s}
+.preset-btn:hover{border-color:#7c3aed;background:#f3e8ff}
+.preset-btn.active{border-color:#7c3aed;background:#7c3aed;color:#fff}
+.gen-btn{display:block;width:100%;padding:15px;background:#7c3aed;color:#fff;border:none;border-radius:12px;font-family:'Inter',sans-serif;font-size:1.1em;font-weight:800;cursor:pointer;transition:all .15s;margin:18px 0 0}
+.gen-btn:hover{background:#6d28d9;transform:translateY(-1px)}
+.gen-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.progress{display:none;text-align:center;margin:18px 0}
+.progress.active{display:block}
+.spinner{display:inline-block;width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#7c3aed;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.result{display:none;background:#ecfdf5;border:2px solid #10b981;border-radius:14px;padding:22px;text-align:center;margin:18px 0 0}
+.result.active{display:block}
+.result h3{color:#059669;margin:0 0 10px;font-size:1.05em}
+.dl-btn{display:inline-block;padding:11px 26px;background:#059669;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:.95em;transition:all .15s}
+.dl-btn:hover{background:#047857}
+.result-info{font-size:.82em;opacity:.45;margin:8px 0 0}
+.quota-bar{text-align:center;font-size:.82em;color:#6b7280;margin:14px 0 0}
+.quota-bar strong{color:#7c3aed}
+
+/* ── Features ── */
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:700px;margin:0 auto}
+.feature{background:#fff;border-radius:14px;padding:22px;border:1px solid #e5e7eb}
+.feature h3{font-size:.95em;margin:0 0 5px}
+.feature p{font-size:.85em;opacity:.55;line-height:1.5}
+
+/* ── Social proof counter ── */
+.social-proof{text-align:center;padding:32px 20px;font-size:1em;color:#6b7280}
+.counter{font-size:2.4em;font-weight:800;color:#7c3aed;display:block;margin:0 0 4px}
+
+/* ── Pricing (2 plans) ── */
+.pricing{background:#fff;padding:48px 20px}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:600px;margin:0 auto}
+.plan{border:2px solid #e5e7eb;border-radius:16px;padding:28px 22px;text-align:center}
+.plan.popular{border-color:#7c3aed;box-shadow:0 4px 24px rgba(124,58,237,.12);position:relative}
+.plan.popular::before{content:'Recommended';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#7c3aed;color:#fff;padding:3px 14px;border-radius:20px;font-size:.72em;font-weight:700;white-space:nowrap}
+.plan h3{font-size:1.1em;margin:0 0 4px}
+.plan .price{font-size:2.2em;font-weight:800;color:#7c3aed;margin:8px 0}
+.plan .price small{font-size:.38em;font-weight:600;color:#6b7280}
+.plan ul{list-style:none;padding:0;margin:14px 0;text-align:left;font-size:.86em}
+.plan ul li{padding:4px 0;color:#374151}
+.plan ul li::before{content:'✓ ';color:#7c3aed;font-weight:700}
+.plan-btn{display:block;width:100%;padding:12px;border:2px solid #7c3aed;border-radius:10px;background:transparent;color:#7c3aed;font-weight:700;font-size:.92em;cursor:pointer;transition:all .15s;text-decoration:none;text-align:center;margin:14px 0 0}
+.plan-btn:hover,.plan.popular .plan-btn{background:#7c3aed;color:#fff}
+.plan.popular .plan-btn:hover{background:#6d28d9}
+
+/* ── SEO content ── */
+.seo{max-width:700px;margin:0 auto;padding:0 20px}
+.seo h2{font-size:1.4em;font-weight:800;margin:36px 0 12px;color:#1a1a2e}
+.seo h3{font-size:1.1em;font-weight:700;margin:20px 0 8px;color:#374151}
+.seo p{font-size:.92em;line-height:1.7;opacity:.7;margin:0 0 12px}
+.faq dt{font-weight:700;font-size:.95em;margin:16px 0 4px;color:#1a1a2e}
+.faq dd{font-size:.9em;line-height:1.6;opacity:.65;margin:0 0 0 0}
+
+/* ── Footer ── */
+footer{padding:28px 20px;text-align:center;font-size:.8em;color:#9ca3af;border-top:1px solid #e5e7eb;margin:40px 0 0}
+footer a{color:#7c3aed;text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media(max-width:700px){
+  .hero h1{font-size:1.7em}
+  .hero-slider{max-width:90%}
+  .steps{grid-template-columns:1fr;gap:8px}
+  .settings-grid{grid-template-columns:1fr}
+  .features-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr;max-width:320px}
+  .trust-badges{flex-direction:column;gap:6px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO + SLIDER (above the fold) ═══ -->
+<div class="hero">
+  <h1>Mystery Mosaic <span>Generator</span></h1>
+  <p class="subtitle">Professional printable mosaic generator — works with any image</p>
+
+  <div class="hero-slider">
+    <div class="compare-slider" id="compareSlider">
+      <img src="/mosaic-examples/hero-mosaic.png" alt="Mosaic result — hexagonal color by number">
+      <div class="compare-overlay" id="compareOverlay">
+        <img src="/mosaic-examples/hero-original.png" alt="Original illustration">
+      </div>
+      <div class="compare-handle" id="compareHandle"></div>
+      <span class="compare-label left">Original</span>
+      <span class="compare-label right">Mosaic</span>
+    </div>
+    <p class="slider-hint">Drag to compare</p>
+  </div>
+
+  <div class="hero-actions">
+    <a class="btn-primary" href="#generator">Upload Image</a>
+    <a class="btn-secondary" href="#pricing">Try Free — 3 downloads</a>
+  </div>
+
+  <div class="trust-badges">
+    <span>300 DPI print-ready</span>
+    <span>A4 &amp; US Letter</span>
+    <span>Bulk generation</span>
+    <span>Commercial use OK</span>
+  </div>
+</div>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section>
+  <h2>How It Works</h2>
+  <p class="section-sub">Three steps to a printable mosaic</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Upload Image</h3>
+      <p>Any photo, illustration, or AI-generated image</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Choose Preset</h3>
+      <p>KDP-ready, kid-friendly, or detailed adult</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Download &amp; Print</h3>
+      <p>Mystery page + answer key + legend at 300 DPI</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GENERATOR TOOL ═══ -->
+<section id="generator">
+  <h2>Create Your Mosaic</h2>
+  <p class="section-sub">Upload an image to get started</p>
+
+  <div class="tool">
+    <div class="upload-zone" id="uploadZone">
+      <div class="upload-icon">📁</div>
+      <p><strong>Drag &amp; drop</strong> an image here</p>
+      <p style="opacity:.45;font-size:.82em">or click to browse — PNG, JPG, WebP (max 10 MB)</p>
+      <p class="filename" id="fileName" style="display:none"></p>
+      <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" multiple hidden>
+    </div>
+    <div class="preview-row" id="previewRow" style="display:none"></div>
+    <div class="presets-grid" id="presetsGrid"></div>
+    <div class="settings-grid">
+      <div class="field">
+        <label>Page format</label>
+        <select id="pageSelect">
+          <option value="letter">US Letter (8.5 x 11")</option>
+          <option value="a4">A4 (210 x 297 mm)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Colors: <span class="range-val" id="colorsVal">12</span></label>
+        <input type="range" id="colorsRange" min="4" max="20" value="12">
+      </div>
+      <div class="field">
+        <label>Detail: <span class="range-val" id="cellVal">25</span>px</label>
+        <input type="range" id="cellRange" min="12" max="50" value="25">
+      </div>
+    </div>
+    <button class="gen-btn" id="genBtn" disabled onclick="doGenerate()">Generate Mystery Mosaic</button>
+    <div class="progress" id="progress">
+      <div class="spinner"></div>
+      <p style="margin:10px 0 0;font-size:.85em;opacity:.5">Generating... this may take a few seconds</p>
+    </div>
+    <div class="result" id="result">
+      <h3>Your mosaic is ready!</h3>
+      <a class="dl-btn" id="dlLink" href="#" download>Download ZIP</a>
+      <p class="result-info" id="resultInfo"></p>
+    </div>
+    <p class="quota-bar">Free credits remaining: <strong id="quotaCount">...</strong> / 3</p>
+  </div>
+</section>
+
+<!-- ═══ PRO FEATURES ═══ -->
+<section>
+  <h2>Pro Features</h2>
+  <p class="section-sub">Everything you need for production</p>
+  <div class="features-grid">
+    <div class="feature">
+      <h3>📦 Bulk Processing</h3>
+      <p>Upload up to 50 images at once. Get a single ZIP with all mosaics, answer keys, and legends.</p>
+    </div>
+    <div class="feature">
+      <h3>📘 KDP Print Presets</h3>
+      <p>One-click presets for KDP 8.5x11, A4, kids-friendly, and detailed adult mosaics.</p>
+    </div>
+    <div class="feature">
+      <h3>🎨 Palette Control</h3>
+      <p>4 to 20 colors. Easy palettes for young kids, detailed palettes for complex scenes.</p>
+    </div>
+    <div class="feature">
+      <h3>🖨️ 300 DPI Output</h3>
+      <p>Print-ready files for KDP, classrooms, and retail. Letter and A4 formats included.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY HEXAGONAL ═══ -->
+<section style="background:#fff;padding:40px 20px">
+  <h2>Why Hexagonal Mosaics?</h2>
+  <p class="section-sub">Not just another pixel grid</p>
+  <div class="features-grid">
+    <div class="feature">
+      <h3>Better curves</h3>
+      <p>Hexagons share 6 edges vs. 4 for squares. Curves, faces, and organic shapes render much more naturally — no jagged staircase effect.</p>
+    </div>
+    <div class="feature">
+      <h3>Harder to guess</h3>
+      <p>Square grids let you see the image too easily. Hexagonal grids break patterns and keep the mystery until the last cell is colored.</p>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.88em;opacity:.45;margin:16px 0 0">Used by KDP creators producing activity books on Amazon</p>
+</section>
+
+<!-- ═══ SOCIAL PROOF (real counter) ═══ -->
+<div class="social-proof">
+  <span class="counter" id="totalCounter">—</span>
+  mosaics generated and counting
+  <br><small style="opacity:.5;font-size:.8em">Real-time counter based on actual generations</small>
+</div>
+
+<!-- ═══ PRICING (2 plans) ═══ -->
+<section class="pricing" id="pricing">
+  <h2>Simple Pricing</h2>
+  <p class="section-sub">Start free. Upgrade when you need more.</p>
+  <div class="pricing-grid">
+    <div class="plan">
+      <h3>Free</h3>
+      <div class="price">$0</div>
+      <ul>
+        <li>3 downloads / month</li>
+        <li>All presets included</li>
+        <li>300 DPI output</li>
+        <li>Personal use</li>
+      </ul>
+      <a class="plan-btn" href="#generator">Get Started</a>
+    </div>
+    <div class="plan popular">
+      <h3>Pro</h3>
+      <div class="price">$9.99<small>/mo</small></div>
+      <ul>
+        <li>Up to 300 downloads / month</li>
+        <li>Bulk (50 images per batch)</li>
+        <li>All presets included</li>
+        <li>Commercial use license</li>
+        <li>Priority processing</li>
+      </ul>
+      <a class="plan-btn" href="#generator">Start Free Trial</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SEO CONTENT ═══ -->
+<section class="seo">
+  <h2>What Is a Mystery Mosaic?</h2>
+  <p>A <strong>mystery mosaic</strong> is a color-by-number activity where the image is completely hidden. Instead of visible outlines, the picture is divided into thousands of tiny hexagonal cells, each containing a number. Only when you color every hexagon with the right color does the secret image appear.</p>
+  <p>Our generator transforms any image — photos, illustrations, AI art — into a printable mystery mosaic page at <strong>300 DPI</strong>. Each mosaic comes with a numbered mystery page, a colored answer key, and a color legend. Ready to print on US Letter or A4 paper.</p>
+
+  <h3>Perfect for KDP Creators</h3>
+  <p>If you publish activity books on Amazon KDP, our <strong>mystery mosaic generator</strong> saves hours of manual work. Upload your illustrations, choose a KDP preset (8.5×11" or A4), and download print-ready files. Use bulk mode to process an entire book in one click. All output is licensed for commercial use on paid plans.</p>
+
+  <h3>Great for Teachers &amp; Parents</h3>
+  <p>Mystery mosaics are a hit in classrooms and at home. Kids develop patience, color recognition, and fine motor skills while uncovering hidden images. Choose the "Kids Easy" preset (8 colors, large hexagons) for ages 4–6, or "Kids Detail" (12 colors) for ages 7–10.</p>
+
+  <h2>Frequently Asked Questions</h2>
+  <dl class="faq">
+    <dt>What image formats are supported?</dt>
+    <dd>PNG, JPG, and WebP. Images up to 10 MB. Any resolution — the generator handles upscaling automatically.</dd>
+
+    <dt>What do I get in the download?</dt>
+    <dd>A ZIP file containing: the mystery page (numbered hexagons, black and white), the answer key (colored hexagons), and a color legend. All at 300 DPI.</dd>
+
+    <dt>Can I use the mosaics commercially?</dt>
+    <dd>Free plan is for personal use only. Pro plan includes a commercial license — you can sell the mosaics in books, on Etsy, on Amazon KDP, etc.</dd>
+
+    <dt>How many colors can I choose?</dt>
+    <dd>Between 4 and 20 colors. Fewer colors = easier for young kids. More colors = more detail for older kids and adults.</dd>
+
+    <dt>Does it work with AI-generated images?</dt>
+    <dd>Yes! The generator works with any image. AI illustrations from Midjourney, DALL-E, or Stable Diffusion work great — especially images with clear colors and distinct shapes.</dd>
+
+    <dt>What is bulk mode?</dt>
+    <dd>Pro users can upload up to 50 images at once and receive a single ZIP with all mosaics. Perfect for creating entire activity books quickly.</dd>
+  </dl>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  Works with any image — fully customizable, no templates required.<br>
+  <a href="/mosaic-examples/">Free examples</a> · <a href="/">cocotheaxolotl.org</a> · &copy; 2026
+</footer>
+
+<script src="config.js?v=1"></script>
+<script>
+var API = (function() {
+  if (window.API_BASE_URL) return window.API_BASE_URL;
+  return window.location.hostname === 'localhost'
+    ? 'http://localhost:8000'
+    : 'https://mosaic-api.onrender.com';
+})();
+
+var zone = document.getElementById('uploadZone');
+var fileInput = document.getElementById('fileInput');
+var genBtn = document.getElementById('genBtn');
+var presetsGrid = document.getElementById('presetsGrid');
+var colorsRange = document.getElementById('colorsRange');
+var cellRange = document.getElementById('cellRange');
+var colorsVal = document.getElementById('colorsVal');
+var cellVal = document.getElementById('cellVal');
+var pageSelect = document.getElementById('pageSelect');
+var previewRow = document.getElementById('previewRow');
+var progress = document.getElementById('progress');
+var resultDiv = document.getElementById('result');
+var dlLink = document.getElementById('dlLink');
+var resultInfo = document.getElementById('resultInfo');
+var quotaCount = document.getElementById('quotaCount');
+var totalCounter = document.getElementById('totalCounter');
+
+var selectedFiles = [];
+var activePreset = null;
+
+/* ── Presets ── */
+var presets = [
+  {key:'kdp-letter', label:'KDP Letter',  colors:12, cell:25, page:'letter'},
+  {key:'kdp-a4',     label:'KDP A4',      colors:12, cell:25, page:'a4'},
+  {key:'kids-easy',  label:'Kids Easy',   colors:8,  cell:35, page:'letter'},
+  {key:'kids-detail',label:'Kids Detail', colors:12, cell:25, page:'letter'},
+  {key:'adult-fine', label:'Adult Fine',  colors:16, cell:18, page:'letter'},
+];
+presets.forEach(function(p) {
+  var btn = document.createElement('button');
+  btn.className = 'preset-btn';
+  btn.textContent = p.label;
+  btn.onclick = function() {
+    document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    activePreset = p.key;
+    colorsRange.value = p.colors; colorsVal.textContent = p.colors;
+    cellRange.value = p.cell; cellVal.textContent = p.cell;
+    pageSelect.value = p.page;
+  };
+  presetsGrid.appendChild(btn);
+});
+
+/* ── Sliders ── */
+colorsRange.oninput = function() {
+  colorsVal.textContent = this.value; activePreset = null;
+  document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
+};
+cellRange.oninput = function() {
+  cellVal.textContent = this.value; activePreset = null;
+  document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
+};
+
+/* ── Upload ── */
+zone.addEventListener('click', function(){ fileInput.click(); });
+zone.addEventListener('dragover', function(e){ e.preventDefault(); zone.classList.add('dragover'); });
+zone.addEventListener('dragleave', function(){ zone.classList.remove('dragover'); });
+zone.addEventListener('drop', function(e){
+  e.preventDefault(); zone.classList.remove('dragover');
+  handleFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', function(){ handleFiles(this.files); });
+
+function handleFiles(files) {
+  selectedFiles = Array.from(files).filter(function(f){
+    return ['image/png','image/jpeg','image/webp'].indexOf(f.type) >= 0;
+  }).slice(0, 50);
+  if (!selectedFiles.length) return;
+  zone.classList.add('has-file');
+  var el = document.getElementById('fileName');
+  el.style.display = 'block';
+  el.textContent = selectedFiles.length === 1 ? selectedFiles[0].name : selectedFiles.length + ' images selected';
+  previewRow.innerHTML = '';
+  previewRow.style.display = 'flex';
+  selectedFiles.slice(0, 4).forEach(function(f) {
+    var img = document.createElement('img');
+    img.className = 'preview-img';
+    img.src = URL.createObjectURL(f);
+    previewRow.appendChild(img);
+  });
+  if (selectedFiles.length > 4) {
+    var s = document.createElement('span');
+    s.textContent = '+' + (selectedFiles.length - 4) + ' more';
+    s.style.cssText = 'align-self:center;font-weight:700;opacity:.45;font-size:.85em';
+    previewRow.appendChild(s);
+  }
+  genBtn.disabled = false;
+  resultDiv.classList.remove('active');
+}
+
+/* ── Quota + Stats ── */
+fetch(API + '/api/quota').then(function(r){ return r.json(); }).then(function(d){
+  quotaCount.textContent = d.remaining;
+}).catch(function(){ quotaCount.textContent = '?'; });
+
+fetch(API + '/api/stats').then(function(r){ return r.json(); }).then(function(d){
+  var n = d.total_generated || 0;
+  totalCounter.textContent = n.toLocaleString('en-US');
+}).catch(function(){ totalCounter.textContent = '0'; });
+
+/* ── Generate ── */
+async function doGenerate() {
+  if (!selectedFiles.length) return;
+  genBtn.disabled = true;
+  progress.classList.add('active');
+  resultDiv.classList.remove('active');
+  try {
+    var fd = new FormData();
+    var isBulk = selectedFiles.length > 1;
+    if (isBulk) {
+      selectedFiles.forEach(function(f){ fd.append('images', f); });
+    } else {
+      fd.append('image', selectedFiles[0]);
+      fd.append('output', 'zip');
+    }
+    if (activePreset) fd.append('preset', activePreset);
+    fd.append('colors', colorsRange.value);
+    fd.append('cell_size', cellRange.value);
+    fd.append('page', pageSelect.value);
+
+    var resp = await fetch((isBulk ? API+'/api/bulk' : API+'/api/generate'), {method:'POST', body:fd});
+    if (!resp.ok) {
+      var err = await resp.json();
+      throw new Error(err.detail?.message || err.detail || 'Generation failed');
+    }
+    var blob = await resp.blob();
+    dlLink.href = URL.createObjectURL(blob);
+    dlLink.download = isBulk ? 'mystery-mosaics-bulk.zip' : selectedFiles[0].name.replace(/\.[^.]+$/, '') + '-mosaic.zip';
+    resultInfo.textContent = isBulk
+      ? selectedFiles.length + ' mosaics generated (mystery + answer + legend each)'
+      : 'Mystery page, answer key, and color legend included';
+    resultDiv.classList.add('active');
+    // Refresh quota + stats
+    fetch(API+'/api/quota').then(function(r){return r.json()}).then(function(d){quotaCount.textContent=d.remaining});
+    fetch(API+'/api/stats').then(function(r){return r.json()}).then(function(d){totalCounter.textContent=(d.total_generated||0).toLocaleString('en-US')});
+  } catch(e) {
+    alert(e.message);
+  } finally {
+    progress.classList.remove('active');
+    genBtn.disabled = false;
+  }
+}
+
+/* ── Compare slider ── */
+(function(){
+  var slider=document.getElementById('compareSlider'),overlay=document.getElementById('compareOverlay'),handle=document.getElementById('compareHandle');
+  if(!slider)return;
+  function setW(){overlay.style.setProperty('--slider-w',slider.offsetWidth+'px')}
+  setW();window.addEventListener('resize',setW);
+  var d=false;
+  function mv(x){var r=slider.getBoundingClientRect(),p=Math.max(0,Math.min(1,(x-r.left)/r.width));overlay.style.width=(p*100)+'%';handle.style.left=(p*100)+'%'}
+  slider.addEventListener('mousedown',function(e){d=true;mv(e.clientX);e.preventDefault()});
+  window.addEventListener('mousemove',function(e){if(d)mv(e.clientX)});
+  window.addEventListener('mouseup',function(){d=false});
+  slider.addEventListener('touchstart',function(e){d=true;mv(e.touches[0].clientX);e.preventDefault()},{passive:false});
+  window.addEventListener('touchmove',function(e){if(d)mv(e.touches[0].clientX)});
+  window.addEventListener('touchend',function(){d=false});
+})();
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
+  });
+});
+</script>
+</body>
+</html>

@@ -1,4 +1,8 @@
 {
+  "redirects": [
+    { "source": "/mosaic", "destination": "/tools/mosaic/", "statusCode": 301 },
+    { "source": "/mosaic/", "destination": "/tools/mosaic/", "statusCode": 301 }
+  ],
   "headers": [
     {
       "source": "/(.*)",
