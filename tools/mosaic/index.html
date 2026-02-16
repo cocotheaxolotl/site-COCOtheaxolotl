@@ -69,6 +69,18 @@ section h2{font-size:1.7em;font-weight:800;text-align:center;margin:0 0 10px;col
 .field label{display:block;font-weight:700;margin:0 0 5px;font-size:.8em;text-transform:uppercase;letter-spacing:.04em;color:#6b7280}
 .field select,.field input[type=range]{width:100%;font-family:'Inter',sans-serif;font-size:.92em;padding:7px 10px;border:2px solid #e5e7eb;border-radius:8px;background:#fff}
 .range-val{font-weight:800;color:#7c3aed}
+.mode-toggle{display:flex;gap:0;margin:18px 0 10px;border:2px solid #e5e7eb;border-radius:12px;overflow:hidden;max-width:360px;margin-left:auto;margin-right:auto}
+.mode-btn{flex:1;padding:10px 6px;border:none;background:#fff;font-family:'Inter',sans-serif;font-weight:700;font-size:.85em;cursor:pointer;transition:all .15s;color:#6b7280;text-align:center}
+.mode-btn:hover{background:#f3e8ff;color:#7c3aed}
+.mode-btn.active{background:#7c3aed;color:#fff}
+.mode-btn small{display:block;font-weight:400;font-size:.8em;opacity:.7;margin-top:2px}
+.density-field{display:none}
+.density-field.active{display:block}
+.density-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:6px 0 0}
+.density-btn{padding:8px 4px;border:2px solid #e5e7eb;border-radius:8px;background:#fff;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700;font-size:.76em;text-align:center;transition:all .12s}
+.density-btn:hover{border-color:#7c3aed;background:#f3e8ff}
+.density-btn.active{border-color:#7c3aed;background:#7c3aed;color:#fff}
+.density-btn small{display:block;font-weight:400;font-size:.85em;opacity:.7}
 .presets-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:16px 0 0}
 .preset-btn{padding:9px 6px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;font-family:'Inter',sans-serif;font-weight:700;font-size:.78em;text-align:center;transition:all .12s}
 .preset-btn:hover{border-color:#7c3aed;background:#f3e8ff}
@@ -222,6 +234,13 @@ footer a:hover{text-decoration:underline}
       <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" multiple hidden>
     </div>
     <div class="preview-row" id="previewRow" style="display:none"></div>
+
+    <!-- Mode toggle -->
+    <div class="mode-toggle" id="modeToggle">
+      <button class="mode-btn active" data-mode="hex" onclick="setMode('hex')">Hexagonal Grid<small>Classic mosaic</small></button>
+      <button class="mode-btn" data-mode="voronoi" onclick="setMode('voronoi')">Organic Mosaic<small>Voronoi cells — Pro</small></button>
+    </div>
+
     <div class="presets-grid" id="presetsGrid"></div>
     <div class="settings-grid">
       <div class="field">
@@ -235,9 +254,18 @@ footer a:hover{text-decoration:underline}
         <label>Colors: <span class="range-val" id="colorsVal">12</span></label>
         <input type="range" id="colorsRange" min="4" max="20" value="12">
       </div>
-      <div class="field">
+      <div class="field" id="cellField">
         <label>Detail: <span class="range-val" id="cellVal">25</span>px</label>
         <input type="range" id="cellRange" min="12" max="50" value="25">
+      </div>
+      <div class="field density-field" id="densityField">
+        <label>Cell density</label>
+        <div class="density-grid">
+          <button class="density-btn" data-density="easy" onclick="setDensity('easy',this)">Easy<small>~200</small></button>
+          <button class="density-btn active" data-density="standard" onclick="setDensity('standard',this)">Standard<small>~500</small></button>
+          <button class="density-btn" data-density="detailed" onclick="setDensity('detailed',this)">Detailed<small>~900</small></button>
+          <button class="density-btn" data-density="expert" onclick="setDensity('expert',this)">Expert<small>~1400</small></button>
+        </div>
       </div>
     </div>
     <button class="gen-btn" id="genBtn" disabled onclick="doGenerate()">Generate Mystery Mosaic</button>
@@ -300,18 +328,18 @@ footer a:hover{text-decoration:underline}
   </div>
 </section>
 
-<!-- ═══ WHY HEXAGONAL ═══ -->
+<!-- ═══ TWO MOSAIC STYLES ═══ -->
 <section style="background:#fff;padding:40px 20px">
-  <h2>Why Hexagonal Mosaics?</h2>
-  <p class="section-sub">Not just another pixel grid</p>
+  <h2>Two Mosaic Styles</h2>
+  <p class="section-sub">Classic hexagonal grid or unique organic Voronoi</p>
   <div class="features-grid">
     <div class="feature">
-      <h3>Better curves</h3>
-      <p>Hexagons share 6 edges vs. 4 for squares. Curves, faces, and organic shapes render much more naturally — no jagged staircase effect.</p>
+      <h3>Hexagonal Grid</h3>
+      <p>Regular hexagons with 6 edges render curves naturally — no jagged staircase effect. The standard for KDP mystery mosaics. Consistent, predictable, easy to color.</p>
     </div>
     <div class="feature">
-      <h3>Harder to guess</h3>
-      <p>Square grids let you see the image too easily. Hexagonal grids break patterns and keep the mystery until the last cell is colored.</p>
+      <h3>Organic Mosaic (Voronoi)</h3>
+      <p>Irregular cells like stained glass or real mosaic art. Each cell adapts to the image — larger in flat areas, smaller in details. A unique premium product for your books.</p>
     </div>
   </div>
   <p style="text-align:center;font-size:.88em;opacity:.45;margin:16px 0 0">Used by KDP creators producing activity books on Amazon</p>
@@ -358,8 +386,8 @@ footer a:hover{text-decoration:underline}
 <!-- ═══ SEO CONTENT ═══ -->
 <section class="seo">
   <h2>What Is a Mystery Mosaic?</h2>
-  <p>A <strong>mystery mosaic</strong> is a color-by-number activity where the image is completely hidden. Instead of visible outlines, the picture is divided into thousands of tiny hexagonal cells, each containing a number. Only when you color every hexagon with the right color does the secret image appear.</p>
-  <p>Our generator transforms any image — photos, illustrations, AI art — into a printable mystery mosaic page at <strong>300 DPI</strong>. Each mosaic comes with a numbered mystery page, a colored answer key, and a color legend. Ready to print on US Letter or A4 paper.</p>
+  <p>A <strong>mystery mosaic</strong> is a color-by-number activity where the image is completely hidden. Instead of visible outlines, the picture is divided into thousands of tiny cells — hexagonal or organic Voronoi shapes — each containing a number. Only when you color every cell with the right color does the secret image appear.</p>
+  <p>Our generator transforms any image — photos, illustrations, AI art — into a printable mystery mosaic page at <strong>300 DPI</strong>. Choose between classic hexagonal grids or our unique <strong>organic Voronoi mosaics</strong> that look like stained glass art. Each mosaic comes with a numbered mystery page, a colored answer key, and a color legend. Ready to print on US Letter or A4 paper.</p>
 
   <h3>Perfect for KDP Creators</h3>
   <p>If you publish activity books on Amazon KDP, our <strong>mystery mosaic generator</strong> saves hours of manual work. Upload your illustrations, choose a KDP preset (8.5×11" or A4), and download print-ready files. Use bulk mode to process an entire book in one click. All output is licensed for commercial use on paid plans.</p>
@@ -423,7 +451,29 @@ var totalCounter = document.getElementById('totalCounter');
 
 var selectedFiles = [];
 var activePreset = null;
+var currentMode = 'hex';
+var currentDensity = 'standard';
 var promoCode = localStorage.getItem('mosaic_promo') || '';
+
+/* ── Mode toggle ── */
+function setMode(mode) {
+  currentMode = mode;
+  activePreset = null;
+  document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.toggle('active', b.dataset.mode===mode)});
+  document.getElementById('cellField').style.display = mode==='hex' ? '' : 'none';
+  var df = document.getElementById('densityField');
+  df.classList.toggle('active', mode==='voronoi');
+  if (mode==='hex') df.classList.remove('active');
+  renderPresets();
+}
+
+function setDensity(d, btn) {
+  currentDensity = d;
+  activePreset = null;
+  document.querySelectorAll('.density-btn').forEach(function(b){b.classList.remove('active')});
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
+}
 
 /* ── Promo code ── */
 function applyPromo() {
@@ -449,28 +499,45 @@ if (promoCode) {
   }, 0);
 }
 
-/* ── Presets ── */
-var presets = [
+/* ── Presets (per mode) ── */
+var hexPresets = [
   {key:'kdp-letter', label:'KDP Letter',  colors:12, cell:25, page:'letter'},
   {key:'kdp-a4',     label:'KDP A4',      colors:12, cell:25, page:'a4'},
   {key:'kids-easy',  label:'Kids Easy',   colors:8,  cell:35, page:'letter'},
   {key:'kids-detail',label:'Kids Detail', colors:12, cell:25, page:'letter'},
   {key:'adult-fine', label:'Adult Fine',  colors:16, cell:18, page:'letter'},
 ];
-presets.forEach(function(p) {
-  var btn = document.createElement('button');
-  btn.className = 'preset-btn';
-  btn.textContent = p.label;
-  btn.onclick = function() {
-    document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
-    btn.classList.add('active');
-    activePreset = p.key;
-    colorsRange.value = p.colors; colorsVal.textContent = p.colors;
-    cellRange.value = p.cell; cellVal.textContent = p.cell;
-    pageSelect.value = p.page;
-  };
-  presetsGrid.appendChild(btn);
-});
+var voronoiPresets = [
+  {key:'voronoi-easy',     label:'Easy (~200)',     colors:10, density:'easy',     page:'letter'},
+  {key:'voronoi-standard', label:'Standard (~500)', colors:12, density:'standard', page:'letter'},
+  {key:'voronoi-detailed', label:'Detailed (~900)', colors:16, density:'detailed', page:'letter'},
+  {key:'voronoi-expert',   label:'Expert (~1400)',  colors:20, density:'expert',   page:'letter'},
+];
+
+function renderPresets() {
+  presetsGrid.innerHTML = '';
+  var list = currentMode === 'voronoi' ? voronoiPresets : hexPresets;
+  list.forEach(function(p) {
+    var btn = document.createElement('button');
+    btn.className = 'preset-btn';
+    btn.textContent = p.label;
+    btn.onclick = function() {
+      document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
+      btn.classList.add('active');
+      activePreset = p.key;
+      colorsRange.value = p.colors; colorsVal.textContent = p.colors;
+      pageSelect.value = p.page;
+      if (currentMode === 'hex') {
+        cellRange.value = p.cell; cellVal.textContent = p.cell;
+      } else {
+        currentDensity = p.density;
+        document.querySelectorAll('.density-btn').forEach(function(b){b.classList.toggle('active', b.dataset.density===p.density)});
+      }
+    };
+    presetsGrid.appendChild(btn);
+  });
+}
+renderPresets();
 
 /* ── Sliders ── */
 colorsRange.oninput = function() {
@@ -543,6 +610,8 @@ function _buildFormData(outputType) {
   fd.append('colors', colorsRange.value);
   fd.append('cell_size', cellRange.value);
   fd.append('page', pageSelect.value);
+  fd.append('mode', currentMode);
+  if (currentMode === 'voronoi') fd.append('density', currentDensity);
   if (promoCode) fd.append('promo_code', promoCode);
   return { fd: fd, isBulk: isBulk };
 }
@@ -564,7 +633,7 @@ async function doGenerate() {
       dlLink.href = URL.createObjectURL(blob);
       dlLink.download = 'mystery-mosaics-bulk.zip';
       resultInfo.textContent = selectedFiles.length + ' mosaics generated (mystery + answer + legend each)';
-      document.getElementById('resultPreview').style.display = 'none';
+      document.getElementById('resultSlider').style.display = 'none';
     } else {
       // Single: get answer preview + zip in parallel (dedup quota in API)
       var origUrl = URL.createObjectURL(selectedFiles[0]);
