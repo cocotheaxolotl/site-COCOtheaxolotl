@@ -83,10 +83,16 @@ section h2{font-size:1.7em;font-weight:800;text-align:center;margin:0 0 10px;col
 .result{display:none;background:#f8fafc;border:2px solid #e5e7eb;border-radius:18px;padding:24px;margin:18px 0 0}
 .result.active{display:block}
 .result h3{color:#059669;margin:0 0 16px;font-size:1.1em;text-align:center}
-.result-preview{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 16px}
-.result-preview .preview-card{border-radius:12px;overflow:hidden;border:2px solid #e5e7eb;background:#fff;text-align:center}
-.result-preview .preview-card img{width:100%;display:block}
-.result-preview .preview-card .label{padding:6px;font-size:.75em;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#6b7280}
+.result-slider{max-width:500px;margin:0 auto 18px}
+.result-slider .compare-slider{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1);cursor:col-resize;-webkit-user-select:none;user-select:none;touch-action:none;border:2px solid #e5e7eb}
+.result-slider .compare-slider img{display:block;width:100%;height:auto;pointer-events:none}
+.result-slider .compare-overlay{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden}
+.result-slider .compare-overlay img{position:absolute;top:0;left:0;width:var(--rslider-w);height:auto}
+.result-slider .compare-handle{position:absolute;top:0;left:50%;width:3px;height:100%;background:#7c3aed;transform:translateX(-50%);z-index:10;box-shadow:0 0 8px rgba(124,58,237,.3)}
+.result-slider .compare-handle::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;width:36px;height:36px;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,.2);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M6 10l4-4m-4 4l4 4m4-8l-4 4 4 4' stroke='%237c3aed' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.result-slider .compare-label{position:absolute;bottom:10px;background:rgba(0,0,0,.6);color:#fff;padding:3px 10px;border-radius:12px;font-size:.75em;font-weight:700;z-index:5;pointer-events:none;backdrop-filter:blur(4px)}
+.result-slider .compare-label.left{left:10px}
+.result-slider .compare-label.right{right:10px}
 .result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .dl-btn{display:inline-block;padding:12px 28px;background:#059669;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:.95em;transition:all .15s}
 .dl-btn:hover{background:#047857;transform:translateY(-1px)}
@@ -241,15 +247,17 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="result" id="result">
       <h3>Your mosaic is ready!</h3>
-      <div class="result-preview" id="resultPreview">
-        <div class="preview-card">
-          <img id="previewOriginal" src="" alt="Your original image">
-          <div class="label">Your image</div>
-        </div>
-        <div class="preview-card">
+      <div class="result-slider" id="resultSlider">
+        <div class="compare-slider" id="resultCompare">
           <img id="previewAnswer" src="" alt="Mosaic result">
-          <div class="label">Mosaic answer key</div>
+          <div class="compare-overlay" id="resultOverlay">
+            <img id="previewOriginal" src="" alt="Your original image">
+          </div>
+          <div class="compare-handle" id="resultHandle"></div>
+          <span class="compare-label left">Original</span>
+          <span class="compare-label right">Mosaic</span>
         </div>
+        <p style="text-align:center;font-size:.8em;opacity:.45;margin:8px 0 0;font-style:italic">Drag to compare</p>
       </div>
       <div class="result-actions">
         <a class="dl-btn" id="dlLink" href="#" download>Download Full Pack (ZIP)</a>
@@ -574,7 +582,7 @@ async function doGenerate() {
 
       var answerBlob = await answerResp.blob();
       document.getElementById('previewAnswer').src = URL.createObjectURL(answerBlob);
-      document.getElementById('resultPreview').style.display = 'grid';
+      document.getElementById('resultSlider').style.display = 'block';
 
       var zipBlob = await zipResp.blob();
       dlLink.href = URL.createObjectURL(zipBlob);
@@ -584,6 +592,8 @@ async function doGenerate() {
 
     resultDiv.classList.add('active');
     resultDiv.scrollIntoView({behavior:'smooth', block:'center'});
+    // Init result slider
+    initResultSlider();
     // Refresh quota + stats
     fetch(API+'/api/quota').then(function(r){return r.json()}).then(function(d){quotaCount.textContent=promoCode?'\u221e':d.remaining});
     fetch(API+'/api/stats').then(function(r){return r.json()}).then(function(d){totalCounter.textContent=(d.total_generated||0).toLocaleString('en-US')});
@@ -595,11 +605,11 @@ async function doGenerate() {
   }
 }
 
-/* ── Compare slider ── */
-(function(){
-  var slider=document.getElementById('compareSlider'),overlay=document.getElementById('compareOverlay'),handle=document.getElementById('compareHandle');
+/* ── Generic compare slider initializer ── */
+function _initSlider(sliderId, overlayId, handleId, cssVar) {
+  var slider=document.getElementById(sliderId),overlay=document.getElementById(overlayId),handle=document.getElementById(handleId);
   if(!slider)return;
-  function setW(){overlay.style.setProperty('--slider-w',slider.offsetWidth+'px')}
+  function setW(){overlay.style.setProperty(cssVar,slider.offsetWidth+'px')}
   setW();window.addEventListener('resize',setW);
   var d=false;
   function mv(x){var r=slider.getBoundingClientRect(),p=Math.max(0,Math.min(1,(x-r.left)/r.width));overlay.style.width=(p*100)+'%';handle.style.left=(p*100)+'%'}
@@ -609,7 +619,15 @@ async function doGenerate() {
   slider.addEventListener('touchstart',function(e){d=true;mv(e.touches[0].clientX);e.preventDefault()},{passive:false});
   window.addEventListener('touchmove',function(e){if(d)mv(e.touches[0].clientX)});
   window.addEventListener('touchend',function(){d=false});
-})();
+}
+
+/* ── Hero slider ── */
+_initSlider('compareSlider','compareOverlay','compareHandle','--slider-w');
+
+/* ── Result slider (called after generation) ── */
+function initResultSlider(){
+  _initSlider('resultCompare','resultOverlay','resultHandle','--rslider-w');
+}
 
 /* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
