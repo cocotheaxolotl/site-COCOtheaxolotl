@@ -238,6 +238,14 @@ footer a:hover{text-decoration:underline}
       <p class="result-info" id="resultInfo"></p>
     </div>
     <p class="quota-bar">Free credits remaining: <strong id="quotaCount">...</strong> / 3</p>
+    <details style="margin:12px 0 0;font-size:.82em;color:#6b7280">
+      <summary style="cursor:pointer">Have a promo code?</summary>
+      <div style="margin:8px 0;display:flex;gap:8px">
+        <input type="text" id="promoInput" placeholder="Enter code" style="flex:1;padding:7px 10px;border:2px solid #e5e7eb;border-radius:8px;font-family:'Inter',sans-serif;font-size:.92em">
+        <button onclick="applyPromo()" style="padding:7px 16px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.85em">Apply</button>
+      </div>
+      <p id="promoStatus" style="margin:4px 0 0;font-size:.9em"></p>
+    </details>
   </div>
 </section>
 
@@ -388,6 +396,24 @@ var totalCounter = document.getElementById('totalCounter');
 
 var selectedFiles = [];
 var activePreset = null;
+var promoCode = localStorage.getItem('mosaic_promo') || '';
+
+/* ── Promo code ── */
+function applyPromo() {
+  var code = document.getElementById('promoInput').value.trim();
+  var status = document.getElementById('promoStatus');
+  if (!code) return;
+  promoCode = code;
+  localStorage.setItem('mosaic_promo', code);
+  status.textContent = 'Code applied! Unlimited generations enabled.';
+  status.style.color = '#059669';
+  quotaCount.textContent = '\u221e';
+}
+if (promoCode) {
+  var pi = document.getElementById('promoInput');
+  if (pi) pi.value = promoCode;
+  quotaCount.textContent = '\u221e';
+}
 
 /* ── Presets ── */
 var presets = [
@@ -488,6 +514,7 @@ async function doGenerate() {
     fd.append('colors', colorsRange.value);
     fd.append('cell_size', cellRange.value);
     fd.append('page', pageSelect.value);
+    if (promoCode) fd.append('promo_code', promoCode);
 
     var resp = await fetch((isBulk ? API+'/api/bulk' : API+'/api/generate'), {method:'POST', body:fd});
     if (!resp.ok) {
