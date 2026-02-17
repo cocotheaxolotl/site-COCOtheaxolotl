@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mystery Mosaic Generator — Printable Color by Number from Any Image</title>
 <meta name="description" content="Create printable mystery mosaic color-by-number pages from any image. 300 DPI, KDP presets, bulk generation. Works with photos, illustrations, and AI images. Try 3 free!">
-<link rel="canonical" href="https://cocotheaxolotl.org/tools/mosaic/">
+<link rel="canonical" href="https://cocotheaxolotl.org/mosaic/">
 <meta property="og:title" content="Mystery Mosaic Generator — Printable Color by Number">
 <meta property="og:description" content="Create printable mystery mosaic color-by-number pages from any image. 300 DPI, KDP presets, bulk generation.">
-<meta property="og:url" content="https://cocotheaxolotl.org/tools/mosaic/">
+<meta property="og:url" content="https://cocotheaxolotl.org/mosaic/">
 <meta property="og:type" content="website">
 <link rel="icon" href="/favicon.ico?v=2" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -80,25 +80,12 @@ section h2{font-size:1.7em;font-weight:800;text-align:center;margin:0 0 10px;col
 .progress.active{display:block}
 .spinner{display:inline-block;width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#7c3aed;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.result{display:none;background:#f8fafc;border:2px solid #e5e7eb;border-radius:18px;padding:24px;margin:18px 0 0}
+.result{display:none;background:#ecfdf5;border:2px solid #10b981;border-radius:14px;padding:22px;text-align:center;margin:18px 0 0}
 .result.active{display:block}
-.result h3{color:#059669;margin:0 0 16px;font-size:1.1em;text-align:center}
-.result-slider{max-width:500px;margin:0 auto 18px}
-.result-slider .compare-slider{position:relative;border-radius:14px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1);cursor:col-resize;-webkit-user-select:none;user-select:none;touch-action:none;border:2px solid #e5e7eb}
-.result-slider .compare-slider img{display:block;width:100%;height:auto;pointer-events:none}
-.result-slider .compare-overlay{position:absolute;top:0;left:0;height:100%;width:50%;overflow:hidden}
-.result-slider .compare-overlay img{position:absolute;top:0;left:0;width:var(--rslider-w);height:auto}
-.result-slider .compare-handle{position:absolute;top:0;left:50%;width:3px;height:100%;background:#7c3aed;transform:translateX(-50%);z-index:10;box-shadow:0 0 8px rgba(124,58,237,.3)}
-.result-slider .compare-handle::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;width:36px;height:36px;border-radius:50%;box-shadow:0 2px 12px rgba(0,0,0,.2);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M6 10l4-4m-4 4l4 4m4-8l-4 4 4 4' stroke='%237c3aed' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
-.result-slider .compare-label{position:absolute;bottom:10px;background:rgba(0,0,0,.6);color:#fff;padding:3px 10px;border-radius:12px;font-size:.75em;font-weight:700;z-index:5;pointer-events:none;backdrop-filter:blur(4px)}
-.result-slider .compare-label.left{left:10px}
-.result-slider .compare-label.right{right:10px}
-.result-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.dl-btn{display:inline-block;padding:12px 28px;background:#059669;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:.95em;transition:all .15s}
-.dl-btn:hover{background:#047857;transform:translateY(-1px)}
-.dl-btn.secondary{background:#7c3aed}
-.dl-btn.secondary:hover{background:#6d28d9}
-.result-info{font-size:.82em;opacity:.45;margin:10px 0 0;text-align:center}
+.result h3{color:#059669;margin:0 0 10px;font-size:1.05em}
+.dl-btn{display:inline-block;padding:11px 26px;background:#059669;color:#fff;text-decoration:none;border-radius:10px;font-weight:700;font-size:.95em;transition:all .15s}
+.dl-btn:hover{background:#047857}
+.result-info{font-size:.82em;opacity:.45;margin:8px 0 0}
 .quota-bar{text-align:center;font-size:.82em;color:#6b7280;margin:14px 0 0}
 .quota-bar strong{color:#7c3aed}
 
@@ -222,7 +209,6 @@ footer a:hover{text-decoration:underline}
       <input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" multiple hidden>
     </div>
     <div class="preview-row" id="previewRow" style="display:none"></div>
-
     <div class="presets-grid" id="presetsGrid"></div>
     <div class="settings-grid">
       <div class="field">
@@ -236,7 +222,7 @@ footer a:hover{text-decoration:underline}
         <label>Colors: <span class="range-val" id="colorsVal">12</span></label>
         <input type="range" id="colorsRange" min="4" max="20" value="12">
       </div>
-      <div class="field" id="cellField">
+      <div class="field">
         <label>Detail: <span class="range-val" id="cellVal">25</span>px</label>
         <input type="range" id="cellRange" min="12" max="50" value="25">
       </div>
@@ -248,32 +234,10 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="result" id="result">
       <h3>Your mosaic is ready!</h3>
-      <div class="result-slider" id="resultSlider">
-        <div class="compare-slider" id="resultCompare">
-          <img id="previewAnswer" src="" alt="Mosaic result">
-          <div class="compare-overlay" id="resultOverlay">
-            <img id="previewOriginal" src="" alt="Your original image">
-          </div>
-          <div class="compare-handle" id="resultHandle"></div>
-          <span class="compare-label left">Original</span>
-          <span class="compare-label right">Mosaic</span>
-        </div>
-        <p style="text-align:center;font-size:.8em;opacity:.45;margin:8px 0 0;font-style:italic">Drag to compare</p>
-      </div>
-      <div class="result-actions">
-        <a class="dl-btn" id="dlLink" href="#" download>Download Full Pack (ZIP)</a>
-      </div>
+      <a class="dl-btn" id="dlLink" href="#" download>Download ZIP</a>
       <p class="result-info" id="resultInfo"></p>
     </div>
     <p class="quota-bar">Free credits remaining: <strong id="quotaCount">...</strong> / 3</p>
-    <div style="margin:18px 0 0;background:linear-gradient(135deg,#f3e8ff,#ede9fe);border:2px solid #c4b5fd;border-radius:12px;padding:16px 18px;text-align:center">
-      <p style="margin:0 0 8px;font-weight:800;font-size:.95em;color:#5b21b6">🔑 Have a promo code? Unlock unlimited access</p>
-      <div style="display:flex;gap:8px;max-width:360px;margin:0 auto">
-        <input type="text" id="promoInput" placeholder="Enter your code" style="flex:1;padding:9px 12px;border:2px solid #c4b5fd;border-radius:8px;font-family:'Inter',sans-serif;font-size:.92em;text-align:center;font-weight:600;letter-spacing:.05em">
-        <button onclick="applyPromo()" style="padding:9px 20px;background:#7c3aed;color:#fff;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:.9em;white-space:nowrap;transition:all .15s" onmouseover="this.style.background='#6d28d9'" onmouseout="this.style.background='#7c3aed'">Apply</button>
-      </div>
-      <p id="promoStatus" style="margin:6px 0 0;font-size:.82em;color:#6b7280"></p>
-    </div>
   </div>
 </section>
 
@@ -304,17 +268,18 @@ footer a:hover{text-decoration:underline}
 <!-- ═══ WHY HEXAGONAL ═══ -->
 <section style="background:#fff;padding:40px 20px">
   <h2>Why Hexagonal Mosaics?</h2>
-  <p class="section-sub">The best shape for mystery mosaics</p>
+  <p class="section-sub">Not just another pixel grid</p>
   <div class="features-grid">
     <div class="feature">
-      <h3>Natural Curves</h3>
-      <p>Hexagons with 6 edges render curves naturally — no jagged staircase effect like square grids. The result looks smooth and professional.</p>
+      <h3>Better curves</h3>
+      <p>Hexagons share 6 edges vs. 4 for squares. Curves, faces, and organic shapes render much more naturally — no jagged staircase effect.</p>
     </div>
     <div class="feature">
-      <h3>KDP Standard</h3>
-      <p>Hexagonal mosaics are the proven format for activity books on Amazon KDP. Consistent, predictable, and easy to color for all ages.</p>
+      <h3>Harder to guess</h3>
+      <p>Square grids let you see the image too easily. Hexagonal grids break patterns and keep the mystery until the last cell is colored.</p>
     </div>
   </div>
+  <p style="text-align:center;font-size:.88em;opacity:.45;margin:16px 0 0">Used by KDP creators producing activity books on Amazon</p>
 </section>
 
 <!-- ═══ SOCIAL PROOF (real counter) ═══ -->
@@ -358,7 +323,7 @@ footer a:hover{text-decoration:underline}
 <!-- ═══ SEO CONTENT ═══ -->
 <section class="seo">
   <h2>What Is a Mystery Mosaic?</h2>
-  <p>A <strong>mystery mosaic</strong> is a color-by-number activity where the image is completely hidden. Instead of visible outlines, the picture is divided into thousands of tiny hexagonal cells, each containing a number. Only when you color every cell with the right color does the secret image appear.</p>
+  <p>A <strong>mystery mosaic</strong> is a color-by-number activity where the image is completely hidden. Instead of visible outlines, the picture is divided into thousands of tiny hexagonal cells, each containing a number. Only when you color every hexagon with the right color does the secret image appear.</p>
   <p>Our generator transforms any image — photos, illustrations, AI art — into a printable mystery mosaic page at <strong>300 DPI</strong>. Each mosaic comes with a numbered mystery page, a colored answer key, and a color legend. Ready to print on US Letter or A4 paper.</p>
 
   <h3>Perfect for KDP Creators</h3>
@@ -392,17 +357,13 @@ footer a:hover{text-decoration:underline}
 <!-- ═══ FOOTER ═══ -->
 <footer>
   Works with any image — fully customizable, no templates required.<br>
-  <a href="/mosaic-examples/">Free examples</a> · <a href="/">cocotheaxolotl.org</a> · &copy; 2026
+  <a href="/mosaic-examples/">Free examples</a> · <a href="/">More free printables at Coco the Axolotl</a> · &copy; 2026
 </footer>
 
-<script src="config.js?v=1"></script>
 <script>
-var API = (function() {
-  if (window.API_BASE_URL) return window.API_BASE_URL;
-  return window.location.hostname === 'localhost'
-    ? 'http://localhost:8000'
-    : 'https://mosaic-api.fly.dev';
-})();
+var API = window.location.hostname === 'localhost'
+  ? 'http://localhost:8000'
+  : 'https://mosaic-api.fly.dev';
 
 var zone = document.getElementById('uploadZone');
 var fileInput = document.getElementById('fileInput');
@@ -423,31 +384,6 @@ var totalCounter = document.getElementById('totalCounter');
 
 var selectedFiles = [];
 var activePreset = null;
-var promoCode = localStorage.getItem('mosaic_promo') || '';
-
-/* ── Promo code ── */
-function applyPromo() {
-  var code = document.getElementById('promoInput').value.trim();
-  var status = document.getElementById('promoStatus');
-  if (!code) return;
-  promoCode = code;
-  localStorage.setItem('mosaic_promo', code);
-  document.getElementById('promoInput').value = '';
-  document.getElementById('promoInput').placeholder = '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022';
-  document.getElementById('promoInput').disabled = true;
-  status.textContent = '\u2705 Unlimited access activated!';
-  status.style.color = '#059669';
-  quotaCount.textContent = '\u221e';
-}
-if (promoCode) {
-  setTimeout(function() {
-    var pi = document.getElementById('promoInput');
-    if (pi) { pi.value = ''; pi.placeholder = '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022'; pi.disabled = true; }
-    var ps = document.getElementById('promoStatus');
-    if (ps) { ps.textContent = '\u2705 Unlimited access activated!'; ps.style.color = '#059669'; }
-    quotaCount.textContent = '\u221e';
-  }, 0);
-}
 
 /* ── Presets ── */
 var presets = [
@@ -457,25 +393,20 @@ var presets = [
   {key:'kids-detail',label:'Kids Detail', colors:12, cell:25, page:'letter'},
   {key:'adult-fine', label:'Adult Fine',  colors:16, cell:18, page:'letter'},
 ];
-
-function renderPresets() {
-  presetsGrid.innerHTML = '';
-  presets.forEach(function(p) {
-    var btn = document.createElement('button');
-    btn.className = 'preset-btn';
-    btn.textContent = p.label;
-    btn.onclick = function() {
-      document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
-      btn.classList.add('active');
-      activePreset = p.key;
-      colorsRange.value = p.colors; colorsVal.textContent = p.colors;
-      pageSelect.value = p.page;
-      cellRange.value = p.cell; cellVal.textContent = p.cell;
-    };
-    presetsGrid.appendChild(btn);
-  });
-}
-renderPresets();
+presets.forEach(function(p) {
+  var btn = document.createElement('button');
+  btn.className = 'preset-btn';
+  btn.textContent = p.label;
+  btn.onclick = function() {
+    document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    activePreset = p.key;
+    colorsRange.value = p.colors; colorsVal.textContent = p.colors;
+    cellRange.value = p.cell; cellVal.textContent = p.cell;
+    pageSelect.value = p.page;
+  };
+  presetsGrid.appendChild(btn);
+});
 
 /* ── Sliders ── */
 colorsRange.oninput = function() {
@@ -535,72 +466,39 @@ fetch(API + '/api/stats').then(function(r){ return r.json(); }).then(function(d)
 }).catch(function(){ totalCounter.textContent = '0'; });
 
 /* ── Generate ── */
-function _buildFormData(outputType) {
-  var fd = new FormData();
-  var isBulk = selectedFiles.length > 1;
-  if (isBulk) {
-    selectedFiles.forEach(function(f){ fd.append('images', f); });
-  } else {
-    fd.append('image', selectedFiles[0]);
-    fd.append('output', outputType);
-  }
-  if (activePreset) fd.append('preset', activePreset);
-  fd.append('colors', colorsRange.value);
-  fd.append('cell_size', cellRange.value);
-  fd.append('page', pageSelect.value);
-  if (promoCode) fd.append('promo_code', promoCode);
-  return { fd: fd, isBulk: isBulk };
-}
-
 async function doGenerate() {
   if (!selectedFiles.length) return;
   genBtn.disabled = true;
   progress.classList.add('active');
   resultDiv.classList.remove('active');
   try {
+    var fd = new FormData();
     var isBulk = selectedFiles.length > 1;
-
     if (isBulk) {
-      // Bulk: just get zip
-      var b = _buildFormData('zip');
-      var resp = await fetch(API+'/api/bulk', {method:'POST', body:b.fd});
-      if (!resp.ok) { var err = await resp.json(); throw new Error(err.detail?.message || err.detail || 'Generation failed'); }
-      var blob = await resp.blob();
-      dlLink.href = URL.createObjectURL(blob);
-      dlLink.download = 'mystery-mosaics-bulk.zip';
-      resultInfo.textContent = selectedFiles.length + ' mosaics generated (mystery + answer + legend each)';
-      document.getElementById('resultSlider').style.display = 'none';
+      selectedFiles.forEach(function(f){ fd.append('images', f); });
     } else {
-      // Single: get answer preview + zip in parallel (dedup quota in API)
-      var origUrl = URL.createObjectURL(selectedFiles[0]);
-      document.getElementById('previewOriginal').src = origUrl;
-
-      var fdBeauty = _buildFormData('beauty');
-      var fdZip = _buildFormData('zip');
-
-      var [beautyResp, zipResp] = await Promise.all([
-        fetch(API+'/api/generate', {method:'POST', body:fdBeauty.fd}),
-        fetch(API+'/api/generate', {method:'POST', body:fdZip.fd})
-      ]);
-
-      if (!beautyResp.ok) { var err = await beautyResp.json(); throw new Error(err.detail?.message || err.detail || 'Generation failed'); }
-
-      var beautyBlob = await beautyResp.blob();
-      document.getElementById('previewAnswer').src = URL.createObjectURL(beautyBlob);
-      document.getElementById('resultSlider').style.display = 'block';
-
-      var zipBlob = await zipResp.blob();
-      dlLink.href = URL.createObjectURL(zipBlob);
-      dlLink.download = selectedFiles[0].name.replace(/\.[^.]+$/, '') + '-mosaic.zip';
-      resultInfo.textContent = 'ZIP includes: mystery page, answer key, and color legend — all at 300 DPI';
+      fd.append('image', selectedFiles[0]);
+      fd.append('output', 'zip');
     }
+    if (activePreset) fd.append('preset', activePreset);
+    fd.append('colors', colorsRange.value);
+    fd.append('cell_size', cellRange.value);
+    fd.append('page', pageSelect.value);
 
+    var resp = await fetch((isBulk ? API+'/api/bulk' : API+'/api/generate'), {method:'POST', body:fd});
+    if (!resp.ok) {
+      var err = await resp.json();
+      throw new Error(err.detail?.message || err.detail || 'Generation failed');
+    }
+    var blob = await resp.blob();
+    dlLink.href = URL.createObjectURL(blob);
+    dlLink.download = isBulk ? 'mystery-mosaics-bulk.zip' : selectedFiles[0].name.replace(/\.[^.]+$/, '') + '-mosaic.zip';
+    resultInfo.textContent = isBulk
+      ? selectedFiles.length + ' mosaics generated (mystery + answer + legend each)'
+      : 'Mystery page, answer key, and color legend included';
     resultDiv.classList.add('active');
-    resultDiv.scrollIntoView({behavior:'smooth', block:'center'});
-    // Init result slider
-    initResultSlider();
     // Refresh quota + stats
-    fetch(API+'/api/quota').then(function(r){return r.json()}).then(function(d){quotaCount.textContent=promoCode?'\u221e':d.remaining});
+    fetch(API+'/api/quota').then(function(r){return r.json()}).then(function(d){quotaCount.textContent=d.remaining});
     fetch(API+'/api/stats').then(function(r){return r.json()}).then(function(d){totalCounter.textContent=(d.total_generated||0).toLocaleString('en-US')});
   } catch(e) {
     alert(e.message);
@@ -610,11 +508,11 @@ async function doGenerate() {
   }
 }
 
-/* ── Generic compare slider initializer ── */
-function _initSlider(sliderId, overlayId, handleId, cssVar) {
-  var slider=document.getElementById(sliderId),overlay=document.getElementById(overlayId),handle=document.getElementById(handleId);
+/* ── Compare slider ── */
+(function(){
+  var slider=document.getElementById('compareSlider'),overlay=document.getElementById('compareOverlay'),handle=document.getElementById('compareHandle');
   if(!slider)return;
-  function setW(){overlay.style.setProperty(cssVar,slider.offsetWidth+'px')}
+  function setW(){overlay.style.setProperty('--slider-w',slider.offsetWidth+'px')}
   setW();window.addEventListener('resize',setW);
   var d=false;
   function mv(x){var r=slider.getBoundingClientRect(),p=Math.max(0,Math.min(1,(x-r.left)/r.width));overlay.style.width=(p*100)+'%';handle.style.left=(p*100)+'%'}
@@ -624,15 +522,7 @@ function _initSlider(sliderId, overlayId, handleId, cssVar) {
   slider.addEventListener('touchstart',function(e){d=true;mv(e.touches[0].clientX);e.preventDefault()},{passive:false});
   window.addEventListener('touchmove',function(e){if(d)mv(e.touches[0].clientX)});
   window.addEventListener('touchend',function(){d=false});
-}
-
-/* ── Hero slider ── */
-_initSlider('compareSlider','compareOverlay','compareHandle','--slider-w');
-
-/* ── Result slider (called after generation) ── */
-function initResultSlider(){
-  _initSlider('resultCompare','resultOverlay','resultHandle','--rslider-w');
-}
+})();
 
 /* ── Smooth scroll ── */
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
