@@ -1,50 +1,348 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://cocotheaxolotl.org/</loc><priority>1.0</priority></url>
-  <url><loc>https://cocotheaxolotl.org/coloring-books/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/kids-games/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/learn-about-axolotls/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/bubble-lab/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/</loc><priority>0.9</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/bear-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/cat-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/dinosaur-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/dog-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/dolphin-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/dragon-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/turtle-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/freebies/unicorn-coloring-page/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/what-is-an-axolotl/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/why-are-axolotls-endangered/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/calm-activities-for-kids/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/axolotl-coloring-pages-for-kids/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/fun-facts/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/coloring-tips-for-kids/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/best-coloring-supplies-for-kids/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/benefits-of-coloring-for-children/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/bubble-letters-alphabet/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/bubble-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/cloud-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/best-coloring-activities-for-toddlers/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/blog/how-to-teach-colors-to-preschoolers/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/</loc><priority>0.9</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/coco-heart/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/dog-heart/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/heart-letter/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/heart-balloons/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/friends/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/you-are-loved/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/bouquet/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine/cake/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/valentine-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/about-coco/</loc><priority>0.5</priority></url>
-  <url><loc>https://cocotheaxolotl.org/balloon-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/grass-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/plank-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/train-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/toy-name/</loc><priority>0.8</priority></url>
-  <url><loc>https://cocotheaxolotl.org/shop/</loc><priority>0.7</priority></url>
-  <url><loc>https://cocotheaxolotl.org/privacy-policy/</loc><priority>0.3</priority></url>
-  <url><loc>https://cocotheaxolotl.org/legal-notice/</loc><priority>0.3</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://cocotheaxolotl.org/about-coco/</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/about-coco/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/about-coco/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/about-coco/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/about-coco/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/balloon-name/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/balloon-name/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/balloon-name/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/balloon-name/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/axolotl-coloring-pages-for-kids/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/axolotl-coloring-pages-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/axolotl-coloring-pages-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/axolotl-coloring-pages-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/axolotl-coloring-pages-for-kids/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/benefits-of-coloring-for-children/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/benefits-of-coloring-for-children/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/benefits-of-coloring-for-children/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/benefits-of-coloring-for-children/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/benefits-of-coloring-for-children/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/best-coloring-activities-for-toddlers/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/best-coloring-activities-for-toddlers/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/best-coloring-activities-for-toddlers/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/best-coloring-activities-for-toddlers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/best-coloring-activities-for-toddlers/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/best-coloring-supplies-for-kids/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/best-coloring-supplies-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/best-coloring-supplies-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/best-coloring-supplies-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/best-coloring-supplies-for-kids/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/bubble-letters-alphabet/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/bubble-letters-alphabet/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/bubble-letters-alphabet/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/bubble-letters-alphabet/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/bubble-letters-alphabet/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/calm-activities-for-kids/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/calm-activities-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/calm-activities-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/calm-activities-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/calm-activities-for-kids/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/coloring-tips-for-kids/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/coloring-tips-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/coloring-tips-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/coloring-tips-for-kids/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/coloring-tips-for-kids/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/fun-facts/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/fun-facts/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/fun-facts/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/fun-facts/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/fun-facts/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/how-to-teach-colors-to-preschoolers/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/how-to-teach-colors-to-preschoolers/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/how-to-teach-colors-to-preschoolers/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/how-to-teach-colors-to-preschoolers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/how-to-teach-colors-to-preschoolers/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/what-is-an-axolotl/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/what-is-an-axolotl/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/what-is-an-axolotl/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/what-is-an-axolotl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/what-is-an-axolotl/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/blog/why-are-axolotls-endangered/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/why-are-axolotls-endangered/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/blog/why-are-axolotls-endangered/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/blog/why-are-axolotls-endangered/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/why-are-axolotls-endangered/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/bubble-lab/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-lab/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-lab/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-lab/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-lab/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/bubble-name/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-name/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-name/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-name/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-name/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/cloud-name/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/cloud-name/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/cloud-name/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/cloud-name/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/cloud-name/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/coloring-books/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/coloring-books/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/coloring-books/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/coloring-books/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/coloring-books/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/bear-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/bear-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/bear-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/bear-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/bear-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/cat-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/cat-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/cat-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/cat-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/cat-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/dinosaur-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/dinosaur-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/dinosaur-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/dinosaur-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/dinosaur-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/dog-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/dog-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/dog-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/dog-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/dog-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/dolphin-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/dolphin-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/dolphin-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/dolphin-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/dolphin-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/dragon-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/dragon-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/dragon-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/dragon-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/dragon-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/</loc>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/turtle-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/turtle-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/turtle-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/turtle-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/turtle-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/freebies/unicorn-coloring-page/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/unicorn-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/unicorn-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/unicorn-coloring-page/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/unicorn-coloring-page/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/kids-games/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/kids-games/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/kids-games/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/kids-games/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/kids-games/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/learn-about-axolotls/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/learn-about-axolotls/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/learn-about-axolotls/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/learn-about-axolotls/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/learn-about-axolotls/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/legal-notice/</loc>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/legal-notice/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/privacy-policy/</loc>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/privacy-policy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/privacy-policy/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/shop/</loc>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/shop/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/shop/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/shop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/shop/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine-name/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine-name/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine-name/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine-name/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine-name/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/bouquet/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/bouquet/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/bouquet/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/bouquet/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/bouquet/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/cake/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/cake/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/coco-heart/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/coco-heart/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/coco-heart/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/coco-heart/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/coco-heart/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/dog-heart/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/dog-heart/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/dog-heart/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/dog-heart/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/dog-heart/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/friends/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/friends/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/friends/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/friends/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/friends/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/heart-balloons/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-balloons/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-balloons/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-balloons/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/heart-balloons/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/heart-letter/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/</loc>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/valentine/you-are-loved/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/you-are-loved/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/you-are-loved/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/you-are-loved/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/you-are-loved/"/>
+  </url>
 </urlset>
