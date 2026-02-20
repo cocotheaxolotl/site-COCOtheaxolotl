@@ -84,11 +84,7 @@
       flex:1; display:flex; align-items:center; justify-content:center;
       position:relative; overflow:hidden;
     }
-    #flipbook-container .stf__wrapper{
-      position:relative !important;
-      left:50% !important;
-      transform:translateX(-50%) !important;
-    }
+    #flipbook-container .stf__wrapper{ margin:0 auto !important; }
 
     .page{
       background:#fff; color:#333;
@@ -318,7 +314,7 @@
           size: 'stretch',
           minWidth: 280, maxWidth: 600,
           minHeight: 373, maxHeight: 800,
-          showCover: true,
+          showCover: false,
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
