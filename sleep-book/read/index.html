@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <title>Coco ne dort pas ce soir ! &mdash; Lecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Baloo 2',cursive;
+      background:#0d0d2b;
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    /* ===== GATE SCREEN ===== */
+    #gate{
+      text-align:center;
+      padding:40px 20px;
+      max-width:420px;
+    }
+    #gate h1{ font-size:1.8em; margin-bottom:8px; }
+    #gate p{ opacity:.7; margin-bottom:24px; line-height:1.5; }
+    #gate .code-input{
+      display:flex; gap:8px; justify-content:center;
+      flex-wrap:wrap;
+    }
+    #gate input{
+      padding:14px 20px; font-size:1.1em; font-family:'Baloo 2',cursive;
+      border:2px solid rgba(255,255,255,.2); border-radius:12px;
+      background:rgba(255,255,255,.08); color:#fff;
+      text-align:center; width:240px;
+      outline:none; transition:border-color .2s;
+    }
+    #gate input:focus{ border-color:rgba(255,255,255,.5); }
+    #gate input::placeholder{ color:rgba(255,255,255,.3); }
+    #gate .btn{
+      padding:14px 32px; font-size:1.05em; font-weight:800;
+      font-family:'Baloo 2',cursive;
+      background:linear-gradient(135deg,#D6006E,#ff69b4);
+      color:#fff; border:none; border-radius:32px;
+      cursor:pointer; transition:filter .15s,transform .12s;
+    }
+    #gate .btn:hover{ filter:brightness(.9); transform:translateY(-1px); }
+    #gate .error{
+      color:#ff6b6b; font-size:.9em; margin-top:12px;
+      display:none;
+    }
+    #gate .buy-link{
+      display:block; margin-top:24px;
+      color:rgba(255,255,255,.5); font-size:.85em;
+    }
+    #gate .buy-link a{ color:#ff69b4; }
+
+    /* ===== READER ===== */
+    #reader{ display:none; width:100vw; height:100vh; flex-direction:column; }
+    #reader.active{ display:flex; }
+
+    .toolbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 16px; background:rgba(0,0,0,.4);
+      flex-shrink:0;
+    }
+    .toolbar .title{ font-size:.95em; font-weight:600; opacity:.8; }
+    .toolbar .page-info{ font-size:.85em; opacity:.6; }
+    .toolbar button{
+      background:rgba(255,255,255,.1); border:none; color:#fff;
+      padding:8px 14px; border-radius:8px; cursor:pointer;
+      font-family:'Baloo 2',cursive; font-size:.85em;
+      transition:background .15s;
+    }
+    .toolbar button:hover{ background:rgba(255,255,255,.2); }
+
+    #flipbook-container{
+      flex:1; display:flex; align-items:center; justify-content:center;
+      position:relative; overflow:hidden;
+    }
+
+    .page{
+      background:#fff; color:#333;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:20px;
+      font-size:1.15em; line-height:1.5;
+      user-select:none; overflow:hidden;
+    }
+    .page.night{
+      background:linear-gradient(135deg,#1a1a4e,#2d2d6e);
+      color:#fff;
+    }
+    .page.light{
+      background: url('/sleep-book/pages/text-bg.png') center/cover no-repeat;
+      color:#333;
+      padding:20px 26px;
+      font-weight:600;
+      font-size:1.3em;
+    }
+    .page .page-title{
+      font-size:1.25em; font-weight:600; font-style:italic;
+      color:#5c3d8e; text-align:center;
+      margin:4px 0 8px;
+    }
+    .page.illust{
+      background:#f0f0f5; color:#aaa;
+      font-size:.85em; padding:0;
+    }
+    .page.illust img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+    .page .page-wrap{
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      width:100%; height:100%;
+    }
+    .page .inner{ white-space:pre-line; max-width:100%; }
+    .page .fact-box{
+      margin-top:14px; padding:10px 14px;
+      background:rgba(30,30,80,.75); border-radius:14px;
+      font-size:.75em; color:rgba(255,255,255,.9);
+      text-align:center;
+    }
+    .page .fact-box strong{ display:block; margin-bottom:4px; color:#fff; }
+
+    /* Nav arrows */
+    .nav-arrow{
+      position:absolute; top:50%; transform:translateY(-50%);
+      z-index:10; background:rgba(0,0,0,.3); border:none;
+      color:#fff; font-size:1.8em; padding:12px 16px;
+      border-radius:50%; cursor:pointer;
+      transition:background .15s, opacity .15s;
+      opacity:.6;
+    }
+    .nav-arrow:hover{ background:rgba(0,0,0,.5); opacity:1; }
+    .nav-arrow.left{ left:12px; }
+    .nav-arrow.right{ right:12px; }
+
+    @media(max-width:600px){
+      .nav-arrow{ display:none; }
+      .toolbar .title{ font-size:.8em; }
+      .page.light{ font-size:1em; padding:14px 18px; }
+      .page .page-title{ font-size:1.15em; }
+      .page .fact-box{ font-size:.65em; padding:8px 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== GATE ===== -->
+  <div id="gate">
+    <h1>&#x1F319; Coco ne dort pas ce soir !</h1>
+    <p>Entrez votre code d&rsquo;acc&egrave;s pour lire le livre.<br>
+    Enter your access code to read the book.</p>
+    <div class="code-input">
+      <input type="text" id="codeInput" placeholder="COCO-XXXX-XXXX" autocomplete="off" spellcheck="false">
+      <button class="btn" onclick="tryCode()">&#x1F513; Lire / Read</button>
+    </div>
+    <div class="error" id="errorMsg">
+      Code invalide. / Invalid code.<br>
+      <a href="/sleep-book/" style="color:#ff69b4;">Acheter le livre / Buy the book</a>
+    </div>
+    <div class="buy-link">
+      Pas encore de code ? <a href="/sleep-book/">Acheter ici / Buy here</a>
+    </div>
+  </div>
+
+  <!-- ===== READER ===== -->
+  <div id="reader">
+    <div class="toolbar">
+      <a href="/sleep-book/" style="color:#fff;text-decoration:none;opacity:.7;">&larr; Retour</a>
+      <span class="title">Coco ne dort pas ce soir !</span>
+      <span class="page-info" id="pageInfo">1 / 31</span>
+      <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
+    </div>
+
+    <div id="flipbook-container"></div>
+
+    <button class="nav-arrow left" onclick="flipPrev()">&lsaquo;</button>
+    <button class="nav-arrow right" onclick="flipNext()">&rsaquo;</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+  <script>
+    var VALID_CODE = 'COCO-DODO-2026';
+    var pageFlip = null;
+
+    /* ===== Book pages ===== */
+    var IMG = '/sleep-book/pages/';
+    var bookPages = [];
+    for(var i = 1; i <= 31; i++){
+      var num = i < 10 ? '0'+i : ''+i;
+      bookPages.push({type:'illust', img: IMG+'page-'+num+'.jpg'});
+    }
+
+    /* ===== CODE VALIDATION ===== */
+    function tryCode(code){
+      code = code || document.getElementById('codeInput').value.trim().toUpperCase();
+      if(code === VALID_CODE){
+        localStorage.setItem('sleep_book_access', 'true');
+        showReader();
+        return true;
+      } else {
+        document.getElementById('errorMsg').style.display = 'block';
+        return false;
+      }
+    }
+
+    function showReader(){
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('reader').classList.add('active');
+      initFlipbook();
+    }
+
+    /* ===== CHECK ACCESS ===== */
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var unlock = params.get('unlock');
+      if(unlock){
+        if(tryCode(unlock)){
+          history.replaceState(null, '', window.location.pathname);
+          return;
+        }
+      }
+      if(localStorage.getItem('sleep_book_access') === 'true'){
+        showReader();
+        return;
+      }
+      document.getElementById('codeInput').addEventListener('keydown', function(e){
+        if(e.key === 'Enter') tryCode();
+      });
+    })();
+
+    /* ===== FLIPBOOK ===== */
+    function initFlipbook(){
+      var container = document.getElementById('flipbook-container');
+      var maxW = Math.min(500, window.innerWidth - 40);
+      var maxH = window.innerHeight - 60;
+      var w, h;
+      // Portrait 3:4 ratio
+      if(maxH / maxW > 4/3){
+        w = maxW; h = Math.round(w * 4 / 3);
+      } else {
+        h = maxH; w = Math.round(h * 3 / 4);
+      }
+
+      bookPages.forEach(function(p){
+        var div = document.createElement('div');
+        div.className = 'page illust';
+        div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        container.appendChild(div);
+      });
+
+      try{
+        pageFlip = new St.PageFlip(container, {
+          width: w, height: h,
+          size: 'stretch',
+          minWidth: 280, maxWidth: 600,
+          minHeight: 373, maxHeight: 800,
+          showCover: true,
+          mobileScrollSupport: false,
+          useMouseEvents: true,
+          flippingTime: 700,
+          usePortrait: true,
+          startZIndex: 0
+        });
+        pageFlip.loadFromHTML(container.querySelectorAll('.page'));
+        pageFlip.on('flip', function(e){
+          document.getElementById('pageInfo').textContent = (e.data+1) + ' / ' + bookPages.length;
+        });
+      } catch(e){
+        console.error('PageFlip init error:', e);
+      }
+    }
+
+    function flipPrev(){ if(pageFlip) pageFlip.flipPrev(); }
+    function flipNext(){ if(pageFlip) pageFlip.flipNext(); }
+
+    function toggleFullscreen(){
+      if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
+</body>
+</html>
