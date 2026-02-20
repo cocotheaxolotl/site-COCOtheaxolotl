@@ -84,6 +84,10 @@
       flex:1; display:flex; align-items:center; justify-content:center;
       position:relative; overflow:hidden;
     }
+    #flipbook-container .stf__wrapper{
+      left:50% !important;
+      transform:translateX(-50%) !important;
+    }
 
     .page{
       background:#fff; color:#333;
@@ -325,23 +329,6 @@
           onPageFlip(e.data);
         });
 
-        /* Force center the book wrapper */
-        var wrapper = container.querySelector('.stf__wrapper');
-        if(wrapper){
-          var _centering = false;
-          function centerBook(){
-            if(_centering) return;
-            _centering = true;
-            var cw = container.offsetWidth;
-            var ww = wrapper.offsetWidth;
-            var centered = Math.max(0, Math.round((cw - ww) / 2));
-            wrapper.style.left = centered + 'px';
-            _centering = false;
-          }
-          new MutationObserver(centerBook).observe(wrapper, {attributes:true, attributeFilter:['style']});
-          centerBook();
-          window.addEventListener('resize', centerBook);
-        }
       } catch(e){
         console.error('PageFlip init error:', e);
       }
