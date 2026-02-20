@@ -84,7 +84,11 @@
       flex:1; display:flex; align-items:center; justify-content:center;
       position:relative; overflow:hidden;
     }
-    #flipbook-container .stf__wrapper{ margin:0 auto !important; }
+    #flipbook-container .stf__wrapper{
+      position:relative !important;
+      left:50% !important;
+      transform:translateX(-50%) !important;
+    }
 
     .page{
       background:#fff; color:#333;
