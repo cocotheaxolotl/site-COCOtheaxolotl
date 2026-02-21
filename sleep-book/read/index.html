@@ -447,6 +447,10 @@
       if(audio.paused){
         if(!audio.src || audio.src === location.href || currentSpread < 0){
           var pg = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
+          if(pg === 0 && playingSpecial === ''){
+            playTitle();
+            return;
+          }
           var sp = pageToSpread(pg);
           if(sp < 0) sp = 1;
           loadSpreadAudio(sp);
