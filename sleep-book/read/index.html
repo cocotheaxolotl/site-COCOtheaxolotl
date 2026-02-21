@@ -266,11 +266,7 @@
       document.getElementById('reader').classList.add('active');
       initFlipbook();
       if(withAudio){
-        /* Flip to first story page then start narration */
-        setTimeout(function(){
-          if(pageFlip) pageFlip.turnToPage(3);
-          playSpread(1);
-        }, 500);
+        startBgMusic();
       }
     }
 
