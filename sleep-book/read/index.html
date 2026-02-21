@@ -265,8 +265,8 @@
       document.getElementById('gate').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      /* Start background music only, narration begins at first story page */
-      startBgMusic();
+      /* Auto-start narration from first story spread */
+      playSpread(1);
     }
 
     /* ===== CHECK ACCESS ===== */
@@ -510,16 +510,12 @@
       if(isPlaying) audio.play();
     });
 
-    /* Sync audio when user flips pages manually */
+    /* Sync audio when user flips pages */
     function onPageFlip(pgIndex){
       document.getElementById('pageInfo').textContent = (pgIndex + 1) + ' / ' + bookPages.length;
       var sp = pageToSpread(pgIndex);
       if(sp >= 0 && sp !== currentSpread){
-        if(isPlaying){
-          playSpread(sp);
-        } else {
-          loadSpreadAudio(sp);
-        }
+        playSpread(sp);
       }
     }
 
