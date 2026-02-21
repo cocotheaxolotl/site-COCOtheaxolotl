@@ -269,7 +269,7 @@
       document.getElementById('reader').classList.add('active');
       initFlipbook();
       if(withAudio){
-        startBgMusic();
+        playSpread(0);
       }
     }
 
@@ -399,8 +399,9 @@
 
     /* Page index (0-based) → spread number (-1 = no audio) */
     function pageToSpread(pg){
-      if(pg <= 0) return -1;            // Cover (no narration)
-      if(pg >= 29) return -1;           // Last pages (website + Cher Parent)
+      if(pg < 0) return -1;
+      if(pg === 0) return 0;             // Cover → spread_00 (title)
+      if(pg >= 29) return -1;            // Last pages (website + Cher Parent)
       return Math.floor((pg - 1) / 2) + 1;  // Pages 1-28 → spreads 1-14
     }
 
@@ -476,6 +477,7 @@
 
     /* Spread number → page index (0-based) */
     function spreadToPage(sp){
+      if(sp === 0) return 0;           // spread_00 → cover
       return 1 + (sp - 1) * 2;  // spread 1→page 1, spread 2→page 3, etc.
     }
 
