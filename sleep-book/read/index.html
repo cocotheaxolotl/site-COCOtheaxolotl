@@ -117,6 +117,9 @@
       width:100%; height:100%; object-fit:cover;
       display:block;
     }
+    /* Force dark background on page-flip internal elements (no white flash) */
+    .stf__block{ background:#1a1a4e !important; }
+    .stf__item{ background:#1a1a4e !important; }
     .page .page-wrap{
       display:flex; flex-direction:column;
       align-items:center; justify-content:center;
@@ -305,15 +308,10 @@
         h = maxH; w = Math.round(h * 3 / 4);
       }
 
-      bookPages.forEach(function(p, i){
+      bookPages.forEach(function(p){
         var div = document.createElement('div');
         div.className = 'page illust';
         div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
-        if(i < bookPages.length - 1){
-          div.style.backgroundImage = 'url('+bookPages[i+1].img+')';
-          div.style.backgroundSize = 'cover';
-          div.style.backgroundPosition = 'center';
-        }
         container.appendChild(div);
       });
 
