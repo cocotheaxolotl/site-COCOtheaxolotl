@@ -371,6 +371,27 @@
     var currentSpread = -1;
     var isPlaying = false;
     var autoTurn = false;
+    var bgFadeTimer = null;
+    var BG_VOLUME = 0.15;
+
+    function fadeOutBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgFadeTimer = setInterval(function(){
+        if(bgMusic.volume > 0.01){
+          bgMusic.volume = Math.max(0, bgMusic.volume - 0.005);
+        } else {
+          clearInterval(bgFadeTimer);
+          bgMusic.pause();
+          bgMusic.volume = BG_VOLUME;
+        }
+      }, 100);
+    }
+
+    function startBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgMusic.volume = BG_VOLUME;
+      bgMusic.play().catch(function(){});
+    }
 
     /* Page index (0-based) → spread number (-1 = no audio) */
     function pageToSpread(pg){
@@ -401,7 +422,7 @@
       if(sp < 0 || sp >= TOTAL_SPREADS) return;
       loadSpreadAudio(sp);
       audio.play();
-      bgMusic.play().catch(function(){});
+      startBgMusic();
       isPlaying = true;
       playBtn.innerHTML = '&#9646;&#9646;';
     }
@@ -415,7 +436,7 @@
           loadSpreadAudio(sp);
         }
         audio.play();
-        bgMusic.play().catch(function(){});
+        startBgMusic();
         isPlaying = true;
         playBtn.innerHTML = '&#9646;&#9646;';
       } else {
@@ -460,7 +481,7 @@
         }, 1500);
       } else {
         isPlaying = false;
-        bgMusic.pause();
+        fadeOutBgMusic();
         playBtn.innerHTML = '&#9654;&#65039;';
       }
     });
