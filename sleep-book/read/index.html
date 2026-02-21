@@ -269,7 +269,7 @@
       document.getElementById('reader').classList.add('active');
       initFlipbook();
       if(withAudio){
-        playSpread(0);
+        startBgMusic();
       }
     }
 
@@ -399,8 +399,7 @@
 
     /* Page index (0-based) → spread number (-1 = no audio) */
     function pageToSpread(pg){
-      if(pg < 0) return -1;
-      if(pg === 0) return 0;             // Cover → spread_00 (title)
+      if(pg <= 0) return -1;             // Cover (no narration)
       if(pg >= 29) return -1;            // Last pages (website + Cher Parent)
       return Math.floor((pg - 1) / 2) + 1;  // Pages 1-28 → spreads 1-14
     }
@@ -482,14 +481,19 @@
     }
 
     audio.addEventListener('ended', function(){
-      if(autoTurn && currentSpread < TOTAL_SPREADS - 1){
+      if(autoTurn && currentSpread >= 1 && currentSpread < TOTAL_SPREADS - 1){
+        /* Story spreads 1-13 → advance to next */
         var nextSp = currentSpread + 1;
         var targetPage = spreadToPage(nextSp);
         if(pageFlip) pageFlip.turnToPage(targetPage);
         setTimeout(function(){
           if(currentSpread !== nextSp) playSpread(nextSp);
         }, 1000);
+      } else if(currentSpread === TOTAL_SPREADS - 1){
+        /* Last story spread (14) ended → play credits (spread_00) */
+        playSpread(0);
       } else {
+        /* Credits (spread_00) ended → stop */
         isPlaying = false;
         fadeOutBgMusic();
         playBtn.innerHTML = '&#9654;&#65039;';
