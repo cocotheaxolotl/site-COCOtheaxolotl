@@ -507,6 +507,12 @@
             if(currentSpread !== 1) playSpread(1);
           }, 1000);
         }
+      } else if(playingSpecial === 'credits'){
+        /* Credits ended → stop */
+        isPlaying = false;
+        playingSpecial = '';
+        fadeOutBgMusic();
+        playBtn.innerHTML = '&#9654;&#65039;';
       } else if(autoTurn && currentSpread >= 1 && currentSpread < TOTAL_SPREADS - 1){
         /* Story spreads 1-13 → advance to next */
         var nextSp = currentSpread + 1;
@@ -516,13 +522,14 @@
           if(currentSpread !== nextSp) playSpread(nextSp);
         }, 1000);
       } else if(currentSpread === TOTAL_SPREADS - 1){
-        /* Last story spread (14) ended → play credits */
+        /* Last story spread (14) ended → flip to end pages + play credits */
+        if(pageFlip) pageFlip.turnToPage(29);
         audio.src = CREDITS_SRC;
         audio.load();
         audio.play();
         playingSpecial = 'credits';
       } else {
-        /* Credits ended → stop */
+        /* Fallback stop */
         isPlaying = false;
         playingSpecial = '';
         fadeOutBgMusic();
