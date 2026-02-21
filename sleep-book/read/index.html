@@ -253,7 +253,7 @@
       code = code || document.getElementById('codeInput').value.trim().toUpperCase();
       if(code === VALID_CODE){
         localStorage.setItem('sleep_book_access', 'true');
-        showReader();
+        showReader(true);
         return true;
       } else {
         document.getElementById('errorMsg').style.display = 'block';
@@ -261,12 +261,11 @@
       }
     }
 
-    function showReader(){
+    function showReader(withAudio){
       document.getElementById('gate').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      /* Auto-start narration from first story spread */
-      playSpread(1);
+      if(withAudio) playSpread(1);
     }
 
     /* ===== CHECK ACCESS ===== */
@@ -280,7 +279,7 @@
         }
       }
       if(localStorage.getItem('sleep_book_access') === 'true'){
-        showReader();
+        showReader(false);
         return;
       }
       document.getElementById('codeInput').addEventListener('keydown', function(e){
@@ -432,7 +431,7 @@
         if(!audio.src || audio.src === location.href || currentSpread < 0){
           var pg = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
           var sp = pageToSpread(pg);
-          if(sp < 0) sp = 0;
+          if(sp < 0) sp = 1;
           loadSpreadAudio(sp);
         }
         audio.play();
