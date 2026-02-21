@@ -265,8 +265,8 @@
       document.getElementById('gate').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      /* Auto-start audio (cover) */
-      try{ playSpread(0); } catch(e){}
+      /* Start background music only, narration begins at first story page */
+      startBgMusic();
     }
 
     /* ===== CHECK ACCESS ===== */
@@ -370,7 +370,7 @@
 
     var currentSpread = -1;
     var isPlaying = false;
-    var autoTurn = false;
+    var autoTurn = true;
     var bgFadeTimer = null;
     var BG_VOLUME = 0.15;
 
@@ -395,7 +395,7 @@
 
     /* Page index (0-based) → spread number (-1 = no audio) */
     function pageToSpread(pg){
-      if(pg === 0) return 0;            // Cover
+      if(pg <= 0) return -1;            // Cover (no narration)
       if(pg <= 2) return -1;            // Intro + Copyright
       if(pg >= 31) return -1;           // Last 2 pages (website)
       return Math.floor((pg - 3) / 2) + 1;  // Pages 3-30 → spreads 1-14
@@ -446,6 +446,10 @@
         playBtn.innerHTML = '&#9654;&#65039;';
       }
     }
+
+    /* AUTO on by default */
+    autoBtn.classList.add('active');
+    autoLabel.classList.add('visible');
 
     function toggleAuto(){
       autoTurn = !autoTurn;
