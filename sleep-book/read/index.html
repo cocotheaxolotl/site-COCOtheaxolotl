@@ -265,7 +265,13 @@
       document.getElementById('gate').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      if(withAudio) playSpread(1);
+      if(withAudio){
+        /* Flip to first story page then start narration */
+        setTimeout(function(){
+          if(pageFlip) pageFlip.turnToPage(3);
+          playSpread(1);
+        }, 500);
+      }
     }
 
     /* ===== CHECK ACCESS ===== */
@@ -470,18 +476,19 @@
       timeNow.textContent = fmtTime(gt);
     });
 
+    /* Spread number → page index (0-based) */
+    function spreadToPage(sp){
+      return 3 + (sp - 1) * 2;  // spread 1→page 3, spread 2→page 5, etc.
+    }
+
     audio.addEventListener('ended', function(){
       if(autoTurn && currentSpread < TOTAL_SPREADS - 1){
-        /* Turn 2 pages (text→illust→next text) then play */
-        if(pageFlip){
-          pageFlip.flipNext();
-          setTimeout(function(){
-            pageFlip.flipNext();
-          }, 750);
-        }
+        var nextSp = currentSpread + 1;
+        var targetPage = spreadToPage(nextSp);
+        if(pageFlip) pageFlip.turnToPage(targetPage);
         setTimeout(function(){
-          playSpread(currentSpread + 1);
-        }, 1500);
+          playSpread(nextSp);
+        }, 1000);
       } else {
         isPlaying = false;
         fadeOutBgMusic();
