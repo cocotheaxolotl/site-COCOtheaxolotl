@@ -485,7 +485,7 @@
         var targetPage = spreadToPage(nextSp);
         if(pageFlip) pageFlip.turnToPage(targetPage);
         setTimeout(function(){
-          playSpread(nextSp);
+          if(currentSpread !== nextSp) playSpread(nextSp);
         }, 1000);
       } else {
         isPlaying = false;
