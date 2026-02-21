@@ -502,7 +502,7 @@
         /* Title ended → flip to page 1 and start spread_01 */
         playingSpecial = '';
         if(autoTurn && pageFlip){
-          pageFlip.turnToPage(1);
+          pageFlip.flip(1);
           setTimeout(function(){
             if(currentSpread !== 1) playSpread(1);
           }, 1000);
@@ -517,13 +517,13 @@
         /* Story spreads 1-13 → advance to next */
         var nextSp = currentSpread + 1;
         var targetPage = spreadToPage(nextSp);
-        if(pageFlip) pageFlip.turnToPage(targetPage);
+        if(pageFlip) pageFlip.flip(targetPage);
         setTimeout(function(){
           if(currentSpread !== nextSp) playSpread(nextSp);
         }, 1000);
       } else if(currentSpread === TOTAL_SPREADS - 1){
         /* Last story spread (14) ended → flip to end pages + play credits */
-        if(pageFlip) pageFlip.turnToPage(29);
+        if(pageFlip) pageFlip.flip(29);
         audio.src = CREDITS_SRC;
         audio.load();
         audio.play();
