@@ -233,6 +233,7 @@
       <span class="time-label" id="timeTotal">0:00</span>
     </div>
     <audio id="narrator" preload="auto"></audio>
+    <audio id="bgMusic" src="/sleep-book/audio/lullaby.mp3" preload="auto" loop></audio>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
@@ -343,6 +344,8 @@
 
     /* ===== AUDIO ===== */
     var audio = document.getElementById('narrator');
+    var bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.15;
     var playBtn = document.getElementById('playBtn');
     var autoBtn = document.getElementById('autoBtn');
     var autoLabel = document.getElementById('autoLabel');
@@ -398,6 +401,7 @@
       if(sp < 0 || sp >= TOTAL_SPREADS) return;
       loadSpreadAudio(sp);
       audio.play();
+      bgMusic.play().catch(function(){});
       isPlaying = true;
       playBtn.innerHTML = '&#9646;&#9646;';
     }
@@ -405,17 +409,18 @@
     function togglePlay(){
       if(audio.paused){
         if(!audio.src || audio.src === location.href || currentSpread < 0){
-          /* Find spread for current page */
           var pg = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
           var sp = pageToSpread(pg);
           if(sp < 0) sp = 0;
           loadSpreadAudio(sp);
         }
         audio.play();
+        bgMusic.play().catch(function(){});
         isPlaying = true;
         playBtn.innerHTML = '&#9646;&#9646;';
       } else {
         audio.pause();
+        bgMusic.pause();
         isPlaying = false;
         playBtn.innerHTML = '&#9654;&#65039;';
       }
@@ -455,6 +460,7 @@
         }, 1500);
       } else {
         isPlaying = false;
+        bgMusic.pause();
         playBtn.innerHTML = '&#9654;&#65039;';
       }
     });
