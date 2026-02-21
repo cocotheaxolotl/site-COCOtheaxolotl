@@ -110,7 +110,7 @@
       margin:4px 0 8px;
     }
     .page.illust{
-      background:#f0f0f5; color:#aaa;
+      background:#1a1a4e; color:#aaa;
       font-size:.85em; padding:0;
     }
     .page.illust img{
@@ -305,10 +305,15 @@
         h = maxH; w = Math.round(h * 3 / 4);
       }
 
-      bookPages.forEach(function(p){
+      bookPages.forEach(function(p, i){
         var div = document.createElement('div');
         div.className = 'page illust';
         div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        if(i < bookPages.length - 1){
+          div.style.backgroundImage = 'url('+bookPages[i+1].img+')';
+          div.style.backgroundSize = 'cover';
+          div.style.backgroundPosition = 'center';
+        }
         container.appendChild(div);
       });
 
