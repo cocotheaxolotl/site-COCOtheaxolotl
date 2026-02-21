@@ -212,7 +212,7 @@
     <div class="toolbar">
       <a href="/sleep-book/" style="color:#fff;text-decoration:none;opacity:.7;">&larr; Retour</a>
       <span class="title">Coco ne dort pas ce soir !</span>
-      <span class="page-info" id="pageInfo">1 / 35</span>
+      <span class="page-info" id="pageInfo">1 / 31</span>
       <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
     </div>
 
@@ -245,9 +245,9 @@
     var pageFlip = null;
 
     /* ===== Book pages ===== */
-    var IMG = '/sleep-book/Coco-ne-dort-pas-ce-soir-FR-8.5x11-spreads-V5/';
+    var IMG = '/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/';
     var bookPages = [];
-    for(var i = 1; i <= 35; i++){
+    for(var i = 1; i <= 31; i++){
       bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
     }
 
@@ -400,9 +400,8 @@
     /* Page index (0-based) → spread number (-1 = no audio) */
     function pageToSpread(pg){
       if(pg <= 0) return -1;            // Cover (no narration)
-      if(pg <= 2) return -1;            // Intro + Copyright
-      if(pg >= 31) return -1;           // Last 2 pages (website)
-      return Math.floor((pg - 3) / 2) + 1;  // Pages 3-30 → spreads 1-14
+      if(pg >= 29) return -1;           // Last pages (website + Cher Parent)
+      return Math.floor((pg - 1) / 2) + 1;  // Pages 1-28 → spreads 1-14
     }
 
     function spreadAudioSrc(sp){
@@ -477,7 +476,7 @@
 
     /* Spread number → page index (0-based) */
     function spreadToPage(sp){
-      return 3 + (sp - 1) * 2;  // spread 1→page 3, spread 2→page 5, etc.
+      return 1 + (sp - 1) * 2;  // spread 1→page 1, spread 2→page 3, etc.
     }
 
     audio.addEventListener('ended', function(){
