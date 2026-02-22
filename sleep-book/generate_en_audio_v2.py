@@ -60,7 +60,7 @@ SPREADS = {
     "spread_01": [
         ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", MEDIUM_PAUSE),
         ("COCO",     "Mom, I can't fall asleep!", MEDIUM_PAUSE),
-        ("MOM",      "Count some sheep and...", 0),
+        ("MOM",      "Count some sheep and...", -400),
         ("COCO",     "But Mom, sheep can't swim!", MEDIUM_PAUSE),
         ("SFX:MOM_LAUGH", "", SHORT_PAUSE),
         ("MOM",      "That's true! Just stay still and sleep will come.", 0),
@@ -244,6 +244,10 @@ async def generate_spread(name, segments):
         combined += seg
         if pause_after > 0:
             combined += AudioSegment.silent(duration=pause_after)
+        elif pause_after < 0:
+            # Negative pause = trim end of combined (interrupt effect)
+            trim_ms = min(-pause_after, len(combined))
+            combined = combined[:-trim_ms]
 
     # Export
     filepath = os.path.join(OUTPUT_DIR, f"{name}.mp3")
