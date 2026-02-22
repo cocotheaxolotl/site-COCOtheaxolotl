@@ -483,10 +483,12 @@
         }, 1000);
       } else if(currentSpread === TOTAL_SPREADS - 1){
         if(pageFlip) pageFlip.flip(29);
-        audio.src = CREDITS_SRC;
-        audio.load();
-        audio.play();
-        playingSpecial = 'credits';
+        setTimeout(function(){
+          audio.src = CREDITS_SRC;
+          audio.load();
+          audio.play();
+          playingSpecial = 'credits';
+        }, 3000);
       } else {
         isPlaying = false;
         playingSpecial = '';
