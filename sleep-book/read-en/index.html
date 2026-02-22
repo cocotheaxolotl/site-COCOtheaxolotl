@@ -400,6 +400,7 @@
 
     function playSpread(sp){
       if(sp < 0 || sp >= TOTAL_SPREADS) return;
+      playingSpecial = '';
       loadSpreadAudio(sp);
       audio.play();
       startBgMusic();
