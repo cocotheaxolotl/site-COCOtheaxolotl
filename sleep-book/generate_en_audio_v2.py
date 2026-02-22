@@ -14,12 +14,13 @@ SFX_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio", "sfx
 # Sounds are trimmed to max_duration and faded out
 ANIMAL_SFX = {
     "OWL_SFX":      ("owl-sb.mp3",      2000, -3),
-    "DOLPHIN_SFX":  ("dolphin-sb.mp3",   2500, -5),
+    "DOLPHIN_SFX":  ("dolphin3.mp3",     2500, -3),
     "OTTER_SFX":    ("otter-sb.mp3",     2000, -5),
     "BAT_SFX":      ("bat-sb.mp3",       2000, -5),
     "CAT_SFX":      ("cat-93.mp3",        900,  0),
     "HORSE_SFX":    ("horse-85.mp3",     2000, -3),
     "FLAMINGO_SFX": ("flamingo-sb.mp3",  2000, -3),
+    "MOM_LAUGH":    ("laugh-woman.mp3",  1500, -2),
 }
 
 # ===== VOICE CASTING =====
@@ -59,10 +60,10 @@ SPREADS = {
     "spread_01": [
         ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", MEDIUM_PAUSE),
         ("COCO",     "Mom, I can't fall asleep!", MEDIUM_PAUSE),
-        ("MOM",      "Count some sheep and...", SHORT_PAUSE),
+        ("MOM",      "Count some sheep and...", 0),
         ("COCO",     "But Mom, sheep can't swim!", MEDIUM_PAUSE),
-        ("NARRATOR", "Mom laughed.", SHORT_PAUSE),
-        ("MOM",      "Ha ha ha! That's true! Just stay still and sleep will come.", 0),
+        ("SFX:MOM_LAUGH", "", SHORT_PAUSE),
+        ("MOM",      "That's true! Just stay still and sleep will come.", 0),
     ],
 
     "spread_02": [
@@ -76,7 +77,7 @@ SPREADS = {
         ("NARRATOR", "Coco met an owl perched on a branch.", MEDIUM_PAUSE),
         ("SFX:OWL_SFX", "", SHORT_PAUSE),
         ("COCO",     "Good evening, Owl! Why aren't you sleeping?", MEDIUM_PAUSE),
-        ("OWL",      "Hoo hoo! I'm nocturnal! I work at night and sleep during the day. But even I need to sleep. Everyone needs to sleep!", LONG_PAUSE),
+        ("OWL",      "I'm nocturnal! I work at night and sleep during the day. But even I need to sleep. Everyone needs to sleep!", LONG_PAUSE),
         ("FACT",     "Did you know? Owls sleep during the day, hidden in trees. They can turn their heads almost all the way around, as if looking behind them!", 0),
     ],
 
