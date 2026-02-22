@@ -43,9 +43,9 @@ VOICES = {
 }
 
 # Pause durations (ms)
-SHORT_PAUSE = 400
-MEDIUM_PAUSE = 700
-LONG_PAUSE = 1000
+SHORT_PAUSE = 600
+MEDIUM_PAUSE = 1200
+LONG_PAUSE = 1800
 
 # ===== SPREADS WITH CHARACTER TAGS =====
 # Each spread is a list of (CHARACTER, text, pause_after_ms)
