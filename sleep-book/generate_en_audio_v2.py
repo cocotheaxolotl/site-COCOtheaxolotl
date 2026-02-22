@@ -63,7 +63,7 @@ SPREADS = {
         ("NARRATOR", "Bedtime.", LONG_PAUSE),
         ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", MEDIUM_PAUSE),
         ("COCO",     "Mom, I can't fall asleep!", MEDIUM_PAUSE),
-        ("MOM",      "Count some sheep and...", -1),
+        ("MOM",      "Count some sheep, and...", -1),
         ("COCO",     "But Mom, sheep can't swim!", MEDIUM_PAUSE),
         ("NARRATOR", "Mom laughed.", SHORT_PAUSE),
         ("SFX:MOM_LAUGH", "", SHORT_PAUSE),
