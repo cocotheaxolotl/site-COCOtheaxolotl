@@ -35,7 +35,7 @@ VOICES = {
     "KOALA":     ("en-AU-WilliamMultilingualNeural",  "-20%", 0),
     "BAT":       ("en-US-BrianNeural",                "-12%", 0),
     "CAT":       ("en-GB-SoniaNeural",                "-15%", 0),
-    "HORSE":     ("en-US-ChristopherNeural",          "-15%", 0),
+    "HORSE":     ("en-US-ChristopherNeural",          "-22%", -3),
     "FLAMINGO":  ("en-US-MichelleNeural",             "-12%", 0),
     "SLOTH":     ("en-US-EricNeural",                 "-30%", 0),
     "FACT":      ("en-US-JennyNeural",                "-12%", 0),
