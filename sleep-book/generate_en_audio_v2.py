@@ -61,11 +61,11 @@ SPREADS = {
 
     "spread_01": [
         ("NARRATOR", "Bedtime.", LONG_PAUSE),
-        ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", MEDIUM_PAUSE),
-        ("COCO",     "Mom, I can't fall asleep!", MEDIUM_PAUSE),
+        ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", 2000),
+        ("COCO",     "Mom, I can't fall asleep!", 2000),
         ("MOM",      "Count some sheep,", 200),
         ("MOM",      "and...", 0),
-        ("COCO",     "But Mom, sheep can't swim!", MEDIUM_PAUSE),
+        ("COCO",     "But Mom, sheep can't swim!", 2000),
         ("NARRATOR", "Mom laughed.", SHORT_PAUSE),
         ("SFX:MOM_LAUGH", "", SHORT_PAUSE),
         ("MOM",      "That's true! Just stay still and sleep will come.", 0),
