@@ -21,7 +21,7 @@ ANIMAL_SFX = {
     "HORSE_SFX":    ("horse_whinny.mp3",   2500,  0),
     "FLAMINGO_SFX": ("flamingo-sb.mp3",    2000, -3),
     "MOM_LAUGH":    ("maman_laugh.mp3",    2000, -8),
-    "COCO_LAUGH":   ("laugh-girl.mp3",     1500, -3),
+    "COCO_LAUGH":   ("coco_laugh.mp3",     1500,  0),
 }
 
 # ===== VOICE CASTING =====
