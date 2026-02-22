@@ -13,14 +13,14 @@ SFX_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio", "sfx
 # (filename, max_duration_ms, volume_adjust_dB)
 # Sounds are trimmed to max_duration and faded out
 ANIMAL_SFX = {
-    "OWL_SFX":      ("owl-sb.mp3",      2000, -3),
-    "DOLPHIN_SFX":  ("dolphin3.mp3",     2500, -3),
-    "OTTER_SFX":    ("otter-sb.mp3",     2000, -5),
-    "BAT_SFX":      ("bat-sb.mp3",       2000, -5),
-    "CAT_SFX":      ("cat-93.mp3",        900,  0),
-    "HORSE_SFX":    ("horse-85.mp3",     2000, -3),
-    "FLAMINGO_SFX": ("flamingo-sb.mp3",  2000, -3),
-    "MOM_LAUGH":    ("laugh-woman.mp3",  1500, -2),
+    "OWL_SFX":      ("owl_hoot.mp3",      2000,  0),
+    "DOLPHIN_SFX":  ("dolphin_chirp.mp3",  2500,  0),
+    "OTTER_SFX":    ("otter-sb.mp3",       2000, -5),
+    "BAT_SFX":      ("bat-sb.mp3",         2000, -5),
+    "CAT_SFX":      ("cat_meow.mp3",       1000,  0),
+    "HORSE_SFX":    ("horse_whinny.mp3",   2500,  0),
+    "FLAMINGO_SFX": ("flamingo-sb.mp3",    2000, -3),
+    "MOM_LAUGH":    ("maman_laugh.mp3",    2000,  0),
 }
 
 # ===== VOICE CASTING =====
