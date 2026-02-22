@@ -72,6 +72,7 @@ SPREADS = {
     ],
 
     "spread_02": [
+        ("NARRATOR", "The Adventure Begins.", LONG_PAUSE),
         ("NARRATOR", "But Coco couldn't stay still. Not tonight.", MEDIUM_PAUSE),
         ("NARRATOR", "When Mom and Dad fell asleep, Coco quietly slipped out of the river.", MEDIUM_PAUSE),
         ("COCO",     "If I can't sleep, I'll find out what other animals do at night!", 0),
