@@ -191,23 +191,6 @@
     <div id="scene-overlay"></div>
   </div>
 
-  <!-- ===== GATE ===== -->
-  <div id="gate">
-    <h1>&#x1F319; Coco Doesn't Sleep Tonight!</h1>
-    <p>Enter your access code to read the book.</p>
-    <div class="code-input">
-      <input type="text" id="codeInput" placeholder="COCO-XXXX-XXXX" autocomplete="off" spellcheck="false">
-      <button class="btn" onclick="tryCode()">&#x1F513; Read</button>
-    </div>
-    <div class="error" id="errorMsg">
-      Invalid code.<br>
-      <a href="/sleep-book/" style="color:#ff69b4;">Buy the book</a>
-    </div>
-    <div class="buy-link">
-      Don't have a code? <a href="/sleep-book/">Buy here</a>
-    </div>
-  </div>
-
   <!-- ===== READER ===== -->
   <div id="reader">
     <div class="toolbar">
@@ -242,7 +225,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
   <script>
-    var VALID_CODE = 'COCO-DODO-2026';
     var pageFlip = null;
 
     /* ===== Book pages (EN) ===== */
@@ -252,45 +234,10 @@
       bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
     }
 
-    /* ===== CODE VALIDATION ===== */
-    function tryCode(code){
-      code = code || document.getElementById('codeInput').value.trim().toUpperCase();
-      if(code === VALID_CODE){
-        localStorage.setItem('sleep_book_access_en', 'true');
-        showReader(true);
-        return true;
-      } else {
-        document.getElementById('errorMsg').style.display = 'block';
-        return false;
-      }
-    }
-
-    function showReader(withAudio){
-      document.getElementById('gate').style.display = 'none';
+    /* ===== AUTO-START ===== */
+    (function(){
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      if(withAudio){
-        playTitle();
-      }
-    }
-
-    /* ===== CHECK ACCESS ===== */
-    (function(){
-      var params = new URLSearchParams(window.location.search);
-      var unlock = params.get('unlock');
-      if(unlock){
-        if(tryCode(unlock)){
-          history.replaceState(null, '', window.location.pathname);
-          return;
-        }
-      }
-      if(localStorage.getItem('sleep_book_access_en') === 'true'){
-        showReader(false);
-        return;
-      }
-      document.getElementById('codeInput').addEventListener('keydown', function(e){
-        if(e.key === 'Enter') tryCode();
-      });
     })();
 
     /* ===== BOOK-IN-PHOTO POSITIONING ===== */
