@@ -245,9 +245,15 @@ async def generate_spread(name, segments):
         if pause_after > 0:
             combined += AudioSegment.silent(duration=pause_after)
         elif pause_after < 0:
-            # Negative pause = trim end of combined (interrupt effect)
-            trim_ms = min(-pause_after, len(combined))
-            combined = combined[:-trim_ms]
+            # Negative pause = strip trailing silence then trim extra ms
+            # First strip all silence (below -45 dBFS) from end
+            stripped = seg.strip_silence(silence_len=50, silence_thresh=-45, padding=0)
+            # Replace the last segment with stripped version
+            combined = combined[:-len(seg)] + stripped
+            # Then trim additional ms if needed
+            extra = -pause_after
+            if extra > 0 and len(combined) > extra:
+                combined = combined[:-extra]
 
     # Export
     filepath = os.path.join(OUTPUT_DIR, f"{name}.mp3")
