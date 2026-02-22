@@ -21,6 +21,7 @@ ANIMAL_SFX = {
     "HORSE_SFX":    ("horse_whinny.mp3",   2500,  0),
     "FLAMINGO_SFX": ("flamingo-sb.mp3",    2000, -3),
     "MOM_LAUGH":    ("maman_laugh.mp3",    2000, -8),
+    "COCO_LAUGH":   ("laugh-girl.mp3",     1500, -3),
 }
 
 # ===== VOICE CASTING =====
@@ -158,6 +159,7 @@ SPREADS = {
         ("FLAMINGO", "Balance requires a well-rested body! When I'm tired...", SHORT_PAUSE),
         ("NARRATOR", "The flamingo wobbled.", SHORT_PAUSE),
         ("FLAMINGO", "That's what happens!", MEDIUM_PAUSE),
+        ("SFX:COCO_LAUGH", "", SHORT_PAUSE),
         ("NARRATOR", "Coco laughed, but was starting to understand.", LONG_PAUSE),
         ("FACT",     "Did you know? Flamingos often sleep on one leg! Scientists think it's to keep the other one warm.", 0),
     ],
