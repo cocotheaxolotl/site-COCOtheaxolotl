@@ -323,9 +323,8 @@
     var timeNow = document.getElementById('timeNow');
     var timeTotal = document.getElementById('timeTotal');
 
-    /* EN audio durations — update these when EN audio is recorded */
     var TOTAL_SPREADS = 15;
-    var durations = [11.09, 24.89, 16.94, 32.69, 34.66, 30.00, 35.86, 31.44, 30.38, 33.86, 30.29, 32.54, 32.57, 32.88, 18.84];
+    var durations = [3.1, 23.9, 16.8, 35.7, 39.4, 35.8, 45.7, 36.1, 36.0, 37.2, 34.8, 40.6, 35.8, 36.7, 25.0];
     var totalDuration = 0;
     var cumulativeStarts = [];
     (function(){
@@ -344,9 +343,8 @@
     var bgFadeTimer = null;
     var BG_VOLUME = 0.15;
     var playingSpecial = '';
-    /* EN audio paths — update when EN audio is recorded */
-    var TITLE_SRC = '/sleep-book/audio/spread_title.mp3';
-    var CREDITS_SRC = '/sleep-book/audio/spread_credits.mp3';
+    var TITLE_SRC = '/sleep-book/audio/en/spread_title.mp3';
+    var CREDITS_SRC = '/sleep-book/audio/en/spread_credits.mp3';
 
     function fadeOutBgMusic(){
       clearInterval(bgFadeTimer);
@@ -384,7 +382,7 @@
     }
 
     function spreadAudioSrc(sp){
-      return '/sleep-book/audio/spread_' + String(sp).padStart(2,'0') + '.mp3';
+      return '/sleep-book/audio/en/spread_' + String(sp).padStart(2,'0') + '.mp3';
     }
 
     function fmtTime(s){
