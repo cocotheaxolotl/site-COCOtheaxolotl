@@ -81,8 +81,8 @@ SPREADS = {
     "spread_03": [
         ("NARRATOR", "The Owl.", LONG_PAUSE),
         ("NARRATOR", "Coco met an owl perched on a branch.", MEDIUM_PAUSE),
-        ("SFX:OWL_SFX", "", SHORT_PAUSE),
         ("COCO",     "Good evening, Owl! Why aren't you sleeping?", MEDIUM_PAUSE),
+        ("SFX:OWL_SFX", "", SHORT_PAUSE),
         ("OWL",      "I'm nocturnal! I work at night and sleep during the day. But even I need to sleep. Everyone needs to sleep!", LONG_PAUSE),
         ("FACT",     "Did you know? Owls sleep during the day, hidden in trees. They can turn their heads almost all the way around, as if looking behind them!", 0),
     ],
