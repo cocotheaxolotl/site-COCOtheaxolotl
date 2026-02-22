@@ -61,11 +61,11 @@ SPREADS = {
 
     "spread_01": [
         ("NARRATOR", "Bedtime.", LONG_PAUSE),
-        ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", 2000),
-        ("COCO",     "Mom, I can't fall asleep!", 2000),
+        ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", MEDIUM_PAUSE),
+        ("COCO",     "Mom, I can't fall asleep!", MEDIUM_PAUSE),
         ("MOM",      "Count some sheep,", 200),
         ("MOM",      "and...", 0),
-        ("COCO",     "But Mom, sheep can't swim!", 2000),
+        ("COCO",     "But Mom, sheep can't swim!", MEDIUM_PAUSE),
         ("NARRATOR", "Mom laughed.", SHORT_PAUSE),
         ("SFX:MOM_LAUGH", "", SHORT_PAUSE),
         ("MOM",      "That's true! Just stay still and sleep will come.", 0),
@@ -73,8 +73,8 @@ SPREADS = {
 
     "spread_02": [
         ("NARRATOR", "The Adventure Begins.", LONG_PAUSE),
-        ("NARRATOR", "But Coco couldn't stay still. Not tonight.", 2000),
-        ("NARRATOR", "When Mom and Dad fell asleep, Coco quietly slipped out of the river.", 2000),
+        ("NARRATOR", "But Coco couldn't stay still. Not tonight.", MEDIUM_PAUSE),
+        ("NARRATOR", "When Mom and Dad fell asleep, Coco quietly slipped out of the river.", MEDIUM_PAUSE),
         ("COCO",     "If I can't sleep, I'll find out what other animals do at night!", 0),
     ],
 
@@ -247,9 +247,17 @@ async def generate_spread(name, segments):
             seg = await generate_segment(text, voice, rate)
             if vol_db != 0:
                 seg = seg + vol_db
-        # Strip trailing TTS silence from speech segments, keep SFX as-is
+        # Trim only trailing silence from speech segments (preserve internal pauses)
         if not char_tag.startswith("SFX:"):
-            seg = seg.strip_silence(silence_len=50, silence_thresh=-45, padding=50)
+            # Walk backwards to find where audio content ends
+            chunk_ms = 50
+            end = len(seg)
+            while end > chunk_ms:
+                chunk = seg[end - chunk_ms:end]
+                if chunk.dBFS > -45:
+                    break
+                end -= chunk_ms
+            seg = seg[:end + 100]  # keep 100ms padding after last sound
         combined += seg
         if pause_after > 0:
             combined += AudioSegment.silent(duration=pause_after)
