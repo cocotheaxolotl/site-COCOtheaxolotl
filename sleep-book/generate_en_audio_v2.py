@@ -126,7 +126,7 @@ SPREADS = {
         ("SFX:BAT_SFX", "", SHORT_PAUSE),
         ("COCO",     "You sleep upside down?!", MEDIUM_PAUSE),
         ("BAT",      "Of course! And while we sleep, our brain sorts everything we've learned, where the insects are, which paths to avoid...", MEDIUM_PAUSE),
-        ("BAT",      "That's why you feel smarter after a good night's sleep!", LONG_PAUSE),
+        ("COCO",     "That's why you feel smarter after a good night's sleep!", LONG_PAUSE),
         ("FACT",     "Did you know? During sleep, the brain sorts and organizes memories. That's why you remember your lessons better after a good night's sleep!", 0),
     ],
 
