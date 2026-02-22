@@ -1,0 +1,242 @@
+"""
+Generate English narration audio for "Coco Doesn't Sleep Tonight"
+using Edge TTS with MULTIPLE VOICES for each character.
+Concatenates segments with pydub.
+"""
+import asyncio, os, tempfile, edge_tts
+from pydub import AudioSegment
+
+OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio", "en")
+
+# ===== VOICE CASTING =====
+VOICES = {
+    "NARRATOR":  ("en-US-JennyNeural",               "-8%"),
+    "COCO":      ("en-US-AnaNeural",                  "-5%"),
+    "MOM":       ("en-US-AriaNeural",                 "-10%"),
+    "OWL":       ("en-GB-RyanNeural",                 "-12%"),
+    "DOLPHIN":   ("en-US-GuyNeural",                  "-8%"),
+    "OTTER":     ("en-US-EmmaNeural",                 "-10%"),
+    "KOALA":     ("en-AU-WilliamMultilingualNeural",  "-15%"),
+    "BAT":       ("en-US-BrianNeural",                "-8%"),
+    "CAT":       ("en-GB-SoniaNeural",                "-10%"),
+    "HORSE":     ("en-US-ChristopherNeural",          "-10%"),
+    "FLAMINGO":  ("en-US-MichelleNeural",             "-8%"),
+    "SLOTH":     ("en-US-EricNeural",                 "-25%"),
+    "FACT":      ("en-US-JennyNeural",                "-5%"),
+}
+
+# Pause durations (ms)
+SHORT_PAUSE = 400
+MEDIUM_PAUSE = 700
+LONG_PAUSE = 1000
+
+# ===== SPREADS WITH CHARACTER TAGS =====
+# Each spread is a list of (CHARACTER, text, pause_after_ms)
+SPREADS = {
+    "spread_title": [
+        ("NARRATOR", "Coco Doesn't Sleep Tonight. A bedtime story.", 0),
+    ],
+
+    "spread_00": [
+        ("NARRATOR", "Coco Doesn't Sleep Tonight.", 0),
+    ],
+
+    "spread_01": [
+        ("NARRATOR", "That night, it was time for bed. But Coco wasn't sleepy at all.", MEDIUM_PAUSE),
+        ("COCO",     "Mom, I can't fall asleep!", MEDIUM_PAUSE),
+        ("MOM",      "Count some sheep and...", SHORT_PAUSE),
+        ("COCO",     "But Mom, sheep can't swim!", MEDIUM_PAUSE),
+        ("NARRATOR", "Mom laughed.", SHORT_PAUSE),
+        ("MOM",      "Ha ha ha! That's true! Just stay still and sleep will come.", 0),
+    ],
+
+    "spread_02": [
+        ("NARRATOR", "But Coco couldn't stay still. Not tonight.", MEDIUM_PAUSE),
+        ("NARRATOR", "When Mom and Dad fell asleep, Coco quietly slipped out of the river.", MEDIUM_PAUSE),
+        ("COCO",     "If I can't sleep, I'll find out what other animals do at night!", 0),
+    ],
+
+    "spread_03": [
+        ("NARRATOR", "The Owl.", LONG_PAUSE),
+        ("NARRATOR", "Coco met an owl perched on a branch.", MEDIUM_PAUSE),
+        ("OWL",      "Hoo! Hoo hoo!", SHORT_PAUSE),
+        ("COCO",     "Good evening, Owl! Why aren't you sleeping?", MEDIUM_PAUSE),
+        ("OWL",      "Hoo hoo! I'm nocturnal! I work at night and sleep during the day. But even I need to sleep. Everyone needs to sleep!", LONG_PAUSE),
+        ("FACT",     "Did you know? Owls sleep during the day, hidden in trees. They can turn their heads almost all the way around, as if looking behind them!", 0),
+    ],
+
+    "spread_04": [
+        ("NARRATOR", "The Dolphin.", LONG_PAUSE),
+        ("NARRATOR", "By the ocean, a dolphin was swimming peacefully.", MEDIUM_PAUSE),
+        ("DOLPHIN",  "Click click click!", SHORT_PAUSE),
+        ("COCO",     "You're not sleeping either?", MEDIUM_PAUSE),
+        ("DOLPHIN",  "Oh, I am! I only put half my brain to sleep at a time. The other half stays awake to swim and breathe!", MEDIUM_PAUSE),
+        ("COCO",     "You sleep AND swim at the same time?!", MEDIUM_PAUSE),
+        ("DOLPHIN",  "Sleep is so important that I found a way to never go without it!", LONG_PAUSE),
+        ("FACT",     "Did you know? Dolphins sleep with only one eye closed! The side of the brain that sleeps switches every two hours.", 0),
+    ],
+
+    "spread_05": [
+        ("NARRATOR", "The Otter.", LONG_PAUSE),
+        ("NARRATOR", "Two otters were floating on their backs, paw in paw.", MEDIUM_PAUSE),
+        ("OTTER",    "Squeak squeak!", SHORT_PAUSE),
+        ("COCO",     "Why are you holding hands?", MEDIUM_PAUSE),
+        ("OTTER",    "So we don't drift apart while sleeping! Feeling safe is very important for a good night's sleep.", MEDIUM_PAUSE),
+        ("NARRATOR", "Coco smiled.", SHORT_PAUSE),
+        ("COCO",     "It's like when I snuggle up with my stuffed animal!", LONG_PAUSE),
+        ("FACT",     "Did you know? Sea otters really do hold hands while sleeping! They also wrap themselves in seaweed so they don't drift away.", 0),
+    ],
+
+    "spread_06": [
+        ("NARRATOR", "The Koala.", LONG_PAUSE),
+        ("NARRATOR", "In a eucalyptus tree, a koala was sleeping soundly.", MEDIUM_PAUSE),
+        ("KOALA",    "Zzzzz... snore... zzzzz...", SHORT_PAUSE),
+        ("COCO",     "Koala! Are you sleeping?", MEDIUM_PAUSE),
+        ("KOALA",    "Zzz... yes... 22 hours a day...", MEDIUM_PAUSE),
+        ("COCO",     "22 HOURS?! But why so much?", MEDIUM_PAUSE),
+        ("KOALA",    "My body needs energy to digest my leaves... Sleep recharges your body with energy!", MEDIUM_PAUSE),
+        ("NARRATOR", "And he fell right back asleep.", LONG_PAUSE),
+        ("FACT",     "Did you know? Koalas sleep up to 22 hours a day! Eucalyptus leaves are very hard to digest and provide very little energy.", 0),
+    ],
+
+    "spread_07": [
+        ("NARRATOR", "The Bat.", LONG_PAUSE),
+        ("NARRATOR", "Under a bridge, bats were hanging upside down.", MEDIUM_PAUSE),
+        ("BAT",      "Squeak! Squeak squeak!", SHORT_PAUSE),
+        ("COCO",     "You sleep upside down?!", MEDIUM_PAUSE),
+        ("BAT",      "Of course! And while we sleep, our brain sorts everything we've learned, where the insects are, which paths to avoid...", MEDIUM_PAUSE),
+        ("BAT",      "That's why you feel smarter after a good night's sleep!", LONG_PAUSE),
+        ("FACT",     "Did you know? During sleep, the brain sorts and organizes memories. That's why you remember your lessons better after a good night's sleep!", 0),
+    ],
+
+    "spread_08": [
+        ("NARRATOR", "The Cat.", LONG_PAUSE),
+        ("NARRATOR", "Near a house, a cat was curled up on a low wall.", MEDIUM_PAUSE),
+        ("CAT",      "Meow! Purrrr...", SHORT_PAUSE),
+        ("COCO",     "Are you having a big nap?", MEDIUM_PAUSE),
+        ("CAT",      "I take lots of little naps. They're called catnaps!", MEDIUM_PAUSE),
+        ("CAT",      "For little axolotls, it's better to have one long sleep at night. During deep sleep, your body repairs itself!", LONG_PAUSE),
+        ("FACT",     "Did you know? Cats sleep between 12 and 16 hours a day! That's where the expression catnap comes from.", 0),
+    ],
+
+    "spread_09": [
+        ("NARRATOR", "The Horse.", LONG_PAUSE),
+        ("NARRATOR", "In a meadow, a horse stood still under the moon.", MEDIUM_PAUSE),
+        ("HORSE",    "Neigh! Neiiigh!", SHORT_PAUSE),
+        ("COCO",     "You... you sleep standing up?", MEDIUM_PAUSE),
+        ("HORSE",    "Yes! That way I'm ready to run. But to dream, I have to lie down.", MEDIUM_PAUSE),
+        ("HORSE",    "Sleep has different stages: first light, then deep, then dreams! And it starts all over again throughout the night.", LONG_PAUSE),
+        ("FACT",     "Did you know? Horses only sleep deeply for 2 to 3 hours a day, and only when lying down!", 0),
+    ],
+
+    "spread_10": [
+        ("NARRATOR", "The Flamingo.", LONG_PAUSE),
+        ("NARRATOR", "By a pond, a flamingo was sleeping on one leg!", MEDIUM_PAUSE),
+        ("FLAMINGO", "Squawk! Squawk squawk!", SHORT_PAUSE),
+        ("COCO",     "How don't you fall over?!", MEDIUM_PAUSE),
+        ("FLAMINGO", "Balance requires a well-rested body! When I'm tired...", SHORT_PAUSE),
+        ("NARRATOR", "The flamingo wobbled.", SHORT_PAUSE),
+        ("FLAMINGO", "That's what happens!", MEDIUM_PAUSE),
+        ("NARRATOR", "Coco laughed, but was starting to understand.", LONG_PAUSE),
+        ("FACT",     "Did you know? Flamingos often sleep on one leg! Scientists think it's to keep the other one warm.", 0),
+    ],
+
+    "spread_11": [
+        ("NARRATOR", "The Sloth.", LONG_PAUSE),
+        ("NARRATOR", "Coco was starting to yawn. A sloth was hanging from a branch.", MEDIUM_PAUSE),
+        ("SLOTH",    "Yaaawn... mmmmh...", SHORT_PAUSE),
+        ("COCO",     "I'm starting... to feel... tired...", MEDIUM_PAUSE),
+        ("SLOTH",    "Welcomeee... to the cluuub... When you don't sleep enough... you become slow... grumpy... and everything is harder...", MEDIUM_PAUSE),
+        ("SLOTH",    "Go on... go to bed... little axolotl... zzz...", LONG_PAUSE),
+        ("FACT",     "Did you know? Sloths sleep about 15 hours a day! Without enough sleep, our body feels heavy and our brain has trouble concentrating.", 0),
+    ],
+
+    "spread_12": [
+        ("NARRATOR", "Mama Axolotl.", LONG_PAUSE),
+        ("MOM",      "Coco?", MEDIUM_PAUSE),
+        ("NARRATOR", "It was Mom, by the river.", MEDIUM_PAUSE),
+        ("COCO",     "Mom! I discovered how all the animals sleep! Everyone needs it. Me too!", MEDIUM_PAUSE),
+        ("MOM",      "And do you know how axolotls sleep? We settle at the bottom of the water, nice and quiet, rocked by the current...", LONG_PAUSE),
+        ("FACT",     "Did you know? Axolotls live in fresh water and breathe through their beautiful feather-shaped gills on their heads.", 0),
+    ],
+
+    "spread_13": [
+        ("NARRATOR", "The Superpower.", LONG_PAUSE),
+        ("NARRATOR", "Mom carried Coco to his cozy spot at the bottom of the river.", MEDIUM_PAUSE),
+        ("COCO",     "Sleep recharges your energy, organizes your brain, repairs your body... right?", MEDIUM_PAUSE),
+        ("MOM",      "All of that at once, my Coco. And we axolotls can even regrow our legs! But for that, you need to sleep well.", LONG_PAUSE),
+        ("FACT",     "Did you know? Axolotls have a superpower: they can regenerate their legs, their tail, and even parts of their brain!", 0),
+    ],
+
+    "spread_14": [
+        ("NARRATOR", "Good Night Coco!", LONG_PAUSE),
+        ("NARRATOR", "Coco snuggled into his little freshwater nest with his stuffed animal.", MEDIUM_PAUSE),
+        ("NARRATOR", "He thought of all the animals sleeping right now, each in their own way, but all because sleep is magical.", MEDIUM_PAUSE),
+        ("NARRATOR", "His gills turned rosy and fluffy again.", MEDIUM_PAUSE),
+        ("NARRATOR", "And Coco fell asleep.", LONG_PAUSE),
+        ("NARRATOR", "Good Night!", 0),
+    ],
+
+    "spread_credits": [
+        ("NARRATOR", "Coco Doesn't Sleep Tonight. A Coco the Axolotl adventure. By Doctor Anita Nirvena. Illustrations by Loopinky.", 0),
+    ],
+}
+
+
+async def generate_segment(text, voice, rate):
+    """Generate a single audio segment, return as AudioSegment."""
+    with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp:
+        tmp_path = tmp.name
+    try:
+        communicate = edge_tts.Communicate(text, voice, rate=rate)
+        await communicate.save(tmp_path)
+        return AudioSegment.from_mp3(tmp_path)
+    finally:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+
+
+async def generate_spread(name, segments):
+    """Generate a full spread by concatenating character segments."""
+    combined = AudioSegment.empty()
+
+    for char_tag, text, pause_after in segments:
+        voice, rate = VOICES[char_tag]
+        print(f"  [{char_tag}] {text[:60]}...")
+        seg = await generate_segment(text, voice, rate)
+        combined += seg
+        if pause_after > 0:
+            combined += AudioSegment.silent(duration=pause_after)
+
+    # Export
+    filepath = os.path.join(OUTPUT_DIR, f"{name}.mp3")
+    combined.export(filepath, format="mp3", bitrate="128k")
+    duration = len(combined) / 1000.0
+    size = os.path.getsize(filepath)
+    print(f"  => {name}.mp3  ({duration:.1f}s, {size // 1024} KB)")
+    return filepath, duration
+
+
+async def main():
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    all_durations = {}
+    for name, segments in SPREADS.items():
+        print(f"\n=== {name} ===")
+        _, dur = await generate_spread(name, segments)
+        all_durations[name] = round(dur, 1)
+
+    # Print durations array for the reader
+    print("\n\n===== DURATIONS FOR READER =====")
+    ordered = ["spread_{:02d}".format(i) for i in range(15)]
+    vals = [all_durations[k] for k in ordered]
+    print(f"var durations = {vals};")
+    print(f"spread_title: {all_durations['spread_title']}s")
+    print(f"spread_credits: {all_durations['spread_credits']}s")
+    print(f"\nTotal narration: {sum(all_durations.values()):.0f}s")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
