@@ -50,7 +50,8 @@ LONG_PAUSE = 1000
 # Each spread is a list of (CHARACTER, text, pause_after_ms)
 SPREADS = {
     "spread_title": [
-        ("NARRATOR", "Coco Doesn't Sleep Tonight. A bedtime story.", 0),
+        ("NARRATOR", "Coco Doesn't Sleep Tonight.", -1),
+        ("NARRATOR", "A bedtime story.", 0),
     ],
 
     "spread_00": [
