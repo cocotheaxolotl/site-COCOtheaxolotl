@@ -39,6 +39,7 @@ VOICES = {
     "FLAMINGO":  ("en-US-MichelleNeural",             "-12%", 0),
     "SLOTH":     ("en-US-EricNeural",                 "-30%", 0),
     "FACT":      ("en-US-JennyNeural",                "-12%", 0),
+    "TITLE":     ("en-US-JennyNeural",                "-25%", 0),
 }
 
 # Pause durations (ms)
@@ -50,8 +51,8 @@ LONG_PAUSE = 1000
 # Each spread is a list of (CHARACTER, text, pause_after_ms)
 SPREADS = {
     "spread_title": [
-        ("NARRATOR", "Coco Doesn't Sleep Tonight.", -1),
-        ("NARRATOR", "A bedtime story.", 0),
+        ("TITLE", "Coco Doesn't Sleep Tonight.", LONG_PAUSE),
+        ("TITLE", "A bedtime story.", 0),
     ],
 
     "spread_00": [
