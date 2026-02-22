@@ -15,7 +15,7 @@ SFX_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio", "sfx
 ANIMAL_SFX = {
     "OWL_SFX":      ("owl_hoot.mp3",      2000,  0),
     "DOLPHIN_SFX":  ("dolphin_chirp.mp3",  2500,  0),
-    "OTTER_SFX":    ("otter-sb.mp3",       2000, -5),
+    "OTTER_SFX":    ("otter_cry.mp3",       2000,  0),
     "BAT_SFX":      ("bat-sb.mp3",         2000, -5),
     "CAT_SFX":      ("cat_meow.mp3",       1000,  0),
     "HORSE_SFX":    ("horse_whinny.mp3",   2500,  0),
