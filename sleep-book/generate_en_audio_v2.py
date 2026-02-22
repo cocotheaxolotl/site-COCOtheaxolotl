@@ -31,7 +31,7 @@ VOICES = {
     "MOM":       ("en-US-AriaNeural",                 "-20%", -4),
     "OWL":       ("en-GB-RyanNeural",                 "-15%", 0),
     "DOLPHIN":   ("en-US-AvaNeural",                   "-15%", 0),
-    "OTTER":     ("en-US-EmmaNeural",                 "-15%", 0),
+    "OTTER":     ("en-US-EmmaNeural",                 "-15%", -4),
     "KOALA":     ("en-AU-WilliamMultilingualNeural",  "-20%", 0),
     "BAT":       ("en-GB-LibbyNeural",                 "-15%", 0),
     "CAT":       ("en-GB-SoniaNeural",                "-15%", 0),
