@@ -7,6 +7,20 @@ import asyncio, os, tempfile, edge_tts
 from pydub import AudioSegment
 
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio", "en")
+SFX_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio", "sfx")
+
+# ===== ANIMAL SOUND EFFECTS =====
+# (filename, max_duration_ms, volume_adjust_dB)
+# Sounds are trimmed to max_duration and faded out
+ANIMAL_SFX = {
+    "OWL_SFX":      ("owl-sb.mp3",      2000, -3),
+    "DOLPHIN_SFX":  ("dolphin-sb.mp3",   2500, -5),
+    "OTTER_SFX":    ("otter-sb.mp3",     2000, -5),
+    "BAT_SFX":      ("bat-sb.mp3",       2000, -5),
+    "CAT_SFX":      ("cat-93.mp3",        900,  0),
+    "HORSE_SFX":    ("horse-85.mp3",     2000, -3),
+    "FLAMINGO_SFX": ("flamingo-sb.mp3",  2000, -3),
+}
 
 # ===== VOICE CASTING =====
 # (voice_name, rate, volume_adjust_dB)
@@ -60,6 +74,7 @@ SPREADS = {
     "spread_03": [
         ("NARRATOR", "The Owl.", LONG_PAUSE),
         ("NARRATOR", "Coco met an owl perched on a branch.", MEDIUM_PAUSE),
+        ("SFX:OWL_SFX", "", SHORT_PAUSE),
         ("COCO",     "Good evening, Owl! Why aren't you sleeping?", MEDIUM_PAUSE),
         ("OWL",      "Hoo hoo! I'm nocturnal! I work at night and sleep during the day. But even I need to sleep. Everyone needs to sleep!", LONG_PAUSE),
         ("FACT",     "Did you know? Owls sleep during the day, hidden in trees. They can turn their heads almost all the way around, as if looking behind them!", 0),
@@ -68,6 +83,7 @@ SPREADS = {
     "spread_04": [
         ("NARRATOR", "The Dolphin.", LONG_PAUSE),
         ("NARRATOR", "By the ocean, a dolphin was swimming peacefully.", MEDIUM_PAUSE),
+        ("SFX:DOLPHIN_SFX", "", SHORT_PAUSE),
         ("COCO",     "You're not sleeping either?", MEDIUM_PAUSE),
         ("DOLPHIN",  "Oh, I am! I only put half my brain to sleep at a time. The other half stays awake to swim and breathe!", MEDIUM_PAUSE),
         ("COCO",     "You sleep AND swim at the same time?!", MEDIUM_PAUSE),
@@ -78,6 +94,7 @@ SPREADS = {
     "spread_05": [
         ("NARRATOR", "The Otter.", LONG_PAUSE),
         ("NARRATOR", "Two otters were floating on their backs, paw in paw.", MEDIUM_PAUSE),
+        ("SFX:OTTER_SFX", "", SHORT_PAUSE),
         ("COCO",     "Why are you holding hands?", MEDIUM_PAUSE),
         ("OTTER",    "So we don't drift apart while sleeping! Feeling safe is very important for a good night's sleep.", MEDIUM_PAUSE),
         ("NARRATOR", "Coco smiled.", SHORT_PAUSE),
@@ -99,6 +116,7 @@ SPREADS = {
     "spread_07": [
         ("NARRATOR", "The Bat.", LONG_PAUSE),
         ("NARRATOR", "Under a bridge, bats were hanging upside down.", MEDIUM_PAUSE),
+        ("SFX:BAT_SFX", "", SHORT_PAUSE),
         ("COCO",     "You sleep upside down?!", MEDIUM_PAUSE),
         ("BAT",      "Of course! And while we sleep, our brain sorts everything we've learned, where the insects are, which paths to avoid...", MEDIUM_PAUSE),
         ("BAT",      "That's why you feel smarter after a good night's sleep!", LONG_PAUSE),
@@ -108,6 +126,7 @@ SPREADS = {
     "spread_08": [
         ("NARRATOR", "The Cat.", LONG_PAUSE),
         ("NARRATOR", "Near a house, a cat was curled up on a low wall.", MEDIUM_PAUSE),
+        ("SFX:CAT_SFX", "", SHORT_PAUSE),
         ("COCO",     "Are you having a big nap?", MEDIUM_PAUSE),
         ("CAT",      "I take lots of little naps. They're called catnaps!", MEDIUM_PAUSE),
         ("CAT",      "For little axolotls, it's better to have one long sleep at night. During deep sleep, your body repairs itself!", LONG_PAUSE),
@@ -117,6 +136,7 @@ SPREADS = {
     "spread_09": [
         ("NARRATOR", "The Horse.", LONG_PAUSE),
         ("NARRATOR", "In a meadow, a horse stood still under the moon.", MEDIUM_PAUSE),
+        ("SFX:HORSE_SFX", "", SHORT_PAUSE),
         ("COCO",     "You... you sleep standing up?", MEDIUM_PAUSE),
         ("HORSE",    "Yes! That way I'm ready to run. But to dream, I have to lie down.", MEDIUM_PAUSE),
         ("HORSE",    "Sleep has different stages: first light, then deep, then dreams! And it starts all over again throughout the night.", LONG_PAUSE),
@@ -126,6 +146,7 @@ SPREADS = {
     "spread_10": [
         ("NARRATOR", "The Flamingo.", LONG_PAUSE),
         ("NARRATOR", "By a pond, a flamingo was sleeping on one leg!", MEDIUM_PAUSE),
+        ("SFX:FLAMINGO_SFX", "", SHORT_PAUSE),
         ("COCO",     "How don't you fall over?!", MEDIUM_PAUSE),
         ("FLAMINGO", "Balance requires a well-rested body! When I'm tired...", SHORT_PAUSE),
         ("NARRATOR", "The flamingo wobbled.", SHORT_PAUSE),
@@ -190,16 +211,35 @@ async def generate_segment(text, voice, rate):
             pass
 
 
+def load_sfx(sfx_key):
+    """Load and prepare a sound effect clip."""
+    filename, max_ms, vol_db = ANIMAL_SFX[sfx_key]
+    path = os.path.join(SFX_DIR, filename)
+    seg = AudioSegment.from_mp3(path)
+    # Trim to max duration
+    if len(seg) > max_ms:
+        seg = seg[:max_ms].fade_out(300)
+    # Adjust volume
+    if vol_db != 0:
+        seg = seg + vol_db
+    return seg
+
+
 async def generate_spread(name, segments):
     """Generate a full spread by concatenating character segments."""
     combined = AudioSegment.empty()
 
     for char_tag, text, pause_after in segments:
-        voice, rate, vol_db = VOICES[char_tag]
-        print(f"  [{char_tag}] {text[:60]}...")
-        seg = await generate_segment(text, voice, rate)
-        if vol_db != 0:
-            seg = seg + vol_db  # pydub: adjust volume in dB
+        if char_tag.startswith("SFX:"):
+            sfx_key = char_tag.split(":")[1]
+            print(f"  [SFX] {sfx_key}")
+            seg = load_sfx(sfx_key)
+        else:
+            voice, rate, vol_db = VOICES[char_tag]
+            print(f"  [{char_tag}] {text[:60]}...")
+            seg = await generate_segment(text, voice, rate)
+            if vol_db != 0:
+                seg = seg + vol_db
         combined += seg
         if pause_after > 0:
             combined += AudioSegment.silent(duration=pause_after)
