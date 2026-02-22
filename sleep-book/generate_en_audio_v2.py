@@ -9,20 +9,21 @@ from pydub import AudioSegment
 OUTPUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "audio", "en")
 
 # ===== VOICE CASTING =====
+# (voice_name, rate, volume_adjust_dB)
 VOICES = {
-    "NARRATOR":  ("en-US-JennyNeural",               "-8%"),
-    "COCO":      ("en-US-AnaNeural",                  "-5%"),
-    "MOM":       ("en-US-AriaNeural",                 "-10%"),
-    "OWL":       ("en-GB-RyanNeural",                 "-12%"),
-    "DOLPHIN":   ("en-US-GuyNeural",                  "-8%"),
-    "OTTER":     ("en-US-EmmaNeural",                 "-10%"),
-    "KOALA":     ("en-AU-WilliamMultilingualNeural",  "-15%"),
-    "BAT":       ("en-US-BrianNeural",                "-8%"),
-    "CAT":       ("en-GB-SoniaNeural",                "-10%"),
-    "HORSE":     ("en-US-ChristopherNeural",          "-10%"),
-    "FLAMINGO":  ("en-US-MichelleNeural",             "-8%"),
-    "SLOTH":     ("en-US-EricNeural",                 "-25%"),
-    "FACT":      ("en-US-JennyNeural",                "-5%"),
+    "NARRATOR":  ("en-US-JennyNeural",               "-18%", 0),
+    "COCO":      ("en-US-AnaNeural",                  "-12%", 0),
+    "MOM":       ("en-US-AriaNeural",                 "-20%", -4),
+    "OWL":       ("en-GB-RyanNeural",                 "-15%", 0),
+    "DOLPHIN":   ("en-US-GuyNeural",                  "-12%", 0),
+    "OTTER":     ("en-US-EmmaNeural",                 "-15%", 0),
+    "KOALA":     ("en-AU-WilliamMultilingualNeural",  "-20%", 0),
+    "BAT":       ("en-US-BrianNeural",                "-12%", 0),
+    "CAT":       ("en-GB-SoniaNeural",                "-15%", 0),
+    "HORSE":     ("en-US-ChristopherNeural",          "-15%", 0),
+    "FLAMINGO":  ("en-US-MichelleNeural",             "-12%", 0),
+    "SLOTH":     ("en-US-EricNeural",                 "-30%", 0),
+    "FACT":      ("en-US-JennyNeural",                "-12%", 0),
 }
 
 # Pause durations (ms)
@@ -59,7 +60,6 @@ SPREADS = {
     "spread_03": [
         ("NARRATOR", "The Owl.", LONG_PAUSE),
         ("NARRATOR", "Coco met an owl perched on a branch.", MEDIUM_PAUSE),
-        ("OWL",      "Hoo! Hoo hoo!", SHORT_PAUSE),
         ("COCO",     "Good evening, Owl! Why aren't you sleeping?", MEDIUM_PAUSE),
         ("OWL",      "Hoo hoo! I'm nocturnal! I work at night and sleep during the day. But even I need to sleep. Everyone needs to sleep!", LONG_PAUSE),
         ("FACT",     "Did you know? Owls sleep during the day, hidden in trees. They can turn their heads almost all the way around, as if looking behind them!", 0),
@@ -68,7 +68,6 @@ SPREADS = {
     "spread_04": [
         ("NARRATOR", "The Dolphin.", LONG_PAUSE),
         ("NARRATOR", "By the ocean, a dolphin was swimming peacefully.", MEDIUM_PAUSE),
-        ("DOLPHIN",  "Click click click!", SHORT_PAUSE),
         ("COCO",     "You're not sleeping either?", MEDIUM_PAUSE),
         ("DOLPHIN",  "Oh, I am! I only put half my brain to sleep at a time. The other half stays awake to swim and breathe!", MEDIUM_PAUSE),
         ("COCO",     "You sleep AND swim at the same time?!", MEDIUM_PAUSE),
@@ -79,7 +78,6 @@ SPREADS = {
     "spread_05": [
         ("NARRATOR", "The Otter.", LONG_PAUSE),
         ("NARRATOR", "Two otters were floating on their backs, paw in paw.", MEDIUM_PAUSE),
-        ("OTTER",    "Squeak squeak!", SHORT_PAUSE),
         ("COCO",     "Why are you holding hands?", MEDIUM_PAUSE),
         ("OTTER",    "So we don't drift apart while sleeping! Feeling safe is very important for a good night's sleep.", MEDIUM_PAUSE),
         ("NARRATOR", "Coco smiled.", SHORT_PAUSE),
@@ -90,9 +88,8 @@ SPREADS = {
     "spread_06": [
         ("NARRATOR", "The Koala.", LONG_PAUSE),
         ("NARRATOR", "In a eucalyptus tree, a koala was sleeping soundly.", MEDIUM_PAUSE),
-        ("KOALA",    "Zzzzz... snore... zzzzz...", SHORT_PAUSE),
         ("COCO",     "Koala! Are you sleeping?", MEDIUM_PAUSE),
-        ("KOALA",    "Zzz... yes... 22 hours a day...", MEDIUM_PAUSE),
+        ("KOALA",    "Mmm... yes... 22 hours a day...", MEDIUM_PAUSE),
         ("COCO",     "22 HOURS?! But why so much?", MEDIUM_PAUSE),
         ("KOALA",    "My body needs energy to digest my leaves... Sleep recharges your body with energy!", MEDIUM_PAUSE),
         ("NARRATOR", "And he fell right back asleep.", LONG_PAUSE),
@@ -102,7 +99,6 @@ SPREADS = {
     "spread_07": [
         ("NARRATOR", "The Bat.", LONG_PAUSE),
         ("NARRATOR", "Under a bridge, bats were hanging upside down.", MEDIUM_PAUSE),
-        ("BAT",      "Squeak! Squeak squeak!", SHORT_PAUSE),
         ("COCO",     "You sleep upside down?!", MEDIUM_PAUSE),
         ("BAT",      "Of course! And while we sleep, our brain sorts everything we've learned, where the insects are, which paths to avoid...", MEDIUM_PAUSE),
         ("BAT",      "That's why you feel smarter after a good night's sleep!", LONG_PAUSE),
@@ -112,7 +108,6 @@ SPREADS = {
     "spread_08": [
         ("NARRATOR", "The Cat.", LONG_PAUSE),
         ("NARRATOR", "Near a house, a cat was curled up on a low wall.", MEDIUM_PAUSE),
-        ("CAT",      "Meow! Purrrr...", SHORT_PAUSE),
         ("COCO",     "Are you having a big nap?", MEDIUM_PAUSE),
         ("CAT",      "I take lots of little naps. They're called catnaps!", MEDIUM_PAUSE),
         ("CAT",      "For little axolotls, it's better to have one long sleep at night. During deep sleep, your body repairs itself!", LONG_PAUSE),
@@ -122,7 +117,6 @@ SPREADS = {
     "spread_09": [
         ("NARRATOR", "The Horse.", LONG_PAUSE),
         ("NARRATOR", "In a meadow, a horse stood still under the moon.", MEDIUM_PAUSE),
-        ("HORSE",    "Neigh! Neiiigh!", SHORT_PAUSE),
         ("COCO",     "You... you sleep standing up?", MEDIUM_PAUSE),
         ("HORSE",    "Yes! That way I'm ready to run. But to dream, I have to lie down.", MEDIUM_PAUSE),
         ("HORSE",    "Sleep has different stages: first light, then deep, then dreams! And it starts all over again throughout the night.", LONG_PAUSE),
@@ -132,7 +126,6 @@ SPREADS = {
     "spread_10": [
         ("NARRATOR", "The Flamingo.", LONG_PAUSE),
         ("NARRATOR", "By a pond, a flamingo was sleeping on one leg!", MEDIUM_PAUSE),
-        ("FLAMINGO", "Squawk! Squawk squawk!", SHORT_PAUSE),
         ("COCO",     "How don't you fall over?!", MEDIUM_PAUSE),
         ("FLAMINGO", "Balance requires a well-rested body! When I'm tired...", SHORT_PAUSE),
         ("NARRATOR", "The flamingo wobbled.", SHORT_PAUSE),
@@ -144,10 +137,9 @@ SPREADS = {
     "spread_11": [
         ("NARRATOR", "The Sloth.", LONG_PAUSE),
         ("NARRATOR", "Coco was starting to yawn. A sloth was hanging from a branch.", MEDIUM_PAUSE),
-        ("SLOTH",    "Yaaawn... mmmmh...", SHORT_PAUSE),
         ("COCO",     "I'm starting... to feel... tired...", MEDIUM_PAUSE),
         ("SLOTH",    "Welcomeee... to the cluuub... When you don't sleep enough... you become slow... grumpy... and everything is harder...", MEDIUM_PAUSE),
-        ("SLOTH",    "Go on... go to bed... little axolotl... zzz...", LONG_PAUSE),
+        ("SLOTH",    "Go on... go to bed... little axolotl...", LONG_PAUSE),
         ("FACT",     "Did you know? Sloths sleep about 15 hours a day! Without enough sleep, our body feels heavy and our brain has trouble concentrating.", 0),
     ],
 
@@ -203,9 +195,11 @@ async def generate_spread(name, segments):
     combined = AudioSegment.empty()
 
     for char_tag, text, pause_after in segments:
-        voice, rate = VOICES[char_tag]
+        voice, rate, vol_db = VOICES[char_tag]
         print(f"  [{char_tag}] {text[:60]}...")
         seg = await generate_segment(text, voice, rate)
+        if vol_db != 0:
+            seg = seg + vol_db  # pydub: adjust volume in dB
         combined += seg
         if pause_after > 0:
             combined += AudioSegment.silent(duration=pause_after)
