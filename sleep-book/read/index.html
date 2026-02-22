@@ -27,6 +27,7 @@
       text-align:center;
       padding:40px 20px;
       max-width:420px;
+      position:relative; z-index:2;
     }
     #gate h1{ font-size:1.8em; margin-bottom:8px; }
     #gate p{ opacity:.7; margin-bottom:24px; line-height:1.5; }
@@ -62,13 +63,14 @@
     #gate .buy-link a{ color:#ff69b4; }
 
     /* ===== READER ===== */
-    #reader{ display:none; width:100vw; height:100vh; flex-direction:column; }
+    #reader{ display:none; width:100vw; height:100vh; flex-direction:column; align-items:center; justify-content:center; position:relative; z-index:2; }
     #reader.active{ display:flex; }
 
     .toolbar{
       display:flex; align-items:center; justify-content:space-between;
       padding:8px 16px; background:rgba(0,0,0,.4);
       flex-shrink:0;
+      position:absolute; top:0; left:0; right:0; z-index:20;
     }
     .toolbar .title{ font-size:.95em; font-weight:600; opacity:.8; }
     .toolbar .page-info{ font-size:.85em; opacity:.6; }
@@ -80,9 +82,13 @@
     }
     .toolbar button:hover{ background:rgba(255,255,255,.2); }
 
+    #book-area{
+      position:absolute; overflow:hidden;
+    }
     #flipbook-container{
-      flex:1; position:relative; overflow:hidden;
-      max-width:1060px; width:100%; margin:0 auto;
+      width:100%; height:100%;
+      overflow:hidden;
+      background:transparent;
     }
 
     .page{
@@ -110,16 +116,33 @@
       margin:4px 0 8px;
     }
     .page.illust{
-      background:#1a1a4e; color:#aaa;
+      background:#12102a; color:#aaa;
       font-size:.85em; padding:0;
     }
     .page.illust img{
       width:100%; height:100%; object-fit:cover;
       display:block;
     }
-    /* Force dark background on page-flip internal elements (no white flash) */
-    .stf__block{ background:#1a1a4e !important; }
-    .stf__item{ background:#1a1a4e !important; }
+    /* ===== SCENE BACKGROUND ===== */
+    #scene-bg{
+      position:fixed; inset:0; z-index:0;
+      overflow:hidden; background:#0d0d2b;
+    }
+    .scene-media{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; z-index:0;
+    }
+    #scene-overlay{
+      position:absolute; inset:0; z-index:2;
+      background:radial-gradient(ellipse at center,
+        rgba(0,0,0,0) 40%, rgba(0,0,0,0.3) 100%);
+      pointer-events:none;
+    }
+
+    /* Page-flip internal elements: book interior texture */
+    .stf__block{ background:transparent !important; }
+    .stf__item{ background:transparent !important; }
     .page .page-wrap{
       display:flex; flex-direction:column;
       align-items:center; justify-content:center;
@@ -152,6 +175,7 @@
       display:flex; align-items:center; gap:10px;
       padding:8px 16px; background:rgba(0,0,0,.5);
       flex-shrink:0;
+      position:absolute; bottom:0; left:0; right:0; z-index:20;
     }
     .audio-btn{
       background:rgba(255,255,255,.12); border:none; color:#fff;
@@ -161,9 +185,9 @@
       flex-shrink:0;
     }
     .audio-btn:hover{ background:rgba(255,255,255,.25); }
-    .audio-btn.active{ background:rgba(247,201,72,.3); color:#f7c948; }
+    .audio-btn.active{ background:rgba(155,89,182,.3); color:#9b59b6; }
     .auto-indicator{
-      font-size:.65em; font-weight:800; color:#f7c948;
+      font-size:.65em; font-weight:800; color:#9b59b6;
       opacity:0; transition:opacity .2s; margin-left:-6px;
     }
     .auto-indicator.visible{ opacity:1; }
@@ -174,7 +198,7 @@
       cursor:pointer; position:relative;
     }
     .progress-fill{
-      height:100%; background:#f7c948; border-radius:3px;
+      height:100%; background:#9b59b6; border-radius:3px;
       width:0; transition:width .1s linear;
     }
 
@@ -192,6 +216,13 @@
 </head>
 
 <body>
+  <!-- ===== SCENE BACKGROUND ===== -->
+  <div id="scene-bg">
+    <img id="scene-img" src="/sleep-book/read/bg-scene.jpg" alt="" class="scene-media"
+         onerror="this.style.display='none'">
+    <div id="scene-overlay"></div>
+  </div>
+
   <!-- ===== GATE ===== -->
   <div id="gate">
     <h1>&#x1F319; Coco ne dort pas ce soir !</h1>
@@ -219,7 +250,7 @@
       <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
     </div>
 
-    <div id="flipbook-container"></div>
+    <div id="book-area"><div id="flipbook-container"></div></div>
 
     <button class="nav-arrow left" onclick="flipPrev()">&lsaquo;</button>
     <button class="nav-arrow right" onclick="flipNext()">&rsaquo;</button>
@@ -237,7 +268,7 @@
     </div>
     <audio id="narrator" preload="auto"></audio>
     <audio id="bgMusic" src="/sleep-book/audio/lullaby.mp3" preload="auto" loop></audio>
-    <div style="text-align:center;padding:6px;font-size:.7em;opacity:.4;">
+    <div style="text-align:center;padding:6px;font-size:.7em;opacity:.4;position:absolute;bottom:44px;left:0;right:0;z-index:20;">
       Par Dr. Nirvena &mdash; Illustrations de Loopinky
     </div>
   </div>
@@ -295,18 +326,36 @@
       });
     })();
 
+    /* ===== BOOK-IN-PHOTO POSITIONING ===== */
+    function positionFlipbook(){
+      var area = document.getElementById('book-area');
+      if(!area) return;
+      var vpW = window.innerWidth;
+      var vpH = window.innerHeight;
+      /* Simple centered approach — the book fills most of the photo */
+      var w = vpW * 0.63;
+      var h = vpH * 0.80;
+      var l = (vpW - w) / 2 - vpW * 0.004;
+      var t = (vpH - h) / 2 + vpH * 0.04;
+      area.style.left   = l + 'px';
+      area.style.top    = t + 'px';
+      area.style.width  = w + 'px';
+      area.style.height = h + 'px';
+    }
+
+    window.addEventListener('resize', function(){
+      positionFlipbook();
+      if(pageFlip) pageFlip.update();
+    });
+
     /* ===== FLIPBOOK ===== */
     function initFlipbook(){
       var container = document.getElementById('flipbook-container');
-      var maxW = Math.min(500, window.innerWidth - 40);
-      var maxH = window.innerHeight - 60;
-      var w, h;
-      // Portrait 3:4 ratio
-      if(maxH / maxW > 4/3){
-        w = maxW; h = Math.round(w * 4 / 3);
-      } else {
-        h = maxH; w = Math.round(h * 3 / 4);
-      }
+      positionFlipbook();
+
+      var area = document.getElementById('book-area');
+      var w = Math.round(area.offsetWidth / 2);
+      var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
         var div = document.createElement('div');
@@ -319,8 +368,8 @@
         pageFlip = new St.PageFlip(container, {
           width: w, height: h,
           size: 'stretch',
-          minWidth: 280, maxWidth: 600,
-          minHeight: 373, maxHeight: 800,
+          minWidth: 150, maxWidth: w,
+          minHeight: 200, maxHeight: h,
           showCover: true,
           mobileScrollSupport: false,
           useMouseEvents: true,
@@ -555,6 +604,10 @@
       var offset = targetTime - cumulativeStarts[targetSpread];
       if(targetSpread !== currentSpread){
         loadSpreadAudio(targetSpread);
+        if(pageFlip){
+          var targetPage = spreadToPage(targetSpread);
+          pageFlip.flip(targetPage);
+        }
       }
       audio.currentTime = offset;
       if(isPlaying) audio.play();
