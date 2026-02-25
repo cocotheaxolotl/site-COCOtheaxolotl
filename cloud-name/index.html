@@ -20,18 +20,15 @@
   <meta charset="UTF-8">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloud Letters Name Generator | Write Your Name in Clouds | Coco the Axolotl</title>
-  <meta name="description" content="Type your name in cloud letters and download it! Free cloud letter name generator for kids. Create fluffy cloud text instantly!">
+  <title>Cloud Letters Name Generator | Color Your Name in Clouds | Coco the Axolotl</title>
+  <meta name="description" content="Color your name in fluffy cloud letters! Free coloring name generator for kids – type your name, download and print. Colour your name with Coco the Axolotl.">
+  <meta name="keywords" content="color your name, colour your name, coloring name, cloud letters, name generator, kids name coloring, printable name">
 
   <link rel="canonical" href="https://cocotheaxolotl.org/cloud-name/">
-<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/cloud-name/">
-<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/cloud-name/">
-<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/cloud-name/">
-<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/cloud-name/">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Cloud Letters Name Generator | Coco the Axolotl">
-  <meta property="og:description" content="Type your name in cloud letters and download it! Free cloud letter name generator for kids.">
+  <meta property="og:title" content="Cloud Letters Name Generator | Color Your Name | Coco the Axolotl">
+  <meta property="og:description" content="Color your name in fluffy cloud letters! Free coloring name generator for kids.">
   <meta property="og:url" content="https://cocotheaxolotl.org/cloud-name/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Coco the Axolotl">
@@ -91,6 +88,11 @@
     .lang-toggle{display:flex !important}
     .loading{font-size:1.1em;color:#5ba3d9;font-weight:700;margin:20px 0}
   </style>
+
+<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/cloud-name/">
+<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/cloud-name/">
+<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/cloud-name/">
+<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/cloud-name/">
 </head>
 
 <body>
@@ -282,30 +284,48 @@
     if(e.key === "Enter") generate();
   });
 
-  document.getElementById("dlBtn").addEventListener("click", function(){
+  function doDownload(){
     var raw = document.getElementById("nameInput").value;
     var name = sanitizeName(raw) || "COCO";
     var a = document.createElement("a");
     a.download = "cloud-name-" + name + ".png";
     a.href = canvas.toDataURL("image/png");
     a.click();
-    gtag('event', 'file_download', { file_name: 'cloud-name-' + name + '.png' });
-  });
-
-  document.getElementById("printBtn").addEventListener("click", function(){
+  }
+  function doPrint(){
     var dataUrl = canvas.toDataURL("image/png");
     var w = window.open("");
     w.document.write('<img src="' + dataUrl + '" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
-    w.document.close();
-    w.focus();
-    w.print();
-  });
+    w.document.close(); w.focus(); w.print();
+  }
+  async function gatedAction(action){
+    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
+    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
+    var result = await CocoAuth.consumeCredit('name_generator','cloud');
+    if(!result.ok){
+      if(result.reason==='no_credits') showUpgradeModal();
+      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
+      return;
+    }
+    action();
+    CocoCreditBadge.updateCredits(result.data.remaining);
+  }
+  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
 
   // Preload and show default
   preloadLetters(function(){ draw("COCO"); });
 </script>
+<script src="/js/coco-auth.js"></script>
+<script src="/js/coco-auth-modal.js"></script>
+<script src="/js/coco-credit-badge.js"></script>
 <script>
 function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
+function showUpgradeModal(){
+  var lang=document.documentElement.lang||'en';
+  var msgs={en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
+  if(confirm(msgs[lang]||msgs.en)) window.location.href='/pricing/';
+}
 </script>
 
 <!-- RGPD Cookie Banner -->

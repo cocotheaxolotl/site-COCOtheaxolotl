@@ -237,7 +237,7 @@ footer a:hover{text-decoration:underline}
       <a class="dl-btn" id="dlLink" href="#" download>Download ZIP</a>
       <p class="result-info" id="resultInfo"></p>
     </div>
-    <p class="quota-bar">Free credits remaining: <strong id="quotaCount">...</strong> / 3</p>
+    <p class="quota-bar">Credits remaining: <strong id="quotaCount">...</strong> <span id="quotaPlan"></span></p>
   </div>
 </section>
 
@@ -289,34 +289,12 @@ footer a:hover{text-decoration:underline}
   <br><small style="opacity:.5;font-size:.8em">Real-time counter based on actual generations</small>
 </div>
 
-<!-- ═══ PRICING (2 plans) ═══ -->
+<!-- ═══ PRICING ═══ -->
 <section class="pricing" id="pricing">
   <h2>Simple Pricing</h2>
-  <p class="section-sub">Start free. Upgrade when you need more.</p>
-  <div class="pricing-grid">
-    <div class="plan">
-      <h3>Free</h3>
-      <div class="price">$0</div>
-      <ul>
-        <li>3 downloads / month</li>
-        <li>All presets included</li>
-        <li>300 DPI output</li>
-        <li>Personal use</li>
-      </ul>
-      <a class="plan-btn" href="#generator">Get Started</a>
-    </div>
-    <div class="plan popular">
-      <h3>Pro</h3>
-      <div class="price">$9.99<small>/mo</small></div>
-      <ul>
-        <li>Up to 300 downloads / month</li>
-        <li>Bulk (50 images per batch)</li>
-        <li>All presets included</li>
-        <li>Commercial use license</li>
-        <li>Priority processing</li>
-      </ul>
-      <a class="plan-btn" href="#generator">Start Free Trial</a>
-    </div>
+  <p class="section-sub">Start free with 3 credits. Upgrade when you need more.</p>
+  <div style="text-align:center;margin:24px 0">
+    <a href="/pricing/" class="btn-primary" style="display:inline-block;padding:14px 32px;background:#7c3aed;color:#fff;border-radius:12px;font-size:1.1em;font-weight:700;text-decoration:none">View All Plans</a>
   </div>
 </section>
 
@@ -360,6 +338,9 @@ footer a:hover{text-decoration:underline}
   <a href="/mosaic-examples/">Free examples</a> · <a href="/">More free printables at Coco the Axolotl</a> · &copy; 2026
 </footer>
 
+<script src="/js/coco-auth.js"></script>
+<script src="/js/coco-auth-modal.js"></script>
+<script src="/js/coco-credit-badge.js"></script>
 <script>
 var API = window.location.hostname === 'localhost'
   ? 'http://localhost:8000'
@@ -456,9 +437,20 @@ function handleFiles(files) {
 }
 
 /* ── Quota + Stats ── */
-fetch(API + '/api/quota').then(function(r){ return r.json(); }).then(function(d){
-  quotaCount.textContent = d.remaining;
-}).catch(function(){ quotaCount.textContent = '?'; });
+function refreshQuota(){
+  var headers = {};
+  if(typeof CocoAuth!=='undefined' && CocoAuth.isLoggedIn()){
+    var token = CocoAuth.getToken();
+    if(token) headers['Authorization'] = 'Bearer ' + token;
+  }
+  fetch(API + '/api/quota', {headers:headers}).then(function(r){ return r.json(); }).then(function(d){
+    quotaCount.textContent = d.remaining;
+    var planEl = document.getElementById('quotaPlan');
+    if(d.authenticated && d.plan && d.plan !== 'free') planEl.textContent = '(' + d.plan + ')';
+    else if(!d.authenticated) planEl.textContent = '/ ' + d.limit + ' free';
+  }).catch(function(){ quotaCount.textContent = '?'; });
+}
+refreshQuota();
 
 fetch(API + '/api/stats').then(function(r){ return r.json(); }).then(function(d){
   var n = d.total_generated || 0;
@@ -485,7 +477,12 @@ async function doGenerate() {
     fd.append('cell_size', cellRange.value);
     fd.append('page', pageSelect.value);
 
-    var resp = await fetch((isBulk ? API+'/api/bulk' : API+'/api/generate'), {method:'POST', body:fd});
+    var fetchOpts = {method:'POST', body:fd};
+    if(typeof CocoAuth!=='undefined' && CocoAuth.isLoggedIn()){
+      var token = CocoAuth.getToken();
+      if(token) fetchOpts.headers = {'Authorization': 'Bearer ' + token};
+    }
+    var resp = await fetch((isBulk ? API+'/api/bulk' : API+'/api/generate'), fetchOpts);
     if (!resp.ok) {
       var err = await resp.json();
       throw new Error(err.detail?.message || err.detail || 'Generation failed');
@@ -498,7 +495,7 @@ async function doGenerate() {
       : 'Mystery page, answer key, and color legend included';
     resultDiv.classList.add('active');
     // Refresh quota + stats
-    fetch(API+'/api/quota').then(function(r){return r.json()}).then(function(d){quotaCount.textContent=d.remaining});
+    refreshQuota();
     fetch(API+'/api/stats').then(function(r){return r.json()}).then(function(d){totalCounter.textContent=(d.total_generated||0).toLocaleString('en-US')});
   } catch(e) {
     alert(e.message);

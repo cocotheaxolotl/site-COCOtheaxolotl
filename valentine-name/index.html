@@ -24,15 +24,12 @@
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#e91e63">
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
-<title>Valentine Letters Name Generator | Write Your Name in Pink Hearts | Coco the Axolotl</title>
-<meta name="description" content="Type your name in pink Valentine balloon letters! Free Valentine's Day name generator for kids. Download, print and share with friends.">
+<title>Valentine Letters Name Generator | Color Your Name in Hearts | Coco the Axolotl</title>
+<meta name="description" content="Color your name in pink Valentine heart letters! Free coloring name generator for kids – type your name, download and print. Colour your name for Valentine's Day.">
+<meta name="keywords" content="color your name, colour your name, coloring name, valentine letters, heart letters, name generator, valentines day kids">
 <link rel="canonical" href="https://cocotheaxolotl.org/valentine-name/">
-<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine-name/">
-<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/valentine-name/">
-<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/valentine-name/">
-<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine-name/">
-<meta property="og:title" content="Valentine Letters Name Generator | Coco the Axolotl">
-<meta property="og:description" content="Type your name in pink Valentine balloon letters and download it!">
+<meta property="og:title" content="Valentine Letters Name Generator | Color Your Name | Coco the Axolotl">
+<meta property="og:description" content="Color your name in pink Valentine letters! Free coloring name generator for kids.">
 <meta property="og:url" content="https://cocotheaxolotl.org/valentine-name/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Coco the Axolotl">
@@ -66,6 +63,11 @@
   .lang-toggle{display:flex !important}
   .loading{font-size:1.1em;color:#e91e63;font-weight:700;margin:20px 0}
 </style>
+
+<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine-name/">
+<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine-name/">
+<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine-name/">
+<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine-name/">
 </head>
 
 <body>
@@ -250,24 +252,46 @@
 
   document.getElementById("genBtn").addEventListener("click", generate);
   document.getElementById("nameInput").addEventListener("keydown", function(e){ if(e.key==="Enter") generate(); });
-  document.getElementById("dlBtn").addEventListener("click", function(){
+  function doDownload(){
     var raw = document.getElementById("nameInput").value;
     var name = sanitizeName(raw) || "LOVE";
     var a = document.createElement("a");
     a.download = "valentine-name-" + name + ".png";
     a.href = canvas.toDataURL("image/png");
     a.click();
-  });
-  document.getElementById("printBtn").addEventListener("click", function(){
+  }
+  function doPrint(){
     var dataUrl = canvas.toDataURL("image/png");
     var w = window.open("");
     w.document.write('<img src="'+dataUrl+'" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
     w.document.close(); w.focus(); w.print();
-  });
+  }
+  async function gatedAction(action){
+    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
+    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
+    var result = await CocoAuth.consumeCredit('name_generator','valentine');
+    if(!result.ok){
+      if(result.reason==='no_credits') showUpgradeModal();
+      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
+      return;
+    }
+    action();
+    CocoCreditBadge.updateCredits(result.data.remaining);
+  }
+  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
   preloadLetters(function(){ draw("LOVE"); });
 </script>
+<script src="/js/coco-auth.js"></script>
+<script src="/js/coco-auth-modal.js"></script>
+<script src="/js/coco-credit-badge.js"></script>
 <script>
 function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
+function showUpgradeModal(){
+  var lang=document.documentElement.lang||'en';
+  var msgs={en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
+  if(confirm(msgs[lang]||msgs.en)) window.location.href='/pricing/';
+}
 </script>
 
 <!-- RGPD Cookie Banner -->

@@ -20,10 +20,18 @@
   <meta charset="UTF-8">
   <meta name="robots" content="index, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bubble Letters Name Generator | Bubble Letter Alphabet | Coco the Axolotl</title>
-  <meta name="description" content="Type your name in bubble letters and download it to color. Free bubble letter alphabet generator for kids (ages 5–7). Create letter bubble letters instantly!">
+  <title>Bubble Letters Name Generator | Color Your Name in Bubbles | Coco the Axolotl</title>
+  <meta name="description" content="Color your name in bubble letters! Free coloring name generator for kids – type, download and print. Colour your name with fun bubble letter alphabet.">
+  <meta name="keywords" content="color your name, colour your name, coloring name, bubble letters, name generator, bubble letter alphabet, kids name coloring">
 
-  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bubble Letters Name Generator | Color Your Name | Coco the Axolotl">
+  <meta property="og:description" content="Color your name in bubble letters! Free coloring name generator for kids.">
+  <meta property="og:url" content="https://cocotheaxolotl.org/bubble-name/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Coco the Axolotl">
+
+
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#ff69b4">
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
@@ -76,6 +84,11 @@
     body.es [data-lang="en"],body.es [data-lang="fr"]{display:none}
     .lang-toggle{display:flex !important}
   </style>
+
+<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-name/">
+<link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-name/">
+<link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-name/">
+<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-name/">
 </head>
 
 <body>
@@ -201,29 +214,48 @@
   document.getElementById("genBtn").addEventListener("click", generate);
   document.getElementById("nameInput").addEventListener("keydown", (e)=>{ if(e.key==="Enter") generate(); });
 
-  document.getElementById("dlBtn").addEventListener("click", ()=>{
+  function doDownload(){
     const raw = document.getElementById("nameInput").value;
     const name = sanitizeName(raw) || "COCO";
     const a = document.createElement("a");
     a.download = `coco-bubble-name-${name}.png`;
     a.href = canvas.toDataURL("image/png");
     a.click();
-  });
-
-  document.getElementById("printBtn").addEventListener("click", ()=>{
+  }
+  function doPrint(){
     const dataUrl = canvas.toDataURL("image/png");
     const w = window.open("");
     w.document.write(`<img src="${dataUrl}" style="width:100%;max-width:900px;display:block;margin:0 auto;">`);
-    w.document.close();
-    w.focus();
-    w.print();
-  });
+    w.document.close(); w.focus(); w.print();
+  }
+  async function gatedAction(action){
+    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
+    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
+    var result = await CocoAuth.consumeCredit('name_generator','bubble');
+    if(!result.ok){
+      if(result.reason==='no_credits') showUpgradeModal();
+      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
+      return;
+    }
+    action();
+    CocoCreditBadge.updateCredits(result.data.remaining);
+  }
+  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
 
   // Start
   draw("COCO");
 </script>
+<script src="/js/coco-auth.js"></script>
+<script src="/js/coco-auth-modal.js"></script>
+<script src="/js/coco-credit-badge.js"></script>
 <script>
 function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
+function showUpgradeModal(){
+  var lang=document.documentElement.lang||'en';
+  var msgs={en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
+  if(confirm(msgs[lang]||msgs.en)) window.location.href='/pricing/';
+}
 </script>
 
 <!-- RGPD Cookie Banner -->
