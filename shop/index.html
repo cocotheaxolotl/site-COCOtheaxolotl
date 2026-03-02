@@ -19,8 +19,8 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coco's Shop – Stickers, T-Shirts, Mugs & More | Coco the Axolotl</title>
-<meta name="description" content="Shop Coco the Axolotl merchandise! Cute stickers, t-shirts, mugs, phone cases and more featuring Coco the adorable pink axolotl. Available on Redbubble.">
+<title>Coco's Shop – Digital Coloring Pages, Ebooks & More | Coco the Axolotl</title>
+<meta name="description" content="Shop Coco the Axolotl! Digital coloring pages, bedtime story ebooks, plus cute stickers, t-shirts, mugs and more.">
 
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#ff69b4">
@@ -103,6 +103,37 @@ body.es [data-lang="es"]{display:block}
 body.es span[data-lang="es"]{display:inline}
 body.es [data-lang="en"]{display:none}
 body.es span[data-lang="en"]{display:none}
+
+.section-title{font-family:'Baloo 2',cursive;font-size:1.6em;color:#d6006e;margin:0 0 18px;text-align:center}
+.section-divider{border:none;border-top:2px dashed rgba(255,105,180,.3);margin:40px 0}
+
+.product-card{
+  display:flex;flex-direction:column;align-items:center;
+  background:#fff;
+  border:2px solid rgba(255,105,180,.3);
+  border-radius:18px;
+  padding:22px 18px;
+  text-align:center;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.product-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,105,180,.18);
+  border-color:rgba(255,105,180,.6);
+}
+.product-icon{font-size:2.8em;margin-bottom:8px}
+.product-name{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1em;margin:4px 0}
+.product-desc{font-size:.9em;color:#666;line-height:1.4;margin:4px 0 12px}
+.product-price{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.3em;color:#d6006e;margin:0 0 12px}
+.btn-buy{
+  display:inline-block;
+  padding:10px 24px;
+  background:#ff69b4;color:#fff;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:.95em;
+  border-radius:24px;text-decoration:none;
+  transition:background .15s,transform .15s;
+}
+.btn-buy:hover{background:#e0559e;transform:translateY(-1px)}
 </style>
 
 <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/shop/">
@@ -120,9 +151,9 @@ body.es span[data-lang="en"]{display:none}
     <span data-lang="es">La Tienda de Coco</span>
   </h1>
   <p class="subtitle">
-    <span data-lang="en">Cute merch for axolotl fans!</span>
-    <span data-lang="fr">Des produits trop mignons pour les fans d'axolotl !</span>
-    <span data-lang="es">&iexcl;Productos adorables para fans del ajolote!</span>
+    <span data-lang="en">Digital downloads, coloring pages, ebooks & cute merch!</span>
+    <span data-lang="fr">T&eacute;l&eacute;chargements, coloriages, ebooks &amp; produits mignons !</span>
+    <span data-lang="es">&iexcl;Descargas digitales, coloriages, ebooks y productos adorables!</span>
   </p>
   <div class="lang-toggle">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -132,6 +163,45 @@ body.es span[data-lang="en"]{display:none}
 </header>
 
 <main>
+
+  <!-- ── Digital Downloads ─────────────────────────────────── -->
+  <h2 class="section-title">
+    📥 <span data-lang="en">Digital Downloads</span><span data-lang="fr">T&eacute;l&eacute;chargements Num&eacute;riques</span><span data-lang="es">Descargas Digitales</span>
+  </h2>
+  <p class="intro">
+    <span data-lang="en">Instant download! Pay once, print forever. Coloring pages and ebooks featuring Coco the Axolotl.</span>
+    <span data-lang="fr">T&eacute;l&eacute;chargement imm&eacute;diat ! Payez une fois, imprimez &agrave; volont&eacute;. Coloriages et ebooks avec Coco l'Axolotl.</span>
+    <span data-lang="es">&iexcl;Descarga instant&aacute;nea! Paga una vez, imprime siempre. Coloriages y ebooks con Coco el Ajolote.</span>
+  </p>
+
+  <div class="shop-grid">
+    <div class="product-card">
+      <span class="product-icon">🎨</span>
+      <div class="product-name"><span data-lang="en">Coloring Pages Pack</span><span data-lang="fr">Pack de Coloriages</span><span data-lang="es">Pack de Colorear</span></div>
+      <p class="product-desc"><span data-lang="en">10 printable coloring pages with Coco and friends. High-quality PDF, A4 format.</span><span data-lang="fr">10 coloriages imprimables avec Coco et ses amis. PDF haute qualit&eacute;, format A4.</span><span data-lang="es">10 p&aacute;ginas para colorear con Coco y sus amigos. PDF alta calidad, formato A4.</span></p>
+      <div class="product-price">$4.99</div>
+      <a class="btn-buy" href="#STRIPE_LINK_COLORING" target="_blank" rel="noopener">
+        <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
+      </a>
+    </div>
+
+    <div class="product-card">
+      <span class="product-icon">📖</span>
+      <div class="product-name"><span data-lang="en">Bedtime Story Ebook</span><span data-lang="fr">Ebook Histoire du Soir</span><span data-lang="es">Ebook Cuento para Dormir</span></div>
+      <p class="product-desc"><span data-lang="en">"Coco Doesn't Sleep Tonight" &mdash; a sweet bedtime story for little ones. Illustrated PDF ebook.</span><span data-lang="fr">&laquo; Coco ne dort pas ce soir &raquo; &mdash; une douce histoire du soir. Ebook PDF illustr&eacute;.</span><span data-lang="es">&laquo; Coco no duerme esta noche &raquo; &mdash; un dulce cuento para dormir. Ebook PDF ilustrado.</span></p>
+      <div class="product-price">$6.99</div>
+      <a class="btn-buy" href="#STRIPE_LINK_EBOOK" target="_blank" rel="noopener">
+        <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
+      </a>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ── Merchandise (Redbubble) ───────────────────────────── -->
+  <h2 class="section-title">
+    🛍️ <span data-lang="en">Merchandise</span><span data-lang="fr">Produits D&eacute;riv&eacute;s</span><span data-lang="es">Productos</span>
+  </h2>
   <p class="intro">
     <span data-lang="en">Stickers, t-shirts, mugs, phone cases and more &mdash; all featuring Coco the Axolotl! Available on Redbubble.</span>
     <span data-lang="fr">Stickers, t-shirts, mugs, coques de t&eacute;l&eacute;phone et plus encore &mdash; tous avec Coco l'Axolotl ! Disponible sur Redbubble.</span>
