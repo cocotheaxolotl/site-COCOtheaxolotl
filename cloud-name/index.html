@@ -156,6 +156,7 @@
 
     // Load Coco character
     var cImg = new Image();
+    cImg.crossOrigin = "anonymous";
     cImg.onload = function(){
       cocoImg = cImg;
       loaded++;
@@ -177,6 +178,7 @@
 
     keys.forEach(function(ch){
       var img = new Image();
+      img.crossOrigin = "anonymous";
       img.onload = function(){
         letterImages[ch] = img;
         loaded++;
@@ -290,7 +292,9 @@
     var a = document.createElement("a");
     a.download = "cloud-name-" + name + ".png";
     a.href = canvas.toDataURL("image/png");
+    document.body.appendChild(a);
     a.click();
+    a.remove();
   }
   function doPrint(){
     var dataUrl = canvas.toDataURL("image/png");
