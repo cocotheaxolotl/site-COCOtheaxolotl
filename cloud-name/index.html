@@ -302,34 +302,14 @@
     w.document.write('<img src="' + dataUrl + '" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
     w.document.close(); w.focus(); w.print();
   }
-  async function gatedAction(action){
-    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
-    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
-    var result = await CocoAuth.consumeCredit('name_generator','cloud');
-    if(!result.ok){
-      if(result.reason==='no_credits') showUpgradeModal();
-      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
-      return;
-    }
-    action();
-    CocoCreditBadge.updateCredits(result.data.remaining);
-  }
-  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
-  document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
+  document.getElementById("dlBtn").addEventListener("click", doDownload);
+  document.getElementById("printBtn").addEventListener("click", doPrint);
 
   // Preload and show default
   preloadLetters(function(){ draw("COCO"); });
 </script>
-<script src="/js/coco-auth.js"></script>
-<script src="/js/coco-auth-modal.js"></script>
-<script src="/js/coco-credit-badge.js"></script>
 <script>
 function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
-function showUpgradeModal(){
-  var lang=document.documentElement.lang||'en';
-  var msgs={en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
-  if(confirm(msgs[lang]||msgs.en)) window.location.href='/pricing/';
-}
 </script>
 
 <!-- RGPD Cookie Banner -->
