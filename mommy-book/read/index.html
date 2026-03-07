@@ -277,17 +277,6 @@
       return false;
     }
 
-    /* ===== Auto-unlock via localStorage or ?unlock= param ===== */
-    (function(){
-      if(localStorage.getItem(LS_KEY)){
-        tryCode(VALID_CODE);
-        return;
-      }
-      var params = new URLSearchParams(window.location.search);
-      var unlock = params.get('unlock');
-      if(unlock){ tryCode(unlock.toUpperCase()); }
-    })();
-
     /* ===== Book pages ===== */
     var IMG = '/mommy-book/I-Love-You-More-Mommy-EN/';
     var TOTAL_PAGES = 23;
@@ -587,6 +576,17 @@
         togglePlay();
       }
     });
+
+    /* ===== Auto-unlock via localStorage or ?unlock= param ===== */
+    (function(){
+      if(localStorage.getItem(LS_KEY)){
+        tryCode(VALID_CODE);
+        return;
+      }
+      var params = new URLSearchParams(window.location.search);
+      var unlock = params.get('unlock');
+      if(unlock){ tryCode(unlock.toUpperCase()); }
+    })();
   </script>
 </body>
 </html>
