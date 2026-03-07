@@ -261,8 +261,11 @@
       }
     }
 
+    var LS_KEY = 'mommy_book_unlocked';
+
     function tryCode(code){
       if(code === VALID_CODE){
+        localStorage.setItem(LS_KEY, '1');
         document.getElementById('gate').style.display = 'none';
         document.getElementById('reader').classList.add('active');
         initFlipbook();
@@ -272,8 +275,12 @@
       return false;
     }
 
-    /* ===== Auto-unlock via ?unlock= param ===== */
+    /* ===== Auto-unlock via localStorage or ?unlock= param ===== */
     (function(){
+      if(localStorage.getItem(LS_KEY)){
+        tryCode(VALID_CODE);
+        return;
+      }
       var params = new URLSearchParams(window.location.search);
       var unlock = params.get('unlock');
       if(unlock){ tryCode(unlock.toUpperCase()); }
