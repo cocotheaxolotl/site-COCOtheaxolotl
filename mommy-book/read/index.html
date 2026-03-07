@@ -72,7 +72,9 @@
       padding:8px 16px; background:rgba(0,0,0,.4);
       flex-shrink:0;
       position:absolute; top:0; left:0; right:0; z-index:20;
+      transition:opacity .4s;
     }
+    .toolbar.hidden{ opacity:0; pointer-events:none; }
     .toolbar .title{ font-size:.95em; font-weight:600; opacity:.8; }
     .toolbar .page-info{ font-size:.85em; opacity:.6; }
     .toolbar button{
@@ -357,6 +359,18 @@
 
     function flipPrev(){ if(pageFlip) pageFlip.flipPrev(); }
     function flipNext(){ if(pageFlip) pageFlip.flipNext(); }
+
+    /* ===== AUTO-HIDE TOOLBAR ===== */
+    var toolbar = document.querySelector('.toolbar');
+    var hideTimer = null;
+    function showToolbar(){
+      toolbar.classList.remove('hidden');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function(){ toolbar.classList.add('hidden'); }, 2500);
+    }
+    document.addEventListener('mousemove', showToolbar);
+    document.addEventListener('touchstart', showToolbar);
+    showToolbar();
 
     function toggleFullscreen(){
       if(!document.fullscreenElement){
