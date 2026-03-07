@@ -113,7 +113,20 @@
     #scene-bg{
       position:fixed; inset:0; z-index:0;
       overflow:hidden;
-      background:radial-gradient(ellipse at 60% 40%, #3b0764 0%, #1a0533 50%, #0d0120 100%);
+      background:#0d0120;
+    }
+    .scene-media{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; z-index:0;
+      filter:blur(18px) brightness(0.35) saturate(1.4);
+      transform:scale(1.08);
+    }
+    #scene-overlay{
+      position:absolute; inset:0; z-index:2;
+      background:radial-gradient(ellipse at center,
+        rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 100%);
+      pointer-events:none;
     }
 
     /* Page-flip internal elements */
@@ -177,7 +190,11 @@
 
 <body>
   <!-- ===== SCENE BACKGROUND ===== -->
-  <div id="scene-bg"></div>
+  <div id="scene-bg">
+    <img id="scene-img" src="/mommy-book/I-Love-You-More-Mommy-EN/slide_01.jpg" alt="" class="scene-media"
+         onerror="this.style.display='none'">
+    <div id="scene-overlay"></div>
+  </div>
 
   <!-- ===== GATE SCREEN ===== -->
   <div id="gate">
