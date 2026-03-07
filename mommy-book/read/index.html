@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <title>I Love You More, Mommy &mdash; Read</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Baloo 2',cursive;
+      background:#1a0533;
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    /* ===== GATE SCREEN ===== */
+    #gate{
+      text-align:center;
+      padding:40px 20px;
+      max-width:420px;
+      position:relative; z-index:2;
+    }
+    #gate h1{ font-size:1.8em; margin-bottom:8px; }
+    #gate p{ opacity:.7; margin-bottom:24px; line-height:1.5; }
+    #gate .code-input{
+      display:flex; gap:8px; justify-content:center;
+      flex-wrap:wrap;
+    }
+    #gate input{
+      padding:14px 20px; font-size:1.1em; font-family:'Baloo 2',cursive;
+      border:2px solid rgba(255,255,255,.2); border-radius:12px;
+      background:rgba(255,255,255,.08); color:#fff;
+      text-align:center; width:240px;
+      outline:none; transition:border-color .2s;
+      text-transform:uppercase;
+    }
+    #gate input:focus{ border-color:rgba(255,255,255,.5); }
+    #gate input::placeholder{ color:rgba(255,255,255,.3); }
+    #gate .btn{
+      padding:14px 32px; font-size:1.05em; font-weight:800;
+      font-family:'Baloo 2',cursive;
+      background:linear-gradient(135deg,#D6006E,#ff69b4);
+      color:#fff; border:none; border-radius:32px;
+      cursor:pointer; transition:filter .15s,transform .12s;
+    }
+    #gate .btn:hover{ filter:brightness(.9); transform:translateY(-1px); }
+    #gate .error{
+      color:#ff6b6b; font-size:.9em; margin-top:12px;
+      display:none;
+    }
+    #gate .buy-link{
+      display:block; margin-top:24px;
+      color:rgba(255,255,255,.5); font-size:.85em;
+    }
+    #gate .buy-link a{ color:#ff69b4; }
+
+    /* ===== READER ===== */
+    #reader{ display:none; width:100vw; height:100vh; flex-direction:column; align-items:center; justify-content:center; position:relative; z-index:2; }
+    #reader.active{ display:flex; }
+
+    .toolbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 16px; background:rgba(0,0,0,.4);
+      flex-shrink:0;
+      position:absolute; top:0; left:0; right:0; z-index:20;
+    }
+    .toolbar .title{ font-size:.95em; font-weight:600; opacity:.8; }
+    .toolbar .page-info{ font-size:.85em; opacity:.6; }
+    .toolbar button{
+      background:rgba(255,255,255,.1); border:none; color:#fff;
+      padding:8px 14px; border-radius:8px; cursor:pointer;
+      font-family:'Baloo 2',cursive; font-size:.85em;
+      transition:background .15s;
+    }
+    .toolbar button:hover{ background:rgba(255,255,255,.2); }
+
+    #book-area{
+      position:absolute; overflow:hidden;
+    }
+    #flipbook-container{
+      width:100%; height:100%;
+      overflow:hidden;
+      background:transparent;
+    }
+
+    .page{
+      background:#fff; color:#333;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:20px;
+      font-size:1.15em; line-height:1.5;
+      user-select:none; overflow:hidden;
+    }
+    .page.illust{
+      background:#1a0533; color:#aaa;
+      font-size:.85em; padding:0;
+    }
+    .page.illust img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+
+    /* ===== SCENE BACKGROUND ===== */
+    #scene-bg{
+      position:fixed; inset:0; z-index:0;
+      overflow:hidden;
+      background:radial-gradient(ellipse at 60% 40%, #3b0764 0%, #1a0533 50%, #0d0120 100%);
+    }
+
+    /* Page-flip internal elements */
+    .stf__block{ background:transparent !important; }
+    .stf__item{ background:transparent !important; }
+
+    /* Nav arrows */
+    .nav-arrow{
+      position:absolute; top:50%; transform:translateY(-50%);
+      z-index:10; background:rgba(0,0,0,.3); border:none;
+      color:#fff; font-size:1.8em; padding:12px 16px;
+      border-radius:50%; cursor:pointer;
+      transition:background .15s, opacity .15s;
+      opacity:.6;
+    }
+    .nav-arrow:hover{ background:rgba(0,0,0,.5); opacity:1; }
+    .nav-arrow.left{ left:12px; }
+    .nav-arrow.right{ right:12px; }
+
+    /* ===== AUDIO BAR ===== */
+    .audio-bar{
+      display:flex; align-items:center; gap:10px;
+      padding:8px 16px; background:rgba(0,0,0,.5);
+      flex-shrink:0;
+      position:absolute; bottom:0; left:0; right:0; z-index:20;
+    }
+    .audio-btn{
+      background:rgba(255,255,255,.12); border:none; color:#fff;
+      width:38px; height:38px; border-radius:50%; cursor:pointer;
+      font-size:1.1em; display:flex; align-items:center; justify-content:center;
+      transition:background .15s;
+      flex-shrink:0;
+    }
+    .audio-btn:hover{ background:rgba(255,255,255,.25); }
+    .audio-btn.active{ background:rgba(192,132,252,.3); color:#c084fc; }
+    .auto-indicator{
+      font-size:.65em; font-weight:800; color:#c084fc;
+      opacity:0; transition:opacity .2s; margin-left:-6px;
+    }
+    .auto-indicator.visible{ opacity:1; }
+    .time-label{ font-size:.75em; opacity:.6; flex-shrink:0; min-width:32px; }
+    .progress-wrap{
+      flex:1; min-width:80px; height:6px;
+      background:rgba(255,255,255,.15); border-radius:3px;
+      cursor:pointer; position:relative;
+    }
+    .progress-fill{
+      height:100%; background:#c084fc; border-radius:3px;
+      width:0; transition:width .1s linear;
+    }
+
+    @media(max-width:600px){
+      .nav-arrow{ display:none; }
+      .toolbar .title{ font-size:.8em; }
+      .audio-bar{ gap:6px; padding:6px 10px; }
+      .audio-btn{ width:32px; height:32px; font-size:.95em; }
+      .time-label{ font-size:.65em; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== SCENE BACKGROUND ===== -->
+  <div id="scene-bg"></div>
+
+  <!-- ===== GATE SCREEN ===== -->
+  <div id="gate">
+    <h1>&#128149; I Love You More, Mommy</h1>
+    <p>Enter your access code to read the book.</p>
+    <div class="code-input">
+      <input type="text" id="codeInput" placeholder="YOUR CODE" maxlength="30"
+             onkeydown="if(event.key==='Enter') trySubmit()">
+      <button class="btn" onclick="trySubmit()">Read &#128214;</button>
+    </div>
+    <div class="error" id="errorMsg">Invalid code. Please try again.</div>
+    <span class="buy-link">
+      Don't have a code? <a href="/mommy-book/">Get the book</a>
+    </span>
+  </div>
+
+  <!-- ===== READER ===== -->
+  <div id="reader">
+    <div class="toolbar">
+      <a href="/mommy-book/" style="color:#fff;text-decoration:none;opacity:.7;">&larr; Back</a>
+      <span class="title">I Love You More, Mommy</span>
+      <span class="page-info" id="pageInfo">1 / 23</span>
+      <button onclick="toggleFullscreen()">&#x26F6; Fullscreen</button>
+    </div>
+
+    <div id="book-area"><div id="flipbook-container"></div></div>
+
+    <button class="nav-arrow left" onclick="flipPrev()">&lsaquo;</button>
+    <button class="nav-arrow right" onclick="flipNext()">&rsaquo;</button>
+
+    <!-- Audio bar -->
+    <div class="audio-bar">
+      <button class="audio-btn" id="playBtn" title="Play / Pause">&#9654;&#65039;</button>
+      <button class="audio-btn" id="autoBtn" title="Auto page turn">&#128214;</button>
+      <span class="auto-indicator" id="autoLabel">AUTO</span>
+      <span class="time-label" id="timeNow">0:00</span>
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="time-label" id="timeTotal">0:00</span>
+    </div>
+    <audio id="narrator" preload="auto"></audio>
+    <audio id="bgMusic" src="/mommy-book/audio/lullaby.mp3" preload="auto" loop></audio>
+    <div style="text-align:center;padding:6px;font-size:.7em;opacity:.4;position:absolute;bottom:44px;left:0;right:0;z-index:20;">
+      By Dr. Anita Nirvena &mdash; Illustrations by Loopinky
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+  <script>
+    var pageFlip = null;
+
+    /* ===== ACCESS CODE ===== */
+    var VALID_CODE = 'MAMA-LOVE-2026';
+
+    function trySubmit(){
+      var code = document.getElementById('codeInput').value.trim().toUpperCase();
+      if(tryCode(code)){
+        document.getElementById('errorMsg').style.display = 'none';
+      } else {
+        var err = document.getElementById('errorMsg');
+        err.style.display = 'block';
+        document.getElementById('codeInput').focus();
+      }
+    }
+
+    function tryCode(code){
+      if(code === VALID_CODE){
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('reader').classList.add('active');
+        initFlipbook();
+        startBgMusic();
+        return true;
+      }
+      return false;
+    }
+
+    /* ===== Auto-unlock via ?unlock= param ===== */
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var unlock = params.get('unlock');
+      if(unlock){ tryCode(unlock.toUpperCase()); }
+    })();
+
+    /* ===== Book pages ===== */
+    var IMG = '/mommy-book/I-Love-You-More-Mommy-EN/';
+    var TOTAL_PAGES = 23;
+    var bookPages = [];
+    for(var i = 1; i <= TOTAL_PAGES; i++){
+      bookPages.push({type:'illust', img: IMG+'slide_'+String(i).padStart(2,'0')+'.jpg'});
+    }
+
+    /* ===== BOOK-IN-PHOTO POSITIONING ===== */
+    function positionFlipbook(){
+      var area = document.getElementById('book-area');
+      if(!area) return;
+      var vpW = window.innerWidth;
+      var vpH = window.innerHeight;
+      var w = vpW * 0.63;
+      var h = vpH * 0.80;
+      var l = (vpW - w) / 2 - vpW * 0.004;
+      var t = (vpH - h) / 2 + vpH * 0.04;
+      area.style.left   = l + 'px';
+      area.style.top    = t + 'px';
+      area.style.width  = w + 'px';
+      area.style.height = h + 'px';
+    }
+
+    window.addEventListener('resize', function(){
+      positionFlipbook();
+      if(pageFlip) pageFlip.update();
+    });
+
+    /* ===== FLIPBOOK ===== */
+    function initFlipbook(){
+      var container = document.getElementById('flipbook-container');
+      positionFlipbook();
+
+      var area = document.getElementById('book-area');
+      var w = Math.round(area.offsetWidth / 2);
+      var h = Math.round(area.offsetHeight);
+
+      bookPages.forEach(function(p){
+        var div = document.createElement('div');
+        div.className = 'page illust';
+        div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        container.appendChild(div);
+      });
+
+      try{
+        pageFlip = new St.PageFlip(container, {
+          width: w, height: h,
+          size: 'stretch',
+          minWidth: 150, maxWidth: w,
+          minHeight: 200, maxHeight: h,
+          showCover: true,
+          mobileScrollSupport: false,
+          useMouseEvents: true,
+          flippingTime: 700,
+          usePortrait: true,
+          startZIndex: 0
+        });
+        pageFlip.loadFromHTML(container.querySelectorAll('.page'));
+        pageFlip.on('flip', function(e){
+          onPageFlip(e.data);
+        });
+      } catch(e){
+        console.error('PageFlip init error:', e);
+      }
+    }
+
+    function flipPrev(){ if(pageFlip) pageFlip.flipPrev(); }
+    function flipNext(){ if(pageFlip) pageFlip.flipNext(); }
+
+    function toggleFullscreen(){
+      if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    /* ===== AUDIO ===== */
+    var audio = document.getElementById('narrator');
+    var bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.15;
+    var playBtn = document.getElementById('playBtn');
+    var autoBtn = document.getElementById('autoBtn');
+    var autoLabel = document.getElementById('autoLabel');
+    var progressWrap = document.getElementById('progressWrap');
+    var progressFill = document.getElementById('progressFill');
+    var timeNow = document.getElementById('timeNow');
+    var timeTotal = document.getElementById('timeTotal');
+
+    var TOTAL_SPREADS = TOTAL_PAGES;
+    var durations = [2.1, 8.8, 6.7, 11.0, 10.1, 6.8, 7.1, 6.4, 8.8, 7.9, 7.0, 9.9, 6.5, 7.9, 5.6, 14.9, 10.2, 5.6, 4.3, 5.1, 6.3, 7.4, 18.1];
+    var totalDuration = 0;
+    var cumulativeStarts = [];
+    (function(){
+      var cum = 0;
+      for(var i = 0; i < durations.length; i++){
+        cumulativeStarts.push(cum);
+        cum += durations[i];
+      }
+      totalDuration = cum;
+      timeTotal.textContent = fmtTime(totalDuration);
+    })();
+
+    var currentSpread = -1;
+    var isPlaying = false;
+    var autoTurn = true;
+    var bgFadeTimer = null;
+    var BG_VOLUME = 0.15;
+    var playingSpecial = '';
+    var TITLE_SRC = '/mommy-book/audio/spread_title.mp3';
+    var CREDITS_SRC = '/mommy-book/audio/spread_credits.mp3';
+
+    function fadeOutBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgFadeTimer = setInterval(function(){
+        if(bgMusic.volume > 0.01){
+          bgMusic.volume = Math.max(0, bgMusic.volume - 0.005);
+        } else {
+          clearInterval(bgFadeTimer);
+          bgMusic.pause();
+          bgMusic.volume = BG_VOLUME;
+        }
+      }, 100);
+    }
+
+    function startBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgMusic.volume = BG_VOLUME;
+      bgMusic.play().catch(function(){});
+    }
+
+    function playTitle(){
+      audio.src = TITLE_SRC;
+      audio.load();
+      audio.play().catch(function(){});
+      startBgMusic();
+      isPlaying = true;
+      playingSpecial = 'title';
+      playBtn.innerHTML = '&#9646;&#9646;';
+    }
+
+    function spreadAudioSrc(sp){
+      return '/mommy-book/audio/spread_' + String(sp).padStart(2,'0') + '.mp3';
+    }
+
+    function fmtTime(s){
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2,'0');
+    }
+
+    function loadSpreadAudio(sp){
+      if(sp < 0 || sp >= TOTAL_SPREADS) return;
+      currentSpread = sp;
+      audio.src = spreadAudioSrc(sp);
+      audio.load();
+    }
+
+    function playSpread(sp){
+      if(sp < 0 || sp >= TOTAL_SPREADS) return;
+      playingSpecial = '';
+      loadSpreadAudio(sp);
+      audio.play().catch(function(){});
+      startBgMusic();
+      isPlaying = true;
+      playBtn.innerHTML = '&#9646;&#9646;';
+    }
+
+    function togglePlay(){
+      if(audio.paused){
+        if(!audio.src || audio.src === location.href || currentSpread < 0){
+          var pg = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
+          if(pg === 0 && playingSpecial === ''){
+            playTitle();
+            return;
+          }
+          var sp = pg;
+          if(sp < 0) sp = 0;
+          loadSpreadAudio(sp);
+        }
+        audio.play().catch(function(){});
+        startBgMusic();
+        isPlaying = true;
+        playBtn.innerHTML = '&#9646;&#9646;';
+      } else {
+        audio.pause();
+        bgMusic.pause();
+        isPlaying = false;
+        playBtn.innerHTML = '&#9654;&#65039;';
+      }
+    }
+
+    autoBtn.classList.add('active');
+    autoLabel.classList.add('visible');
+
+    function toggleAuto(){
+      autoTurn = !autoTurn;
+      autoBtn.classList.toggle('active', autoTurn);
+      autoLabel.classList.toggle('visible', autoTurn);
+    }
+
+    function globalTime(){
+      if(currentSpread < 0) return 0;
+      return cumulativeStarts[currentSpread] + (audio.currentTime || 0);
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+    autoBtn.addEventListener('click', toggleAuto);
+
+    audio.addEventListener('timeupdate', function(){
+      var gt = globalTime();
+      progressFill.style.width = (gt / totalDuration * 100) + '%';
+      timeNow.textContent = fmtTime(gt);
+    });
+
+    audio.addEventListener('ended', function(){
+      if(playingSpecial === 'title'){
+        playingSpecial = '';
+        if(autoTurn && pageFlip){
+          pageFlip.flip(1);
+          setTimeout(function(){
+            if(currentSpread !== 0) playSpread(0);
+          }, 1000);
+        }
+      } else if(playingSpecial === 'credits'){
+        isPlaying = false;
+        playingSpecial = '';
+        fadeOutBgMusic();
+        playBtn.innerHTML = '&#9654;&#65039;';
+      } else if(autoTurn && currentSpread >= 0 && currentSpread < TOTAL_SPREADS - 1){
+        var nextSp = currentSpread + 1;
+        if(pageFlip) pageFlip.flip(nextSp);
+        setTimeout(function(){
+          if(currentSpread !== nextSp) playSpread(nextSp);
+        }, 1000);
+      } else if(currentSpread === TOTAL_SPREADS - 1){
+        if(pageFlip) pageFlip.flip(TOTAL_PAGES - 1);
+        setTimeout(function(){
+          audio.src = CREDITS_SRC;
+          audio.load();
+          audio.play().catch(function(){});
+          playingSpecial = 'credits';
+        }, 3000);
+      } else {
+        isPlaying = false;
+        playingSpecial = '';
+        fadeOutBgMusic();
+        playBtn.innerHTML = '&#9654;&#65039;';
+      }
+    });
+
+    progressWrap.addEventListener('click', function(e){
+      var rect = progressWrap.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      var targetTime = pct * totalDuration;
+      var targetSpread = 0;
+      for(var i = TOTAL_SPREADS - 1; i >= 0; i--){
+        if(targetTime >= cumulativeStarts[i]){
+          targetSpread = i;
+          break;
+        }
+      }
+      var offset = targetTime - cumulativeStarts[targetSpread];
+      if(targetSpread !== currentSpread){
+        loadSpreadAudio(targetSpread);
+        if(pageFlip) pageFlip.flip(targetSpread);
+      }
+      audio.currentTime = offset;
+      if(isPlaying) audio.play().catch(function(){});
+    });
+
+    function onPageFlip(pgIndex){
+      document.getElementById('pageInfo').textContent = (pgIndex + 1) + ' / ' + TOTAL_PAGES;
+      if(pgIndex !== currentSpread){
+        playSpread(pgIndex);
+      }
+    }
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === ' ' && document.getElementById('reader').classList.contains('active')){
+        e.preventDefault();
+        togglePlay();
+      }
+    });
+  </script>
+</body>
+</html>
