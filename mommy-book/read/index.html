@@ -294,9 +294,9 @@
       var vpH = window.innerHeight;
       var availH = vpH - 44 - 52; // toolbar (44px) + audio bar (52px)
       var availW = vpW - 32;      // side padding
-      // Fit a 1:1 square (one page at a time)
-      var h = Math.min(availH, availW);
-      var w = h;
+      // Fit a 2:1 rectangle (two square pages side by side)
+      var h = Math.min(availH, availW / 2);
+      var w = h * 2;
       area.style.width  = w + 'px';
       area.style.height = h + 'px';
       area.style.left   = Math.round((vpW - w) / 2) + 'px';
@@ -314,7 +314,7 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var w = Math.round(area.offsetWidth);
+      var w = Math.round(area.offsetWidth / 2);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
