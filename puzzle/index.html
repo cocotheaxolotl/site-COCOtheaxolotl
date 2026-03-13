@@ -132,7 +132,7 @@
     border-radius:16px;
     padding:6px;
     box-shadow:var(--shadow);
-    /* max size: portrait container */
+    /* width set by JS to fit screen without scrolling */
     width: min(360px, 92vw);
     touch-action:none;
   }
@@ -426,25 +426,32 @@ function initPuzzle(imageName){
   pieces = Array.from({length: TOTAL}, (_,i) => i);
   moves = 0;
   updateStatsDisplay();
-
-  // Configure grid CSS
   grid.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
 
-  renderPieces();
+  // Load image first to get real dimensions → correct piece aspect ratio + grid size
+  const img = new Image();
+  img.onload = function(){
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    // pieceAspect = (imgW/COLS) / (imgH/ROWS) = imgRatio * ROWS / COLS
+    const pieceAspect = imgRatio * ROWS / COLS;
+
+    // Fit grid in visible area without scrolling
+    const maxWFromVW  = Math.min(window.innerWidth  * 0.92, 360);
+    const availH      = (window.visualViewport ? window.visualViewport.height : window.innerHeight) - 215;
+    // gridAspect (w/h) = imgRatio (since COLS×pieceW / ROWS×pieceH = imgRatio)
+    const maxWFromVH  = availH * imgRatio;
+    const gridW       = Math.max(180, Math.min(maxWFromVW, maxWFromVH));
+    grid.style.width  = gridW + 'px';
+
+    renderPieces(pieceAspect);
+  };
+  img.onerror = function(){ renderPieces(0.75); };
+  img.src = imgPath(imageName);
 }
 
-function renderPieces(){
+function renderPieces(pieceAspect){
+  if(pieceAspect === undefined) pieceAspect = 0.75;
   grid.innerHTML = '';
-
-  // Piece size: grid is min(360px,92vw) wide. Each piece = 1/COLS of that.
-  // Aspect ratio of each piece = (9/16) * (COLS/ROWS) ... but since 9:16
-  // image split into 3 cols × 4 rows, each piece is a square-ish tile:
-  // piece width = W/3, piece height = H/4 = (W*16/9)/4 = W*4/9
-  // So aspect-ratio = 3/4 * 9/16 ??? No:
-  // Actually each piece occupies 1/COLS of image width, 1/ROWS of image height.
-  // Image is 9:16 → aspect = 9/16.
-  // Piece aspect = (9/COLS) / (16/ROWS) = (9*ROWS)/(16*COLS) = (9*4)/(16*3) = 36/48 = 3/4.
-  const pieceAspect = (9 * ROWS) / (16 * COLS); // = 0.75 for 3×4
 
   pieces.forEach((pieceIndex, position)=>{
     const div = document.createElement('div');
