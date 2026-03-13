@@ -436,11 +436,20 @@ function initPuzzle(imageName){
     const pieceAspect = imgRatio * ROWS / COLS;
 
     // Fit grid in visible area without scrolling
-    const maxWFromVW  = Math.min(window.innerWidth  * 0.92, 360);
-    const availH      = (window.visualViewport ? window.visualViewport.height : window.innerHeight) - 215;
-    // gridAspect (w/h) = imgRatio (since COLS×pieceW / ROWS×pieceH = imgRatio)
-    const maxWFromVH  = availH * imgRatio;
-    const gridW       = Math.max(180, Math.min(maxWFromVW, maxWFromVH));
+    const maxWFromVW = Math.min(window.innerWidth * 0.92, 360);
+    // Measure actual space used by header + controls + stats
+    const usedH = ['header','.controls','.stats'].reduce((acc, sel) => {
+      const el = document.querySelector(sel);
+      return acc + (el ? el.offsetHeight : 0);
+    }, 0) + 24; // 24px extra margin
+    const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const availH = vh - usedH;
+    // gridH = ROWS×pieceH + (ROWS-1)×gap + 2×padding  (gap=3, padding=6)
+    // gridH = ROWS×(gridW/COLS/pieceAspect) + (ROWS-1)×3 + 12
+    // gridAspect = imgRatio → maxWFromVH accounts for internal gaps:
+    const gridPad = (ROWS - 1) * 3 + 12;
+    const maxWFromVH = (availH - gridPad) * imgRatio;
+    const gridW = Math.max(180, Math.min(maxWFromVW, maxWFromVH));
     grid.style.width  = gridW + 'px';
 
     renderPieces(pieceAspect);
