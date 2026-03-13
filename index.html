@@ -610,13 +610,67 @@
       h2{font-size:1.8em}
       header{padding:20px 4px 24px}
       .axolotl-img, .gills-img{ width:280px; max-width:90vw; }
-      .hero-row{ flex-wrap:nowrap; gap:0; width:100%; overflow:hidden; padding:0 2px; }
-      .fish-col{ gap:8px; min-width:0; flex:1; }
-      .fish-icon{ font-size:1em; }
-      .fish-banner{ font-size:.55em; padding:3px 5px; }
+    }
+
+    /* ── Mobile: vertical layout, fish links become pill buttons ── */
+    @media (max-width: 600px){
+      /* Stack hero vertically: Coco top, links below */
+      .hero-row{
+        flex-direction:column;
+        align-items:center;
+        gap:12px;
+        width:100%;
+      }
+
+      /* Each fish-col becomes a centered wrap row of pills */
+      .fish-col{
+        flex-direction:row;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:8px;
+        width:100%;
+        order:2; /* links appear below Coco */
+      }
+      .fish-col.right{ order:3; }
+      .axolotl-container{ order:1; }
+
+      /* Stop swim/wiggle animations on mobile */
+      .fish-col.left .fish-link,
+      .fish-col.left .fish-toggle,
+      .fish-col.right .fish-link,
+      .fish-col.right .fish-toggle{
+        animation:none;
+        flex-direction:row;
+      }
+      .fish-col.left .fish-icon,
+      .fish-col.right .fish-icon,
+      .fish-col.left .fish-toggle .fish-icon,
+      .fish-col.right .fish-toggle .fish-icon{
+        animation:none;
+        transform:none;
+        font-size:1.1em;
+      }
+
+      /* Hide rope, make banners look like pills */
       .fish-rope{ display:none; }
-      .fish-col.left .fish-link{ justify-content:flex-start; }
-      .fish-col.right .fish-link{ justify-content:flex-end; }
+      .fish-banner{
+        font-size:.88em;
+        padding:7px 13px;
+        border-radius:32px;
+      }
+
+      /* Dropdown opens downward from pill */
+      .fish-col.left .fish-dropdown,
+      .fish-col.right .fish-dropdown{
+        right:auto;
+        left:50%;
+        transform:translateX(-50%);
+        top:calc(100% + 6px);
+      }
+      @keyframes dropIn{
+        from{ opacity:0; transform:translateX(-50%) translateY(-6px); }
+        to{   opacity:1; transform:translateX(-50%) translateY(0); }
+      }
     }
   </style>
 
