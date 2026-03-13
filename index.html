@@ -213,9 +213,11 @@
     }
 
     /* Left fish point right → toward Coco */
-    .fish-col.left .fish-link{ flex-direction:row-reverse; animation:swimLeft var(--dur,12s) ease-in-out infinite; }
+    .fish-col.left .fish-link,
+    .fish-col.left .fish-toggle{ flex-direction:row-reverse; animation:swimLeft var(--dur,12s) ease-in-out infinite; }
     /* Right fish point left ← toward Coco, then banner after */
-    .fish-col.right .fish-link{ flex-direction:row; animation:swimRight var(--dur,12s) ease-in-out infinite; }
+    .fish-col.right .fish-link,
+    .fish-col.right .fish-toggle{ flex-direction:row; animation:swimRight var(--dur,12s) ease-in-out infinite; }
 
     .fish-icon{
       font-size:2.4em;
@@ -226,6 +228,65 @@
     .fish-col.left .fish-icon{ transform:scaleX(-1); animation:wiggleFishFlip 1.2s ease-in-out infinite alternate; }
     /* Right fish face left (toward Coco) */
     .fish-col.right .fish-icon{ animation:wiggleFish 1.2s ease-in-out infinite alternate; }
+
+    /* ===== Fish groups (dropdown menus) ===== */
+    .fish-group{ position:relative; }
+    .fish-toggle{
+      display:flex;
+      align-items:center;
+      color:var(--text);
+      cursor:pointer;
+      transition:transform .15s ease;
+      background:none;
+      border:none;
+      font-family:'Baloo 2',cursive;
+      padding:0;
+    }
+    .fish-toggle:hover{ transform:scale(1.08); }
+    .fish-toggle:hover .fish-banner{
+      background:var(--pink);
+      color:#fff;
+      box-shadow:0 4px 18px rgba(255,105,180,.4);
+    }
+    .fish-toggle .fish-banner{ cursor:pointer; }
+    .fish-col.left .fish-toggle .fish-icon{ transform:scaleX(-1); animation:wiggleFishFlip 1.2s ease-in-out infinite alternate; }
+    .fish-col.right .fish-toggle .fish-icon{ animation:wiggleFish 1.2s ease-in-out infinite alternate; }
+
+    .fish-dropdown{
+      display:none;
+      position:absolute;
+      top:calc(100% + 8px);
+      background:#fff;
+      border-radius:14px;
+      border:2px solid var(--pink);
+      padding:8px;
+      box-shadow:0 8px 28px rgba(255,105,180,.22);
+      min-width:160px;
+      z-index:50;
+      flex-direction:column;
+      gap:4px;
+      animation:dropIn .18s ease;
+    }
+    .fish-col.left .fish-dropdown{ right:0; }
+    .fish-col.right .fish-dropdown{ left:0; }
+    .fish-dropdown.open{ display:flex; }
+    @keyframes dropIn{
+      from{ opacity:0; transform:translateY(-6px); }
+      to{   opacity:1; transform:translateY(0); }
+    }
+    .fish-dropdown a{
+      padding:8px 14px;
+      border-radius:9px;
+      text-decoration:none;
+      color:#333;
+      font-family:'Baloo 2',cursive;
+      font-weight:800;
+      font-size:.9em;
+      white-space:nowrap;
+      transition:background .15s;
+      text-align:left;
+    }
+    .fish-dropdown a:hover{ background:var(--pink2); }
 
     .fish-rope{
       width:24px;
@@ -598,38 +659,51 @@
           <span class="fish-rope"></span>
           <span class="fish-banner">Blog</span>
         </a>
-        <a href="/kids-games/" class="fish-link" style="--dur:10s">
-          <span class="fish-icon">🐡</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Games</span>
-        </a>
-        <a href="/bubble-lab/" class="fish-link" style="--dur:14s">
-          <span class="fish-icon">🐠</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Bubble Letters</span>
-        </a>
-        <a href="/cloud-name/" class="fish-link" style="--dur:12s">
-          <span class="fish-icon">☁️</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Cloud Name</span>
-        </a>
-        <!-- OFFLINE until mid-February
-        <a href="/coloring/" class="fish-link" style="--dur:11s">
-          <span class="fish-icon">🐟</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Color Online</span>
-        </a>
-        -->
-        <a href="https://www.amazon.com/dp/B0G4RDNY8Y" target="_blank" rel="noopener" class="fish-link" style="--dur:12s">
-          <span class="fish-icon">🐟</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Notebooks</span>
-        </a>
-        <a href="/shop/" class="fish-link" style="--dur:10s">
-          <span class="fish-icon">🐠</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Shop</span>
-        </a>
+
+        <!-- Games group -->
+        <div class="fish-group">
+          <div class="fish-toggle" style="--dur:10s" onclick="toggleFishGroup(this)">
+            <span class="fish-icon">🐡</span>
+            <span class="fish-rope"></span>
+            <span class="fish-banner">Games ▾</span>
+          </div>
+          <div class="fish-dropdown">
+            <a href="/kids-games/">🎲 Kids Games</a>
+            <a href="/puzzle/">🧩 Puzzle</a>
+          </div>
+        </div>
+
+        <!-- Funny Letters group -->
+        <div class="fish-group">
+          <div class="fish-toggle" style="--dur:14s" onclick="toggleFishGroup(this)">
+            <span class="fish-icon">🐠</span>
+            <span class="fish-rope"></span>
+            <span class="fish-banner">Funny Letters ▾</span>
+          </div>
+          <div class="fish-dropdown">
+            <a href="/bubble-lab/">🫧 Bubble Letters</a>
+            <a href="/cloud-name/">☁️ Cloud Name</a>
+            <a href="/balloon-name/">🎈 Balloon Name</a>
+            <a href="/train-name/">🚂 Train Name</a>
+            <a href="/toy-name/">🧸 Toy Name</a>
+            <a href="/grass-name/">🌿 Grass Name</a>
+            <a href="/plank-name/">🪵 Plank Name</a>
+            <a href="/valentine-name/">💌 Valentine Name</a>
+          </div>
+        </div>
+
+        <!-- Shop group -->
+        <div class="fish-group">
+          <div class="fish-toggle" style="--dur:12s" onclick="toggleFishGroup(this)">
+            <span class="fish-icon">🐟</span>
+            <span class="fish-rope"></span>
+            <span class="fish-banner">Shop ▾</span>
+          </div>
+          <div class="fish-dropdown">
+            <a href="https://www.amazon.com/dp/B0G4RDNY8Y" target="_blank" rel="noopener">📓 Notebooks</a>
+            <a href="/shop/">🛍️ Coco's Shop</a>
+          </div>
+        </div>
       </div>
 
       <!-- Coco center -->
@@ -643,26 +717,19 @@
 
       <!-- Right fish column: Social media -->
       <div class="fish-col right">
-        <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener" class="fish-link" style="--dur:12s">
-          <span class="fish-icon">🐠</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Instagram</span>
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61587038682969" target="_blank" rel="noopener" class="fish-link" style="--dur:10s">
-          <span class="fish-icon">🐡</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Facebook</span>
-        </a>
-        <a href="https://www.tiktok.com/@cocotheaxolotl" target="_blank" rel="noopener" class="fish-link" style="--dur:13s">
-          <span class="fish-icon">🐠</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">TikTok</span>
-        </a>
-        <a href="https://www.pinterest.com/cocotheaxolotl/" target="_blank" rel="noopener" class="fish-link" style="--dur:11s">
-          <span class="fish-icon">🐡</span>
-          <span class="fish-rope"></span>
-          <span class="fish-banner">Pinterest</span>
-        </a>
+        <div class="fish-group">
+          <div class="fish-toggle" style="--dur:11s" onclick="toggleFishGroup(this)">
+            <span class="fish-icon">🐠</span>
+            <span class="fish-rope"></span>
+            <span class="fish-banner">Follow Us ▾</span>
+          </div>
+          <div class="fish-dropdown">
+            <a href="https://www.instagram.com/cocotheaxolotl/" target="_blank" rel="noopener">📸 Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61587038682969" target="_blank" rel="noopener">👍 Facebook</a>
+            <a href="https://www.tiktok.com/@cocotheaxolotl" target="_blank" rel="noopener">🎵 TikTok</a>
+            <a href="https://www.pinterest.com/cocotheaxolotl/" target="_blank" rel="noopener">📌 Pinterest</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -863,6 +930,22 @@
 
   <script>
     function rand(min,max){ return min + Math.random()*(max-min); }
+
+    /* ===== Fish group dropdowns ===== */
+    function toggleFishGroup(toggle){
+      var dropdown = toggle.nextElementSibling;
+      var isOpen = dropdown.classList.contains('open');
+      // Close all dropdowns
+      document.querySelectorAll('.fish-dropdown.open').forEach(function(d){ d.classList.remove('open'); });
+      // Open this one if it was closed
+      if(!isOpen) dropdown.classList.add('open');
+    }
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e){
+      if(!e.target.closest('.fish-group')){
+        document.querySelectorAll('.fish-dropdown.open').forEach(function(d){ d.classList.remove('open'); });
+      }
+    });
 
     /* ===== Language toggle ===== */
     function setLang(lang){
