@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easter Crossword – Coco the Axolotl</title>
+  <meta name="description" content="Interactive Easter crossword puzzle for kids ages 5–7. Solve 6 fun clues with Coco!">
+  <link rel="canonical" href="https://cocotheaxolotl.org/crossword/">
+  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/crossword/">
+  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/crossword/">
+  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/crossword/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --pink: #ff69b4; --pink2: #f7c1cc; --bg: #fef6fb; --green: #22c55e; --yellow: #fbbf24; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Baloo 2', sans-serif; background: var(--bg); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
+
+    header { width: 100%; background: var(--pink2); padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
+    header a { color: #c0186a; text-decoration: none; font-size: .9rem; font-weight: 600; }
+    header a:hover { text-decoration: underline; }
+    header .sep { color: #c0186a; opacity: .4; }
+
+    h1 { text-align: center; color: var(--pink); font-size: clamp(1.2rem,5vw,1.8rem); font-weight: 800; padding: 10px 16px 2px; }
+    .subtitle { text-align: center; color: #b05080; font-size: .9rem; margin-bottom: 14px; }
+
+    #game {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 18px; padding: 0 12px 40px; width: 100%; max-width: 560px;
+    }
+
+    /* ── GRID ── */
+    #crossword-grid {
+      display: grid;
+      gap: 3px;
+      background: #7c3263;
+      border: 4px solid #7c3263;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .cell {
+      width: 48px; height: 48px;
+      background: #2d1226; /* black square */
+      position: relative;
+    }
+    .cell.white {
+      background: #fff;
+      cursor: pointer;
+    }
+    .cell.white input {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      border: none; outline: none; background: transparent;
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 1.5rem; font-weight: 800;
+      text-align: center; text-transform: uppercase;
+      color: #222; cursor: pointer;
+      caret-color: transparent;
+      -webkit-user-select: none; user-select: none;
+      padding-top: 6px; /* push below number */
+    }
+    .cell.white.sel   { background: #fde8f5; }
+    .cell.white.cur   { background: var(--pink2); }
+    .cell.white.ok    { background: #dcfce7; }
+    .cell.white.ok input { color: #166534; }
+    .cell.white.wrong { animation: shake .35s ease; }
+    .cell-num {
+      position: absolute; top: 2px; left: 3px;
+      font-size: 0.5rem; font-weight: 800; color: #9d3a75;
+      line-height: 1; pointer-events: none; z-index: 2;
+    }
+    @keyframes shake {
+      0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)}
+    }
+
+    /* ── CLUES ── */
+    .clues-row { display: flex; gap: 16px; flex-wrap: wrap; width: 100%; }
+    .clues-col { flex: 1; min-width: 160px; }
+    .clues-col h3 { color: var(--pink); font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+    .clue-item {
+      display: flex; gap: 6px; align-items: baseline;
+      padding: 5px 8px; border-radius: 8px;
+      font-size: .88rem; color: #555; cursor: pointer;
+      line-height: 1.3;
+    }
+    .clue-item:hover { background: #fde8f5; }
+    .clue-item.cur { background: var(--pink2); color: #333; font-weight: 700; }
+    .clue-item.done { text-decoration: line-through; opacity: .5; }
+    .cnum { font-weight: 800; color: var(--pink); min-width: 20px; }
+
+    /* ── BUTTONS ── */
+    .btn-row { display: flex; gap: 10px; }
+    .btn { background: var(--pink); color: white; border: none; border-radius: 30px;
+           padding: 10px 24px; font-family: 'Baloo 2',sans-serif; font-size: .95rem;
+           font-weight: 700; cursor: pointer; }
+    .btn.sec { background: white; color: var(--pink); border: 2px solid var(--pink); }
+
+    /* ── WIN OVERLAY ── */
+    #win-overlay { display: none; position: fixed; inset: 0;
+      background: rgba(255,200,230,.93); z-index: 100;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px; }
+    #win-overlay.show { display: flex; }
+    .trophy { font-size: 5rem; animation: bounce .6s ease infinite alternate; }
+    @keyframes bounce { from{transform:scale(1)} to{transform:scale(1.15)} }
+    #win-overlay h2 { color: #c0186a; font-size: 2rem; font-weight: 800; }
+    #win-overlay p  { color: #b05080; font-size: 1.1rem; }
+    .win-btns { display: flex; gap: 12px; margin-top: 8px; }
+    .win-btns button { background: var(--pink); color: white; border: none; border-radius: 30px;
+      padding: 12px 28px; font-family: 'Baloo 2',sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .win-btns button.sec { background: white; color: var(--pink); border: 2px solid var(--pink); }
+
+    @media (max-width: 380px) {
+      .cell { width: 40px; height: 40px; }
+      .cell.white input { font-size: 1.25rem; padding-top: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/">🏠 Home</a>
+  <span class="sep">|</span>
+  <a href="/kids-games/">🎮 Kids Games</a>
+</header>
+
+<h1>🐣 Easter Crossword!</h1>
+<p class="subtitle">Ages 5–7 · Tap a clue or a square, then type the letter</p>
+
+<div id="game">
+  <div id="crossword-grid"></div>
+
+  <div class="clues-row">
+    <div class="clues-col">
+      <h3>➡️ Across</h3>
+      <div id="clues-across"></div>
+    </div>
+    <div class="clues-col">
+      <h3>⬇️ Down</h3>
+      <div id="clues-down"></div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn sec" onclick="resetGame()">🔄 Reset</button>
+    <button class="btn" onclick="checkAll()">✔️ Check</button>
+  </div>
+</div>
+
+<div id="win-overlay">
+  <div class="trophy">🐣</div>
+  <h2>Brilliant! 🌸</h2>
+  <p>You solved the Easter crossword! ⭐</p>
+  <div class="win-btns">
+    <button type="button" class="sec" onclick="resetGame()">Play Again</button>
+    <button type="button" onclick="window.location.href='/kids-games/'">More Games →</button>
+  </div>
+</div>
+
+<script>
+/*
+  Grid (6 rows × 6 cols):
+
+    N E S T ■ ■
+    ■ ■ P ■ ■ ■
+    C A R R O T
+    C H I C K ■
+    B U N N Y ■
+    E G G ■ ■ ■
+
+  Intersections (SPRING down at col 2):
+    [0,2] S  ← NEST
+    [1,2] P
+    [2,2] R  ← CARROT
+    [3,2] I  ← CHICK
+    [4,2] N  ← BUNNY
+    [5,2] G  ← EGG
+*/
+
+const ROWS = 6, COLS = 6;
+
+const WORDS = {
+  across: {
+    1: { cells: [[0,0],[0,1],[0,2],[0,3]],             answer: 'NEST',   clue: "A cosy home for eggs 🪹" },
+    3: { cells: [[2,0],[2,1],[2,2],[2,3],[2,4],[2,5]], answer: 'CARROT', clue: "Easter bunny's favourite veggie 🥕" },
+    4: { cells: [[3,0],[3,1],[3,2],[3,3],[3,4]],        answer: 'CHICK',  clue: "A baby chicken 🐥" },
+    5: { cells: [[4,0],[4,1],[4,2],[4,3],[4,4]],        answer: 'BUNNY',  clue: "Fluffy Easter animal 🐰" },
+    6: { cells: [[5,0],[5,1],[5,2]],                    answer: 'EGG',    clue: "You hunt for these at Easter 🥚" },
+  },
+  down: {
+    2: { cells: [[0,2],[1,2],[2,2],[3,2],[4,2],[5,2]], answer: 'SPRING', clue: "Season when flowers bloom 🌸" },
+  }
+};
+
+// Build white-cell map: key 'r,c' → {letter, number?, el, input}
+const cmap = {};
+function addCell(r, c, letter, num) {
+  const key = r+','+c;
+  if (!cmap[key]) cmap[key] = { letter, words: [] };
+  if (num) cmap[key].num = num;
+}
+
+// Number assignment: reading order, cell starts a word
+addCell(0,0,'N',1); addCell(0,1,'E'); addCell(0,2,'S',2); addCell(0,3,'T');
+addCell(1,2,'P');
+addCell(2,0,'C',3); addCell(2,1,'A'); addCell(2,2,'R'); addCell(2,3,'R'); addCell(2,4,'O'); addCell(2,5,'T');
+addCell(3,0,'C',4); addCell(3,1,'H'); addCell(3,2,'I'); addCell(3,3,'C'); addCell(3,4,'K');
+addCell(4,0,'B',5); addCell(4,1,'U'); addCell(4,2,'N'); addCell(4,3,'N'); addCell(4,4,'Y');
+addCell(5,0,'E',6); addCell(5,1,'G'); addCell(5,2,'G');
+
+// Tag each cell with which words it belongs to
+['across','down'].forEach(dir => {
+  Object.entries(WORDS[dir]).forEach(([num, wd]) => {
+    wd.cells.forEach(([r,c]) => {
+      const k = r+','+c;
+      if (cmap[k]) cmap[k].words.push({ dir, num: +num });
+    });
+  });
+});
+
+let activeKey = null, activeDir = 'across', activeNum = null;
+
+// ── Build grid DOM ──
+function buildGrid() {
+  const grid = document.getElementById('crossword-grid');
+  grid.style.gridTemplateColumns = `repeat(${COLS}, 48px)`;
+  grid.innerHTML = '';
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const div = document.createElement('div');
+      div.className = 'cell';
+      const k = r+','+c;
+      if (cmap[k]) {
+        div.classList.add('white');
+        if (cmap[k].num) {
+          const n = document.createElement('div');
+          n.className = 'cell-num';
+          n.textContent = cmap[k].num;
+          div.appendChild(n);
+        }
+        const inp = document.createElement('input');
+        inp.type = 'text'; inp.maxLength = 2;
+        inp.autocomplete = 'off'; inp.autocorrect = 'off';
+        inp.autocapitalize = 'characters'; inp.spellcheck = false;
+        cmap[k].el = div;
+        cmap[k].inp = inp;
+        div.appendChild(inp);
+        div.addEventListener('click', () => onCellClick(r, c));
+        inp.addEventListener('keydown', e => onKeyDown(e, r, c));
+        inp.addEventListener('input', e => onInput(e, r, c));
+      }
+      grid.appendChild(div);
+    }
+  }
+}
+
+// ── Build clues DOM ──
+function buildClues() {
+  ['across','down'].forEach(dir => {
+    const container = document.getElementById('clues-'+dir);
+    container.innerHTML = '';
+    Object.entries(WORDS[dir]).forEach(([num, wd]) => {
+      const div = document.createElement('div');
+      div.className = 'clue-item';
+      div.id = 'clue-'+dir+'-'+num;
+      div.innerHTML = `<span class="cnum">${num}.</span><span>${wd.clue}</span>`;
+      div.addEventListener('click', () => selectWord(+num, dir));
+      container.appendChild(div);
+    });
+  });
+}
+
+// ── Selection ──
+function selectWord(num, dir) {
+  activeDir = dir; activeNum = num;
+  const wd = WORDS[dir][num];
+  // Move to first empty cell, else first cell
+  let target = wd.cells[0];
+  for (const [r,c] of wd.cells) {
+    if (!cmap[r+','+c].inp.value) { target = [r,c]; break; }
+  }
+  activeKey = target[0]+','+target[1];
+  refresh();
+  cmap[activeKey].inp.focus();
+}
+
+function onCellClick(r, c) {
+  const k = r+','+c;
+  if (activeKey === k) {
+    // Toggle direction if cell is in both
+    const dirs = [...new Set(cmap[k].words.map(w => w.dir))];
+    if (dirs.length > 1) {
+      activeDir = activeDir === 'across' ? 'down' : 'across';
+      const w = cmap[k].words.find(w => w.dir === activeDir);
+      if (w) activeNum = w.num;
+    }
+  } else {
+    activeKey = k;
+    const w = cmap[k].words.find(w => w.dir === activeDir) || cmap[k].words[0];
+    if (w) { activeDir = w.dir; activeNum = w.num; }
+  }
+  refresh();
+  cmap[k].inp.focus();
+}
+
+function onKeyDown(e, r, c) {
+  const k = r+','+c;
+  if (e.key === 'Backspace') {
+    e.preventDefault();
+    if (cmap[k].inp.value) {
+      cmap[k].inp.value = '';
+      cmap[k].el.classList.remove('ok','wrong');
+    } else {
+      move(r, c, -1);
+    }
+    return;
+  }
+  if (e.key === 'Enter') { e.preventDefault(); move(r, c, 1); return; }
+  if (e.key === 'ArrowRight') { e.preventDefault(); if (activeDir==='across') move(r,c,1); else { activeDir='across'; const w=cmap[k].words.find(w=>w.dir==='across'); if(w){activeNum=w.num;} refresh(); } return; }
+  if (e.key === 'ArrowLeft')  { e.preventDefault(); if (activeDir==='across') move(r,c,-1); else { activeDir='across'; const w=cmap[k].words.find(w=>w.dir==='across'); if(w){activeNum=w.num;} refresh(); } return; }
+  if (e.key === 'ArrowDown')  { e.preventDefault(); if (activeDir==='down')   move(r,c,1); else { activeDir='down'; const w=cmap[k].words.find(w=>w.dir==='down'); if(w){activeNum=w.num;} refresh(); } return; }
+  if (e.key === 'ArrowUp')    { e.preventDefault(); if (activeDir==='down')   move(r,c,-1); else { activeDir='down'; const w=cmap[k].words.find(w=>w.dir==='down'); if(w){activeNum=w.num;} refresh(); } return; }
+}
+
+function onInput(e, r, c) {
+  const k = r+','+c;
+  const raw = cmap[k].inp.value.replace(/[^a-zA-Z]/g,'').toUpperCase();
+  cmap[k].inp.value = raw ? raw[raw.length-1] : '';
+  cmap[k].el.classList.remove('ok','wrong');
+  if (cmap[k].inp.value) {
+    if (cmap[k].inp.value === cmap[k].letter) cmap[k].el.classList.add('ok');
+    move(r, c, 1);
+    checkWin();
+  }
+}
+
+function move(r, c, delta) {
+  const wd = WORDS[activeDir][activeNum];
+  if (!wd) return;
+  const idx = wd.cells.findIndex(([cr,cc]) => cr===r && cc===c);
+  const next = wd.cells[idx + delta];
+  if (next) {
+    activeKey = next[0]+','+next[1];
+    refresh();
+    cmap[activeKey].inp.focus();
+  }
+}
+
+// ── Highlight ──
+function refresh() {
+  Object.values(cmap).forEach(cd => cd.el.classList.remove('sel','cur'));
+  document.querySelectorAll('.clue-item').forEach(el => el.classList.remove('cur'));
+
+  if (activeNum && WORDS[activeDir][activeNum]) {
+    WORDS[activeDir][activeNum].cells.forEach(([r,c]) => {
+      cmap[r+','+c].el.classList.add('sel');
+    });
+  }
+  if (activeKey && cmap[activeKey]) {
+    cmap[activeKey].el.classList.remove('sel');
+    cmap[activeKey].el.classList.add('cur');
+  }
+  const clueEl = document.getElementById('clue-'+activeDir+'-'+activeNum);
+  if (clueEl) clueEl.classList.add('cur');
+}
+
+// ── Check / Win ──
+function checkAll() {
+  let errors = 0;
+  Object.entries(cmap).forEach(([k, cd]) => {
+    if (!cd.inp.value) return;
+    if (cd.inp.value === cd.letter) {
+      cd.el.classList.add('ok');
+    } else {
+      cd.inp.value = '';
+      cd.el.classList.remove('ok');
+      cd.el.classList.add('wrong');
+      setTimeout(() => cd.el.classList.remove('wrong'), 400);
+      errors++;
+    }
+  });
+}
+
+function checkWin() {
+  const all = Object.values(cmap).every(cd => cd.inp.value === cd.letter);
+  if (all) {
+    // Mark all correct words as done in clue list
+    ['across','down'].forEach(dir => {
+      Object.keys(WORDS[dir]).forEach(num => {
+        const el = document.getElementById('clue-'+dir+'-'+num);
+        if (el) el.classList.add('done');
+      });
+    });
+    setTimeout(() => document.getElementById('win-overlay').classList.add('show'), 500);
+  }
+}
+
+function resetGame() {
+  Object.values(cmap).forEach(cd => {
+    cd.inp.value = '';
+    cd.el.classList.remove('ok','wrong','sel','cur');
+  });
+  document.querySelectorAll('.clue-item').forEach(el => el.classList.remove('cur','done'));
+  document.getElementById('win-overlay').classList.remove('show');
+  activeKey = null; activeDir = 'across'; activeNum = null;
+}
+
+buildGrid();
+buildClues();
+</script>
+
+<script src="/js/lang-switcher.js"></script>
+<script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
+</body>
+</html>
