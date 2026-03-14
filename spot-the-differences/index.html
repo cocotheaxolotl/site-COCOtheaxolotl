@@ -79,13 +79,13 @@
     #zoom-overlay.show { display: flex; }
     #zoom-container {
       flex: 1; overflow: hidden; position: relative;
-      display: flex; align-items: center; justify-content: center;
     }
     #zoom-img {
-      max-width: 100%; max-height: 100%;
-      transform-origin: center center;
-      user-select: none; -webkit-user-select: none;
-      pointer-events: none;
+      position: absolute; top: 0; left: 0;
+      transform-origin: 0 0;
+      max-width: none;
+      will-change: transform;
+      user-select: none; -webkit-user-select: none; -webkit-user-drag: none;
     }
     #zoom-hint {
       position: absolute; bottom: 8px; left: 0; right: 0;
@@ -175,7 +175,7 @@ const HOTSPOTS = [
   { x: 0.617, y: 0.793 },  // 8 – bottom-right (cup/donut)
 ];
 
-const HIT_RADIUS = 0.08; // fraction of panel width
+const HIT_RADIUS = 0.12; // fraction of panel width
 const COLORS = ['#ff69b4','#a78bfa','#34d399','#f59e0b','#60a5fa','#f472b6','#4ade80','#fb923c'];
 
 let img = new Image();
@@ -321,18 +321,31 @@ function resetGame() {
 }
 
 // ── Pinch-to-zoom overlay ──
-const pz = { scale: 1, x: 0, y: 0, startScale: 1, startDist: 0, startX: 0, startY: 0 };
+// natural img point (nx,ny) → screen = (nx*s + tx, ny*s + ty)
+let _pz = { s: 1, tx: 0, ty: 0 };
+let _t0 = null;
 
-function applyPZ() {
+function _applyPZ() {
   document.getElementById('zoom-img').style.transform =
-    `translate(${pz.x}px, ${pz.y}px) scale(${pz.scale})`;
+    'matrix(' + _pz.s + ',0,0,' + _pz.s + ',' + _pz.tx + ',' + _pz.ty + ')';
+}
+
+function _centerPZ() {
+  const img = document.getElementById('zoom-img');
+  const con = document.getElementById('zoom-container');
+  const cw = con.clientWidth, ch = con.clientHeight;
+  const fitS = Math.min(cw / img.naturalWidth, ch / img.naturalHeight);
+  _pz.s = fitS;
+  _pz.tx = (cw - img.naturalWidth * fitS) / 2;
+  _pz.ty = (ch - img.naturalHeight * fitS) / 2;
+  _applyPZ();
 }
 
 function openZoom(which) {
   const src = which === 'top' ? document.getElementById('canvas-top') : document.getElementById('canvas-bot');
-  document.getElementById('zoom-img').src = src.toDataURL();
-  pz.scale = 1; pz.x = 0; pz.y = 0;
-  applyPZ();
+  const img = document.getElementById('zoom-img');
+  img.onload = _centerPZ;
+  img.src = src.toDataURL();
   document.getElementById('zoom-overlay').classList.add('show');
 }
 
@@ -345,40 +358,48 @@ function closeZoom() {
 
   con.addEventListener('touchstart', function (e) {
     e.preventDefault();
-    if (e.touches.length === 2) {
-      pz.startDist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      pz.startScale = pz.scale;
-    } else {
-      pz.startX = e.touches[0].clientX - pz.x;
-      pz.startY = e.touches[0].clientY - pz.y;
-    }
+    _t0 = {
+      s: _pz.s, tx: _pz.tx, ty: _pz.ty,
+      t: Array.from(e.touches).map(function(t){ return { x: t.clientX, y: t.clientY }; })
+    };
   }, { passive: false });
 
   con.addEventListener('touchmove', function (e) {
     e.preventDefault();
-    if (e.touches.length === 2) {
-      const dist = Math.hypot(
-        e.touches[0].clientX - e.touches[1].clientX,
-        e.touches[0].clientY - e.touches[1].clientY
-      );
-      pz.scale = Math.min(6, Math.max(1, pz.startScale * dist / pz.startDist));
-      applyPZ();
-    } else if (e.touches.length === 1 && pz.scale > 1) {
-      pz.x = e.touches[0].clientX - pz.startX;
-      pz.y = e.touches[0].clientY - pz.startY;
-      applyPZ();
+    if (!_t0) return;
+    if (e.touches.length >= 2 && _t0.t.length >= 2) {
+      // Pinch — zoom around initial midpoint
+      var d0 = Math.hypot(_t0.t[1].x - _t0.t[0].x, _t0.t[1].y - _t0.t[0].y);
+      var d1 = Math.hypot(e.touches[1].clientX - e.touches[0].clientX, e.touches[1].clientY - e.touches[0].clientY);
+      var newS = Math.min(8, Math.max(0.5, _t0.s * d1 / d0));
+      var mx = (_t0.t[0].x + _t0.t[1].x) / 2;
+      var my = (_t0.t[0].y + _t0.t[1].y) / 2;
+      var ratio = newS / _t0.s;
+      _pz.s  = newS;
+      _pz.tx = mx - ratio * (mx - _t0.tx);
+      _pz.ty = my - ratio * (my - _t0.ty);
+      _applyPZ();
+    } else if (e.touches.length === 1) {
+      // Pan
+      _pz.tx = _t0.tx + e.touches[0].clientX - _t0.t[0].x;
+      _pz.ty = _t0.ty + e.touches[0].clientY - _t0.t[0].y;
+      _applyPZ();
     }
   }, { passive: false });
 
-  // Double-tap to reset
-  let lastTap = 0;
   con.addEventListener('touchend', function (e) {
-    const now = Date.now();
-    if (now - lastTap < 300) { pz.scale = 1; pz.x = 0; pz.y = 0; applyPZ(); }
-    lastTap = now;
+    _t0 = {
+      s: _pz.s, tx: _pz.tx, ty: _pz.ty,
+      t: Array.from(e.touches).map(function(t){ return { x: t.clientX, y: t.clientY }; })
+    };
+  }, { passive: false });
+
+  // Double-tap to reset
+  var _lastTap = 0;
+  con.addEventListener('click', function () {
+    var now = Date.now();
+    if (now - _lastTap < 300) _centerPZ();
+    _lastTap = now;
   });
 })();
 
