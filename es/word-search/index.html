@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sopa de Letras del Ajolote – Coco el Ajolote</title>
+  <meta name="description" content="Juego interactivo de sopa de letras para niños de 5 a 7 años. ¡Encuentra COCO, WATER, GILLS, MEXICO y más! Desliza el dedo para seleccionar.">
+  <meta property="og:title" content="Sopa de Letras del Ajolote – Coco el Ajolote">
+  <meta property="og:description" content="Juego interactivo de sopa de letras para niños. ¡Desliza el dedo para encontrar las palabras!">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Coco el Ajolote">
+  <link rel="canonical" href="https://cocotheaxolotl.org/es/word-search/">
+  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/word-search/">
+  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/word-search/">
+  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/word-search/">
+  <link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/word-search/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --pink: #ff69b4; --pink2: #f7c1cc; --bg: #fef6fb; --cell: min(calc((100vw - 48px) / 12), 42px); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Baloo 2', sans-serif; background: var(--bg); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; touch-action: none; overflow-x: hidden; }
+    header { width: 100%; background: var(--pink2); padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
+    header a { color: #c0186a; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+    header a:hover { text-decoration: underline; }
+    header .sep { color: #c0186a; opacity: 0.4; }
+    h1 { text-align: center; color: var(--pink); font-size: clamp(1.2rem, 5vw, 1.8rem); font-weight: 800; padding: 10px 16px 2px; }
+    .subtitle { text-align: center; color: #b05080; font-size: 0.85rem; margin-bottom: 6px; }
+    #puzzle-selector { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; justify-content: center; padding: 0 16px; }
+    .puzzle-btn { font-family: 'Baloo 2', sans-serif; font-size: 0.85rem; font-weight: 700; padding: 6px 16px; border-radius: 20px; border: 2px solid var(--pink2); background: white; color: #c04080; cursor: pointer; transition: all 0.2s; }
+    .puzzle-btn.active { background: var(--pink); border-color: var(--pink); color: white; }
+    .puzzle-btn:hover:not(.active) { background: var(--pink2); }
+    #grid-container { position: relative; -webkit-user-select: none; user-select: none; touch-action: none; }
+    #grid { display: grid; grid-template-columns: repeat(12, var(--cell)); grid-template-rows: repeat(12, var(--cell)); border: 2px solid var(--pink2); border-radius: 10px; overflow: hidden; background: white; }
+    .cell { width: var(--cell); height: var(--cell); display: flex; align-items: center; justify-content: center; font-size: calc(var(--cell) * 0.44); font-weight: 700; color: #444; border: 1px solid #f0d0e0; cursor: pointer; transition: background 0.1s; }
+    .cell.selecting { background: #ffd6ec; color: var(--pink); }
+    .cell.found { color: white; }
+    .cell.word-0 { background: #ff69b4; } .cell.word-1 { background: #f4a0c8; } .cell.word-2 { background: #e87bbf; }
+    .cell.word-3 { background: #d955a8; } .cell.word-4 { background: #f08fc0; } .cell.word-5 { background: #c94499; }
+    .cell.word-6 { background: #e066b3; } .cell.word-7 { background: #f77dc2; } .cell.word-8 { background: #dc4da6; }
+    #svg-overlay { position: absolute; top: 0; left: 0; pointer-events: none; z-index: 2; }
+    .found-line { stroke-opacity: 0.35; stroke-linecap: round; }
+    #word-list { display: flex; flex-wrap: wrap; gap: 8px 12px; justify-content: center; padding: 12px 16px; max-width: calc(12 * var(--cell) + 4px); }
+    .word-item { font-size: clamp(0.85rem, 3.5vw, 1rem); font-weight: 700; color: #c04080; padding: 4px 12px; border-radius: 20px; background: white; border: 2px solid var(--pink2); transition: all 0.3s; letter-spacing: 0.05em; }
+    .word-item.found { text-decoration: line-through; color: #ccc; border-color: #eee; background: #fafafa; }
+    #win-overlay { display: none; position: fixed; inset: 0; background: rgba(255,200,230,0.92); z-index: 100; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    #win-overlay.show { display: flex; }
+    .trophy { font-size: 5rem; animation: bounce 0.6s ease infinite alternate; }
+    @keyframes bounce { from { transform: scale(1); } to { transform: scale(1.15); } }
+    #win-overlay h2 { color: #c0186a; font-size: 2rem; font-weight: 800; }
+    #win-overlay p { color: #b05080; font-size: 1.1rem; }
+    .win-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+    .win-btns button { background: var(--pink); color: white; border: none; border-radius: 30px; padding: 12px 28px; font-family: 'Baloo 2', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .win-btns button.secondary { background: white; color: var(--pink); border: 2px solid var(--pink); }
+    .win-btns button:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/es/">🏠 Inicio</a>
+  <span class="sep">|</span>
+  <a href="/es/kids-games/">🎮 Juegos</a>
+  <span class="sep">|</span>
+  <a href="/word-search/">🇬🇧 EN</a>
+  <a href="/fr/word-search/">🇫🇷 FR</a>
+</header>
+
+<h1>🔍 Sopa de Letras del Ajolote</h1>
+<p class="subtitle">5–7 años · ¡Desliza el dedo para encontrar las palabras!</p>
+
+<div id="puzzle-selector"></div>
+
+<div id="grid-container">
+  <div id="grid"></div>
+  <svg id="svg-overlay"></svg>
+</div>
+
+<div id="word-list"></div>
+
+<div id="win-overlay">
+  <div class="trophy">🏆</div>
+  <h2>¡Bravo!</h2>
+  <p id="win-msg">¡Las encontraste todas! 🌟</p>
+  <div class="win-btns">
+    <button type="button" class="secondary" onclick="resetGame()">Jugar de nuevo</button>
+    <button type="button" id="next-btn" onclick="nextPuzzle()">Siguiente →</button>
+  </div>
+</div>
+
+<script>
+const PUZZLES = [
+  {
+    title: '🌊 Ajolote',
+    grid: [
+      ['L','T','P','P','S','Z','O','C','C','I','P','W'],
+      ['V','C','I','B','X','W','G','I','L','L','S','J'],
+      ['U','N','S','V','O','J','W','S','Y','M','V','L'],
+      ['K','A','O','K','L','F','D','T','D','A','P','B'],
+      ['G','Y','O','J','E','I','X','H','M','M','L','P'],
+      ['C','O','F','O','K','M','R','I','E','M','N','P'],
+      ['B','R','I','W','N','L','V','M','H','E','E','C'],
+      ['F','E','H','V','H','A','P','S','F','X','O','I'],
+      ['J','A','E','W','A','T','E','R','N','I','C','R'],
+      ['L','S','M','I','L','E','T','S','K','C','O','E'],
+      ['W','Q','T','U','V','X','B','O','Y','O','C','V'],
+      ['Z','R','M','M','M','M','D','P','U','M','B','G'],
+    ],
+    words: [
+      { word: 'COCO',   cells: [[10,10],[9,10],[8,10],[7,10]] },
+      { word: 'WATER',  cells: [[8,3],[8,4],[8,5],[8,6],[8,7]] },
+      { word: 'PINK',   cells: [[0,3],[1,2],[2,1],[3,0]] },
+      { word: 'MEXICO', cells: [[5,9],[6,9],[7,9],[8,9],[9,9],[10,9]] },
+      { word: 'GILLS',  cells: [[1,6],[1,7],[1,8],[1,9],[1,10]] },
+      { word: 'SMILE',  cells: [[9,1],[9,2],[9,3],[9,4],[9,5]] },
+      { word: 'KIDS',   cells: [[5,4],[4,5],[3,6],[2,7]] },
+      { word: 'BOOK',   cells: [[6,0],[5,1],[4,2],[3,3]] },
+      { word: 'PLAY',   cells: [[5,11],[4,10],[3,9],[2,8]] },
+    ]
+  },
+  {
+    title: '🌊 Océano',
+    grid: [
+      ['S','K','P','T','M','Z','L','N','V','J','C','R'],
+      ['X','T','D','Q','F','W','O','H','G','C','Y','B'],
+      ['N','K','A','J','B','P','Z','L','M','R','T','X'],
+      ['V','F','Q','R','G','Y','K','D','P','A','M','H'],
+      ['Z','B','W','A','V','E','J','T','N','B','X','L'],
+      ['P','C','J','M','Q','R','D','K','T','V','N','Z'],
+      ['T','H','F','D','K','E','N','M','B','X','J','V'],
+      ['Q','F','I','S','H','E','P','G','Y','L','K','N'],
+      ['K','M','T','V','J','F','B','D','P','Z','U','X'],
+      ['D','N','P','K','B','G','Q','M','T','V','R','E'],
+      ['H','Z','J','T','V','M','S','A','N','D','P','K'],
+      ['S','W','I','M','Q','F','R','T','X','B','G','Y'],
+    ],
+    words: [
+      { word: 'STAR', cells: [[0,0],[1,1],[2,2],[3,3]] },
+      { word: 'WAVE', cells: [[4,2],[4,3],[4,4],[4,5]] },
+      { word: 'FISH', cells: [[7,1],[7,2],[7,3],[7,4]] },
+      { word: 'CRAB', cells: [[1,9],[2,9],[3,9],[4,9]] },
+      { word: 'REEF', cells: [[5,5],[6,5],[7,5],[8,5]] },
+      { word: 'BLUE', cells: [[6,8],[7,9],[8,10],[9,11]] },
+      { word: 'SAND', cells: [[10,6],[10,7],[10,8],[10,9]] },
+      { word: 'SWIM', cells: [[11,0],[11,1],[11,2],[11,3]] },
+    ]
+  },
+  {
+    title: '🐾 Animales',
+    grid: [
+      ['P','K','T','M','Z','L','N','V','D','J','C','R'],
+      ['X','Q','B','F','Y','W','H','G','O','C','Y','B'],
+      ['N','K','Z','I','C','A','T','L','G','R','T','X'],
+      ['V','F','Q','M','R','Y','K','D','P','Z','M','B'],
+      ['Z','B','J','T','N','D','H','P','K','X','L','E'],
+      ['F','R','O','G','Q','D','J','T','N','V','B','A'],
+      ['T','H','P','D','K','M','N','X','B','Z','J','R'],
+      ['Q','N','F','K','B','G','P','M','Y','T','W','V'],
+      ['K','M','T','V','J','D','U','C','K','O','X','P'],
+      ['D','N','P','K','B','G','Q','M','L','Z','R','H'],
+      ['H','Z','L','I','O','N','R','F','T','B','G','Y'],
+      ['S','V','J','T','Q','M','X','P','G','D','K','N'],
+    ],
+    words: [
+      { word: 'CAT',  cells: [[2,4],[2,5],[2,6]] },
+      { word: 'DOG',  cells: [[0,8],[1,8],[2,8]] },
+      { word: 'FROG', cells: [[5,0],[5,1],[5,2],[5,3]] },
+      { word: 'BIRD', cells: [[1,2],[2,3],[3,4],[4,5]] },
+      { word: 'DUCK', cells: [[8,5],[8,6],[8,7],[8,8]] },
+      { word: 'BEAR', cells: [[3,11],[4,11],[5,11],[6,11]] },
+      { word: 'LION', cells: [[10,2],[10,3],[10,4],[10,5]] },
+      { word: 'WOLF', cells: [[7,10],[8,9],[9,8],[10,7]] },
+    ]
+  }
+];
+
+const WIN_MSGS = ['¡Las encontraste todas! 🌟','¡Eres una estrella! ⭐','¡Increíble! 🎉','¡Qué inteligente! 🦋','¡Viva! 🌈'];
+let currentPuzzleIdx=0,foundWords=new Set(),selecting=false,startCell=null,currentCells=[],cellEls=[];
+
+function loadPuzzle(idx){currentPuzzleIdx=idx;foundWords=new Set();selecting=false;startCell=null;currentCells=[];document.getElementById('win-overlay').classList.remove('show');buildGrid();updatePuzzleButtons();}
+function updatePuzzleButtons(){document.querySelectorAll('.puzzle-btn').forEach((btn,i)=>btn.classList.toggle('active',i===currentPuzzleIdx));document.getElementById('next-btn').style.display=currentPuzzleIdx>=PUZZLES.length-1?'none':'';}
+function buildPuzzleSelector(){const sel=document.getElementById('puzzle-selector');PUZZLES.forEach((p,i)=>{const btn=document.createElement('button');btn.className='puzzle-btn'+(i===currentPuzzleIdx?' active':'');btn.type='button';btn.textContent=p.title;btn.onclick=()=>loadPuzzle(i);sel.appendChild(btn);});}
+function buildGrid(){const puzzle=PUZZLES[currentPuzzleIdx],grid=document.getElementById('grid');grid.innerHTML='';cellEls=[];for(let r=0;r<12;r++){cellEls[r]=[];for(let c=0;c<12;c++){const el=document.createElement('div');el.className='cell';el.textContent=puzzle.grid[r][c];grid.appendChild(el);cellEls[r][c]=el;}}buildWordList();buildSvg();if(!grid._eventsSet){setupEvents();grid._eventsSet=true;}}
+function buildWordList(){const wl=document.getElementById('word-list');wl.innerHTML='';PUZZLES[currentPuzzleIdx].words.forEach((w,i)=>{const el=document.createElement('div');el.className='word-item';el.id='word-'+i;el.textContent=w.word;wl.appendChild(el);});}
+function buildSvg(){const puzzle=PUZZLES[currentPuzzleIdx],svg=document.getElementById('svg-overlay'),grid=document.getElementById('grid');const w=grid.offsetWidth,h=grid.offsetHeight;svg.setAttribute('width',w);svg.setAttribute('height',h);svg.setAttribute('viewBox',`0 0 ${w} ${h}`);svg.innerHTML='';const cs=w/12,colors=['#ff69b4','#f4a0c8','#e87bbf','#d955a8','#f08fc0','#c94499','#e066b3','#f77dc2','#dc4da6'];puzzle.words.forEach((wd,i)=>{if(!foundWords.has(i))return;const line=document.createElementNS('http://www.w3.org/2000/svg','line');const[r1,c1]=wd.cells[0],[r2,c2]=wd.cells[wd.cells.length-1];line.setAttribute('x1',(c1+.5)*cs);line.setAttribute('y1',(r1+.5)*cs);line.setAttribute('x2',(c2+.5)*cs);line.setAttribute('y2',(r2+.5)*cs);line.setAttribute('stroke',colors[i%colors.length]);line.setAttribute('stroke-width',cs*.72);line.setAttribute('class','found-line');svg.appendChild(line);});}
+function getCellFromPoint(x,y){const rect=document.getElementById('grid').getBoundingClientRect(),cs=rect.width/12;const c=Math.floor((x-rect.left)/cs),r=Math.floor((y-rect.top)/cs);return(r>=0&&r<12&&c>=0&&c<12)?[r,c]:null;}
+function getCellsInLine(r1,c1,r2,c2){const dr=r2-r1,dc=c2-c1;if(!dr&&!dc)return[[r1,c1]];if(dr&&dc&&Math.abs(dr)!==Math.abs(dc)){if(Math.abs(dr)>Math.abs(dc)){const a=[],s=dr>0?1:-1;for(let r=r1;r!==r2+s;r+=s)a.push([r,c1]);return a;}else{const a=[],s=dc>0?1:-1;for(let c=c1;c!==c2+s;c+=s)a.push([r1,c]);return a;}}const steps=Math.max(Math.abs(dr),Math.abs(dc)),sr=dr?dr>0?1:-1:0,sc=dc?dc>0?1:-1:0,a=[];for(let i=0;i<=steps;i++)a.push([r1+i*sr,c1+i*sc]);return a;}
+function clearSelection(){currentCells.forEach(([r,c])=>{if(cellEls[r]&&cellEls[r][c]&&!cellEls[r][c].classList.contains('found'))cellEls[r][c].classList.remove('selecting');});currentCells=[];}
+function updateSelection(cells){clearSelection();currentCells=cells;cells.forEach(([r,c])=>{if(!cellEls[r][c].classList.contains('found'))cellEls[r][c].classList.add('selecting');});}
+function checkWord(cells){const puzzle=PUZZLES[currentPuzzleIdx],str=cells.map(([r,c])=>puzzle.grid[r][c]).join(''),rev=str.split('').reverse().join('');for(let i=0;i<puzzle.words.length;i++){if(foundWords.has(i))continue;const t=puzzle.words[i].word;if(str!==t&&rev!==t)continue;const sel=cells.map(([r,c])=>r+','+c).join('|'),fwd=puzzle.words[i].cells.map(([r,c])=>r+','+c).join('|'),bwd=[...puzzle.words[i].cells].reverse().map(([r,c])=>r+','+c).join('|');if(sel===fwd||sel===bwd)return i;}return -1;}
+function markFound(idx){foundWords.add(idx);PUZZLES[currentPuzzleIdx].words[idx].cells.forEach(([r,c])=>{cellEls[r][c].classList.remove('selecting');cellEls[r][c].classList.add('found','word-'+idx);});document.getElementById('word-'+idx).classList.add('found');buildSvg();if(foundWords.size===PUZZLES[currentPuzzleIdx].words.length){document.getElementById('win-msg').textContent=WIN_MSGS[currentPuzzleIdx%WIN_MSGS.length];setTimeout(()=>document.getElementById('win-overlay').classList.add('show'),400);}}
+function setupEvents(){const grid=document.getElementById('grid');grid.addEventListener('touchstart',e=>{e.preventDefault();const t=e.touches[0],cell=getCellFromPoint(t.clientX,t.clientY);if(!cell)return;selecting=true;startCell=cell;updateSelection([cell]);},{passive:false});grid.addEventListener('touchmove',e=>{e.preventDefault();if(!selecting)return;const t=e.touches[0],cell=getCellFromPoint(t.clientX,t.clientY);if(!cell)return;updateSelection(getCellsInLine(startCell[0],startCell[1],cell[0],cell[1]));},{passive:false});grid.addEventListener('touchend',e=>{e.preventDefault();if(!selecting)return;selecting=false;const idx=checkWord(currentCells);if(idx>=0)markFound(idx);else clearSelection();currentCells=[];startCell=null;},{passive:false});grid.addEventListener('mousedown',e=>{const cell=getCellFromPoint(e.clientX,e.clientY);if(!cell)return;selecting=true;startCell=cell;updateSelection([cell]);});grid.addEventListener('mousemove',e=>{if(!selecting)return;const cell=getCellFromPoint(e.clientX,e.clientY);if(!cell)return;updateSelection(getCellsInLine(startCell[0],startCell[1],cell[0],cell[1]));});grid.addEventListener('mouseup',()=>{if(!selecting)return;selecting=false;const idx=checkWord(currentCells);if(idx>=0)markFound(idx);else clearSelection();currentCells=[];startCell=null;});document.addEventListener('mouseup',()=>{if(selecting){selecting=false;clearSelection();currentCells=[];startCell=null;}});}
+function resetGame(){loadPuzzle(currentPuzzleIdx);}
+function nextPuzzle(){if(currentPuzzleIdx<PUZZLES.length-1)loadPuzzle(currentPuzzleIdx+1);}
+buildPuzzleSelector();loadPuzzle(0);
+window.addEventListener('resize',buildSvg);
+</script>
+<script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
+</body>
+</html>
