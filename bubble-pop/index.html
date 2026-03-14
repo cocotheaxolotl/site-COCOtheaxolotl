@@ -469,5 +469,6 @@ document.addEventListener('click', ()=>{
   if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
 }, {once:true});
 </script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js");}</script>
 </body>
 </html>

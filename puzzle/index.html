@@ -806,5 +806,6 @@ fetch('/puzzle/images/index.json')
   .finally(() => loadNewImage());
 </script>
 
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js");}</script>
 </body>
 </html>
