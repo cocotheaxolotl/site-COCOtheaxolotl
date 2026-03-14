@@ -167,29 +167,37 @@
     100%{filter:brightness(1)}
   }
 
-  /* ── Admiration phase ── */
-  #puzzleGrid.admire{
-    gap:0;
-    padding:0;
-    border-radius:16px;
-    overflow:hidden;
-    outline:4px solid var(--pink);
-    animation:glowPulse 1.2s ease-in-out infinite alternate;
-    transition: gap .4s ease, padding .4s ease;
+  /* ── Admiration overlay ── */
+  #admireOverlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(254,246,251,.96);
+    z-index:60;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
   }
-  #puzzleGrid.admire .piece{
-    border-radius:0;
-    cursor:default;
-    pointer-events:none;
-    animation:shimmer 1.8s ease-in-out infinite alternate;
+  #admireOverlay.show{ display:flex; }
+  #admireOverlay img{
+    max-height:78vh;
+    max-width:84vw;
+    border-radius:20px;
+    box-shadow:0 0 0 5px var(--pink), 0 20px 60px rgba(255,105,180,.45);
+    animation:admireIn .45s cubic-bezier(.34,1.56,.64,1) forwards;
+    object-fit:contain;
   }
-  @keyframes glowPulse{
-    from{filter:drop-shadow(0 0 8px rgba(255,105,180,.5))}
-    to  {filter:drop-shadow(0 0 20px rgba(255,105,180,.9))}
+  #admireCountdown{
+    font-family:'Baloo 2',cursive;
+    font-size:1.3em;
+    font-weight:800;
+    color:var(--pink);
+    opacity:.75;
   }
-  @keyframes shimmer{
-    from{filter:brightness(1) saturate(1)}
-    to  {filter:brightness(1.12) saturate(1.3)}
+  @keyframes admireIn{
+    from{transform:scale(.82);opacity:0}
+    to  {transform:scale(1);  opacity:1}
   }
 
   /* ── Victory overlay ── */
@@ -322,6 +330,12 @@
 <div id="originalModal">
   <button class="close-btn" id="btnCloseModal">✕</button>
   <img id="originalImg" src="" alt="Original puzzle image">
+</div>
+
+<!-- Admiration overlay -->
+<div id="admireOverlay">
+  <img id="admireImg" src="" alt="Complete image">
+  <div id="admireCountdown"></div>
 </div>
 
 <!-- Victory overlay -->
@@ -686,14 +700,24 @@ function playWinChime(){
 }
 
 function startAdmiration(){
-  grid.classList.add('admire');
-  // Play a soft win chime
   playWinChime();
-  // After 3 seconds, show the victory overlay
-  setTimeout(() => {
-    grid.classList.remove('admire');
-    showVictory();
-  }, 3000);
+  const overlay   = document.getElementById('admireOverlay');
+  const admireImg = document.getElementById('admireImg');
+  const countdown = document.getElementById('admireCountdown');
+  admireImg.src = imgPath(currentImage);
+  overlay.classList.add('show');
+  let secs = 3;
+  countdown.textContent = '⭐ ' + secs + ' ⭐';
+  const tick = setInterval(() => {
+    secs--;
+    if(secs > 0){
+      countdown.textContent = '⭐ ' + secs + ' ⭐';
+    } else {
+      clearInterval(tick);
+      overlay.classList.remove('show');
+      showVictory();
+    }
+  }, 1000);
 }
 
 function showVictory(){
