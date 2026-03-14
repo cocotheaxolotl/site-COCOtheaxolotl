@@ -74,20 +74,28 @@
     /* Zoom overlay */
     #zoom-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,.92); z-index: 200;
-      flex-direction: column;
+      background: #000; z-index: 200; flex-direction: column;
     }
     #zoom-overlay.show { display: flex; }
-    #zoom-scroll {
-      flex: 1; overflow: auto; -webkit-overflow-scrolling: touch;
-      display: flex; align-items: flex-start; justify-content: flex-start;
+    #zoom-container {
+      flex: 1; overflow: hidden; position: relative;
+      display: flex; align-items: center; justify-content: center;
     }
-    #zoom-canvas { display: block; border-radius: 0; }
+    #zoom-img {
+      max-width: 100%; max-height: 100%;
+      transform-origin: center center;
+      user-select: none; -webkit-user-select: none;
+      pointer-events: none;
+    }
+    #zoom-hint {
+      position: absolute; bottom: 8px; left: 0; right: 0;
+      text-align: center; color: rgba(255,255,255,.5); font-size: .75rem;
+      pointer-events: none;
+    }
     #zoom-close {
-      flex-shrink: 0;
-      color: white; font-size: 1rem; font-weight: 700;
-      background: #ff69b4; border: none; border-radius: 0;
-      padding: 14px; cursor: pointer; font-family: 'Baloo 2', sans-serif;
+      flex-shrink: 0; color: white; font-size: 1rem; font-weight: 700;
+      background: #ff69b4; border: none; padding: 14px;
+      cursor: pointer; font-family: 'Baloo 2', sans-serif;
       width: 100%; text-align: center;
     }
 
@@ -130,10 +138,11 @@
 </div>
 
 <div id="zoom-overlay">
-  <div id="zoom-scroll">
-    <canvas id="zoom-canvas"></canvas>
+  <div id="zoom-container">
+    <img id="zoom-img" alt="">
+    <div id="zoom-hint">Pinch to zoom · Drag to pan</div>
   </div>
-  <button id="zoom-close" onclick="closeZoom()">✕ Close</button>
+  <button type="button" id="zoom-close" onclick="closeZoom()">✕ Close</button>
 </div>
 
 <div id="win-overlay">
@@ -311,21 +320,67 @@ function resetGame() {
   redrawFoundCircles();
 }
 
-// Zoom overlay — draws panel at 2.5× for easy scrolling on mobile
+// ── Pinch-to-zoom overlay ──
+const pz = { scale: 1, x: 0, y: 0, startScale: 1, startDist: 0, startX: 0, startY: 0 };
+
+function applyPZ() {
+  document.getElementById('zoom-img').style.transform =
+    `translate(${pz.x}px, ${pz.y}px) scale(${pz.scale})`;
+}
+
 function openZoom(which) {
   const src = which === 'top' ? document.getElementById('canvas-top') : document.getElementById('canvas-bot');
-  const zc = document.getElementById('zoom-canvas');
-  const ZOOM = 2.5;
-  zc.width  = src.width  * ZOOM;
-  zc.height = src.height * ZOOM;
-  zc.getContext('2d').drawImage(src, 0, 0, zc.width, zc.height);
-  const scroll = document.getElementById('zoom-scroll');
-  scroll.scrollTop = 0; scroll.scrollLeft = 0;
+  document.getElementById('zoom-img').src = src.toDataURL();
+  pz.scale = 1; pz.x = 0; pz.y = 0;
+  applyPZ();
   document.getElementById('zoom-overlay').classList.add('show');
 }
+
 function closeZoom() {
   document.getElementById('zoom-overlay').classList.remove('show');
 }
+
+(function () {
+  const con = document.getElementById('zoom-container');
+
+  con.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    if (e.touches.length === 2) {
+      pz.startDist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      pz.startScale = pz.scale;
+    } else {
+      pz.startX = e.touches[0].clientX - pz.x;
+      pz.startY = e.touches[0].clientY - pz.y;
+    }
+  }, { passive: false });
+
+  con.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      pz.scale = Math.min(6, Math.max(1, pz.startScale * dist / pz.startDist));
+      applyPZ();
+    } else if (e.touches.length === 1 && pz.scale > 1) {
+      pz.x = e.touches[0].clientX - pz.startX;
+      pz.y = e.touches[0].clientY - pz.startY;
+      applyPZ();
+    }
+  }, { passive: false });
+
+  // Double-tap to reset
+  let lastTap = 0;
+  con.addEventListener('touchend', function (e) {
+    const now = Date.now();
+    if (now - lastTap < 300) { pz.scale = 1; pz.x = 0; pz.y = 0; applyPZ(); }
+    lastTap = now;
+  });
+})();
 
 // Setup
 img.onload = function () { init(); };
