@@ -2,7 +2,9 @@
   "trailingSlash": true,
   "redirects": [
     { "source": "/mosaic", "destination": "/tools/mosaic/", "statusCode": 301 },
-    { "source": "/mosaic/", "destination": "/tools/mosaic/", "statusCode": 301 }
+    { "source": "/mosaic/", "destination": "/tools/mosaic/", "statusCode": 301 },
+    { "source": "/fr/valentine/cake/", "destination": "/fr/", "statusCode": 301 },
+    { "source": "/fr/valentine/heart-letter/", "destination": "/fr/", "statusCode": 301 }
   ],
   "headers": [
     {
