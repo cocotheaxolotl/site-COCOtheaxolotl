@@ -463,10 +463,12 @@ function initPuzzle(imageName){
     // Fit grid in visible area without scrolling
     const maxWFromVW = Math.min(window.innerWidth * 0.92, 360);
     // Measure actual space used by header + controls + stats
+    const wrapper = document.querySelector('.puzzle-wrapper');
+    const wrapperPadBottom = wrapper ? parseInt(getComputedStyle(wrapper).paddingBottom) : 40;
     const usedH = ['header','.controls','.stats'].reduce((acc, sel) => {
       const el = document.querySelector(sel);
       return acc + (el ? el.offsetHeight : 0);
-    }, 0) + 24; // 24px extra margin
+    }, 0) + wrapperPadBottom + 16; // 16px extra safety
     const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
     const availH = vh - usedH;
     // gridH = ROWS×pieceH + (ROWS-1)×gap + 2×padding  (gap=3, padding=6)
