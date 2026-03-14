@@ -276,12 +276,13 @@ let running = false;
 let audioCtx = null;
 
 // Bubble colors (pink/blue/purple palette)
+// Each color has a matching pentatonic note (C5 D5 E5 G5 A5)
 const COLORS = [
-  ['rgba(255,182,214,.55)','rgba(255,105,180,.35)'],  // pink
-  ['rgba(180,230,255,.55)','rgba(90,180,240,.35)'],   // blue
-  ['rgba(200,180,255,.55)','rgba(150,100,240,.35)'],  // purple
-  ['rgba(180,255,220,.55)','rgba(80,200,140,.35)'],   // mint
-  ['rgba(255,230,150,.55)','rgba(255,180,50,.35)'],   // yellow
+  ['rgba(255,182,214,.55)','rgba(255,105,180,.35)', 523.25],  // pink   → Do
+  ['rgba(180,230,255,.55)','rgba(90,180,240,.35)',  587.33],  // blue   → Ré
+  ['rgba(200,180,255,.55)','rgba(150,100,240,.35)', 659.25],  // purple → Mi
+  ['rgba(180,255,220,.55)','rgba(80,200,140,.35)',  783.99],  // mint   → Sol
+  ['rgba(255,230,150,.55)','rgba(255,180,50,.35)',  880.00],  // yellow → La
 ];
 
 function playPop(freq){
@@ -369,9 +370,11 @@ function spawnBubble(){
     inner.style.background = 'radial-gradient(circle at 35% 35%, rgba(255,200,230,.8), rgba(255,105,180,.3))';
     inner.appendChild(img);
   } else {
-    const [c1, c2] = COLORS[Math.floor(Math.random()*COLORS.length)];
+    const colorIdx = Math.floor(Math.random()*COLORS.length);
+    const [c1, c2] = COLORS[colorIdx];
     inner.style.background = `radial-gradient(circle at 35% 35%, ${c1}, ${c2})`;
     inner.style.border = `1.5px solid rgba(255,255,255,.5)`;
+    bubble.dataset.colorIdx = colorIdx;
   }
 
   bubble.appendChild(inner);
@@ -388,7 +391,8 @@ function spawnBubble(){
     const rect = bubble.getBoundingClientRect();
     const cx = rect.left + size/2;
     const cy = rect.top  + size/2;
-    playPop(isCoco ? 880 : 400 + (90-size)*4);
+    const freq = isCoco ? 1046.50 : COLORS[bubble.dataset.colorIdx][2];
+    playPop(freq);
     showScorePop(currentX + size/2 - 20, currentY, pts);
     spawnConfetti(cx, cy);
     bubble.addEventListener('animationend', ()=>bubble.remove());
