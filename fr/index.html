@@ -515,16 +515,18 @@
 
     /* ===== Language toggle ===== */
     .lang-toggle{
-      position:relative; z-index:3;
-      display:inline-flex; gap:0; margin:12px auto 0;
-      border-radius:32px; overflow:hidden; border:2px solid #001f3f;
+      position:fixed; top:12px; right:12px; z-index:9999;
+      display:inline-flex; gap:0;
+      border-radius:32px; overflow:hidden; border:2px solid rgba(255,105,180,.7);
+      background:rgba(255,255,255,.85); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
     }
     .lang-btn{
-      padding:6px 18px; font-family:'Baloo 2',cursive; font-size:.9em; font-weight:800;
+      padding:5px 14px; font-family:'Baloo 2',cursive; font-size:.85em; font-weight:800;
       border:none; cursor:pointer; transition:background .2s,color .2s;
-      background:transparent; color:#001f3f;
+      background:transparent; color:#c0186a; text-decoration:none; display:inline-block;
     }
-    .lang-btn.active{ background:#001f3f; color:#fff; }
+    .lang-btn.active{ background:#ff69b4; color:#fff; }
 
     /* ===== Language visibility ===== */
     span[data-lang="fr"],
@@ -571,17 +573,17 @@
 <a class="fish-link amazon-book" data-href-en="https://www.amazon.com/dp/B0FN7FRVV6" data-href-es="https://www.amazon.com/dp/B0GCM24GF7" data-href-fr="https://www.amazon.fr/dp/B0FYMS84MR" href="https://www.amazon.fr/dp/B0FYMS84MR" rel="noopener" style="--dur:11s" target="_blank">
 <span class="fish-icon">🐠</span>
 <span class="fish-rope"></span>
-<span class="fish-banner">Coloring Book</span>
+<span class="fish-banner">Livre Coloriage</span>
 </a>
 <a class="fish-link" href="/fr/freebies/" style="--dur:9s">
 <span class="fish-icon">🐡</span>
 <span class="fish-rope"></span>
-<span class="fish-banner">Freebies</span>
+<span class="fish-banner">Cadeaux</span>
 </a>
 <a class="fish-link" href="/fr/about-coco/" style="--dur:11s">
 <span class="fish-icon">🫧</span>
 <span class="fish-rope"></span>
-<span class="fish-banner">Meet Coco</span>
+<span class="fish-banner">Découvrir Coco</span>
 </a>
 <a class="fish-link" href="/fr/blog/" style="--dur:13s">
 <span class="fish-icon">🐟</span>
@@ -591,12 +593,12 @@
 <a class="fish-link" href="/fr/kids-games/" style="--dur:10s">
 <span class="fish-icon">🐡</span>
 <span class="fish-rope"></span>
-<span class="fish-banner">Games</span>
+<span class="fish-banner">Jeux</span>
 </a>
 <a class="fish-link" href="/fr/bubble-lab/" style="--dur:14s">
 <span class="fish-icon">🐠</span>
 <span class="fish-rope"></span>
-<span class="fish-banner">Bubble Letters</span>
+<span class="fish-banner">Lettres Bulles</span>
 </a>
 <!-- OFFLINE until mid-February
         <a href="/coloring/" class="fish-link" style="--dur:11s">
@@ -608,12 +610,12 @@
 <a class="fish-link" href="https://www.amazon.com/dp/B0G4RDNY8Y" rel="noopener" style="--dur:12s" target="_blank">
 <span class="fish-icon">🐟</span>
 <span class="fish-rope"></span>
-<span class="fish-banner">Notebooks</span>
+<span class="fish-banner">Cahiers</span>
 </a>
 <a class="fish-link" href="/fr/shop/" style="--dur:10s">
 <span class="fish-icon">🐠</span>
 <span class="fish-rope"></span>
-<span class="fish-banner">Shop</span>
+<span class="fish-banner">Boutique</span>
 </a>
 </div>
 <!-- Coco center -->
