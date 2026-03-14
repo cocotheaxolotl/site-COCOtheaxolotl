@@ -139,24 +139,23 @@
 </div>
 
 <script>
-const IMG_SRC = '/kids-games/spot-the-differences-5-7-final.jpg';
+const IMG_SRC = '/spot-the-differences/spot-the-differences-baking-final.jpg';
 
 // Fractions of full image height for each panel
-// (tweaked based on the actual image layout)
 const PANEL_TOP = { y1: 0.125, y2: 0.468 };
 const PANEL_BOT = { y1: 0.512, y2: 0.862 };
 
 // Hotspot positions as fraction of PANEL width/height (0..1)
-// Adjust these if needed after testing
+// Calibrated from the answer key image
 const HOTSPOTS = [
-  { x: 0.115, y: 0.14 },  // 1 – top-left circle (object inside)
-  { x: 0.865, y: 0.14 },  // 2 – top-right circle (missing utensil)
-  { x: 0.870, y: 0.62 },  // 3 – extra fish on right
-  { x: 0.725, y: 0.22 },  // 4 – bubbles upper-right
-  { x: 0.065, y: 0.55 },  // 5 – left seaweed shape
-  { x: 0.500, y: 0.09 },  // 6 – chef hat detail
-  { x: 0.155, y: 0.82 },  // 7 – lower-left decoration
-  { x: 0.660, y: 0.76 },  // 8 – donut on table
+  { x: 0.105, y: 0.148 },  // 1 – top-left bubble (rolling pin detail)
+  { x: 0.344, y: 0.074 },  // 2 – bubble above Coco (center-left top)
+  { x: 0.839, y: 0.148 },  // 3 – top-right bubble (utensils)
+  { x: 0.158, y: 0.480 },  // 4 – left-center area
+  { x: 0.734, y: 0.480 },  // 5 – right-center area
+  { x: 0.438, y: 0.646 },  // 6 – pie/table center
+  { x: 0.143, y: 0.793 },  // 7 – bottom-left
+  { x: 0.617, y: 0.793 },  // 8 – bottom-right (cup/donut)
 ];
 
 const HIT_RADIUS = 0.08; // fraction of panel width
