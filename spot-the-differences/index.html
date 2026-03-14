@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spot the Differences – Coco the Axolotl</title>
+  <meta name="description" content="Interactive spot the differences game for kids ages 5–7. Find 8 differences between the two Coco pictures!">
+  <link rel="canonical" href="https://cocotheaxolotl.org/spot-the-differences/">
+  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/">
+  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/">
+  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --pink: #ff69b4; --pink2: #f7c1cc; --bg: #fef6fb; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Baloo 2', sans-serif; background: var(--bg); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
+    header { width: 100%; background: var(--pink2); padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
+    header a { color: #c0186a; text-decoration: none; font-size: .9rem; font-weight: 600; }
+    header a:hover { text-decoration: underline; }
+    header .sep { color: #c0186a; opacity: .4; }
+    h1 { text-align: center; color: var(--pink); font-size: clamp(1.2rem,5vw,1.8rem); font-weight: 800; padding: 10px 16px 2px; }
+    .subtitle { text-align: center; color: #b05080; font-size: .9rem; margin-bottom: 8px; }
+
+    #counter {
+      font-size: 1.1rem; font-weight: 800; color: #c0186a;
+      background: white; border: 2px solid var(--pink2); border-radius: 30px;
+      padding: 6px 20px; margin-bottom: 10px;
+    }
+
+    #panels {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      padding: 0 12px 20px;
+    }
+
+    .panel-wrap { position: relative; display: inline-block; }
+    .panel-label {
+      text-align: center; font-size: .8rem; font-weight: 700;
+      color: #b05080; margin-bottom: 4px;
+    }
+    canvas {
+      display: block;
+      border-radius: 10px;
+      border: 2px solid var(--pink2);
+      cursor: crosshair;
+      touch-action: none;
+    }
+    #canvas-top { cursor: default; }
+
+    /* Wrong click ripple */
+    .ripple {
+      position: absolute; pointer-events: none;
+      width: 40px; height: 40px; margin: -20px 0 0 -20px;
+      border: 3px solid #ff4444; border-radius: 50%;
+      animation: rippleFade .5s ease-out forwards;
+    }
+    @keyframes rippleFade { from { opacity:1; transform:scale(.5); } to { opacity:0; transform:scale(1.5); } }
+
+    /* Win overlay */
+    #win-overlay { display: none; position: fixed; inset: 0; background: rgba(255,200,230,.92); z-index: 100; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    #win-overlay.show { display: flex; }
+    .trophy { font-size: 5rem; animation: bounce .6s ease infinite alternate; }
+    @keyframes bounce { from{transform:scale(1)} to{transform:scale(1.15)} }
+    #win-overlay h2 { color: #c0186a; font-size: 2rem; font-weight: 800; }
+    #win-overlay p { color: #b05080; font-size: 1.1rem; }
+    .win-btns { display: flex; gap: 12px; margin-top: 8px; }
+    .win-btns button { background: var(--pink); color: white; border: none; border-radius: 30px; padding: 12px 28px; font-family: 'Baloo 2',sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .win-btns button.sec { background: white; color: var(--pink); border: 2px solid var(--pink); }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/">🏠 Home</a>
+  <span class="sep">|</span>
+  <a href="/kids-games/">🎮 Kids Games</a>
+</header>
+
+<h1>🔍 Spot the 8 Differences!</h1>
+<p class="subtitle">Ages 5–7 · Tap the bottom picture to mark a difference</p>
+
+<div id="counter">Found: <span id="found-count">0</span> / 8</div>
+
+<div id="panels">
+  <div class="panel-wrap">
+    <p class="panel-label">⬆️ Reference image</p>
+    <canvas id="canvas-top"></canvas>
+  </div>
+  <div class="panel-wrap" id="bot-wrap">
+    <p class="panel-label">👆 Tap here to find differences!</p>
+    <canvas id="canvas-bot"></canvas>
+  </div>
+</div>
+
+<div id="win-overlay">
+  <div class="trophy">🏆</div>
+  <h2>Amazing! All 8 found!</h2>
+  <p>You're a star! ⭐</p>
+  <div class="win-btns">
+    <button type="button" class="sec" onclick="resetGame()">Play Again</button>
+    <button type="button" onclick="window.location.href='/kids-games/'">More Games →</button>
+  </div>
+</div>
+
+<script>
+const IMG_SRC = '/kids-games/spot-the-differences-5-7-final.jpg';
+
+// Fractions of full image height for each panel
+// (tweaked based on the actual image layout)
+const PANEL_TOP = { y1: 0.125, y2: 0.468 };
+const PANEL_BOT = { y1: 0.512, y2: 0.862 };
+
+// Hotspot positions as fraction of PANEL width/height (0..1)
+// Adjust these if needed after testing
+const HOTSPOTS = [
+  { x: 0.115, y: 0.14 },  // 1 – top-left circle (object inside)
+  { x: 0.865, y: 0.14 },  // 2 – top-right circle (missing utensil)
+  { x: 0.870, y: 0.62 },  // 3 – extra fish on right
+  { x: 0.725, y: 0.22 },  // 4 – bubbles upper-right
+  { x: 0.065, y: 0.55 },  // 5 – left seaweed shape
+  { x: 0.500, y: 0.09 },  // 6 – chef hat detail
+  { x: 0.155, y: 0.82 },  // 7 – lower-left decoration
+  { x: 0.660, y: 0.76 },  // 8 – donut on table
+];
+
+const HIT_RADIUS = 0.08; // fraction of panel width
+const COLORS = ['#ff69b4','#a78bfa','#34d399','#f59e0b','#60a5fa','#f472b6','#4ade80','#fb923c'];
+
+let img = new Image();
+let foundSet = new Set();
+let canvasW = 0;
+let panelH_top = 0, panelH_bot = 0;
+let ctxTop, ctxBot;
+
+function init() {
+  const maxW = Math.min(window.innerWidth - 24, 520);
+  canvasW = maxW;
+
+  const natW = img.naturalWidth;
+  const natH = img.naturalHeight;
+  const scale = canvasW / natW;
+
+  const fullH = natH * scale;
+
+  panelH_top = (PANEL_TOP.y2 - PANEL_TOP.y1) * fullH;
+  panelH_bot = (PANEL_BOT.y2 - PANEL_BOT.y1) * fullH;
+
+  const cTop = document.getElementById('canvas-top');
+  const cBot = document.getElementById('canvas-bot');
+
+  cTop.width = canvasW; cTop.height = panelH_top;
+  cBot.width = canvasW; cBot.height = panelH_bot;
+
+  ctxTop = cTop.getContext('2d');
+  ctxBot = cBot.getContext('2d');
+
+  drawPanels();
+  redrawFoundCircles();
+}
+
+function drawPanels() {
+  const natW = img.naturalWidth;
+  const natH = img.naturalHeight;
+
+  // Top panel: source clip from PANEL_TOP
+  ctxTop.drawImage(
+    img,
+    0, PANEL_TOP.y1 * natH,          // source x, y
+    natW, (PANEL_TOP.y2 - PANEL_TOP.y1) * natH,  // source w, h
+    0, 0, canvasW, panelH_top         // dest
+  );
+
+  // Bot panel
+  ctxBot.drawImage(
+    img,
+    0, PANEL_BOT.y1 * natH,
+    natW, (PANEL_BOT.y2 - PANEL_BOT.y1) * natH,
+    0, 0, canvasW, panelH_bot
+  );
+}
+
+function redrawFoundCircles() {
+  drawPanels();
+  foundSet.forEach(idx => {
+    drawCircle(ctxTop, idx, panelH_top, true);
+    drawCircle(ctxBot, idx, panelH_bot, false);
+  });
+}
+
+function drawCircle(ctx, idx, panelH, isTop) {
+  const hs = HOTSPOTS[idx];
+  const cx = hs.x * canvasW;
+  const cy = hs.y * panelH;
+  const r = HIT_RADIUS * canvasW;
+  const color = COLORS[idx % COLORS.length];
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 3;
+  ctx.setLineDash([6, 3]);
+  ctx.stroke();
+
+  // Number badge
+  ctx.setLineDash([]);
+  ctx.beginPath();
+  ctx.arc(cx + r * 0.65, cy - r * 0.65, r * 0.32, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.fillStyle = 'white';
+  ctx.font = `bold ${Math.round(r * 0.38)}px Baloo 2, sans-serif`;
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(idx + 1, cx + r * 0.65, cy - r * 0.65);
+  ctx.restore();
+}
+
+function handleClick(e) {
+  e.preventDefault();
+  const rect = document.getElementById('canvas-bot').getBoundingClientRect();
+  let clientX, clientY;
+  if (e.touches) {
+    clientX = e.touches[0].clientX;
+    clientY = e.touches[0].clientY;
+  } else {
+    clientX = e.clientX;
+    clientY = e.clientY;
+  }
+  const x = (clientX - rect.left) / rect.width;
+  const y = (clientY - rect.top) / rect.height;
+
+  let closestIdx = -1, closestDist = Infinity;
+  HOTSPOTS.forEach((hs, i) => {
+    if (foundSet.has(i)) return;
+    const dx = x - hs.x, dy = y - hs.y;
+    const dist = Math.sqrt(dx * dx + dy * dy * (panelH_bot / canvasW) * (panelH_bot / canvasW));
+    if (dist < HIT_RADIUS && dist < closestDist) {
+      closestDist = dist;
+      closestIdx = i;
+    }
+  });
+
+  if (closestIdx >= 0) {
+    foundSet.add(closestIdx);
+    redrawFoundCircles();
+    document.getElementById('found-count').textContent = foundSet.size;
+    if (foundSet.size === HOTSPOTS.length) {
+      setTimeout(() => document.getElementById('win-overlay').classList.add('show'), 400);
+    }
+  } else {
+    // Wrong click — show ripple
+    const wrap = document.getElementById('bot-wrap');
+    const wrapRect = wrap.getBoundingClientRect();
+    const rip = document.createElement('div');
+    rip.className = 'ripple';
+    rip.style.left = (clientX - wrapRect.left) + 'px';
+    rip.style.top = (clientY - wrapRect.top) + 'px';
+    wrap.appendChild(rip);
+    setTimeout(() => rip.remove(), 500);
+  }
+}
+
+function resetGame() {
+  foundSet = new Set();
+  document.getElementById('found-count').textContent = '0';
+  document.getElementById('win-overlay').classList.remove('show');
+  redrawFoundCircles();
+}
+
+// Setup
+img.onload = function () { init(); };
+img.src = IMG_SRC;
+
+document.getElementById('canvas-bot').addEventListener('click', handleClick);
+document.getElementById('canvas-bot').addEventListener('touchstart', handleClick, { passive: false });
+
+window.addEventListener('resize', () => {
+  if (img.complete) init();
+});
+</script>
+
+<script src="/js/lang-switcher.js"></script>
+<script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
+</body>
+</html>
