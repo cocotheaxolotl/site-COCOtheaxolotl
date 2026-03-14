@@ -74,15 +74,21 @@
     /* Zoom overlay */
     #zoom-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,.88); z-index: 200;
-      align-items: center; justify-content: center; flex-direction: column; gap: 10px;
+      background: rgba(0,0,0,.92); z-index: 200;
+      flex-direction: column;
     }
     #zoom-overlay.show { display: flex; }
-    #zoom-canvas { border-radius: 8px; max-width: 100vw; max-height: 88vh; touch-action: none; }
+    #zoom-scroll {
+      flex: 1; overflow: auto; -webkit-overflow-scrolling: touch;
+      display: flex; align-items: flex-start; justify-content: flex-start;
+    }
+    #zoom-canvas { display: block; border-radius: 0; }
     #zoom-close {
-      color: white; font-size: .9rem; font-weight: 700; opacity: .8;
-      background: none; border: 2px solid rgba(255,255,255,.5); border-radius: 30px;
-      padding: 6px 20px; cursor: pointer; font-family: 'Baloo 2', sans-serif;
+      flex-shrink: 0;
+      color: white; font-size: 1rem; font-weight: 700;
+      background: #ff69b4; border: none; border-radius: 0;
+      padding: 14px; cursor: pointer; font-family: 'Baloo 2', sans-serif;
+      width: 100%; text-align: center;
     }
 
     /* Win overlay */
@@ -124,7 +130,9 @@
 </div>
 
 <div id="zoom-overlay">
-  <canvas id="zoom-canvas"></canvas>
+  <div id="zoom-scroll">
+    <canvas id="zoom-canvas"></canvas>
+  </div>
   <button id="zoom-close" onclick="closeZoom()">✕ Close</button>
 </div>
 
@@ -303,23 +311,21 @@ function resetGame() {
   redrawFoundCircles();
 }
 
-// Zoom overlay
+// Zoom overlay — draws panel at 2.5× for easy scrolling on mobile
 function openZoom(which) {
   const src = which === 'top' ? document.getElementById('canvas-top') : document.getElementById('canvas-bot');
   const zc = document.getElementById('zoom-canvas');
-  const maxW = Math.min(window.innerWidth, 700);
-  const scale = maxW / src.width;
-  zc.width = src.width * scale;
-  zc.height = src.height * scale;
+  const ZOOM = 2.5;
+  zc.width  = src.width  * ZOOM;
+  zc.height = src.height * ZOOM;
   zc.getContext('2d').drawImage(src, 0, 0, zc.width, zc.height);
+  const scroll = document.getElementById('zoom-scroll');
+  scroll.scrollTop = 0; scroll.scrollLeft = 0;
   document.getElementById('zoom-overlay').classList.add('show');
 }
 function closeZoom() {
   document.getElementById('zoom-overlay').classList.remove('show');
 }
-document.getElementById('zoom-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeZoom();
-});
 
 // Setup
 img.onload = function () { init(); };
