@@ -1,5 +1,5 @@
-// Coco the Axolotl — Service Worker v2
-const CACHE_STATIC = 'coco-static-v2';
+// Coco the Axolotl — Service Worker v3
+const CACHE_STATIC = 'coco-static-v3';
 const CACHE_IMAGES = 'coco-images-v1';
 
 // Pages et assets mis en cache au démarrage
