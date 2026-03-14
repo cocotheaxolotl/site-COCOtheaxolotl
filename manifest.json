@@ -1,11 +1,13 @@
 {
-  "name": "Coco the Axolotl",
-  "short_name": "Coco",
-  "description": "Axolotl coloring book, free coloring pages, printable games, and fun activities for kids ages 3–8.",
-  "start_url": "/",
+  "name": "Coco the Axolotl – Kids Games",
+  "short_name": "Coco 🦎",
+  "description": "Puzzle, memory, bubble pop and more fun games for kids with Coco the Axolotl!",
+  "start_url": "/kids-games/?utm_source=pwa",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#fef6fb",
   "theme_color": "#ff69b4",
+  "categories": ["games", "kids", "education"],
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -22,6 +24,23 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Puzzle",
+      "url": "/puzzle/?utm_source=pwa",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Bubble Pop",
+      "url": "/bubble-pop/?utm_source=pwa",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Memory",
+      "url": "/memory/?utm_source=pwa",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
