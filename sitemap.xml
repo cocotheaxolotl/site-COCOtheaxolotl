@@ -345,4 +345,22 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/you-are-loved/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/you-are-loved/"/>
   </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/puzzle/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/bubble-pop/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/memory/</loc>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/memory/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/memory/"/>
+  </url>
 </urlset>
