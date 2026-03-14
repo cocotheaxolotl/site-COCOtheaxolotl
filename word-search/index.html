@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Axolotl Word Search – Coco the Axolotl</title>
+  <meta name="description" content="Interactive axolotl word search game for kids ages 5–7. Find COCO, WATER, GILLS, MEXICO and more! Drag to select words.">
+  <meta property="og:title" content="Axolotl Word Search – Coco the Axolotl">
+  <meta property="og:description" content="Interactive word search game for kids. Find axolotl words by dragging your finger!">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Coco the Axolotl">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pink: #ff69b4;
+      --pink2: #f7c1cc;
+      --bg: #fef6fb;
+      --cell: min(calc((100vw - 48px) / 12), 42px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Baloo 2', sans-serif;
+      background: var(--bg);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      touch-action: none;
+      overflow-x: hidden;
+    }
+    header {
+      width: 100%;
+      background: var(--pink2);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header a {
+      color: #c0186a;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    header a:hover { text-decoration: underline; }
+    header .sep { color: #c0186a; opacity: 0.4; }
+    h1 {
+      text-align: center;
+      color: var(--pink);
+      font-size: clamp(1.2rem, 5vw, 1.8rem);
+      font-weight: 800;
+      padding: 10px 16px 4px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #b05080;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    /* Grid */
+    #grid-container {
+      position: relative;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: repeat(12, var(--cell));
+      grid-template-rows: repeat(12, var(--cell));
+      border: 2px solid var(--pink2);
+      border-radius: 10px;
+      overflow: hidden;
+      background: white;
+    }
+    .cell {
+      width: var(--cell);
+      height: var(--cell);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(var(--cell) * 0.44);
+      font-weight: 700;
+      color: #444;
+      border: 1px solid #f0d0e0;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      transition: background 0.1s;
+    }
+    .cell.selecting {
+      background: #ffd6ec;
+      color: var(--pink);
+    }
+    .cell.found {
+      background: #ffb3d9;
+      color: white;
+    }
+    .cell.found.word-0  { background: #ff69b4; }
+    .cell.found.word-1  { background: #f4a0c8; }
+    .cell.found.word-2  { background: #e87bbf; }
+    .cell.found.word-3  { background: #d955a8; }
+    .cell.found.word-4  { background: #f08fc0; }
+    .cell.found.word-5  { background: #c94499; }
+    .cell.found.word-6  { background: #e066b3; }
+    .cell.found.word-7  { background: #f77dc2; }
+    .cell.found.word-8  { background: #dc4da6; }
+
+    /* SVG overlay for line */
+    #svg-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .found-line {
+      stroke-opacity: 0.35;
+      stroke-linecap: round;
+    }
+
+    /* Word list */
+    #word-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      justify-content: center;
+      padding: 14px 16px;
+      max-width: calc(12 * var(--cell) + 4px);
+    }
+    .word-item {
+      font-size: clamp(0.85rem, 3.5vw, 1rem);
+      font-weight: 700;
+      color: #c04080;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: white;
+      border: 2px solid var(--pink2);
+      transition: all 0.3s;
+      letter-spacing: 0.05em;
+    }
+    .word-item.found {
+      text-decoration: line-through;
+      color: #ccc;
+      border-color: #eee;
+      background: #fafafa;
+    }
+
+    /* Win overlay */
+    #win-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(255,200,230,0.92);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+    #win-overlay.show { display: flex; }
+    #win-overlay .trophy { font-size: 5rem; animation: bounce 0.6s ease infinite alternate; }
+    @keyframes bounce { from { transform: scale(1); } to { transform: scale(1.15); } }
+    #win-overlay h2 { color: #c0186a; font-size: 2rem; font-weight: 800; }
+    #win-overlay p { color: #b05080; font-size: 1.1rem; }
+    #win-overlay button {
+      margin-top: 8px;
+      background: var(--pink);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 32px;
+      font-family: 'Baloo 2', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    #win-overlay button:hover { background: #e0559f; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/">🏠 Home</a>
+  <span class="sep">|</span>
+  <a href="/kids-games/">🎮 Kids Games</a>
+</header>
+
+<h1>🔍 Axolotl Word Search</h1>
+<p class="subtitle">Ages 5–7 · Drag to select words!</p>
+
+<div id="grid-container">
+  <div id="grid"></div>
+  <svg id="svg-overlay"></svg>
+</div>
+
+<div id="word-list"></div>
+
+<div id="win-overlay">
+  <div class="trophy">🏆</div>
+  <h2>You found them all!</h2>
+  <p>Amazing job! 🌟</p>
+  <button onclick="resetGame()">Play Again</button>
+</div>
+
+<script>
+const GRID_DATA = [
+  ['L','T','P','P','S','Z','O','C','C','I','P','W'],
+  ['V','C','I','B','X','W','G','I','L','L','S','J'],
+  ['U','N','S','V','O','J','W','S','Y','M','V','L'],
+  ['K','A','O','K','L','F','D','T','D','A','P','B'],
+  ['G','Y','O','J','E','I','X','H','M','M','L','P'],
+  ['C','O','F','O','K','M','R','I','E','M','N','P'],
+  ['B','R','I','W','N','L','V','M','H','E','E','C'],
+  ['F','E','H','V','H','A','P','S','F','X','O','I'],
+  ['J','A','E','W','A','T','E','R','N','I','C','R'],
+  ['L','S','M','I','L','E','T','S','K','C','O','E'],
+  ['W','Q','T','U','V','X','B','O','Y','O','C','V'],
+  ['Z','R','M','M','M','M','D','P','U','M','B','G'],
+];
+
+// Word definitions: cells in order they spell the word
+const WORDS_DEF = [
+  { word: 'COCO',   cells: [[10,10],[9,10],[8,10],[7,10]] },
+  { word: 'WATER',  cells: [[8,3],[8,4],[8,5],[8,6],[8,7]] },
+  { word: 'PINK',   cells: [[0,3],[1,2],[2,1],[3,0]] },
+  { word: 'MEXICO', cells: [[5,9],[6,9],[7,9],[8,9],[9,9],[10,9]] },
+  { word: 'GILLS',  cells: [[1,6],[1,7],[1,8],[1,9],[1,10]] },
+  { word: 'SMILE',  cells: [[9,1],[9,2],[9,3],[9,4],[9,5]] },
+  { word: 'KIDS',   cells: [[5,4],[4,5],[3,6],[2,7]] },
+  { word: 'BOOK',   cells: [[6,0],[5,1],[4,2],[3,3]] },
+  { word: 'PLAY',   cells: [[5,11],[4,10],[3,9],[2,8]] },
+];
+
+// Build lookup: "row,col" → word index (for validation)
+const wordCellMap = new Map(); // key="r,c" value=Set of wordIdx
+WORDS_DEF.forEach((w,i) => {
+  w.cells.forEach(([r,c]) => {
+    const k = r+','+c;
+    if(!wordCellMap.has(k)) wordCellMap.set(k, new Set());
+    wordCellMap.get(k).add(i);
+  });
+});
+
+let foundWords = new Set();
+let selecting = false;
+let startCell = null;
+let currentCells = [];
+let cellEls = []; // [row][col]
+
+function buildGrid() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  cellEls = [];
+  for(let r = 0; r < 12; r++) {
+    cellEls[r] = [];
+    for(let c = 0; c < 12; c++) {
+      const el = document.createElement('div');
+      el.className = 'cell';
+      el.textContent = GRID_DATA[r][c];
+      el.dataset.r = r;
+      el.dataset.c = c;
+      grid.appendChild(el);
+      cellEls[r][c] = el;
+    }
+  }
+  buildWordList();
+  buildSvg();
+  setupEvents();
+}
+
+function buildWordList() {
+  const wl = document.getElementById('word-list');
+  wl.innerHTML = '';
+  WORDS_DEF.forEach((w,i) => {
+    const el = document.createElement('div');
+    el.className = 'word-item';
+    el.id = 'word-'+i;
+    el.textContent = w.word;
+    wl.appendChild(el);
+  });
+}
+
+function buildSvg() {
+  const svg = document.getElementById('svg-overlay');
+  const grid = document.getElementById('grid');
+  const s = grid.offsetWidth;
+  const h = grid.offsetHeight;
+  svg.setAttribute('width', s);
+  svg.setAttribute('height', h);
+  svg.setAttribute('viewBox', `0 0 ${s} ${h}`);
+  svg.innerHTML = '';
+  // Draw found word lines
+  const cellSize = s / 12;
+  WORDS_DEF.forEach((w,i) => {
+    if(!foundWords.has(i)) return;
+    const colors = ['#ff69b4','#f4a0c8','#e87bbf','#d955a8','#f08fc0','#c94499','#e066b3','#f77dc2','#dc4da6'];
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    const [r1,c1] = w.cells[0];
+    const [r2,c2] = w.cells[w.cells.length-1];
+    line.setAttribute('x1', (c1+0.5)*cellSize);
+    line.setAttribute('y1', (r1+0.5)*cellSize);
+    line.setAttribute('x2', (c2+0.5)*cellSize);
+    line.setAttribute('y2', (r2+0.5)*cellSize);
+    line.setAttribute('stroke', colors[i % colors.length]);
+    line.setAttribute('stroke-width', cellSize * 0.72);
+    line.setAttribute('class', 'found-line');
+    svg.appendChild(line);
+  });
+}
+
+// --- Events ---
+function getCellFromPoint(x, y) {
+  const grid = document.getElementById('grid');
+  const rect = grid.getBoundingClientRect();
+  const cellSize = rect.width / 12;
+  const c = Math.floor((x - rect.left) / cellSize);
+  const r = Math.floor((y - rect.top) / cellSize);
+  if(r >= 0 && r < 12 && c >= 0 && c < 12) return [r, c];
+  return null;
+}
+
+function getCellsInLine(r1, c1, r2, c2) {
+  const dr = r2 - r1, dc = c2 - c1;
+  // Must be horizontal, vertical, or diagonal
+  if(dr === 0 && dc === 0) return [[r1,c1]];
+  if(dr !== 0 && dc !== 0 && Math.abs(dr) !== Math.abs(dc)) {
+    // Not a clean diagonal — snap to dominant direction
+    if(Math.abs(dr) > Math.abs(dc)) {
+      // Snap to vertical
+      const cells = [];
+      const step = dr > 0 ? 1 : -1;
+      for(let r = r1; r !== r2 + step; r += step) cells.push([r, c1]);
+      return cells;
+    } else {
+      const cells = [];
+      const step = dc > 0 ? 1 : -1;
+      for(let c = c1; c !== c2 + step; c += step) cells.push([r1, c]);
+      return cells;
+    }
+  }
+  const steps = Math.max(Math.abs(dr), Math.abs(dc));
+  const sr = dr === 0 ? 0 : (dr > 0 ? 1 : -1);
+  const sc = dc === 0 ? 0 : (dc > 0 ? 1 : -1);
+  const cells = [];
+  for(let i = 0; i <= steps; i++) cells.push([r1 + i*sr, c1 + i*sc]);
+  return cells;
+}
+
+function clearSelection() {
+  currentCells.forEach(([r,c]) => {
+    const el = cellEls[r][c];
+    if(!el.classList.contains('found')) el.classList.remove('selecting');
+  });
+  currentCells = [];
+}
+
+function updateSelection(cells) {
+  clearSelection();
+  currentCells = cells;
+  cells.forEach(([r,c]) => {
+    if(!cellEls[r][c].classList.contains('found')) {
+      cellEls[r][c].classList.add('selecting');
+    }
+  });
+}
+
+function checkWord(cells) {
+  // Build selected string
+  const str = cells.map(([r,c]) => GRID_DATA[r][c]).join('');
+  const strRev = str.split('').reverse().join('');
+  for(let i = 0; i < WORDS_DEF.length; i++) {
+    if(foundWords.has(i)) continue;
+    const target = WORDS_DEF[i].word;
+    if(str === target || strRev === target) {
+      // Also verify the cells match the word definition
+      const wCells = WORDS_DEF[i].cells;
+      const selectedSet = cells.map(([r,c]) => r+','+c).join('|');
+      const wordSet = wCells.map(([r,c]) => r+','+c).join('|');
+      const wordSetRev = [...wCells].reverse().map(([r,c]) => r+','+c).join('|');
+      if(selectedSet === wordSet || selectedSet === wordSetRev) {
+        return i;
+      }
+    }
+  }
+  return -1;
+}
+
+function markFound(wordIdx) {
+  foundWords.add(wordIdx);
+  const wCells = WORDS_DEF[wordIdx].cells;
+  wCells.forEach(([r,c]) => {
+    cellEls[r][c].classList.remove('selecting');
+    cellEls[r][c].classList.add('found', 'word-'+wordIdx);
+  });
+  document.getElementById('word-'+wordIdx).classList.add('found');
+  buildSvg();
+  if(foundWords.size === WORDS_DEF.length) {
+    setTimeout(() => document.getElementById('win-overlay').classList.add('show'), 400);
+  }
+}
+
+function setupEvents() {
+  const grid = document.getElementById('grid');
+
+  // Touch
+  grid.addEventListener('touchstart', e => {
+    e.preventDefault();
+    const t = e.touches[0];
+    const cell = getCellFromPoint(t.clientX, t.clientY);
+    if(!cell) return;
+    selecting = true;
+    startCell = cell;
+    updateSelection([cell]);
+  }, { passive: false });
+
+  grid.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if(!selecting) return;
+    const t = e.touches[0];
+    const cell = getCellFromPoint(t.clientX, t.clientY);
+    if(!cell) return;
+    const cells = getCellsInLine(startCell[0], startCell[1], cell[0], cell[1]);
+    updateSelection(cells);
+  }, { passive: false });
+
+  grid.addEventListener('touchend', e => {
+    e.preventDefault();
+    if(!selecting) return;
+    selecting = false;
+    const idx = checkWord(currentCells);
+    if(idx >= 0) {
+      markFound(idx);
+    } else {
+      clearSelection();
+    }
+    currentCells = [];
+    startCell = null;
+  }, { passive: false });
+
+  // Mouse
+  grid.addEventListener('mousedown', e => {
+    const cell = getCellFromPoint(e.clientX, e.clientY);
+    if(!cell) return;
+    selecting = true;
+    startCell = cell;
+    updateSelection([cell]);
+  });
+
+  grid.addEventListener('mousemove', e => {
+    if(!selecting) return;
+    const cell = getCellFromPoint(e.clientX, e.clientY);
+    if(!cell) return;
+    const cells = getCellsInLine(startCell[0], startCell[1], cell[0], cell[1]);
+    updateSelection(cells);
+  });
+
+  grid.addEventListener('mouseup', e => {
+    if(!selecting) return;
+    selecting = false;
+    const idx = checkWord(currentCells);
+    if(idx >= 0) {
+      markFound(idx);
+    } else {
+      clearSelection();
+    }
+    currentCells = [];
+    startCell = null;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if(selecting) {
+      selecting = false;
+      clearSelection();
+      currentCells = [];
+      startCell = null;
+    }
+  });
+}
+
+function resetGame() {
+  foundWords = new Set();
+  document.getElementById('win-overlay').classList.remove('show');
+  buildGrid();
+}
+
+// Init
+buildGrid();
+
+// Rebuild SVG on resize
+window.addEventListener('resize', () => { buildSvg(); });
+</script>
+
+<script>
+if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }
+</script>
+</body>
+</html>
