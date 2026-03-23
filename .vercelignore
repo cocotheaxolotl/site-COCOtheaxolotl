@@ -1,0 +1,42 @@
+# Large binaries not needed for the website
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.pdf
+*.pptx
+*.ppt
+*.zip
+*.mp4
+*.mov
+*.mp3
+*.wav
+
+# Python scripts
+*.py
+requirements.txt
+render.yaml
+Procfile
+
+# Dev tools
+seo-tracker/
+mosaic-api/
+prototypes/
+sleep-book/
+valentine_day/
+Ballon_purple_letters/
+Grass_letters/
+planks_wood_letters/
+lettres en bois sur roulettes/
+*.ps1
+*.md
+
+# Static folder (temp assets)
+static/
+
+# Test/temp files
+test-*.png
+cbn-*.png
+mosaic-*.png
+mosaic-zoom*.png
