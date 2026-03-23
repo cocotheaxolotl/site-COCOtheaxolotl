@@ -78,16 +78,18 @@ section h2{font-size:1.6em;font-weight:800;text-align:center;margin:0 0 24px}
 .success-banner{display:none;background:#dcfce7;border:1px solid #86efac;border-radius:12px;padding:16px 20px;margin:20px auto;max-width:600px;text-align:center;color:#166534;font-weight:600}
 .success-banner.visible{display:block}
 
-.aff-box{max-width:420px;margin:32px auto 0;padding:0 20px}
+.aff-box{max-width:480px;margin:28px auto 0;padding:20px 24px;background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);border-radius:14px;backdrop-filter:blur(4px)}
+.aff-label{font-size:.93em;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.aff-label::before{content:'🎟️';font-size:1.1em}
 .aff-row{display:flex;gap:8px;align-items:center}
-.aff-input{flex:1;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.9em;font-family:inherit;outline:none;transition:border-color .15s}
-.aff-input:focus{border-color:#7c3aed}
-.aff-input.valid{border-color:#16a34a;background:#f0fdf4}
-.aff-input.invalid{border-color:#dc2626;background:#fef2f2}
-.aff-badge{display:none;font-size:.82em;font-weight:600;margin-top:6px;padding:4px 10px;border-radius:6px}
-.aff-badge.ok{display:inline-block;background:#dcfce7;color:#166534}
-.aff-badge.err{display:inline-block;background:#fee2e2;color:#991b1b}
-.aff-label{font-size:.88em;font-weight:600;color:#4b5563;margin-bottom:6px;display:block}
+.aff-input{flex:1;padding:11px 16px;border:2px solid rgba(255,255,255,.3);border-radius:10px;font-size:.95em;font-family:inherit;outline:none;transition:border-color .15s,background .15s;background:rgba(255,255,255,.15);color:#fff;font-weight:600;letter-spacing:.5px}
+.aff-input::placeholder{color:rgba(255,255,255,.45);font-weight:400;letter-spacing:0}
+.aff-input:focus{border-color:rgba(255,255,255,.7);background:rgba(255,255,255,.2)}
+.aff-input.valid{border-color:#4ade80;background:rgba(74,222,128,.15)}
+.aff-input.invalid{border-color:#f87171;background:rgba(248,113,113,.15)}
+.aff-badge{display:none;font-size:.83em;font-weight:600;margin-top:8px;padding:5px 12px;border-radius:7px}
+.aff-badge.ok{display:inline-block;background:rgba(74,222,128,.2);color:#bbf7d0;border:1px solid rgba(74,222,128,.4)}
+.aff-badge.err{display:inline-block;background:rgba(248,113,113,.2);color:#fecaca;border:1px solid rgba(248,113,113,.4)}
 </style>
 </head>
 <body>
@@ -102,6 +104,19 @@ section h2{font-size:1.6em;font-weight:800;text-align:center;margin:0 0 24px}
     <span data-lang="fr">Commencez gratuitement. Passez au niveau supérieur quand vous le souhaitez.</span>
     <span data-lang="es">Empieza gratis. Mejora cuando necesites más.</span>
   </p>
+
+  <!-- Affiliate code — visible in hero -->
+  <div class="aff-box" id="affBox">
+    <label class="aff-label" for="affCode">
+      <span data-lang="en">Affiliate code</span>
+      <span data-lang="fr">Code affilié</span>
+      <span data-lang="es">Código de afiliado</span>
+    </label>
+    <div class="aff-row">
+      <input class="aff-input" type="text" id="affCode" placeholder="PARTNER-XXXXXX" autocomplete="off" oninput="onAffCode(this)">
+    </div>
+    <span class="aff-badge" id="affBadge"></span>
+  </div>
 </div>
 
 <div class="success-banner" id="successBanner">
@@ -233,19 +248,6 @@ section h2{font-size:1.6em;font-weight:800;text-align:center;margin:0 0 24px}
       <span data-lang="es">Suscribirse</span>
     </button>
   </div>
-</div>
-
-<!-- Affiliate code field -->
-<div class="aff-box" id="affBox">
-  <label class="aff-label" for="affCode">
-    <span data-lang="en">Have an affiliate code?</span>
-    <span data-lang="fr">Vous avez un code affilié ?</span>
-    <span data-lang="es">¿Tienes un código de afiliado?</span>
-  </label>
-  <div class="aff-row">
-    <input class="aff-input" type="text" id="affCode" placeholder="PARTNER-XXXXXX" autocomplete="off" oninput="onAffCode(this)">
-  </div>
-  <span class="aff-badge" id="affBadge"></span>
 </div>
 
 <!-- Manage subscription (visible when logged in with a plan) -->
