@@ -23,15 +23,7 @@ Procfile
 seo-tracker/
 mosaic-api/
 prototypes/
-sleep-book/audio/
-sleep-book/Coco-doesnt-sleep-tonight-EN-sleep-book/
-sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/
-sleep-book/kdp-cover/
-sleep-book/pages/
-sleep-book/pages videos/
-sleep-book/sons des animaux/
-sleep-book/youtube/
-sleep-book/__pycache__/
+sleep-book/
 valentine_day/
 Ballon_purple_letters/
 Grass_letters/
