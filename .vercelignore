@@ -23,7 +23,10 @@ Procfile
 seo-tracker/
 mosaic-api/
 prototypes/
-sleep-book/
+sleep-book/*
+!sleep-book/read/
+!sleep-book/read-en/
+!sleep-book/index.html
 valentine_day/
 Ballon_purple_letters/
 Grass_letters/
