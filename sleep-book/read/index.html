@@ -455,11 +455,17 @@
     function playTitle(){
       audio.src = TITLE_SRC;
       audio.load();
-      audio.play();
-      startBgMusic();
-      isPlaying = true;
-      playingSpecial = 'title';
-      playBtn.innerHTML = '&#9646;&#9646;';
+      audio.play().then(function(){
+        startBgMusic();
+        isPlaying = true;
+        playingSpecial = 'title';
+        playBtn.innerHTML = '&#9646;&#9646;';
+      }).catch(function(){
+        /* Autoplay blocked — reset state so play button works */
+        isPlaying = false;
+        playingSpecial = 'title';
+        playBtn.innerHTML = '&#9654;&#65039;';
+      });
     }
 
     /* Page index (0-based) → spread number (-1 = no audio) */
@@ -489,10 +495,13 @@
     function playSpread(sp){
       if(sp < 0 || sp >= TOTAL_SPREADS) return;
       loadSpreadAudio(sp);
-      audio.play();
-      startBgMusic();
-      isPlaying = true;
-      playBtn.innerHTML = '&#9646;&#9646;';
+      audio.play().then(function(){
+        startBgMusic();
+        isPlaying = true;
+        playBtn.innerHTML = '&#9646;&#9646;';
+      }).catch(function(e){
+        console.warn('Spread play failed:', e);
+      });
     }
 
     function togglePlay(){
@@ -507,10 +516,13 @@
           if(sp < 0) sp = 1;
           loadSpreadAudio(sp);
         }
-        audio.play();
-        startBgMusic();
-        isPlaying = true;
-        playBtn.innerHTML = '&#9646;&#9646;';
+        audio.play().then(function(){
+          startBgMusic();
+          isPlaying = true;
+          playBtn.innerHTML = '&#9646;&#9646;';
+        }).catch(function(e){
+          console.warn('Audio play failed:', e);
+        });
       } else {
         audio.pause();
         bgMusic.pause();
