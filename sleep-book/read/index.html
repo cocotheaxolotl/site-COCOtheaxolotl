@@ -314,16 +314,10 @@
       }
     }
 
-    function showReader(withAudio){
+    function showReader(){
       document.getElementById('gate').style.display = 'none';
-      if(withAudio){
-        /* Show a "start" screen so the user clicks → unlocks browser audio */
-        var startScreen = document.getElementById('startScreen');
-        startScreen.style.display = 'flex';
-      } else {
-        document.getElementById('reader').classList.add('active');
-        initFlipbook();
-      }
+      /* Always show start screen with video */
+      document.getElementById('startScreen').style.display = 'flex';
     }
 
     function startReading(){
