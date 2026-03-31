@@ -583,7 +583,13 @@
 
     audio.addEventListener('ended', function(){
       if(playingSpecial === 'title'){
-        /* Title ended → flip to page 1 and start spread_01 */
+        /* Title ended → play spread_00 (credits: Dr Nirvéna, Loopinky) on cover */
+        playingSpecial = 'intro';
+        audio.src = spreadAudioSrc(0);
+        audio.load();
+        audio.play().catch(function(){});
+      } else if(playingSpecial === 'intro'){
+        /* Intro credits ended → flip to page 1 and start spread_01 */
         playingSpecial = '';
         if(autoTurn && pageFlip){
           pageFlip.flip(1);
