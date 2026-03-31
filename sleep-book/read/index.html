@@ -241,6 +241,16 @@
     </div>
   </div>
 
+  <!-- ===== START SCREEN ===== -->
+  <div id="startScreen" style="display:none;position:fixed;inset:0;z-index:100;background:#0d0d2b;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center;padding:20px;">
+    <img src="/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/Diapositive1.JPG" alt="Couverture" style="width:240px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.5)">
+    <h2 style="font-family:'Baloo 2',cursive;font-size:1.8em;color:#fff;margin:0;">&#x1F319; Coco ne dort pas ce soir !</h2>
+    <button onclick="startReading()" style="padding:18px 48px;font-size:1.3em;font-weight:800;font-family:'Baloo 2',cursive;background:linear-gradient(135deg,#D6006E,#ff69b4);color:#fff;border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 20px rgba(214,0,110,.5);transition:transform .15s">
+      &#x1F4D6; Lancer la lecture
+    </button>
+    <p style="color:rgba(255,255,255,.5);font-size:.85em;margin:0;">Avec narration audio et musique</p>
+  </div>
+
   <!-- ===== READER ===== -->
   <div id="reader">
     <div class="toolbar">
@@ -300,11 +310,21 @@
 
     function showReader(withAudio){
       document.getElementById('gate').style.display = 'none';
+      if(withAudio){
+        /* Show a "start" screen so the user clicks → unlocks browser audio */
+        var startScreen = document.getElementById('startScreen');
+        startScreen.style.display = 'flex';
+      } else {
+        document.getElementById('reader').classList.add('active');
+        initFlipbook();
+      }
+    }
+
+    function startReading(){
+      document.getElementById('startScreen').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      if(withAudio){
-        playTitle();
-      }
+      playTitle();
     }
 
     /* ===== CHECK ACCESS ===== */
