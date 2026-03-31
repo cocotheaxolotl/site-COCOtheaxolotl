@@ -243,7 +243,7 @@
 
   <!-- ===== START SCREEN ===== -->
   <div id="startScreen" style="display:none;position:fixed;inset:0;z-index:100;background:#0d0d2b;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center;padding:20px;">
-    <img src="/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/Diapositive1.JPG" alt="Couverture" style="width:240px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.5)">
+    <video src="/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/cover-video.mp4" autoplay loop muted playsinline style="width:300px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.5)"></video>
     <h2 style="font-family:'Baloo 2',cursive;font-size:1.8em;color:#fff;margin:0;">&#x1F319; Coco ne dort pas ce soir !</h2>
     <button onclick="startReading()" style="padding:18px 48px;font-size:1.3em;font-weight:800;font-family:'Baloo 2',cursive;background:linear-gradient(135deg,#D6006E,#ff69b4);color:#fff;border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 20px rgba(214,0,110,.5);transition:transform .15s">
       &#x1F4D6; Lancer la lecture
@@ -291,7 +291,13 @@
     /* ===== Book pages ===== */
     var IMG = '/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/';
     var bookPages = [];
-    for(var i = 1; i <= 31; i++){
+    /* Page 1 = couverture (vidéo intro 15s) */
+    bookPages.push({type:'video', src: IMG+'cover-video.mp4'});
+    /* Page 2 = texte "L'heure de dormir" (image) */
+    bookPages.push({type:'illust', img: IMG+'Diapositive2.JPG'});
+    /* Page 3 = vidéo 30s (3 clips enchaînés) */
+    bookPages.push({type:'video', src: IMG+'spread01-video.mp4'});
+    for(var i = 4; i <= 31; i++){
       bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
     }
 
@@ -380,7 +386,11 @@
       bookPages.forEach(function(p){
         var div = document.createElement('div');
         div.className = 'page illust';
-        div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        if(p.type === 'video'){
+          div.innerHTML = '<video src="'+p.src+'" autoplay loop playsinline style="width:100%;height:100%;object-fit:contain;border-radius:0"></video>';
+        } else {
+          div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        }
         container.appendChild(div);
       });
 
@@ -431,16 +441,19 @@
     var timeTotal = document.getElementById('timeTotal');
 
     var TOTAL_SPREADS = 15;
+    var titleDuration = 0;     // title removed
+    var introDuration = 10.20; // spread_00.mp3 (Dr Nirvéna, Loopinky)
     var durations = [11.34, 29.59, 20.75, 39.86, 40.14, 36.12, 45.64, 39.02, 35.95, 39.88, 40.85, 40.46, 37.54, 38.76, 25.47];
     var totalDuration = 0;
     var cumulativeStarts = [];
+    var preludeDuration = titleDuration + introDuration;
     (function(){
       var cum = 0;
       for(var i = 0; i < durations.length; i++){
         cumulativeStarts.push(cum);
         cum += durations[i];
       }
-      totalDuration = cum;
+      totalDuration = preludeDuration + cum;
       timeTotal.textContent = fmtTime(totalDuration);
     })();
 
@@ -473,17 +486,17 @@
     }
 
     function playTitle(){
-      audio.src = TITLE_SRC;
+      /* Skip title, go straight to spread_00 (credits) */
+      audio.src = spreadAudioSrc(0);
       audio.load();
       audio.play().then(function(){
         startBgMusic();
         isPlaying = true;
-        playingSpecial = 'title';
+        playingSpecial = 'intro';
         playBtn.innerHTML = '&#9646;&#9646;';
       }).catch(function(){
-        /* Autoplay blocked — reset state so play button works */
         isPlaying = false;
-        playingSpecial = 'title';
+        playingSpecial = 'intro';
         playBtn.innerHTML = '&#9654;&#65039;';
       });
     }
@@ -562,8 +575,10 @@
     }
 
     function globalTime(){
+      if(playingSpecial === 'title') return audio.currentTime || 0;
+      if(playingSpecial === 'intro') return titleDuration + (audio.currentTime || 0);
       if(currentSpread < 0) return 0;
-      return cumulativeStarts[currentSpread] + (audio.currentTime || 0);
+      return preludeDuration + cumulativeStarts[currentSpread] + (audio.currentTime || 0);
     }
 
     playBtn.addEventListener('click', togglePlay);
@@ -582,13 +597,7 @@
     }
 
     audio.addEventListener('ended', function(){
-      if(playingSpecial === 'title'){
-        /* Title ended → play spread_00 (credits: Dr Nirvéna, Loopinky) on cover */
-        playingSpecial = 'intro';
-        audio.src = spreadAudioSrc(0);
-        audio.load();
-        audio.play().catch(function(){});
-      } else if(playingSpecial === 'intro'){
+      if(playingSpecial === 'intro'){
         /* Intro credits ended → flip to page 1 and start spread_01 */
         playingSpecial = '';
         if(autoTurn && pageFlip){
