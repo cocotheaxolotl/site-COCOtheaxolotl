@@ -1,18 +1,3 @@
-# Large binaries not needed for the website
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.webp
-*.pdf
-*.pptx
-*.ppt
-*.zip
-*.mp4
-*.mov
-*.mp3
-*.wav
-
 # Python scripts
 *.py
 requirements.txt
@@ -30,7 +15,9 @@ Grass_letters/
 planks_wood_letters/
 lettres en bois sur roulettes/
 *.ps1
-*.md
+
+# Source video (large)
+*.mov
 
 # Static folder (temp assets)
 static/
