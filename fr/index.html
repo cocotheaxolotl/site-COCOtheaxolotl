@@ -567,6 +567,18 @@
 </video>
 <div aria-hidden="true" class="bubblesLayer" id="bubblesLayer"></div>
 <h1>💗 Coco the Axolotl</h1>
+<div class="easter-banner">
+<span class="easter-eggs">🥚🐣🥚</span>
+<span class="easter-msg">Joyeuses P&acirc;ques !</span>
+<span class="easter-eggs">🌷🐰🌷</span>
+</div>
+<style>
+.easter-banner{position:relative;z-index:10;background:rgba(255,255,255,.92);color:#6a1b9a;font-family:'Baloo 2',system-ui;font-weight:800;font-size:2em;padding:16px 40px;border-radius:24px;margin:6px auto 14px;display:inline-flex;align-items:center;gap:16px;box-shadow:0 6px 28px rgba(106,27,154,.3),inset 0 0 0 3px #e1bee7;letter-spacing:.5px;animation:easterBounce 2s ease-in-out infinite}
+.easter-eggs{font-size:1.2em}
+.easter-msg{background:linear-gradient(135deg,#e91e63,#9c27b0,#4caf50);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+@keyframes easterBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media(max-width:600px){.easter-banner{font-size:1.4em;padding:12px 24px;gap:10px}}
+</style>
 <div class="hero-row">
 <!-- Left fish column: Site content -->
 <div class="fish-col left">
@@ -620,11 +632,7 @@
 </div>
 <!-- Coco center -->
 <div aria-label="Coco" class="axolotl-container" id="cocoWiggle">
-<img alt="Coco the Axolotl holding a heart for Valentine's Day" class="axolotl-img" src="/coco-valentine.png"/>
-<!-- Original animated Coco (restore after Valentine's Day):
-        <img src="axolotl.png" alt="Coco body" class="axolotl-img">
-        <img src="gills.png" alt="Coco gills" class="gills-img">
-        -->
+<img alt="Coco the Axolotl" class="axolotl-img" src="/axolotl.png"/>
 </div>
 <!-- Right fish column: Social media -->
 <div class="fish-col right">
@@ -656,34 +664,6 @@ Le plus mignon des axolotls 🫧<br/><span class="hint">Clique sur une étiquett
 
 </p>
 <div class="lang-toggle"><a class="lang-btn" href="/">EN</a><a class="lang-btn active" href="/fr/">FR</a><a class="lang-btn" href="/es/">ES</a></div>
-<!-- Valentine's Day CTA -->
-<a class="valentine-cta" href="/fr/valentine/">
-<span class="v-deco v-left">❤</span>
-<img alt="Valentine coloring sample" class="valentine-img" src="/valentine/friends-colored.png"/>
-<span class="valentine-text">
-
-Coloriages Saint-Valentin
-
-<small>
-
-8 Pages Gratuites !
-
-</small>
-</span>
-<span class="v-deco v-right">❤</span>
-</a>
-<style>
-    .valentine-cta{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,#e91e63,#c2185b);color:#fff;text-decoration:none;padding:14px 22px;border-radius:50px;margin:12px auto 6px;position:relative;z-index:10;box-shadow:0 4px 24px rgba(233,30,99,.5);animation:valentinePulse 2s ease-in-out infinite;border:3px solid rgba(255,255,255,.5)}
-    .valentine-img{width:100px;height:100px;border-radius:50%;object-fit:cover;border:3px solid #fff;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-    .valentine-text{font-family:'Baloo 2',system-ui;font-weight:800;font-size:1.15em;text-align:left;line-height:1.2;text-shadow:0 1px 3px rgba(0,0,0,.15)}
-    .valentine-text small{display:block;font-size:.65em;opacity:.9;margin-top:3px;font-weight:600;letter-spacing:.5px}
-    .v-deco{font-size:1.6em;flex-shrink:0;animation:vBeat 1s ease-in-out infinite}
-    .v-left{margin-right:-4px}
-    .v-right{margin-left:-4px}
-    @keyframes valentinePulse{0%,100%{transform:scale(1);box-shadow:0 4px 24px rgba(233,30,99,.5)}50%{transform:scale(1.03);box-shadow:0 6px 30px rgba(233,30,99,.65)}}
-    @keyframes vBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-    @media(max-width:480px){.valentine-cta{padding:10px 16px;gap:10px}.valentine-img{width:76px;height:76px}.valentine-text{font-size:1em}.v-deco{font-size:1.2em}}
-    </style>
 <div aria-hidden="true" class="scroll-arrow">▼</div>
 </header>
 <main id="blastArea">
@@ -725,14 +705,6 @@ Les parents recherchent aussi : <strong>coloriages gratuits</strong>, <strong>pa
 <a class="card" href="/fr/bubble-lab/">
 <h3>🫧 Lettres Bulles</h3>
 <p>Activité de coloriage imprimable : crée des lettres bulles à colorier !</p>
-</a>
-<a class="card" href="/fr/valentine/" style="border-color:rgba(233,30,99,.35)">
-<h3>💝 Coloriages Saint-Valentin</h3>
-<p>8 coloriages de Saint-Valentin gratuits avec Coco ! Cœurs, ballons, fleurs et amour.</p>
-</a>
-<a class="card" href="/fr/valentine-name/" style="border-color:rgba(233,30,99,.35)">
-<h3>💌 Lettres Valentine</h3>
-<p>Écris ton prénom en lettres ballons roses de Saint-Valentin ! Télécharge et partage.</p>
 </a>
 <a class="card" href="/fr/mosaic-examples/" style="border-color:rgba(156,39,176,.35)">
 <h3>🧩 Mosaïques Mystères</h3>
@@ -788,7 +760,7 @@ Coloriages Gratuits
 Inscris-toi pour recevoir des coloriages exclusifs !
 
 </p>
-<img alt="Coco the Axolotl holding a heart for Valentine's Day" src="/coco-valentine.png"/>
+<img alt="Coco the Axolotl" src="/axolotl.png"/>
 <form id="popupForm">
 <input id="popupName" placeholder="Ton prénom" required="" type="text"/>
 <input id="popupEmail" placeholder="Ton email" required="" type="email"/>
