@@ -55,7 +55,7 @@ SPREADS = {
     ],
 
     "spread_00": [
-        ("NARRATOR", "Coco ne dort pas ce soir ! Une aventure de Coco l'axolote. Par Docteur Anita Nirvena. Illustrations de Loopinky.", 0),
+        ("NARRATOR", "Coco ne dort pas ce soir ! Une aventure de Coco l'axolote. Par Docteur Anita Nirvéna. Illustrations de Loupine-ki.", 0),
     ],
 
     "spread_01": [
@@ -198,7 +198,7 @@ SPREADS = {
     ],
 
     "spread_credits": [
-        ("NARRATOR", "Coco ne dort pas ce soir ! Une aventure de Coco l'axolote. Par Docteur Anita Nirvena. Illustrations de Loopinky.", 0),
+        ("NARRATOR", "Coco ne dort pas ce soir ! Une aventure de Coco l'axolote. Par Docteur Anita Nirvéna. Illustrations de Loupine-ki.", 0),
     ],
 }
 
