@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-QDW91N3TER');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="utf-8"/>
+<meta name="robots" content="index, follow"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta name="theme-color" content="#ff69b4"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<title>Installer Coco l'Axolotl sur votre appareil</title>
+<meta name="description" content="Ajoutez Coco l'Axolotl sur votre appareil pour un acces rapide et facile, comme une application !"/>
+<link href="https://cocotheaxolotl.org/fr/install/" rel="canonical"/>
+<meta property="og:title" content="Installer Coco l'Axolotl sur votre appareil"/>
+<meta property="og:description" content="Ajoutez Coco l'Axolotl sur votre appareil pour un acces rapide et facile, comme une application !"/>
+<meta property="og:url" content="https://cocotheaxolotl.org/fr/install/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Coco the Axolotl"/>
+<meta property="og:image" content="https://cocotheaxolotl.org/coco.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<link href="https://cocotheaxolotl.org/install/" hreflang="en" rel="alternate"/>
+<link href="https://cocotheaxolotl.org/fr/install/" hreflang="fr" rel="alternate"/>
+<link href="https://cocotheaxolotl.org/install/" hreflang="x-default" rel="alternate"/>
+<style>
+  main{max-width:720px;margin:0 auto;padding:24px 16px 60px;text-align:center}
+  .hero-icon{width:100px;height:100px;border-radius:22px;box-shadow:0 6px 20px rgba(0,0,0,.1);margin:0 auto 16px}
+  h2{font-size:1.6em;margin:32px 0 12px;color:#ff69b4}
+  .device-section{background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,.06);padding:24px 20px;margin:20px 0;text-align:left}
+  .device-section h3{margin:0 0 12px;font-size:1.2em;display:flex;align-items:center;gap:8px}
+  .step{display:flex;gap:12px;align-items:flex-start;margin:12px 0}
+  .step-num{background:#ff69b4;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9em;flex-shrink:0;margin-top:2px}
+  .step p{margin:0;line-height:1.5}
+  .step strong{color:#ff69b4}
+  .install-btn{display:none;padding:16px 32px;border-radius:16px;border:none;background:#ff69b4;color:#fff;font-weight:800;font-size:1.1em;cursor:pointer;margin:20px auto;font-family:'Baloo 2',cursive}
+  .install-btn:hover{background:#e0559e}
+  .install-btn.visible{display:inline-block}
+  .note{background:#fef6fb;border-radius:12px;padding:14px 18px;font-size:.95em;color:#666;margin:16px 0}
+  a.back{display:inline-block;margin-top:24px;color:#ff69b4;font-weight:700;text-decoration:none}
+  a.back:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+<a class="home-link" href="/fr/">&#8592; Accueil</a>
+<h1>Installer Coco</h1>
+<div class="lang-toggle">
+<a class="lang-btn" href="/install/">EN</a>
+<a class="lang-btn active" href="/fr/install/">FR</a>
+</div>
+</header>
+<main>
+<img class="hero-icon" src="/icons/icon-192.png" alt="Icone Coco l'Axolotl"/>
+<p>Ajoutez <strong>Coco l'Axolotl</strong> sur votre appareil pour un acces rapide et facile, comme une application !</p>
+
+<button class="install-btn" id="installBtn">Installer Coco</button>
+
+<div class="device-section" id="iosSection">
+<h3>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01" stroke-width="3"/></svg>
+iPhone / iPad (Safari)
+</h3>
+<div class="step"><span class="step-num">1</span><p>Ouvrez <strong>cocotheaxolotl.org</strong> dans <strong>Safari</strong></p></div>
+<div class="step"><span class="step-num">2</span><p>Appuyez sur le bouton <strong>Partager</strong> <span style="font-size:1.2em">&#x2191;&#xFE0E;</span> (en bas de l'ecran)</p></div>
+<div class="step"><span class="step-num">3</span><p>Faites defiler et appuyez sur <strong>&laquo; Sur l'ecran d'accueil &raquo;</strong></p></div>
+<div class="step"><span class="step-num">4</span><p>Appuyez sur <strong>&laquo; Ajouter &raquo;</strong> — Coco apparait sur votre ecran d'accueil !</p></div>
+<div class="note">Note : cela fonctionne uniquement dans Safari. Chrome et les autres navigateurs sur iOS ne supportent pas cette fonctionnalite.</div>
+</div>
+
+<div class="device-section" id="androidSection">
+<h3>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="3"/><line x1="12" y1="18" x2="12" y2="18.01" stroke-width="3"/></svg>
+Android (Chrome)
+</h3>
+<div class="step"><span class="step-num">1</span><p>Ouvrez <strong>cocotheaxolotl.org</strong> dans <strong>Chrome</strong></p></div>
+<div class="step"><span class="step-num">2</span><p>Appuyez sur le menu <strong>trois points</strong> <strong>&#8942;</strong> (en haut a droite)</p></div>
+<div class="step"><span class="step-num">3</span><p>Appuyez sur <strong>&laquo; Ajouter a l'ecran d'accueil &raquo;</strong> ou <strong>&laquo; Installer l'appli &raquo;</strong></p></div>
+<div class="step"><span class="step-num">4</span><p>Appuyez sur <strong>&laquo; Installer &raquo;</strong> — C'est fait ! Coco est sur votre ecran d'accueil.</p></div>
+</div>
+
+<div class="device-section" id="desktopSection">
+<h3>
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+Ordinateur (Chrome / Edge)
+</h3>
+<div class="step"><span class="step-num">1</span><p>Ouvrez <strong>cocotheaxolotl.org</strong> dans Chrome ou Edge</p></div>
+<div class="step"><span class="step-num">2</span><p>Cliquez sur <strong>l'icone d'installation</strong> dans la barre d'adresse (ou le menu trois points &rarr; &laquo; Installer Coco the Axolotl &raquo;)</p></div>
+<div class="step"><span class="step-num">3</span><p>Cliquez sur <strong>&laquo; Installer &raquo;</strong> — Coco s'ouvre dans sa propre fenetre !</p></div>
+</div>
+
+<a class="back" href="/fr/">&#8592; Retour a Coco l'Axolotl</a>
+</main>
+
+<script>
+var deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('installBtn').classList.add('visible');
+});
+document.getElementById('installBtn').addEventListener('click', function() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(function(result) {
+    deferredPrompt = null;
+    document.getElementById('installBtn').classList.remove('visible');
+  });
+});
+window.addEventListener('appinstalled', function() {
+  document.getElementById('installBtn').classList.remove('visible');
+});
+
+(function(){
+  var ua = navigator.userAgent;
+  var isIOS = /iPad|iPhone|iPod/.test(ua);
+  var isAndroid = /Android/.test(ua);
+  var sections = ['iosSection','androidSection','desktopSection'];
+  var highlight = isIOS ? 'iosSection' : isAndroid ? 'androidSection' : 'desktopSection';
+  var main = document.querySelector('main');
+  var target = document.getElementById(highlight);
+  var btn = document.getElementById('installBtn');
+  if (target && btn.nextElementSibling) {
+    main.insertBefore(target, btn.nextElementSibling);
+  }
+  sections.forEach(function(id){
+    if(id !== highlight) document.getElementById(id).style.opacity = '0.6';
+  });
+})();
+</script>
+
+<!-- RGPD Cookie Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
+<div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<p style="margin:0;flex:1;min-width:250px">
+Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez a leur utilisation.
+<a href="/fr/privacy-policy/" style="color:#ff69b4;margin-left:8px">Politique de confidentialite</a>
+</p>
+<div style="display:flex;gap:10px">
+<button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">Accepter</button>
+<button onclick="refuseCookies()" style="padding:10px 20px;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;font-weight:700;cursor:pointer">Refuser</button>
+</div>
+</div>
+</div>
+<script>
+  function acceptCookies(){localStorage.setItem('cookies_accepted','true');document.getElementById('cookieBanner').style.display='none';loadAnalytics();}
+  function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
+  if(!localStorage.getItem('cookies_accepted')){document.getElementById('cookieBanner').style.display='block';}
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+</body>
+</html>

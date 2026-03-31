@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+<!-- Google tag (gtag.js) - loads only after consent -->
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-QDW91N3TER';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-QDW91N3TER');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="utf-8"/>
+<meta content="index, follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<title>Nom en Jouets – Coco l'Axolotl</title>
+<meta content="Enfants :tapez votre nom pour le voir enlettres jouets en bois sur roulettes! Téléchargez et partagez avec vos amis." name="description"/>
+<meta content="color your name, colour your name, coloring name, toy letters, wooden toys, name generator, kids name coloring" name="keywords"/>
+<link href="https://cocotheaxolotl.org/fr/toy-name/" rel="canonical"/>
+<meta content="Nom en Jouets – Coco l'Axolotl" property="og:title"/>
+<meta content="Enfants :tapez votre nom pour le voir enlettres jouets en bois sur roulettes! Téléchargez et partagez avec vos amis." property="og:description"/>
+<meta content="https://cocotheaxolotl.org/fr/toy-name/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Nom en Jouets – Coco l'Axolotl" name="twitter:title"/>
+<meta content="Enfants :tapez votre nom pour le voir enlettres jouets en bois sur roulettes! Téléchargez et partagez avec vos amis." name="twitter:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fff8e1;margin:0;color:#333;text-align:center}
+  header{background:linear-gradient(135deg,#FF8F00,#F57F17);padding:22px 16px}
+  h1{margin:0;font-size:2.1em;font-family:"Fredoka One",system-ui;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,.2)}
+  main{max-width:980px;margin:0 auto;padding:18px 16px 40px}
+  p{max-width:720px;margin:10px auto;line-height:1.4}
+  .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:14px 0}
+  input{padding:14px 16px;border-radius:14px;border:2px solid #FF8F00;font-size:1.05em;width:min(420px,92vw);outline:none}
+  input:focus{border-color:#F57F17}
+  button,a.btn{padding:14px 18px;border-radius:16px;border:none;cursor:pointer;font-weight:800;font-size:1.02em;text-decoration:none;display:inline-block}
+  button{background:#FF8F00;color:#fff}
+  button:hover{background:#EF6C00}
+  .secondary{background:#fff;color:#FF8F00;border:2px solid #FF8F00}
+  .secondary:hover{background:#fff8e1}
+  .card{background:#fff;border-radius:18px;box-shadow:0 8px 20px rgba(0,0,0,.06);padding:12px;margin:14px auto;display:inline-block}
+  canvas{background:#fff;border-radius:18px;max-width:min(500px,90vw);height:auto}
+  .small{opacity:.85;font-size:.95em}
+  .lang-toggle{display:flex;gap:6px;justify-content:center;margin-top:10px}
+  .lang-btn{padding:6px 14px;border-radius:10px;border:2px solid #fff;background:transparent;color:#fff;font-weight:800;cursor:pointer;font-size:.95em}
+  .lang-btn.active{background:#fff;color:#FF8F00}
+  .lang-toggle{display:flex !important}
+  .loading{font-size:1.1em;color:#FF8F00;font-weight:700;margin:20px 0}
+</style>
+
+
+
+
+<link href="https://cocotheaxolotl.org/toy-name/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/toy-name/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/toy-name/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/toy-name/" hreflang="x-default" rel="alternate"/></head>
+<body>
+<header>
+<a class="home-link" href="/fr/fr/">← Accueil</a>
+<h1>Nom en Jouets</h1>
+<div class="lang-toggle"><a class="lang-btn" href="/toy-name/">EN</a><a class="lang-btn active" href="/fr/toy-name/">FR</a><a class="lang-btn" href="/es/toy-name/">ES</a></div>
+</header>
+<main>
+<p><strong>Enfants :</strong> tapez votre nom pour le voir en <strong>lettres jouets en bois sur roulettes</strong> ! Téléchargez et partagez avec vos amis.</p>
+<div class="row">
+<input aria-label="Enter your name" id="nameInput" maxlength="12" placeholder="COCO"/>
+<button id="genBtn">Créer mon nom</button>
+</div>
+<p class="loading" id="loadingMsg" style="display:none">Chargement des lettres jouets...</p>
+<div class="card">
+<canvas aria-label="Toy name result" height="1200" id="c" width="2480"></canvas>
+</div>
+<div class="row">
+<button class="secondary" id="dlBtn">Télécharger PNG</button>
+<button id="printBtn">Imprimer</button>
+<a class="btn secondary" href="/fr/">Accueil</a>
+<a class="btn secondary" href="/fr/plank-name/">Nom Planches</a>
+<a class="btn secondary" href="/fr/grass-name/">Nom Herbe</a>
+</div>
+<p class="small">Astuce : téléchargez puis imprimez ou partagez sur les réseaux !</p>
+</main>
+<script>
+  var canvas = document.getElementById("c");
+  var ctx = canvas.getContext("2d");
+  var letterImages = {};
+  var lettersLoaded = false;
+  var cocoImg = null;
+
+  var charMap = {
+    ' ': null, '!': 'exclamation', '?': 'interrogation',
+    '.': 'point', ',': 'virgule', '-': 'tiret'
+  };
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("").forEach(function(ch){
+    charMap[ch] = ch;
+  });
+
+  function preloadLetters(callback){
+    var keys = Object.keys(charMap).filter(function(k){ return charMap[k]; });
+    var loaded = 0;
+    var total = keys.length + 1;
+    document.getElementById("loadingMsg").style.display = "block";
+    var cImg = new Image();
+    cImg.onload = function(){ cocoImg = cImg; loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
+    cImg.onerror = function(){ loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
+    cImg.src = "../axolotl.png";
+    keys.forEach(function(ch){
+      var img = new Image();
+      img.onload = function(){ letterImages[ch] = img; loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
+      img.onerror = function(){ loaded++; if(loaded===total){lettersLoaded=true;document.getElementById("loadingMsg").style.display="none";callback();}};
+      img.src = charMap[ch] + ".png";
+    });
+  }
+
+  function sanitizeName(s){ return (s||"").trim().toUpperCase().replace(/[^A-Z0-9 !?.,-]/g,"").slice(0,12); }
+
+  function draw(name){
+    var W = canvas.width, H = canvas.height;
+    var chars = name.split("");
+    if(chars.length === 0) return;
+    // Warm playful background
+    var grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, "#fff8e1");
+    grad.addColorStop(1, "#ffe0b2");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,W,H);
+    // Floor line
+    ctx.fillStyle = "#d7ccc8";
+    ctx.fillRect(0, H-80, W, 80);
+    // Coco
+    if(cocoImg){
+      ctx.globalAlpha = 0.4;
+      ctx.drawImage(cocoImg, 50, H-380, 300, 300);
+      ctx.save(); ctx.translate(W-50, H-380); ctx.scale(-1,1); ctx.drawImage(cocoImg,0,0,300,300); ctx.restore();
+      ctx.globalAlpha = 1.0;
+    }
+    // Title
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(0,0,0,0.1)";
+    ctx.font = "bold 70px 'Fredoka One', system-ui, Arial";
+    ctx.fillText("Coco the Axolotl", W/2, 80);
+    // Letters
+    var padding = 80;
+    var availW = W - padding*2;
+    var maxSize = Math.min(400, H-220);
+    var letterSize = Math.min(maxSize, Math.floor(availW / chars.length));
+    var y = Math.round((H - letterSize - 40) / 2);
+    var totalW = letterSize * chars.length;
+    var x = Math.round((W - totalW) / 2);
+    chars.forEach(function(ch){
+      var img = letterImages[ch];
+      if(img) ctx.drawImage(img, x, y, letterSize, letterSize);
+      x += letterSize;
+    });
+    // Footer
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(0,0,0,0.12)";
+    ctx.font = "bold 40px system-ui, Arial";
+    ctx.fillText("cocotheaxolotl.org", W/2, H-30);
+  }
+
+  function generate(){
+    var raw = document.getElementById("nameInput").value;
+    var name = sanitizeName(raw) || "COCO";
+    if(!lettersLoaded){ preloadLetters(function(){ draw(name); }); } else { draw(name); }
+  }
+
+  document.getElementById("genBtn").addEventListener("click", generate);
+  document.getElementById("nameInput").addEventListener("keydown", function(e){ if(e.key==="Enter") generate(); });
+  function doDownload(){
+    var raw = document.getElementById("nameInput").value;
+    var name = sanitizeName(raw) || "COCO";
+    var a = document.createElement("a");
+    a.download = "toy-name-" + name + ".png";
+    a.href = canvas.toDataURL("image/png");
+    a.click();
+  }
+  function doPrint(){
+    var dataUrl = canvas.toDataURL("image/png");
+    var w = window.open("");
+    w.document.write('<img src="'+dataUrl+'" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
+    w.document.close(); w.focus(); w.print();
+  }
+  async function gatedAction(action){
+    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
+    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
+    var result = await CocoAuth.consumeCredit('name_generator','toy');
+    if(!result.ok){
+      if(result.reason==='no_credits') showUpgradeModal();
+      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
+      return;
+    }
+    action();
+    CocoCreditBadge.updateCredits(result.data.remaining);
+  }
+  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
+  preloadLetters(function(){ draw("COCO"); });
+</script>
+<script src="/js/coco-auth.js"></script>
+<script src="/js/coco-auth-modal.js"></script>
+<script src="/js/coco-credit-badge.js"></script>
+<script>
+function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
+function showUpgradeModal(){
+  var msgs = {en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
+  if(confirm(msgs.fr)) window.location.href='/pricing/';
+}
+</script>
+<!-- RGPD Cookie Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
+<div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<p style="margin:0;flex:1;min-width:250px">
+
+Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez à leur utilisation.
+
+<a href="/fr/privacy-policy/" style="color:#ff69b4;margin-left:8px">Politique de confidentialité</a>
+</p>
+<div style="display:flex;gap:10px">
+<button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">Accepter</button>
+<button onclick="refuseCookies()" style="padding:10px 20px;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;font-weight:700;cursor:pointer">Refuser</button>
+</div>
+</div>
+</div>
+<script>
+  function acceptCookies(){localStorage.setItem('cookies_accepted','true');document.getElementById('cookieBanner').style.display='none';loadAnalytics();}
+  function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
+  if(!localStorage.getItem('cookies_accepted')){document.getElementById('cookieBanner').style.display='block';}
+</script>
+</body>
+</html>
