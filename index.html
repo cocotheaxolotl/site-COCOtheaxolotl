@@ -692,21 +692,22 @@
 
     <h1>💗 Coco the Axolotl</h1>
 
-    <div class="easter-banner">
+    <a href="#" class="easter-banner" onclick="document.getElementById('popupOverlay').classList.add('active');return false;">
       <span class="easter-eggs">🥚🐣🥚</span>
       <span class="easter-msg">
-        <span data-lang="en">Happy Easter!</span>
-        <span data-lang="fr">Joyeuses P&acirc;ques !</span>
-        <span data-lang="es">&iexcl;Felices Pascuas!</span>
+        <span data-lang="en">Happy Easter! Free coloring page!</span>
+        <span data-lang="fr">Joyeuses P&acirc;ques ! Coloriage gratuit !</span>
+        <span data-lang="es">&iexcl;Felices Pascuas! &iexcl;Dibujo gratis!</span>
       </span>
       <span class="easter-eggs">🌷🐰🌷</span>
-    </div>
+    </a>
     <style>
-    .easter-banner{position:relative;z-index:10;background:rgba(255,255,255,.92);color:#6a1b9a;font-family:'Baloo 2',system-ui;font-weight:800;font-size:2em;padding:16px 40px;border-radius:24px;margin:6px auto 14px;display:inline-flex;align-items:center;gap:16px;box-shadow:0 6px 28px rgba(106,27,154,.3),inset 0 0 0 3px #e1bee7;text-shadow:none;letter-spacing:.5px;animation:easterBounce 2s ease-in-out infinite}
+    .easter-banner{position:relative;z-index:10;background:rgba(255,255,255,.92);color:#6a1b9a;font-family:'Baloo 2',system-ui;font-weight:800;font-size:1.8em;padding:16px 40px;border-radius:24px;margin:6px auto 14px;display:inline-flex;align-items:center;gap:16px;box-shadow:0 6px 28px rgba(106,27,154,.3),inset 0 0 0 3px #e1bee7;text-shadow:none;letter-spacing:.5px;animation:easterBounce 2s ease-in-out infinite;text-decoration:none;cursor:pointer;transition:transform .15s}
+    .easter-banner:hover{transform:scale(1.05)}
     .easter-eggs{font-size:1.2em}
     .easter-msg{background:linear-gradient(135deg,#e91e63,#9c27b0,#4caf50);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
     @keyframes easterBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-    @media(max-width:600px){.easter-banner{font-size:1.4em;padding:12px 24px;gap:10px}}
+    @media(max-width:600px){.easter-banner{font-size:1.2em;padding:12px 24px;gap:10px}}
     </style>
 
     <div class="hero-row">
@@ -945,16 +946,16 @@
     <div class="popup-box">
       <button class="popup-close" id="popupClose" aria-label="Close">&#10005;</button>
       <h3>
-        <span data-lang="en">Get Free Coloring Pages</span>
-        <span data-lang="fr">Coloriages Gratuits</span>
-        <span data-lang="es">Dibujos para Colorear Gratis</span>
+        <span data-lang="en">🐣 Free Easter Coloring Page!</span>
+        <span data-lang="fr">🐣 Coloriage de P&acirc;ques Gratuit !</span>
+        <span data-lang="es">🐣 &iexcl;Dibujo de Pascua Gratis!</span>
       </h3>
       <p class="popup-sub">
-        <span data-lang="en">Join our newsletter for exclusive freebies!</span>
-        <span data-lang="fr">Inscris-toi pour recevoir des coloriages exclusifs !</span>
-        <span data-lang="es">&iexcl;S&uacute;scribete para recibir dibujos exclusivos gratis!</span>
+        <span data-lang="en">Enter your name &amp; email to download this Easter coloring page!</span>
+        <span data-lang="fr">Entre ton pr&eacute;nom et email pour t&eacute;l&eacute;charger ce coloriage de P&acirc;ques !</span>
+        <span data-lang="es">&iexcl;Escribe tu nombre y email para descargar este dibujo de Pascua!</span>
       </p>
-      <img src="axolotl.png" alt="Coco the Axolotl">
+      <img src="coco-easter-coloring.png" alt="Easter coloring page - Coco the Axolotl" style="max-width:200px;border-radius:12px;border:2px solid #e1bee7">
       <form id="popupForm">
         <input type="text" id="popupName" required>
         <input type="email" id="popupEmail" required>
@@ -1300,8 +1301,15 @@
         .then(function(data){
           if(data.success){
             localStorage.setItem('coco_subscribed','true');
-            form.innerHTML = '<p class="popup-success">Thank you! 💗</p>';
-            setTimeout(closePopup, 2500);
+            form.innerHTML = '<p class="popup-success">' +
+              '<span data-lang="en">Thank you! 💗 Download your coloring page:</span>' +
+              '<span data-lang="fr">Merci ! 💗 Télécharge ton coloriage :</span>' +
+              '<span data-lang="es">¡Gracias! 💗 Descarga tu dibujo:</span>' +
+              '<br><a href="/coco-easter-coloring.png" download="coco-easter-coloring.png" style="display:inline-block;margin-top:10px;padding:10px 24px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">' +
+              '<span data-lang="en">🎨 Download</span>' +
+              '<span data-lang="fr">🎨 Télécharger</span>' +
+              '<span data-lang="es">🎨 Descargar</span></a></p>';
+            applyLang(document.documentElement.lang||'en');
           } else {
             submitBtn.disabled = false;
             submitBtn.textContent = "Try again";

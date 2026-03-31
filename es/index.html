@@ -567,17 +567,18 @@
 </video>
 <div aria-hidden="true" class="bubblesLayer" id="bubblesLayer"></div>
 <h1>💗 Coco the Axolotl</h1>
-<div class="easter-banner">
+<a href="#" class="easter-banner" onclick="document.getElementById('popupOverlay').classList.add('active');return false;">
 <span class="easter-eggs">🥚🐣🥚</span>
-<span class="easter-msg">&iexcl;Felices Pascuas!</span>
+<span class="easter-msg">&iexcl;Felices Pascuas! &iexcl;Dibujo gratis!</span>
 <span class="easter-eggs">🌷🐰🌷</span>
-</div>
+</a>
 <style>
-.easter-banner{position:relative;z-index:10;background:rgba(255,255,255,.92);color:#6a1b9a;font-family:'Baloo 2',system-ui;font-weight:800;font-size:2em;padding:16px 40px;border-radius:24px;margin:6px auto 14px;display:inline-flex;align-items:center;gap:16px;box-shadow:0 6px 28px rgba(106,27,154,.3),inset 0 0 0 3px #e1bee7;letter-spacing:.5px;animation:easterBounce 2s ease-in-out infinite}
+.easter-banner{position:relative;z-index:10;background:rgba(255,255,255,.92);color:#6a1b9a;font-family:'Baloo 2',system-ui;font-weight:800;font-size:1.8em;padding:16px 40px;border-radius:24px;margin:6px auto 14px;display:inline-flex;align-items:center;gap:16px;box-shadow:0 6px 28px rgba(106,27,154,.3),inset 0 0 0 3px #e1bee7;letter-spacing:.5px;animation:easterBounce 2s ease-in-out infinite;text-decoration:none;cursor:pointer;transition:transform .15s}
+.easter-banner:hover{transform:scale(1.05)}
 .easter-eggs{font-size:1.2em}
 .easter-msg{background:linear-gradient(135deg,#e91e63,#9c27b0,#4caf50);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 @keyframes easterBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@media(max-width:600px){.easter-banner{font-size:1.4em;padding:12px 24px;gap:10px}}
+@media(max-width:600px){.easter-banner{font-size:1.2em;padding:12px 24px;gap:10px}}
 </style>
 <div class="hero-row">
 <!-- Left fish column: Site content -->
@@ -754,17 +755,9 @@ Página de Autor en Amazon:
 <div class="popup-overlay" id="popupOverlay">
 <div class="popup-box">
 <button aria-label="Close" class="popup-close" id="popupClose">✕</button>
-<h3>
-
-
-Dibujos para Colorear Gratis
-</h3>
-<p class="popup-sub">
-
-
-¡Súscribete para recibir dibujos exclusivos gratis!
-</p>
-<img alt="Coco the Axolotl" src="/axolotl.png"/>
+<h3>🐣 &iexcl;Dibujo de Pascua Gratis!</h3>
+<p class="popup-sub">&iexcl;Escribe tu nombre y email para descargar este dibujo de Pascua!</p>
+<img alt="Dibujo de Pascua - Coco el Ajolote" src="/coco-easter-coloring.png" style="max-width:200px;border-radius:12px;border:2px solid #e1bee7"/>
 <form id="popupForm">
 <input id="popupName" placeholder="Tu nombre" required="" type="text"/>
 <input id="popupEmail" placeholder="Tu email" required="" type="email"/>
@@ -1089,8 +1082,7 @@ Al suscribirte, aceptas recibir nuestro boletín.<br/>Puedes cancelar en cualqui
         .then(function(data){
           if(data.success){
             localStorage.setItem('coco_subscribed','true');
-            form.innerHTML = '<p class="popup-success">Thank you! 💗</p>';
-            setTimeout(closePopup, 2500);
+            form.innerHTML = '<p class="popup-success">¡Gracias! 💗 Descarga tu dibujo:<br><a href="/coco-easter-coloring.png" download="coco-easter-coloring.png" style="display:inline-block;margin-top:10px;padding:10px 24px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">🎨 Descargar</a></p>';
           } else {
             submitBtn.disabled = false;
             submitBtn.textContent = "Try again";
