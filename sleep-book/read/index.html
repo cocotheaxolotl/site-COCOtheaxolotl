@@ -213,34 +213,23 @@
       .page .fact-box{ font-size:.65em; padding:8px 10px; }
     }
 
-    /* ===== ROTATE PHONE OVERLAY ===== */
-    #rotateOverlay{
+    /* ===== MOBILE: suggest landscape ===== */
+    #rotateBanner{
       display:none;
-      position:fixed;inset:0;z-index:9999;
-      background:#0d0d2b;
-      flex-direction:column;align-items:center;justify-content:center;
-      gap:20px;text-align:center;padding:20px;
-      font-family:'Baloo 2',cursive;color:#fff;
+      background:rgba(214,0,110,.9);color:#fff;
+      text-align:center;padding:8px;font-size:.85em;font-weight:700;
+      font-family:'Baloo 2',cursive;
+      position:fixed;top:0;left:0;right:0;z-index:200;
     }
-    #rotateOverlay .rotate-icon{font-size:4em;animation:rotatePhone 2s ease-in-out infinite}
-    #rotateOverlay p{font-size:1.3em;opacity:.9}
-    @keyframes rotatePhone{0%,100%{transform:rotate(0deg)}50%{transform:rotate(90deg)}}
     @media(orientation:portrait) and (max-width:900px){
-      #rotateOverlay{display:flex}
-    }
-    @media(orientation:landscape){
-      #rotateOverlay{display:none !important}
+      #rotateBanner{display:block}
     }
   </style>
 </head>
 
 <body>
-  <!-- ===== ROTATE PHONE OVERLAY ===== -->
-  <div id="rotateOverlay">
-    <div class="rotate-icon">📱</div>
-    <p>Tourne ton téléphone<br>pour lire le livre !</p>
-    <p style="font-size:.8em;opacity:.5">↻ Mode paysage</p>
-  </div>
+  <!-- ===== ROTATE BANNER ===== -->
+  <div id="rotateBanner">📱 Tourne ton téléphone en paysage pour une meilleure lecture !</div>
   <!-- ===== SCENE BACKGROUND ===== -->
   <div id="scene-bg">
     <img id="scene-img" src="/sleep-book/read/bg-scene.jpg" alt="" class="scene-media"
