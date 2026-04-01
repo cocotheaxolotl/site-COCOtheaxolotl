@@ -326,23 +326,32 @@
       document.getElementById('startScreen').style.display = 'flex';
     }
 
-    function startReading(){
-      /* On mobile, go fullscreen and lock to landscape */
-      var el = document.documentElement;
-      if(el.requestFullscreen){
-        el.requestFullscreen().then(function(){
-          if(screen.orientation && screen.orientation.lock){
-            screen.orientation.lock('landscape').catch(function(){});
-          }
-        }).catch(function(){});
-      }
+    function launchReader(){
       document.getElementById('startScreen').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      /* Start cover video */
       var coverVid = document.querySelector('#flipbook-container .page:first-child video');
       if(coverVid){ coverVid.currentTime = 0; coverVid.play().catch(function(){}); }
       playTitle();
+    }
+
+    function startReading(){
+      /* On mobile, go fullscreen and lock to landscape, then init */
+      var el = document.documentElement;
+      if(el.requestFullscreen && 'ontouchstart' in window){
+        el.requestFullscreen().then(function(){
+          if(screen.orientation && screen.orientation.lock){
+            return screen.orientation.lock('landscape').catch(function(){});
+          }
+        }).then(function(){
+          /* Wait for orientation change to settle */
+          setTimeout(launchReader, 500);
+        }).catch(function(){
+          launchReader();
+        });
+      } else {
+        launchReader();
+      }
     }
 
     /* ===== CHECK ACCESS ===== */
