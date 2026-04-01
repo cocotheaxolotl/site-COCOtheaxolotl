@@ -297,21 +297,7 @@
     /* ===== Book pages ===== */
     var IMG = '/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/';
     var bookPages = [];
-    /* Page 1 = couverture (vidéo intro 15s) */
-    bookPages.push({type:'video', src: IMG+'cover-video.mp4?v=2'});
-    /* Page 2 = texte "L'heure de dormir" (image) */
-    bookPages.push({type:'illust', img: IMG+'Diapositive2.JPG'});
-    /* Page 3 = vidéo 30s (3 clips enchaînés) */
-    bookPages.push({type:'video', src: IMG+'spread01-video.mp4?v=2'});
-    /* Page 4 = texte "L'aventure commence" (image) */
-    bookPages.push({type:'illust', img: IMG+'Diapositive4.JPG'});
-    /* Page 5 = vidéo 20s (2 clips enchaînés) */
-    bookPages.push({type:'video', src: IMG+'spread02-video.mp4?v=2'});
-    /* Page 6 = texte "Le Hibou" (image) */
-    bookPages.push({type:'illust', img: IMG+'Diapositive6.JPG'});
-    /* Page 7 = vidéo hibou 45s */
-    bookPages.push({type:'video', src: IMG+'spread03-video.mp4?v=2'});
-    for(var i = 8; i <= 31; i++){
+    for(var i = 1; i <= 31; i++){
       bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
     }
 
