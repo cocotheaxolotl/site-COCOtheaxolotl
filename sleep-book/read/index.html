@@ -332,6 +332,9 @@
       document.getElementById('startScreen').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
+      /* Start cover video */
+      var coverVid = document.querySelector('#flipbook-container .page:first-child video');
+      if(coverVid){ coverVid.currentTime = 0; coverVid.play().catch(function(){}); }
       playTitle();
     }
 
@@ -389,7 +392,7 @@
         var div = document.createElement('div');
         div.className = 'page illust';
         if(p.type === 'video'){
-          div.innerHTML = '<video src="'+p.src+'" autoplay loop playsinline style="width:100%;height:100%;object-fit:contain;border-radius:0"></video>';
+          div.innerHTML = '<video src="'+p.src+'" loop playsinline preload="auto" style="width:100%;height:100%;object-fit:contain;border-radius:0"></video>';
         } else {
           div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
         }
@@ -665,6 +668,17 @@
     /* Sync audio when user flips pages */
     function onPageFlip(pgIndex){
       document.getElementById('pageInfo').textContent = (pgIndex + 1) + ' / ' + bookPages.length;
+      /* Pause all videos, restart + play only visible ones */
+      var allVideos = document.querySelectorAll('#flipbook-container video');
+      allVideos.forEach(function(v){ v.pause(); });
+      var pages = document.querySelectorAll('#flipbook-container .page');
+      /* Visible pages: current and next */
+      [pgIndex, pgIndex + 1].forEach(function(idx){
+        if(idx >= 0 && idx < pages.length){
+          var vid = pages[idx].querySelector('video');
+          if(vid){ vid.currentTime = 0; vid.play().catch(function(){}); }
+        }
+      });
       var sp = pageToSpread(pgIndex);
       if(sp >= 0 && sp !== currentSpread){
         playSpread(sp);
