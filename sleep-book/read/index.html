@@ -202,30 +202,15 @@
       width:0; transition:width .1s linear;
     }
 
-    @media(max-width:900px) and (orientation:portrait){
+    @media(max-width:900px){
       #scene-bg{ display:none; }
-      body{ background:#0d0d2b; overflow:hidden; }
-      #reader.active{
-        transform:rotate(90deg);
-        transform-origin:top left;
-        position:fixed;
-        top:0;left:100vw;
-        width:100vh;height:100vw;
-      }
-      #startScreen{
-        transform:rotate(90deg) !important;
-        transform-origin:top left !important;
-        top:0 !important;left:100vw !important;
-        width:100vh !important;height:100vw !important;
-      }
+      body{ background:#0d0d2b; }
       .toolbar{ font-size:.7em; padding:2px 6px; height:28px; min-height:28px; }
       .toolbar button{ padding:3px 8px; font-size:.75em; }
       .audio-bar{ gap:4px; padding:3px 6px; height:36px; min-height:36px; }
       .audio-btn{ width:28px; height:28px; font-size:.9em; }
       .time-label{ font-size:.9em; min-width:36px; }
       .nav-arrow{ font-size:1em; padding:6px 10px; }
-      /* Credits line hidden on mobile */
-      #reader > div[style*="bottom:44px"]{ display:none; }
     }
     @media(max-width:600px) and (orientation:landscape){
       .nav-arrow{ font-size:1.2em; padding:8px 12px; opacity:.8; }
@@ -342,6 +327,15 @@
     }
 
     function startReading(){
+      /* On mobile, go fullscreen and lock to landscape */
+      var el = document.documentElement;
+      if(el.requestFullscreen){
+        el.requestFullscreen().then(function(){
+          if(screen.orientation && screen.orientation.lock){
+            screen.orientation.lock('landscape').catch(function(){});
+          }
+        }).catch(function(){});
+      }
       document.getElementById('startScreen').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
@@ -379,13 +373,11 @@
       var mobilePortrait = (vpW < 900 && vpH > vpW);
       var w, h, l, t;
       if(mobilePortrait){
-        /* Mobile portrait rotated 90deg: swap dimensions */
-        var rW = vpH;
-        var rH = vpW;
-        w = rW * 0.94;
-        h = rH * 0.78;
-        l = (rW - w) / 2;
-        t = rH * 0.06;
+        /* Mobile: fullscreen landscape forced by JS */
+        w = vpW * 0.96;
+        h = vpH * 0.80;
+        l = (vpW - w) / 2;
+        t = vpH * 0.06;
       } else {
         /* Desktop: book in photo */
         w = vpW * 0.63;
@@ -582,6 +574,9 @@
       document.querySelectorAll('#flipbook-container video').forEach(function(v){ v.pause(); v.currentTime = 0; });
       /* Go back to cover */
       if(pageFlip) pageFlip.flip(0);
+      /* Exit fullscreen */
+      if(document.fullscreenElement) document.exitFullscreen().catch(function(){});
+      if(screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
     }
 
     function togglePlay(){
