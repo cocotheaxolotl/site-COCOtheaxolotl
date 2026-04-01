@@ -212,10 +212,35 @@
       .page .page-title{ font-size:1.15em; }
       .page .fact-box{ font-size:.65em; padding:8px 10px; }
     }
+
+    /* ===== ROTATE PHONE OVERLAY ===== */
+    #rotateOverlay{
+      display:none;
+      position:fixed;inset:0;z-index:9999;
+      background:#0d0d2b;
+      flex-direction:column;align-items:center;justify-content:center;
+      gap:20px;text-align:center;padding:20px;
+      font-family:'Baloo 2',cursive;color:#fff;
+    }
+    #rotateOverlay .rotate-icon{font-size:4em;animation:rotatePhone 2s ease-in-out infinite}
+    #rotateOverlay p{font-size:1.3em;opacity:.9}
+    @keyframes rotatePhone{0%,100%{transform:rotate(0deg)}50%{transform:rotate(90deg)}}
+    @media(orientation:portrait) and (max-width:900px){
+      #rotateOverlay{display:flex}
+    }
+    @media(orientation:landscape){
+      #rotateOverlay{display:none !important}
+    }
   </style>
 </head>
 
 <body>
+  <!-- ===== ROTATE PHONE OVERLAY ===== -->
+  <div id="rotateOverlay">
+    <div class="rotate-icon">📱</div>
+    <p>Tourne ton téléphone<br>pour lire le livre !</p>
+    <p style="font-size:.8em;opacity:.5">↻ Mode paysage</p>
+  </div>
   <!-- ===== SCENE BACKGROUND ===== -->
   <div id="scene-bg">
     <img id="scene-img" src="/sleep-book/read/bg-scene.jpg" alt="" class="scene-media"
