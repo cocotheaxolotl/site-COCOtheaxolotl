@@ -218,11 +218,14 @@
         top:0 !important;left:100vw !important;
         width:100vh !important;height:100vw !important;
       }
-      .toolbar{ font-size:.75em; padding:4px 8px; }
-      .audio-bar{ gap:4px; padding:4px 8px; }
-      .audio-btn{ width:36px; height:36px; font-size:1.1em; }
-      .time-label{ font-size:1.2em; }
-      .nav-arrow{ font-size:1.2em; padding:8px 12px; opacity:.8; }
+      .toolbar{ font-size:.7em; padding:2px 6px; height:28px; min-height:28px; }
+      .toolbar button{ padding:3px 8px; font-size:.75em; }
+      .audio-bar{ gap:4px; padding:3px 6px; height:36px; min-height:36px; }
+      .audio-btn{ width:28px; height:28px; font-size:.9em; }
+      .time-label{ font-size:.9em; min-width:36px; }
+      .nav-arrow{ font-size:1em; padding:6px 10px; }
+      /* Credits line hidden on mobile */
+      #reader > div[style*="bottom:44px"]{ display:none; }
     }
     @media(max-width:600px) and (orientation:landscape){
       .nav-arrow{ font-size:1.2em; padding:8px 12px; opacity:.8; }
@@ -379,10 +382,10 @@
         /* Mobile portrait rotated 90deg: swap dimensions */
         var rW = vpH;
         var rH = vpW;
-        w = rW * 0.90;
-        h = rH * 0.70;
+        w = rW * 0.94;
+        h = rH * 0.78;
         l = (rW - w) / 2;
-        t = rH * 0.10;
+        t = rH * 0.06;
       } else {
         /* Desktop: book in photo */
         w = vpW * 0.63;
