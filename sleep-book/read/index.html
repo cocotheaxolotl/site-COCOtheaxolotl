@@ -386,6 +386,9 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
+      /* On mobile portrait, swap dimensions for rotated view */
+      var mobilePortrait = (vpW < 900 && vpH > vpW);
+      if(mobilePortrait){ var tmp = vpW; vpW = vpH; vpH = tmp; }
       /* Simple centered approach — the book fills most of the photo */
       var w = vpW * 0.63;
       var h = vpH * 0.80;
