@@ -400,8 +400,7 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var isMobile = (window.innerWidth < 900 && window.innerHeight > window.innerWidth);
-      var w = isMobile ? Math.round(area.offsetWidth) : Math.round(area.offsetWidth / 2);
+      var w = Math.round(area.offsetWidth / 2);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
