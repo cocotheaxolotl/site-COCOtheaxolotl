@@ -554,6 +554,19 @@
       .fish-col.left .fish-link{ justify-content:flex-start; }
       .fish-col.right .fish-link{ justify-content:flex-end; }
     }
+    /* ── Mobile: vertical layout, fish links become pill buttons ── */
+    @media (max-width: 600px){
+      .hero-row{flex-direction:column;align-items:center;gap:12px;width:100%}
+      .fish-col{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;width:100%;order:2}
+      .fish-col.right{order:3}
+      .axolotl-container{order:1}
+      .fish-col.left .fish-link,.fish-col.left .fish-toggle,.fish-col.right .fish-link,.fish-col.right .fish-toggle{animation:none;flex-direction:row}
+      .fish-col.left .fish-icon,.fish-col.right .fish-icon,.fish-col.left .fish-toggle .fish-icon,.fish-col.right .fish-toggle .fish-icon{animation:none;transform:none;font-size:1.1em}
+      .fish-rope{display:none}
+      .fish-banner{font-size:.88em;padding:7px 13px;border-radius:32px}
+      .fish-col.left .fish-dropdown,.fish-col.right .fish-dropdown{right:auto;left:50%;transform:translateX(-50%);top:calc(100% + 6px)}
+      @keyframes dropIn{from{opacity:0;transform:translateX(-50%) translateY(-6px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+    }
   </style>
 
 
