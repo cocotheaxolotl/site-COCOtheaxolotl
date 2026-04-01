@@ -204,9 +204,27 @@
 
     @media(max-width:900px) and (orientation:portrait){
       #scene-bg{ display:none; }
-      body{ background:#0d0d2b; }
+      body{ background:#0d0d2b; overflow:hidden; }
+      #reader.active{
+        transform:rotate(90deg);
+        transform-origin:top left;
+        position:fixed;
+        top:0;left:100vw;
+        width:100vh;height:100vw;
+      }
+      #startScreen{
+        transform:rotate(90deg) !important;
+        transform-origin:top left !important;
+        top:0 !important;left:100vw !important;
+        width:100vh !important;height:100vw !important;
+      }
+      .toolbar{ font-size:.75em; padding:4px 8px; }
+      .audio-bar{ gap:4px; padding:4px 8px; }
+      .audio-btn{ width:36px; height:36px; font-size:1.1em; }
+      .time-label{ font-size:1.2em; }
+      .nav-arrow{ font-size:1.2em; padding:8px 12px; opacity:.8; }
     }
-    @media(max-width:600px){
+    @media(max-width:600px) and (orientation:landscape){
       .nav-arrow{ font-size:1.2em; padding:8px 12px; opacity:.8; }
       .toolbar .title{ font-size:.8em; }
       .audio-bar{ gap:6px; padding:6px 10px; }
@@ -358,11 +376,13 @@
       var mobilePortrait = (vpW < 900 && vpH > vpW);
       var w, h, l, t;
       if(mobilePortrait){
-        /* Mobile: full width, single page */
-        w = vpW * 0.96;
-        h = vpH * 0.75;
-        l = (vpW - w) / 2;
-        t = vpH * 0.08;
+        /* Mobile portrait rotated 90deg: swap dimensions */
+        var rW = vpH;
+        var rH = vpW;
+        w = rW * 0.90;
+        h = rH * 0.70;
+        l = (rW - w) / 2;
+        t = rH * 0.10;
       } else {
         /* Desktop: book in photo */
         w = vpW * 0.63;
@@ -387,8 +407,7 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var mobilePortrait = (window.innerWidth < 900 && window.innerHeight > window.innerWidth);
-      var w = mobilePortrait ? Math.round(area.offsetWidth * 0.95) : Math.round(area.offsetWidth / 2);
+      var w = Math.round(area.offsetWidth / 2);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
