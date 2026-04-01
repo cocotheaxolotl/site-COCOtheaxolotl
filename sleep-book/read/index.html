@@ -370,14 +370,14 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      var mobilePortrait = (vpW < 900 && vpH > vpW);
+      var isMobile = ('ontouchstart' in window || vpW < 1200);
       var w, h, l, t;
-      if(mobilePortrait){
-        /* Mobile: fullscreen landscape forced by JS */
-        w = vpW * 0.96;
-        h = vpH * 0.80;
+      if(isMobile){
+        /* Mobile: fill screen */
+        w = vpW * 0.92;
+        h = vpH * 0.82;
         l = (vpW - w) / 2;
-        t = vpH * 0.06;
+        t = vpH * 0.04;
       } else {
         /* Desktop: book in photo */
         w = vpW * 0.63;
