@@ -202,6 +202,10 @@
       width:0; transition:width .1s linear;
     }
 
+    @media(max-width:900px) and (orientation:portrait){
+      #scene-bg{ display:none; }
+      body{ background:#0d0d2b; }
+    }
     @media(max-width:600px){
       .nav-arrow{ display:none; }
       .toolbar .title{ font-size:.8em; }
@@ -213,28 +217,6 @@
       .page .fact-box{ font-size:.65em; padding:8px 10px; }
     }
 
-    /* ===== MOBILE PORTRAIT: rotate everything 90deg ===== */
-    @media(orientation:portrait) and (max-width:900px){
-      #reader.active{
-        transform:rotate(90deg);
-        transform-origin:top left;
-        position:absolute;
-        top:0;left:100vw;
-        width:100vh;height:100vw;
-      }
-      #startScreen{
-        transform:rotate(90deg);
-        transform-origin:top left;
-        top:0 !important;left:100vw !important;
-        width:100vh !important;height:100vw !important;
-      }
-      #gate{
-        transform:rotate(90deg);
-        transform-origin:top left;
-        position:fixed;top:0;left:100vw;
-        width:100vh;height:100vw;
-      }
-    }
   </style>
 </head>
 
@@ -386,14 +368,21 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      /* On mobile portrait, swap dimensions for rotated view */
       var mobilePortrait = (vpW < 900 && vpH > vpW);
-      if(mobilePortrait){ var tmp = vpW; vpW = vpH; vpH = tmp; }
-      /* Simple centered approach — the book fills most of the photo */
-      var w = vpW * 0.63;
-      var h = vpH * 0.80;
-      var l = (vpW - w) / 2 - vpW * 0.004;
-      var t = (vpH - h) / 2 + vpH * 0.04;
+      var w, h, l, t;
+      if(mobilePortrait){
+        /* Mobile: full width, single page */
+        w = vpW * 0.96;
+        h = vpH * 0.75;
+        l = (vpW - w) / 2;
+        t = vpH * 0.08;
+      } else {
+        /* Desktop: book in photo */
+        w = vpW * 0.63;
+        h = vpH * 0.80;
+        l = (vpW - w) / 2 - vpW * 0.004;
+        t = (vpH - h) / 2 + vpH * 0.04;
+      }
       area.style.left   = l + 'px';
       area.style.top    = t + 'px';
       area.style.width  = w + 'px';
@@ -411,7 +400,8 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var w = Math.round(area.offsetWidth / 2);
+      var isMobile = (window.innerWidth < 900 && window.innerHeight > window.innerWidth);
+      var w = isMobile ? Math.round(area.offsetWidth) : Math.round(area.offsetWidth / 2);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
