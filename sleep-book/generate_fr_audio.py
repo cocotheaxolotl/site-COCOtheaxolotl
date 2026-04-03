@@ -93,7 +93,7 @@ SPREADS = {
         ("SFX:DOLPHIN_SFX", "", SHORT_PAUSE),
         ("COCO",     "Tu ne dors pas non plus ?", MEDIUM_PAUSE),
         ("DOLPHIN",  "Oooh si ! Je n'endors qu'une moitié de mon cerveau à la fois. L'autre reste éveillée pour nager et respirer !", MEDIUM_PAUSE),
-        ("COCO",     "Tu dors ET tu nages en même temps ?!", MEDIUM_PAUSE),
+        ("COCO",     "Tu dors et tu nages en même temps ?!", MEDIUM_PAUSE),
         ("DOLPHIN",  "Le sommeil est si important que j'ai trouvé un moyen de ne jamais m'en passer !", LONG_PAUSE),
         ("FACT",     "Le savais-tu ? Les dauphins dorment avec un seul œil fermé ! Le côté du cerveau qui dort change toutes les deux heures.", 0),
     ],
