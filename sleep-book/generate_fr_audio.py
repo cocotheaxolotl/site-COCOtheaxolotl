@@ -115,7 +115,7 @@ SPREADS = {
         ("COCO",     "Koala ! Tu dors ?", MEDIUM_PAUSE),
         ("SFX:SNORE_SFX", None, 0),
         ("KOALA",    "oui... 22 heures par jour...", MEDIUM_PAUSE),
-        ("COCO",     "22 HEURES ?! Mais pourquoi autant ?", MEDIUM_PAUSE),
+        ("COCO",     "vingt-deux heures ?! Mais pourquoi autant ?", MEDIUM_PAUSE),
         ("KOALA",    "Mon corps a besoin d'énergie pour digérer mes feuilles... Le sommeil, ça recharge ton corps en énergie !", MEDIUM_PAUSE),
         ("NARRATOR", "Et il se rendormit aussitôt.", LONG_PAUSE),
         ("FACT",     "Le savais-tu ? Les koalas dorment jusqu'à 22 heures par jour ! Les feuilles d'eucalyptus sont très dures à digérer et donnent très peu d'énergie.", 0),
