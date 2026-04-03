@@ -31,7 +31,7 @@ VOICES = {
     "COCO":      ("fr-FR-EloiseNeural",    "-12%", 0),
     "MOM":       ("fr-FR-DeniseNeural",    "-20%", -4),
     "OWL":       ("fr-FR-HenriNeural",     "-15%", 0),
-    "DOLPHIN":   ("fr-FR-VivienneMultilingualNeural", "-10%", 0),
+    "DOLPHIN":   ("fr-FR-VivienneMultilingualNeural", "-22%", 0),
     "OTTER":     ("fr-FR-DeniseNeural",    "-15%", -4),
     "KOALA":     ("fr-FR-HenriNeural",     "-20%", -4),
     "BAT":       ("fr-FR-DeniseNeural",    "-15%", 0),
