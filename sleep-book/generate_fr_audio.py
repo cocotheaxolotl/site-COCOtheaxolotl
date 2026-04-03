@@ -22,6 +22,7 @@ ANIMAL_SFX = {
     "FLAMINGO_SFX": ("flamingo-sb.mp3",    2000, -3),
     "MOM_LAUGH":    ("maman_laugh.mp3",    2000, -8),
     "COCO_LAUGH":   ("coco_laugh.mp3",     1500,  0),
+    "SNORE_SFX":    ("snore.wav",          2000, -5),
 }
 
 # ===== VOICE CASTING (French voices) =====
@@ -112,7 +113,8 @@ SPREADS = {
         ("NARRATOR", "Le Koala.", LONG_PAUSE),
         ("NARRATOR", "Dans un eucalyptus, un koala dormait profondément.", MEDIUM_PAUSE),
         ("COCO",     "Koala ! Tu dors ?", MEDIUM_PAUSE),
-        ("KOALA",    "Zzz... oui... 22 heures par jour...", MEDIUM_PAUSE),
+        ("SFX:SNORE_SFX", None, 0),
+        ("KOALA",    "oui... 22 heures par jour...", MEDIUM_PAUSE),
         ("COCO",     "22 HEURES ?! Mais pourquoi autant ?", MEDIUM_PAUSE),
         ("KOALA",    "Mon corps a besoin d'énergie pour digérer mes feuilles... Le sommeil, ça recharge ton corps en énergie !", MEDIUM_PAUSE),
         ("NARRATOR", "Et il se rendormit aussitôt.", LONG_PAUSE),
@@ -222,7 +224,10 @@ def load_sfx(sfx_key):
     """Load and prepare a sound effect clip."""
     filename, max_ms, vol_db = ANIMAL_SFX[sfx_key]
     path = os.path.join(SFX_DIR, filename)
-    seg = AudioSegment.from_mp3(path)
+    if path.endswith('.wav'):
+        seg = AudioSegment.from_wav(path)
+    else:
+        seg = AudioSegment.from_mp3(path)
     if len(seg) > max_ms:
         seg = seg[:max_ms].fade_out(300)
     if vol_db != 0:
