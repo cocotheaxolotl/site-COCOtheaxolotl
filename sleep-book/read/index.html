@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v6 -->
+<!-- v7 -->
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -383,18 +383,25 @@
       var isMobile = ('ontouchstart' in window || vpW < 1200);
       var w, h, l, t;
       if(isMobile){
-        /* Mobile: fit book to screen respecting page ratio (840x1080) */
+        /* Mobile: adapt to orientation */
         var pageRatio = 840 / 1080; /* single page w/h */
-        var spreadRatio = pageRatio * 2; /* double-page ~1.556 */
-        var maxW = vpW * 0.95;
-        var maxH = vpH * 0.82;
-        /* fit spread within available space */
-        if(maxW / maxH > spreadRatio){
-          h = maxH;
-          w = h * spreadRatio;
+        if(vpW > vpH){
+          /* Landscape: show double-page spread */
+          var spreadRatio = pageRatio * 2;
+          var maxW = vpW * 0.95;
+          var maxH = vpH * 0.82;
+          if(maxW / maxH > spreadRatio){
+            h = maxH; w = h * spreadRatio;
+          } else {
+            w = maxW; h = w / spreadRatio;
+          }
         } else {
+          /* Portrait: show single page, fill width */
+          var maxW = vpW * 0.92;
+          var maxH = vpH * 0.70;
           w = maxW;
-          h = w / spreadRatio;
+          h = w / pageRatio;
+          if(h > maxH){ h = maxH; w = h * pageRatio; }
         }
         l = (vpW - w) / 2;
         t = (vpH - h) / 2 * 0.3;
