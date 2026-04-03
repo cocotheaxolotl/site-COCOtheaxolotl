@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v5 -->
+<!-- v6 -->
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -121,7 +121,7 @@
       font-size:.85em; padding:0;
     }
     .page.illust img{
-      width:100%; height:100%; object-fit:contain;
+      width:100%; height:100%; object-fit:cover;
       display:block;
     }
     /* ===== SCENE BACKGROUND ===== */
@@ -383,11 +383,21 @@
       var isMobile = ('ontouchstart' in window || vpW < 1200);
       var w, h, l, t;
       if(isMobile){
-        /* Mobile: fill screen */
-        w = vpW * 0.90;
-        h = vpH * 0.80;
+        /* Mobile: fit book to screen respecting page ratio (840x1080) */
+        var pageRatio = 840 / 1080; /* single page w/h */
+        var spreadRatio = pageRatio * 2; /* double-page ~1.556 */
+        var maxW = vpW * 0.95;
+        var maxH = vpH * 0.82;
+        /* fit spread within available space */
+        if(maxW / maxH > spreadRatio){
+          h = maxH;
+          w = h * spreadRatio;
+        } else {
+          w = maxW;
+          h = w / spreadRatio;
+        }
         l = (vpW - w) / 2;
-        t = vpH * 0.02;
+        t = (vpH - h) / 2 * 0.3;
       } else {
         /* Desktop: book in photo */
         w = vpW * 0.63;
