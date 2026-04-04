@@ -106,6 +106,17 @@ body.fr span[data-lang="en"]{display:none}
   background:rgba(138,96,240,.25); color:#c4a0ff; content:'★';
 }
 
+/* home button */
+.home-btn{
+  display:block; text-align:center; margin:40px auto 0;
+  padding:12px 28px; background:rgba(255,255,255,.12);
+  color:#fff; text-decoration:none; border-radius:32px;
+  font-weight:700; font-size:1.05em; border:1px solid rgba(255,255,255,.2);
+  transition:background .2s;
+  width:fit-content;
+}
+.home-btn:hover{ background:rgba(255,255,255,.2); }
+
 /* footer */
 .page-footer{
   text-align:center; margin:50px 0 0; padding:20px 0;
@@ -520,6 +531,11 @@ body.fr span[data-lang="en"]{display:none}
     </div>
   </div>
 </div>
+
+<a class="home-btn" href="/">
+  <span data-lang="en">← Back to Coco's Home</span>
+  <span data-lang="fr">← Retour à l'accueil de Coco</span>
+</a>
 
 <div class="page-footer">
   <span data-lang="en">&copy; 4ALLSMILES LLC — <a href="https://cocotheaxolotl.org">cocotheaxolotl.org</a></span>
