@@ -51,6 +51,14 @@ body::before{
 }
 .lang-btn.active{ background:rgba(255,255,255,.9); color:#1a1a4e; }
 
+/* language visibility */
+[data-lang="fr"]{display:none}
+span[data-lang="fr"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr [data-lang="en"]{display:none}
+body.fr span[data-lang="fr"]{display:inline}
+body.fr span[data-lang="en"]{display:none}
+
 /* sections */
 .section{ margin:32px 0 0; }
 .section-title{
