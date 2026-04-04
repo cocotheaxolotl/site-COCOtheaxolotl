@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<meta content="#1a1a4e" name="theme-color"/>
+<title>Quiz – Coco Can't Sleep Tonight! | Coco the Axolotl</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:'Baloo 2',cursive;
+  background:linear-gradient(180deg,#0d0d2b 0%,#1a1a4e 40%,#2d2d6e 100%);
+  color:#e8e0f0; min-height:100vh;
+}
+
+/* stars */
+body::before{
+  content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1px 1px at 25% 35%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,255,255,.8), transparent),
+    radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px 1px at 85% 45%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1.5px 1.5px at 15% 65%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,.3), transparent),
+    radial-gradient(1px 1px at 60% 55%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1.5px 1.5px at 35% 50%, rgba(255,255,255,.7), transparent);
+}
+
+.wrap{ position:relative; z-index:1; max-width:700px; margin:0 auto; padding:24px 20px 60px; }
+
+/* header */
+.page-header{ text-align:center; padding:20px 0 10px; }
+.page-header h1{ font-size:1.8em; margin:0; color:#fff; }
+.page-header .subtitle{ font-size:1em; opacity:.7; margin:6px 0 0; }
+
+/* lang toggle */
+.lang-toggle{
+  display:inline-flex; gap:0; margin:16px auto 0;
+  border-radius:32px; overflow:hidden; border:2px solid rgba(255,255,255,.4);
+}
+.lang-btn{
+  padding:6px 20px; font-family:'Baloo 2',cursive; font-size:.9em;
+  font-weight:800; border:none; cursor:pointer;
+  background:transparent; color:rgba(255,255,255,.6); transition:all .2s;
+}
+.lang-btn.active{ background:rgba(255,255,255,.9); color:#1a1a4e; }
+
+/* sections */
+.section{ margin:32px 0 0; }
+.section-title{
+  display:flex; align-items:center; gap:10px;
+  font-size:1.3em; font-weight:800; color:#f0c860;
+  margin:0 0 14px; padding:0 0 6px;
+  border-bottom:2px solid rgba(240,200,96,.2);
+}
+.section-title .emoji{ font-size:1.4em; }
+
+/* question cards */
+.q-card{
+  background:rgba(255,255,255,.07); border-radius:16px;
+  padding:16px 18px; margin:10px 0; cursor:pointer;
+  border:1px solid rgba(255,255,255,.08);
+  transition:background .2s, border-color .2s;
+}
+.q-card:hover{ background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.15); }
+.q-card.open{ background:rgba(255,255,255,.1); border-color:rgba(240,200,96,.3); }
+
+.q-text{
+  font-size:1.05em; font-weight:600; color:#fff;
+  display:flex; align-items:flex-start; gap:8px;
+}
+.q-text::before{
+  content:'?'; display:inline-flex; align-items:center; justify-content:center;
+  min-width:26px; height:26px; border-radius:50%;
+  background:rgba(240,200,96,.2); color:#f0c860;
+  font-size:.8em; font-weight:800; flex-shrink:0; margin-top:2px;
+}
+
+.q-hint{
+  display:none; margin:10px 0 0 34px; padding:10px 14px;
+  background:rgba(240,200,96,.08); border-radius:10px;
+  font-size:.92em; line-height:1.5; color:rgba(255,255,255,.8);
+  border-left:3px solid rgba(240,200,96,.4);
+}
+.q-card.open .q-hint{ display:block; }
+
+/* open question */
+.q-open{
+  background:rgba(138,96,240,.1); border-color:rgba(138,96,240,.2);
+}
+.q-open .q-text::before{
+  background:rgba(138,96,240,.25); color:#c4a0ff; content:'★';
+}
+
+/* footer */
+.page-footer{
+  text-align:center; margin:50px 0 0; padding:20px 0;
+  font-size:.85em; opacity:.5;
+}
+.page-footer a{ color:#aaa; text-decoration:underline; }
+
+/* responsive */
+@media(max-width:500px){
+  .page-header h1{ font-size:1.4em; }
+  .section-title{ font-size:1.1em; }
+  .q-card{ padding:12px 14px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="page-header">
+  <h1>
+    <span data-lang="en">Quiz Time!</span>
+    <span data-lang="fr">Quiz !</span>
+  </h1>
+  <div class="subtitle">
+    <span data-lang="en">Coco Can't Sleep Tonight!</span>
+    <span data-lang="fr">Coco ne peut pas dormir !</span>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+  </div>
+</div>
+
+<!-- ====== BEGINNING OF THE STORY ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🌙</span>
+    <span data-lang="en">Beginning of the Story</span>
+    <span data-lang="fr">Début de l'histoire</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Why can't Coco fall asleep?</span>
+      <span data-lang="fr">Pourquoi Coco n'arrive-t-il pas à dormir ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Coco doesn't have eyelids! As an axolotl, he can't close his eyes.</span>
+      <span data-lang="fr">Coco n'a pas de paupières ! En tant qu'axolotl, il ne peut pas fermer les yeux.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">What does his mommy suggest to help him sleep?</span>
+      <span data-lang="fr">Que lui propose sa maman pour s'endormir ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">She tells him to close his eyes... but Coco can't!</span>
+      <span data-lang="fr">Elle lui dit de fermer les yeux... mais Coco ne peut pas !</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">What does Coco decide to do when everyone is asleep?</span>
+      <span data-lang="fr">Que décide de faire Coco quand tout le monde dort ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">He goes on a nighttime adventure to find out how other animals sleep!</span>
+      <span data-lang="fr">Il part à l'aventure nocturne pour découvrir comment les autres animaux dorment !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE OWL ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🦉</span>
+    <span data-lang="en">The Owl</span>
+    <span data-lang="fr">Le hibou</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Does the owl sleep during the day or at night?</span>
+      <span data-lang="fr">Le hibou dort-il le jour ou la nuit ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">The owl sleeps during the day! He is nocturnal.</span>
+      <span data-lang="fr">Le hibou dort le jour ! Il est nocturne.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Why is the owl awake at night?</span>
+      <span data-lang="fr">Pourquoi le hibou est-il réveillé la nuit ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Because he's nocturnal — he hunts and lives at night, and rests during the day.</span>
+      <span data-lang="fr">Parce qu'il est nocturne — il chasse et vit la nuit, et se repose le jour.</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE DOLPHIN ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🐬</span>
+    <span data-lang="en">The Dolphin</span>
+    <span data-lang="fr">Le dauphin</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Does the dolphin sleep completely or only partly?</span>
+      <span data-lang="fr">Le dauphin dort-il complètement ou seulement en partie ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Only partly! One half of his brain sleeps while the other stays awake.</span>
+      <span data-lang="fr">Seulement en partie ! Une moitié de son cerveau dort tandis que l'autre reste éveillée.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Why does the dolphin need to stay partly awake?</span>
+      <span data-lang="fr">Pourquoi le dauphin doit-il rester un peu réveillé ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Because he needs to come up to the surface to breathe!</span>
+      <span data-lang="fr">Parce qu'il doit remonter à la surface pour respirer !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE OTTER ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🦦</span>
+    <span data-lang="en">The Otter</span>
+    <span data-lang="fr">La loutre</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Why do otters hold hands while sleeping?</span>
+      <span data-lang="fr">Pourquoi les loutres se tiennent-elles la main en dormant ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">So they don't drift apart on the water while they sleep!</span>
+      <span data-lang="fr">Pour ne pas dériver et se perdre sur l'eau pendant leur sommeil !</span>
+    </div>
+  </div>
+
+  <div class="q-card q-open" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">What makes YOU feel safe when you go to sleep?</span>
+      <span data-lang="fr">Toi, avec quoi aimes-tu te sentir en sécurité pour dormir ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">A stuffed animal? A blanket? A nightlight? There's no wrong answer!</span>
+      <span data-lang="fr">Un doudou ? Une couverture ? Une veilleuse ? Il n'y a pas de mauvaise réponse !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE KOALA ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🐨</span>
+    <span data-lang="en">The Koala</span>
+    <span data-lang="fr">Le koala</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">How many hours can a koala sleep?</span>
+      <span data-lang="fr">Combien d'heures le koala peut-il dormir ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Up to 22 hours a day! That's almost the whole day.</span>
+      <span data-lang="fr">Jusqu'à 22 heures par jour ! C'est presque toute la journée.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Why does the koala need to sleep so much?</span>
+      <span data-lang="fr">Pourquoi a-t-il besoin de dormir autant ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Because eucalyptus leaves give very little energy, so he needs lots of rest to digest them!</span>
+      <span data-lang="fr">Parce que les feuilles d'eucalyptus donnent très peu d'énergie, il a besoin de beaucoup de repos pour les digérer !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE BAT ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🦇</span>
+    <span data-lang="en">The Bat</span>
+    <span data-lang="fr">La chauve-souris</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">In what position does the bat sleep?</span>
+      <span data-lang="fr">Dans quelle position dort la chauve-souris ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Upside down! Hanging from its feet.</span>
+      <span data-lang="fr">La tête en bas ! Suspendue par les pieds.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">What does the brain do while we sleep?</span>
+      <span data-lang="fr">Que fait le cerveau pendant le sommeil ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">It sorts memories, repairs the body, and gets ready for a new day!</span>
+      <span data-lang="fr">Il trie les souvenirs, répare le corps et se prépare pour une nouvelle journée !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE CAT ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🐱</span>
+    <span data-lang="en">The Cat</span>
+    <span data-lang="fr">Le chat</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Does the cat sleep all at once or in several small naps?</span>
+      <span data-lang="fr">Le chat dort-il en une seule fois ou en plusieurs petites siestes ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">In many small naps throughout the day and night — that's where "catnap" comes from!</span>
+      <span data-lang="fr">En plusieurs petites siestes tout au long du jour et de la nuit — c'est de là que vient le mot « sieste de chat » !</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Why is deep sleep important?</span>
+      <span data-lang="fr">Pourquoi le sommeil profond est-il important ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Deep sleep helps us grow, heal, and feel rested for the next day!</span>
+      <span data-lang="fr">Le sommeil profond nous aide à grandir, guérir et être en forme pour le lendemain !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE HORSE ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🐴</span>
+    <span data-lang="en">The Horse</span>
+    <span data-lang="fr">Le cheval</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Can the horse sleep standing up?</span>
+      <span data-lang="fr">Le cheval peut-il dormir debout ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Yes! Thanks to special legs that lock in place. But he lies down to dream.</span>
+      <span data-lang="fr">Oui ! Grâce à des jambes spéciales qui se verrouillent. Mais il se couche pour rêver.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">When can the horse dream?</span>
+      <span data-lang="fr">Quand peut-il rêver ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Only when he lies down — you need deep sleep to dream!</span>
+      <span data-lang="fr">Seulement quand il se couche — il faut dormir profondément pour rêver !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE FLAMINGO ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🦩</span>
+    <span data-lang="en">The Flamingo</span>
+    <span data-lang="fr">Le flamant rose</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">On how many legs does the flamingo sleep?</span>
+      <span data-lang="fr">Sur combien de pattes dort le flamant rose ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Just one! It tucks the other leg up to stay warm.</span>
+      <span data-lang="fr">Une seule ! Il replie l'autre pour rester au chaud.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">What happens when the flamingo is too tired?</span>
+      <span data-lang="fr">Que se passe-t-il quand il est trop fatigué ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">It puts both feet down — just like us when we're really sleepy!</span>
+      <span data-lang="fr">Il pose les deux pattes — comme nous quand on est vraiment fatigué !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== THE SLOTH ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🦥</span>
+    <span data-lang="en">The Sloth</span>
+    <span data-lang="fr">Le paresseux</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">What happens when you don't sleep enough?</span>
+      <span data-lang="fr">Que se passe-t-il quand on ne dort pas assez ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">You feel grumpy, tired, and it's harder to learn and remember things!</span>
+      <span data-lang="fr">On est grognon, fatigué, et c'est plus difficile d'apprendre et de se souvenir des choses !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== END OF THE STORY ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">🐾</span>
+    <span data-lang="en">End of the Story</span>
+    <span data-lang="fr">Fin de l'histoire</span>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">What did Coco learn at the end of his adventure?</span>
+      <span data-lang="fr">Qu'a compris Coco à la fin de son aventure ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">That every animal sleeps differently — and that's perfectly okay! The important thing is to rest.</span>
+      <span data-lang="fr">Que chaque animal dort différemment — et c'est très bien comme ça ! L'important, c'est de se reposer.</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">How do axolotls sleep?</span>
+      <span data-lang="fr">Comment dorment les axolotls ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">They rest at the bottom of the water, staying very still — with their eyes open!</span>
+      <span data-lang="fr">Ils se reposent au fond de l'eau, très immobiles — les yeux ouverts !</span>
+    </div>
+  </div>
+
+  <div class="q-card" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Why is sleep important for your body?</span>
+      <span data-lang="fr">Pourquoi le sommeil est-il important pour le corps ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">Sleep helps you grow, stay healthy, remember what you learned, and have energy for tomorrow!</span>
+      <span data-lang="fr">Le sommeil aide à grandir, rester en bonne santé, retenir ce qu'on a appris, et avoir de l'énergie pour demain !</span>
+    </div>
+  </div>
+</div>
+
+<!-- ====== BONUS QUESTIONS ====== -->
+<div class="section">
+  <div class="section-title"><span class="emoji">⭐</span>
+    <span data-lang="en">Bonus Questions</span>
+    <span data-lang="fr">Questions bonus</span>
+  </div>
+
+  <div class="q-card q-open" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Which animal was your favorite? Why?</span>
+      <span data-lang="fr">Quel animal as-tu préféré ? Pourquoi ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">There's no wrong answer — every animal is amazing in its own way!</span>
+      <span data-lang="fr">Il n'y a pas de mauvaise réponse — chaque animal est incroyable à sa façon !</span>
+    </div>
+  </div>
+
+  <div class="q-card q-open" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">How do YOU like to fall asleep?</span>
+      <span data-lang="fr">Toi, comment aimes-tu t'endormir ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">With a story? Music? Cuddling a stuffed animal? Everyone has their own way!</span>
+      <span data-lang="fr">Avec une histoire ? De la musique ? En câlinant un doudou ? Chacun a sa façon !</span>
+    </div>
+  </div>
+
+  <div class="q-card q-open" onclick="this.classList.toggle('open')">
+    <div class="q-text">
+      <span data-lang="en">Do you sometimes do like Coco and not want to sleep?</span>
+      <span data-lang="fr">Est-ce que toi aussi tu fais parfois comme Coco ?</span>
+    </div>
+    <div class="q-hint">
+      <span data-lang="en">It's normal! But now you know why sleep is so important. Sweet dreams! 🌙</span>
+      <span data-lang="fr">C'est normal ! Mais maintenant tu sais pourquoi le sommeil est si important. Fais de beaux rêves ! 🌙</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <span data-lang="en">&copy; 4ALLSMILES LLC — <a href="https://cocotheaxolotl.org">cocotheaxolotl.org</a></span>
+  <span data-lang="fr">&copy; 4ALLSMILES LLC — <a href="https://cocotheaxolotl.org">cocotheaxolotl.org</a></span>
+</div>
+
+</div><!-- .wrap -->
+
+<script>
+function setLang(lang){
+  document.body.className = (lang === 'fr') ? 'fr' : '';
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active', b.textContent === lang.toUpperCase());
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('quiz_lang', lang); } catch(e){}
+}
+// restore saved lang
+try {
+  var saved = localStorage.getItem('quiz_lang');
+  if (saved === 'fr') setLang('fr');
+} catch(e){}
+</script>
+</body>
+</html>
