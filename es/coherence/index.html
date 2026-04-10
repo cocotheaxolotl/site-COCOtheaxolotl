@@ -21,18 +21,18 @@
     <div class="copy">
       <span class="eyebrow">Respirar con Coco</span>
       <h1>Un momento de calma, listo cuando lo necesites.</h1>
-      <p class="lead">Una pagina de respiracion para calma, sueno, estres o foco. Funciona directamente en la web, asi que va en iPhone, Android, tablet y ordenador.</p>
+      <p class="lead">Una página de respiración para calma, sueño, estrés o foco. Funciona directamente en la web, así que va en iPhone, Android, tablet y ordenador.</p>
       <div class="actions"><a class="btn primary" href="#session">Empezar</a><a class="btn secondary" href="/es/">Volver al sitio</a></div>
-      <div class="tip">Consejo: en iPhone, abre esta pagina en Safari y anadela a la pantalla de inicio para entrar mas rapido.</div>
+      <div class="tip">Consejo: en iPhone, abre esta página en Safari y añádela a la pantalla de inicio para entrar más rápido.</div>
     </div>
     <div class="app" id="session">
       <div class="app-grid">
         <div>
           <div class="choices" id="programSelector">
-            <button class="choice active" data-program="coherence"><b>Coherencia cardiaca</b><span>Ritmo equilibrado 5 seg / 5 seg.</span></button>
+            <button class="choice active" data-program="coherence"><b>Coherencia cardíaca</b><span>Ritmo equilibrado 5 seg / 5 seg.</span></button>
             <button class="choice" data-program="relax"><b>Relajarse</b><span>Exhalacion larga para soltar.</span></button>
             <button class="choice" data-program="sleep"><b>Dormir mejor</b><span>Bajar el ritmo antes de dormir.</span></button>
-            <button class="choice" data-program="focus"><b>Concentrarse</b><span>Recuperar energia con suavidad.</span></button>
+            <button class="choice" data-program="focus"><b>Concentrarse</b><span>Recuperar energía con suavidad.</span></button>
           </div>
           <div class="durations" id="durationSelector">
             <button class="dur-btn" data-minutes="3">3 min</button><button class="dur-btn active" data-minutes="5">5 min</button><button class="dur-btn" data-minutes="7">7 min</button><button class="dur-btn" data-minutes="10">10 min</button>
@@ -56,7 +56,7 @@
   </section>
 </div>
 <script>
-const programs={coherence:{name:'Coherencia cardiaca',phases:[{text:'Inhala...',duration:5,visual:'inhale'},{text:'Exhala...',duration:5,visual:'exhale'}],defaultMinutes:5},relax:{name:'Relajarse',phases:[{text:'Inhala...',duration:4,visual:'inhale'},{text:'Mantén...',duration:2,visual:'hold'},{text:'Exhala...',duration:6,visual:'exhale'}],defaultMinutes:5},sleep:{name:'Dormir mejor',phases:[{text:'Inhala...',duration:4,visual:'inhale'},{text:'Mantén...',duration:4,visual:'hold'},{text:'Exhala...',duration:6,visual:'exhale'}],defaultMinutes:7},focus:{name:'Concentrarse',phases:[{text:'Inhala...',duration:6,visual:'inhale'},{text:'Mantén...',duration:2,visual:'hold'},{text:'Exhala...',duration:4,visual:'exhale'}],defaultMinutes:3}};
+const programs={coherence:{name:'Coherencia cardíaca',phases:[{text:'Inhala...',duration:5,visual:'inhale'},{text:'Exhala...',duration:5,visual:'exhale'}],defaultMinutes:5},relax:{name:'Relajarse',phases:[{text:'Inhala...',duration:4,visual:'inhale'},{text:'Mantén...',duration:2,visual:'hold'},{text:'Exhala...',duration:6,visual:'exhale'}],defaultMinutes:5},sleep:{name:'Dormir mejor',phases:[{text:'Inhala...',duration:4,visual:'inhale'},{text:'Mantén...',duration:4,visual:'hold'},{text:'Exhala...',duration:6,visual:'exhale'}],defaultMinutes:7},focus:{name:'Concentrarse',phases:[{text:'Inhala...',duration:6,visual:'inhale'},{text:'Mantén...',duration:2,visual:'hold'},{text:'Exhala...',duration:4,visual:'exhale'}],defaultMinutes:3}};
 let currentProgram='coherence',totalSeconds=300,remaining=300,running=false,currentPhaseIndex=0,cycleCount=0,timerInterval=null,phaseTimeout=null,phaseCountdownInterval=null,musicPlaying=false;
 const breathRing=document.getElementById('breathRing'),glowRing=document.getElementById('glowRing'),cocoWrapper=document.getElementById('cocoWrapper'),instruction=document.getElementById('instruction'),timerEl=document.getElementById('timer'),cyclesEl=document.getElementById('cycles'),controls=document.getElementById('controls'),phaseCountdown=document.getElementById('phaseCountdown'),bgMusic=document.getElementById('bgMusic'),musicToggle=document.getElementById('musicToggle');
 function formatTime(v){const m=Math.floor(v/60),s=v%60;return m+':'+String(s).padStart(2,'0')} function updateTimer(){timerEl.textContent=formatTime(remaining)}
