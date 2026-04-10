@@ -14,12 +14,26 @@ Grass_letters/
 planks_wood_letters/
 lettres en bois sur roulettes/
 *.ps1
+node_modules/
+LIVRES COCO/
+sleep-book/
+site Univers.studio/
+coherence-app/
+Lettering COCO/
+downloads/
+__pycache__/
+*.zip
+*.pptx
+*.psd
+*.ai
+*.mp4
 
 # Source video (large)
 *.mov
 
 # Static folder (temp assets)
-static/
+static/output/
+static/uploads/
 
 # Test/temp files
 test-*.png
