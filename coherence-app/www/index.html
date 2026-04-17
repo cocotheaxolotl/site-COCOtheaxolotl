@@ -935,6 +935,9 @@
       updateTimerDisplay();
       cyclesEl.textContent = '';
 
+      // Stop music
+      stopMusic();
+
       // Release wake lock
       if (wakeLockSentinel) { wakeLockSentinel.release(); wakeLockSentinel = null; }
 
