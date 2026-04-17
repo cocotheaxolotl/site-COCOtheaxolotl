@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>Coco - Cohérence Cardiaque</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="coco.png">
+  <link rel="apple-touch-icon" href="coco.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    /* Stars background */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 3px; height: 3px;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle var(--dur) ease-in-out infinite;
+      opacity: 0;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.1; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Bubbles */
+    .bubbles {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -20px;
+      background: rgba(255, 182, 193, 0.08);
+      border-radius: 50%;
+      animation: rise linear infinite;
+    }
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0.4; }
+      100% { transform: translateY(-110vh) scale(0.3); opacity: 0; }
+    }
+
+    .app {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+      gap: 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+      color: #ffb6c1;
+      text-shadow: 0 0 20px rgba(255, 182, 193, 0.3);
+      letter-spacing: 1px;
+    }
+    h1 small {
+      display: block;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 400;
+      margin-top: 4px;
+      letter-spacing: 0;
+    }
+
+    /* ── Program selector ── */
+    .program-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+    .program-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 11px 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .program-card:active {
+      transform: scale(0.97);
+    }
+    .program-card.active {
+      border-color: rgba(255, 182, 193, 0.5);
+      background: rgba(255, 182, 193, 0.1);
+    }
+    .program-icon {
+      font-size: 24px;
+      min-width: 34px;
+      text-align: center;
+    }
+    .program-info {
+      flex: 1;
+    }
+    .program-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #fff;
+    }
+    .program-desc {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* ── Breathing circle ── */
+    .breathing-container {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .breathing-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 182, 193, 0.3);
+      transition-property: transform, border-color, box-shadow;
+      transition-timing-function: ease-in-out;
+    }
+    .breathing-ring.inhale {
+      transform: scale(1);
+      border-color: rgba(255, 182, 193, 0.6);
+      box-shadow: 0 0 40px rgba(255, 182, 193, 0.2), inset 0 0 40px rgba(255, 182, 193, 0.05);
+    }
+    .breathing-ring.hold {
+      border-color: rgba(255, 215, 120, 0.5);
+      box-shadow: 0 0 35px rgba(255, 215, 120, 0.15), inset 0 0 35px rgba(255, 215, 120, 0.05);
+    }
+    .breathing-ring.exhale {
+      transform: scale(0.65);
+      border-color: rgba(147, 130, 220, 0.5);
+      box-shadow: 0 0 30px rgba(147, 130, 220, 0.15), inset 0 0 30px rgba(147, 130, 220, 0.05);
+    }
+
+    .glow-ring {
+      position: absolute;
+      width: 110%;
+      height: 110%;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      transition-property: transform, box-shadow;
+      transition-timing-function: ease-in-out;
+    }
+    .glow-ring.inhale {
+      transform: scale(1);
+      box-shadow: 0 0 60px rgba(255, 182, 193, 0.15);
+    }
+    .glow-ring.hold {
+      box-shadow: 0 0 50px rgba(255, 215, 120, 0.12);
+    }
+    .glow-ring.exhale {
+      transform: scale(0.65);
+      box-shadow: 0 0 40px rgba(147, 130, 220, 0.1);
+    }
+
+    .coco-wrapper {
+      position: relative;
+      width: 360px;
+      z-index: 2;
+      transition-property: transform, filter;
+      transition-timing-function: ease-in-out;
+      filter: drop-shadow(0 0 15px rgba(255, 182, 193, 0.4));
+    }
+    .coco-wrapper.inhale {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 25px rgba(255, 182, 193, 0.6));
+    }
+    .coco-wrapper.hold {
+      filter: drop-shadow(0 0 20px rgba(255, 215, 120, 0.5));
+    }
+    .coco-wrapper.exhale {
+      transform: scale(0.85);
+      filter: drop-shadow(0 0 10px rgba(147, 130, 220, 0.4));
+    }
+    .coco-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .coco-heart {
+      position: absolute;
+      left: 30%;
+      top: 42%;
+      width: 40%;
+      height: 22%;
+      object-fit: fill;
+      transform-origin: center center;
+      animation: heart-beat 3s ease-in-out infinite;
+    }
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      8% { transform: scale(1.12); }
+      16% { transform: scale(1); }
+      24% { transform: scale(1.08); }
+      32% { transform: scale(1); }
+    }
+
+
+    /* Phase countdown inside circle */
+    .phase-countdown {
+      position: absolute;
+      bottom: 18px;
+      font-size: 20px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.6);
+      z-index: 3;
+    }
+
+    /* Instruction text */
+    .instruction {
+      font-size: 26px;
+      font-weight: 300;
+      text-align: center;
+      min-height: 40px;
+      transition: color 0.5s;
+      color: #ffb6c1;
+      text-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+    }
+    .instruction.hold-text {
+      color: #ffd78a;
+      text-shadow: 0 0 15px rgba(255, 215, 120, 0.3);
+    }
+    .instruction.exhale-text {
+      color: #b8a9e8;
+      text-shadow: 0 0 15px rgba(147, 130, 220, 0.3);
+    }
+
+    /* Timer */
+    .timer {
+      font-size: 42px;
+      font-weight: 200;
+      font-variant-numeric: tabular-nums;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Cycle counter */
+    .cycles {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.5px;
+    }
+    .btn-start {
+      background: linear-gradient(135deg, #ff6b9d, #c44dff);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+    }
+    .btn-start:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 10px rgba(255, 107, 157, 0.2);
+    }
+    .btn-stop {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-stop:active {
+      transform: scale(0.95);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Duration selector */
+    .duration-selector {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .duration-selector label {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .dur-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dur-btn.active {
+      background: rgba(255, 182, 193, 0.2);
+      border-color: rgba(255, 182, 193, 0.4);
+      color: #ffb6c1;
+    }
+    .dur-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* End screen */
+    .end-screen {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeIn 1s ease;
+    }
+    .end-screen.visible {
+      display: flex;
+    }
+    .end-screen h2 {
+      font-size: 24px;
+      color: #ffb6c1;
+      font-weight: 400;
+    }
+    .end-screen p {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .end-tip {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      text-align: center;
+      font-style: italic;
+      line-height: 1.5;
+      max-width: 280px;
+    }
+
+    .main-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .main-view.hidden { display: none; }
+
+    /* Session view hides program selector */
+    .session-view .program-selector,
+    .session-view .duration-selector { display: none !important; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Music toggle */
+    .music-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 20px;
+    }
+    .music-toggle:active {
+      transform: scale(0.9);
+    }
+    .music-toggle.playing {
+      background: rgba(255, 182, 193, 0.2);
+      border-color: rgba(255, 182, 193, 0.4);
+    }
+
+    /* Safe area for notch phones */
+    @supports (padding-top: env(safe-area-inset-top)) {
+      body { padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+      .music-toggle { top: calc(16px + env(safe-area-inset-top)); }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        justify-content: flex-start;
+      }
+
+      .app {
+        max-width: 100%;
+        padding: 12px 12px 20px;
+        gap: 12px;
+        min-height: 100dvh;
+      }
+
+      h1 {
+        font-size: 19px;
+      }
+
+      h1 small {
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      .main-view {
+        width: 100%;
+        gap: 12px;
+      }
+
+      .breathing-container {
+        width: min(56vw, 230px);
+        height: min(56vw, 230px);
+      }
+
+      .coco-wrapper {
+        width: min(63vw, 250px);
+      }
+
+      .phase-countdown {
+        bottom: 12px;
+        font-size: 16px;
+      }
+
+      .instruction {
+        font-size: 20px;
+        min-height: 28px;
+      }
+
+      .program-selector {
+        gap: 6px;
+      }
+
+      .program-card {
+        padding: 9px 12px;
+        border-radius: 14px;
+        gap: 10px;
+      }
+
+      .program-icon {
+        font-size: 21px;
+        min-width: 28px;
+      }
+
+      .program-name {
+        font-size: 13px;
+      }
+
+      .program-desc {
+        font-size: 10px;
+      }
+
+      .controls {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: 12px 24px;
+        font-size: 15px;
+      }
+
+      .timer {
+        font-size: 34px;
+      }
+
+      .cycles {
+        font-size: 12px;
+      }
+
+      .duration-selector {
+        gap: 6px;
+      }
+
+      .duration-selector label {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+      }
+
+      .dur-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+
+      .music-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Music toggle -->
+  <button class="music-toggle" id="musicToggle" title="Musique">&#x1F508;</button>
+  <audio id="bgMusic" src="bgm.mp3" loop preload="auto"></audio>
+  <audio id="dingSound" src="ding.mp3" preload="auto"></audio>
+
+  <!-- Animated background -->
+  <div class="stars" id="stars"></div>
+  <div class="bubbles" id="bubbles"></div>
+
+  <div class="app">
+    <!-- Main view -->
+    <div class="main-view" id="mainView">
+      <h1>
+        Respire avec Coco
+        <small id="subtitle">Choisis ton programme</small>
+      </h1>
+
+      <!-- Program selector -->
+      <div class="breathing-container">
+        <div class="glow-ring" id="glowRing"></div>
+        <div class="breathing-ring" id="breathRing"></div>
+        <div class="coco-wrapper" id="cocoWrapper">
+          <img src="coco.png" alt="Coco" class="coco-img">
+          <img src="coco-heart-only.png" alt="" class="coco-heart">
+        </div>
+        <div class="phase-countdown" id="phaseCountdown"></div>
+      </div>
+
+      <div class="instruction" id="instruction">Choisis un programme</div>
+
+      <div class="program-selector" id="programSelector">
+        <div class="program-card active" data-program="coherence">
+          <div class="program-icon">&#x1F49C;</div>
+          <div class="program-info">
+            <div class="program-name">Cohérence cardiaque</div>
+            <div class="program-desc">Équilibre le cœur et le souffle</div>
+          </div>
+        </div>
+        <div class="program-card" data-program="relax">
+          <div class="program-icon">&#x1F33F;</div>
+          <div class="program-info">
+            <div class="program-name">Se détendre</div>
+            <div class="program-desc">Relâche toutes les tensions</div>
+          </div>
+        </div>
+        <div class="program-card" data-program="sleep">
+          <div class="program-icon">&#x1F31C;</div>
+          <div class="program-info">
+            <div class="program-name">Bien dormir</div>
+            <div class="program-desc">Prépare le corps au sommeil</div>
+          </div>
+        </div>
+        <div class="program-card" data-program="anger">
+          <div class="program-icon">&#x1F9CA;</div>
+          <div class="program-info">
+            <div class="program-name">Gestion de la colère</div>
+            <div class="program-desc">Respiration carrée pour se calmer</div>
+          </div>
+        </div>
+        <div class="program-card" data-program="stress">
+          <div class="program-icon">&#x1F338;</div>
+          <div class="program-info">
+            <div class="program-name">Anti-stress</div>
+            <div class="program-desc">Expiration longue pour apaiser</div>
+          </div>
+        </div>
+        <div class="program-card" data-program="energy">
+          <div class="program-icon">&#x2600;&#xFE0F;</div>
+          <div class="program-info">
+            <div class="program-name">Énergie</div>
+            <div class="program-desc">Dynamise le corps et l'esprit</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cycles" id="cycles"></div>
+
+      <div class="controls" id="controls">
+        <button class="btn btn-start" id="btnStart">Commencer</button>
+      </div>
+
+      <div class="timer" id="timer">5:00</div>
+
+      <div class="duration-selector" id="durationSelector">
+        <label>Durée :</label>
+        <button class="dur-btn" data-minutes="3">3 min</button>
+        <button class="dur-btn active" data-minutes="5">5 min</button>
+        <button class="dur-btn" data-minutes="7">7 min</button>
+        <button class="dur-btn" data-minutes="10">10 min</button>
+      </div>
+    </div>
+
+    <!-- End screen -->
+    <div class="end-screen" id="endScreen">
+      <div class="coco-wrapper" style="width:160px; filter: drop-shadow(0 0 25px rgba(255,182,193,0.5));">
+        <img src="coco.png" alt="Coco" class="coco-img">
+        <img src="coco-heart-only.png" alt="" class="coco-heart">
+      </div>
+      <h2>Bravo !</h2>
+      <p id="endMessage">
+        Tu as terminé ta séance.<br>
+        Coco est fier de toi !
+      </p>
+      <div class="cycles" id="endCycles"></div>
+      <div class="end-tip" id="endTip"></div>
+      <button class="btn btn-start" id="btnRestart">Recommencer</button>
+    </div>
+  </div>
+
+  <script>
+    // ── Programs ──
+    const programs = {
+      coherence: {
+        name: 'Cohérence cardiaque',
+        phases: [
+          { name: 'Inspire...', duration: 5, visual: 'inhale' },
+          { name: 'Expire...', duration: 5, visual: 'exhale' }
+        ],
+        defaultMinutes: 5,
+        endTip: 'La cohérence cardiaque équilibre ton système nerveux. Pratique 3 fois par jour pour un effet optimal.',
+        endMessage: 'Tu as terminé ta séance de cohérence cardiaque.\nCoco est fier de toi !'
+      },
+      relax: {
+        name: 'Se détendre',
+        phases: [
+          { name: 'Inspire...', duration: 4, visual: 'inhale' },
+          { name: 'Bloque...', duration: 7, visual: 'hold' },
+          { name: 'Expire...', duration: 8, visual: 'exhale' }
+        ],
+        defaultMinutes: 5,
+        endTip: 'La technique 4-7-8 du Dr Weil active ton système nerveux parasympathique. Idéal après une journée chargée.',
+        endMessage: 'Tu es maintenant bien détendu.\nCoco te souhaite un moment paisible !'
+      },
+      sleep: {
+        name: 'Bien dormir',
+        phases: [
+          { name: 'Inspire...', duration: 4, visual: 'inhale' },
+          { name: 'Bloque...', duration: 7, visual: 'hold' },
+          { name: 'Expire...', duration: 8, visual: 'exhale' }
+        ],
+        defaultMinutes: 7,
+        endTip: 'Pose ton téléphone, ferme les yeux et laisse le sommeil venir. Coco veille sur toi.',
+        endMessage: 'Ton corps est prêt à dormir.\nBonne nuit, Coco veille sur toi !'
+      },
+      anger: {
+        name: 'Gestion de la colère',
+        phases: [
+          { name: 'Inspire...', duration: 4, visual: 'inhale' },
+          { name: 'Bloque...', duration: 4, visual: 'hold' },
+          { name: 'Expire...', duration: 4, visual: 'exhale' },
+          { name: 'Bloque...', duration: 4, visual: 'hold' }
+        ],
+        defaultMinutes: 5,
+        endTip: 'La respiration carrée est utilisée par les forces spéciales pour garder leur calme. Tu as ce pouvoir aussi.',
+        endMessage: 'Tu as repris le contrôle.\nCoco est impressionné par ta force !'
+      },
+      stress: {
+        name: 'Anti-stress',
+        phases: [
+          { name: 'Inspire...', duration: 4, visual: 'inhale' },
+          { name: 'Bloque...', duration: 2, visual: 'hold' },
+          { name: 'Expire...', duration: 6, visual: 'exhale' }
+        ],
+        defaultMinutes: 5,
+        endTip: 'Une expiration plus longue que l\'inspiration calme le nerf vague et réduit le stress.',
+        endMessage: 'Le stress s\'éloigne doucement.\nCoco est fier de toi !'
+      },
+      energy: {
+        name: 'Énergie',
+        phases: [
+          { name: 'Inspire...', duration: 6, visual: 'inhale' },
+          { name: 'Bloque...', duration: 2, visual: 'hold' },
+          { name: 'Expire...', duration: 4, visual: 'exhale' }
+        ],
+        defaultMinutes: 3,
+        endTip: 'Une inspiration plus longue que l\'expiration stimule ton système nerveux sympathique. Tu es prêt !',
+        endMessage: 'Tu es plein d\'énergie !\nCoco te souhaite une super journée !'
+      }
+    };
+
+    // ── State ──
+    let currentProgram = 'coherence';
+    let running = false;
+    let totalSeconds = 5 * 60;
+    let remaining = totalSeconds;
+    let cycleCount = 0;
+    let timerInterval = null;
+    let breathTimeout = null;
+    let phaseCountdownInterval = null;
+    let currentPhaseIndex = 0;
+    let wakeLockSentinel = null;
+
+    // ── Elements ──
+    const breathRing     = document.getElementById('breathRing');
+    const glowRing       = document.getElementById('glowRing');
+    const cocoWrapper        = document.getElementById('cocoWrapper');
+    const instruction    = document.getElementById('instruction');
+    const timerEl        = document.getElementById('timer');
+    const cyclesEl       = document.getElementById('cycles');
+    const controls       = document.getElementById('controls');
+    const durSelector    = document.getElementById('durationSelector');
+    const mainView       = document.getElementById('mainView');
+    const endScreen      = document.getElementById('endScreen');
+    const endCycles      = document.getElementById('endCycles');
+    const endMessage     = document.getElementById('endMessage');
+    const endTip         = document.getElementById('endTip');
+    const btnRestart     = document.getElementById('btnRestart');
+    const programSelector = document.getElementById('programSelector');
+    const subtitle       = document.getElementById('subtitle');
+    const phaseCountdown = document.getElementById('phaseCountdown');
+
+    // ── Program selection ──
+    document.querySelectorAll('.program-card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (running) return;
+        document.querySelectorAll('.program-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        currentProgram = card.dataset.program;
+        const prog = programs[currentProgram];
+        // Update default duration
+        totalSeconds = prog.defaultMinutes * 60;
+        remaining = totalSeconds;
+        updateTimerDisplay();
+        // Highlight matching duration button
+        document.querySelectorAll('.dur-btn').forEach(b => {
+          b.classList.toggle('active', parseInt(b.dataset.minutes) === prog.defaultMinutes);
+        });
+      });
+    });
+
+    // ── Duration buttons ──
+    document.querySelectorAll('.dur-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (running) return;
+        document.querySelectorAll('.dur-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        totalSeconds = parseInt(btn.dataset.minutes) * 60;
+        remaining = totalSeconds;
+        updateTimerDisplay();
+      });
+    });
+
+    // ── Format time ──
+    function formatTime(s) {
+      const m = Math.floor(s / 60);
+      const sec = s % 60;
+      return m + ':' + sec.toString().padStart(2, '0');
+    }
+    function updateTimerDisplay() {
+      timerEl.textContent = formatTime(remaining);
+    }
+
+    // ── Set transition durations based on phase ──
+    function setTransitionDuration(seconds) {
+      const dur = seconds + 's';
+      breathRing.style.transitionDuration = dur;
+      glowRing.style.transitionDuration = dur;
+      cocoWrapper.style.transitionDuration = dur;
+    }
+
+    // ── Visual phase setters ──
+    function setVisualPhase(visual) {
+      breathRing.className = 'breathing-ring ' + visual;
+      glowRing.className = 'glow-ring ' + visual;
+      cocoWrapper.className = 'coco-wrapper ' + visual;
+    }
+
+    function setInstructionStyle(visual) {
+      if (visual === 'hold') {
+        instruction.className = 'instruction hold-text';
+      } else if (visual === 'exhale') {
+        instruction.className = 'instruction exhale-text';
+      } else {
+        instruction.className = 'instruction';
+      }
+    }
+
+    function resetVisual() {
+      breathRing.className = 'breathing-ring';
+      glowRing.className = 'glow-ring';
+      cocoWrapper.className = 'coco-wrapper';
+      setTransitionDuration(0.5);
+    }
+
+    // ── Phase countdown ──
+    function startPhaseCountdown(seconds) {
+      clearInterval(phaseCountdownInterval);
+      let count = seconds;
+      phaseCountdown.textContent = count;
+      phaseCountdownInterval = setInterval(() => {
+        count--;
+        if (count > 0) {
+          phaseCountdown.textContent = count;
+        } else {
+          phaseCountdown.textContent = '';
+          clearInterval(phaseCountdownInterval);
+        }
+      }, 1000);
+    }
+
+    // ── Ding sound ──
+    const dingSound = document.getElementById('dingSound');
+    function playDing() { dingSound.currentTime = 0; dingSound.volume = 0.5; dingSound.play().catch(() => {}); }
+
+    // ── Breathing engine ──
+    function runPhase() {
+      if (!running) return;
+      const prog = programs[currentProgram];
+      const phase = prog.phases[currentPhaseIndex];
+      playDing();
+
+      // Set transition duration to match phase duration
+      setTransitionDuration(phase.duration);
+
+      // Apply visual
+      setVisualPhase(phase.visual);
+      instruction.textContent = phase.name;
+      setInstructionStyle(phase.visual);
+
+      // Phase countdown
+      startPhaseCountdown(phase.duration);
+
+      // Count cycles (a full cycle = all phases completed once)
+      if (currentPhaseIndex === 0 && cycleCount > 0 || (currentPhaseIndex === 0 && cycleCount === 0)) {
+        // We count a cycle when we return to the first phase
+      }
+
+      // Schedule next phase
+      breathTimeout = setTimeout(() => {
+        currentPhaseIndex++;
+        if (currentPhaseIndex >= prog.phases.length) {
+          currentPhaseIndex = 0;
+          cycleCount++;
+          cyclesEl.textContent = cycleCount + ' cycle' + (cycleCount > 1 ? 's' : '');
+        }
+        runPhase();
+      }, phase.duration * 1000);
+    }
+
+    // ── Start / Stop ──
+    function start() {
+      running = true;
+      cycleCount = 0;
+      currentPhaseIndex = 0;
+      remaining = totalSeconds;
+      cyclesEl.textContent = '';
+      updateTimerDisplay();
+
+      const prog = programs[currentProgram];
+      subtitle.textContent = prog.name;
+
+      // Enter session view
+      mainView.classList.add('session-view');
+      controls.innerHTML = '<button class="btn btn-stop" id="btnStop">Arrêter</button>';
+      document.getElementById('btnStop').addEventListener('click', stop);
+
+      // Keep screen awake
+      if ('wakeLock' in navigator) {
+        navigator.wakeLock.request('screen').then(s => { wakeLockSentinel = s; }).catch(() => {});
+      }
+
+      // Start breathing
+      runPhase();
+
+      // Countdown timer
+      timerInterval = setInterval(() => {
+        remaining--;
+        updateTimerDisplay();
+        if (remaining <= 0) {
+          finish();
+        }
+      }, 1000);
+    }
+
+    function stop() {
+      running = false;
+      clearInterval(timerInterval);
+      clearTimeout(breathTimeout);
+      clearInterval(phaseCountdownInterval);
+      phaseCountdown.textContent = '';
+      resetVisual();
+      instruction.textContent = 'Choisis un programme';
+      instruction.className = 'instruction';
+      subtitle.textContent = 'Choisis ton programme';
+      remaining = totalSeconds;
+      updateTimerDisplay();
+      cyclesEl.textContent = '';
+
+      // Release wake lock
+      if (wakeLockSentinel) { wakeLockSentinel.release(); wakeLockSentinel = null; }
+
+      // Exit session view
+      mainView.classList.remove('session-view');
+      controls.innerHTML = '<button class="btn btn-start" id="btnStart">Commencer</button>';
+      document.getElementById('btnStart').addEventListener('click', start);
+    }
+
+    function finish() {
+      running = false;
+      clearInterval(timerInterval);
+      clearTimeout(breathTimeout);
+      clearInterval(phaseCountdownInterval);
+      phaseCountdown.textContent = '';
+      resetVisual();
+
+      // Release wake lock
+      if (wakeLockSentinel) { wakeLockSentinel.release(); wakeLockSentinel = null; }
+
+      const prog = programs[currentProgram];
+
+      // Show end screen
+      mainView.classList.add('hidden');
+      mainView.classList.remove('session-view');
+      endCycles.textContent = cycleCount + ' cycles complétés';
+      endMessage.innerHTML = prog.endMessage.replace('\n', '<br>');
+      endTip.textContent = prog.endTip;
+      endScreen.classList.add('visible');
+
+      // Vibrate if available
+      if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]);
+      }
+    }
+
+    // ── Button handlers ──
+    document.getElementById('btnStart').addEventListener('click', start);
+    btnRestart.addEventListener('click', () => {
+      endScreen.classList.remove('visible');
+      mainView.classList.remove('hidden');
+      stop();
+    });
+
+    // ── Background effects ──
+    function createStars() {
+      const container = document.getElementById('stars');
+      for (let i = 0; i < 60; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.setProperty('--dur', (2 + Math.random() * 4) + 's');
+        star.style.animationDelay = Math.random() * 4 + 's';
+        star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
+        container.appendChild(star);
+      }
+    }
+
+    function createBubbles() {
+      const container = document.getElementById('bubbles');
+      for (let i = 0; i < 8; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        const size = 20 + Math.random() * 50;
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.animationDuration = (12 + Math.random() * 18) + 's';
+        bubble.style.animationDelay = Math.random() * 15 + 's';
+        container.appendChild(bubble);
+      }
+    }
+
+    // ── Music ──
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let musicPlaying = false;
+
+    bgMusic.volume = 0;
+
+    function fadeAudio(audio, targetVol, duration, callback) {
+      const startVol = audio.volume;
+      const diff = targetVol - startVol;
+      const steps = 30;
+      const stepTime = duration / steps;
+      let step = 0;
+      const fade = setInterval(() => {
+        step++;
+        audio.volume = Math.max(0, Math.min(1, startVol + (diff * step / steps)));
+        if (step >= steps) {
+          clearInterval(fade);
+          audio.volume = targetVol;
+          if (callback) callback();
+        }
+      }, stepTime);
+    }
+
+    function startMusic() {
+      bgMusic.volume = 0;
+      bgMusic.play().then(() => {
+        musicPlaying = true;
+        musicToggle.innerHTML = '&#x1F50A;';
+        musicToggle.classList.add('playing');
+        fadeAudio(bgMusic, 0.35, 2000);
+      }).catch(() => {});
+    }
+
+    function stopMusic() {
+      if (musicPlaying) {
+        fadeAudio(bgMusic, 0, 1500, () => {
+          bgMusic.pause();
+          musicPlaying = false;
+          musicToggle.innerHTML = '&#x1F508;';
+          musicToggle.classList.remove('playing');
+        });
+      }
+    }
+
+    function toggleMusic() {
+      if (musicPlaying) {
+        stopMusic();
+      } else {
+        startMusic();
+      }
+    }
+
+    musicToggle.addEventListener('click', toggleMusic);
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+
+    // Auto-start music when a session begins (patching start/stop/finish)
+    const originalStart = start;
+    start = function() {
+      originalStart();
+      if (!musicPlaying) startMusic();
+    };
+
+    const originalStop = stop;
+    stop = function() {
+      originalStop();
+      stopMusic();
+    };
+
+    const originalFinish = finish;
+    finish = function() {
+      originalFinish();
+      // Fade out music gently at end
+      if (musicPlaying) {
+        fadeAudio(bgMusic, 0.1, 3000);
+      }
+    };
+
+    createStars();
+    createBubbles();
+    updateTimerDisplay();
+  </script>
+</body>
+</html>
