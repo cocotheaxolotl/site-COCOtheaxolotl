@@ -2,37 +2,50 @@ name: List Stripe Payment Links
 
 on:
   workflow_dispatch:
+    inputs:
+      noop:
+        description: "(leave empty)"
+        required: false
+        default: ""
 
 jobs:
   list:
     runs-on: ubuntu-latest
     steps:
-      - name: List active payment links
+      - name: Fetch and format payment links
         env:
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
         run: |
           set -e
-          RESP=$(curl -sS "https://api.stripe.com/v1/payment_links?limit=50&active=true" \
-            -u "$STRIPE_SECRET_KEY:")
-          {
-            echo "## Active Payment Links"
-            echo ""
-            echo "| ID | URL | Redirect URL |"
-            echo "|---|---|---|"
-            echo "$RESP" | python3 -c "
-import sys, json
-d = json.load(sys.stdin)
-for l in d.get('data', []):
-    rid = l.get('id','')
-    url = l.get('url','')
-    ac = l.get('after_completion',{})
-    redir = ac.get('redirect',{}).get('url','') if ac.get('type')=='redirect' else ac.get('type','')
-    print(f'| \`{rid}\` | {url} | {redir} |')
-"
-          } >> "$GITHUB_STEP_SUMMARY"
-          echo "$RESP" | python3 -c "
-import sys, json
-d = json.load(sys.stdin)
-for l in d.get('data', []):
-    print(l.get('id',''), l.get('url',''), (l.get('after_completion',{}).get('redirect',{}) or {}).get('url',''))
-"
+          curl -sS "https://api.stripe.com/v1/payment_links?limit=50&active=true" \
+            -u "$STRIPE_SECRET_KEY:" > /tmp/resp.json
+
+          cat > /tmp/fmt.py <<'PY'
+          import json
+          with open('/tmp/resp.json') as f:
+              d = json.load(f)
+          if d.get('error'):
+              print('ERROR:', d['error'].get('message'))
+              raise SystemExit(1)
+          rows = []
+          for l in d.get('data', []):
+              rid = l.get('id', '')
+              url = l.get('url', '')
+              ac = l.get('after_completion', {}) or {}
+              redir = ''
+              if ac.get('type') == 'redirect':
+                  redir = (ac.get('redirect') or {}).get('url', '')
+              else:
+                  redir = ac.get('type', '')
+              rows.append((rid, url, redir))
+          with open('/tmp/summary.md', 'w') as f:
+              f.write('## Active Payment Links\n\n')
+              f.write('| ID | URL | Redirect |\n|---|---|---|\n')
+              for rid, url, redir in rows:
+                  f.write(f'| `{rid}` | {url} | {redir} |\n')
+          for rid, url, redir in rows:
+              print(rid, url, redir)
+          PY
+
+          python3 /tmp/fmt.py
+          cat /tmp/summary.md >> "$GITHUB_STEP_SUMMARY"
