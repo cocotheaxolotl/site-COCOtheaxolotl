@@ -1,0 +1,51 @@
+name: Update Stripe Payment Link redirect
+
+on:
+  workflow_dispatch:
+    inputs:
+      payment_link_id:
+        description: "ID du Payment Link (ex: plink_1TOLNxI6pyeEADhfgIP6zE6q)"
+        required: true
+        type: string
+      new_redirect_url:
+        description: "Nouvelle URL de redirection post-paiement"
+        required: true
+        type: string
+
+jobs:
+  update-redirect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Payment Link redirect URL
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          LINK_ID: ${{ inputs.payment_link_id }}
+          NEW_URL: ${{ inputs.new_redirect_url }}
+        run: |
+          set -e
+          if [ -z "$STRIPE_SECRET_KEY" ]; then
+            echo "::error::STRIPE_SECRET_KEY secret is not set."
+            exit 1
+          fi
+
+          echo "Updating $LINK_ID → $NEW_URL"
+          RESP=$(curl -sS "https://api.stripe.com/v1/payment_links/$LINK_ID" \
+            -u "$STRIPE_SECRET_KEY:" \
+            -d "after_completion[type]=redirect" \
+            --data-urlencode "after_completion[redirect][url]=$NEW_URL")
+
+          ERR=$(echo "$RESP" | python3 -c "import sys,json;print(json.load(sys.stdin).get('error',{}).get('message',''))")
+          if [ -n "$ERR" ]; then
+            echo "::error::Update failed: $ERR"
+            exit 1
+          fi
+
+          CURRENT=$(echo "$RESP" | python3 -c "import sys,json;print(json.load(sys.stdin).get('after_completion',{}).get('redirect',{}).get('url',''))")
+          {
+            echo "## Payment Link updated"
+            echo ""
+            echo "- Payment Link: \`$LINK_ID\`"
+            echo "- New redirect URL: $CURRENT"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          echo "Done. Current redirect: $CURRENT"
