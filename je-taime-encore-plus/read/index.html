@@ -13,10 +13,6 @@
       background:#1a0533;
       color:#fff;
       min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
       overflow:hidden;
     }
 
@@ -51,7 +47,6 @@
     .page.illust{ background:#1a0533; padding:0; }
     .page.illust img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-    /* Scene background */
     #scene-bg{ position:fixed; inset:0; z-index:0; background:
       radial-gradient(ellipse at 20% 20%, #3a1260 0%, transparent 50%),
       radial-gradient(ellipse at 80% 80%, #5a1a8a 0%, transparent 55%),
@@ -90,11 +85,25 @@
     }
     .audio-btn:hover{ background:rgba(255,255,255,.25); }
     .audio-btn.active{ background:rgba(192,132,252,.3); color:#c084fc; }
-    .music-label{ font-size:.78em; opacity:.7; }
+    .auto-indicator{
+      font-size:.65em; font-weight:800; color:#c084fc;
+      opacity:0; transition:opacity .2s; margin-left:-6px;
+    }
+    .auto-indicator.visible{ opacity:1; }
+    .time-label{ font-size:.75em; opacity:.6; flex-shrink:0; min-width:32px; }
+    .progress-wrap{
+      flex:1; min-width:80px; height:6px;
+      background:rgba(255,255,255,.15); border-radius:3px;
+      cursor:pointer; position:relative;
+    }
+    .progress-fill{
+      height:100%; background:#c084fc; border-radius:3px;
+      width:0; transition:width .1s linear;
+    }
 
     .credit{
       text-align:center; padding:6px; font-size:.7em; opacity:.4;
-      position:absolute; bottom:44px; left:0; right:0; z-index:20;
+      position:absolute; bottom:54px; left:0; right:0; z-index:20;
     }
 
     @media(max-width:600px){
@@ -102,7 +111,8 @@
       .toolbar .title{ font-size:.8em; }
       .audio-bar{ gap:6px; padding:6px 10px; }
       .audio-btn{ width:32px; height:32px; font-size:.95em; }
-      .credit{ font-size:.6em; bottom:40px; }
+      .time-label{ font-size:.65em; }
+      .credit{ font-size:.6em; bottom:46px; }
     }
   </style>
 </head>
@@ -112,7 +122,7 @@
 
   <div id="reader">
     <div class="toolbar">
-      <a class="back" href="/">&larr; Accueil</a>
+      <a class="back" href="/je-taime-encore-plus/">&larr; Retour</a>
       <span class="title">Je t'aime encore plus !</span>
       <span class="page-info" id="pageInfo">1 / 29</span>
       <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
@@ -124,9 +134,16 @@
     <button class="nav-arrow right" onclick="flipNext()">&rsaquo;</button>
 
     <div class="audio-bar">
-      <button class="audio-btn active" id="musicBtn" title="Musique de fond">&#127925;</button>
-      <span class="music-label">Musique douce</span>
+      <button class="audio-btn" id="playBtn" title="Lecture / Pause">&#9654;&#65039;</button>
+      <button class="audio-btn active" id="autoBtn" title="Tourner les pages automatiquement">&#128214;</button>
+      <span class="auto-indicator visible" id="autoLabel">AUTO</span>
+      <span class="time-label" id="timeNow">0:00</span>
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="time-label" id="timeTotal">0:00</span>
     </div>
+    <audio id="narrator" preload="auto"></audio>
     <audio id="bgMusic" src="/sleep-book/audio/lullaby.mp3" preload="auto" loop></audio>
     <div class="credit">Par Dr. Anita Nirvena &mdash; Illustrations par Loopinky</div>
   </div>
@@ -135,8 +152,12 @@
   <script>
     var pageFlip = null;
     var IMG = '/je-taime-encore-plus/pages/';
+    var AUD = '/je-taime-encore-plus/audio/';
     var TOTAL_PAGES = 29;
     var PAGE_ASPECT = 8.5 / 11; // portrait
+
+    // Durations (seconds) from generate_fr_audio.py output
+    var durations = [5.96, 4.69, 0.50, 5.03, 0.50, 10.91, 8.69, 5.92, 6.98, 6.15, 6.54, 8.48, 6.03, 9.88, 5.56, 7.12, 3.44, 13.56, 8.72, 4.14, 5.46, 4.76, 5.53, 5.00, 11.57, 3.32, 4.31, 1.90, 2.70];
 
     var bookPages = [];
     for(var i = 1; i <= TOTAL_PAGES; i++){
@@ -148,9 +169,8 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      var availH = vpH - 44 - 52; // toolbar + audio bar
+      var availH = vpH - 44 - 52;
       var availW = vpW - 32;
-      // Two portrait pages side-by-side → aspect = 2 * PAGE_ASPECT
       var bookAspect = 2 * PAGE_ASPECT;
       var h = Math.min(availH, availW / bookAspect);
       var w = h * bookAspect;
@@ -194,9 +214,7 @@
           startZIndex: 0
         });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));
-        pageFlip.on('flip', function(e){
-          document.getElementById('pageInfo').textContent = (e.data + 1) + ' / ' + TOTAL_PAGES;
-        });
+        pageFlip.on('flip', function(e){ onPageFlip(e.data); });
       } catch(e){ console.error('PageFlip init error:', e); }
     }
 
@@ -222,35 +240,159 @@
       }
     }
 
-    // Background music
+    // ===== AUDIO =====
+    var audio = document.getElementById('narrator');
     var bgMusic = document.getElementById('bgMusic');
-    var musicBtn = document.getElementById('musicBtn');
-    var BG_VOLUME = 0.18;
+    var BG_VOLUME = 0.15;
     bgMusic.volume = BG_VOLUME;
+    var playBtn = document.getElementById('playBtn');
+    var autoBtn = document.getElementById('autoBtn');
+    var autoLabel = document.getElementById('autoLabel');
+    var progressWrap = document.getElementById('progressWrap');
+    var progressFill = document.getElementById('progressFill');
+    var timeNow = document.getElementById('timeNow');
+    var timeTotal = document.getElementById('timeTotal');
 
-    function toggleMusic(){
-      if(bgMusic.paused){
-        bgMusic.play().catch(function(){});
-        musicBtn.classList.add('active');
+    var totalDuration = 0;
+    var cumulativeStarts = [];
+    (function(){
+      var cum = 0;
+      for(var i = 0; i < durations.length; i++){
+        cumulativeStarts.push(cum);
+        cum += durations[i];
+      }
+      totalDuration = cum;
+      timeTotal.textContent = fmtTime(totalDuration);
+    })();
+
+    var currentPage = -1;
+    var isPlaying = false;
+    var autoTurn = true;
+    var bgFadeTimer = null;
+
+    function fmtTime(s){
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2,'0');
+    }
+
+    function pageAudioSrc(p){
+      return AUD + 'page_' + String(p).padStart(2,'0') + '.mp3';
+    }
+
+    function fadeOutBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgFadeTimer = setInterval(function(){
+        if(bgMusic.volume > 0.01){
+          bgMusic.volume = Math.max(0, bgMusic.volume - 0.005);
+        } else {
+          clearInterval(bgFadeTimer);
+          bgMusic.pause();
+          bgMusic.volume = BG_VOLUME;
+        }
+      }, 100);
+    }
+
+    function startBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgMusic.volume = BG_VOLUME;
+      bgMusic.play().catch(function(){});
+    }
+
+    function loadPageAudio(p){
+      if(p < 0 || p >= TOTAL_PAGES) return;
+      currentPage = p;
+      audio.src = pageAudioSrc(p);
+      audio.load();
+    }
+
+    function playPage(p){
+      if(p < 0 || p >= TOTAL_PAGES) return;
+      loadPageAudio(p);
+      audio.play().catch(function(){});
+      startBgMusic();
+      isPlaying = true;
+      playBtn.innerHTML = '&#9646;&#9646;';
+    }
+
+    function togglePlay(){
+      if(audio.paused){
+        if(currentPage < 0){
+          var pg = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
+          loadPageAudio(pg);
+        }
+        audio.play().catch(function(){});
+        startBgMusic();
+        isPlaying = true;
+        playBtn.innerHTML = '&#9646;&#9646;';
       } else {
+        audio.pause();
         bgMusic.pause();
-        musicBtn.classList.remove('active');
+        isPlaying = false;
+        playBtn.innerHTML = '&#9654;&#65039;';
       }
     }
-    musicBtn.addEventListener('click', toggleMusic);
 
-    // Try autoplay on first user interaction
-    function startMusicOnce(){
-      bgMusic.play().catch(function(){});
-      document.removeEventListener('click', startMusicOnce);
-      document.removeEventListener('touchstart', startMusicOnce);
-      document.removeEventListener('keydown', startMusicOnce);
+    function toggleAuto(){
+      autoTurn = !autoTurn;
+      autoBtn.classList.toggle('active', autoTurn);
+      autoLabel.classList.toggle('visible', autoTurn);
     }
-    document.addEventListener('click', startMusicOnce);
-    document.addEventListener('touchstart', startMusicOnce);
-    document.addEventListener('keydown', startMusicOnce);
+
+    function globalTime(){
+      if(currentPage < 0) return 0;
+      return cumulativeStarts[currentPage] + (audio.currentTime || 0);
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+    autoBtn.addEventListener('click', toggleAuto);
+
+    audio.addEventListener('timeupdate', function(){
+      var gt = globalTime();
+      progressFill.style.width = (gt / totalDuration * 100) + '%';
+      timeNow.textContent = fmtTime(gt);
+    });
+
+    audio.addEventListener('ended', function(){
+      if(autoTurn && currentPage >= 0 && currentPage < TOTAL_PAGES - 1){
+        var next = currentPage + 1;
+        if(pageFlip) pageFlip.flip(next);
+        setTimeout(function(){
+          if(currentPage !== next) playPage(next);
+        }, 900);
+      } else {
+        isPlaying = false;
+        fadeOutBgMusic();
+        playBtn.innerHTML = '&#9654;&#65039;';
+      }
+    });
+
+    progressWrap.addEventListener('click', function(e){
+      var rect = progressWrap.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      var targetTime = pct * totalDuration;
+      var targetPage = 0;
+      for(var i = TOTAL_PAGES - 1; i >= 0; i--){
+        if(targetTime >= cumulativeStarts[i]){ targetPage = i; break; }
+      }
+      var offset = targetTime - cumulativeStarts[targetPage];
+      if(targetPage !== currentPage){
+        loadPageAudio(targetPage);
+        if(pageFlip) pageFlip.flip(targetPage);
+      }
+      audio.currentTime = offset;
+      if(isPlaying) audio.play().catch(function(){});
+    });
+
+    function onPageFlip(pgIndex){
+      document.getElementById('pageInfo').textContent = (pgIndex + 1) + ' / ' + TOTAL_PAGES;
+      if(pgIndex !== currentPage){
+        playPage(pgIndex);
+      }
+    }
 
     document.addEventListener('keydown', function(e){
+      if(e.key === ' '){ e.preventDefault(); togglePlay(); }
       if(e.key === 'ArrowLeft') flipPrev();
       if(e.key === 'ArrowRight') flipNext();
     });
