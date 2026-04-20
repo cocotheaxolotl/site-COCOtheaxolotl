@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <title>Je t'aime encore plus &mdash; Lecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Baloo 2',cursive;
+      background:#1a0533;
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    #reader{ width:100vw; height:100vh; position:relative; z-index:2; }
+
+    .toolbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 16px; background:rgba(0,0,0,.4);
+      position:absolute; top:0; left:0; right:0; z-index:20;
+      transition:opacity .4s;
+    }
+    .toolbar.hidden{ opacity:0; pointer-events:none; }
+    .toolbar .title{ font-size:.95em; font-weight:600; opacity:.8; }
+    .toolbar .page-info{ font-size:.85em; opacity:.6; }
+    .toolbar button, .toolbar a.back{
+      background:rgba(255,255,255,.1); border:none; color:#fff;
+      padding:8px 14px; border-radius:8px; cursor:pointer;
+      font-family:'Baloo 2',cursive; font-size:.85em;
+      text-decoration:none;
+      transition:background .15s;
+    }
+    .toolbar button:hover, .toolbar a.back:hover{ background:rgba(255,255,255,.2); }
+
+    #book-area{ position:absolute; overflow:hidden; }
+    #flipbook-container{ width:100%; height:100%; overflow:hidden; background:transparent; }
+
+    .page{
+      background:#fff; color:#333;
+      display:flex; align-items:center; justify-content:center;
+      user-select:none; overflow:hidden;
+    }
+    .page.illust{ background:#1a0533; padding:0; }
+    .page.illust img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Scene background */
+    #scene-bg{ position:fixed; inset:0; z-index:0; background:
+      radial-gradient(ellipse at 20% 20%, #3a1260 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, #5a1a8a 0%, transparent 55%),
+      #0d0120;
+    }
+    #scene-overlay{
+      position:absolute; inset:0; z-index:2;
+      background:radial-gradient(ellipse at center, rgba(0,0,0,0) 30%, rgba(0,0,0,0.5) 100%);
+      pointer-events:none;
+    }
+
+    .stf__block, .stf__item{ background:transparent !important; }
+
+    .nav-arrow{
+      position:absolute; top:50%; transform:translateY(-50%);
+      z-index:10; background:rgba(0,0,0,.3); border:none;
+      color:#fff; font-size:1.8em; padding:12px 16px;
+      border-radius:50%; cursor:pointer;
+      transition:background .15s, opacity .15s;
+      opacity:.6;
+    }
+    .nav-arrow:hover{ background:rgba(0,0,0,.5); opacity:1; }
+    .nav-arrow.left{ left:12px; }
+    .nav-arrow.right{ right:12px; }
+
+    .audio-bar{
+      display:flex; align-items:center; gap:10px;
+      padding:8px 16px; background:rgba(0,0,0,.5);
+      position:absolute; bottom:0; left:0; right:0; z-index:20;
+    }
+    .audio-btn{
+      background:rgba(255,255,255,.12); border:none; color:#fff;
+      width:38px; height:38px; border-radius:50%; cursor:pointer;
+      font-size:1.1em; display:flex; align-items:center; justify-content:center;
+      transition:background .15s; flex-shrink:0;
+    }
+    .audio-btn:hover{ background:rgba(255,255,255,.25); }
+    .audio-btn.active{ background:rgba(192,132,252,.3); color:#c084fc; }
+    .music-label{ font-size:.78em; opacity:.7; }
+
+    .credit{
+      text-align:center; padding:6px; font-size:.7em; opacity:.4;
+      position:absolute; bottom:44px; left:0; right:0; z-index:20;
+    }
+
+    @media(max-width:600px){
+      .nav-arrow{ display:none; }
+      .toolbar .title{ font-size:.8em; }
+      .audio-bar{ gap:6px; padding:6px 10px; }
+      .audio-btn{ width:32px; height:32px; font-size:.95em; }
+      .credit{ font-size:.6em; bottom:40px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="scene-bg"><div id="scene-overlay"></div></div>
+
+  <div id="reader">
+    <div class="toolbar">
+      <a class="back" href="/">&larr; Accueil</a>
+      <span class="title">Je t'aime encore plus !</span>
+      <span class="page-info" id="pageInfo">1 / 29</span>
+      <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
+    </div>
+
+    <div id="book-area"><div id="flipbook-container"></div></div>
+
+    <button class="nav-arrow left" onclick="flipPrev()">&lsaquo;</button>
+    <button class="nav-arrow right" onclick="flipNext()">&rsaquo;</button>
+
+    <div class="audio-bar">
+      <button class="audio-btn active" id="musicBtn" title="Musique de fond">&#127925;</button>
+      <span class="music-label">Musique douce</span>
+    </div>
+    <audio id="bgMusic" src="/sleep-book/audio/lullaby.mp3" preload="auto" loop></audio>
+    <div class="credit">Par Dr. Anita Nirvena &mdash; Illustrations par Loopinky</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+  <script>
+    var pageFlip = null;
+    var IMG = '/je-taime-encore-plus/pages/';
+    var TOTAL_PAGES = 29;
+    var PAGE_ASPECT = 8.5 / 11; // portrait
+
+    var bookPages = [];
+    for(var i = 1; i <= TOTAL_PAGES; i++){
+      bookPages.push(IMG + 'slide_' + String(i).padStart(2,'0') + '.jpg');
+    }
+
+    function positionFlipbook(){
+      var area = document.getElementById('book-area');
+      if(!area) return;
+      var vpW = window.innerWidth;
+      var vpH = window.innerHeight;
+      var availH = vpH - 44 - 52; // toolbar + audio bar
+      var availW = vpW - 32;
+      // Two portrait pages side-by-side → aspect = 2 * PAGE_ASPECT
+      var bookAspect = 2 * PAGE_ASPECT;
+      var h = Math.min(availH, availW / bookAspect);
+      var w = h * bookAspect;
+      if(w > availW){ w = availW; h = w / bookAspect; }
+      area.style.width  = w + 'px';
+      area.style.height = h + 'px';
+      area.style.left   = Math.round((vpW - w) / 2) + 'px';
+      area.style.top    = Math.round(44 + (availH - h) / 2) + 'px';
+    }
+
+    window.addEventListener('resize', function(){
+      positionFlipbook();
+      if(pageFlip) pageFlip.update();
+    });
+
+    function initFlipbook(){
+      var container = document.getElementById('flipbook-container');
+      positionFlipbook();
+      var area = document.getElementById('book-area');
+      var w = Math.round(area.offsetWidth / 2);
+      var h = Math.round(area.offsetHeight);
+
+      bookPages.forEach(function(src){
+        var div = document.createElement('div');
+        div.className = 'page illust';
+        div.innerHTML = '<img src="' + src + '" alt="" loading="lazy">';
+        container.appendChild(div);
+      });
+
+      try{
+        pageFlip = new St.PageFlip(container, {
+          width: w, height: h,
+          size: 'stretch',
+          minWidth: 150, maxWidth: w,
+          minHeight: 200, maxHeight: h,
+          showCover: true,
+          mobileScrollSupport: false,
+          useMouseEvents: true,
+          flippingTime: 700,
+          usePortrait: true,
+          startZIndex: 0
+        });
+        pageFlip.loadFromHTML(container.querySelectorAll('.page'));
+        pageFlip.on('flip', function(e){
+          document.getElementById('pageInfo').textContent = (e.data + 1) + ' / ' + TOTAL_PAGES;
+        });
+      } catch(e){ console.error('PageFlip init error:', e); }
+    }
+
+    function flipPrev(){ if(pageFlip) pageFlip.flipPrev(); }
+    function flipNext(){ if(pageFlip) pageFlip.flipNext(); }
+
+    var toolbar = document.querySelector('.toolbar');
+    var hideTimer = null;
+    function showToolbar(){
+      toolbar.classList.remove('hidden');
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(function(){ toolbar.classList.add('hidden'); }, 2500);
+    }
+    document.addEventListener('mousemove', showToolbar);
+    document.addEventListener('touchstart', showToolbar);
+    showToolbar();
+
+    function toggleFullscreen(){
+      if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // Background music
+    var bgMusic = document.getElementById('bgMusic');
+    var musicBtn = document.getElementById('musicBtn');
+    var BG_VOLUME = 0.18;
+    bgMusic.volume = BG_VOLUME;
+
+    function toggleMusic(){
+      if(bgMusic.paused){
+        bgMusic.play().catch(function(){});
+        musicBtn.classList.add('active');
+      } else {
+        bgMusic.pause();
+        musicBtn.classList.remove('active');
+      }
+    }
+    musicBtn.addEventListener('click', toggleMusic);
+
+    // Try autoplay on first user interaction
+    function startMusicOnce(){
+      bgMusic.play().catch(function(){});
+      document.removeEventListener('click', startMusicOnce);
+      document.removeEventListener('touchstart', startMusicOnce);
+      document.removeEventListener('keydown', startMusicOnce);
+    }
+    document.addEventListener('click', startMusicOnce);
+    document.addEventListener('touchstart', startMusicOnce);
+    document.addEventListener('keydown', startMusicOnce);
+
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'ArrowLeft') flipPrev();
+      if(e.key === 'ArrowRight') flipNext();
+    });
+
+    initFlipbook();
+  </script>
+</body>
+</html>
