@@ -145,6 +145,7 @@
     </div>
     <audio id="narrator" preload="auto"></audio>
     <audio id="bgMusic" src="/sleep-book/audio/lullaby.mp3" preload="auto" loop></audio>
+    <audio id="pageTurnSfx" src="/je-taime-encore-plus/audio/page-turn.mp3" preload="auto"></audio>
     <div class="credit">Par Dr. Anita Nirvena &mdash; Illustrations par Loopinky</div>
   </div>
 
@@ -215,6 +216,9 @@
         });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));
         pageFlip.on('flip', function(e){ onPageFlip(e.data); });
+        pageFlip.on('changeState', function(e){
+          if(e.data === 'flipping' || e.data === 'user_fold') playPageTurn();
+        });
       } catch(e){ console.error('PageFlip init error:', e); }
     }
 
@@ -243,6 +247,11 @@
     // ===== AUDIO =====
     var audio = document.getElementById('narrator');
     var bgMusic = document.getElementById('bgMusic');
+    var pageTurnSfx = document.getElementById('pageTurnSfx');
+    pageTurnSfx.volume = 0.35;
+    function playPageTurn(){
+      try { pageTurnSfx.currentTime = 0; pageTurnSfx.play().catch(function(){}); } catch(e){}
+    }
     var BG_VOLUME = 0.15;
     bgMusic.volume = BG_VOLUME;
     var playBtn = document.getElementById('playBtn');
