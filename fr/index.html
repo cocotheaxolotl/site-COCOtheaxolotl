@@ -652,9 +652,9 @@
 </video>
 <div aria-hidden="true" class="bubblesLayer" id="bubblesLayer"></div>
 <h1>💗 Coco the Axolotl</h1>
-<a href="/downloads/coloring-i-love-you-more.pdf" download="coloring-i-love-you-more.pdf" class="easter-banner" onclick="if(!localStorage.getItem('coco_subscribed')){document.getElementById('popupOverlay').classList.add('active');return false;}">
+<a href="/fr/freebies/#i-love-you-more-freebies" class="easter-banner" onclick="if(!localStorage.getItem('coco_subscribed')){document.getElementById('popupOverlay').classList.add('active');return false;}">
 <span class="easter-eggs">💗🌷💗</span>
-<span class="easter-msg">F&ecirc;te des m&egrave;res ! Coloriage gratuit !</span>
+<span class="easter-msg">F&ecirc;te des m&egrave;res ! 2 coloriages gratuits !</span>
 <span class="easter-eggs">🌸💌🌸</span>
 </a>
 <style>
@@ -866,8 +866,8 @@ Page Auteur Amazon :
 <div class="popup-overlay" id="popupOverlay">
 <div class="popup-box">
 <button aria-label="Close" class="popup-close" id="popupClose">✕</button>
-<h3>💗 Coloriage de F&ecirc;te des m&egrave;res gratuit !</h3>
-<p class="popup-sub">Entre ton pr&eacute;nom et email pour t&eacute;l&eacute;charger ce coloriage de F&ecirc;te des m&egrave;res !</p>
+<h3>💗 2 coloriages de F&ecirc;te des m&egrave;res gratuits !</h3>
+<p class="popup-sub">Entre ton pr&eacute;nom et email pour t&eacute;l&eacute;charger 2 coloriages de F&ecirc;te des m&egrave;res !</p>
 <img alt="Coloriage de Fête des mères - Coco l'Axolotl" src="/shop/coloring-love-preview.gif" style="max-width:200px;border-radius:12px;border:2px solid #e1bee7"/>
 <form id="popupForm">
 <input id="popupName" placeholder="Ton prénom" required="" type="text"/>
@@ -1193,7 +1193,7 @@ En t'inscrivant, tu acceptes de recevoir notre newsletter.<br/>Désinscription p
         .then(function(data){
           if(data.success){
             localStorage.setItem('coco_subscribed','true');
-            form.innerHTML = '<p class="popup-success">Merci ! 💗 Télécharge ton coloriage :<br><a href="/downloads/coloring-i-love-you-more.pdf" download="coloring-i-love-you-more.pdf" style="display:inline-block;margin-top:10px;padding:10px 24px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">🎨 Télécharger</a></p>';
+            form.innerHTML = '<p class="popup-success">Merci ! Télécharge tes 2 pages gratuites :<br><a href="/downloads/i-love-you-more-free-coloring-1.png" download="i-love-you-more-free-coloring-1.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">Page 1</a><a href="/downloads/i-love-you-more-free-coloring-2.png" download="i-love-you-more-free-coloring-2.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">Page 2</a><br><a href="/shop/#i-love-you-more-pack" style="display:inline-block;margin-top:10px;color:#6a1b9a;font-weight:700">Voir le pack complet dans la boutique</a></p>';
           } else {
             submitBtn.disabled = false;
             submitBtn.textContent = "Try again";

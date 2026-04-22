@@ -838,12 +838,12 @@
       <b>Explore activities</b>
     </a>
 
-    <a href="/downloads/coloring-i-love-you-more.pdf" download="coloring-i-love-you-more.pdf" class="easter-banner" onclick="if(!localStorage.getItem('coco_subscribed')){document.getElementById('popupOverlay').classList.add('active');return false;}">
+    <a href="/freebies/#i-love-you-more-freebies" class="easter-banner" onclick="if(!localStorage.getItem('coco_subscribed')){document.getElementById('popupOverlay').classList.add('active');return false;}">
       <span class="easter-eggs">💗🌷💗</span>
       <span class="easter-msg">
-        <span data-lang="en">Mother's Day! Free coloring page!</span>
-        <span data-lang="fr">F&ecirc;te des m&egrave;res ! Coloriage gratuit !</span>
-        <span data-lang="es">&iexcl;D&iacute;a de la Madre! &iexcl;Dibujo gratis!</span>
+        <span data-lang="en">Mother's Day! 2 free coloring pages!</span>
+        <span data-lang="fr">F&ecirc;te des m&egrave;res ! 2 coloriages gratuits !</span>
+        <span data-lang="es">&iexcl;D&iacute;a de la Madre! 2 dibujos gratis!</span>
       </span>
       <span class="easter-eggs">🌸💌🌸</span>
     </a>
@@ -1145,14 +1145,14 @@
     <div class="popup-box">
       <button class="popup-close" id="popupClose" aria-label="Close">&#10005;</button>
       <h3>
-        <span data-lang="en">💗 Free Mother's Day Coloring Page!</span>
-        <span data-lang="fr">💗 Coloriage de F&ecirc;te des m&egrave;res gratuit !</span>
-        <span data-lang="es">💗 &iexcl;Dibujo del D&iacute;a de la Madre gratis!</span>
+        <span data-lang="en">💗 2 Free Mother's Day Coloring Pages!</span>
+        <span data-lang="fr">💗 2 coloriages de F&ecirc;te des m&egrave;res gratuits !</span>
+        <span data-lang="es">💗 &iexcl;2 dibujos del D&iacute;a de la Madre gratis!</span>
       </h3>
       <p class="popup-sub">
-        <span data-lang="en">Enter your name &amp; email to download this Mother's Day coloring page!</span>
-        <span data-lang="fr">Entre ton pr&eacute;nom et email pour t&eacute;l&eacute;charger ce coloriage de F&ecirc;te des m&egrave;res !</span>
-        <span data-lang="es">&iexcl;Escribe tu nombre y email para descargar este dibujo del D&iacute;a de la Madre!</span>
+        <span data-lang="en">Enter your name &amp; email to download 2 Mother's Day coloring pages!</span>
+        <span data-lang="fr">Entre ton pr&eacute;nom et email pour t&eacute;l&eacute;charger 2 coloriages de F&ecirc;te des m&egrave;res !</span>
+        <span data-lang="es">&iexcl;Escribe tu nombre y email para descargar 2 dibujos del D&iacute;a de la Madre!</span>
       </p>
       <img src="shop/coloring-love-preview.gif" alt="Mother's Day coloring page - Coco the Axolotl" style="max-width:200px;border-radius:12px;border:2px solid #e1bee7">
       <form id="popupForm">
@@ -1501,13 +1501,15 @@
           if(data.success){
             localStorage.setItem('coco_subscribed','true');
             form.innerHTML = '<p class="popup-success">' +
-              '<span data-lang="en">Thank you! 💗 Download your coloring page:</span>' +
-              '<span data-lang="fr">Merci ! 💗 Télécharge ton coloriage :</span>' +
-              '<span data-lang="es">¡Gracias! 💗 Descarga tu dibujo:</span>' +
-              '<br><a href="/downloads/coloring-i-love-you-more.pdf" download="coloring-i-love-you-more.pdf" style="display:inline-block;margin-top:10px;padding:10px 24px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">' +
-              '<span data-lang="en">🎨 Download</span>' +
-              '<span data-lang="fr">🎨 Télécharger</span>' +
-              '<span data-lang="es">🎨 Descargar</span></a></p>';
+              '<span data-lang="en">Thank you! Download your 2 free pages:</span>' +
+              '<span data-lang="fr">Merci ! Télécharge tes 2 pages gratuites :</span>' +
+              '<span data-lang="es">¡Gracias! Descarga tus 2 páginas gratis:</span>' +
+              '<br><a href="/downloads/i-love-you-more-free-coloring-1.png" download="i-love-you-more-free-coloring-1.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">' +
+              '<span data-lang="en">Page 1</span><span data-lang="fr">Page 1</span><span data-lang="es">Página 1</span></a>' +
+              '<a href="/downloads/i-love-you-more-free-coloring-2.png" download="i-love-you-more-free-coloring-2.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">' +
+              '<span data-lang="en">Page 2</span><span data-lang="fr">Page 2</span><span data-lang="es">Página 2</span></a>' +
+              '<br><a href="/shop/#i-love-you-more-pack" style="display:inline-block;margin-top:10px;color:#6a1b9a;font-weight:700">' +
+              '<span data-lang="en">Get the full pack in the shop</span><span data-lang="fr">Voir le pack complet dans la boutique</span><span data-lang="es">Ver el pack completo en la tienda</span></a></p>';
             applyLang(document.documentElement.lang||'en');
           } else {
             submitBtn.disabled = false;
