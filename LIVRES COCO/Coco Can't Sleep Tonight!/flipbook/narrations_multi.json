@@ -1,0 +1,417 @@
+[
+  {
+    "name": "spread_00",
+    "segments": [
+      [
+        "N",
+        "Coco ne dort pas ce soir !"
+      ],
+      [
+        "N",
+        "Une aventure de Coco l'Axolotl. Par Docteur Anita Nirvéna. Illustrations de Loupineky."
+      ]
+    ]
+  },
+  {
+    "name": "spread_01",
+    "segments": [
+      [
+        "N",
+        "L'heure de dormir."
+      ],
+      [
+        "N",
+        "Ce soir, c'était l'heure de dormir. Mais Coco n'avait pas du tout sommeil."
+      ],
+      [
+        "C",
+        "Maman, je n'arrive pas à dormir !"
+      ],
+      [
+        "M",
+        "Compte les moutons et..."
+      ],
+      [
+        "C",
+        "Mais Maman, les moutons ne savent pas nager !"
+      ],
+      [
+        "N",
+        "Maman ria."
+      ],
+      [
+        "M",
+        "C'est vrai ! Alors reste tranquille et le sommeil viendra."
+      ]
+    ]
+  },
+  {
+    "name": "spread_02",
+    "segments": [
+      [
+        "N",
+        "L'aventure commence."
+      ],
+      [
+        "N",
+        "Mais Coco ne pouvait pas rester tranquille. Pas ce soir. Quand Maman et Papa se furent endormis, Coco se faufila doucement hors de la rivière."
+      ],
+      [
+        "C",
+        "Si je ne dors pas, je vais découvrir ce que font les autres animaux la nuit !"
+      ]
+    ]
+  },
+  {
+    "name": "spread_03",
+    "segments": [
+      [
+        "N",
+        "Le Hibou."
+      ],
+      [
+        "N",
+        "Coco rencontra un hibou perché sur une branche."
+      ],
+      [
+        "C",
+        "Bonsoir Hibou ! Pourquoi tu ne dors pas ?"
+      ],
+      [
+        "A",
+        "Je suis nocturne ! Je travaille la nuit et je dors le jour. Mais même moi, j'ai besoin de dormir. Tout le monde a besoin de dormir !"
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les hiboux dorment le jour, cachés dans les arbres. Ils peuvent tourner la tête presque tout autour, comme pour regarder derrière eux !"
+      ]
+    ]
+  },
+  {
+    "name": "spread_04",
+    "segments": [
+      [
+        "N",
+        "Le Dauphin."
+      ],
+      [
+        "N",
+        "Au bord de l'océan, un dauphin nageait tranquillement."
+      ],
+      [
+        "C",
+        "Tu ne dors pas non plus ?"
+      ],
+      [
+        "A",
+        "Oh si ! Je n'endors qu'une moitié de mon cerveau à la fois. L'autre reste éveillée pour nager et respirer !"
+      ],
+      [
+        "C",
+        "Tu dors et tu nages en même temps ?!"
+      ],
+      [
+        "A",
+        "Le sommeil est si important que j'ai trouvé un moyen de ne jamais m'en passer !"
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les dauphins dorment avec un seul œil fermé ! Le côté du cerveau qui dort change toutes les deux heures."
+      ]
+    ]
+  },
+  {
+    "name": "spread_05",
+    "segments": [
+      [
+        "N",
+        "La Loutre."
+      ],
+      [
+        "N",
+        "Deux loutres flottaient sur le dos, patte dans la patte."
+      ],
+      [
+        "C",
+        "Pourquoi vous vous tenez la main ?"
+      ],
+      [
+        "A",
+        "Pour ne pas s'éloigner en dormant ! Se sentir en sécurité, c'est très important pour bien dormir."
+      ],
+      [
+        "N",
+        "Coco sourit."
+      ],
+      [
+        "C",
+        "C'est comme quand je me blottis contre ma peluche !"
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les loutres de mer se tiennent vraiment par la main en dormant ! Elles s'enroulent aussi dans des algues pour ne pas dériver."
+      ]
+    ]
+  },
+  {
+    "name": "spread_06",
+    "segments": [
+      [
+        "N",
+        "Le Koala."
+      ],
+      [
+        "N",
+        "Dans un eucalyptus, un koala dormait profondément."
+      ],
+      [
+        "C",
+        "Koala ! Tu dors ?"
+      ],
+      [
+        "A",
+        "Oui... vingt-deux heures par jour..."
+      ],
+      [
+        "C",
+        "Vingt-deux heures ?! Mais pourquoi autant ?"
+      ],
+      [
+        "A",
+        "Mon corps a besoin d'énergie pour digérer mes feuilles. Le sommeil, ça recharge ton corps en énergie !"
+      ],
+      [
+        "N",
+        "Et il se rendormit aussitôt."
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les koalas dorment jusqu'à vingt-deux heures par jour ! Les feuilles d'eucalyptus sont très dures à digérer et donnent très peu d'énergie."
+      ]
+    ]
+  },
+  {
+    "name": "spread_07",
+    "segments": [
+      [
+        "N",
+        "La Chauve-Souris."
+      ],
+      [
+        "N",
+        "Sous un pont, des chauves-souris étaient suspendues la tête en bas."
+      ],
+      [
+        "C",
+        "Vous dormez à l'envers ?!"
+      ],
+      [
+        "A",
+        "Bien sûr ! Et pendant qu'on dort, notre cerveau trie tout ce qu'on a appris, où sont les insectes, quels chemins éviter..."
+      ],
+      [
+        "C",
+        "C'est pour ça qu'on se sent plus malin après une bonne nuit !"
+      ],
+      [
+        "N",
+        "Le savais-tu ? Pendant le sommeil, le cerveau trie et range les souvenirs. C'est pour ça qu'on retient mieux ses leçons après avoir bien dormi !"
+      ]
+    ]
+  },
+  {
+    "name": "spread_08",
+    "segments": [
+      [
+        "N",
+        "Le Chat."
+      ],
+      [
+        "N",
+        "Près d'une maison, un chat était roulé en boule sur un muret."
+      ],
+      [
+        "C",
+        "Tu fais un gros dodo ?"
+      ],
+      [
+        "A",
+        "Je fais plein de petits dodos. On appelle ça des micro-siestes !"
+      ],
+      [
+        "A",
+        "Pour les petits axolotls, c'est mieux de faire un long sommeil la nuit. Pendant le sommeil profond, ton corps se répare !"
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les chats dorment entre douze et seize heures par jour ! C'est de là que vient l'expression micro-sieste."
+      ]
+    ]
+  },
+  {
+    "name": "spread_09",
+    "segments": [
+      [
+        "N",
+        "Le Cheval."
+      ],
+      [
+        "N",
+        "Dans un pré, un cheval se tenait immobile sous la lune."
+      ],
+      [
+        "C",
+        "Tu... tu dors debout ?"
+      ],
+      [
+        "A",
+        "Oui ! Comme ça je suis prêt à courir. Mais pour rêver, je dois m'allonger."
+      ],
+      [
+        "A",
+        "Le sommeil a différentes étapes : d'abord léger, puis profond, puis les rêves ! Et ça recommence toute la nuit."
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les chevaux ne dorment profondément que deux à trois heures par jour, et seulement allongés !"
+      ]
+    ]
+  },
+  {
+    "name": "spread_10",
+    "segments": [
+      [
+        "N",
+        "Le Flamant Rose."
+      ],
+      [
+        "N",
+        "Au bord d'un étang, un flamant rose dormait sur une seule patte !"
+      ],
+      [
+        "C",
+        "Comment tu ne tombes pas ?!"
+      ],
+      [
+        "A",
+        "L'équilibre, ça demande un corps bien reposé ! Quand je suis fatigué..."
+      ],
+      [
+        "N",
+        "Le flamant vacilla."
+      ],
+      [
+        "A",
+        "Voilà ce qui arrive !"
+      ],
+      [
+        "N",
+        "Coco rigola, mais commençait à comprendre."
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les flamants dorment souvent sur une seule patte ! Les scientifiques pensent que c'est pour garder l'autre au chaud."
+      ]
+    ]
+  },
+  {
+    "name": "spread_11",
+    "segments": [
+      [
+        "N",
+        "Le Paresseux."
+      ],
+      [
+        "N",
+        "Coco commençait à bâiller. Un paresseux pendait d'une branche."
+      ],
+      [
+        "C",
+        "Je commence... à être... fatigué..."
+      ],
+      [
+        "A",
+        "Bienvenue... au club... Quand on ne dort pas assez... on devient lent... grognon... et tout est plus difficile..."
+      ],
+      [
+        "A",
+        "Allez... va te coucher... petit axolotl..."
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les paresseux dorment environ quinze heures par jour ! Sans assez de sommeil, notre corps se sent lourd et notre cerveau a du mal à se concentrer."
+      ]
+    ]
+  },
+  {
+    "name": "spread_12",
+    "segments": [
+      [
+        "N",
+        "Maman Axolotl."
+      ],
+      [
+        "M",
+        "Coco ?"
+      ],
+      [
+        "N",
+        "C'était Maman, au bord de la rivière."
+      ],
+      [
+        "C",
+        "Maman ! J'ai découvert comment tous les animaux dorment ! Tout le monde en a besoin. Moi aussi !"
+      ],
+      [
+        "M",
+        "Et sais-tu comment dorment les axolotls ? On se pose au fond de l'eau, bien tranquilles, bercés par le courant."
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les axolotls vivent dans l'eau douce et respirent grâce à leurs jolies branchies en forme de plumes sur leur tête !"
+      ]
+    ]
+  },
+  {
+    "name": "spread_13",
+    "segments": [
+      [
+        "N",
+        "Le super-pouvoir."
+      ],
+      [
+        "N",
+        "Maman porta Coco jusqu'à son coin douillet au fond de la rivière."
+      ],
+      [
+        "C",
+        "Le sommeil, ça recharge l'énergie, ça range le cerveau, ça répare le corps... pas vrai ?"
+      ],
+      [
+        "M",
+        "Tout ça à la fois mon Coco. Et nous, les axolotls, on peut même faire repousser nos pattes ! Mais pour ça, il faut bien dormir."
+      ],
+      [
+        "N",
+        "Le savais-tu ? Les axolotls ont un super-pouvoir : ils peuvent régénérer leurs pattes, leur queue et même des parties de leur cerveau !"
+      ]
+    ]
+  },
+  {
+    "name": "spread_14",
+    "segments": [
+      [
+        "N",
+        "Bonne nuit Coco."
+      ],
+      [
+        "N",
+        "Coco se blottit dans son petit nid d'eau douce avec sa peluche. Il pensa à tous les animaux qui dormaient en ce moment, chacun à sa façon, mais tous parce que le sommeil est magique. Ses branchies redevinrent toutes roses et touffues. Et Coco s'endormit."
+      ],
+      [
+        "N",
+        "Bonne nuit Coco."
+      ]
+    ]
+  }
+]

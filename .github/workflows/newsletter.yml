@@ -1,0 +1,54 @@
+name: Auto Newsletter
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '*-name/meta.json'
+
+jobs:
+  send-newsletter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Find new meta.json files
+        id: find
+        run: |
+          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD | grep 'meta.json' || true)
+          echo "files=$NEW_FILES" >> $GITHUB_OUTPUT
+          if [ -z "$NEW_FILES" ]; then
+            echo "No new meta.json files found"
+          else
+            echo "Found: $NEW_FILES"
+          fi
+
+      - name: Send newsletters
+        if: steps.find.outputs.files != ''
+        env:
+          NEWSLETTER_SECRET: ${{ secrets.NEWSLETTER_SECRET }}
+          SITE_URL: https://cocotheaxolotl.org
+        run: |
+          for file in ${{ steps.find.outputs.files }}; do
+            echo "Processing $file..."
+            TITLE=$(jq -r '.title' "$file")
+            EMOJI=$(jq -r '.emoji' "$file")
+            DESC=$(jq -r '.description' "$file")
+            URL=$(jq -r '.url' "$file")
+            COLOR=$(jq -r '.color' "$file")
+
+            curl -s -X POST "$SITE_URL/api/send-newsletter" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"secret\": \"$NEWSLETTER_SECRET\",
+                \"title\": \"$TITLE\",
+                \"emoji\": \"$EMOJI\",
+                \"description\": \"$DESC\",
+                \"url\": \"$URL\",
+                \"color\": \"$COLOR\"
+              }"
+
+            echo "Newsletter sent for: $TITLE"
+          done

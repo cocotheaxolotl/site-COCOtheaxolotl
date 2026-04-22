@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="-10%" rate="0.75">
+      Bienvenue... au club... Quand on ne dort pas assez... on devient lent... grognon... et tout est plus difficile...
+    </prosody>
+  </voice>
+</speak>

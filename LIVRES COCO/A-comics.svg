@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 200" width="180" height="200">
+  <defs>
+    <linearGradient id="comicFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffeb3b"/>
+      <stop offset="50%" stop-color="#ffc107"/>
+      <stop offset="100%" stop-color="#ff9800"/>
+    </linearGradient>
+    <filter id="comicShadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="1" flood-color="#000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- Burst/explosion background -->
+  <polygon points="90,5 105,40 145,15 120,50 165,45 130,72 175,80 130,92 160,125 118,108 130,150 95,118 90,160 85,118 50,150 62,108 20,125 50,92 5,80 50,72 15,45 60,50 35,15 75,40" fill="#fff3e0" stroke="#ff9800" stroke-width="1" opacity="0.6"/>
+
+  <!-- 3D shadow layer (offset) -->
+  <text x="95" y="140" text-anchor="middle" font-family="'Comic Sans MS', 'Bangers', cursive" font-size="140" font-weight="900" fill="#2d3436" opacity="0.9">A</text>
+
+  <!-- Main letter with thick outline -->
+  <text x="90" y="135" text-anchor="middle" font-family="'Comic Sans MS', 'Bangers', cursive" font-size="140" font-weight="900" fill="url(#comicFill)" stroke="#2d3436" stroke-width="6" paint-order="stroke" filter="url(#comicShadow)">A</text>
+
+  <!-- Inner highlight -->
+  <text x="90" y="135" text-anchor="middle" font-family="'Comic Sans MS', 'Bangers', cursive" font-size="140" font-weight="900" fill="none" stroke="#fff" stroke-width="2" opacity="0.3" paint-order="stroke">A</text>
+
+  <!-- Shine spots -->
+  <ellipse cx="62" cy="65" rx="8" ry="12" fill="#fff" opacity="0.5" transform="rotate(-15,62,65)"/>
+  <ellipse cx="55" cy="82" rx="4" ry="5" fill="#fff" opacity="0.35" transform="rotate(-15,55,82)"/>
+
+  <!-- Action dots (halftone effect) -->
+  <circle cx="25" cy="30" r="2.5" fill="#ff9800" opacity="0.3"/>
+  <circle cx="35" cy="22" r="2" fill="#ff9800" opacity="0.25"/>
+  <circle cx="18" cy="42" r="2" fill="#ff9800" opacity="0.2"/>
+  <circle cx="155" cy="35" r="2.5" fill="#ff9800" opacity="0.3"/>
+  <circle cx="148" cy="25" r="2" fill="#ff9800" opacity="0.25"/>
+  <circle cx="162" cy="48" r="2" fill="#ff9800" opacity="0.2"/>
+  <circle cx="30" cy="155" r="2" fill="#ff9800" opacity="0.2"/>
+  <circle cx="150" cy="158" r="2" fill="#ff9800" opacity="0.2"/>
+
+  <!-- Speed lines -->
+  <line x1="10" y1="95" x2="30" y2="95" stroke="#2d3436" stroke-width="2" opacity="0.3"/>
+  <line x1="8" y1="105" x2="25" y2="105" stroke="#2d3436" stroke-width="1.5" opacity="0.25"/>
+  <line x1="150" y1="90" x2="172" y2="90" stroke="#2d3436" stroke-width="2" opacity="0.3"/>
+  <line x1="155" y1="100" x2="170" y2="100" stroke="#2d3436" stroke-width="1.5" opacity="0.25"/>
+</svg>

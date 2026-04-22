@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+  <title>{{BOOK_TITLE}} &mdash; Lecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Baloo 2',cursive;
+      background:{{BG_COLOR}};
+      color:#fff;
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    /* ===== GATE SCREEN ===== */
+    #gate{
+      text-align:center;
+      padding:40px 20px;
+      max-width:420px;
+      position:relative; z-index:2;
+    }
+    #gate h1{ font-size:1.8em; margin-bottom:8px; }
+    #gate p{ opacity:.7; margin-bottom:24px; line-height:1.5; }
+    #gate .code-input{
+      display:flex; gap:8px; justify-content:center;
+      flex-wrap:wrap;
+    }
+    #gate input{
+      padding:14px 20px; font-size:1.1em; font-family:'Baloo 2',cursive;
+      border:2px solid rgba(255,255,255,.2); border-radius:12px;
+      background:rgba(255,255,255,.08); color:#fff;
+      text-align:center; width:240px;
+      outline:none; transition:border-color .2s;
+    }
+    #gate input:focus{ border-color:rgba(255,255,255,.5); }
+    #gate input::placeholder{ color:rgba(255,255,255,.3); }
+    #gate .btn{
+      padding:14px 32px; font-size:1.05em; font-weight:800;
+      font-family:'Baloo 2',cursive;
+      background:linear-gradient(135deg,{{ACCENT_COLOR}},#ff69b4);
+      color:#fff; border:none; border-radius:32px;
+      cursor:pointer; transition:filter .15s,transform .12s;
+    }
+    #gate .btn:hover{ filter:brightness(.9); transform:translateY(-1px); }
+    #gate .error{
+      color:#ff6b6b; font-size:.9em; margin-top:12px;
+      display:none;
+    }
+    #gate .buy-link{
+      display:block; margin-top:24px;
+      color:rgba(255,255,255,.5); font-size:.85em;
+    }
+    #gate .buy-link a{ color:#ff69b4; }
+
+    /* ===== READER ===== */
+    #reader{ display:none; width:100vw; height:100vh; flex-direction:column; position:relative; z-index:2; }
+    #reader.active{ display:flex; }
+
+    .toolbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 16px; background:rgba(0,0,0,.4);
+      flex-shrink:0;
+    }
+    .toolbar .title{ font-size:.95em; font-weight:600; opacity:.8; }
+    .toolbar .page-info{ font-size:.85em; opacity:.6; }
+    .toolbar button{
+      background:rgba(255,255,255,.1); border:none; color:#fff;
+      padding:8px 14px; border-radius:8px; cursor:pointer;
+      font-family:'Baloo 2',cursive; font-size:.85em;
+      transition:background .15s;
+    }
+    .toolbar button:hover{ background:rgba(255,255,255,.2); }
+
+    #flipbook-container{
+      flex:1; position:relative; overflow:hidden;
+      max-width:1060px; width:100%; margin:0 auto;
+    }
+
+    .page{
+      background:#fff; color:#333;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:20px;
+      font-size:1.15em; line-height:1.5;
+      user-select:none; overflow:hidden;
+    }
+    .page.illust{
+      background:{{BG_COLOR}}; color:#aaa;
+      font-size:.85em; padding:0;
+    }
+    .page.illust img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+    /* BG_CSS_START */
+    #scene-bg{
+      position:fixed; inset:0; z-index:0;
+      overflow:hidden; background:{{BG_COLOR}};
+    }
+    .scene-media{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; z-index:0;
+    }
+    #scene-video{ z-index:1; }
+    #scene-overlay{
+      position:absolute; inset:0; z-index:2;
+      background:radial-gradient(ellipse at center,
+        rgba(0,0,0,0) 30%, rgba(0,0,0,{{BG_OVERLAY_OPACITY}}) 100%);
+      pointer-events:none;
+    }
+    @media(prefers-reduced-motion:reduce){
+      #scene-video{ display:none !important; }
+    }
+    /* BG_CSS_END */
+
+    /* Force dark background on page-flip internal elements (no white flash) */
+    .stf__block{ background:{{BG_COLOR}} !important; }
+    .stf__item{ background:{{BG_COLOR}} !important; }
+
+    /* Nav arrows */
+    .nav-arrow{
+      position:absolute; top:50%; transform:translateY(-50%);
+      z-index:10; background:rgba(0,0,0,.3); border:none;
+      color:#fff; font-size:1.8em; padding:12px 16px;
+      border-radius:50%; cursor:pointer;
+      transition:background .15s, opacity .15s;
+      opacity:.6;
+    }
+    .nav-arrow:hover{ background:rgba(0,0,0,.5); opacity:1; }
+    .nav-arrow.left{ left:12px; }
+    .nav-arrow.right{ right:12px; }
+
+    /* AUDIO_CSS_START */
+    .audio-bar{
+      display:flex; align-items:center; gap:10px;
+      padding:8px 16px; background:rgba(0,0,0,.5);
+      flex-shrink:0;
+    }
+    .audio-btn{
+      background:rgba(255,255,255,.12); border:none; color:#fff;
+      width:38px; height:38px; border-radius:50%; cursor:pointer;
+      font-size:1.1em; display:flex; align-items:center; justify-content:center;
+      transition:background .15s;
+      flex-shrink:0;
+    }
+    .audio-btn:hover{ background:rgba(255,255,255,.25); }
+    .audio-btn.active{ background:rgba(247,201,72,.3); color:#f7c948; }
+    .auto-indicator{
+      font-size:.65em; font-weight:800; color:#f7c948;
+      opacity:0; transition:opacity .2s; margin-left:-6px;
+    }
+    .auto-indicator.visible{ opacity:1; }
+    .time-label{ font-size:.75em; opacity:.6; flex-shrink:0; min-width:32px; }
+    .progress-wrap{
+      flex:1; min-width:80px; height:6px;
+      background:rgba(255,255,255,.15); border-radius:3px;
+      cursor:pointer; position:relative;
+    }
+    .progress-fill{
+      height:100%; background:#f7c948; border-radius:3px;
+      width:0; transition:width .1s linear;
+    }
+    /* AUDIO_CSS_END */
+
+    /* VISUAL_CSS_START */
+    .visual-bar{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 16px; background:rgba(0,0,0,.5);
+      flex-shrink:0;
+    }
+    .visual-bar .audio-btn{
+      background:rgba(255,255,255,.12); border:none; color:#fff;
+      width:38px; height:38px; border-radius:50%; cursor:pointer;
+      font-size:1.1em; display:flex; align-items:center; justify-content:center;
+      transition:background .15s;
+      flex-shrink:0;
+    }
+    .visual-bar .audio-btn:hover{ background:rgba(255,255,255,.25); }
+    .visual-bar .audio-btn.active{ background:rgba(247,201,72,.3); color:#f7c948; }
+    .visual-bar .auto-indicator{
+      font-size:.65em; font-weight:800; color:#f7c948;
+      opacity:0; transition:opacity .2s; margin-left:-6px;
+    }
+    .visual-bar .auto-indicator.visible{ opacity:1; }
+    /* VISUAL_CSS_END */
+
+    @media(max-width:600px){
+      .nav-arrow{ display:none; }
+      .toolbar .title{ font-size:.8em; }
+      /* AUDIO_CSS_START */
+      .audio-bar{ gap:6px; padding:6px 10px; }
+      .audio-btn{ width:32px; height:32px; font-size:.95em; }
+      .time-label{ font-size:.65em; }
+      /* AUDIO_CSS_END */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- BG_HTML_START -->
+  <div id="scene-bg">
+    <!-- BG_IMAGE_HTML_START -->
+    <img id="scene-img" src="{{BG_IMAGE_URL}}" alt="" class="scene-media"
+         onerror="this.style.display='none'">
+    <!-- BG_IMAGE_HTML_END -->
+    <!-- BG_VIDEO_HTML_START -->
+    <video id="scene-video" class="scene-media" muted loop playsinline preload="none"
+           poster="{{BG_IMAGE_URL}}">
+      <source src="{{BG_VIDEO_URL}}" type="video/mp4">
+    </video>
+    <!-- BG_VIDEO_HTML_END -->
+    <div id="scene-overlay"></div>
+  </div>
+  <!-- BG_HTML_END -->
+
+  <!-- ===== GATE ===== -->
+  <div id="gate">
+    <h1>&#x1F319; {{BOOK_TITLE}}</h1>
+    <p>Entrez votre code d&rsquo;acc&egrave;s pour lire le livre.<br>
+    Enter your access code to read the book.</p>
+    <div class="code-input">
+      <input type="text" id="codeInput" placeholder="CODE-XXXX-XXXX" autocomplete="off" spellcheck="false">
+      <button class="btn" onclick="tryCode()">&#x1F513; Lire / Read</button>
+    </div>
+    <div class="error" id="errorMsg">
+      Code invalide. / Invalid code.<br>
+      <a href="{{RETURN_URL}}" style="color:#ff69b4;">Acheter le livre / Buy the book</a>
+    </div>
+    <div class="buy-link">
+      Pas encore de code ? <a href="{{RETURN_URL}}">Acheter ici / Buy here</a>
+    </div>
+  </div>
+
+  <!-- ===== READER ===== -->
+  <div id="reader">
+    <div class="toolbar">
+      <a href="{{RETURN_URL}}" style="color:#fff;text-decoration:none;opacity:.7;">&larr; Retour</a>
+      <span class="title">{{BOOK_TITLE}}</span>
+      <span class="page-info" id="pageInfo">1 / {{NUM_PAGES}}</span>
+      <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
+    </div>
+
+    <div id="flipbook-container"></div>
+
+    <button class="nav-arrow left" onclick="flipPrev()">&lsaquo;</button>
+    <button class="nav-arrow right" onclick="flipNext()">&rsaquo;</button>
+
+    <!-- AUDIO_HTML_START -->
+    <div class="audio-bar">
+      <button class="audio-btn" id="playBtn" title="Lecture / Pause">&#9654;&#65039;</button>
+      <button class="audio-btn" id="autoBtn" title="Tourne-page automatique">&#128214;</button>
+      <span class="auto-indicator" id="autoLabel">AUTO</span>
+      <span class="time-label" id="timeNow">0:00</span>
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="time-label" id="timeTotal">0:00</span>
+    </div>
+    <audio id="narrator" preload="auto"></audio>
+    <audio id="bgMusic" src="{{AUDIO_BASE_PATH}}{{BG_MUSIC_FILE}}" preload="auto" loop></audio>
+    <!-- AUDIO_HTML_END -->
+
+    <!-- VISUAL_HTML_START -->
+    <div class="visual-bar">
+      <button class="audio-btn active" id="autoBtn" title="Tourne-page automatique">&#128214;</button>
+      <span class="auto-indicator visible" id="autoLabel">AUTO</span>
+      <span style="opacity:.5;font-size:.8em;margin-left:auto;">&#x23F1; {{TIMER_SECONDS}}s par page</span>
+    </div>
+    <!-- VISUAL_HTML_END -->
+
+    <div style="text-align:center;padding:6px;font-size:.7em;opacity:.4;">
+      {{CREDITS_LINE}}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+  <script>
+    var VALID_CODE = '{{ACCESS_CODE}}';
+    var pageFlip = null;
+
+    /* ===== Book pages ===== */
+    var IMG = '{{IMG_BASE_PATH}}';
+    var bookPages = [];
+    for(var i = 1; i <= {{NUM_PAGES}}; i++){
+      bookPages.push({type:'illust', img: IMG+'{{IMG_PREFIX}}'+i+'{{IMG_EXT}}'});
+    }
+
+    /* ===== CODE VALIDATION ===== */
+    function tryCode(code){
+      code = code || document.getElementById('codeInput').value.trim().toUpperCase();
+      if(code === VALID_CODE){
+        localStorage.setItem('{{STORAGE_KEY}}', 'true');
+        showReader(true);
+        return true;
+      } else {
+        document.getElementById('errorMsg').style.display = 'block';
+        return false;
+      }
+    }
+
+    function showReader(withInteraction){
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('reader').classList.add('active');
+      initFlipbook();
+      afterShow(withInteraction);
+    }
+
+    /* ===== CHECK ACCESS ===== */
+    (function(){
+      var params = new URLSearchParams(window.location.search);
+      var unlock = params.get('unlock');
+      if(unlock){
+        if(tryCode(unlock)){
+          history.replaceState(null, '', window.location.pathname);
+          return;
+        }
+      }
+      if(localStorage.getItem('{{STORAGE_KEY}}') === 'true'){
+        showReader(false);
+        return;
+      }
+      document.getElementById('codeInput').addEventListener('keydown', function(e){
+        if(e.key === 'Enter') tryCode();
+      });
+    })();
+
+    /* ===== FLIPBOOK ===== */
+    function initFlipbook(){
+      var container = document.getElementById('flipbook-container');
+      var maxW = Math.min(500, window.innerWidth - 40);
+      var maxH = window.innerHeight - 60;
+      var w, h;
+      if(maxH / maxW > 4/3){
+        w = maxW; h = Math.round(w * 4 / 3);
+      } else {
+        h = maxH; w = Math.round(h * 3 / 4);
+      }
+
+      bookPages.forEach(function(p){
+        var div = document.createElement('div');
+        div.className = 'page illust';
+        div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        container.appendChild(div);
+      });
+
+      try{
+        pageFlip = new St.PageFlip(container, {
+          width: w, height: h,
+          size: 'stretch',
+          minWidth: 280, maxWidth: 600,
+          minHeight: 373, maxHeight: 800,
+          showCover: true,
+          mobileScrollSupport: false,
+          useMouseEvents: true,
+          flippingTime: 700,
+          usePortrait: true,
+          startZIndex: 0
+        });
+        pageFlip.loadFromHTML(container.querySelectorAll('.page'));
+        pageFlip.on('flip', function(e){
+          onPageFlip(e.data);
+        });
+      } catch(e){
+        console.error('PageFlip init error:', e);
+      }
+    }
+
+    function flipPrev(){ if(pageFlip) pageFlip.flipPrev(); }
+    function flipNext(){ if(pageFlip) pageFlip.flipNext(); }
+
+    function toggleFullscreen(){
+      if(!document.fullscreenElement){
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    /* ===== PAGE FLIP HANDLER ===== */
+    function onPageFlip(pgIndex){
+      document.getElementById('pageInfo').textContent = (pgIndex + 1) + ' / ' + bookPages.length;
+      /* AUDIO_JS_START */
+      var sp = pageToSpread(pgIndex);
+      if(sp >= 1 && sp !== currentSpread){
+        playSpread(sp);
+      }
+      /* AUDIO_JS_END */
+      /* VISUAL_JS_START */
+      if(autoTurn){ stopAutoTurn(); startAutoTurn(); }
+      /* VISUAL_JS_END */
+    }
+
+    /* ===== KEYBOARD ===== */
+    document.addEventListener('keydown', function(e){
+      if(e.key === ' ' && document.getElementById('reader').classList.contains('active')){
+        e.preventDefault();
+        /* AUDIO_JS_START */
+        togglePlay();
+        /* AUDIO_JS_END */
+        /* VISUAL_JS_START */
+        toggleAuto();
+        /* VISUAL_JS_END */
+      }
+    });
+
+    /* AUDIO_JS_START */
+    /* ===== AUDIO ENGINE ===== */
+    var audio = document.getElementById('narrator');
+    var bgMusic = document.getElementById('bgMusic');
+    var BG_VOLUME = {{BG_MUSIC_VOLUME}};
+    bgMusic.volume = BG_VOLUME;
+    var playBtn = document.getElementById('playBtn');
+    var autoBtn = document.getElementById('autoBtn');
+    var autoLabel = document.getElementById('autoLabel');
+    var progressWrap = document.getElementById('progressWrap');
+    var progressFill = document.getElementById('progressFill');
+    var timeNow = document.getElementById('timeNow');
+    var timeTotal = document.getElementById('timeTotal');
+
+    var TOTAL_SPREADS = {{TOTAL_SPREADS}};
+    var HAS_TITLE = {{HAS_TITLE}};
+    var HAS_CREDITS = {{HAS_CREDITS}};
+    var AUDIO_BASE = '{{AUDIO_BASE_PATH}}';
+    var LAST_STORY_PAGE = TOTAL_SPREADS * 2;
+
+    var currentSpread = -1;
+    var isPlaying = false;
+    var autoTurn = true;
+    var bgFadeTimer = null;
+    var playingSpecial = '';
+
+    /* Auto-detect audio durations */
+    var durations = new Array(TOTAL_SPREADS + 1).fill(0);
+    var totalDuration = 0;
+    var cumulativeStarts = new Array(TOTAL_SPREADS + 1).fill(0);
+    (function(){
+      var pending = TOTAL_SPREADS;
+      for(var i = 1; i <= TOTAL_SPREADS; i++){
+        (function(idx){
+          var probe = new Audio();
+          probe.preload = 'metadata';
+          probe.src = spreadAudioSrc(idx);
+          probe.addEventListener('loadedmetadata', function(){
+            durations[idx] = probe.duration;
+            pending--;
+            if(pending <= 0) recalcTimeline();
+          });
+          probe.addEventListener('error', function(){
+            pending--;
+            if(pending <= 0) recalcTimeline();
+          });
+        })(i);
+      }
+      function recalcTimeline(){
+        var cum = 0;
+        for(var j = 1; j <= TOTAL_SPREADS; j++){
+          cumulativeStarts[j] = cum;
+          cum += durations[j];
+        }
+        totalDuration = cum;
+        if(timeTotal) timeTotal.textContent = fmtTime(totalDuration);
+      }
+    })();
+
+    function fadeOutBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgFadeTimer = setInterval(function(){
+        if(bgMusic.volume > 0.01){
+          bgMusic.volume = Math.max(0, bgMusic.volume - 0.005);
+        } else {
+          clearInterval(bgFadeTimer);
+          bgMusic.pause();
+          bgMusic.volume = BG_VOLUME;
+        }
+      }, 100);
+    }
+
+    function startBgMusic(){
+      clearInterval(bgFadeTimer);
+      bgMusic.volume = BG_VOLUME;
+      bgMusic.play().catch(function(){});
+    }
+
+    function playTitle(){
+      if(!HAS_TITLE){ playSpread(1); return; }
+      audio.src = AUDIO_BASE + 'spread_title.mp3';
+      audio.load();
+      audio.play();
+      startBgMusic();
+      isPlaying = true;
+      playingSpecial = 'title';
+      playBtn.innerHTML = '&#9646;&#9646;';
+    }
+
+    function pageToSpread(pg){
+      if(pg <= 0) return -1;
+      if(pg > LAST_STORY_PAGE) return -1;
+      return Math.floor((pg - 1) / 2) + 1;
+    }
+
+    function spreadToPage(sp){
+      if(sp <= 0) return 0;
+      return 1 + (sp - 1) * 2;
+    }
+
+    function spreadAudioSrc(sp){
+      return AUDIO_BASE + 'spread_' + String(sp).padStart(2,'0') + '.mp3';
+    }
+
+    function fmtTime(s){
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2,'0');
+    }
+
+    function loadSpreadAudio(sp){
+      if(sp < 1 || sp > TOTAL_SPREADS) return;
+      currentSpread = sp;
+      playingSpecial = '';
+      audio.src = spreadAudioSrc(sp);
+      audio.load();
+    }
+
+    function playSpread(sp){
+      if(sp < 1 || sp > TOTAL_SPREADS) return;
+      loadSpreadAudio(sp);
+      audio.play();
+      startBgMusic();
+      isPlaying = true;
+      playBtn.innerHTML = '&#9646;&#9646;';
+    }
+
+    function togglePlay(){
+      if(audio.paused){
+        if(!audio.src || audio.src === location.href || currentSpread < 1){
+          var pg = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
+          if(pg === 0 && playingSpecial === ''){
+            playTitle();
+            return;
+          }
+          var sp = pageToSpread(pg);
+          if(sp < 1) sp = 1;
+          loadSpreadAudio(sp);
+        }
+        audio.play();
+        startBgMusic();
+        isPlaying = true;
+        playBtn.innerHTML = '&#9646;&#9646;';
+      } else {
+        audio.pause();
+        bgMusic.pause();
+        isPlaying = false;
+        playBtn.innerHTML = '&#9654;&#65039;';
+      }
+    }
+
+    /* AUTO on by default */
+    autoBtn.classList.add('active');
+    autoLabel.classList.add('visible');
+
+    function toggleAuto(){
+      autoTurn = !autoTurn;
+      autoBtn.classList.toggle('active', autoTurn);
+      autoLabel.classList.toggle('visible', autoTurn);
+    }
+
+    function globalTime(){
+      if(currentSpread < 1) return 0;
+      return cumulativeStarts[currentSpread] + (audio.currentTime || 0);
+    }
+
+    playBtn.addEventListener('click', togglePlay);
+    autoBtn.addEventListener('click', toggleAuto);
+
+    audio.addEventListener('timeupdate', function(){
+      var gt = globalTime();
+      progressFill.style.width = (gt / totalDuration * 100) + '%';
+      timeNow.textContent = fmtTime(gt);
+    });
+
+    /* Click on progress bar to seek */
+    progressWrap.addEventListener('click', function(e){
+      var rect = progressWrap.getBoundingClientRect();
+      var pct = (e.clientX - rect.left) / rect.width;
+      var targetTime = pct * totalDuration;
+      var targetSpread = 1;
+      for(var i = TOTAL_SPREADS; i >= 1; i--){
+        if(targetTime >= cumulativeStarts[i]){
+          targetSpread = i;
+          break;
+        }
+      }
+      var offset = targetTime - cumulativeStarts[targetSpread];
+      if(targetSpread !== currentSpread){
+        loadSpreadAudio(targetSpread);
+      }
+      audio.currentTime = offset;
+      if(isPlaying) audio.play();
+    });
+
+    audio.addEventListener('ended', function(){
+      if(playingSpecial === 'title'){
+        playingSpecial = '';
+        if(autoTurn && pageFlip){
+          pageFlip.flip(1);
+          setTimeout(function(){
+            if(currentSpread !== 1) playSpread(1);
+          }, 1000);
+        }
+      } else if(playingSpecial === 'credits'){
+        isPlaying = false;
+        playingSpecial = '';
+        fadeOutBgMusic();
+        playBtn.innerHTML = '&#9654;&#65039;';
+      } else if(autoTurn && currentSpread >= 1 && currentSpread < TOTAL_SPREADS){
+        var nextSp = currentSpread + 1;
+        var targetPage = spreadToPage(nextSp);
+        if(pageFlip) pageFlip.flip(targetPage);
+        setTimeout(function(){
+          if(currentSpread !== nextSp) playSpread(nextSp);
+        }, 1000);
+      } else if(currentSpread === TOTAL_SPREADS){
+        if(HAS_CREDITS){
+          if(pageFlip) pageFlip.flip(LAST_STORY_PAGE + 1);
+          audio.src = AUDIO_BASE + 'spread_credits.mp3';
+          audio.load();
+          audio.play();
+          playingSpecial = 'credits';
+        } else {
+          isPlaying = false;
+          fadeOutBgMusic();
+          playBtn.innerHTML = '&#9654;&#65039;';
+        }
+      } else {
+        isPlaying = false;
+        playingSpecial = '';
+        fadeOutBgMusic();
+        playBtn.innerHTML = '&#9654;&#65039;';
+      }
+    });
+
+    function afterShow(withAudio){
+      if(withAudio) playTitle();
+    }
+    /* AUDIO_JS_END */
+
+    /* VISUAL_JS_START */
+    var autoTurn = true;
+    var TURN_INTERVAL = {{TIMER_SECONDS}} * 1000;
+    var autoTimer = null;
+
+    function startAutoTurn(){
+      stopAutoTurn();
+      autoTimer = setInterval(function(){
+        if(autoTurn && pageFlip){
+          var current = pageFlip.getCurrentPageIndex();
+          if(current < bookPages.length - 1){
+            pageFlip.flipNext();
+          } else {
+            stopAutoTurn();
+          }
+        }
+      }, TURN_INTERVAL);
+    }
+
+    function stopAutoTurn(){
+      clearInterval(autoTimer);
+    }
+
+    function toggleAuto(){
+      autoTurn = !autoTurn;
+      document.getElementById('autoBtn').classList.toggle('active', autoTurn);
+      document.getElementById('autoLabel').classList.toggle('visible', autoTurn);
+      if(autoTurn) startAutoTurn();
+      else stopAutoTurn();
+    }
+
+    document.getElementById('autoBtn').addEventListener('click', toggleAuto);
+
+    function afterShow(){
+      if(autoTurn) setTimeout(startAutoTurn, 1500);
+    }
+    /* VISUAL_JS_END */
+
+    /* BG_JS_START */
+    (function(){
+      var video = document.getElementById('scene-video');
+      if(!video) return;
+      var img = document.getElementById('scene-img');
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var slow = conn && (conn.saveData || conn.effectiveType === '2g' || conn.effectiveType === 'slow-2g');
+      if(prefersReduced || slow){
+        video.remove();
+        return;
+      }
+      setTimeout(function(){
+        video.preload = 'auto';
+        video.load();
+        video.play().then(function(){
+          if(img) img.style.display = 'none';
+        }).catch(function(){
+          video.style.display = 'none';
+        });
+      }, 2000);
+    })();
+    /* BG_JS_END */
+  </script>
+</body>
+</html>

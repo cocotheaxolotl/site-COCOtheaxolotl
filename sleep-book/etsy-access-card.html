@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte d'acc&egrave;s &mdash; Coco ne dort pas ce soir !</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    @page{ size:A5 landscape; margin:0; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Baloo 2',cursive;
+      background:#0d0d2b;
+      min-height:100vh;
+      display:flex; align-items:center; justify-content:center;
+      padding:20px;
+    }
+    .card{
+      width:600px; max-width:100%;
+      background:linear-gradient(135deg,#1a1a4e 0%,#3D3D8E 60%,#5c3d8e 100%);
+      border-radius:24px;
+      padding:40px 36px;
+      text-align:center;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,.5);
+    }
+    .card::before{
+      content:''; position:absolute; top:-40px; right:-40px;
+      width:140px; height:140px; border-radius:50%;
+      background:radial-gradient(circle,rgba(255,255,200,.2),transparent 70%);
+    }
+    .card::after{
+      content:'\2728'; position:absolute; top:16px; left:20px;
+      font-size:1.4em; opacity:.4;
+    }
+    .stars{ font-size:1.6em; letter-spacing:6px; opacity:.4; margin-bottom:12px; }
+    h1{ font-size:1.6em; margin-bottom:4px; }
+    .subtitle{ font-size:1em; opacity:.7; margin-bottom:24px; }
+    .thanks{
+      font-size:1.3em; font-weight:800;
+      color:#ff69b4; margin-bottom:28px;
+    }
+    .code-label{ font-size:.9em; opacity:.6; margin-bottom:8px; }
+    .code{
+      display:inline-block;
+      background:rgba(255,255,255,.12);
+      border:3px dashed rgba(255,255,255,.3);
+      border-radius:16px;
+      padding:16px 36px;
+      font-size:2em;
+      font-weight:800;
+      letter-spacing:4px;
+      color:#fff;
+      margin-bottom:24px;
+    }
+    .url-label{ font-size:.85em; opacity:.6; margin-bottom:6px; }
+    .url{
+      display:inline-block;
+      background:rgba(255,255,255,.08);
+      border-radius:10px;
+      padding:10px 24px;
+      font-size:1em;
+      color:#ff69b4;
+      font-weight:600;
+      margin-bottom:28px;
+      word-break:break-all;
+    }
+    .steps{
+      text-align:left;
+      max-width:380px;
+      margin:0 auto;
+      font-size:.9em;
+      opacity:.8;
+      line-height:1.8;
+    }
+    .steps span{ opacity:.5; }
+    .footer{
+      margin-top:28px;
+      font-size:.75em;
+      opacity:.4;
+    }
+    @media print{
+      body{ background:#fff; padding:0; }
+      .card{ box-shadow:none; border:2px solid #3D3D8E; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="stars">&#x2B50; &#x2B50; &#x2B50; &#x2B50; &#x2B50;</div>
+
+    <h1>&#x1F319; Coco ne dort pas ce soir !</h1>
+    <div class="subtitle">Une aventure de Coco l&rsquo;Axolotl</div>
+
+    <div class="thanks">Merci pour votre achat ! &#x1F496;<br>Thank you for your purchase!</div>
+
+    <div class="code-label">Votre code d&rsquo;acc&egrave;s / Your access code:</div>
+    <div class="code">COCO-DODO-2026</div>
+
+    <div class="url-label">Rendez-vous sur / Go to:</div>
+    <div class="url">cocotheaxolotl.org/sleep-book/read/</div>
+
+    <div class="steps">
+      <span>1.</span> Ouvrez le lien ci-dessus / Open the link above<br>
+      <span>2.</span> Entrez votre code / Enter your code<br>
+      <span>3.</span> Bonne lecture ! / Enjoy reading! &#x1F4D6;
+    </div>
+
+    <div class="footer">
+      &copy; 2026 Dr. Anita NIRVENA &bull; cocotheaxolotl.org &bull; Illustrations: Loopinky
+    </div>
+  </div>
+</body>
+</html>

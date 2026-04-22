@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Book Bubble Insert - B&W - Coco the Axolotl</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ---------- Language switcher (screen only) ---------- */
+.lang-switch{position:fixed;top:12px;right:12px;z-index:100;display:flex;gap:6px;background:#fff;padding:8px 14px;border-radius:24px;box-shadow:0 2px 12px rgba(0,0,0,.15);font-family:'Baloo 2',cursive}
+.lang-switch button{padding:4px 14px;border:2px solid #333;border-radius:16px;background:#fff;color:#333;font-weight:800;cursor:pointer;font-family:inherit;font-size:.85em}
+.lang-switch button.active{background:#333;color:#fff}
+@media print{.lang-switch{display:none!important}}
+
+/* ---------- Print setup ---------- */
+@page{size:8.5in 11in;margin:.5in}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;font-family:'Baloo 2',cursive;background:#fff}
+
+/* ---------- Page container ---------- */
+.page{
+  width:7.5in;margin:0 auto;padding:.4in 0;
+  display:flex;flex-direction:column;align-items:center;gap:.5in;
+}
+
+/* ---------- Version label (screen only) ---------- */
+.version-label{
+  font-size:.75em;font-weight:800;color:#999;
+  text-transform:uppercase;letter-spacing:.1em;
+  margin-bottom:.05in;
+}
+@media print{.version-label{display:none!important}}
+
+/* ---------- Separator ---------- */
+.sep{
+  width:80%;height:0;border:none;
+  border-top:1px dashed #ccc;margin:.05in 0;
+}
+
+/* ============================================
+   SOAP BUBBLE — shared style
+   ============================================ */
+.soap-bubble{
+  position:relative;
+  border:2.5px solid #000;
+  border-radius:50%;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  background:#fff;
+}
+/* Shine highlight (top-left) */
+.soap-bubble::before{
+  content:'';position:absolute;
+  top:12%;left:18%;
+  width:22%;height:18%;
+  border-radius:50%;
+  border:2px solid #000;
+  transform:rotate(-35deg);
+  opacity:.4;
+}
+/* Small shine dot */
+.soap-bubble::after{
+  content:'';position:absolute;
+  top:10%;left:15%;
+  width:6%;height:5%;
+  border-radius:50%;
+  background:#000;
+  opacity:.25;
+}
+
+/* ============================================
+   BUBBLE SIZE VARIANTS
+   ============================================ */
+
+/* --- Big bubble (with QR inside) --- */
+.bubble-big{
+  width:3.6in;height:3.6in;
+  padding:.5in;
+}
+.bubble-big .slogan{
+  font-size:1.25em;font-weight:800;
+  line-height:1.2;
+  margin-bottom:.12in;
+}
+.bubble-big .qr{
+  width:1.2in;height:1.2in;
+  border:2px solid #000;border-radius:8px;padding:3px;
+  margin-bottom:.06in;
+}
+.bubble-big .url{
+  font-size:.6em;font-weight:800;
+}
+
+/* --- Medium bubble (slogan + small QR) --- */
+.bubble-med{
+  width:2.8in;height:2.8in;
+  padding:.35in;
+}
+.bubble-med .slogan{
+  font-size:1.05em;font-weight:800;
+  line-height:1.2;
+  margin-bottom:.1in;
+}
+.bubble-med .qr{
+  width:.85in;height:.85in;
+  border:2px solid #000;border-radius:6px;padding:2px;
+  margin-bottom:.04in;
+}
+.bubble-med .url{
+  font-size:.55em;font-weight:800;
+}
+
+/* --- Small bubble (slogan only, no QR) --- */
+.bubble-sm{
+  width:2.2in;height:2.2in;
+  padding:.3in;
+}
+.bubble-sm .slogan{
+  font-size:.95em;font-weight:800;
+  line-height:1.2;
+}
+
+/* ============================================
+   LAYOUT: Row of bubbles
+   ============================================ */
+.bubble-row{
+  display:flex;align-items:center;justify-content:center;
+  gap:.3in;flex-wrap:wrap;
+}
+
+/* ============================================
+   SINGLE BUBBLE + QR aside (horizontal)
+   ============================================ */
+.bubble-with-qr{
+  display:flex;align-items:center;gap:.25in;
+}
+.bubble-with-qr .qr-aside{
+  text-align:center;
+}
+.bubble-with-qr .qr-aside img{
+  width:1.1in;height:1.1in;
+  border:2.5px solid #000;border-radius:8px;padding:3px;
+}
+.bubble-with-qr .qr-aside .url{
+  display:block;margin-top:.04in;
+  font-size:.6em;font-weight:800;
+}
+
+/* ---------- Language visibility ---------- */
+[data-lang]{display:none}
+[data-lang="en"]{display:block}
+span[data-lang="en"]{display:inline}
+body.fr [data-lang="en"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr span[data-lang="fr"]{display:inline}
+body.es [data-lang="en"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es span[data-lang="es"]{display:inline}
+</style>
+</head>
+<body>
+
+<!-- Screen-only language switcher -->
+<div class="lang-switch">
+  <button class="active" onclick="setLang('en')">EN</button>
+  <button onclick="setLang('fr')">FR</button>
+  <button onclick="setLang('es')">ES</button>
+</div>
+
+<div class="page">
+
+  <!-- ======================================================== -->
+  <div class="version-label">Version A — 1 grosse bulle avec QR dedans</div>
+  <!-- ======================================================== -->
+
+  <div class="soap-bubble bubble-big">
+    <div class="slogan">
+      <span data-lang="en">Want more<br>free coloring<br>pages?</span>
+      <span data-lang="fr">Tu veux d'autres<br>coloriages<br>gratuits ?</span>
+      <span data-lang="es">&iquest;Quieres m&aacute;s<br>dibujos<br>gratis?</span>
+    </div>
+    <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=000000&data=https%3A%2F%2Fcocotheaxolotl.org%2Ffreebies%2F%3Futm_source%3Dbook%26utm_medium%3Dqr%26utm_campaign%3Dbonus" alt="QR">
+    <div class="url">cocotheaxolotl.org</div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ======================================================== -->
+  <div class="version-label">Version B — 2 bulles c&ocirc;te &agrave; c&ocirc;te</div>
+  <!-- ======================================================== -->
+
+  <div class="bubble-row">
+    <div class="soap-bubble bubble-med">
+      <div class="slogan">
+        <span data-lang="en">Write your<br>name in<br>bubbles!</span>
+        <span data-lang="fr">Ecris ton<br>nom en<br>bulles !</span>
+        <span data-lang="es">&iexcl;Escribe tu<br>nombre en<br>burbujas!</span>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=000000&data=https%3A%2F%2Fcocotheaxolotl.org%2Fbubble-name%2F%3Futm_source%3Dbook%26utm_medium%3Dqr" alt="QR">
+      <div class="url">cocotheaxolotl.org</div>
+    </div>
+    <div class="soap-bubble bubble-med">
+      <div class="slogan">
+        <span data-lang="en">Write your<br>name in<br>clouds!</span>
+        <span data-lang="fr">&Eacute;cris ton<br>nom en<br>nuages !</span>
+        <span data-lang="es">&iexcl;Escribe tu<br>nombre en<br>nubes!</span>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=000000&data=https%3A%2F%2Fcocotheaxolotl.org%2Fcloud-name%2F%3Futm_source%3Dbook%26utm_medium%3Dqr" alt="QR">
+      <div class="url">cocotheaxolotl.org</div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ======================================================== -->
+  <div class="version-label">Version C — 3 petites bulles + QR &agrave; c&ocirc;t&eacute;</div>
+  <!-- ======================================================== -->
+
+  <div class="bubble-with-qr">
+    <div class="bubble-row" style="gap:.2in">
+      <div class="soap-bubble bubble-sm">
+        <div class="slogan">
+          <span data-lang="en">Spot the 7<br>differences!</span>
+          <span data-lang="fr">Trouve les 7<br>diff&eacute;rences !</span>
+          <span data-lang="es">&iexcl;Encuentra las<br>7 diferencias!</span>
+        </div>
+      </div>
+      <div class="soap-bubble bubble-sm">
+        <div class="slogan">
+          <span data-lang="en">Try a<br>maze!</span>
+          <span data-lang="fr">Fais un<br>labyrinthe !</span>
+          <span data-lang="es">&iexcl;Haz un<br>laberinto!</span>
+        </div>
+      </div>
+      <div class="soap-bubble bubble-sm">
+        <div class="slogan">
+          <span data-lang="en">Free coloring<br>pages!</span>
+          <span data-lang="fr">Coloriages<br>gratuits !</span>
+          <span data-lang="es">&iexcl;Dibujos<br>gratis!</span>
+        </div>
+      </div>
+    </div>
+    <div class="qr-aside">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=000000&data=https%3A%2F%2Fcocotheaxolotl.org%2Ffreebies%2F%3Futm_source%3Dbook%26utm_medium%3Dqr%26utm_campaign%3Dbonus" alt="QR">
+      <div class="url">cocotheaxolotl.org</div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ======================================================== -->
+  <div class="version-label">Version D — Bulle unique + QR &agrave; c&ocirc;t&eacute;</div>
+  <!-- ======================================================== -->
+
+  <div class="bubble-with-qr">
+    <div class="soap-bubble bubble-big" style="width:3.2in;height:3.2in">
+      <div class="slogan">
+        <span data-lang="en">Want to<br>do a maze<br>right now?</span>
+        <span data-lang="fr">Tu veux faire<br>un labyrinthe<br>maintenant ?</span>
+        <span data-lang="es">&iquest;Quieres hacer<br>un laberinto<br>ahora?</span>
+      </div>
+    </div>
+    <div class="qr-aside">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&color=000000&data=https%3A%2F%2Fcocotheaxolotl.org%2Ffreebies%2F%3Futm_source%3Dbook%26utm_medium%3Dqr%26utm_campaign%3Dmazes" alt="QR">
+      <div class="url">cocotheaxolotl.org</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setLang(lang){
+  document.body.className = lang === 'en' ? '' : lang;
+  document.querySelectorAll('.lang-switch button').forEach(function(b){
+    b.classList.toggle('active', b.textContent === lang.toUpperCase());
+  });
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>

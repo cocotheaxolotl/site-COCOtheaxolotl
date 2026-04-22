@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <defs>
+    <linearGradient id="wb" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#81ecec"/>
+      <stop offset="100%" stop-color="#00cec9"/>
+    </linearGradient>
+    <linearGradient id="ws" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00cec9"/>
+      <stop offset="100%" stop-color="#009e9a"/>
+    </linearGradient>
+    <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#636e72"/>
+      <stop offset="100%" stop-color="#2d3436"/>
+    </linearGradient>
+  </defs>
+  <!-- 3D depth -->
+  <path d="M20,45 L20,165 L28,172 L28,52 Z" fill="url(#ws)"/>
+  <path d="M20,165 L180,165 L188,172 L28,172 Z" fill="#009e9a"/>
+  <!-- Wagon body -->
+  <rect x="20" y="45" width="160" height="120" rx="8" fill="url(#wb)" stroke="#2d3436" stroke-width="3"/>
+  <!-- Roof -->
+  <rect x="12" y="38" width="176" height="16" rx="6" fill="url(#rg)" stroke="#2d3436" stroke-width="2"/>
+  <!-- Plank lines -->
+  <line x1="20" y1="85" x2="180" y2="85" stroke="#009e9a" stroke-width="1.5" opacity="0.4"/>
+  <line x1="20" y1="125" x2="180" y2="125" stroke="#009e9a" stroke-width="1.5" opacity="0.4"/>
+  <!-- Letter -->
+  <text x="100" y="148" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="110" font-weight="900" fill="#fff" stroke="#2d3436" stroke-width="3" paint-order="stroke">R</text>
+  <!-- Rivets -->
+  <circle cx="32" cy="58" r="4" fill="#636e72" stroke="#2d3436" stroke-width="1"/>
+  <circle cx="168" cy="58" r="4" fill="#636e72" stroke="#2d3436" stroke-width="1"/>
+  <circle cx="32" cy="152" r="4" fill="#636e72" stroke="#2d3436" stroke-width="1"/>
+  <circle cx="168" cy="152" r="4" fill="#636e72" stroke="#2d3436" stroke-width="1"/>
+  <!-- Wheels -->
+  <circle cx="55" cy="185" r="18" fill="#555" stroke="#2d3436" stroke-width="3"/>
+  <circle cx="55" cy="185" r="8" fill="#888" stroke="#2d3436" stroke-width="2"/>
+  <circle cx="55" cy="185" r="3" fill="#2d3436"/>
+  <circle cx="145" cy="185" r="18" fill="#555" stroke="#2d3436" stroke-width="3"/>
+  <circle cx="145" cy="185" r="8" fill="#888" stroke="#2d3436" stroke-width="2"/>
+  <circle cx="145" cy="185" r="3" fill="#2d3436"/>
+  <!-- Wheel connectors -->
+  <rect x="38" y="168" width="6" height="14" rx="2" fill="#636e72" stroke="#2d3436" stroke-width="1.5"/>
+  <rect x="156" y="168" width="6" height="14" rx="2" fill="#636e72" stroke="#2d3436" stroke-width="1.5"/>
+  <!-- Couplings -->
+  <rect x="0" y="155" width="20" height="8" rx="3" fill="#636e72" stroke="#2d3436" stroke-width="1.5"/>
+  <rect x="180" y="155" width="20" height="8" rx="3" fill="#636e72" stroke="#2d3436" stroke-width="1.5"/>
+</svg>

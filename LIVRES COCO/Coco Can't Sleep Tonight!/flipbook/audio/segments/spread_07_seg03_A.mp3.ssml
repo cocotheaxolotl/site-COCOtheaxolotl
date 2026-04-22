@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="+8%" rate="1.08">
+      Bien sûr ! Et pendant qu'on dort, notre cerveau trie tout ce qu'on a appris, où sont les insectes, quels chemins éviter...
+    </prosody>
+  </voice>
+</speak>

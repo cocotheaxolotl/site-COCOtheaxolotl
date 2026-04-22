@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="0%" rate="0.90">
+      Je fais plein de petits dodos. On appelle ça des micro-siestes !
+    </prosody>
+  </voice>
+</speak>

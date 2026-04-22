@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>Coco hors ligne</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #fff;
+      background:
+        radial-gradient(circle at top, rgba(255, 182, 193, 0.18), transparent 35%),
+        linear-gradient(160deg, #0e1a30 0%, #16213e 45%, #0f3460 100%);
+    }
+    main {
+      width: min(100%, 420px);
+      padding: 28px 24px;
+      border-radius: 24px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+    }
+    img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 0 18px rgba(255, 182, 193, 0.35));
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+      color: #ffb6c1;
+    }
+    p {
+      margin: 0 0 18px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.84);
+    }
+    a {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #ff6b9d, #c44dff);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="./coco.png" alt="Coco the Axolotl">
+    <h1>Mode hors ligne</h1>
+    <p>La coherence cardiaque reste disponible meme sans reseau une fois l'app chargee au moins une fois.</p>
+    <a href="./index.html">Retourner a Coco</a>
+  </main>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "coco-coherence-cardiaque",
+  "version": "1.0.0",
+  "description": "Cohérence cardiaque avec Coco the Axolotl",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'Web app is static, no build needed'",
+    "cap:add:android": "npx cap add android",
+    "cap:sync": "npx cap sync",
+    "cap:open": "npx cap open android"
+  },
+  "author": "Loopinky",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}

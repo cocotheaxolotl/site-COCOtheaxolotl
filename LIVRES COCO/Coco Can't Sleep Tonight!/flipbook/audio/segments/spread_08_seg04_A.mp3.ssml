@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="0%" rate="0.90">
+      Pour les petits axolotls, c'est mieux de faire un long sommeil la nuit. Pendant le sommeil profond, ton corps se répare !
+    </prosody>
+  </voice>
+</speak>

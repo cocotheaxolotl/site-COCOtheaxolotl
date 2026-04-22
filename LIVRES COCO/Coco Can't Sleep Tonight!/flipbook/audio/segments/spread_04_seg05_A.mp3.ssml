@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="+12%" rate="1.10">
+      Le sommeil est si important que j'ai trouvé un moyen de ne jamais m'en passer !
+    </prosody>
+  </voice>
+</speak>

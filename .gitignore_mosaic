@@ -1,0 +1,14 @@
+# Mosaic app temp files
+static/uploads/
+static/output/
+__pycache__/
+*.pyc
+
+# Test outputs
+*-mosaic-*.png
+*-mystery*.png
+*-answer*.png
+*-legend*.png
+mosaic-*.png
+test-cbn-*
+cbn-*

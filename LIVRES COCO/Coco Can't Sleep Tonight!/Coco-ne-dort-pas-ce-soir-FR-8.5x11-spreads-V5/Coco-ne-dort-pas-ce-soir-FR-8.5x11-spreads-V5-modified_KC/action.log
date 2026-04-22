@@ -1,0 +1,28 @@
+[Sun Apr 05 12:48:20 UTC 2026][INFO] [Action] EE NewBook
+[Sun Apr 05 12:48:21 UTC 2026][INFO] [Action] EE ZoomPage
+[Sun Apr 05 12:54:23 UTC 2026][INFO] [Action] E SaveBook - Save
+[Sun Apr 05 12:54:32 UTC 2026][INFO] [Action] EFail SaveBook - 4
+[Sun Apr 05 12:55:24 UTC 2026][INFO] [Action] E ItemChanged - 1,5
+[Sun Apr 05 12:55:24 UTC 2026][INFO] [Action] EE ZoomPage
+[Sun Apr 05 12:55:40 UTC 2026][INFO] [Action] E PreviewBook - 5
+[Sun Apr 05 12:56:32 UTC 2026][INFO] [Action] EE ZoomPage
+[Sun Apr 05 12:56:33 UTC 2026][INFO] [Action] EE Scroll
+[Sun Apr 05 12:56:36 UTC 2026][INFO] [Action] E ItemChanged - 13,41
+[Sun Apr 05 12:56:36 UTC 2026][INFO] [Action] EE ZoomPage
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE NextPage
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE ZoomPage
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE NextPage
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE NextPage
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE Scroll
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE NextPage
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE NextPage
+[Sun Apr 05 12:56:38 UTC 2026][INFO] [Action] EE ZoomPage
+[Sun Apr 05 12:56:44 UTC 2026][INFO] [Action] E SaveBook - SaveforExport
+[Sun Apr 05 12:56:54 UTC 2026][INFO] [Action] EE PackageWorkspace
+[Sun Apr 05 12:57:05 UTC 2026][INFO] [Action] EE ZoomPage
+[Sun Apr 05 12:57:17 UTC 2026][INFO] [Action] E PreviewBook - 47
+[Sun Apr 05 12:58:07 UTC 2026][INFO] [Action] E SaveBook - SaveforExport
+[Sun Apr 05 15:41:54 UTC 2026][INFO] [Action] EE PackageWorkspace
+[Sun Apr 05 15:41:54 UTC 2026][INFO] [Action] EFail PackageWorkspace - 5
+[Sun Apr 05 15:41:56 UTC 2026][INFO] [Action] E SaveBook - Save
+[Sun Apr 05 15:41:56 UTC 2026][INFO] Logger Terminated

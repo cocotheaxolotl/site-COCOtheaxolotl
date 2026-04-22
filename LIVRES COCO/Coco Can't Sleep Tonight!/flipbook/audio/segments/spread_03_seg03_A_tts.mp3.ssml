@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="-8%" rate="0.92">
+      Je suis nocturne ! Je travaille la nuit et je dors le jour. Mais même moi, j'ai besoin de dormir. Tout le monde a besoin de dormir !
+    </prosody>
+  </voice>
+</speak>

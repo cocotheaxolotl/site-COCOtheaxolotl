@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Whose Egg Is This? — Book Prototype — Coco the Axolotl</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ---------- Language switcher (screen only) ---------- */
+.lang-switch{position:fixed;top:12px;right:12px;z-index:100;display:flex;gap:6px;background:#fff;padding:8px 14px;border-radius:24px;box-shadow:0 2px 12px rgba(0,0,0,.15);font-family:'Baloo 2',cursive}
+.lang-switch button{padding:4px 14px;border:2px solid #ff69b4;border-radius:16px;background:#fff;color:#ff69b4;font-weight:800;cursor:pointer;font-family:inherit;font-size:.85em}
+.lang-switch button.active{background:#ff69b4;color:#fff}
+@media print{.lang-switch{display:none!important}}
+
+/* ---------- Print setup ---------- */
+@page{size:8.5in 8.5in;margin:.5in}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;font-family:'Baloo 2',cursive;background:#f9f9f9}
+
+/* ---------- Page ---------- */
+.page{
+  width:8.5in;min-height:8.5in;
+  margin:20px auto;padding:.6in;
+  background:#fff;
+  box-shadow:0 2px 20px rgba(0,0,0,.08);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  page-break-after:always;
+  position:relative;
+}
+@media print{.page{box-shadow:none;margin:0}}
+
+/* ---------- Cover ---------- */
+.cover{background:linear-gradient(135deg,#ffe4f0,#fff0f5,#ffe4f0)}
+.cover h1{font-size:2.4em;color:#d6006e;line-height:1.2;margin-bottom:.15in}
+.cover .subtitle{font-size:1.3em;color:#e91e63;margin-bottom:.3in}
+.cover .author{font-size:1em;color:#999;margin-top:.3in}
+
+/* ---------- Illustration placeholder ---------- */
+.illust{
+  width:4.5in;height:4.5in;
+  border:3px dashed #ffb6c1;
+  border-radius:24px;
+  display:flex;align-items:center;justify-content:center;
+  color:#ffb6c1;font-size:1.1em;font-weight:800;
+  margin:.2in auto;
+  background:#fff9fb;
+}
+.illust-small{width:3in;height:3in}
+
+/* ---------- Story text ---------- */
+.story-text{
+  font-size:1.15em;line-height:1.6;
+  max-width:6.5in;
+  color:#333;
+  padding:.15in 0;
+}
+.story-text .animal-name{
+  font-size:1.4em;font-weight:800;color:#d6006e;
+  display:block;margin-bottom:.08in;
+}
+.story-text .dialogue{
+  font-style:italic;color:#8b004a;
+}
+
+/* ---------- Animal number ---------- */
+.animal-num{
+  position:absolute;top:.4in;right:.5in;
+  font-size:.85em;font-weight:800;color:#ffb6c1;
+}
+
+/* ---------- Egg emoji watermark ---------- */
+.egg-watermark{
+  position:absolute;bottom:.4in;right:.5in;
+  font-size:2em;opacity:.15;
+}
+
+/* ---------- End page ---------- */
+.end-page{background:linear-gradient(135deg,#fff0f5,#ffe4f0,#fff0f5)}
+.end-page h2{font-size:2em;color:#d6006e;margin-bottom:.2in}
+
+/* ---------- Fun fact box ---------- */
+.fun-fact{
+  background:#fff0f5;
+  border:2px solid #ffb6c1;
+  border-radius:16px;
+  padding:12px 20px;
+  font-size:.85em;
+  color:#8b004a;
+  max-width:5in;
+  margin-top:.15in;
+}
+.fun-fact strong{color:#d6006e}
+
+/* ---------- Language visibility ---------- */
+[data-lang]{display:none}
+[data-lang="en"]{display:block}
+span[data-lang="en"]{display:inline}
+body.fr [data-lang="en"]{display:none}
+body.fr [data-lang="fr"]{display:block}
+body.fr span[data-lang="fr"]{display:inline}
+body.es [data-lang="en"]{display:none}
+body.es [data-lang="es"]{display:block}
+body.es span[data-lang="es"]{display:inline}
+
+/* ---------- Screen nav ---------- */
+.page-nav{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:100;
+  background:#fff;padding:8px 16px;border-radius:24px;
+  box-shadow:0 2px 12px rgba(0,0,0,.15);
+  font-family:'Baloo 2',cursive;font-size:.8em;
+}
+.page-nav span{color:#999}
+@media print{.page-nav{display:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Language switcher -->
+<div class="lang-switch">
+  <button class="active" onclick="setLang('en')">EN</button>
+  <button onclick="setLang('fr')">FR</button>
+  <button onclick="setLang('es')">ES</button>
+</div>
+
+<!-- ============================================ -->
+<!-- COVER -->
+<!-- ============================================ -->
+<div class="page cover">
+  <div class="illust" style="width:5in;height:5in">
+    <div data-lang="en">[ COVER ART ]<br>Coco with eggshell hat,<br>surrounded by baby animals,<br>Mama + Lili in background</div>
+    <div data-lang="fr">[ ILLUSTRATION COUVERTURE ]<br>Coco avec coquille sur la t&ecirc;te,<br>entour&eacute; de b&eacute;b&eacute;s animaux,<br>Maman + Lili en arri&egrave;re-plan</div>
+    <div data-lang="es">[ PORTADA ]<br>Coco con cascar&oacute;n en la cabeza,<br>rodeado de beb&eacute;s animales,<br>Mam&aacute; + Lili al fondo</div>
+  </div>
+  <h1>
+    <span data-lang="en">Whose Egg Is This?</span>
+    <span data-lang="fr">&Agrave; qui est cet &oelig;uf ?</span>
+    <span data-lang="es">&iquest;De qui&eacute;n es este huevo?</span>
+  </h1>
+  <div class="subtitle">
+    <span data-lang="en">A Coco the Axolotl Adventure</span>
+    <span data-lang="fr">Une aventure de Coco l'Axolotl</span>
+    <span data-lang="es">Una aventura de Coco el Ajolote</span>
+  </div>
+  <div class="author">Coco the Axolotl &bull; cocotheaxolotl.org</div>
+</div>
+
+<!-- ============================================ -->
+<!-- INTRO -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="illust">
+    <div data-lang="en">[ Coco by the river,<br>finding the cracked eggshell ]</div>
+    <div data-lang="fr">[ Coco au bord de la rivi&egrave;re,<br>trouvant la coquille cass&eacute;e ]</div>
+    <div data-lang="es">[ Coco junto al r&iacute;o,<br>encontrando el cascar&oacute;n roto ]</div>
+  </div>
+  <div class="story-text">
+    <div data-lang="en">One sunny morning, little Coco found a cracked eggshell by the river.<br><span class="dialogue">"Oh! Whose egg is this?"</span> Coco wondered.<br><span class="dialogue">"I must find who it belongs to!"</span><br>And so, Coco set off on a big adventure to meet all the baby animals.</div>
+    <div data-lang="fr">Par un beau matin ensoleill&eacute;, Coco trouva une coquille d'&oelig;uf cass&eacute;e au bord de la rivi&egrave;re.<br><span class="dialogue">&laquo; Oh ! &Agrave; qui est cet &oelig;uf ? &raquo;</span> se demanda Coco.<br><span class="dialogue">&laquo; Je dois trouver &agrave; qui il appartient ! &raquo;</span><br>Et Coco partit pour une grande aventure &agrave; la rencontre de tous les b&eacute;b&eacute;s animaux.</div>
+    <div data-lang="es">Una soleada ma&ntilde;ana, Coco encontr&oacute; un cascar&oacute;n roto junto al r&iacute;o.<br><span class="dialogue">&laquo; &iexcl;Oh! &iquest;De qui&eacute;n es este huevo? &raquo;</span> se pregunt&oacute; Coco.<br><span class="dialogue">&laquo; &iexcl;Tengo que encontrar a qui&eacute;n pertenece! &raquo;</span><br>Y as&iacute;, Coco parti&oacute; en una gran aventura para conocer a todos los beb&eacute;s animales.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 1. KITTEN -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">1 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby kitten<br>playing with yarn ]</div>
+    <div data-lang="fr">[ Coco rencontre un chaton<br>jouant avec une pelote ]</div>
+    <div data-lang="es">[ Coco encuentra un gatito<br>jugando con un ovillo ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🐱 <span data-lang="en">Baby Kitten</span><span data-lang="fr">B&eacute;b&eacute; Chaton</span><span data-lang="es">Gatito</span></span>
+    <div data-lang="en">Coco met a tiny kitten playing with a ball of yarn.<br><span class="dialogue">"Is this your eggshell, little kitten?"</span><br>The kitten purred and shook its head.<br><span class="dialogue">"No, silly! Kittens don't hatch from eggs! But keep looking!"</span></div>
+    <div data-lang="fr">Coco rencontra un petit chaton qui jouait avec une pelote de laine.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit chaton ? &raquo;</span><br>Le chaton ronronna et secoua la t&ecirc;te.<br><span class="dialogue">&laquo; Mais non ! Les chatons ne sortent pas des &oelig;ufs ! Mais continue &agrave; chercher ! &raquo;</span></div>
+    <div data-lang="es">Coco encontr&oacute; un gatito jugando con un ovillo de lana.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, gatito? &raquo;</span><br>El gatito ronrone&oacute; y neg&oacute; con la cabeza.<br><span class="dialogue">&laquo; &iexcl;No, tontita! &iexcl;Los gatitos no nacen de huevos! &iexcl;Pero sigue buscando! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Kittens are born with their eyes closed. They can't see for the first 7-10 days!</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les chatons naissent les yeux ferm&eacute;s. Ils ne voient rien pendant les 7 &agrave; 10 premiers jours !</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los gatitos nacen con los ojos cerrados y no pueden ver durante los primeros 7 a 10 d&iacute;as!</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 2. PUPPY -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">2 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby puppy<br>wagging its tail ]</div>
+    <div data-lang="fr">[ Coco rencontre un chiot<br>remuant la queue ]</div>
+    <div data-lang="es">[ Coco encuentra un perrito<br>moviendo la cola ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🐶 <span data-lang="en">Baby Puppy</span><span data-lang="fr">B&eacute;b&eacute; Chiot</span><span data-lang="es">Perrito</span></span>
+    <div data-lang="en">Next, Coco found a puppy wagging its tail.<br><span class="dialogue">"Is this your eggshell, little puppy?"</span><br>The puppy barked happily.<br><span class="dialogue">"Woof! No way! Puppies don't come from eggs! Try asking someone else!"</span></div>
+    <div data-lang="fr">Ensuite, Coco trouva un chiot qui remuait la queue.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit chiot ? &raquo;</span><br>Le chiot aboya joyeusement.<br><span class="dialogue">&laquo; Wouf ! Pas du tout ! Les chiots ne viennent pas des &oelig;ufs ! Essaie de demander &agrave; quelqu'un d'autre ! &raquo;</span></div>
+    <div data-lang="es">Despu&eacute;s, Coco encontr&oacute; un perrito moviendo la cola.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, perrito? &raquo;</span><br>El perrito ladr&oacute; feliz.<br><span class="dialogue">&laquo; &iexcl;Guau! &iexcl;Para nada! &iexcl;Los perritos no vienen de huevos! &iexcl;Preg&uacute;ntale a alguien m&aacute;s! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Puppies are born deaf! They can't hear anything for the first two weeks.</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les chiots naissent sourds ! Ils n'entendent rien pendant les deux premi&egrave;res semaines.</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los perritos nacen sordos! No pueden o&iacute;r nada durante las dos primeras semanas.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 3. BUNNY -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">3 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby bunny<br>nibbling a carrot ]</div>
+    <div data-lang="fr">[ Coco rencontre un lapin<br>grignotant une carotte ]</div>
+    <div data-lang="es">[ Coco encuentra un conejito<br>mordisqueando una zanahoria ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🐰 <span data-lang="en">Baby Bunny</span><span data-lang="fr">B&eacute;b&eacute; Lapin</span><span data-lang="es">Conejito</span></span>
+    <div data-lang="en">Coco hopped over to a fluffy bunny nibbling a carrot.<br><span class="dialogue">"Is this your eggshell, little bunny?"</span><br>The bunny wiggled its nose.<br><span class="dialogue">"Hee hee! No! Bunnies don't hatch from eggs! But I do love Easter eggs!"</span></div>
+    <div data-lang="fr">Coco sautilla jusqu'&agrave; un petit lapin tout doux qui grignotait une carotte.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit lapin ? &raquo;</span><br>Le lapin remua son petit nez.<br><span class="dialogue">&laquo; Hi hi ! Non ! Les lapins ne sortent pas des &oelig;ufs ! Mais j'adore les &oelig;ufs de P&acirc;ques ! &raquo;</span></div>
+    <div data-lang="es">Coco salt&oacute; hacia un conejito esponjoso que mordisqueaba una zanahoria.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, conejito? &raquo;</span><br>El conejito movi&oacute; su naricita.<br><span class="dialogue">&laquo; &iexcl;Ji ji! &iexcl;No! &iexcl;Los conejos no nacen de huevos! &iexcl;Pero me encantan los huevos de Pascua! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Baby bunnies are called kittens too! A group of baby bunnies is called a litter.</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les b&eacute;b&eacute;s lapins s'appellent aussi des &laquo; lapereaux &raquo; ! Une port&eacute;e peut compter jusqu'&agrave; 12 petits.</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los beb&eacute;s conejo tambi&eacute;n se llaman gazapos! Una camada puede tener hasta 12 conejitos.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 4. UNICORN -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">4 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby unicorn<br>with sparkly horn ]</div>
+    <div data-lang="fr">[ Coco rencontre une licorne<br>avec corne scintillante ]</div>
+    <div data-lang="es">[ Coco encuentra un unicornio<br>con cuerno brillante ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🦄 <span data-lang="en">Baby Unicorn</span><span data-lang="fr">B&eacute;b&eacute; Licorne</span><span data-lang="es">Unicornio beb&eacute;</span></span>
+    <div data-lang="en">Coco spotted a baby unicorn with a sparkly little horn.<br><span class="dialogue">"Is this your eggshell, little unicorn?"</span><br>The unicorn shook its rainbow mane.<br><span class="dialogue">"Oh no! Unicorns are born with a sprinkle of magic, not from eggs!"</span></div>
+    <div data-lang="fr">Coco aper&ccedil;ut un b&eacute;b&eacute; licorne avec une petite corne scintillante.<br><span class="dialogue">&laquo; Est-ce ta coquille, petite licorne ? &raquo;</span><br>La licorne secoua sa crini&egrave;re arc-en-ciel.<br><span class="dialogue">&laquo; Oh non ! Les licornes naissent avec une pinc&eacute;e de magie, pas dans des &oelig;ufs ! &raquo;</span></div>
+    <div data-lang="es">Coco vio un beb&eacute; unicornio con un cuernito brillante.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, unicornio? &raquo;</span><br>El unicornio sacudi&oacute; su melena arco&iacute;ris.<br><span class="dialogue">&laquo; &iexcl;Oh no! &iexcl;Los unicornios nacen con una pizca de magia, no de huevos! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> The unicorn is the national animal of Scotland! It has been a symbol there for hundreds of years.</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> La licorne est l'animal national de l'&Eacute;cosse ! C'est un symbole l&agrave;-bas depuis des centaines d'ann&eacute;es.</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;El unicornio es el animal nacional de Escocia! Ha sido un s&iacute;mbolo all&iacute; durante cientos de a&ntilde;os.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 5. PANDA -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">5 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby panda<br>munching bamboo ]</div>
+    <div data-lang="fr">[ Coco rencontre un panda<br>croquant du bambou ]</div>
+    <div data-lang="es">[ Coco encuentra un pandita<br>masticando bamb&uacute; ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🐼 <span data-lang="en">Baby Panda</span><span data-lang="fr">B&eacute;b&eacute; Panda</span><span data-lang="es">Pandita</span></span>
+    <div data-lang="en">A round baby panda was munching on bamboo.<br><span class="dialogue">"Is this your eggshell, little panda?"</span><br>The panda giggled.<br><span class="dialogue">"No no! Pandas don't come from eggs! But this bamboo is yummy — want some?"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; panda tout rond croquait du bambou.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit panda ? &raquo;</span><br>Le panda rigola.<br><span class="dialogue">&laquo; Non non ! Les pandas ne viennent pas des &oelig;ufs ! Mais ce bambou est trop bon — tu en veux ? &raquo;</span></div>
+    <div data-lang="es">Un beb&eacute; panda redondito masticaba bamb&uacute;.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, pandita? &raquo;</span><br>El panda se ri&oacute;.<br><span class="dialogue">&laquo; &iexcl;No no! &iexcl;Los pandas no vienen de huevos! Pero este bamb&uacute; est&aacute; riqu&iacute;simo, &iquest;quieres un poco? &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Baby pandas are born pink and tiny — about the size of a stick of butter!</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les b&eacute;b&eacute;s pandas naissent roses et minuscules — environ la taille d'une plaquette de beurre !</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los beb&eacute;s panda nacen rosados y diminutos, del tama&ntilde;o de una barra de mantequilla!</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 6. DOLPHIN -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">6 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby dolphin<br>splashing in waves ]</div>
+    <div data-lang="fr">[ Coco rencontre un dauphin<br>faisant des &eacute;claboussures ]</div>
+    <div data-lang="es">[ Coco encuentra un delfincito<br>chapoteando en las olas ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🐬 <span data-lang="en">Baby Dolphin</span><span data-lang="fr">B&eacute;b&eacute; Dauphin</span><span data-lang="es">Delfincito</span></span>
+    <div data-lang="en">Coco swam to a baby dolphin splashing in the waves.<br><span class="dialogue">"Is this your eggshell, little dolphin?"</span><br>The dolphin did a flip.<br><span class="dialogue">"Haha! Dolphins are born in the ocean, not in eggs! Keep searching, friend!"</span></div>
+    <div data-lang="fr">Coco nagea jusqu'&agrave; un b&eacute;b&eacute; dauphin qui faisait des &eacute;claboussures.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit dauphin ? &raquo;</span><br>Le dauphin fit un saut.<br><span class="dialogue">&laquo; Ha ha ! Les dauphins naissent dans l'oc&eacute;an, pas dans des &oelig;ufs ! Continue &agrave; chercher ! &raquo;</span></div>
+    <div data-lang="es">Coco nad&oacute; hasta un beb&eacute; delf&iacute;n que chapoteaba en las olas.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, delfincito? &raquo;</span><br>El delf&iacute;n dio una pirueta.<br><span class="dialogue">&laquo; &iexcl;Jaja! &iexcl;Los delfines nacen en el oc&eacute;ano, no en huevos! &iexcl;Sigue buscando! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Baby dolphins can swim from the moment they're born! Mama dolphin helps push them to the surface to breathe.</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les b&eacute;b&eacute;s dauphins savent nager d&egrave;s la naissance ! Maman dauphin les pousse vers la surface pour respirer.</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los delfines beb&eacute; pueden nadar desde que nacen! Mam&aacute; delf&iacute;n los empuja a la superficie para respirar.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 7. FOAL -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">7 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets wobbly baby horse<br>learning to stand ]</div>
+    <div data-lang="fr">[ Coco rencontre un poulain<br>apprenant &agrave; se lever ]</div>
+    <div data-lang="es">[ Coco encuentra un potrito<br>aprendiendo a pararse ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🐴 <span data-lang="en">Baby Foal</span><span data-lang="fr">B&eacute;b&eacute; Poulain</span><span data-lang="es">Potrito</span></span>
+    <div data-lang="en">A wobbly baby horse was learning to stand.<br><span class="dialogue">"Is this your eggshell, little foal?"</span><br>The foal stumbled and laughed.<br><span class="dialogue">"Neigh! Horses don't hatch from eggs! We stand up right after we're born!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; cheval tout chancelant apprenait &agrave; se tenir debout.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit poulain ? &raquo;</span><br>Le poulain tr&eacute;bucha et rigola.<br><span class="dialogue">&laquo; Hiii ! Les chevaux ne sortent pas des &oelig;ufs ! On se l&egrave;ve juste apr&egrave;s &ecirc;tre n&eacute;s ! &raquo;</span></div>
+    <div data-lang="es">Un potrito tambaleante aprend&iacute;a a ponerse de pie.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, potrito? &raquo;</span><br>El potrito tropez&oacute; y se ri&oacute;.<br><span class="dialogue">&laquo; &iexcl;Iiih! &iexcl;Los caballos no nacen de huevos! &iexcl;Nos ponemos de pie justo al nacer! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Baby horses can walk and run just a few hours after birth! Their legs are almost as long as an adult's.</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les poulains peuvent marcher et courir quelques heures apr&egrave;s la naissance ! Leurs jambes sont presque aussi longues que celles d'un adulte.</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los potros pueden caminar y correr pocas horas despu&eacute;s de nacer! Sus patas son casi tan largas como las de un adulto.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 8. BUTTERFLY -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">8 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby butterfly<br>stretching new wings ]</div>
+    <div data-lang="fr">[ Coco rencontre un papillon<br>d&eacute;ployant ses ailes ]</div>
+    <div data-lang="es">[ Coco encuentra una mariposa<br>estirando sus alas ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🦋 <span data-lang="en">Baby Butterfly</span><span data-lang="fr">B&eacute;b&eacute; Papillon</span><span data-lang="es">Mariposita</span></span>
+    <div data-lang="en">A baby butterfly was stretching its new wings.<br><span class="dialogue">"Is this your eggshell, little butterfly?"</span><br>The butterfly fluttered.<br><span class="dialogue">"Well... I did come from an egg! But it was a tiny, tiny egg on a leaf. That big shell isn't mine!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; papillon d&eacute;ployait ses nouvelles ailes.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit papillon ? &raquo;</span><br>Le papillon voleta.<br><span class="dialogue">&laquo; Eh bien... je suis sorti d'un &oelig;uf ! Mais c'&eacute;tait un tout tout petit &oelig;uf sur une feuille. Cette grosse coquille n'est pas la mienne ! &raquo;</span></div>
+    <div data-lang="es">Una mariposa beb&eacute; estiraba sus alas nuevas.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, mariposita? &raquo;</span><br>La mariposa revolote&oacute;.<br><span class="dialogue">&laquo; Bueno... &iexcl;yo s&iacute; sal&iacute; de un huevo! Pero era un huevito chiquito en una hoja. &iexcl;Ese cascar&oacute;n grande no es m&iacute;o! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Before becoming a butterfly, they're caterpillars first! The change is called metamorphosis.</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Avant de devenir papillon, ils sont d'abord des chenilles ! Ce changement s'appelle la m&eacute;tamorphose.</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Antes de ser mariposa, son orugas! Este cambio se llama metamorfosis.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 9. DINOSAUR -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">9 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby T-Rex<br>playing with a rock ]</div>
+    <div data-lang="fr">[ Coco rencontre un b&eacute;b&eacute; T-Rex<br>jouant avec un caillou ]</div>
+    <div data-lang="es">[ Coco encuentra un beb&eacute; T-Rex<br>jugando con una piedra ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🦖 <span data-lang="en">Baby Dinosaur</span><span data-lang="fr">B&eacute;b&eacute; Dinosaure</span><span data-lang="es">Beb&eacute; Dinosaurio</span></span>
+    <div data-lang="en">Coco stumbled upon a baby T-Rex playing with a rock.<br><span class="dialogue">"Is this your eggshell, little dinosaur?"</span><br>The dino roared softly.<br><span class="dialogue">"RAWR! Dinosaurs did hatch from eggs, long ago! But that shell is too small for me!"</span></div>
+    <div data-lang="fr">Coco tomba sur un b&eacute;b&eacute; T-Rex qui jouait avec un caillou.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit dinosaure ? &raquo;</span><br>Le dino rugit doucement.<br><span class="dialogue">&laquo; GRRRR ! Les dinosaures sortaient bien des &oelig;ufs, il y a tr&egrave;s longtemps ! Mais cette coquille est trop petite pour moi ! &raquo;</span></div>
+    <div data-lang="es">Coco se encontr&oacute; con un beb&eacute; T-Rex jugando con una piedra.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, dinosaurio? &raquo;</span><br>El dino rugi&oacute; suavecito.<br><span class="dialogue">&laquo; &iexcl;RAWR! &iexcl;Los dinosaurios s&iacute; nac&iacute;an de huevos, hace muuucho tiempo! &iexcl;Pero ese cascar&oacute;n es muy peque&ntilde;o para m&iacute;! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> The biggest dinosaur eggs ever found were as big as a basketball!</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les plus gros &oelig;ufs de dinosaure jamais trouv&eacute;s faisaient la taille d'un ballon de basket !</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los huevos de dinosaurio m&aacute;s grandes jam&aacute;s encontrados eran del tama&ntilde;o de un bal&oacute;n de baloncesto!</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 10. LION CUB -->
+<!-- ============================================ -->
+<div class="page">
+  <span class="animal-num">10 / 29</span>
+  <span class="egg-watermark">🥚</span>
+  <div class="illust">
+    <div data-lang="en">[ Coco meets baby lion<br>practicing its roar ]</div>
+    <div data-lang="fr">[ Coco rencontre un lionceau<br>s'entra&icirc;nant &agrave; rugir ]</div>
+    <div data-lang="es">[ Coco encuentra un leoncito<br>practicando su rugido ]</div>
+  </div>
+  <div class="story-text">
+    <span class="animal-name">🦁 <span data-lang="en">Baby Lion</span><span data-lang="fr">B&eacute;b&eacute; Lion</span><span data-lang="es">Leoncito</span></span>
+    <div data-lang="en">A brave little lion cub was practicing its roar.<br><span class="dialogue">"Is this your eggshell, little lion?"</span><br>The cub tried to roar but it came out like a squeak.<br><span class="dialogue">"Mew! No! Lions are not born from eggs! But I'm the king of this jungle!"</span></div>
+    <div data-lang="fr">Un petit lionceau courageux s'entra&icirc;nait &agrave; rugir.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit lion ? &raquo;</span><br>Le lionceau essaya de rugir mais &ccedil;a fit un petit couinement.<br><span class="dialogue">&laquo; Miiou ! Non ! Les lions ne naissent pas dans des &oelig;ufs ! Mais je suis le roi de cette jungle ! &raquo;</span></div>
+    <div data-lang="es">Un valiente cachorro de le&oacute;n practicaba su rugido.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, leoncito? &raquo;</span><br>El cachorro intent&oacute; rugir pero le sali&oacute; un maullido.<br><span class="dialogue">&laquo; &iexcl;Miu! &iexcl;No! &iexcl;Los leones no nacen de huevos! &iexcl;Pero soy el rey de esta selva! &raquo;</span></div>
+  </div>
+  <div class="fun-fact">
+    <div data-lang="en"><strong>Did you know?</strong> Lion cubs are born with spots! The spots fade away as they grow up.</div>
+    <div data-lang="fr"><strong>Le savais-tu ?</strong> Les lionceaux naissent avec des taches ! Elles disparaissent en grandissant.</div>
+    <div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los cachorros de le&oacute;n nacen con manchas! Desaparecen cuando crecen.</div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- 11-29: Remaining animals (continuing pattern) -->
+<!-- Pages 11-29 follow the same structure -->
+<!-- ============================================ -->
+
+<!-- 11. BEAR CUB -->
+<div class="page">
+  <span class="animal-num">11 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby bear<br>licking honey ]</div><div data-lang="fr">[ Coco rencontre un ourson<br>l&eacute;chant du miel ]</div><div data-lang="es">[ Coco encuentra un osito<br>lamiendo miel ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐻 <span data-lang="en">Baby Bear</span><span data-lang="fr">B&eacute;b&eacute; Ours</span><span data-lang="es">Osito</span></span>
+    <div data-lang="en">A fuzzy bear cub was licking honey from its paws.<br><span class="dialogue">"Is this your eggshell, little bear?"</span><br>The cub licked its lips.<br><span class="dialogue">"Nope! Bears are born in cozy caves, not eggs! Want some honey?"</span></div>
+    <div data-lang="fr">Un petit ourson tout poilu l&eacute;chait du miel sur ses pattes.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit ours ? &raquo;</span><br>L'ourson se l&eacute;cha les babines.<br><span class="dialogue">&laquo; Non ! Les ours naissent dans des grottes bien douillettes, pas dans des &oelig;ufs ! Tu veux du miel ? &raquo;</span></div>
+    <div data-lang="es">Un osito peludo lam&iacute;a miel de sus patitas.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, osito? &raquo;</span><br>El osito se relami&oacute;.<br><span class="dialogue">&laquo; &iexcl;No! &iexcl;Los osos nacen en cuevas calentitas, no en huevos! &iquest;Quieres un poco de miel? &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Bear cubs are born during winter while mama bear is hibernating! They're tiny and blind at first.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les oursons naissent en hiver pendant que maman ours hiberne ! Ils sont minuscules et aveugles au d&eacute;but.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los oseznos nacen en invierno mientras mam&aacute; osa hiberna! Son diminutos y ciegos al principio.</div></div>
+</div>
+
+<!-- 12. ELEPHANT -->
+<div class="page">
+  <span class="animal-num">12 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby elephant<br>spraying water ]</div><div data-lang="fr">[ Coco rencontre un &eacute;l&eacute;phanteau<br>s'aspergeant d'eau ]</div><div data-lang="es">[ Coco encuentra un elefantito<br>roci&aacute;ndose agua ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐘 <span data-lang="en">Baby Elephant</span><span data-lang="fr">B&eacute;b&eacute; &Eacute;l&eacute;phant</span><span data-lang="es">Elefantito</span></span>
+    <div data-lang="en">A baby elephant was spraying water with its trunk.<br><span class="dialogue">"Is this your eggshell, little elephant?"</span><br>The elephant trumpeted and laughed.<br><span class="dialogue">"PFRRRT! No way! I was way too big to fit in any egg!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; &eacute;l&eacute;phant s'aspergeait d'eau avec sa trompe.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit &eacute;l&eacute;phant ? &raquo;</span><br>L'&eacute;l&eacute;phant barrit et rigola.<br><span class="dialogue">&laquo; PFRRRT ! Pas possible ! J'&eacute;tais bien trop grand pour rentrer dans un &oelig;uf ! &raquo;</span></div>
+    <div data-lang="es">Un elefantito se rociaba agua con su trompa.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, elefantito? &raquo;</span><br>El elefante trompete&oacute; y se ri&oacute;.<br><span class="dialogue">&laquo; &iexcl;PFRRRT! &iexcl;Imposible! &iexcl;Yo era demasiado grande para caber en un huevo! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Baby elephants weigh about 250 pounds at birth — that's like a big refrigerator!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les b&eacute;b&eacute;s &eacute;l&eacute;phants p&egrave;sent environ 100 kg &agrave; la naissance — c'est comme un gros r&eacute;frig&eacute;rateur !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los elefantes beb&eacute; pesan unos 100 kg al nacer, como un refrigerador grande!</div></div>
+</div>
+
+<!-- 13. GIRAFFE -->
+<div class="page">
+  <span class="animal-num">13 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby giraffe<br>reaching for a leaf ]</div><div data-lang="fr">[ Coco rencontre un girafon<br>essayant d'attraper une feuille ]</div><div data-lang="es">[ Coco encuentra una jirafita<br>alcanzando una hoja ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦒 <span data-lang="en">Baby Giraffe</span><span data-lang="fr">B&eacute;b&eacute; Girafe</span><span data-lang="es">Jirafita</span></span>
+    <div data-lang="en">A tall baby giraffe was trying to reach a leaf.<br><span class="dialogue">"Is this your eggshell, little giraffe?"</span><br>The giraffe bent its long neck down.<br><span class="dialogue">"No! Giraffes don't come from eggs. But even as a baby, I'm already so tall!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; girafe essayait d'attraper une feuille.<br><span class="dialogue">&laquo; Est-ce ta coquille, petite girafe ? &raquo;</span><br>La girafe baissa son long cou.<br><span class="dialogue">&laquo; Non ! Les girafes ne viennent pas des &oelig;ufs. Mais m&ecirc;me b&eacute;b&eacute;, je suis d&eacute;j&agrave; tellement grande ! &raquo;</span></div>
+    <div data-lang="es">Una jirafita intentaba alcanzar una hoja.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, jirafita? &raquo;</span><br>La jirafa agach&oacute; su largo cuello.<br><span class="dialogue">&laquo; &iexcl;No! Las jirafas no vienen de huevos. &iexcl;Pero hasta de beb&eacute; ya soy alt&iacute;sima! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Baby giraffes are 6 feet tall at birth! That's taller than most adult humans.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les b&eacute;b&eacute;s girafes mesurent 1m80 &agrave; la naissance ! C'est plus grand que la plupart des adultes humains.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Las jirafas beb&eacute; miden 1.80 m al nacer! Eso es m&aacute;s alto que la mayor&iacute;a de los adultos humanos.</div></div>
+</div>
+
+<!-- 14. PENGUIN -->
+<div class="page">
+  <span class="animal-num">14 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby penguin<br>sliding on its belly ]</div><div data-lang="fr">[ Coco rencontre un b&eacute;b&eacute; pingouin<br>glissant sur le ventre ]</div><div data-lang="es">[ Coco encuentra un ping&uuml;inito<br>desliz&aacute;ndose ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐧 <span data-lang="en">Baby Penguin</span><span data-lang="fr">B&eacute;b&eacute; Pingouin</span><span data-lang="es">Ping&uuml;inito</span></span>
+    <div data-lang="en">A baby penguin was sliding on its belly on the ice.<br><span class="dialogue">"Is this your eggshell, little penguin?"</span><br>The penguin clapped its flippers.<br><span class="dialogue">"Yes, I did hatch from an egg! But my egg was kept warm by my daddy's feet! That shell isn't mine."</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; pingouin glissait sur le ventre sur la glace.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit pingouin ? &raquo;</span><br>Le pingouin tapa des ailerons.<br><span class="dialogue">&laquo; Oui, moi je suis bien sorti d'un &oelig;uf ! Mais mon &oelig;uf, c'est papa qui le gardait au chaud sur ses pieds ! Cette coquille n'est pas la mienne. &raquo;</span></div>
+    <div data-lang="es">Un ping&uuml;inito se deslizaba sobre su barriguita en el hielo.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, ping&uuml;inito? &raquo;</span><br>El ping&uuml;ino aplaudió con sus aletas.<br><span class="dialogue">&laquo; &iexcl;S&iacute;, yo s&iacute; nac&iacute; de un huevo! &iexcl;Pero mi huevo lo cuidaba mi pap&aacute; en sus pies! Ese cascar&oacute;n no es m&iacute;o. &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Emperor penguin daddies keep the egg warm on their feet for 2 months without eating!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les papas manchots empereurs gardent l'&oelig;uf au chaud sur leurs pieds pendant 2 mois sans manger !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los pap&aacute;s ping&uuml;ino emperador mantienen el huevo caliente en sus pies durante 2 meses sin comer!</div></div>
+</div>
+
+<!-- 15. KOALA -->
+<div class="page">
+  <span class="animal-num">15 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets sleepy baby koala<br>on mama's back ]</div><div data-lang="fr">[ Coco rencontre un koala endormi<br>sur le dos de maman ]</div><div data-lang="es">[ Coco encuentra un koalita dormil&oacute;n<br>en la espalda de mam&aacute; ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐨 <span data-lang="en">Baby Koala</span><span data-lang="fr">B&eacute;b&eacute; Koala</span><span data-lang="es">Koalita</span></span>
+    <div data-lang="en">A sleepy baby koala was clinging to its mama's back.<br><span class="dialogue">"Is this your eggshell, little koala?"</span><br>The koala yawned.<br><span class="dialogue">"Zzz... no... koalas ride in mama's pouch... not eggs... zzz..."</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; koala tout endormi s'accrochait au dos de sa maman.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit koala ? &raquo;</span><br>Le koala b&acirc;illa.<br><span class="dialogue">&laquo; Zzz... non... les koalas se baladent dans la poche de maman... pas dans des &oelig;ufs... zzz... &raquo;</span></div>
+    <div data-lang="es">Un koalita dormil&oacute;n se aferraba a la espalda de su mam&aacute;.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, koalita? &raquo;</span><br>El koala bostez&oacute;.<br><span class="dialogue">&laquo; Zzz... no... los koalas viajan en la bolsa de mam&aacute;... no en huevos... zzz... &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Koalas sleep up to 22 hours a day! That's almost the whole day!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les koalas dorment jusqu'&agrave; 22 heures par jour ! C'est presque toute la journ&eacute;e !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los koalas duermen hasta 22 horas al d&iacute;a! &iexcl;Eso es casi todo el d&iacute;a!</div></div>
+</div>
+
+<!-- 16. FOX -->
+<div class="page">
+  <span class="animal-num">16 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby fox<br>chasing its tail ]</div><div data-lang="fr">[ Coco rencontre un renardeau<br>courant apr&egrave;s sa queue ]</div><div data-lang="es">[ Coco encuentra un zorrito<br>persiguiendo su cola ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦊 <span data-lang="en">Baby Fox</span><span data-lang="fr">B&eacute;b&eacute; Renard</span><span data-lang="es">Zorrito</span></span>
+    <div data-lang="en">A playful baby fox was chasing its own tail.<br><span class="dialogue">"Is this your eggshell, little fox?"</span><br>The fox spun around.<br><span class="dialogue">"Nope! I was born in a den underground! This tail is more fun than any egg!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; renard joueur courait apr&egrave;s sa propre queue.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit renard ? &raquo;</span><br>Le renard tourna sur lui-m&ecirc;me.<br><span class="dialogue">&laquo; Non ! Je suis n&eacute; dans un terrier sous la terre ! Ma queue est bien plus amusante qu'un &oelig;uf ! &raquo;</span></div>
+    <div data-lang="es">Un zorrito juguet&oacute;n persegu&iacute;a su propia cola.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, zorrito? &raquo;</span><br>El zorro dio vueltas.<br><span class="dialogue">&laquo; &iexcl;No! &iexcl;Yo nac&iacute; en una madriguera bajo tierra! &iexcl;Mi cola es m&aacute;s divertida que cualquier huevo! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Baby foxes are called kits or cubs! They love to play-fight with their brothers and sisters.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les b&eacute;b&eacute;s renards s'appellent des renardeaux ! Ils adorent se bagarrer pour jouer avec leurs fr&egrave;res et s&oelig;urs.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los beb&eacute;s zorro se llaman cachorros! Les encanta jugar a pelear con sus hermanos.</div></div>
+</div>
+
+<!-- 17. OWL -->
+<div class="page">
+  <span class="animal-num">17 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby owl<br>blinking huge eyes ]</div><div data-lang="fr">[ Coco rencontre un b&eacute;b&eacute; hibou<br>clignant ses grands yeux ]</div><div data-lang="es">[ Coco encuentra un buh&iacute;to<br>parpadeando ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦉 <span data-lang="en">Baby Owl</span><span data-lang="fr">B&eacute;b&eacute; Hibou</span><span data-lang="es">Buh&iacute;to</span></span>
+    <div data-lang="en">A fluffy owlet was blinking its huge eyes.<br><span class="dialogue">"Is this your eggshell, little owl?"</span><br>The owl hooted softly.<br><span class="dialogue">"Hoo hoo! Yes, owls hatch from eggs! But mine was in a nest high up in a tree. That one's not mine!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; hibou tout duveteux clignait ses grands yeux.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit hibou ? &raquo;</span><br>Le hibou hulula doucement.<br><span class="dialogue">&laquo; Hou hou ! Oui, les hiboux sortent des &oelig;ufs ! Mais le mien &eacute;tait dans un nid tout en haut d'un arbre. Celui-l&agrave; n'est pas le mien ! &raquo;</span></div>
+    <div data-lang="es">Un buh&iacute;to esponjoso parpadeaba con sus enormes ojos.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, buh&iacute;to? &raquo;</span><br>El b&uacute;ho ulul&oacute; suavecito.<br><span class="dialogue">&laquo; &iexcl;Uh uh! &iexcl;S&iacute;, los b&uacute;hos nacen de huevos! Pero el m&iacute;o estaba en un nido bien alto en un &aacute;rbol. &iexcl;Ese no es m&iacute;o! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Owls can turn their heads almost all the way around — up to 270 degrees!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les hiboux peuvent tourner la t&ecirc;te presque compl&egrave;tement — jusqu'&agrave; 270 degr&eacute;s !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los b&uacute;hos pueden girar la cabeza casi por completo, hasta 270 grados!</div></div>
+</div>
+
+<!-- 18. TURTLE -->
+<div class="page">
+  <span class="animal-num">18 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby turtle<br>crawling toward the sea ]</div><div data-lang="fr">[ Coco rencontre une tortue<br>rampant vers la mer ]</div><div data-lang="es">[ Coco encuentra una tortuguita<br>caminando al mar ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐢 <span data-lang="en">Baby Turtle</span><span data-lang="fr">B&eacute;b&eacute; Tortue</span><span data-lang="es">Tortuguita</span></span>
+    <div data-lang="en">A tiny baby turtle was slowly crawling toward the sea.<br><span class="dialogue">"Is this your eggshell, little turtle?"</span><br>The turtle smiled.<br><span class="dialogue">"Yes! I hatched from an egg on the beach! But my shell was buried in the sand. That one isn't mine!"</span></div>
+    <div data-lang="fr">Une toute petite tortue rampait lentement vers la mer.<br><span class="dialogue">&laquo; Est-ce ta coquille, petite tortue ? &raquo;</span><br>La tortue sourit.<br><span class="dialogue">&laquo; Oui ! Je suis sortie d'un &oelig;uf sur la plage ! Mais ma coquille &eacute;tait enterr&eacute;e dans le sable. Celle-l&agrave; n'est pas la mienne ! &raquo;</span></div>
+    <div data-lang="es">Una tortuguita caminaba lentamente hacia el mar.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, tortuguita? &raquo;</span><br>La tortuga sonri&oacute;.<br><span class="dialogue">&laquo; &iexcl;S&iacute;! &iexcl;Yo nac&iacute; de un huevo en la playa! Pero mi cascar&oacute;n estaba enterrado en la arena. &iexcl;Ese no es m&iacute;o! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Sea turtles return to the same beach where they were born to lay their own eggs!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les tortues de mer reviennent sur la m&ecirc;me plage o&ugrave; elles sont n&eacute;es pour pondre leurs propres &oelig;ufs !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Las tortugas marinas regresan a la misma playa donde nacieron para poner sus propios huevos!</div></div>
+</div>
+
+<!-- 19. FROG -->
+<div class="page">
+  <span class="animal-num">19 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby frog<br>on a lily pad ]</div><div data-lang="fr">[ Coco rencontre une grenouille<br>sur un n&eacute;nuphar ]</div><div data-lang="es">[ Coco encuentra una ranita<br>en un nen&uacute;far ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐸 <span data-lang="en">Baby Frog</span><span data-lang="fr">B&eacute;b&eacute; Grenouille</span><span data-lang="es">Ranita</span></span>
+    <div data-lang="en">A little frog was sitting on a lily pad.<br><span class="dialogue">"Is this your eggshell, little frog?"</span><br>The frog jumped up.<br><span class="dialogue">"RIBBIT! Frogs don't come from eggs like that! We start as tiny dots in jelly in the water! I was a tadpole first!"</span></div>
+    <div data-lang="fr">Une petite grenouille &eacute;tait assise sur un n&eacute;nuphar.<br><span class="dialogue">&laquo; Est-ce ta coquille, petite grenouille ? &raquo;</span><br>La grenouille bondit.<br><span class="dialogue">&laquo; CO&Acirc;&Acirc;&Acirc; ! Les grenouilles ne sortent pas d'un &oelig;uf comme &ccedil;a ! On commence comme des petits points dans de la gel&eacute;e dans l'eau ! J'&eacute;tais un t&ecirc;tard d'abord ! &raquo;</span></div>
+    <div data-lang="es">Una ranita estaba sentada en una hoja de nen&uacute;far.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, ranita? &raquo;</span><br>La rana salt&oacute;.<br><span class="dialogue">&laquo; &iexcl;CROAC! &iexcl;Las ranas no nacen de huevos as&iacute;! &iexcl;Empezamos como puntitos en gelatina en el agua! &iexcl;Primero fui un renacuajo! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Frogs go through metamorphosis too — from egg to tadpole to frog! Just like Coco's friend the butterfly.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les grenouilles aussi font une m&eacute;tamorphose — d'&oelig;uf &agrave; t&ecirc;tard puis grenouille ! Comme le papillon, l'ami de Coco.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Las ranas tambi&eacute;n pasan por una metamorfosis: de huevo a renacuajo y luego rana! Igual que la mariposa amiga de Coco.</div></div>
+</div>
+
+<!-- 20. HIGHLAND COW -->
+<div class="page">
+  <span class="animal-num">20 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby Highland cow<br>peeking through fluffy bangs ]</div><div data-lang="fr">[ Coco rencontre une vache Highland<br>regardant &agrave; travers sa frange ]</div><div data-lang="es">[ Coco encuentra una vaquita Highland<br>asomando entre su flequillo ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐮 <span data-lang="en">Baby Highland Cow</span><span data-lang="fr">B&eacute;b&eacute; Vache Highland</span><span data-lang="es">Vaquita Highland</span></span>
+    <div data-lang="en">A fluffy baby Highland cow peeked through its long bangs.<br><span class="dialogue">"Is this your eggshell, little cow?"</span><br>The calf swished its fluffy hair.<br><span class="dialogue">"Moo! No way! I just have the best hair of all the babies here!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; vache Highland regarda &agrave; travers sa longue frange.<br><span class="dialogue">&laquo; Est-ce ta coquille, petite vache ? &raquo;</span><br>Le veau secoua ses poils tout doux.<br><span class="dialogue">&laquo; Meuh ! Pas du tout ! J'ai juste la plus belle coiffure de tous les b&eacute;b&eacute;s ici ! &raquo;</span></div>
+    <div data-lang="es">Una vaquita Highland asom&oacute; entre su largo flequillo.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, vaquita? &raquo;</span><br>El ternero agit&oacute; su pelo esponjoso.<br><span class="dialogue">&laquo; &iexcl;Muu! &iexcl;Para nada! &iexcl;Solo tengo el mejor peinado de todos los beb&eacute;s de aqu&iacute;! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Highland cows come from Scotland and their long hair keeps them warm in cold weather!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les vaches Highland viennent d'&Eacute;cosse et leurs longs poils les prot&egrave;gent du froid !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Las vacas Highland vienen de Escocia y su pelo largo las mantiene calientes en el fr&iacute;o!</div></div>
+</div>
+
+<!-- 21. FLAMINGO -->
+<div class="page">
+  <span class="animal-num">21 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby flamingo<br>standing on one leg ]</div><div data-lang="fr">[ Coco rencontre un flamant rose<br>sur une patte ]</div><div data-lang="es">[ Coco encuentra un flaminguito<br>en una pata ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦩 <span data-lang="en">Baby Flamingo</span><span data-lang="fr">B&eacute;b&eacute; Flamant Rose</span><span data-lang="es">Flaminguito</span></span>
+    <div data-lang="en">A baby flamingo was standing on one leg (or at least trying to).<br><span class="dialogue">"Is this your eggshell, little flamingo?"</span><br>The flamingo wobbled.<br><span class="dialogue">"Yes, I hatched from an egg! But mine was on a big mud nest. And look — I'm grey, not pink yet!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; flamant rose se tenait sur une patte (ou essayait).<br><span class="dialogue">&laquo; Est-ce ta coquille, petit flamant ? &raquo;</span><br>Le flamant vacilla.<br><span class="dialogue">&laquo; Oui, je suis sorti d'un &oelig;uf ! Mais le mien &eacute;tait sur un gros nid de boue. Et regarde — je suis gris, pas encore rose ! &raquo;</span></div>
+    <div data-lang="es">Un flaminguito se sosten&iacute;a en una pata (o lo intentaba).<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, flaminguito? &raquo;</span><br>El flamenco se tambale&oacute;.<br><span class="dialogue">&laquo; &iexcl;S&iacute;, yo nac&iacute; de un huevo! Pero el m&iacute;o estaba en un nido grande de barro. &iexcl;Y mira, soy gris, todav&iacute;a no soy rosa! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Flamingos are born grey or white! They turn pink from eating tiny shrimp.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les flamants naissent gris ou blancs ! Ils deviennent roses en mangeant des petites crevettes.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los flamencos nacen grises o blancos! Se vuelven rosas por comer camarones peque&ntilde;itos.</div></div>
+</div>
+
+<!-- 22. SLOTH -->
+<div class="page">
+  <span class="animal-num">22 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby sloth<br>hanging upside down ]</div><div data-lang="fr">[ Coco rencontre un paresseux<br>suspendu &agrave; l'envers ]</div><div data-lang="es">[ Coco encuentra un perezosito<br>colgando boca abajo ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦥 <span data-lang="en">Baby Sloth</span><span data-lang="fr">B&eacute;b&eacute; Paresseux</span><span data-lang="es">Perezosito</span></span>
+    <div data-lang="en">A baby sloth was hanging upside down from a branch, veeeery slowly.<br><span class="dialogue">"Is this... your eggshell... little sloth?"</span><br>The sloth blinked.<br><span class="dialogue">"Nooooo... sloths... don't... come... from... eggs... we just... hang... around..."</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; paresseux pendait &agrave; l'envers sur une branche, tr&egrave;&egrave;&egrave;s lentement.<br><span class="dialogue">&laquo; Est-ce que c'est... ta coquille... petit paresseux ? &raquo;</span><br>Le paresseux cligna des yeux.<br><span class="dialogue">&laquo; Nooooon... les paresseux... ne viennent... pas... des &oelig;ufs... on fait juste... rien du tout... &raquo;</span></div>
+    <div data-lang="es">Un perezosito colgaba boca abajo de una rama, muuuy lentamente.<br><span class="dialogue">&laquo; &iquest;Es... tu cascar&oacute;n... perezosito? &raquo;</span><br>El perezoso pesta&ntilde;e&oacute;.<br><span class="dialogue">&laquo; Nooooo... los perezosos... no nacen... de huevos... solo... colgamos... por aqu&iacute;... &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Sloths are so slow that algae grows on their fur, making them look green!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les paresseux sont si lents que des algues poussent sur leur fourrure, ce qui les rend verts !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los perezosos son tan lentos que les crecen algas en el pelo, haci&eacute;ndolos parecer verdes!</div></div>
+</div>
+
+<!-- 23. OTTER -->
+<div class="page">
+  <span class="animal-num">23 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby otter<br>floating with a shell ]</div><div data-lang="fr">[ Coco rencontre une loutre<br>flottant avec un coquillage ]</div><div data-lang="es">[ Coco encuentra una nutria<br>flotando con una conchita ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦦 <span data-lang="en">Baby Otter</span><span data-lang="fr">B&eacute;b&eacute; Loutre</span><span data-lang="es">Nutria beb&eacute;</span></span>
+    <div data-lang="en">A baby otter was floating on its back holding a little shell.<br><span class="dialogue">"Is this your eggshell, little otter?"</span><br>The otter giggled.<br><span class="dialogue">"No! Otters are born in the water! But I do love collecting shells! Can I keep it?"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; loutre flottait sur le dos en tenant un petit coquillage.<br><span class="dialogue">&laquo; Est-ce ta coquille, petite loutre ? &raquo;</span><br>La loutre gloussa.<br><span class="dialogue">&laquo; Non ! Les loutres naissent dans l'eau ! Mais j'adore collectionner les coquilles ! Je peux la garder ? &raquo;</span></div>
+    <div data-lang="es">Una nutria beb&eacute; flotaba boca arriba sujetando una conchita.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, nutria? &raquo;</span><br>La nutria se ri&oacute;.<br><span class="dialogue">&laquo; &iexcl;No! &iexcl;Las nutrias nacen en el agua! Pero me encanta coleccionar conchas. &iquest;Me la puedo quedar? &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Sea otters hold hands while sleeping so they don't drift apart!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les loutres de mer se tiennent par la main en dormant pour ne pas d&eacute;river !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Las nutrias marinas se toman de las manos al dormir para no separarse!</div></div>
+</div>
+
+<!-- 24. HEDGEHOG -->
+<div class="page">
+  <span class="animal-num">24 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby hedgehog<br>curled up in a ball ]</div><div data-lang="fr">[ Coco rencontre un h&eacute;risson<br>roul&eacute; en boule ]</div><div data-lang="es">[ Coco encuentra un erizito<br>hecho bolita ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦔 <span data-lang="en">Baby Hedgehog</span><span data-lang="fr">B&eacute;b&eacute; H&eacute;risson</span><span data-lang="es">Erizito</span></span>
+    <div data-lang="en">A tiny baby hedgehog was curled up in a ball.<br><span class="dialogue">"Is this your eggshell, little hedgehog?"</span><br>The hedgehog uncurled slowly.<br><span class="dialogue">"No! I was born soft and tiny. My spikes grew later! Be careful though — I'm a little prickly!"</span></div>
+    <div data-lang="fr">Un tout petit h&eacute;risson &eacute;tait roul&eacute; en boule.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit h&eacute;risson ? &raquo;</span><br>Le h&eacute;risson se d&eacute;roula lentement.<br><span class="dialogue">&laquo; Non ! Je suis n&eacute; tout doux et tout petit. Mes piquants ont pouss&eacute; apr&egrave;s ! Attention quand m&ecirc;me — je pique un peu ! &raquo;</span></div>
+    <div data-lang="es">Un erizito estaba hecho bolita.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, erizito? &raquo;</span><br>El erizo se desenroll&oacute; lentamente.<br><span class="dialogue">&laquo; &iexcl;No! Yo nac&iacute; blandito y chiquito. &iexcl;Mis p&uacute;as crecieron despu&eacute;s! &iexcl;Pero cuidado, pico un poquito! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Baby hedgehogs are born with soft spines hidden under their skin. The spines pop out within hours!</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les b&eacute;b&eacute;s h&eacute;rissons naissent avec des piquants mous cach&eacute;s sous la peau. Ils sortent en quelques heures !</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los erizos beb&eacute; nacen con p&uacute;as blandas escondidas bajo la piel que salen en pocas horas!</div></div>
+</div>
+
+<!-- 25. LLAMA -->
+<div class="page">
+  <span class="animal-num">25 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby llama<br>prancing proudly ]</div><div data-lang="fr">[ Coco rencontre un lama<br>trottinant fi&egrave;rement ]</div><div data-lang="es">[ Coco encuentra una llamita<br>trotando orgullosa ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🦙 <span data-lang="en">Baby Llama</span><span data-lang="fr">B&eacute;b&eacute; Lama</span><span data-lang="es">Llamita</span></span>
+    <div data-lang="en">A fluffy baby llama was prancing around proudly.<br><span class="dialogue">"Is this your eggshell, little llama?"</span><br>The llama tossed its fluffy head.<br><span class="dialogue">"HA! Llamas don't hatch from eggs! We stand up and run right after we're born! Pretty cool, right?"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; lama tout duveteux trottinait fi&egrave;rement.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit lama ? &raquo;</span><br>Le lama secoua sa t&ecirc;te touffue.<br><span class="dialogue">&laquo; HA ! Les lamas ne sortent pas des &oelig;ufs ! On se l&egrave;ve et on court juste apr&egrave;s &ecirc;tre n&eacute;s ! Trop cool, non ? &raquo;</span></div>
+    <div data-lang="es">Una llamita esponjosa trotaba orgullosa.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, llamita? &raquo;</span><br>La llama sacudi&oacute; su cabeza peluda.<br><span class="dialogue">&laquo; &iexcl;JA! &iexcl;Las llamas no nacen de huevos! &iexcl;Nos paramos y corremos justo al nacer! &iquest;Genial, no? &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Llamas hum to talk to each other! A mama llama hums to her baby all the time.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les lamas fredonnent pour se parler ! Maman lama fredonne &agrave; son b&eacute;b&eacute; tout le temps.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Las llamas tararean para comunicarse! Mam&aacute; llama le tararea a su beb&eacute; todo el tiempo.</div></div>
+</div>
+
+<!-- 26. DUCKLING -->
+<div class="page">
+  <span class="animal-num">26 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby duckling<br>paddling in a puddle ]</div><div data-lang="fr">[ Coco rencontre un caneton<br>barbotant dans une flaque ]</div><div data-lang="es">[ Coco encuentra un patito<br>chapoteando en un charco ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐥 <span data-lang="en">Baby Duckling</span><span data-lang="fr">B&eacute;b&eacute; Caneton</span><span data-lang="es">Patito</span></span>
+    <div data-lang="en">A yellow duckling was paddling in a puddle.<br><span class="dialogue">"Is this your eggshell, little duck?"</span><br>The duckling quacked.<br><span class="dialogue">"QUACK! Yes, I came from an egg! But mine was in a nest by the pond! That shell isn't mine!"</span></div>
+    <div data-lang="fr">Un caneton jaune barbotait dans une flaque.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit canard ? &raquo;</span><br>Le caneton caqueta.<br><span class="dialogue">&laquo; COIN ! Oui, je suis sorti d'un &oelig;uf ! Mais le mien &eacute;tait dans un nid au bord de la mare ! Celui-l&agrave; n'est pas le mien ! &raquo;</span></div>
+    <div data-lang="es">Un patito amarillo chapoteaba en un charco.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, patito? &raquo;</span><br>El patito grazn&oacute;.<br><span class="dialogue">&laquo; &iexcl;CUAC! &iexcl;S&iacute;, yo sal&iacute; de un huevo! Pero el m&iacute;o estaba en un nido junto al estanque! &iexcl;Ese no es m&iacute;o! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Ducklings can swim within hours of hatching! They follow the first thing they see — usually mama duck.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les canetons savent nager quelques heures apr&egrave;s leur naissance ! Ils suivent la premi&egrave;re chose qu'ils voient — en g&eacute;n&eacute;ral maman canard.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los patitos pueden nadar pocas horas despu&eacute;s de nacer! Siguen lo primero que ven, generalmente a mam&aacute; pata.</div></div>
+</div>
+
+<!-- 27. CHICK -->
+<div class="page">
+  <span class="animal-num">27 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby chick<br>pecking at seeds ]</div><div data-lang="fr">[ Coco rencontre un poussin<br>picorant des graines ]</div><div data-lang="es">[ Coco encuentra un pollito<br>picoteando semillas ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐤 <span data-lang="en">Baby Chick</span><span data-lang="fr">B&eacute;b&eacute; Poussin</span><span data-lang="es">Pollito</span></span>
+    <div data-lang="en">A round little chick was pecking at seeds.<br><span class="dialogue">"Is this your eggshell, little chick?"</span><br>The chick cheeped.<br><span class="dialogue">"PEEP PEEP! I hatched from an egg too! But mine was warm under mama hen! That one looks different from mine!"</span></div>
+    <div data-lang="fr">Un petit poussin tout rond picorait des graines.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit poussin ? &raquo;</span><br>Le poussin piailla.<br><span class="dialogue">&laquo; PIOU PIOU ! Je suis sorti d'un &oelig;uf aussi ! Mais le mien &eacute;tait bien au chaud sous maman poule ! Celui-l&agrave; est diff&eacute;rent du mien ! &raquo;</span></div>
+    <div data-lang="es">Un pollito redondito picoteaba semillas.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, pollito? &raquo;</span><br>El pollito piaba.<br><span class="dialogue">&laquo; &iexcl;P&Iacute;O P&Iacute;O! &iexcl;Yo tambi&eacute;n nac&iacute; de un huevo! Pero el m&iacute;o estaba calentito bajo mam&aacute; gallina! &iexcl;Ese se ve diferente al m&iacute;o! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Baby chicks start peeping inside the egg before they hatch! They talk to mama hen through the shell.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les poussins piaillent dans l'&oelig;uf avant d'&eacute;clore ! Ils parlent &agrave; maman poule &agrave; travers la coquille.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los pollitos p&iacute;an dentro del huevo antes de nacer! Hablan con mam&aacute; gallina a trav&eacute;s del cascar&oacute;n.</div></div>
+</div>
+
+<!-- 28. LAMB -->
+<div class="page">
+  <span class="animal-num">28 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby lamb<br>jumping in a meadow ]</div><div data-lang="fr">[ Coco rencontre un agneau<br>sautant dans un pr&eacute; ]</div><div data-lang="es">[ Coco encuentra un corderito<br>saltando en un prado ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐑 <span data-lang="en">Baby Lamb</span><span data-lang="fr">B&eacute;b&eacute; Agneau</span><span data-lang="es">Corderito</span></span>
+    <div data-lang="en">A woolly little lamb was jumping in a meadow.<br><span class="dialogue">"Is this your eggshell, little lamb?"</span><br>The lamb bounced.<br><span class="dialogue">"BAA! No! Lambs don't come from eggs! We come with fluffy wool and springy legs!"</span></div>
+    <div data-lang="fr">Un petit agneau laineux sautait dans un pr&eacute;.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit agneau ? &raquo;</span><br>L'agneau bondit.<br><span class="dialogue">&laquo; B&Ecirc;&Ecirc; ! Non ! Les agneaux ne viennent pas des &oelig;ufs ! On arrive avec de la laine toute douce et des pattes qui rebondissent ! &raquo;</span></div>
+    <div data-lang="es">Un corderito lanudo saltaba en un prado.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, corderito? &raquo;</span><br>El cordero brinc&oacute;.<br><span class="dialogue">&laquo; &iexcl;BEE! &iexcl;No! &iexcl;Los corderos no nacen de huevos! &iexcl;Llegamos con lana suavecita y patas saltarinas! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> Baby lambs can recognize their mama's voice from birth! Each mama sheep has a different "baa".</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Les agneaux reconnaissent la voix de leur maman d&egrave;s la naissance ! Chaque maman brebis a un &laquo; b&ecirc;&ecirc; &raquo; diff&eacute;rent.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;Los corderos reconocen la voz de su mam&aacute; desde que nacen! Cada mam&aacute; oveja tiene un "bee" diferente.</div></div>
+</div>
+
+<!-- 29. DRAGON -->
+<div class="page">
+  <span class="animal-num">29 / 29</span><span class="egg-watermark">🥚</span>
+  <div class="illust"><div data-lang="en">[ Coco meets baby dragon<br>blowing tiny smoke rings ]</div><div data-lang="fr">[ Coco rencontre un b&eacute;b&eacute; dragon<br>soufflant des ronds de fum&eacute;e ]</div><div data-lang="es">[ Coco encuentra un dragoncito<br>soplando anillos de humo ]</div></div>
+  <div class="story-text">
+    <span class="animal-name">🐉 <span data-lang="en">Baby Dragon</span><span data-lang="fr">B&eacute;b&eacute; Dragon</span><span data-lang="es">Dragoncito</span></span>
+    <div data-lang="en">A baby dragon was blowing tiny smoke rings.<br><span class="dialogue">"Is this your eggshell, little dragon?"</span><br>The dragon puffed.<br><span class="dialogue">"Hmm! Dragons DO hatch from eggs! Big, sparkly eggs! But that shell isn't sparkly enough to be mine!"</span></div>
+    <div data-lang="fr">Un b&eacute;b&eacute; dragon soufflait de petits ronds de fum&eacute;e.<br><span class="dialogue">&laquo; Est-ce ta coquille, petit dragon ? &raquo;</span><br>Le dragon souffla.<br><span class="dialogue">&laquo; Hmm ! Les dragons SORTENT bien des &oelig;ufs ! De gros &oelig;ufs tout brillants ! Mais cette coquille ne brille pas assez pour &ecirc;tre la mienne ! &raquo;</span></div>
+    <div data-lang="es">Un dragoncito soplaba peque&ntilde;os anillos de humo.<br><span class="dialogue">&laquo; &iquest;Es tu cascar&oacute;n, dragoncito? &raquo;</span><br>El drag&oacute;n sopl&oacute;.<br><span class="dialogue">&laquo; &iexcl;Hmm! &iexcl;Los dragones S&Iacute; nacen de huevos! &iexcl;Huevos grandes y brillantes! &iexcl;Pero ese cascar&oacute;n no brilla lo suficiente para ser m&iacute;o! &raquo;</span></div>
+  </div>
+  <div class="fun-fact"><div data-lang="en"><strong>Did you know?</strong> In many stories, dragon eggs need fire to hatch! Each dragon egg is said to be a different color.</div><div data-lang="fr"><strong>Le savais-tu ?</strong> Dans beaucoup d'histoires, les &oelig;ufs de dragon ont besoin de feu pour &eacute;clore ! Chaque &oelig;uf de dragon est d'une couleur diff&eacute;rente.</div><div data-lang="es"><strong>&iquest;Sab&iacute;as que...?</strong> &iexcl;En muchas historias, los huevos de drag&oacute;n necesitan fuego para eclosionar! Cada huevo es de un color diferente.</div></div>
+</div>
+
+<!-- ============================================ -->
+<!-- THE END -->
+<!-- ============================================ -->
+<div class="page end-page">
+  <div class="illust" style="width:5.5in;height:4in">
+    <div data-lang="en">[ Coco with eggshell on head (Calim&eacute;ro style),<br>Mama Axolotl holding baby Lili,<br>all the baby animal friends waving in background ]</div>
+    <div data-lang="fr">[ Coco avec la coquille sur la t&ecirc;te (style Calim&eacute;ro),<br>Maman Axolotl tenant b&eacute;b&eacute; Lili,<br>tous les b&eacute;b&eacute;s animaux font coucou en arri&egrave;re-plan ]</div>
+    <div data-lang="es">[ Coco con el cascar&oacute;n en la cabeza (estilo Calimero),<br>Mam&aacute; Ajolote con beb&eacute; Lili,<br>todos los beb&eacute;s animales saludando al fondo ]</div>
+  </div>
+  <div class="story-text" style="margin-top:.2in">
+    <div data-lang="en">Coco was tired. So many baby animals, but still no owner for the eggshell. Walking slowly back home along the river, Coco carried the shell on top like a little hat.<br><br>Then — Mama Axolotl was standing by the water, and in her arms was the tiniest, cutest baby axolotl ever!<br><br><span class="dialogue">"Mama! Whose egg was this?"</span><br><br>Mama smiled softly. <span class="dialogue">"That's your little sister's eggshell, Coco. She hatched this morning! Say hello to Lili!"</span><br><br>Baby Lili looked up at Coco with big sparkly eyes and giggled.<br><br>Coco laughed and kept the shell on top. <span class="dialogue">"I'm keeping it! It's my special hat now!"</span><br><br>And from that day on, Coco wore the eggshell like a tiny explorer helmet — showing baby Lili all the wonderful animal friends along the way.</div>
+    <div data-lang="fr">Coco &eacute;tait fatigu&eacute;. Tant de b&eacute;b&eacute;s animaux, mais toujours pas de propri&eacute;taire pour la coquille. En rentrant doucement &agrave; la maison le long de la rivi&egrave;re, Coco portait la coquille sur la t&ecirc;te comme un petit chapeau.<br><br>Puis — Maman Axolotl &eacute;tait l&agrave;, au bord de l'eau, et dans ses bras il y avait le plus petit, le plus mignon b&eacute;b&eacute; axolotl du monde !<br><br><span class="dialogue">&laquo; Maman ! &Agrave; qui est cet &oelig;uf ? &raquo;</span><br><br>Maman sourit tendrement. <span class="dialogue">&laquo; C'est la coquille de ta petite s&oelig;ur, Coco. Elle est n&eacute;e ce matin ! Dis bonjour &agrave; Lili ! &raquo;</span><br><br>B&eacute;b&eacute; Lili leva les yeux vers Coco avec de grands yeux tout brillants et fit un petit rire.<br><br>Coco rigola et garda la coquille sur la t&ecirc;te. <span class="dialogue">&laquo; Je la garde ! C'est mon chapeau sp&eacute;cial maintenant ! &raquo;</span><br><br>Et depuis ce jour-l&agrave;, Coco porta la coquille comme un petit casque d'explorateur — en pr&eacute;sentant &agrave; b&eacute;b&eacute; Lili tous les merveilleux amis animaux rencontr&eacute;s en chemin.</div>
+    <div data-lang="es">Coco estaba cansado. Tantos beb&eacute;s animales, pero el cascar&oacute;n segu&iacute;a sin due&ntilde;o. Caminando lentamente de vuelta a casa junto al r&iacute;o, Coco llevaba el cascar&oacute;n en la cabeza como un sombrerito.<br><br>Entonces — Mam&aacute; Ajolote estaba junto al agua, &iexcl;y en sus brazos hab&iacute;a el m&aacute;s peque&ntilde;o y tierno beb&eacute; ajolote jam&aacute;s visto!<br><br><span class="dialogue">&laquo; &iexcl;Mam&aacute;! &iquest;De qui&eacute;n es este huevo? &raquo;</span><br><br>Mam&aacute; sonri&oacute; con ternura. <span class="dialogue">&laquo; Es el cascar&oacute;n de tu hermanita, Coco. &iexcl;Naci&oacute; esta ma&ntilde;ana! &iexcl;Saluda a Lili! &raquo;</span><br><br>La beb&eacute; Lili mir&oacute; a Coco con sus grandes ojos brillantes y se ri&oacute;.<br><br>Coco se ri&oacute; y se dej&oacute; el cascar&oacute;n en la cabeza. <span class="dialogue">&laquo; &iexcl;Me lo quedo! &iexcl;Ahora es mi sombrero especial! &raquo;</span><br><br>Y desde ese d&iacute;a, Coco llev&oacute; el cascar&oacute;n como un peque&ntilde;o casco de explorador — mientras le presentaba a su hermanita Lili todos los maravillosos amigos animales que hab&iacute;a conocido.</div>
+  </div>
+  <h2>
+    <span data-lang="en">The End!</span>
+    <span data-lang="fr">Fin !</span>
+    <span data-lang="es">&iexcl;Fin!</span>
+  </h2>
+</div>
+
+<!-- ============================================ -->
+<!-- BACK COVER / ABOUT -->
+<!-- ============================================ -->
+<div class="page" style="justify-content:space-between">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3in">
+    <div class="illust illust-small">
+      <div data-lang="en">[ Coco with eggshell hat<br>waving goodbye ]</div>
+      <div data-lang="fr">[ Coco avec coquille<br>faisant au revoir ]</div>
+      <div data-lang="es">[ Coco con cascar&oacute;n<br>diciendo adi&oacute;s ]</div>
+    </div>
+    <div class="story-text" style="font-size:1em">
+      <div data-lang="en"><strong>Did you enjoy the adventure?</strong><br><br>Visit Coco online for free coloring pages, games, and more fun!<br><br><strong>cocotheaxolotl.org</strong><br><br>Write your name in bubble letters, cloud letters, and more!<br><br>Find Coco on mugs, t-shirts, stickers and more at our shop!</div>
+      <div data-lang="fr"><strong>Tu as aim&eacute; l'aventure ?</strong><br><br>Retrouve Coco en ligne pour des coloriages gratuits, des jeux et encore plus de fun !<br><br><strong>cocotheaxolotl.org</strong><br><br>&Eacute;cris ton pr&eacute;nom en lettres bulles, lettres nuages et plus encore !<br><br>Retrouve Coco sur des mugs, t-shirts, stickers et plus dans notre boutique !</div>
+      <div data-lang="es"><strong>&iquest;Te gust&oacute; la aventura?</strong><br><br>&iexcl;Visita a Coco en l&iacute;nea para dibujos gratis, juegos y m&aacute;s diversi&oacute;n!<br><br><strong>cocotheaxolotl.org</strong><br><br>&iexcl;Escribe tu nombre en letras burbuja, letras nube y m&aacute;s!<br><br>&iexcl;Encuentra a Coco en tazas, camisetas, stickers y m&aacute;s en nuestra tienda!</div>
+    </div>
+    <div style="margin-top:.1in">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&color=d6006e&data=https%3A%2F%2Fcocotheaxolotl.org%2Ffreebies%2F%3Futm_source%3Dbook%26utm_medium%3Dqr%26utm_campaign%3Dwhose-egg" alt="QR" style="width:1.2in;height:1.2in;border:3px solid #ffb6c1;border-radius:12px;padding:4px">
+    </div>
+  </div>
+  <div style="font-size:.75em;color:#999;padding-top:.2in">&copy; Coco the Axolotl &bull; cocotheaxolotl.org</div>
+</div>
+
+<script>
+function setLang(lang){
+  document.body.className = lang === 'en' ? '' : lang;
+  document.querySelectorAll('.lang-switch button').forEach(function(b){
+    b.classList.toggle('active', b.textContent === lang.toUpperCase());
+  });
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>

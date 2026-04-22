@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="+6%" rate="1.00">
+      L'équilibre, ça demande un corps bien reposé ! Quand je suis fatigué...
+    </prosody>
+  </voice>
+</speak>

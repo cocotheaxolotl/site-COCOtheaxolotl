@@ -1,0 +1,77 @@
+[
+  {
+    "spread": 0,
+    "start": 0.0,
+    "end": 3.26
+  },
+  {
+    "spread": 1,
+    "start": 3.26,
+    "end": 26.78
+  },
+  {
+    "spread": 2,
+    "start": 26.78,
+    "end": 45.67
+  },
+  {
+    "spread": 3,
+    "start": 45.67,
+    "end": 78.05
+  },
+  {
+    "spread": 4,
+    "start": 78.05,
+    "end": 110.64
+  },
+  {
+    "spread": 5,
+    "start": 110.64,
+    "end": 141.38
+  },
+  {
+    "spread": 6,
+    "start": 141.38,
+    "end": 178.99
+  },
+  {
+    "spread": 7,
+    "start": 178.99,
+    "end": 211.22
+  },
+  {
+    "spread": 8,
+    "start": 211.22,
+    "end": 240.86
+  },
+  {
+    "spread": 9,
+    "start": 240.86,
+    "end": 271.46
+  },
+  {
+    "spread": 10,
+    "start": 271.46,
+    "end": 303.62
+  },
+  {
+    "spread": 11,
+    "start": 303.62,
+    "end": 338.76
+  },
+  {
+    "spread": 12,
+    "start": 338.76,
+    "end": 371.35
+  },
+  {
+    "spread": 13,
+    "start": 371.35,
+    "end": 404.18
+  },
+  {
+    "spread": 14,
+    "start": 404.18,
+    "end": 426.26
+  }
+]

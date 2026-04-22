@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="-10%" rate="0.75">
+      Allez... va te coucher... petit axolotl...
+    </prosody>
+  </voice>
+</speak>

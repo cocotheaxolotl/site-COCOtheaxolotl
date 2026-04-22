@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="-3%" rate="0.95">
+      Le sommeil a différentes étapes : d'abord léger, puis profond, puis les rêves ! Et ça recommence toute la nuit.
+    </prosody>
+  </voice>
+</speak>

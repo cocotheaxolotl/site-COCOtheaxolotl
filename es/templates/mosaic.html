@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mystery Mosaic Generator - Create Color by Number Mosaics</title>
+<style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0 20px;
+            color: white;
+        }
+        header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 30px;
+            margin-bottom: 24px;
+        }
+
+        .card h2 {
+            font-size: 1.3em;
+            margin-bottom: 16px;
+            color: #4a3f8a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card h2 .step {
+            background: #764ba2;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            flex-shrink: 0;
+        }
+
+        /* Upload area */
+        .upload-area {
+            border: 3px dashed #c4b5fd;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #faf5ff;
+        }
+        .upload-area:hover, .upload-area.dragover {
+            border-color: #764ba2;
+            background: #f3e8ff;
+        }
+        .upload-area.has-file {
+            border-color: #22c55e;
+            background: #f0fdf4;
+        }
+        .upload-area input { display: none; }
+        .upload-area .icon { font-size: 3em; margin-bottom: 10px; }
+        .upload-area .label { font-size: 1.1em; color: #666; }
+        .upload-area .filename { font-weight: 600; color: #22c55e; margin-top: 8px; }
+
+        .upload-preview {
+            max-width: 300px;
+            max-height: 200px;
+            margin: 12px auto 0;
+            border-radius: 8px;
+            display: none;
+        }
+
+        /* Controls */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .controls-grid { grid-template-columns: 1fr; }
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .control-group label {
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .control-group .hint {
+            font-size: 0.8em;
+            color: #999;
+        }
+        .control-group input[type="range"] {
+            width: 100%;
+            accent-color: #764ba2;
+        }
+        .control-group select, .control-group input[type="number"] {
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+        .control-group select:focus, .control-group input:focus {
+            outline: none;
+            border-color: #764ba2;
+        }
+
+        .range-value {
+            font-weight: 700;
+            color: #764ba2;
+            font-size: 1.1em;
+        }
+
+        .crop-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .crop-grid label { font-size: 0.85em; text-align: center; }
+        .crop-grid input {
+            width: 100%;
+            padding: 6px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        /* Generate button */
+        .btn-generate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 8px;
+        }
+        .btn-generate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(118, 75, 162, 0.4);
+        }
+        .btn-generate:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Loading */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        .loading.active { display: block; }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid #e5e7eb;
+            border-top: 5px solid #764ba2;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Results */
+        .results { display: none; }
+        .results.active { display: block; }
+
+        .results-stats {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .stat {
+            background: #f3e8ff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat .number { font-size: 1.5em; font-weight: 700; color: #764ba2; }
+        .stat .label { font-size: 0.85em; color: #666; }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        @media (max-width: 700px) {
+            .preview-grid { grid-template-columns: 1fr; }
+        }
+
+        .preview-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .preview-card .preview-title {
+            background: #f9fafb;
+            padding: 10px 16px;
+            font-weight: 600;
+            font-size: 0.95em;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .preview-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .palette-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .palette-chip {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f9fafb;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            border: 1px solid #e5e7eb;
+        }
+        .palette-chip .swatch {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        .btn-download {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+        }
+
+        .btn-new {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #6b7280;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 12px;
+        }
+
+        .download-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+        }
+        footer a { color: rgba(255,255,255,0.9); }
+
+        .watermark-note {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.9em;
+            color: #92400e;
+            margin-bottom: 16px;
+        }
+
+        .free-counter {
+            background: #eff6ff;
+            border: 1px solid #93c5fd;
+            border-radius: 10px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .free-counter .dots {
+            display: flex;
+            gap: 6px;
+        }
+        .free-counter .dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            border: 2px solid #3b82f6;
+            background: white;
+        }
+        .free-counter .dot.used {
+            background: #3b82f6;
+        }
+        .free-counter .text {
+            font-size: 0.9em;
+            color: #1e40af;
+        }
+
+        .paywall {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .paywall.active { display: block; }
+        .paywall h3 {
+            color: #92400e;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+        .paywall p {
+            color: #78350f;
+            margin-bottom: 16px;
+        }
+        .paywall .price {
+            font-size: 2em;
+            font-weight: 800;
+            color: #d97706;
+        }
+        .paywall .price-period {
+            font-size: 0.9em;
+            color: #92400e;
+        }
+        .btn-upgrade {
+            display: inline-block;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-upgrade:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+    </style>
+
+
+
+
+<link href="https://cocotheaxolotl.org/templates/mosaic.html" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/templates/mosaic.html" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/templates/mosaic.html" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/templates/mosaic.html" hreflang="x-default" rel="alternate"/></head>
+<body>
+<div class="container">
+<header>
+<h1>Mystery Mosaic Generator</h1>
+<p>Upload any image and create a printable color-by-number mosaic puzzle</p>
+</header>
+<!-- Step 1: Upload -->
+<div class="card">
+<h2><span class="step">1</span> Upload your image</h2>
+<div class="upload-area" id="uploadArea">
+<div class="icon">🖼</div>
+<div class="label">Drag &amp; drop an image here, or click to browse</div>
+<div class="filename" id="fileName"></div>
+<input accept="image/*" id="fileInput" type="file"/>
+<img class="upload-preview" id="uploadPreview"/>
+</div>
+</div>
+<!-- Step 2: Settings -->
+<div class="card">
+<h2><span class="step">2</span> Adjust settings</h2>
+<div class="controls-grid">
+<div class="control-group">
+<label>Number of colors: <span class="range-value" id="colorsVal">10</span></label>
+<input id="colors" max="20" min="4" type="range" value="10"/>
+<span class="hint">Fewer = easier for kids, more = detailed</span>
+</div>
+<div class="control-group">
+<label>Cell size: <span class="range-value" id="cellSizeVal">60</span>px</label>
+<input id="cellSize" max="100" min="30" type="range" value="60"/>
+<span class="hint">Smaller = more detail, larger = easier to read</span>
+</div>
+<div class="control-group">
+<label>Page size</label>
+<select id="pageSize">
+<option value="letter">US Letter (8.5 x 11")</option>
+<option value="a4">A4 (210 x 297mm)</option>
+</select>
+</div>
+<div class="control-group">
+<label>Orientation</label>
+<select id="orientation">
+<option value="auto">Auto-detect</option>
+<option value="landscape">Landscape</option>
+<option value="portrait">Portrait</option>
+</select>
+</div>
+<div class="control-group">
+<label>Blur (smooth details): <span class="range-value" id="blurVal">0</span></label>
+<input id="blur" max="20" min="0" type="range" value="0"/>
+<span class="hint">Higher = smoother, simpler shapes</span>
+</div>
+</div>
+<div style="margin-top: 16px;">
+<label style="font-weight: 600; font-size: 0.9em; color: #555;">
+                    Crop (% to remove from each side)
+                </label>
+<div class="crop-grid">
+<div><label>Left</label><input id="cropLeft" max="40" min="0" type="number" value="0"/></div>
+<div><label>Top</label><input id="cropTop" max="40" min="0" type="number" value="0"/></div>
+<div><label>Right</label><input id="cropRight" max="40" min="0" type="number" value="0"/></div>
+<div><label>Bottom</label><input id="cropBottom" max="40" min="0" type="number" value="0"/></div>
+</div>
+</div>
+</div>
+<!-- Step 3: Generate -->
+<div class="card">
+<h2><span class="step">3</span> Generate your mosaic</h2>
+<button class="btn-generate" disabled="" id="generateBtn">
+                Generate Mystery Mosaic
+            </button>
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<div style="font-size: 1.1em; color: #666;">Generating your mosaic...</div>
+<div style="color: #999; margin-top: 8px;">This may take 10-30 seconds</div>
+</div>
+</div>
+<!-- Results -->
+<div class="card results" id="results">
+<h2><span class="step">✓</span> Your Mystery Mosaic is ready!</h2>
+<div class="results-stats" id="statsRow"></div>
+<div style="margin-bottom: 16px;">
+<label style="font-weight: 600; color: #555;">Color palette:</label>
+<div class="palette-row" id="paletteRow"></div>
+</div>
+<div class="watermark-note">
+                Previews below include a watermark. The downloaded files are clean, full-resolution 300 DPI PNGs ready for print.
+            </div>
+<div class="preview-grid">
+<div class="preview-card">
+<div class="preview-title">Mystery Mosaic (to print &amp; color)</div>
+<img id="previewMystery" src=""/>
+</div>
+<div class="preview-card">
+<div class="preview-title">Answer Key (colored)</div>
+<img id="previewAnswer" src=""/>
+</div>
+</div>
+<div class="free-counter" id="freeCounter">
+<div class="dots" id="freeDots"></div>
+<div class="text" id="freeText"></div>
+</div>
+<div class="download-row" id="downloadRow">
+<a class="btn-download" href="#" id="downloadBtn" onclick="return handleDownload(event)">
+                    Download HD Pack (ZIP)
+                </a>
+<button class="btn-new" onclick="resetForm()">Generate another</button>
+</div>
+<div class="paywall" id="paywall">
+<h3>You've used your 3 free downloads!</h3>
+<p>Upgrade to unlimited HD downloads - no watermarks, 300 DPI print-ready files.</p>
+<div style="margin: 16px 0;">
+<span class="price">$4.99</span>
+<span class="price-period">/ month</span>
+</div>
+<p style="font-size: 0.85em; margin-bottom: 12px;">Or $29.99/year (save 50%)</p>
+<a class="btn-upgrade" href="mailto:coco@cocotheaxolotl.org?subject=Mystery Mosaic Pro">
+                    Upgrade to Pro
+                </a>
+</div>
+</div>
+<footer>
+            Powered by <a href="https://cocotheaxolotl.org">Coco the Axolotl</a>
+</footer>
+</div>
+<script>
+        const uploadArea = document.getElementById("uploadArea");
+        const fileInput = document.getElementById("fileInput");
+        const fileName = document.getElementById("fileName");
+        const uploadPreview = document.getElementById("uploadPreview");
+        const generateBtn = document.getElementById("generateBtn");
+        const loading = document.getElementById("loading");
+        const results = document.getElementById("results");
+
+        let selectedFile = null;
+        let freeRemaining = 3;
+        let currentDownloadUrl = null;
+
+        // Check free tier on load
+        fetch("/usage").then(r => r.json()).then(data => {
+            freeRemaining = data.free_remaining;
+        });
+
+        function updateFreeCounter(remaining, total) {
+            freeRemaining = remaining;
+            const dots = document.getElementById("freeDots");
+            const text = document.getElementById("freeText");
+            let html = "";
+            for (let i = 0; i < total; i++) {
+                html += `<div class="dot ${i < (total - remaining) ? 'used' : ''}"></div>`;
+            }
+            dots.innerHTML = html;
+            text.textContent = remaining > 0
+                ? `${remaining} free download${remaining > 1 ? 's' : ''} remaining`
+                : "No free downloads left";
+        }
+
+        function handleDownload(e) {
+            if (freeRemaining <= 0) {
+                e.preventDefault();
+                document.getElementById("paywall").classList.add("active");
+                return false;
+            }
+            // Will decrement on server side; update UI optimistically
+            freeRemaining--;
+            updateFreeCounter(freeRemaining, 3);
+            if (freeRemaining <= 0) {
+                document.getElementById("paywall").classList.add("active");
+            }
+            return true;
+        }
+
+        // Upload area events
+        uploadArea.addEventListener("click", () => fileInput.click());
+        uploadArea.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            uploadArea.classList.add("dragover");
+        });
+        uploadArea.addEventListener("dragleave", () => {
+            uploadArea.classList.remove("dragover");
+        });
+        uploadArea.addEventListener("drop", (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove("dragover");
+            if (e.dataTransfer.files.length > 0) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) handleFile(fileInput.files[0]);
+        });
+
+        function handleFile(file) {
+            if (!file.type.startsWith("image/")) {
+                alert("Please upload an image file (PNG, JPG, etc.)");
+                return;
+            }
+            selectedFile = file;
+            fileName.textContent = file.name;
+            uploadArea.classList.add("has-file");
+            generateBtn.disabled = false;
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                uploadPreview.src = e.target.result;
+                uploadPreview.style.display = "block";
+
+                // Auto-detect orientation
+                const img = new window.Image();
+                img.onload = () => {
+                    const orient = document.getElementById("orientation");
+                    if (orient.value === "auto") {
+                        // Will be determined at generation time
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Range sliders
+        document.getElementById("colors").addEventListener("input", (e) => {
+            document.getElementById("colorsVal").textContent = e.target.value;
+        });
+        document.getElementById("cellSize").addEventListener("input", (e) => {
+            document.getElementById("cellSizeVal").textContent = e.target.value;
+        });
+        document.getElementById("blur").addEventListener("input", (e) => {
+            document.getElementById("blurVal").textContent = e.target.value;
+        });
+
+        // Generate
+        generateBtn.addEventListener("click", async () => {
+            if (!selectedFile) return;
+
+            generateBtn.disabled = true;
+            loading.classList.add("active");
+            results.classList.remove("active");
+
+            const formData = new FormData();
+            formData.append("image", selectedFile);
+            formData.append("colors", document.getElementById("colors").value);
+            formData.append("cell_size", document.getElementById("cellSize").value);
+            formData.append("blur", document.getElementById("blur").value);
+            formData.append("page", document.getElementById("pageSize").value);
+
+            // Orientation
+            const orient = document.getElementById("orientation").value;
+            if (orient === "landscape") {
+                formData.append("landscape", "true");
+            } else if (orient === "auto") {
+                // Check image aspect ratio
+                const img = new window.Image();
+                img.src = uploadPreview.src;
+                if (img.width > img.height) {
+                    formData.append("landscape", "true");
+                }
+            }
+
+            // Crop
+            formData.append("crop_left", document.getElementById("cropLeft").value);
+            formData.append("crop_top", document.getElementById("cropTop").value);
+            formData.append("crop_right", document.getElementById("cropRight").value);
+            formData.append("crop_bottom", document.getElementById("cropBottom").value);
+
+            try {
+                const resp = await fetch("/generate", { method: "POST", body: formData });
+                const data = await resp.json();
+
+                if (data.error) {
+                    alert("Error: " + data.error);
+                    return;
+                }
+
+                // Show stats
+                const statsRow = document.getElementById("statsRow");
+                statsRow.innerHTML = `
+                    <div class="stat"><div class="number">${data.hex_count}</div><div class="label">Hexagons</div></div>
+                    <div class="stat"><div class="number">${data.colors}</div><div class="label">Colors</div></div>
+                    <div class="stat"><div class="number">${data.image_size}</div><div class="label">Resolution</div></div>
+                `;
+
+                // Show palette
+                const paletteRow = document.getElementById("paletteRow");
+                paletteRow.innerHTML = data.palette.map(c =>
+                    `<div class="palette-chip">
+                        <div class="swatch" style="background: rgb(${c.r},${c.g},${c.b})"></div>
+                        <span>${c.number} = ${c.name}</span>
+                    </div>`
+                ).join("");
+
+                // Show previews
+                document.getElementById("previewMystery").src = data.preview_mystery + "?t=" + Date.now();
+                document.getElementById("previewAnswer").src = data.preview_answer + "?t=" + Date.now();
+
+                // Download link
+                document.getElementById("downloadBtn").href = data.download_url;
+                currentDownloadUrl = data.download_url;
+
+                // Update free counter
+                if (data.free_remaining !== undefined) {
+                    updateFreeCounter(data.free_remaining, data.free_total);
+                }
+
+                // Show/hide paywall
+                if (data.free_remaining <= 0) {
+                    document.getElementById("paywall").classList.add("active");
+                    document.getElementById("downloadRow").style.display = "none";
+                } else {
+                    document.getElementById("paywall").classList.remove("active");
+                    document.getElementById("downloadRow").style.display = "flex";
+                }
+
+                results.classList.add("active");
+            } catch (err) {
+                alert("Error: " + err.message);
+            } finally {
+                loading.classList.remove("active");
+                generateBtn.disabled = false;
+            }
+        });
+
+        function resetForm() {
+            results.classList.remove("active");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-FR">
+  <voice name="fr-CA-SylvieNeural">
+    <prosody pitch="-5%" rate="0.80">
+      Oui... vingt-deux heures par jour...
+    </prosody>
+  </voice>
+</speak>

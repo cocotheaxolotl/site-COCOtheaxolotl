@@ -1,0 +1,20 @@
+{
+  "name": "Coco - Cohérence Cardiaque",
+  "short_name": "Coco Respire",
+  "description": "Exercice de cohérence cardiaque guidé avec Coco the Axolotl",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "icons": [
+    {
+      "src": "coco.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["health", "kids"],
+  "lang": "fr"
+}

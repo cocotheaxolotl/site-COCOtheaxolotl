@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Flipbook Generator</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:system-ui,-apple-system,Arial,sans-serif;
+  background:linear-gradient(135deg,#f0e6ff,#e6f0ff);
+  min-height:100vh;
+  padding:20px;
+}
+.container{
+  max-width:640px;
+  margin:0 auto;
+}
+.header{
+  text-align:center;
+  padding:30px 20px 20px;
+}
+.header h1{
+  font-size:1.8em;
+  color:#333;
+  margin-bottom:4px;
+}
+.header p{
+  color:#888;
+  font-size:.95em;
+}
+
+/* ===== CONFIG CARD ===== */
+.card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
+  margin-bottom:20px;
+  overflow:hidden;
+}
+.card-title{
+  padding:16px 24px;
+  background:#f8f4ff;
+  font-weight:700;
+  font-size:1.05em;
+  color:#5c3d8e;
+  border-bottom:1px solid #eee;
+}
+.card-body{
+  padding:20px 24px;
+}
+label{
+  display:block;
+  font-weight:700;
+  font-size:.85em;
+  color:#555;
+  margin-bottom:4px;
+  margin-top:14px;
+}
+label:first-child{ margin-top:0; }
+input,select{
+  width:100%;
+  padding:10px 14px;
+  border:2px solid #e0e0e0;
+  border-radius:10px;
+  font-size:1em;
+  font-family:inherit;
+  transition:border-color .2s;
+}
+input:focus,select:focus{
+  outline:none;
+  border-color:#7c4dff;
+}
+.row{
+  display:flex;
+  gap:12px;
+}
+.row>div{ flex:1; }
+.hint{
+  font-size:.78em;
+  color:#999;
+  margin-top:2px;
+}
+input[type=color]{
+  width:50px;
+  height:38px;
+  padding:2px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.color-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.color-row input[type=text]{
+  flex:1;
+}
+.checkbox-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:12px;
+}
+.checkbox-row input[type=checkbox]{
+  width:18px;
+  height:18px;
+  accent-color:#7c4dff;
+}
+.checkbox-row label{
+  margin:0;
+  font-weight:600;
+  font-size:.9em;
+}
+
+/* ===== STEP CARDS ===== */
+.step-card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
+  margin-bottom:20px;
+  overflow:hidden;
+  border:2px solid transparent;
+  transition:border-color .2s;
+}
+.step-header{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px 24px;
+  border-bottom:1px solid #f0f0f0;
+}
+.step-num{
+  width:36px; height:36px;
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:1.1em; color:#fff;
+  flex-shrink:0;
+}
+.step-1 .step-num{ background:#7c4dff; }
+.step-2 .step-num{ background:#ff6b9d; }
+.step-3 .step-num{ background:#ff9100; }
+.step-label{
+  font-weight:700;
+  font-size:1em;
+  color:#333;
+}
+.step-body{
+  padding:20px 24px;
+}
+.step-desc{
+  color:#777;
+  font-size:.9em;
+  margin-bottom:16px;
+  line-height:1.5;
+}
+
+/* ===== BIG BUTTONS ===== */
+.big-btn{
+  display:block;
+  width:100%;
+  padding:20px 24px;
+  font-size:1.2em;
+  font-weight:800;
+  font-family:inherit;
+  color:#fff;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  transition:filter .15s, transform .1s;
+  text-align:center;
+  letter-spacing:.3px;
+}
+.big-btn:hover{
+  filter:brightness(.92);
+  transform:translateY(-2px);
+}
+.big-btn:active{
+  transform:translateY(0);
+}
+.btn-visual{
+  background:linear-gradient(135deg,#7c4dff,#b388ff);
+}
+.btn-audio{
+  background:linear-gradient(135deg,#ff6b9d,#ff9ebb);
+}
+.btn-video{
+  background:linear-gradient(135deg,#ff9100,#ffb74d);
+}
+.btn-icon{
+  margin-right:8px;
+  font-size:1.2em;
+}
+
+/* ===== FOLDER GUIDE ===== */
+.folder-guide{
+  background:#f8f8f8;
+  border-radius:12px;
+  padding:14px 18px;
+  margin-top:16px;
+  font-family:'Courier New',monospace;
+  font-size:.85em;
+  color:#555;
+  line-height:1.7;
+  border:1px dashed #ddd;
+}
+.folder-guide strong{
+  color:#333;
+  font-family:inherit;
+}
+
+/* ===== FEEDBACK ===== */
+.feedback{
+  margin-top:12px;
+  padding:12px 16px;
+  border-radius:10px;
+  font-size:.9em;
+  display:none;
+}
+.feedback.success{
+  display:block;
+  background:#e8f5e9;
+  color:#2e7d32;
+  border:1px solid #a5d6a7;
+}
+.feedback.error{
+  display:block;
+  background:#fce4ec;
+  color:#c62828;
+  border:1px solid #ef9a9a;
+}
+
+/* ===== GATE ===== */
+#gate-overlay{
+  position:fixed; inset:0;
+  background:linear-gradient(135deg,#f0e6ff,#e6f0ff);
+  display:flex; align-items:center; justify-content:center;
+  z-index:999;
+}
+#gate-overlay.hidden{ display:none; }
+.gate-card{
+  background:#fff;
+  border-radius:18px;
+  padding:40px 30px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(0,0,0,.1);
+  max-width:360px;
+  width:100%;
+}
+.gate-card h2{ margin-bottom:16px; color:#333; }
+.gate-card input{
+  width:100%;
+  padding:12px;
+  border:2px solid #e0e0e0;
+  border-radius:10px;
+  font-size:1em;
+  text-align:center;
+  margin-bottom:12px;
+}
+.gate-card button{
+  padding:12px 32px;
+  background:#7c4dff;
+  color:#fff;
+  border:none;
+  border-radius:30px;
+  font-size:1em;
+  font-weight:700;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- Simple password gate -->
+<div id="gate-overlay">
+  <div class="gate-card">
+    <h2>Admin Flipbook</h2>
+    <input type="password" id="gatePass" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')checkGate()">
+    <br>
+    <button onclick="checkGate()">Entrer</button>
+  </div>
+</div>
+
+<div class="container" id="mainContent" style="display:none;">
+
+  <div class="header">
+    <h1>Flipbook Generator</h1>
+    <p>Generez un flipbook interactif en 3 etapes</p>
+  </div>
+
+  <!-- ===== CONFIG ===== -->
+  <div class="card">
+    <div class="card-title">Configuration du livre</div>
+    <div class="card-body">
+      <label for="bookTitle">Titre du livre</label>
+      <input type="text" id="bookTitle" value="Mon Livre" placeholder="Coco ne dort pas ce soir !">
+
+      <div class="row">
+        <div>
+          <label for="authorName">Auteur</label>
+          <input type="text" id="authorName" placeholder="Dr. Nirvena">
+        </div>
+        <div>
+          <label for="illustratorName">Illustrateur</label>
+          <input type="text" id="illustratorName" placeholder="Loopinky">
+        </div>
+      </div>
+
+      <label for="accessCode">Code d'acces</label>
+      <input type="text" id="accessCode" placeholder="COCO-DODO-2026" style="text-transform:uppercase;">
+      <div class="hint">Le code que le client utilisera pour acceder au livre</div>
+
+      <label for="bookSlug">Identifiant URL (slug)</label>
+      <input type="text" id="bookSlug" placeholder="coco-sleep" pattern="[a-z0-9\-]+">
+      <div class="hint">Lettres minuscules et tirets uniquement. Ex: mon-livre</div>
+
+      <div class="row">
+        <div>
+          <label for="numPages">Nombre de pages</label>
+          <input type="number" id="numPages" value="31" min="2" max="200">
+        </div>
+        <div>
+          <label for="imgPrefix">Prefixe images</label>
+          <input type="text" id="imgPrefix" value="Diapositive">
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="imgExt">Extension</label>
+          <select id="imgExt">
+            <option value=".JPG">.JPG</option>
+            <option value=".jpg">.jpg</option>
+            <option value=".png">.png</option>
+            <option value=".PNG">.PNG</option>
+            <option value=".webp">.webp</option>
+          </select>
+        </div>
+        <div>
+          <label for="timerSeconds">Timer auto (sec)</label>
+          <input type="number" id="timerSeconds" value="6" min="2" max="30">
+          <div class="hint">Pour le mode visuel sans son</div>
+        </div>
+      </div>
+
+      <label>Couleur de fond</label>
+      <div class="color-row">
+        <input type="color" id="bgColorPick" value="#1a1a4e" oninput="document.getElementById('bgColor').value=this.value">
+        <input type="text" id="bgColor" value="#1a1a4e" oninput="document.getElementById('bgColorPick').value=this.value">
+      </div>
+
+      <label>Couleur accent (boutons)</label>
+      <div class="color-row">
+        <input type="color" id="accentColorPick" value="#D6006E" oninput="document.getElementById('accentColor').value=this.value">
+        <input type="text" id="accentColor" value="#D6006E" oninput="document.getElementById('accentColorPick').value=this.value">
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BACKGROUND SCENE ===== -->
+  <div class="card">
+    <div class="card-title">Arriere-plan (scene)</div>
+    <div class="card-body">
+      <label for="bgType">Type d'arriere-plan</label>
+      <select id="bgType" onchange="toggleBgFields()">
+        <option value="color">Couleur unie</option>
+        <option value="image">Photo (image)</option>
+        <option value="video">Video + Photo (fallback)</option>
+      </select>
+      <div class="hint">Photo ou video derriere le flipbook pour une experience immersive</div>
+
+      <div id="bgImageFields" style="display:none;">
+        <label for="bgImageUrl">URL de l'image de fond</label>
+        <input type="text" id="bgImageUrl" placeholder="/books/mon-livre/read/bg-scene.jpg">
+        <div class="hint">Image JPEG/WebP, idealement 1920x1080 ou plus</div>
+
+        <label for="bgOverlayOpacity">Opacite du vignettage (0-1)</label>
+        <input type="number" id="bgOverlayOpacity" value="0.55" min="0" max="1" step="0.05">
+        <div class="hint">0 = pas d'assombrissement, 0.55 = moyen, 1 = bords tres sombres</div>
+      </div>
+
+      <div id="bgVideoFields" style="display:none;">
+        <label for="bgVideoUrl">URL de la video de fond</label>
+        <input type="text" id="bgVideoUrl" placeholder="/books/mon-livre/read/bg-scene.mp4">
+        <div class="hint">Video MP4, courte (5-15s), bouclee. L'image sert de fallback.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 1: VISUAL ===== -->
+  <div class="step-card step-1">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-label">Flipbook visuel (sans son)</div>
+    </div>
+    <div class="step-body">
+      <div class="step-desc">
+        Genere un flipbook interactif avec animation de pages.
+        Le lecteur peut tourner les pages manuellement ou en mode auto-defilement.
+        Pas de narration audio.
+      </div>
+      <button class="big-btn btn-visual" onclick="generateVisual()">
+        <span class="btn-icon">&#128214;</span> GENERER LE FLIPBOOK VISUEL
+      </button>
+      <div class="folder-guide">
+        <strong>Structure attendue :</strong><br>
+        /books/<span class="slug-preview">mon-livre</span>/<br>
+        &nbsp;&nbsp;images/ &larr; <span class="num-preview">31</span> JPEGs ici<br>
+        &nbsp;&nbsp;read/index.html &larr; fichier genere
+      </div>
+      <div class="feedback" id="fb1"></div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 2: AUDIO ===== -->
+  <div class="step-card step-2">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-label">Ajouter le son</div>
+    </div>
+    <div class="step-body">
+      <div class="step-desc">
+        Ajoute la narration synchronisee et la musique de fond.
+        Chaque spread (2 pages) correspond a un fichier audio (spread_01.mp3, spread_02.mp3...).
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="totalSpreads">Nombre de spreads audio</label>
+          <input type="number" id="totalSpreads" value="14" min="1" max="100">
+          <div class="hint">= (nb pages - couverture - pages fin) / 2</div>
+        </div>
+        <div>
+          <label for="bgMusicFile">Musique de fond</label>
+          <input type="text" id="bgMusicFile" value="lullaby.mp3">
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="bgMusicVol">Volume musique (0-1)</label>
+          <input type="number" id="bgMusicVol" value="0.15" min="0" max="1" step="0.05">
+        </div>
+        <div></div>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="hasTitle" checked>
+        <label for="hasTitle">Titre audio (spread_title.mp3)</label>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" id="hasCredits" checked>
+        <label for="hasCredits">Credits audio (spread_credits.mp3)</label>
+      </div>
+
+      <br>
+      <button class="big-btn btn-audio" onclick="generateAudio()">
+        <span class="btn-icon">&#127925;</span> AJOUTER LE SON
+      </button>
+      <div class="folder-guide">
+        <strong>Fichiers audio attendus :</strong><br>
+        /books/<span class="slug-preview">mon-livre</span>/audio/<br>
+        &nbsp;&nbsp;spread_title.mp3 (optionnel)<br>
+        &nbsp;&nbsp;spread_01.mp3, spread_02.mp3, ...<br>
+        &nbsp;&nbsp;spread_credits.mp3 (optionnel)<br>
+        &nbsp;&nbsp;lullaby.mp3 (musique de fond)
+      </div>
+      <div class="feedback" id="fb2"></div>
+    </div>
+  </div>
+
+  <!-- ===== STEP 3: VIDEO ===== -->
+  <div class="step-card step-3">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-label">Video YouTube</div>
+    </div>
+    <div class="step-body">
+      <div class="step-desc">
+        Genere un script Python/ffmpeg qui assemble les images + audio en video MP4 (1920x1080).
+        Necessite ffmpeg installe et les fichiers audio (etape 2).
+      </div>
+      <button class="big-btn btn-video" onclick="generateVideo()">
+        <span class="btn-icon">&#127916;</span> TELECHARGER LE SCRIPT VIDEO
+      </button>
+      <div class="folder-guide">
+        <strong>Utilisation :</strong><br>
+        1. Placer make_video.py dans /books/<span class="slug-preview">mon-livre</span>/<br>
+        2. Lancer : <code>python make_video.py</code><br>
+        3. Resultat dans youtube/
+      </div>
+      <div class="feedback" id="fb3"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ===== GATE ===== */
+var ADMIN_PASS = 'flipbook2026';
+
+function checkGate(){
+  var pass = document.getElementById('gatePass').value;
+  if(pass === ADMIN_PASS){
+    document.getElementById('gate-overlay').classList.add('hidden');
+    document.getElementById('mainContent').style.display = 'block';
+  } else {
+    document.getElementById('gatePass').style.borderColor = '#ff4444';
+  }
+}
+
+/* ===== BACKGROUND TOGGLE ===== */
+function toggleBgFields(){
+  var type = document.getElementById('bgType').value;
+  document.getElementById('bgImageFields').style.display =
+    (type === 'image' || type === 'video') ? 'block' : 'none';
+  document.getElementById('bgVideoFields').style.display =
+    (type === 'video') ? 'block' : 'none';
+}
+
+/* ===== LIVE PREVIEWS ===== */
+function updatePreviews(){
+  var slug = document.getElementById('bookSlug').value || 'mon-livre';
+  var num = document.getElementById('numPages').value || '31';
+  document.querySelectorAll('.slug-preview').forEach(function(el){ el.textContent = slug; });
+  document.querySelectorAll('.num-preview').forEach(function(el){ el.textContent = num; });
+}
+document.getElementById('bookSlug').addEventListener('input', updatePreviews);
+document.getElementById('numPages').addEventListener('input', updatePreviews);
+
+/* ===== COLLECT CONFIG ===== */
+function getConfig(){
+  var author = document.getElementById('authorName').value;
+  var illustrator = document.getElementById('illustratorName').value;
+  var credits = '';
+  if(author && illustrator) credits = 'Par ' + author + ' &mdash; Illustrations de ' + illustrator;
+  else if(author) credits = 'Par ' + author;
+  else if(illustrator) credits = 'Illustrations de ' + illustrator;
+
+  var slug = document.getElementById('bookSlug').value || 'mon-livre';
+
+  return {
+    BOOK_TITLE: document.getElementById('bookTitle').value,
+    ACCESS_CODE: document.getElementById('accessCode').value.toUpperCase(),
+    CREDITS_LINE: credits,
+    NUM_PAGES: document.getElementById('numPages').value,
+    IMG_BASE_PATH: '/books/' + slug + '/images/',
+    IMG_PREFIX: document.getElementById('imgPrefix').value,
+    IMG_EXT: document.getElementById('imgExt').value,
+    AUDIO_BASE_PATH: '/books/' + slug + '/audio/',
+    BG_COLOR: document.getElementById('bgColor').value,
+    ACCENT_COLOR: document.getElementById('accentColor').value,
+    BG_MUSIC_FILE: document.getElementById('bgMusicFile').value,
+    BG_MUSIC_VOLUME: document.getElementById('bgMusicVol').value,
+    TOTAL_SPREADS: document.getElementById('totalSpreads').value,
+    TIMER_SECONDS: document.getElementById('timerSeconds').value,
+    RETURN_URL: '/books/' + slug + '/',
+    STORAGE_KEY: 'flipbook_' + slug.replace(/-/g, '_'),
+    BOOK_SLUG: slug,
+    HAS_TITLE: document.getElementById('hasTitle').checked ? 'true' : 'false',
+    HAS_CREDITS: document.getElementById('hasCredits').checked ? 'true' : 'false',
+    BG_TYPE: document.getElementById('bgType').value,
+    BG_IMAGE_URL: document.getElementById('bgImageUrl').value,
+    BG_VIDEO_URL: document.getElementById('bgVideoUrl').value,
+    BG_OVERLAY_OPACITY: document.getElementById('bgOverlayOpacity').value || '0.55'
+  };
+}
+
+/* ===== TEMPLATE PROCESSING ===== */
+var templateHTML = null;
+
+function loadTemplate(){
+  return fetch('../templates/flipbook-reader.html')
+    .then(function(r){
+      if(!r.ok) throw new Error('Template not found');
+      return r.text();
+    })
+    .then(function(html){
+      templateHTML = html;
+      return html;
+    });
+}
+
+function replaceVars(html, config){
+  Object.keys(config).forEach(function(key){
+    var re = new RegExp('\\{\\{' + key + '\\}\\}', 'g');
+    html = html.replace(re, config[key]);
+  });
+  return html;
+}
+
+function stripSections(html, prefix){
+  // Remove HTML sections: <!-- PREFIX_START --> ... <!-- PREFIX_END -->
+  var htmlRe = new RegExp('<!-- ' + prefix + '_HTML_START -->[\\s\\S]*?<!-- ' + prefix + '_HTML_END -->', 'g');
+  html = html.replace(htmlRe, '');
+
+  // Remove CSS sections: /* PREFIX_CSS_START */ ... /* PREFIX_CSS_END */
+  var cssRe = new RegExp('/\\* ' + prefix + '_CSS_START \\*/[\\s\\S]*?/\\* ' + prefix + '_CSS_END \\*/', 'g');
+  html = html.replace(cssRe, '');
+
+  // Remove JS sections: /* PREFIX_JS_START */ ... /* PREFIX_JS_END */
+  var jsRe = new RegExp('/\\* ' + prefix + '_JS_START \\*/[\\s\\S]*?/\\* ' + prefix + '_JS_END \\*/', 'g');
+  html = html.replace(jsRe, '');
+
+  return html;
+}
+
+function cleanMarkers(html, prefix){
+  // Remove markers but keep content between them
+  var markers = [
+    '<!-- ' + prefix + '_HTML_START -->', '<!-- ' + prefix + '_HTML_END -->',
+    '/* ' + prefix + '_CSS_START */', '/* ' + prefix + '_CSS_END */',
+    '/* ' + prefix + '_JS_START */', '/* ' + prefix + '_JS_END */'
+  ];
+  markers.forEach(function(m){
+    html = html.split(m).join('');
+  });
+  return html;
+}
+
+function processBgSections(html, bgType){
+  if(bgType === 'color'){
+    html = stripSections(html, 'BG');
+  } else if(bgType === 'image'){
+    html = stripSections(html, 'BG_VIDEO');
+    html = cleanMarkers(html, 'BG');
+    html = cleanMarkers(html, 'BG_IMAGE');
+  } else { /* video */
+    html = cleanMarkers(html, 'BG');
+    html = cleanMarkers(html, 'BG_IMAGE');
+    html = cleanMarkers(html, 'BG_VIDEO');
+  }
+  return html;
+}
+
+function downloadFile(filename, content, mime){
+  var blob = new Blob([content], {type: mime || 'text/html'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function showFeedback(id, msg, ok){
+  var el = document.getElementById(id);
+  el.className = 'feedback ' + (ok ? 'success' : 'error');
+  el.textContent = msg;
+}
+
+/* ===== STEP 1: VISUAL ===== */
+function generateVisual(){
+  var config = getConfig();
+  if(!config.BOOK_TITLE || !config.ACCESS_CODE || !config.BOOK_SLUG){
+    showFeedback('fb1', 'Remplissez le titre, le code et le slug.', false);
+    return;
+  }
+
+  var ready = templateHTML ? Promise.resolve(templateHTML) : loadTemplate();
+  ready.then(function(html){
+    html = replaceVars(html, config);
+    html = stripSections(html, 'AUDIO');      // Remove audio sections
+    html = cleanMarkers(html, 'VISUAL');      // Keep visual sections, remove markers
+    html = processBgSections(html, config.BG_TYPE);
+    downloadFile('index.html', html);
+    showFeedback('fb1', 'Flipbook visuel telecharge ! Placez-le dans /books/' + config.BOOK_SLUG + '/read/', true);
+  }).catch(function(err){
+    showFeedback('fb1', 'Erreur: ' + err.message, false);
+  });
+}
+
+/* ===== STEP 2: AUDIO ===== */
+function generateAudio(){
+  var config = getConfig();
+  if(!config.BOOK_TITLE || !config.ACCESS_CODE || !config.BOOK_SLUG){
+    showFeedback('fb2', 'Remplissez le titre, le code et le slug.', false);
+    return;
+  }
+
+  var ready = templateHTML ? Promise.resolve(templateHTML) : loadTemplate();
+  ready.then(function(html){
+    html = replaceVars(html, config);
+    html = stripSections(html, 'VISUAL');     // Remove visual sections
+    html = cleanMarkers(html, 'AUDIO');       // Keep audio sections, remove markers
+    html = processBgSections(html, config.BG_TYPE);
+    downloadFile('index.html', html);
+    showFeedback('fb2', 'Flipbook avec son telecharge ! Placez-le dans /books/' + config.BOOK_SLUG + '/read/', true);
+  }).catch(function(err){
+    showFeedback('fb2', 'Erreur: ' + err.message, false);
+  });
+}
+
+/* ===== STEP 3: VIDEO SCRIPT ===== */
+function generateVideo(){
+  var config = getConfig();
+  if(!config.BOOK_SLUG){
+    showFeedback('fb3', 'Remplissez le slug du livre.', false);
+    return;
+  }
+
+  var numPages = parseInt(config.NUM_PAGES);
+  var totalSpreads = parseInt(config.TOTAL_SPREADS);
+  var hasTitle = config.HAS_TITLE === 'true';
+  var hasCredits = config.HAS_CREDITS === 'true';
+
+  // Build SCENES array (only scenes with audio — ensures perfect video/audio sync)
+  var scenes = [];
+  if(hasTitle){
+    scenes.push("    ('cover',     [1],      'spread_title.mp3'),");
+  }
+  for(var i = 1; i <= totalSpreads; i++){
+    var p1 = i * 2;
+    var p2 = i * 2 + 1;
+    var name = 'spread_' + String(i).padStart(2,'0');
+    scenes.push("    ('" + name + "', [" + p1 + ", " + p2 + "],  '" + name + ".mp3'),");
+  }
+  var endStart = totalSpreads * 2 + 2;
+  var endPages = [];
+  for(var j = endStart; j <= numPages; j++) endPages.push(j);
+  if(hasCredits && endPages.length > 0){
+    scenes.push("    ('credits',   " + JSON.stringify(endPages) + ", 'spread_credits.mp3'),");
+  }
+
+  var script = [
+    '#!/usr/bin/env python3',
+    '"""',
+    'Generate YouTube video for: ' + config.BOOK_TITLE,
+    'Usage: python make_video.py',
+    '"""',
+    '',
+    'import subprocess, os, sys, shutil',
+    '',
+    'BASE = os.path.dirname(os.path.abspath(__file__))',
+    "IMG_DIR = os.path.join(BASE, 'images')",
+    "AUDIO_DIR = os.path.join(BASE, 'audio')",
+    "OUT_DIR = os.path.join(BASE, 'youtube')",
+    "TMP = os.path.join(OUT_DIR, 'tmp')",
+    '',
+    "BG = '0x" + config.BG_COLOR.replace('#','') + "'",
+    'VW, VH = 1920, 1080',
+    'FPS = 24',
+    'LULLABY_VOL = ' + config.BG_MUSIC_VOLUME,
+    'FADE_S = 4',
+    'FADE_IN_S = 2',
+    '',
+    '# (name, page_numbers, audio_file)',
+    'SCENES = [',
+    scenes.join('\n'),
+    ']',
+    '',
+    "LULLABY = os.path.join(AUDIO_DIR, '" + config.BG_MUSIC_FILE + "')",
+    "IMG_PREFIX = '" + config.IMG_PREFIX + "'",
+    "IMG_EXT = '" + config.IMG_EXT + "'",
+    '',
+    '',
+    'def run(cmd):',
+    '    r = subprocess.run(cmd, capture_output=True, text=True)',
+    '    if r.returncode != 0:',
+    '        print(f"ERREUR: {r.stderr[:500]}")',
+    '        sys.exit(1)',
+    '    return r',
+    '',
+    '',
+    'def duration(path):',
+    "    r = run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration',",
+    "             '-of', 'csv=p=0', path])",
+    '    return float(r.stdout.strip())',
+    '',
+    '',
+    'def img(n):',
+    "    return os.path.join(IMG_DIR, f'{IMG_PREFIX}{n}{IMG_EXT}')",
+    '',
+    '',
+    'def make_spread(pages, out):',
+    '    if len(pages) == 1:',
+    "        run(['ffmpeg', '-y', '-i', img(pages[0]),",
+    "             '-vf', f'scale=-1:{VH},pad={VW}:{VH}:(ow-iw)/2:0:color={BG}',",
+    "             '-frames:v', '1', out])",
+    '    else:',
+    "        run(['ffmpeg', '-y', '-i', img(pages[0]), '-i', img(pages[1]),",
+    "             '-filter_complex',",
+    "             f'[0]scale=-1:{VH}[l];[1]scale=-1:{VH}[r];'",
+    "             f'color=c={BG}:s={VW}x{VH}:d=1[bg];'",
+    "             f'[bg][l]overlay=120:0[tmp];[tmp][r]overlay=960:0',",
+    "             '-frames:v', '1', out])",
+    '',
+    '',
+    'def make_segment(img_path, dur, out):',
+    "    run(['ffmpeg', '-y', '-loop', '1', '-i', img_path,",
+    "         '-t', str(dur),",
+    "         '-vf', f'fps={FPS},format=yuv420p',",
+    "         '-c:v', 'libx264', '-preset', 'medium', '-crf', '18',",
+    "         '-pix_fmt', 'yuv420p', out])",
+    '',
+    '',
+    'def main():',
+    '    os.makedirs(TMP, exist_ok=True)',
+    '    print("=" * 50)',
+    '    print("  ' + config.BOOK_TITLE + ' - YouTube Video")',
+    '    print("=" * 50, "\\n")',
+    '',
+    '    # 1. Audio durations',
+    '    print("[1/6] Durees audio...")',
+    '    durs = []',
+    '    audio_files = []',
+    '    for name, pages, af in SCENES:',
+    '        p = os.path.join(AUDIO_DIR, af)',
+    '        if not os.path.exists(p):',
+    '            print(f"  MANQUANT: {p}")',
+    '            sys.exit(1)',
+    '        d = duration(p)',
+    '        durs.append(d)',
+    '        audio_files.append(p)',
+    '        print(f"  {name:12s} {d:6.1f}s")',
+    '',
+    '    total_narr = sum(durs)',
+    '    total_vid = total_narr + FADE_S',
+    '    print(f"  Total: {total_vid:.0f}s ({total_vid/60:.1f} min)\\n")',
+    '',
+    '    # 2. Spread images',
+    '    print("[2/6] Images des spreads...")',
+    '    spread_imgs = []',
+    '    for i, (name, pages, _) in enumerate(SCENES):',
+    "        out = os.path.join(TMP, f'spread_{i:02d}.png')",
+    '        make_spread(pages, out)',
+    '        spread_imgs.append(out)',
+    '        print(f"  {name}")',
+    '    print()',
+    '',
+    '    # 3. Video segments',
+    '    print("[3/6] Segments video...")',
+    '    segments = []',
+    '    for i, ((name, pages, af), d) in enumerate(zip(SCENES, durs)):',
+    "        seg = os.path.join(TMP, f'seg_{i:02d}.mp4')",
+    '        make_segment(spread_imgs[i], d, seg)',
+    '        segments.append(seg)',
+    '        print(f"  seg_{i:02d}.mp4  ({d:.1f}s)")',
+    '',
+    "    seg_fade = os.path.join(TMP, 'seg_fade.mp4')",
+    '    make_segment(spread_imgs[-1], FADE_S, seg_fade)',
+    '    segments.append(seg_fade)',
+    '    print(f"  seg_fade.mp4 ({FADE_S}s)\\n")',
+    '',
+    '    # 4. Concatenate video',
+    '    print("[4/6] Assemblage video...")',
+    "    seg_list = os.path.join(TMP, 'segments.txt')",
+    "    with open(seg_list, 'w') as f:",
+    '        for s in segments:',
+    "            f.write(f\"file '{s.replace(os.sep, '/')}'\\n\")",
+    '',
+    "    raw_vid = os.path.join(TMP, 'raw_video.mp4')",
+    "    run(['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', seg_list,",
+    "         '-c:v', 'libx264', '-preset', 'medium', '-crf', '18',",
+    "         '-pix_fmt', 'yuv420p', raw_vid])",
+    '',
+    "    vid = os.path.join(TMP, 'video.mp4')",
+    "    run(['ffmpeg', '-y', '-i', raw_vid,",
+    "         '-vf', f'fade=t=in:d={FADE_IN_S},fade=t=out:st={total_vid - FADE_S}:d={FADE_S}',",
+    "         '-c:v', 'libx264', '-preset', 'medium', '-crf', '18',",
+    "         '-pix_fmt', 'yuv420p', vid])",
+    '    print("  OK\\n")',
+    '',
+    '    # 5. Audio mix',
+    '    print("[5/6] Audio (narration + musique)...")',
+    "    alist = os.path.join(TMP, 'audio_list.txt')",
+    "    with open(alist, 'w') as f:",
+    '        for p in audio_files:',
+    "            f.write(f\"file '{p.replace(os.sep, '/')}'\\n\")",
+    '',
+    "    narr = os.path.join(TMP, 'narration.wav')",
+    "    run(['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', alist,",
+    "         '-ar', '44100', '-ac', '2', narr])",
+    '',
+    "    mixed = os.path.join(TMP, 'mixed.aac')",
+    '    narr_dur = duration(narr)',
+    '    mix_dur = narr_dur + FADE_S',
+    "    run(['ffmpeg', '-y',",
+    "         '-i', narr,",
+    "         '-stream_loop', '-1', '-i', LULLABY,",
+    "         '-filter_complex',",
+    "         f'[1]volume={LULLABY_VOL}[bg];'",
+    "         f'[0]apad=pad_dur={FADE_S}[nr];'",
+    "         f'[nr][bg]amix=inputs=2:duration=first:normalize=0[mx];'",
+    "         f'[mx]afade=t=out:st={narr_dur}:d={FADE_S}',",
+    "         '-t', str(mix_dur),",
+    "         '-c:a', 'aac', '-b:a', '192k', mixed])",
+    '    print("  OK\\n")',
+    '',
+    '    # 6. Final',
+    '    print("[6/6] Export final...")',
+    "    slug = '" + config.BOOK_SLUG + "'",
+    "    final = os.path.join(OUT_DIR, f'{slug}.mp4')",
+    "    run(['ffmpeg', '-y',",
+    "         '-i', vid, '-i', mixed,",
+    "         '-c:v', 'copy', '-c:a', 'copy',",
+    "         '-shortest', final])",
+    '',
+    '    sz = os.path.getsize(final) / (1024 * 1024)',
+    "    print(f'\\n{\"=\" * 50}')",
+    "    print(f'  TERMINE !')",
+    "    print(f'  Fichier : {final}')",
+    "    print(f'  Taille  : {sz:.0f} MB')",
+    "    print(f'  Duree   : ~{total_vid / 60:.1f} min')",
+    "    print(f'{\"=\" * 50}')",
+    '',
+    '    shutil.rmtree(TMP)',
+    '    print("Fichiers temporaires supprimes.")',
+    '',
+    '',
+    "if __name__ == '__main__':",
+    '    main()',
+  ].join('\n');
+
+  downloadFile('make_video.py', script, 'text/x-python');
+  showFeedback('fb3', 'Script video telecharge ! Placez-le dans /books/' + config.BOOK_SLUG + '/ et lancez python make_video.py', true);
+}
+</script>
+</body>
+</html>
