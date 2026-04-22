@@ -49,7 +49,10 @@ button[type=submit]:disabled{background:#ccc;cursor:not-allowed}
 <input type="password" id="secret" required placeholder="Newsletter secret">
 
 <label for="title">Titre</label>
-<input type="text" id="title" required placeholder="Ex: Cloud Name Generator" value="Coloriages &amp; Lettres de Saint-Valentin">
+<input type="text" id="title" required placeholder="Ex: Cloud Name Generator" value="2 coloriages F&ecirc;te des m&egrave;res gratuits">
+
+<label for="subject">Sujet du mail</label>
+<input type="text" id="subject" required placeholder="Ex: Nouveau chez Coco" value="2 coloriages gratuits pour la Fete des meres">
 
 <div class="row">
 <div>
@@ -58,13 +61,16 @@ button[type=submit]:disabled{background:#ccc;cursor:not-allowed}
 </div>
 <div>
 <label for="url">URL (chemin)</label>
-<input type="text" id="url" required placeholder="Ex: /cloud-name/" value="/valentine/">
+<input type="text" id="url" required placeholder="Ex: /cloud-name/" value="/freebies/#i-love-you-more-freebies">
 <div class="hint">Chemin depuis cocotheaxolotl.org</div>
 </div>
 </div>
 
 <label for="description">Description</label>
 <textarea id="description" required placeholder="Ex: Type your name in fluffy cloud letters!"><img src="https://cocotheaxolotl.org/coco-valentine.png" width="220" style="display:block;margin:0 auto 16px;border-radius:14px" alt="Coco avec un coeur"><br>F&ecirc;te la Saint-Valentin avec Coco !<br><br><strong>🖍️ 8 Coloriages Gratuits</strong><br>Coeurs, fleurs, amiti&eacute;, animaux et plus &mdash; imprime et colorie !<br><br><strong>💌 Lettres Valentine</strong><br>&Eacute;cris ton pr&eacute;nom en lettres ballons roses et t&eacute;l&eacute;charge-le !<br><br><a href="https://cocotheaxolotl.org/valentine-name/" style="display:inline-block;padding:12px 28px;background:#e91e63;color:#fff;text-decoration:none;border-radius:25px;font-weight:800;font-size:15px;margin-top:8px">✨ Essayer les Lettres Valentine</a></textarea>
+
+<label for="buttonText">Texte du bouton</label>
+<input type="text" id="buttonText" required value="Voir les coloriages gratuits">
 
 <label>Couleur du header</label>
 <div class="colors">
@@ -105,6 +111,14 @@ var titleEl = document.getElementById('title');
 var emojiEl = document.getElementById('emoji');
 var descEl = document.getElementById('description');
 var preview = document.getElementById('preview');
+var subjectEl = document.getElementById('subject');
+
+titleEl.value = '2 coloriages Fete des meres gratuits';
+emojiEl.value = 'MOM';
+subjectEl.value = '2 coloriages gratuits pour la Fete des meres';
+document.getElementById('url').value = '/freebies/#i-love-you-more-freebies';
+document.getElementById('buttonText').value = 'Voir les coloriages gratuits';
+descEl.value = '<img src="https://cocotheaxolotl.org/shop/coloring-love-preview.gif" width="220" style="display:block;margin:0 auto 16px;border-radius:14px" alt="I Love You More coloring pack preview"><br>Coco a ajoute 2 coloriages gratuits pour la Fete des meres, extraits du pack <strong>Je t aime encore plus</strong>.<br><br>Tu peux les imprimer gratuitement depuis la page freebies.<br><br>Et si tu veux toute la serie, le pack complet de 21 pages est disponible dans la boutique.';
 
 function updatePreview() {
   var t = titleEl.value.trim();
@@ -112,7 +126,7 @@ function updatePreview() {
   var d = descEl.value.trim();
   if (t || d) {
     preview.style.display = 'block';
-    document.getElementById('previewSubject').textContent = (e ? e + ' ' : '') + 'New on Coco the Axolotl: ' + (t || '...') + '!';
+    document.getElementById('previewSubject').textContent = subjectEl.value.trim() || ((e ? e + ' ' : '') + 'New on Coco the Axolotl: ' + (t || '...') + '!');
     var sanitized = (d || '...').replace(/<script[\s\S]*?<\/script>/gi, '').replace(/\bon\w+\s*=/gi, 'data-removed=');
     document.getElementById('previewDesc').innerHTML = sanitized;
   } else {
@@ -122,6 +136,7 @@ function updatePreview() {
 titleEl.addEventListener('input', updatePreview);
 emojiEl.addEventListener('input', updatePreview);
 descEl.addEventListener('input', updatePreview);
+subjectEl.addEventListener('input', updatePreview);
 updatePreview();
 
 // Submit
@@ -144,8 +159,10 @@ document.getElementById('nlForm').addEventListener('submit', function(ev) {
       secret: document.getElementById('secret').value,
       title: titleEl.value.trim(),
       emoji: emojiEl.value.trim(),
+      subject: subjectEl.value.trim(),
       description: descEl.value.trim(),
       url: document.getElementById('url').value.trim(),
+      buttonText: document.getElementById('buttonText').value.trim(),
       color: document.getElementById('color').value
     })
   })

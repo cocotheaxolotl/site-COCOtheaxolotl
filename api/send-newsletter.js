@@ -1,7 +1,7 @@
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { secret, title, emoji, description, url, color } = req.body;
+  const { secret, title, emoji, description, url, color, subject, buttonText } = req.body;
 
   if (secret !== process.env.NEWSLETTER_SECRET) {
     return res.status(401).json({ error: 'Unauthorized' });
@@ -28,7 +28,7 @@ module.exports = async function handler(req, res) {
     + '<h2 style="margin:0 0 12px;font-size:24px;text-align:center">' + (emoji || '') + ' ' + title + '</h2>'
     + '<p style="margin:0 0 22px;font-size:16px;line-height:1.5;color:#555;text-align:center">' + description + '</p>'
     + '<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">'
-    + '<a href="' + fullUrl + '" style="display:inline-block;padding:14px 36px;background:' + bgColor + ';color:#fff;text-decoration:none;border-radius:30px;font-weight:800;font-size:16px">Try it now!</a>'
+    + '<a href="' + fullUrl + '" style="display:inline-block;padding:14px 36px;background:' + bgColor + ';color:#fff;text-decoration:none;border-radius:30px;font-weight:800;font-size:16px">' + (buttonText || 'Try it now!') + '</a>'
     + '</td></tr></table>'
     + '</td></tr>'
     // Footer
@@ -48,7 +48,7 @@ module.exports = async function handler(req, res) {
       },
       body: JSON.stringify({
         name: 'New: ' + title,
-        subject: emoji + ' New on Coco the Axolotl: ' + title + '!',
+        subject: subject || ((emoji || '') + ' New on Coco the Axolotl: ' + title + '!'),
         sender: { name: senderName, email: senderEmail },
         recipients: { listIds: [listId] },
         htmlContent: htmlContent
