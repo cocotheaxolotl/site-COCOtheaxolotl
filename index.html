@@ -336,6 +336,62 @@
       opacity:.8;
       animation:bounce 1.8s ease-in-out infinite;
     }
+    .hero-activity-cta{
+      position:relative;
+      z-index:12;
+      max-width:920px;
+      margin:8px auto 14px;
+      padding:14px 18px;
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:14px;
+      align-items:center;
+      border-radius:18px;
+      background:rgba(255,255,255,.94);
+      box-shadow:0 10px 34px rgba(0,0,0,.18);
+      border:2px solid rgba(255,105,180,.34);
+      color:#2f2b36;
+      text-decoration:none;
+      text-shadow:none;
+      font-family:'Baloo 2',system-ui,sans-serif;
+    }
+    .hero-activity-cta:hover{transform:translateY(-1px)}
+    .hero-activity-cta .mark{
+      display:grid;
+      place-items:center;
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:#2f8f9d;
+      color:#fff;
+      font-weight:800;
+      font-size:1.1em;
+    }
+    .hero-activity-cta strong{
+      display:block;
+      font-size:1.18em;
+      line-height:1.12;
+      color:#c0186a;
+    }
+    .hero-activity-cta span{
+      display:block;
+      margin-top:3px;
+      font-size:.92em;
+      line-height:1.25;
+      opacity:.84;
+    }
+    .hero-activity-cta b{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:8px 14px;
+      border-radius:999px;
+      background:#ff69b4;
+      color:#fff;
+      white-space:nowrap;
+      font-size:.92em;
+    }
     @keyframes bounce{
       0%,100%{ transform:translateY(0); }
       50%{ transform:translateY(8px); }
@@ -375,6 +431,74 @@
       font-size:14px;
       opacity:.88;
       line-height:1.45;
+    }
+    .activity-picker{
+      max-width:980px;
+      margin:22px auto 18px;
+      padding:20px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#fff,#eaf9fb);
+      border:2px solid rgba(47,143,157,.18);
+      box-shadow:0 12px 32px rgba(47,143,157,.12);
+      text-align:left;
+      pointer-events:auto;
+    }
+    .activity-picker h3{
+      margin:0 0 12px;
+      font-size:1.45em;
+      color:#244d56;
+      text-align:center;
+    }
+    .activity-picker-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+    .activity-choice{
+      display:flex;
+      flex-direction:column;
+      min-height:150px;
+      padding:16px;
+      border-radius:14px;
+      background:#fff;
+      color:var(--text);
+      text-decoration:none;
+      border:1px solid rgba(255,105,180,.22);
+      box-shadow:0 8px 18px rgba(0,0,0,.05);
+      transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .activity-choice:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,105,180,.7);
+      box-shadow:0 12px 24px rgba(0,0,0,.09);
+    }
+    .activity-choice strong{
+      display:block;
+      font-size:1.12em;
+      line-height:1.15;
+      color:#c0186a;
+    }
+    .activity-choice span{
+      display:block;
+      margin-top:8px;
+      font-family:system-ui,sans-serif;
+      font-size:.92em;
+      line-height:1.35;
+      opacity:.82;
+    }
+    .activity-choice b{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      align-self:flex-start;
+      min-height:30px;
+      margin-top:auto;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#ff69b4;
+      color:#fff;
+      font-size:.85em;
+      line-height:1;
     }
 
     .quick-links{
@@ -610,6 +734,8 @@
 
     @media (max-width: 820px){
       .quick-links{grid-template-columns:1fr}
+      .activity-picker-grid{grid-template-columns:1fr}
+      .activity-choice{min-height:0}
       h1{font-size:1.6em}
       h2{font-size:1.8em}
       header{padding:20px 4px 24px}
@@ -618,6 +744,15 @@
 
     /* ── Mobile: vertical layout, fish links become pill buttons ── */
     @media (max-width: 600px){
+      .hero-activity-cta{
+        grid-template-columns:1fr;
+        max-width:92vw;
+        margin:8px auto 12px;
+        gap:8px;
+        text-align:center;
+      }
+      .hero-activity-cta .mark,
+      .hero-activity-cta b{justify-self:center}
       /* Stack hero vertically: Coco top, links below */
       .hero-row{
         flex-direction:column;
@@ -693,6 +828,15 @@
     <div class="bubblesLayer" id="bubblesLayer" aria-hidden="true"></div>
 
     <h1>💗 Coco the Axolotl</h1>
+
+    <a class="hero-activity-cta" href="/kids-games/">
+      <span class="mark">NEW</span>
+      <span>
+        <strong>New kids activity hub</strong>
+        <span>Choose by age, time and activity type: printables, puzzles, memory and calm games.</span>
+      </span>
+      <b>Explore activities</b>
+    </a>
 
     <a href="/coco-easter-coloring.png" download="coco-easter-coloring.png" class="easter-banner" onclick="if(!localStorage.getItem('coco_subscribed')){document.getElementById('popupOverlay').classList.add('active');return false;}">
       <span class="easter-eggs">🥚🐣🥚</span>
@@ -863,6 +1007,37 @@
         <span data-lang="es">Coco el Ajolote ofrece actividades tranquilas para ni&ntilde;os: dibujos para colorear, generadores de nombres para colorear, juegos imprimibles y momentos creativos sin pantalla para relajarse, concentrarse y divertirse.
         Los padres encontrar&aacute;n p&aacute;ginas para colorear, generadores para colorear tu nombre en globos, burbujas, nubes y m&aacute;s, actividades sin pantalla e ideas educativas en un ambiente amigable y tranquilo.</span>
       </p>
+
+      <section class="activity-picker" aria-label="Choose an activity">
+        <h3>
+          <span data-lang="en">What do you want to do today?</span>
+          <span data-lang="fr">Que veux-tu faire aujourd'hui ?</span>
+          <span data-lang="es">&iquest;Qu&eacute; quieres hacer hoy?</span>
+        </h3>
+        <div class="activity-picker-grid">
+          <a class="activity-choice" href="/freebies/">
+            <strong><span data-lang="en">Print a quiet activity</span><span data-lang="fr">Imprimer une activit&eacute; calme</span><span data-lang="es">Imprimir una actividad tranquila</span></strong>
+            <span data-lang="en">Coloring pages and printable sheets for screen-free moments.</span>
+            <span data-lang="fr">Coloriages et fiches &agrave; imprimer pour les moments sans &eacute;cran.</span>
+            <span data-lang="es">Dibujos y fichas imprimibles para momentos sin pantalla.</span>
+            <b><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></b>
+          </a>
+          <a class="activity-choice" href="/kids-games/">
+            <strong><span data-lang="en">Play a kids game</span><span data-lang="fr">Jouer &agrave; un jeu enfant</span><span data-lang="es">Jugar a un juego infantil</span></strong>
+            <span data-lang="en">Puzzles, memory, word search and short games by age and duration.</span>
+            <span data-lang="fr">Puzzles, memory, mots m&ecirc;l&eacute;s et petits jeux par &acirc;ge et dur&eacute;e.</span>
+            <span data-lang="es">Puzzles, memoria, sopa de letras y juegos por edad y duraci&oacute;n.</span>
+            <b><span data-lang="en">Play</span><span data-lang="fr">Jouer</span><span data-lang="es">Jugar</span></b>
+          </a>
+          <a class="activity-choice" href="/sleep-book/read/?unlock=COCO-DODO-2026">
+            <strong><span data-lang="en">Read a calm story</span><span data-lang="fr">Lire une histoire calme</span><span data-lang="es">Leer un cuento tranquilo</span></strong>
+            <span data-lang="en">A gentle bedtime story with Coco and animal sleep secrets.</span>
+            <span data-lang="fr">Une histoire du soir douce avec Coco et les secrets de sommeil des animaux.</span>
+            <span data-lang="es">Un cuento suave con Coco y secretos de sue&ntilde;o de animales.</span>
+            <b><span data-lang="en">Read</span><span data-lang="fr">Lire</span><span data-lang="es">Leer</span></b>
+          </a>
+        </div>
+      </section>
 
       <p class="seoLine">
         <span data-lang="en">Parents also search for: <strong>coloring pages</strong>, <strong>coloring sheets</strong>, <strong>color pages</strong>, <strong>color your name</strong>, <strong>bedtime stories</strong>, <strong>free bedtime stories for kids</strong>, <strong>christmas coloring pages</strong>, and <strong>coloring activities for kids</strong>.</span>

@@ -310,6 +310,74 @@
       opacity:.88;
       line-height:1.45;
     }
+    .activity-picker{
+      max-width:980px;
+      margin:22px auto 18px;
+      padding:20px;
+      border-radius:18px;
+      background:linear-gradient(135deg,#fff,#eaf9fb);
+      border:2px solid rgba(47,143,157,.18);
+      box-shadow:0 12px 32px rgba(47,143,157,.12);
+      text-align:left;
+      pointer-events:auto;
+    }
+    .activity-picker h3{
+      margin:0 0 12px;
+      font-size:1.45em;
+      color:#244d56;
+      text-align:center;
+    }
+    .activity-picker-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+    }
+    .activity-choice{
+      display:flex;
+      flex-direction:column;
+      min-height:150px;
+      padding:16px;
+      border-radius:14px;
+      background:#fff;
+      color:var(--text);
+      text-decoration:none;
+      border:1px solid rgba(255,105,180,.22);
+      box-shadow:0 8px 18px rgba(0,0,0,.05);
+      transition:transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .activity-choice:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,105,180,.7);
+      box-shadow:0 12px 24px rgba(0,0,0,.09);
+    }
+    .activity-choice strong{
+      display:block;
+      font-size:1.12em;
+      line-height:1.15;
+      color:#c0186a;
+    }
+    .activity-choice span{
+      display:block;
+      margin-top:8px;
+      font-family:system-ui,sans-serif;
+      font-size:.92em;
+      line-height:1.35;
+      opacity:.82;
+    }
+    .activity-choice b{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      align-self:flex-start;
+      min-height:30px;
+      margin-top:auto;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#ff69b4;
+      color:#fff;
+      font-size:.85em;
+      line-height:1;
+    }
 
     .quick-links{
       max-width:980px;
@@ -544,6 +612,8 @@
 
     @media (max-width: 820px){
       .quick-links{grid-template-columns:1fr}
+      .activity-picker-grid{grid-template-columns:1fr}
+      .activity-choice{min-height:0}
       h1{font-size:1.6em}
       h2{font-size:1.8em}
       header{padding:20px 4px 24px}
@@ -702,6 +772,26 @@ Coco l'Axolotl propose des activités calmes pour les enfants : coloriages, gén
         Les parents trouveront des coloriages apaisants, des générateurs pour colorier ton prénom en ballons, bulles, nuages et plus, des activités sans écran et des idées éducatives dans un univers doux et bienveillant.
 
 </p>
+<section aria-label="Choisir une activit&eacute;" class="activity-picker">
+<h3>Que veux-tu faire aujourd'hui ?</h3>
+<div class="activity-picker-grid">
+<a class="activity-choice" href="/fr/freebies/">
+<strong>Imprimer une activit&eacute; calme</strong>
+<span>Coloriages et fiches &agrave; imprimer pour les moments sans &eacute;cran.</span>
+<b>Imprimer</b>
+</a>
+<a class="activity-choice" href="/fr/kids-games/">
+<strong>Jouer &agrave; un jeu enfant</strong>
+<span>Puzzles, memory, mots m&ecirc;l&eacute;s et petits jeux par &acirc;ge et dur&eacute;e.</span>
+<b>Jouer</b>
+</a>
+<a class="activity-choice" href="/sleep-book/read/?unlock=COCO-DODO-2026">
+<strong>Lire une histoire calme</strong>
+<span>Une histoire du soir douce avec Coco et les secrets de sommeil des animaux.</span>
+<b>Lire</b>
+</a>
+</div>
+</section>
 <p class="seoLine">
 
 Les parents recherchent aussi : <strong>coloriages gratuits</strong>, <strong>pages de coloriage</strong>, <strong>colorie ton prénom</strong>, <strong>histoires du soir</strong>, <strong>histoires pour dormir gratuites</strong>, <strong>coloriages de Noël</strong> et <strong>activités de coloriage pour enfants</strong>.
