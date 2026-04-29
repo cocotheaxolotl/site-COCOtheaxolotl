@@ -1,0 +1,8 @@
+config/.env
+config/youtube_oauth.json
+config/youtube_token.pickle
+output/
+__pycache__/
+*.pyc
+.venv/
+venv/

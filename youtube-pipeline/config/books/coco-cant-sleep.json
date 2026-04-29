@@ -1,0 +1,43 @@
+{
+  "slug": "coco-cant-sleep",
+  "title_en": "Coco Can't Sleep Tonight!",
+  "title_fr": "Coco ne dort pas ce soir !",
+  "url_en": "https://cocotheaxolotl.org/",
+  "url_fr": "https://cocotheaxolotl.org/fr/",
+  "amazon_url": "https://www.amazon.com/dp/B0DXXXXXXX",
+  "category": "bedtime",
+  "age_range": "3-7",
+  "one_liner_en": "A cozy bedtime story about Coco the axolotl who can't fall asleep — until a magical dolphin friend helps him drift off",
+  "one_liner_fr": "Une histoire douce du soir : Coco l'axolotl n'arrive pas à dormir — jusqu'à ce qu'un dauphin magique l'aide à s'endormir",
+  "themes": ["bedtime", "anxiety", "friendship", "ocean", "stars", "dolphins"],
+  "key_moments": [
+    "Coco sees the moon through his window and gets too excited to sleep",
+    "He counts stars but keeps losing count",
+    "A magical dolphin appears at his bedroom window",
+    "The dolphin takes Coco on a calm starlit ocean ride",
+    "Coco's eyelids grow heavy as the waves rock him",
+    "He falls asleep peacefully, dreaming of the sea"
+  ],
+  "main_characters": ["Coco the axolotl (pink, kind, anxious)", "the magical dolphin (calm, wise)"],
+  "narration_files": {
+    "en": "../../LIVRES COCO/Coco Can't Sleep Tonight!/narration-EN.txt",
+    "fr": "../../LIVRES COCO/Coco Can't Sleep Tonight!/narration-FR.txt"
+  },
+  "pdf_spreads": {
+    "fr": "../../LIVRES COCO/Coco Can't Sleep Tonight!/Coco-ne-dort-pas-ce-soir-FR-8.5x11-spreads-V5/Coco-ne-dort-pas-ce-soir-FR-8.5x11-spreads-V5-modified.pdf"
+  },
+  "target_keywords": [
+    "bedtime story",
+    "kids bedtime",
+    "axolotl story",
+    "read aloud kids",
+    "sleep story for kids"
+  ],
+  "target_keywords_fr": [
+    "histoire du soir",
+    "histoire pour dormir",
+    "axolotl",
+    "lecture enfant",
+    "conte pour s'endormir"
+  ]
+}

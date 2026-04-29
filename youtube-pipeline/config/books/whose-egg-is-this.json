@@ -1,0 +1,43 @@
+{
+  "slug": "whose-egg-is-this",
+  "title_en": "Whose Egg Is This?",
+  "title_fr": "À qui est cet œuf ?",
+  "url_en": "https://cocotheaxolotl.org/",
+  "url_fr": "https://cocotheaxolotl.org/fr/",
+  "amazon_url": "",
+  "category": "discovery",
+  "age_range": "3-6",
+  "one_liner_en": "An interactive guessing-game book — Coco finds mysterious eggs and the reader guesses which animal each belongs to",
+  "one_liner_fr": "Un livre interactif de devinettes — Coco trouve des œufs mystérieux et le lecteur devine à quel animal chacun appartient",
+  "themes": ["discovery", "animals", "nature", "guessing", "interactive", "learning"],
+  "key_moments": [
+    "Coco finds a tiny speckled egg in the grass — whose is it?",
+    "A giant blue egg in a tree — could it be a peacock?",
+    "A strange leathery egg by the river — a turtle perhaps?",
+    "Each reveal: the baby animal hatching",
+    "Final twist: Coco himself was once an egg"
+  ],
+  "main_characters": ["Coco the axolotl (curious explorer)", "Various baby animals hatching"],
+  "narration_files": {
+    "en": "",
+    "fr": ""
+  },
+  "pdf_spreads": {
+    "en": "",
+    "fr": ""
+  },
+  "target_keywords": [
+    "whose egg is this",
+    "animal eggs book",
+    "guessing game kids",
+    "interactive read aloud",
+    "axolotl book"
+  ],
+  "target_keywords_fr": [
+    "à qui est cet œuf",
+    "livre devinette enfant",
+    "œufs animaux",
+    "lecture interactive",
+    "livre axolotl"
+  ]
+}

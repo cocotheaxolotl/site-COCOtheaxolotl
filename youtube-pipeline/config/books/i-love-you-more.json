@@ -1,0 +1,44 @@
+{
+  "slug": "i-love-you-more",
+  "title_en": "I Love You More",
+  "title_fr": "Je t'aime plus que tout",
+  "url_en": "https://cocotheaxolotl.org/",
+  "url_fr": "https://cocotheaxolotl.org/fr/",
+  "amazon_url": "",
+  "category": "love",
+  "age_range": "2-6",
+  "one_liner_en": "A gentle declaration of unconditional love between Coco and his mom, illustrated with the boundless love of animals across the world",
+  "one_liner_fr": "Une déclaration tendre d'amour inconditionnel entre Coco et sa maman, illustrée par l'amour sans limites des animaux du monde entier",
+  "themes": ["love", "family", "parent-child", "animals", "nature", "tenderness"],
+  "key_moments": [
+    "Coco asks his mom how much she loves him",
+    "Mom answers with comparisons to wild animals' love",
+    "A polar bear keeping her cub warm in the arctic",
+    "An elephant mother guarding her baby in the savanna",
+    "A wolf pack pressed close together at night",
+    "Mom whispers: I love you more than all of these put together"
+  ],
+  "main_characters": ["Coco the axolotl (curious, sweet)", "Mom axolotl (warm, reassuring)"],
+  "narration_files": {
+    "en": "",
+    "fr": ""
+  },
+  "pdf_spreads": {
+    "en": "",
+    "fr": ""
+  },
+  "target_keywords": [
+    "i love you more",
+    "mommy book",
+    "love story for kids",
+    "read aloud kids",
+    "axolotl book"
+  ],
+  "target_keywords_fr": [
+    "je t'aime plus que tout",
+    "livre maman enfant",
+    "histoire d'amour enfant",
+    "lecture enfant",
+    "livre axolotl"
+  ]
+}
