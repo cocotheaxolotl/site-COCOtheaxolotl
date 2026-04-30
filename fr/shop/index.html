@@ -56,6 +56,17 @@ main{max-width:800px;margin:0 auto;padding:36px 20px}
   gap:16px;
   margin-bottom:32px;
 }
+.shop-grid-center{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:24px;
+  margin-bottom:32px;
+}
+.shop-grid-center .product-card{
+  max-width:280px;
+  flex:0 1 280px;
+}
 .shop-card{
   display:flex;flex-direction:column;align-items:center;
   text-decoration:none;color:#333;
@@ -87,6 +98,35 @@ main{max-width:800px;margin:0 auto;padding:36px 20px}
 
 .back{display:block;text-align:center;margin-top:28px;color:#d6006e;font-weight:800;text-decoration:none}
 .back:hover{text-decoration:underline}
+
+.product-card{
+  display:flex;flex-direction:column;align-items:center;
+  background:#fff;
+  border:2px solid rgba(255,105,180,.3);
+  border-radius:18px;
+  padding:22px 18px;
+  text-align:center;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.product-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,105,180,.18);
+  border-color:rgba(255,105,180,.6);
+}
+.product-name{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1em;margin:4px 0}
+.product-desc{font-size:.9em;color:#666;line-height:1.4;margin:4px 0 12px}
+.product-price{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.3em;color:#d6006e;margin:0 0 12px}
+.btn-buy{
+  display:inline-block;
+  padding:10px 24px;
+  background:#ff69b4;color:#fff;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:.95em;
+  border-radius:24px;text-decoration:none;
+  transition:background .15s,transform .15s;
+}
+.btn-buy:hover{background:#e0559e;transform:translateY(-1px)}
+.btn-buy.disabled{background:#c9a8bc;cursor:default;pointer-events:none}
+.preview-book{width:140px;border-radius:10px;margin-bottom:8px}
 
 /* Lang */
 [data-lang="fr"],
@@ -128,11 +168,18 @@ Des produits trop mignons pour les fans d'axolotl !
 <h3 style="text-align:center;font-family:'Baloo 2',cursive;font-size:1.4em;color:#5c3d8e;margin-bottom:20px">Je t'aime encore plus</h3>
 <div class="shop-grid-center">
   <div class="product-card">
-    <img src="/shop/coloring-love-preview.gif" alt="Coloriage Je t'aime encore plus" style="width:140px;border-radius:10px;margin-bottom:8px">
+    <img class="preview-book" src="/shop/coloring-love-preview.gif" alt="Coloriage Je t'aime encore plus">
     <div class="product-name">Je t'aime encore plus &ndash; Coloriage (PDF)</div>
     <p class="product-desc">21 coloriages adorables c&eacute;l&eacute;brant l'amour ! PDF haute qualit&eacute;, pr&ecirc;t &agrave; imprimer.</p>
     <div class="product-price">2,99 &euro;</div>
     <a class="btn-buy" href="https://buy.stripe.com/14AdR9fUx9yZgIqeBx6Zy00" target="_blank" rel="noopener">Acheter</a>
+  </div>
+  <div class="product-card">
+    <img class="preview-book" src="/shop/je-taime-encore-plus-ebook-fr-preview.gif" alt="Aper&ccedil;u du livre illustr&eacute; Je t'aime encore plus" loading="lazy">
+    <div class="product-name">Je t'aime encore plus &ndash; Livre illustr&eacute; (PDF)</div>
+    <p class="product-desc">Le livre illustr&eacute; complet en PDF, avec les 32 pages de l'histoire. Ce n'est pas le coloriage.</p>
+    <div class="product-price">6,99 &euro;</div>
+    <span class="btn-buy disabled" aria-disabled="true" data-download="/shop/je-taime-encore-plus-livre-illustre-fr.pdf">Lien Stripe &agrave; ajouter</span>
   </div>
 </div>
 
