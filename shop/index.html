@@ -168,9 +168,9 @@ body.es span[data-lang="en"]{display:none}
     <span data-lang="es">&iexcl;Descargas digitales, coloriages, ebooks y productos adorables!</span>
   </p>
   <div class="lang-toggle">
-    <button class="lang-btn active" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" onclick="setLang('fr')">FR</button>
-    <button class="lang-btn" onclick="setLang('es')">ES</button>
+    <a class="lang-btn active" href="/shop/">EN</a>
+    <a class="lang-btn" href="/fr/shop/">FR</a>
+    <a class="lang-btn" href="/es/shop/">ES</a>
   </div>
 </header>
 
@@ -196,7 +196,7 @@ body.es span[data-lang="en"]{display:none}
   <div class="shop-grid-center">
     <div class="product-card">
       <img src="/shop/cover-ebook.gif" alt="Ebook" style="width:140px;border-radius:10px;margin-bottom:8px">
-      <div class="product-name"><span data-lang="en">Bedtime Story Ebook</span><span data-lang="fr">Ebook Histoire du Soir</span><span data-lang="es">Ebook Cuento para Dormir</span></div>
+      <div class="product-name"><span data-lang="en">Coco Doesn't Sleep Tonight! &ndash; Ebook</span><span data-lang="fr">COCO ne dort pas ce soir ! &ndash; Ebook</span><span data-lang="es">&iexcl;Coco no duerme esta noche! &ndash; Ebook</span></div>
       <p class="product-desc"><span data-lang="en">A sweet bedtime story for little ones. Illustrated PDF ebook with all the animals Coco meets on his adventure!</span><span data-lang="fr">Une douce histoire du soir pour les petits. Ebook PDF illustr&eacute; avec tous les animaux que Coco rencontre !</span><span data-lang="es">&iexcl;Un dulce cuento para dormir para los m&aacute;s peque&ntilde;os! Ebook PDF ilustrado con todos los animales que Coco encuentra.</span></p>
       <div class="product-price"><span data-lang="en">$6.99</span><span data-lang="fr">6,99 &euro;</span><span data-lang="es">6,99 &euro;</span></div>
       <a class="btn-buy" href="https://buy.stripe.com/cNi4gzeQt4eF1Nw7956Zy01" target="_blank" rel="noopener">
@@ -340,14 +340,5 @@ body.es span[data-lang="en"]{display:none}
 <p class="us-credit"><span data-lang="en">Book created with <a href="https://www.univers.studio/book-builder/" target="_blank" rel="noopener">Univers Studio</a>. Estimate royalties with the <a href="https://www.univers.studio/kdp-calculator/" target="_blank" rel="noopener">KDP Calculator</a>.</span><span data-lang="fr">Livre cr&eacute;&eacute; avec <a href="https://www.univers.studio/book-builder/" target="_blank" rel="noopener">Univers Studio</a>. Estimez vos royalties avec le <a href="https://www.univers.studio/kdp-calculator/" target="_blank" rel="noopener">calculateur KDP</a>.</span><span data-lang="es">Libro creado con <a href="https://www.univers.studio/book-builder/" target="_blank" rel="noopener">Univers Studio</a>. Calcula regal&iacute;as con la <a href="https://www.univers.studio/kdp-calculator/" target="_blank" rel="noopener">calculadora KDP</a>.</span></p>
 </main>
 
-<script>
-function setLang(lang){
-  document.body.className = (lang==='fr') ? 'fr' : (lang==='es') ? 'es' : '';
-  document.querySelectorAll('.lang-btn').forEach(function(b){
-    b.classList.toggle('active', b.textContent===lang.toUpperCase());
-  });
-  document.documentElement.lang = lang;
-}
-</script>
 </body>
 </html>
