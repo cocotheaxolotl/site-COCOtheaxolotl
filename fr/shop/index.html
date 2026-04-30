@@ -67,6 +67,34 @@ main{max-width:800px;margin:0 auto;padding:36px 20px}
   max-width:280px;
   flex:0 1 280px;
 }
+.digital-columns{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  align-items:start;
+  margin-bottom:32px;
+}
+.digital-column{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:center;
+}
+.digital-column-title{
+  font-family:'Baloo 2',cursive;
+  font-size:1.3em;
+  font-weight:800;
+  color:#5c3d8e;
+  margin:0;
+  text-align:center;
+}
+.digital-column .product-card{
+  width:100%;
+  max-width:300px;
+}
+@media(max-width:720px){
+  .digital-columns{grid-template-columns:1fr}
+}
 .shop-card{
   display:flex;flex-direction:column;align-items:center;
   text-decoration:none;color:#333;
@@ -166,21 +194,27 @@ Des produits trop mignons pour les fans d'axolotl !
 <p class="intro">T&eacute;l&eacute;chargement imm&eacute;diat ! Payez une fois, imprimez &agrave; volont&eacute;.</p>
 
 <h3 style="text-align:center;font-family:'Baloo 2',cursive;font-size:1.4em;color:#5c3d8e;margin-bottom:20px">Je t'aime encore plus</h3>
-<div class="shop-grid-center">
-  <div class="product-card">
-    <img class="preview-book" src="/shop/coloring-love-preview.gif" alt="Coloriage Je t'aime encore plus">
-    <div class="product-name">Je t'aime encore plus &ndash; Coloriage (PDF)</div>
-    <p class="product-desc">21 coloriages adorables c&eacute;l&eacute;brant l'amour ! PDF haute qualit&eacute;, pr&ecirc;t &agrave; imprimer.</p>
-    <div class="product-price">2,99 &euro;</div>
-    <a class="btn-buy" href="https://buy.stripe.com/14AdR9fUx9yZgIqeBx6Zy00" target="_blank" rel="noopener">Acheter</a>
-  </div>
-  <div class="product-card">
-    <img class="preview-book" src="/shop/je-taime-encore-plus-ebook-fr-preview.gif" alt="Aper&ccedil;u du livre illustr&eacute; Je t'aime encore plus" loading="lazy">
-    <div class="product-name">Je t'aime encore plus &ndash; Livre illustr&eacute; (PDF)</div>
-    <p class="product-desc">Le livre illustr&eacute; complet en PDF, avec les 32 pages de l'histoire. Ce n'est pas le coloriage.</p>
-    <div class="product-price">6,99 &euro;</div>
-    <span class="btn-buy disabled" aria-disabled="true" data-download="/shop/je-taime-encore-plus-livre-illustre-fr.pdf">Lien Stripe &agrave; ajouter</span>
-  </div>
+<div class="digital-columns">
+  <section class="digital-column" aria-labelledby="ebooks-heading">
+    <h3 id="ebooks-heading" class="digital-column-title">Ebooks</h3>
+    <div class="product-card">
+      <img class="preview-book" src="/shop/je-taime-encore-plus-ebook-fr-preview.gif" alt="Aper&ccedil;u du livre illustr&eacute; Je t'aime encore plus" loading="lazy">
+      <div class="product-name">Je t'aime encore plus &ndash; Livre illustr&eacute; (PDF)</div>
+      <p class="product-desc">Le livre illustr&eacute; complet en PDF, avec les 32 pages de l'histoire. Ce n'est pas le coloriage.</p>
+      <div class="product-price">6,99 &euro;</div>
+      <span class="btn-buy disabled" aria-disabled="true" data-download="/shop/je-taime-encore-plus-livre-illustre-fr.pdf">Lien Stripe &agrave; ajouter</span>
+    </div>
+  </section>
+  <section class="digital-column" aria-labelledby="coloring-heading">
+    <h3 id="coloring-heading" class="digital-column-title">Coloriages</h3>
+    <div class="product-card">
+      <img class="preview-book" src="/shop/coloring-love-preview.gif" alt="Coloriage Je t'aime encore plus">
+      <div class="product-name">Je t'aime encore plus &ndash; Coloriage (PDF)</div>
+      <p class="product-desc">21 coloriages adorables c&eacute;l&eacute;brant l'amour ! PDF haute qualit&eacute;, pr&ecirc;t &agrave; imprimer.</p>
+      <div class="product-price">2,99 &euro;</div>
+      <a class="btn-buy" href="https://buy.stripe.com/14AdR9fUx9yZgIqeBx6Zy00" target="_blank" rel="noopener">Acheter</a>
+    </div>
+  </section>
 </div>
 
 <hr class="section-divider">

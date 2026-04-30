@@ -71,6 +71,34 @@ main{max-width:800px;margin:0 auto;padding:36px 20px}
   max-width:280px;
   flex:0 1 280px;
 }
+.digital-columns{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  align-items:start;
+  margin-bottom:32px;
+}
+.digital-column{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:center;
+}
+.digital-column-title{
+  font-family:'Baloo 2',cursive;
+  font-size:1.3em;
+  font-weight:800;
+  color:#5c3d8e;
+  margin:0;
+  text-align:center;
+}
+.digital-column .product-card{
+  width:100%;
+  max-width:300px;
+}
+@media(max-width:720px){
+  .digital-columns{grid-template-columns:1fr}
+}
 .shop-card{
   display:flex;flex-direction:column;align-items:center;
   text-decoration:none;color:#333;
@@ -186,61 +214,53 @@ body.es span[data-lang="en"]{display:none}
     <span data-lang="es">&iexcl;Descarga instant&aacute;nea! Paga una vez, imprime siempre. Coloriages y ebooks con Coco el Ajolote.</span>
   </p>
 
-  <!-- ── Coco ne dort pas ce soir ── -->
-  <h3 style="text-align:center;font-family:'Baloo 2',cursive;font-size:1.4em;color:#5c3d8e;margin-bottom:20px">
-    <span data-lang="en">Coco Doesn't Sleep Tonight!</span>
-    <span data-lang="fr">Coco ne dort pas ce soir !</span>
-    <span data-lang="es">&iexcl;Coco no duerme esta noche!</span>
-  </h3>
-
-  <div class="shop-grid-center">
-    <div class="product-card">
-      <img src="/shop/cover-ebook.gif" alt="Ebook" style="width:140px;border-radius:10px;margin-bottom:8px">
-      <div class="product-name"><span data-lang="en">Coco Doesn't Sleep Tonight! &ndash; Ebook</span><span data-lang="fr">COCO ne dort pas ce soir ! &ndash; Ebook</span><span data-lang="es">&iexcl;Coco no duerme esta noche! &ndash; Ebook</span></div>
-      <p class="product-desc"><span data-lang="en">A sweet bedtime story for little ones. Illustrated PDF ebook with all the animals Coco meets on his adventure!</span><span data-lang="fr">Une douce histoire du soir pour les petits. Ebook PDF illustr&eacute; avec tous les animaux que Coco rencontre !</span><span data-lang="es">&iexcl;Un dulce cuento para dormir para los m&aacute;s peque&ntilde;os! Ebook PDF ilustrado con todos los animales que Coco encuentra.</span></p>
-      <div class="product-price"><span data-lang="en">$6.99</span><span data-lang="fr">6,99 &euro;</span><span data-lang="es">6,99 &euro;</span></div>
-      <a class="btn-buy" href="https://buy.stripe.com/cNi4gzeQt4eF1Nw7956Zy01" target="_blank" rel="noopener">
-        <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
-      </a>
-    </div>
-
-    <div class="product-card">
-      <img src="/shop/coloring-preview.gif" alt="Coloring Book" style="width:140px;border-radius:10px;margin-bottom:8px">
-      <div class="product-name"><span data-lang="en">Coloring Book (PDF)</span><span data-lang="fr">Livre de Coloriage (PDF)</span><span data-lang="es">Libro para Colorear (PDF)</span></div>
-      <p class="product-desc"><span data-lang="en">16 printable coloring pages &ndash; all the animals Coco meets on his adventure! High-quality PDF, ready to print.</span><span data-lang="fr">16 coloriages imprimables &ndash; tous les animaux que Coco rencontre ! PDF haute qualit&eacute;, pr&ecirc;t &agrave; imprimer.</span><span data-lang="es">16 p&aacute;ginas para colorear &ndash; &iexcl;todos los animales que Coco encuentra! PDF alta calidad, listo para imprimir.</span></p>
-      <div class="product-price"><span data-lang="en">$2.99</span><span data-lang="fr">2,99 &euro;</span><span data-lang="es">2,99 &euro;</span></div>
-      <a class="btn-buy" href="https://buy.stripe.com/28EfZhgYBeTj9fY9hd6Zy02" target="_blank" rel="noopener">
-        <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- ── I Love You More ── -->
-  <h3 id="i-love-you-more-pack" style="text-align:center;font-family:'Baloo 2',cursive;font-size:1.4em;color:#5c3d8e;margin:32px 0 20px">
-    <span data-lang="en">I Love You More</span>
-    <span data-lang="fr">Je t'aime encore plus</span>
-    <span data-lang="es">Te quiero m&aacute;s</span>
-  </h3>
-
-  <div class="shop-grid-center">
-    <div class="product-card">
-      <img src="/shop/coloring-love-preview.gif" alt="I Love You More Coloring Book" style="width:140px;border-radius:10px;margin-bottom:8px">
-      <div class="product-name"><span data-lang="en">I Love You More &ndash; Coloring Book (PDF)</span><span data-lang="fr">Je t'aime encore plus &ndash; Coloriage (PDF)</span><span data-lang="es">Te quiero m&aacute;s &ndash; Libro para Colorear (PDF)</span></div>
-      <p class="product-desc"><span data-lang="en">21 adorable coloring pages celebrating love! High-quality PDF, ready to print.</span><span data-lang="fr">21 coloriages adorables c&eacute;l&eacute;brant l'amour ! PDF haute qualit&eacute;, pr&ecirc;t &agrave; imprimer.</span><span data-lang="es">21 p&aacute;ginas adorables para colorear celebrando el amor. PDF alta calidad, listo para imprimir.</span></p>
-      <div class="product-price"><span data-lang="en">$2.99</span><span data-lang="fr">2,99 &euro;</span><span data-lang="es">2,99 &euro;</span></div>
-      <a class="btn-buy" href="https://buy.stripe.com/14AdR9fUx9yZgIqeBx6Zy00" target="_blank" rel="noopener">
-        <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
-      </a>
-    </div>
-    <div class="product-card">
-      <img src="/shop/je-taime-encore-plus-ebook-fr-preview.gif" alt="French illustrated book preview for Je t'aime encore plus" loading="lazy" style="width:140px;border-radius:10px;margin-bottom:8px">
-      <div class="product-name"><span data-lang="en">Je t'aime encore plus &ndash; Illustrated Book FR (PDF)</span><span data-lang="fr">Je t'aime encore plus &ndash; Livre illustr&eacute; (PDF)</span><span data-lang="es">Je t'aime encore plus &ndash; Libro ilustrado FR (PDF)</span></div>
-      <p class="product-desc"><span data-lang="en">The complete French picture book as a 32-page PDF download. This is the storybook, not the coloring pack.</span><span data-lang="fr">Le livre illustr&eacute; complet en PDF, avec les 32 pages de l'histoire. Ce n'est pas le coloriage.</span><span data-lang="es">El libro ilustrado completo en franc&eacute;s, en PDF de 32 p&aacute;ginas. No es el pack para colorear.</span></p>
-      <div class="product-price"><span data-lang="en">$6.99</span><span data-lang="fr">6,99 &euro;</span><span data-lang="es">6,99 &euro;</span></div>
-      <span class="btn-buy disabled" aria-disabled="true" data-download="/shop/je-taime-encore-plus-livre-illustre-fr.pdf">
-        <span data-lang="en">Stripe link needed</span><span data-lang="fr">Lien Stripe &agrave; ajouter</span><span data-lang="es">Falta enlace Stripe</span>
-      </span>
-    </div>
+  <div class="digital-columns">
+    <section class="digital-column" aria-labelledby="ebooks-heading">
+      <h3 id="ebooks-heading" class="digital-column-title">
+        <span data-lang="en">Ebooks</span><span data-lang="fr">Ebooks</span><span data-lang="es">Ebooks</span>
+      </h3>
+      <div class="product-card">
+        <img src="/shop/cover-ebook.gif" alt="Ebook" style="width:140px;border-radius:10px;margin-bottom:8px">
+        <div class="product-name"><span data-lang="en">Coco Doesn't Sleep Tonight! &ndash; Ebook</span><span data-lang="fr">COCO ne dort pas ce soir ! &ndash; Ebook</span><span data-lang="es">&iexcl;Coco no duerme esta noche! &ndash; Ebook</span></div>
+        <p class="product-desc"><span data-lang="en">A sweet bedtime story for little ones. Illustrated PDF ebook with all the animals Coco meets on his adventure!</span><span data-lang="fr">Une douce histoire du soir pour les petits. Ebook PDF illustr&eacute; avec tous les animaux que Coco rencontre !</span><span data-lang="es">&iexcl;Un dulce cuento para dormir para los m&aacute;s peque&ntilde;os! Ebook PDF ilustrado con todos los animales que Coco encuentra.</span></p>
+        <div class="product-price"><span data-lang="en">$6.99</span><span data-lang="fr">6,99 &euro;</span><span data-lang="es">6,99 &euro;</span></div>
+        <a class="btn-buy" href="https://buy.stripe.com/cNi4gzeQt4eF1Nw7956Zy01" target="_blank" rel="noopener">
+          <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
+        </a>
+      </div>
+      <div class="product-card">
+        <img src="/shop/je-taime-encore-plus-ebook-fr-preview.gif" alt="French illustrated book preview for Je t'aime encore plus" loading="lazy" style="width:140px;border-radius:10px;margin-bottom:8px">
+        <div class="product-name"><span data-lang="en">Je t'aime encore plus &ndash; Illustrated Book FR (PDF)</span><span data-lang="fr">Je t'aime encore plus &ndash; Livre illustr&eacute; (PDF)</span><span data-lang="es">Je t'aime encore plus &ndash; Libro ilustrado FR (PDF)</span></div>
+        <p class="product-desc"><span data-lang="en">The complete French picture book as a 32-page PDF download. This is the storybook, not the coloring pack.</span><span data-lang="fr">Le livre illustr&eacute; complet en PDF, avec les 32 pages de l'histoire. Ce n'est pas le coloriage.</span><span data-lang="es">El libro ilustrado completo en franc&eacute;s, en PDF de 32 p&aacute;ginas. No es el pack para colorear.</span></p>
+        <div class="product-price"><span data-lang="en">$6.99</span><span data-lang="fr">6,99 &euro;</span><span data-lang="es">6,99 &euro;</span></div>
+        <span class="btn-buy disabled" aria-disabled="true" data-download="/shop/je-taime-encore-plus-livre-illustre-fr.pdf">
+          <span data-lang="en">Stripe link needed</span><span data-lang="fr">Lien Stripe &agrave; ajouter</span><span data-lang="es">Falta enlace Stripe</span>
+        </span>
+      </div>
+    </section>
+    <section class="digital-column" aria-labelledby="coloring-heading">
+      <h3 id="coloring-heading" class="digital-column-title">
+        <span data-lang="en">Coloring Pages</span><span data-lang="fr">Coloriages</span><span data-lang="es">P&aacute;ginas para colorear</span>
+      </h3>
+      <div class="product-card">
+        <img src="/shop/coloring-preview.gif" alt="Coloring Book" style="width:140px;border-radius:10px;margin-bottom:8px">
+        <div class="product-name"><span data-lang="en">Coco Doesn't Sleep Tonight! &ndash; Coloring Book (PDF)</span><span data-lang="fr">COCO ne dort pas ce soir ! &ndash; Coloriage (PDF)</span><span data-lang="es">&iexcl;Coco no duerme esta noche! &ndash; Libro para colorear (PDF)</span></div>
+        <p class="product-desc"><span data-lang="en">16 printable coloring pages &ndash; all the animals Coco meets on his adventure! High-quality PDF, ready to print.</span><span data-lang="fr">16 coloriages imprimables &ndash; tous les animaux que Coco rencontre ! PDF haute qualit&eacute;, pr&ecirc;t &agrave; imprimer.</span><span data-lang="es">16 p&aacute;ginas para colorear &ndash; &iexcl;todos los animales que Coco encuentra! PDF alta calidad, listo para imprimir.</span></p>
+        <div class="product-price"><span data-lang="en">$2.99</span><span data-lang="fr">2,99 &euro;</span><span data-lang="es">2,99 &euro;</span></div>
+        <a class="btn-buy" href="https://buy.stripe.com/28EfZhgYBeTj9fY9hd6Zy02" target="_blank" rel="noopener">
+          <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
+        </a>
+      </div>
+      <div class="product-card" id="i-love-you-more-pack">
+        <img src="/shop/coloring-love-preview.gif" alt="I Love You More Coloring Book" style="width:140px;border-radius:10px;margin-bottom:8px">
+        <div class="product-name"><span data-lang="en">I Love You More &ndash; Coloring Book (PDF)</span><span data-lang="fr">Je t'aime encore plus &ndash; Coloriage (PDF)</span><span data-lang="es">Te quiero m&aacute;s &ndash; Libro para Colorear (PDF)</span></div>
+        <p class="product-desc"><span data-lang="en">21 adorable coloring pages celebrating love! High-quality PDF, ready to print.</span><span data-lang="fr">21 coloriages adorables c&eacute;l&eacute;brant l'amour ! PDF haute qualit&eacute;, pr&ecirc;t &agrave; imprimer.</span><span data-lang="es">21 p&aacute;ginas adorables para colorear celebrando el amor. PDF alta calidad, listo para imprimir.</span></p>
+        <div class="product-price"><span data-lang="en">$2.99</span><span data-lang="fr">2,99 &euro;</span><span data-lang="es">2,99 &euro;</span></div>
+        <a class="btn-buy" href="https://buy.stripe.com/14AdR9fUx9yZgIqeBx6Zy00" target="_blank" rel="noopener">
+          <span data-lang="en">Buy Now</span><span data-lang="fr">Acheter</span><span data-lang="es">Comprar</span>
+        </a>
+      </div>
+    </section>
   </div>
 
   <!-- ── Amazon Books ── -->
