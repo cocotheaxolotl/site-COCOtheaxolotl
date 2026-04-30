@@ -56,6 +56,34 @@ main{max-width:800px;margin:0 auto;padding:36px 20px}
   gap:16px;
   margin-bottom:32px;
 }
+.digital-columns{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  align-items:start;
+  margin-bottom:32px;
+}
+.digital-column{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:center;
+}
+.digital-column-title{
+  font-family:'Baloo 2',cursive;
+  font-size:1.3em;
+  font-weight:800;
+  color:#5c3d8e;
+  margin:0;
+  text-align:center;
+}
+.digital-column .product-card{
+  width:100%;
+  max-width:300px;
+}
+@media(max-width:720px){
+  .digital-columns{grid-template-columns:1fr}
+}
 .shop-card{
   display:flex;flex-direction:column;align-items:center;
   text-decoration:none;color:#333;
@@ -87,6 +115,34 @@ main{max-width:800px;margin:0 auto;padding:36px 20px}
 
 .back{display:block;text-align:center;margin-top:28px;color:#d6006e;font-weight:800;text-decoration:none}
 .back:hover{text-decoration:underline}
+
+.product-card{
+  display:flex;flex-direction:column;align-items:center;
+  background:#fff;
+  border:2px solid rgba(255,105,180,.3);
+  border-radius:18px;
+  padding:22px 18px;
+  text-align:center;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.product-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,105,180,.18);
+  border-color:rgba(255,105,180,.6);
+}
+.product-name{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1em;margin:4px 0}
+.product-desc{font-size:.9em;color:#666;line-height:1.4;margin:4px 0 12px}
+.product-price{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.3em;color:#d6006e;margin:0 0 12px}
+.btn-buy{
+  display:inline-block;
+  padding:10px 24px;
+  background:#ff69b4;color:#fff;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:.95em;
+  border-radius:24px;text-decoration:none;
+  transition:background .15s,transform .15s;
+}
+.btn-buy:hover{background:#e0559e;transform:translateY(-1px)}
+.btn-buy.disabled{background:#c9a8bc;cursor:default;pointer-events:none}
 
 /* Lang */
 [data-lang="fr"],
@@ -126,14 +182,27 @@ La Tienda de Coco
 <p class="intro">&iexcl;Descarga instant&aacute;nea! Paga una vez, imprime siempre.</p>
 
 <h3 style="text-align:center;font-family:'Baloo 2',cursive;font-size:1.4em;color:#5c3d8e;margin-bottom:20px">Te quiero m&aacute;s</h3>
-<div class="shop-grid-center">
-  <div class="product-card">
+<div class="digital-columns">
+  <section class="digital-column" aria-labelledby="ebooks-heading">
+    <h3 id="ebooks-heading" class="digital-column-title">Ebooks</h3>
+    <div class="product-card">
+      <img src="/shop/je-taime-encore-plus-ebook-fr-preview.gif" alt="Vista previa del libro ilustrado Je t'aime encore plus" loading="lazy" style="width:140px;border-radius:10px;margin-bottom:8px">
+      <div class="product-name">Je t'aime encore plus &ndash; Libro ilustrado FR (PDF)</div>
+      <p class="product-desc">El libro ilustrado completo en franc&eacute;s, en PDF de 32 p&aacute;ginas. No es el pack para colorear.</p>
+      <div class="product-price">6,99 &euro;</div>
+      <span class="btn-buy disabled" aria-disabled="true" data-download="/shop/je-taime-encore-plus-livre-illustre-fr.pdf">Falta enlace Stripe</span>
+    </div>
+  </section>
+  <section class="digital-column" aria-labelledby="coloring-heading">
+    <h3 id="coloring-heading" class="digital-column-title">P&aacute;ginas para colorear</h3>
+    <div class="product-card">
     <img src="/shop/coloring-love-preview.gif" alt="Libro para Colorear Te quiero más" style="width:140px;border-radius:10px;margin-bottom:8px">
     <div class="product-name">Te quiero m&aacute;s &ndash; Libro para Colorear (PDF)</div>
     <p class="product-desc">21 p&aacute;ginas adorables para colorear celebrando el amor. PDF alta calidad, listo para imprimir.</p>
     <div class="product-price">2,99 &euro;</div>
     <a class="btn-buy" href="https://buy.stripe.com/14AdR9fUx9yZgIqeBx6Zy00" target="_blank" rel="noopener">Comprar</a>
-  </div>
+    </div>
+  </section>
 </div>
 
 <hr class="section-divider">
