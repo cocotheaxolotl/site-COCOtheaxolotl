@@ -357,23 +357,9 @@
       }
     }
 
-    /* ===== CHECK ACCESS ===== */
+    /* ===== ACCESS (open, no code required) ===== */
     (function(){
-      var params = new URLSearchParams(window.location.search);
-      var unlock = params.get('unlock');
-      if(unlock){
-        if(tryCode(unlock)){
-          history.replaceState(null, '', window.location.pathname);
-          return;
-        }
-      }
-      if(localStorage.getItem('sleep_book_access') === 'true'){
-        showReader(false);
-        return;
-      }
-      document.getElementById('codeInput').addEventListener('keydown', function(e){
-        if(e.key === 'Enter') tryCode();
-      });
+      showReader(false);
     })();
 
     /* ===== BOOK-IN-PHOTO POSITIONING ===== */
