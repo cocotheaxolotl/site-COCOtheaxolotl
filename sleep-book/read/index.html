@@ -235,26 +235,6 @@
     <div id="scene-overlay"></div>
   </div>
 
-  <!-- ===== GATE ===== -->
-  <div id="gate">
-    <h1>&#x1F319; Coco ne dort pas ce soir !</h1>
-    
-<p class="us-flip-credit">Flipbook created with <a href="https://www.univers.studio/flipbook/" target="_blank" rel="noopener">Univers Studio</a>.</p>
-<p>Entrez votre code d&rsquo;acc&egrave;s pour lire le livre.<br>
-    Enter your access code to read the book.</p>
-    <div class="code-input">
-      <input type="text" id="codeInput" placeholder="COCO-XXXX-XXXX" autocomplete="off" spellcheck="false">
-      <button class="btn" onclick="tryCode()">&#x1F513; Lire / Read</button>
-    </div>
-    <div class="error" id="errorMsg">
-      Code invalide. / Invalid code.<br>
-      <a href="/sleep-book/" style="color:#ff69b4;">Acheter le livre / Buy the book</a>
-    </div>
-    <div class="buy-link">
-      Pas encore de code ? <a href="/sleep-book/">Acheter ici / Buy here</a>
-    </div>
-  </div>
-
   <!-- ===== START SCREEN ===== -->
   <div id="startScreen" style="display:none;position:fixed;inset:0;z-index:100;background:#0d0d2b;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center;padding:20px;">
     <video src="/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/cover-video.mp4" autoplay loop muted playsinline style="width:300px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.5)"></video>
@@ -300,7 +280,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
   <script>
-    var VALID_CODE = 'COCO-DODO-2026';
     var pageFlip = null;
 
     /* ===== Book pages ===== */
@@ -310,22 +289,7 @@
       bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
     }
 
-    /* ===== CODE VALIDATION ===== */
-    function tryCode(code){
-      code = code || document.getElementById('codeInput').value.trim().toUpperCase();
-      if(code === VALID_CODE){
-        localStorage.setItem('sleep_book_access', 'true');
-        showReader(true);
-        return true;
-      } else {
-        document.getElementById('errorMsg').style.display = 'block';
-        return false;
-      }
-    }
-
     function showReader(){
-      document.getElementById('gate').style.display = 'none';
-      /* Always show start screen with video */
       document.getElementById('startScreen').style.display = 'flex';
     }
 
