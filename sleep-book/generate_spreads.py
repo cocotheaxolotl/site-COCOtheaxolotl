@@ -12,8 +12,8 @@ import subprocess, os, sys
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 
-BG = '0x1a1a4e'
-VW, VH = 1920, 1080
+BG = '0x000000'
+VW, VH = 1680, 1080  # 2 pages 840 cote a cote (no side padding)
 PW = 840
 
 SCENES = [
@@ -68,7 +68,9 @@ def img(variant, n):
 
 
 def make_spread(variant, pages, out_path):
+    """Output: 1680x1080 = 2 pages 840x1080 cote a cote, sans padding."""
     if len(pages) == 1:
+        # Cover seule: centree sur fond noir, prend toute la largeur 1680
         run(['ffmpeg', '-y', '-i', img(variant, pages[0]),
              '-vf', f'scale={PW}:{VH},pad={VW}:{VH}:(ow-iw)/2:0:color={BG}',
              '-q:v', '2', '-frames:v', '1', out_path])
@@ -77,8 +79,8 @@ def make_spread(variant, pages, out_path):
              '-filter_complex',
              f'[0]scale={PW}:{VH}[l];[1]scale={PW}:{VH}[r];'
              f'color=c={BG}:s={VW}x{VH}:d=1[bg];'
-             f'[bg][l]overlay=120:0[tmp];'
-             f'[tmp][r]overlay=960:0',
+             f'[bg][l]overlay=0:0[tmp];'
+             f'[tmp][r]overlay={PW}:0',
              '-q:v', '2', '-frames:v', '1', out_path])
 
 

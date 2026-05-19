@@ -97,8 +97,8 @@
     }
     .slide.active{ opacity:1; pointer-events:auto; }
     .slide img{
-      width:100%; height:100%; object-fit:contain;
-      display:block; background:#0d0d2b;
+      width:100%; height:100%; object-fit:fill;
+      display:block;
     }
 
     .page{
@@ -267,18 +267,11 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      /* Each "page" is a 16:9 spread (1920x1080) - show 1 at a time */
-      var spreadRatio = 1920 / 1080;
-      var maxW = vpW * 0.95;
-      var maxH = vpH * 0.86;
-      var w, h;
-      if(maxW / maxH > spreadRatio){
-        h = maxH; w = h * spreadRatio;
-      } else {
-        w = maxW; h = w / spreadRatio;
-      }
-      var l = (vpW - w) / 2;
-      var t = (vpH - h) / 2;
+      /* Book-in-photo: pages positionnees sur le livre ouvert du scene-bg */
+      var w = vpW * 0.63;
+      var h = vpH * 0.80;
+      var l = (vpW - w) / 2 - vpW * 0.004;
+      var t = (vpH - h) / 2 + vpH * 0.04;
       area.style.left   = l + 'px';
       area.style.top    = t + 'px';
       area.style.width  = w + 'px';
