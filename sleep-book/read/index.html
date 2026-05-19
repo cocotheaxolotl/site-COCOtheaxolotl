@@ -381,8 +381,7 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var isSinglePageView = window.innerWidth <= window.innerHeight;
-      var w = Math.round(area.offsetWidth / (isSinglePageView ? 1 : 2));
+      var w = Math.round(area.offsetWidth / 2);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
@@ -397,9 +396,9 @@
       });
 
       try{
-        var flipSettings = {
+        pageFlip = new St.PageFlip(container, {
           width: w, height: h,
-          size: isSinglePageView ? 'fixed' : 'stretch',
+          size: 'stretch',
           minWidth: 150, maxWidth: w,
           minHeight: 200, maxHeight: h,
           showCover: true,
@@ -408,8 +407,7 @@
           flippingTime: 700,
           usePortrait: true,
           startZIndex: 0
-        };
-        pageFlip = new St.PageFlip(container, flipSettings);
+        });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));
         pageFlip.on('flip', function(e){
           onPageFlip(e.data);

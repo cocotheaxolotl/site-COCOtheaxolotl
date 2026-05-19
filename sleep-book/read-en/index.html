@@ -246,34 +246,10 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      var isMobile = ('ontouchstart' in window || vpW < 1200);
-      var w, h, l, t;
-      if(isMobile){
-        var pageRatio = 840 / 1080;
-        if(vpW > vpH){
-          var spreadRatio = pageRatio * 2;
-          var maxW = vpW * 0.95;
-          var maxH = vpH * 0.82;
-          if(maxW / maxH > spreadRatio){
-            h = maxH; w = h * spreadRatio;
-          } else {
-            w = maxW; h = w / spreadRatio;
-          }
-        } else {
-          var maxW = vpW * 0.92;
-          var maxH = vpH * 0.70;
-          w = maxW;
-          h = w / pageRatio;
-          if(h > maxH){ h = maxH; w = h * pageRatio; }
-        }
-        l = (vpW - w) / 2;
-        t = (vpH - h) / 2 * 0.3;
-      } else {
-        w = vpW * 0.63;
-        h = vpH * 0.80;
-        l = (vpW - w) / 2 - vpW * 0.004;
-        t = (vpH - h) / 2 + vpH * 0.04;
-      }
+      var w = vpW * 0.63;
+      var h = vpH * 0.80;
+      var l = (vpW - w) / 2 - vpW * 0.004;
+      var t = (vpH - h) / 2 + vpH * 0.04;
       area.style.left   = l + 'px';
       area.style.top    = t + 'px';
       area.style.width  = w + 'px';
@@ -291,8 +267,7 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var isSinglePageView = window.innerWidth <= window.innerHeight;
-      var w = Math.round(area.offsetWidth / (isSinglePageView ? 1 : 2));
+      var w = Math.round(area.offsetWidth / 2);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
@@ -303,9 +278,9 @@
       });
 
       try{
-        var flipSettings = {
+        pageFlip = new St.PageFlip(container, {
           width: w, height: h,
-          size: isSinglePageView ? 'fixed' : 'stretch',
+          size: 'stretch',
           minWidth: 150, maxWidth: w,
           minHeight: 200, maxHeight: h,
           showCover: true,
@@ -314,8 +289,7 @@
           flippingTime: 700,
           usePortrait: true,
           startZIndex: 0
-        };
-        pageFlip = new St.PageFlip(container, flipSettings);
+        });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));
         pageFlip.on('flip', function(e){
           onPageFlip(e.data);
