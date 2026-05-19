@@ -190,6 +190,17 @@
       .audio-btn{ width:32px; height:32px; font-size:.95em; }
       .time-label{ font-size:.65em; }
     }
+    /* Mobile portrait : pivote le reader a 90deg pour lire les doubles pages */
+    @media(max-width:900px) and (orientation:portrait){
+      #reader.active{
+        transform-origin: top left;
+        transform: rotate(90deg) translateY(-100vw);
+        width: 100vh;
+        height: 100vw;
+        position: absolute;
+        top: 0; left: 0;
+      }
+    }
   .us-credit{margin:12px auto 0;max-width:640px;font-size:.88em;line-height:1.5;opacity:.8}.us-credit [data-lang]{display:none}.us-credit a{color:#ff69b4;font-weight:700}.us-flip-credit{margin:10px 0 0;color:#f0e6d3;font-size:.9rem;opacity:.8;text-align:center}.us-flip-credit a{color:#ffd66b;font-weight:700}</style>
 </head>
 
@@ -267,9 +278,19 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      /* Book-in-photo: pages positionnees sur le livre ouvert du scene-bg */
-      var w = vpW * 0.63;
-      var h = vpH * 0.80;
+      /* Mobile portrait : le reader est tourne 90deg en CSS, donc swap dimensions */
+      var isMobilePortrait = vpW < 900 && vpH > vpW;
+      if(isMobilePortrait){ var tmp = vpW; vpW = vpH; vpH = tmp; }
+      /* Book-in-photo: pages au ratio du spread (1680/1080) sur le livre du scene-bg */
+      var ratio = 1680 / 1080;
+      var maxW = vpW * (isMobilePortrait ? 0.95 : 0.78);
+      var maxH = vpH * (isMobilePortrait ? 0.95 : 0.84);
+      var w, h;
+      if(maxW / maxH > ratio){
+        h = maxH; w = h * ratio;
+      } else {
+        w = maxW; h = w / ratio;
+      }
       var l = (vpW - w) / 2 - vpW * 0.004;
       var t = (vpH - h) / 2 + vpH * 0.04;
       area.style.left   = l + 'px';
