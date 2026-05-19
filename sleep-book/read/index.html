@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- v7 -->
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -27,6 +28,7 @@
       text-align:center;
       padding:40px 20px;
       max-width:420px;
+      position:relative; z-index:2;
     }
     #gate h1{ font-size:1.8em; margin-bottom:8px; }
     #gate p{ opacity:.7; margin-bottom:24px; line-height:1.5; }
@@ -62,13 +64,14 @@
     #gate .buy-link a{ color:#ff69b4; }
 
     /* ===== READER ===== */
-    #reader{ display:none; width:100vw; height:100vh; flex-direction:column; }
+    #reader{ display:none; width:100vw; height:100vh; flex-direction:column; align-items:center; justify-content:center; position:relative; z-index:2; }
     #reader.active{ display:flex; }
 
     .toolbar{
       display:flex; align-items:center; justify-content:space-between;
       padding:8px 16px; background:rgba(0,0,0,.4);
       flex-shrink:0;
+      position:absolute; top:0; left:0; right:0; z-index:20;
     }
     .toolbar .title{ font-size:.95em; font-weight:600; opacity:.8; }
     .toolbar .page-info{ font-size:.85em; opacity:.6; }
@@ -80,9 +83,13 @@
     }
     .toolbar button:hover{ background:rgba(255,255,255,.2); }
 
+    #book-area{
+      position:absolute; overflow:hidden;
+    }
     #flipbook-container{
-      flex:1; position:relative; overflow:hidden;
-      width:100%; margin:0 auto;
+      width:100%; height:100%;
+      overflow:hidden;
+      background:transparent;
     }
 
     .page{
@@ -110,13 +117,33 @@
       margin:4px 0 8px;
     }
     .page.illust{
-      background:#f0f0f5; color:#aaa;
+      background:#12102a; color:#aaa;
       font-size:.85em; padding:0;
     }
     .page.illust img{
-      width:100%; height:100%; object-fit:contain;
-      display:block; background:#0d0d2b;
+      width:100%; height:100%; object-fit:cover;
+      display:block;
     }
+    /* ===== SCENE BACKGROUND ===== */
+    #scene-bg{
+      position:fixed; inset:0; z-index:0;
+      overflow:hidden; background:#0d0d2b;
+    }
+    .scene-media{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; z-index:0;
+    }
+    #scene-overlay{
+      position:absolute; inset:0; z-index:2;
+      background:radial-gradient(ellipse at center,
+        rgba(0,0,0,0) 40%, rgba(0,0,0,0.3) 100%);
+      pointer-events:none;
+    }
+
+    /* Page-flip internal elements: book interior texture */
+    .stf__block{ background:transparent !important; }
+    .stf__item{ background:transparent !important; }
     .page .page-wrap{
       display:flex; flex-direction:column;
       align-items:center; justify-content:center;
@@ -149,6 +176,7 @@
       display:flex; align-items:center; gap:10px;
       padding:8px 16px; background:rgba(0,0,0,.5);
       flex-shrink:0;
+      position:absolute; bottom:0; left:0; right:0; z-index:20;
     }
     .audio-btn{
       background:rgba(255,255,255,.12); border:none; color:#fff;
@@ -158,53 +186,63 @@
       flex-shrink:0;
     }
     .audio-btn:hover{ background:rgba(255,255,255,.25); }
-    .audio-btn.active{ background:rgba(247,201,72,.3); color:#f7c948; }
+    .audio-btn.active{ background:rgba(155,89,182,.3); color:#9b59b6; }
     .auto-indicator{
-      font-size:.65em; font-weight:800; color:#f7c948;
+      font-size:.65em; font-weight:800; color:#9b59b6;
       opacity:0; transition:opacity .2s; margin-left:-6px;
     }
     .auto-indicator.visible{ opacity:1; }
-    .time-label{ font-size:.75em; opacity:.6; flex-shrink:0; min-width:32px; }
+    .time-label{ font-size:2.5em; opacity:1; flex-shrink:0; min-width:80px; font-weight:800; }
     .progress-wrap{
       flex:1; min-width:80px; height:6px;
       background:rgba(255,255,255,.15); border-radius:3px;
       cursor:pointer; position:relative;
     }
     .progress-fill{
-      height:100%; background:#f7c948; border-radius:3px;
+      height:100%; background:#9b59b6; border-radius:3px;
       width:0; transition:width .1s linear;
     }
 
-    @media(max-width:600px){
-      .nav-arrow{ display:none; }
+    @media(max-width:900px){
+      #scene-bg{ display:none; }
+      body{ background:#0d0d2b; }
+      .toolbar{ font-size:.7em; padding:2px 6px; height:28px; min-height:28px; }
+      .toolbar button{ padding:3px 8px; font-size:.75em; }
+      .audio-bar{ gap:4px; padding:3px 6px; height:36px; min-height:36px; }
+      .audio-btn{ width:28px; height:28px; font-size:.9em; }
+      .time-label{ font-size:.9em; min-width:36px; }
+      .nav-arrow{ font-size:1em; padding:6px 10px; }
+    }
+    @media(max-width:600px) and (orientation:landscape){
+      .nav-arrow{ font-size:1.2em; padding:8px 12px; opacity:.8; }
       .toolbar .title{ font-size:.8em; }
       .audio-bar{ gap:6px; padding:6px 10px; }
       .audio-btn{ width:32px; height:32px; font-size:.95em; }
-      .time-label{ font-size:.65em; }
+      .time-label{ font-size:1.8em; }
       .page.light{ font-size:1em; padding:14px 18px; }
       .page .page-title{ font-size:1.15em; }
       .page .fact-box{ font-size:.65em; padding:8px 10px; }
     }
-  </style>
+
+  .us-credit{margin:12px auto 0;max-width:640px;font-size:.88em;line-height:1.5;opacity:.8}.us-credit [data-lang]{display:none}.us-credit a{color:#ff69b4;font-weight:700}.us-flip-credit{margin:10px 0 0;color:#f0e6d3;font-size:.9rem;opacity:.8;text-align:center}.us-flip-credit a{color:#ffd66b;font-weight:700}</style>
 </head>
 
 <body>
-  <!-- ===== GATE ===== -->
-  <div id="gate">
-    <h1>&#x1F319; Coco ne dort pas ce soir !</h1>
-    <p>Entrez votre code d&rsquo;acc&egrave;s pour lire le livre.<br>
-    Enter your access code to read the book.</p>
-    <div class="code-input">
-      <input type="text" id="codeInput" placeholder="COCO-XXXX-XXXX" autocomplete="off" spellcheck="false">
-      <button class="btn" onclick="tryCode()">&#x1F513; Lire / Read</button>
-    </div>
-    <div class="error" id="errorMsg">
-      Code invalide. / Invalid code.<br>
-      <a href="/sleep-book/" style="color:#ff69b4;">Acheter le livre / Buy the book</a>
-    </div>
-    <div class="buy-link">
-      Pas encore de code ? <a href="/sleep-book/">Acheter ici / Buy here</a>
-    </div>
+  <!-- ===== SCENE BACKGROUND ===== -->
+  <div id="scene-bg">
+    <img id="scene-img" src="/sleep-book/read/bg-scene.jpg" alt="" class="scene-media"
+         onerror="this.style.display='none'">
+    <div id="scene-overlay"></div>
+  </div>
+
+  <!-- ===== START SCREEN ===== -->
+  <div id="startScreen" style="display:none;position:fixed;inset:0;z-index:100;background:#0d0d2b;flex-direction:column;align-items:center;justify-content:center;gap:24px;text-align:center;padding:20px;">
+    <video src="/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/cover-video.mp4" autoplay loop muted playsinline style="width:300px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.5)"></video>
+    <h2 style="font-family:'Baloo 2',cursive;font-size:1.8em;color:#fff;margin:0;">&#x1F319; Coco ne dort pas ce soir !</h2>
+    <button onclick="startReading()" style="padding:18px 48px;font-size:1.3em;font-weight:800;font-family:'Baloo 2',cursive;background:linear-gradient(135deg,#D6006E,#ff69b4);color:#fff;border:none;border-radius:50px;cursor:pointer;box-shadow:0 4px 20px rgba(214,0,110,.5);transition:transform .15s">
+      &#x1F4D6; Lancer la lecture
+    </button>
+    <p style="color:rgba(255,255,255,.5);font-size:.85em;margin:0;">Avec narration audio et musique</p>
   </div>
 
   <!-- ===== READER ===== -->
@@ -216,7 +254,7 @@
       <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
     </div>
 
-    <div id="flipbook-container"></div>
+    <div id="book-area"><div id="flipbook-container"></div></div>
 
     <button class="nav-arrow left" onclick="flipPrev()">&lsaquo;</button>
     <button class="nav-arrow right" onclick="flipNext()">&rsaquo;</button>
@@ -224,6 +262,7 @@
     <!-- Audio bar -->
     <div class="audio-bar">
       <button class="audio-btn" id="playBtn" title="Lecture / Pause">&#9654;&#65039;</button>
+      <button class="audio-btn" id="stopBtn" title="Arrêter" onclick="stopReading()">&#9632;</button>
       <button class="audio-btn" id="autoBtn" title="Tourne-page automatique">&#128214;</button>
       <span class="auto-indicator" id="autoLabel">AUTO</span>
       <span class="time-label" id="timeNow">0:00</span>
@@ -234,14 +273,13 @@
     </div>
     <audio id="narrator" preload="auto"></audio>
     <audio id="bgMusic" src="/sleep-book/audio/lullaby.mp3" preload="auto" loop></audio>
-    <div style="text-align:center;padding:6px;font-size:.7em;opacity:.4;">
-      Un livre du Dr Nirvena &mdash; Illustrations de Loopinky
+    <div style="text-align:center;padding:6px;font-size:.7em;opacity:.4;position:absolute;bottom:44px;left:0;right:0;z-index:20;">
+      Par Dr. Nirvena &mdash; Illustrations de Loopinky
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
   <script>
-    var VALID_CODE = 'COCO-DODO-2026';
     var pageFlip = null;
 
     /* ===== Book pages ===== */
@@ -251,82 +289,123 @@
       bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
     }
 
-    /* ===== CODE VALIDATION ===== */
-    function tryCode(code){
-      code = code || document.getElementById('codeInput').value.trim().toUpperCase();
-      if(code === VALID_CODE){
-        localStorage.setItem('sleep_book_access', 'true');
-        showReader(true);
-        return true;
-      } else {
-        document.getElementById('errorMsg').style.display = 'block';
-        return false;
-      }
+    function showReader(){
+      document.getElementById('startScreen').style.display = 'flex';
     }
 
-    function showReader(withAudio){
-      document.getElementById('gate').style.display = 'none';
+    function launchReader(){
+      document.getElementById('startScreen').style.display = 'none';
       document.getElementById('reader').classList.add('active');
       initFlipbook();
-      if(withAudio){
-        startBgMusic();
+      var coverVid = document.querySelector('#flipbook-container .page:first-child video');
+      if(coverVid){ coverVid.currentTime = 0; coverVid.play().catch(function(){}); }
+      playTitle();
+    }
+
+    function startReading(){
+      /* On mobile, go fullscreen and lock to landscape, then init */
+      var el = document.documentElement;
+      if(el.requestFullscreen && 'ontouchstart' in window){
+        el.requestFullscreen().then(function(){
+          if(screen.orientation && screen.orientation.lock){
+            return screen.orientation.lock('landscape').catch(function(){});
+          }
+        }).then(function(){
+          /* Wait for orientation change to settle */
+          setTimeout(launchReader, 500);
+        }).catch(function(){
+          launchReader();
+        });
+      } else {
+        launchReader();
       }
     }
 
-    /* ===== CHECK ACCESS ===== */
+    /* ===== ACCESS (open, no code required) ===== */
     (function(){
-      var params = new URLSearchParams(window.location.search);
-      var unlock = params.get('unlock');
-      if(unlock){
-        if(tryCode(unlock)){
-          history.replaceState(null, '', window.location.pathname);
-          return;
-        }
-      }
-      if(localStorage.getItem('sleep_book_access') === 'true'){
-        showReader(false);
-        return;
-      }
-      document.getElementById('codeInput').addEventListener('keydown', function(e){
-        if(e.key === 'Enter') tryCode();
-      });
+      showReader(false);
     })();
+
+    /* ===== BOOK-IN-PHOTO POSITIONING ===== */
+    function positionFlipbook(){
+      var area = document.getElementById('book-area');
+      if(!area) return;
+      var vpW = window.innerWidth;
+      var vpH = window.innerHeight;
+      var isMobile = ('ontouchstart' in window || vpW < 1200);
+      var w, h, l, t;
+      if(isMobile){
+        /* Mobile: adapt to orientation */
+        var pageRatio = 840 / 1080; /* single page w/h */
+        if(vpW > vpH){
+          /* Landscape: show double-page spread */
+          var spreadRatio = pageRatio * 2;
+          var maxW = vpW * 0.95;
+          var maxH = vpH * 0.82;
+          if(maxW / maxH > spreadRatio){
+            h = maxH; w = h * spreadRatio;
+          } else {
+            w = maxW; h = w / spreadRatio;
+          }
+        } else {
+          /* Portrait: show single page, fill width */
+          var maxW = vpW * 0.92;
+          var maxH = vpH * 0.70;
+          w = maxW;
+          h = w / pageRatio;
+          if(h > maxH){ h = maxH; w = h * pageRatio; }
+        }
+        l = (vpW - w) / 2;
+        t = (vpH - h) / 2 * 0.3;
+      } else {
+        /* Desktop: book in photo */
+        w = vpW * 0.63;
+        h = vpH * 0.80;
+        l = (vpW - w) / 2 - vpW * 0.004;
+        t = (vpH - h) / 2 + vpH * 0.04;
+      }
+      area.style.left   = l + 'px';
+      area.style.top    = t + 'px';
+      area.style.width  = w + 'px';
+      area.style.height = h + 'px';
+    }
+
+    window.addEventListener('resize', function(){
+      positionFlipbook();
+      if(pageFlip) pageFlip.update();
+    });
 
     /* ===== FLIPBOOK ===== */
     function initFlipbook(){
       var container = document.getElementById('flipbook-container');
-      var maxW = window.innerWidth - 40;
-      var maxH = window.innerHeight - 100;
-      var w, h;
-      // Landscape 8:3 ratio for double-page spread (2 pages of 3:4 side by side)
-      var spreadRatio = 3 / 2; // (3/4) * 2 = 1.5
-      if(maxW / maxH > spreadRatio){
-        h = maxH; w = Math.round(h * spreadRatio);
-      } else {
-        w = maxW; h = Math.round(w / spreadRatio);
-      }
-      // PageFlip needs per-page width, so divide
-      var pageW = Math.round(w / 2);
-      var pageH = h;
+      positionFlipbook();
+
+      var area = document.getElementById('book-area');
+      var w = Math.round(area.offsetWidth / 2);
+      var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
         var div = document.createElement('div');
         div.className = 'page illust';
-        div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        if(p.type === 'video'){
+          div.innerHTML = '<video src="'+p.src+'" loop playsinline preload="auto" style="width:100%;height:100%;object-fit:contain;border-radius:0"></video>';
+        } else {
+          div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
+        }
         container.appendChild(div);
       });
 
       try{
         pageFlip = new St.PageFlip(container, {
-          width: pageW, height: pageH,
+          width: w, height: h,
           size: 'stretch',
-          minWidth: 280, maxWidth: pageW,
-          minHeight: 373, maxHeight: pageH,
+          minWidth: 150, maxWidth: w,
+          minHeight: 200, maxHeight: h,
           showCover: true,
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
-          usePortrait: false,
+          usePortrait: true,
           startZIndex: 0
         });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));
@@ -363,16 +442,19 @@
     var timeTotal = document.getElementById('timeTotal');
 
     var TOTAL_SPREADS = 15;
-    var durations = [11.09, 24.89, 16.94, 32.69, 34.66, 30.00, 35.86, 31.44, 30.38, 33.86, 30.29, 32.54, 32.57, 32.88, 18.84];
+    var titleDuration = 0;     // title removed
+    var introDuration = 11.53; // spread_00.mp3
+    var durations = [11.34, 29.59, 20.75, 39.86, 40.14, 36.12, 45.64, 39.02, 35.95, 39.88, 40.85, 40.46, 37.54, 38.76, 25.47];
     var totalDuration = 0;
     var cumulativeStarts = [];
+    var preludeDuration = titleDuration + introDuration;
     (function(){
       var cum = 0;
       for(var i = 0; i < durations.length; i++){
         cumulativeStarts.push(cum);
         cum += durations[i];
       }
-      totalDuration = cum;
+      totalDuration = preludeDuration + cum;
       timeTotal.textContent = fmtTime(totalDuration);
     })();
 
@@ -381,6 +463,9 @@
     var autoTurn = true;
     var bgFadeTimer = null;
     var BG_VOLUME = 0.15;
+    var playingSpecial = '';  // 'title', 'credits', or ''
+    var TITLE_SRC = '/sleep-book/audio/spread_title.mp3';
+    var CREDITS_SRC = '/sleep-book/audio/spread_credits.mp3';
 
     function fadeOutBgMusic(){
       clearInterval(bgFadeTimer);
@@ -401,10 +486,26 @@
       bgMusic.play().catch(function(){});
     }
 
+    function playTitle(){
+      /* Skip title, go straight to spread_00 (credits) */
+      audio.src = spreadAudioSrc(0);
+      audio.load();
+      audio.play().then(function(){
+        startBgMusic();
+        isPlaying = true;
+        playingSpecial = 'intro';
+        playBtn.innerHTML = '&#9646;&#9646;';
+      }).catch(function(){
+        isPlaying = false;
+        playingSpecial = 'intro';
+        playBtn.innerHTML = '&#9654;&#65039;';
+      });
+    }
+
     /* Page index (0-based) → spread number (-1 = no audio) */
     function pageToSpread(pg){
-      if(pg <= 0) return -1;            // Cover (no narration)
-      if(pg >= 29) return -1;           // Last pages (website + Cher Parent)
+      if(pg <= 0) return -1;             // Cover (no narration)
+      if(pg >= 29) return -1;            // Last pages (website + Cher Parent)
       return Math.floor((pg - 1) / 2) + 1;  // Pages 1-28 → spreads 1-14
     }
 
@@ -428,24 +529,54 @@
     function playSpread(sp){
       if(sp < 0 || sp >= TOTAL_SPREADS) return;
       loadSpreadAudio(sp);
-      audio.play();
-      startBgMusic();
-      isPlaying = true;
-      playBtn.innerHTML = '&#9646;&#9646;';
+      audio.play().then(function(){
+        startBgMusic();
+        isPlaying = true;
+        playBtn.innerHTML = '&#9646;&#9646;';
+      }).catch(function(e){
+        console.warn('Spread play failed:', e);
+      });
+    }
+
+    function stopReading(){
+      audio.pause();
+      audio.currentTime = 0;
+      bgMusic.pause();
+      bgMusic.currentTime = 0;
+      isPlaying = false;
+      playingSpecial = '';
+      currentSpread = -1;
+      playBtn.innerHTML = '&#9654;&#65039;';
+      progressFill.style.width = '0%';
+      timeNow.textContent = '0:00';
+      /* Pause all videos */
+      document.querySelectorAll('#flipbook-container video').forEach(function(v){ v.pause(); v.currentTime = 0; });
+      /* Go back to cover */
+      if(pageFlip) pageFlip.flip(0);
+      /* Exit fullscreen */
+      if(document.fullscreenElement) document.exitFullscreen().catch(function(){});
+      if(screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
     }
 
     function togglePlay(){
       if(audio.paused){
         if(!audio.src || audio.src === location.href || currentSpread < 0){
           var pg = pageFlip ? pageFlip.getCurrentPageIndex() : 0;
+          if(pg === 0 && playingSpecial === ''){
+            playTitle();
+            return;
+          }
           var sp = pageToSpread(pg);
           if(sp < 0) sp = 1;
           loadSpreadAudio(sp);
         }
-        audio.play();
-        startBgMusic();
-        isPlaying = true;
-        playBtn.innerHTML = '&#9646;&#9646;';
+        audio.play().then(function(){
+          startBgMusic();
+          isPlaying = true;
+          playBtn.innerHTML = '&#9646;&#9646;';
+        }).catch(function(e){
+          console.warn('Audio play failed:', e);
+        });
       } else {
         audio.pause();
         bgMusic.pause();
@@ -465,8 +596,10 @@
     }
 
     function globalTime(){
+      if(playingSpecial === 'title') return audio.currentTime || 0;
+      if(playingSpecial === 'intro') return titleDuration + (audio.currentTime || 0);
       if(currentSpread < 0) return 0;
-      return cumulativeStarts[currentSpread] + (audio.currentTime || 0);
+      return preludeDuration + cumulativeStarts[currentSpread] + (audio.currentTime || 0);
     }
 
     playBtn.addEventListener('click', togglePlay);
@@ -480,19 +613,45 @@
 
     /* Spread number → page index (0-based) */
     function spreadToPage(sp){
+      if(sp === 0) return 0;           // spread_00 → cover
       return 1 + (sp - 1) * 2;  // spread 1→page 1, spread 2→page 3, etc.
     }
 
     audio.addEventListener('ended', function(){
-      if(autoTurn && currentSpread < TOTAL_SPREADS - 1){
+      if(playingSpecial === 'intro'){
+        /* Intro credits ended → flip to page 1 and start spread_01 */
+        playingSpecial = '';
+        if(autoTurn && pageFlip){
+          pageFlip.flip(1);
+          setTimeout(function(){
+            if(currentSpread !== 1) playSpread(1);
+          }, 1000);
+        }
+      } else if(playingSpecial === 'credits'){
+        /* Credits ended → stop */
+        isPlaying = false;
+        playingSpecial = '';
+        fadeOutBgMusic();
+        playBtn.innerHTML = '&#9654;&#65039;';
+      } else if(autoTurn && currentSpread >= 1 && currentSpread < TOTAL_SPREADS - 1){
+        /* Story spreads 1-13 → advance to next */
         var nextSp = currentSpread + 1;
         var targetPage = spreadToPage(nextSp);
-        if(pageFlip) pageFlip.turnToPage(targetPage);
+        if(pageFlip) pageFlip.flip(targetPage);
         setTimeout(function(){
-          playSpread(nextSp);
+          if(currentSpread !== nextSp) playSpread(nextSp);
         }, 1000);
+      } else if(currentSpread === TOTAL_SPREADS - 1){
+        /* Last story spread (14) ended → flip to end pages + play credits */
+        if(pageFlip) pageFlip.flip(29);
+        audio.src = CREDITS_SRC;
+        audio.load();
+        audio.play();
+        playingSpecial = 'credits';
       } else {
+        /* Fallback stop */
         isPlaying = false;
+        playingSpecial = '';
         fadeOutBgMusic();
         playBtn.innerHTML = '&#9654;&#65039;';
       }
@@ -513,6 +672,10 @@
       var offset = targetTime - cumulativeStarts[targetSpread];
       if(targetSpread !== currentSpread){
         loadSpreadAudio(targetSpread);
+        if(pageFlip){
+          var targetPage = spreadToPage(targetSpread);
+          pageFlip.flip(targetPage);
+        }
       }
       audio.currentTime = offset;
       if(isPlaying) audio.play();
@@ -521,6 +684,17 @@
     /* Sync audio when user flips pages */
     function onPageFlip(pgIndex){
       document.getElementById('pageInfo').textContent = (pgIndex + 1) + ' / ' + bookPages.length;
+      /* Pause all videos, restart + play only visible ones */
+      var allVideos = document.querySelectorAll('#flipbook-container video');
+      allVideos.forEach(function(v){ v.pause(); });
+      var pages = document.querySelectorAll('#flipbook-container .page');
+      /* Visible pages: current and next */
+      [pgIndex, pgIndex + 1].forEach(function(idx){
+        if(idx >= 0 && idx < pages.length){
+          var vid = pages[idx].querySelector('video');
+          if(vid){ vid.currentTime = 0; vid.play().catch(function(){}); }
+        }
+      });
       var sp = pageToSpread(pgIndex);
       if(sp >= 0 && sp !== currentSpread){
         playSpread(sp);
