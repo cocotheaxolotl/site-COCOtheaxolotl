@@ -246,10 +246,18 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      var w = vpW * 0.63;
-      var h = vpH * 0.80;
-      var l = (vpW - w) / 2 - vpW * 0.004;
-      var t = (vpH - h) / 2 + vpH * 0.04;
+      /* TOUJOURS 2 pages cote a cote, ratio 1680x1080 */
+      var spreadRatio = (840 * 2) / 1080;
+      var maxW = vpW * 0.96;
+      var maxH = vpH * 0.86;
+      var w, h;
+      if(maxW / maxH > spreadRatio){
+        h = maxH; w = h * spreadRatio;
+      } else {
+        w = maxW; h = w / spreadRatio;
+      }
+      var l = (vpW - w) / 2;
+      var t = (vpH - h) / 2;
       area.style.left   = l + 'px';
       area.style.top    = t + 'px';
       area.style.width  = w + 'px';
@@ -287,7 +295,7 @@
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
-          usePortrait: true,
+          usePortrait: false,
           startZIndex: 0
         });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));
