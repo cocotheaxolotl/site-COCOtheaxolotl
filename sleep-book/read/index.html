@@ -88,8 +88,18 @@
     }
     #flipbook-container{
       width:100%; height:100%;
-      overflow:hidden;
+      overflow:hidden; position:relative;
       background:transparent;
+    }
+    .slide{
+      position:absolute; inset:0;
+      opacity:0; transition:opacity .5s ease;
+      pointer-events:none;
+    }
+    .slide.active{ opacity:1; pointer-events:auto; }
+    .slide img{
+      width:100%; height:100%; object-fit:contain;
+      display:block; background:#0d0d2b;
     }
 
     .page{
@@ -278,14 +288,27 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
   <script>
-    var pageFlip = null;
-
-    /* ===== Book pages: 16 spreads (cover + 14 spreads + credits) ===== */
+    /* ===== Custom slideshow (replaces PageFlip): 16 spreads ===== */
     var IMG = '/sleep-book/spreads-fr/';
     var SPREAD_NAMES = ['cover','spread_01','spread_02','spread_03','spread_04','spread_05','spread_06','spread_07','spread_08','spread_09','spread_10','spread_11','spread_12','spread_13','spread_14','credits'];
     var bookPages = SPREAD_NAMES.map(function(n){ return {type:'illust', img: IMG+n+'.jpg'}; });
+    var currentPage = 0;
+    var pageFlip = {
+      getCurrentPageIndex: function(){ return currentPage; },
+      flip: function(idx){ goToPage(idx); },
+      flipPrev: function(){ goToPage(currentPage - 1); },
+      flipNext: function(){ goToPage(currentPage + 1); }
+    };
+    function goToPage(idx){
+      idx = Math.max(0, Math.min(bookPages.length - 1, idx));
+      if(idx === currentPage) return;
+      var slides = document.querySelectorAll('#flipbook-container .slide');
+      if(slides[currentPage]) slides[currentPage].classList.remove('active');
+      currentPage = idx;
+      if(slides[currentPage]) slides[currentPage].classList.add('active');
+      if(typeof onPageFlip === 'function') onPageFlip(currentPage);
+    }
 
     function showReader(){
       document.getElementById('startScreen').style.display = 'flex';
@@ -353,43 +376,18 @@
       if(pageFlip) pageFlip.update();
     });
 
-    /* ===== FLIPBOOK ===== */
+    /* ===== FLIPBOOK (custom slideshow) ===== */
     function initFlipbook(){
       var container = document.getElementById('flipbook-container');
       positionFlipbook();
-
-      var area = document.getElementById('book-area');
-      var w = Math.round(area.offsetWidth);
-      var h = Math.round(area.offsetHeight);
-
-      bookPages.forEach(function(p){
+      container.innerHTML = '';
+      bookPages.forEach(function(p, i){
         var div = document.createElement('div');
-        div.className = 'page illust';
+        div.className = 'slide' + (i === 0 ? ' active' : '');
         div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
         container.appendChild(div);
       });
-
-      try{
-        pageFlip = new St.PageFlip(container, {
-          width: w, height: h,
-          size: 'stretch',
-          minWidth: 320, maxWidth: w,
-          minHeight: 180, maxHeight: h,
-          showCover: false,
-          mobileScrollSupport: false,
-          useMouseEvents: true,
-          flippingTime: 700,
-          usePortrait: true,
-          startZIndex: 0
-        });
-        pageFlip.loadFromHTML(container.querySelectorAll('.page'));
-        pageFlip.on('flip', function(e){
-          onPageFlip(e.data);
-        });
-
-      } catch(e){
-        console.error('PageFlip init error:', e);
-      }
+      currentPage = 0;
     }
 
     function flipPrev(){ if(pageFlip) pageFlip.flipPrev(); }
