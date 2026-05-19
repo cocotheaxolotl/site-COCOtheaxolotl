@@ -250,7 +250,7 @@
     <div class="toolbar">
       <a href="/sleep-book/" style="color:#fff;text-decoration:none;opacity:.7;">&larr; Retour</a>
       <span class="title">Coco ne dort pas ce soir !</span>
-      <span class="page-info" id="pageInfo">1 / 31</span>
+      <span class="page-info" id="pageInfo">1 / 16</span>
       <button onclick="toggleFullscreen()">&#x26F6; Plein &eacute;cran</button>
     </div>
 
@@ -282,12 +282,10 @@
   <script>
     var pageFlip = null;
 
-    /* ===== Book pages ===== */
-    var IMG = '/sleep-book/Coco-ne-dort-pas-ce-soir-FR-sleep-book/';
-    var bookPages = [];
-    for(var i = 1; i <= 31; i++){
-      bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
-    }
+    /* ===== Book pages: 16 spreads (cover + 14 spreads + credits) ===== */
+    var IMG = '/sleep-book/spreads-fr/';
+    var SPREAD_NAMES = ['cover','spread_01','spread_02','spread_03','spread_04','spread_05','spread_06','spread_07','spread_08','spread_09','spread_10','spread_11','spread_12','spread_13','spread_14','credits'];
+    var bookPages = SPREAD_NAMES.map(function(n){ return {type:'illust', img: IMG+n+'.jpg'}; });
 
     function showReader(){
       document.getElementById('startScreen').style.display = 'flex';
@@ -332,38 +330,18 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      var isMobile = ('ontouchstart' in window || vpW < 1200);
-      var w, h, l, t;
-      if(isMobile){
-        /* Mobile: adapt to orientation */
-        var pageRatio = 840 / 1080; /* single page w/h */
-        if(vpW > vpH){
-          /* Landscape: show double-page spread */
-          var spreadRatio = pageRatio * 2;
-          var maxW = vpW * 0.95;
-          var maxH = vpH * 0.82;
-          if(maxW / maxH > spreadRatio){
-            h = maxH; w = h * spreadRatio;
-          } else {
-            w = maxW; h = w / spreadRatio;
-          }
-        } else {
-          /* Portrait: show single page, fill width */
-          var maxW = vpW * 0.92;
-          var maxH = vpH * 0.70;
-          w = maxW;
-          h = w / pageRatio;
-          if(h > maxH){ h = maxH; w = h * pageRatio; }
-        }
-        l = (vpW - w) / 2;
-        t = (vpH - h) / 2 * 0.3;
+      /* Each "page" is a 16:9 spread (1920x1080) - we always show 1 at a time */
+      var spreadRatio = 1920 / 1080;
+      var maxW = vpW * 0.95;
+      var maxH = vpH * 0.86;
+      var w, h;
+      if(maxW / maxH > spreadRatio){
+        h = maxH; w = h * spreadRatio;
       } else {
-        /* Desktop: book in photo */
-        w = vpW * 0.63;
-        h = vpH * 0.80;
-        l = (vpW - w) / 2 - vpW * 0.004;
-        t = (vpH - h) / 2 + vpH * 0.04;
+        w = maxW; h = w / spreadRatio;
       }
+      var l = (vpW - w) / 2;
+      var t = (vpH - h) / 2;
       area.style.left   = l + 'px';
       area.style.top    = t + 'px';
       area.style.width  = w + 'px';
@@ -381,17 +359,13 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var w = Math.round(area.offsetWidth / 2);
+      var w = Math.round(area.offsetWidth);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
         var div = document.createElement('div');
         div.className = 'page illust';
-        if(p.type === 'video'){
-          div.innerHTML = '<video src="'+p.src+'" loop playsinline preload="auto" style="width:100%;height:100%;object-fit:contain;border-radius:0"></video>';
-        } else {
-          div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
-        }
+        div.innerHTML = '<img src="'+p.img+'" alt="" loading="lazy">';
         container.appendChild(div);
       });
 
@@ -399,9 +373,9 @@
         pageFlip = new St.PageFlip(container, {
           width: w, height: h,
           size: 'stretch',
-          minWidth: 150, maxWidth: w,
-          minHeight: 200, maxHeight: h,
-          showCover: true,
+          minWidth: 320, maxWidth: w,
+          minHeight: 180, maxHeight: h,
+          showCover: false,
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
@@ -503,10 +477,11 @@
     }
 
     /* Page index (0-based) → spread number (-1 = no audio) */
+    /* Pages: 0=cover, 1-14=spread_01..14, 15=credits */
     function pageToSpread(pg){
-      if(pg <= 0) return -1;             // Cover (no narration)
-      if(pg >= 29) return -1;            // Last pages (website + Cher Parent)
-      return Math.floor((pg - 1) / 2) + 1;  // Pages 1-28 → spreads 1-14
+      if(pg <= 0) return -1;          // Cover
+      if(pg >= 15) return -1;         // Credits page (handled separately)
+      return pg;                       // 1:1 mapping
     }
 
     function spreadAudioSrc(sp){
@@ -613,8 +588,9 @@
 
     /* Spread number → page index (0-based) */
     function spreadToPage(sp){
-      if(sp === 0) return 0;           // spread_00 → cover
-      return 1 + (sp - 1) * 2;  // spread 1→page 1, spread 2→page 3, etc.
+      if(sp <= 0) return 0;            // intro → cover
+      if(sp >= 15) return 15;          // credits page
+      return sp;                       // 1:1 mapping
     }
 
     audio.addEventListener('ended', function(){
@@ -642,8 +618,8 @@
           if(currentSpread !== nextSp) playSpread(nextSp);
         }, 1000);
       } else if(currentSpread === TOTAL_SPREADS - 1){
-        /* Last story spread (14) ended → flip to end pages + play credits */
-        if(pageFlip) pageFlip.flip(29);
+        /* Last story spread (14) ended → flip to credits page + play credits */
+        if(pageFlip) pageFlip.flip(15);
         audio.src = CREDITS_SRC;
         audio.load();
         audio.play();

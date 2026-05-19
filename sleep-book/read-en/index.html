@@ -196,7 +196,7 @@
     <div class="toolbar">
       <a href="/sleep-book/" style="color:#fff;text-decoration:none;opacity:.7;">&larr; Back</a>
       <span class="title">Coco Doesn't Sleep Tonight!</span>
-      <span class="page-info" id="pageInfo">1 / 31</span>
+      <span class="page-info" id="pageInfo">1 / 16</span>
       <button onclick="toggleFullscreen()">&#x26F6; Fullscreen</button>
     </div>
 
@@ -227,12 +227,10 @@
   <script>
     var pageFlip = null;
 
-    /* ===== Book pages (EN) ===== */
-    var IMG = '/sleep-book/Coco-doesnt-sleep-tonight-EN-sleep-book/';
-    var bookPages = [];
-    for(var i = 1; i <= 31; i++){
-      bookPages.push({type:'illust', img: IMG+'Diapositive'+i+'.JPG'});
-    }
+    /* ===== Book pages: 16 spreads (cover + 14 spreads + credits) ===== */
+    var IMG = '/sleep-book/spreads-en/';
+    var SPREAD_NAMES = ['cover','spread_01','spread_02','spread_03','spread_04','spread_05','spread_06','spread_07','spread_08','spread_09','spread_10','spread_11','spread_12','spread_13','spread_14','credits'];
+    var bookPages = SPREAD_NAMES.map(function(n){ return {type:'illust', img: IMG+n+'.jpg'}; });
 
     /* ===== AUTO-START ===== */
     (function(){
@@ -246,10 +244,18 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      var w = vpW * 0.63;
-      var h = vpH * 0.80;
-      var l = (vpW - w) / 2 - vpW * 0.004;
-      var t = (vpH - h) / 2 + vpH * 0.04;
+      /* Each "page" is a 16:9 spread (1920x1080) - show 1 at a time */
+      var spreadRatio = 1920 / 1080;
+      var maxW = vpW * 0.95;
+      var maxH = vpH * 0.86;
+      var w, h;
+      if(maxW / maxH > spreadRatio){
+        h = maxH; w = h * spreadRatio;
+      } else {
+        w = maxW; h = w / spreadRatio;
+      }
+      var l = (vpW - w) / 2;
+      var t = (vpH - h) / 2;
       area.style.left   = l + 'px';
       area.style.top    = t + 'px';
       area.style.width  = w + 'px';
@@ -267,7 +273,7 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var w = Math.round(area.offsetWidth / 2);
+      var w = Math.round(area.offsetWidth);
       var h = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
@@ -283,7 +289,7 @@
           size: 'stretch',
           minWidth: 150, maxWidth: w,
           minHeight: 200, maxHeight: h,
-          showCover: true,
+          showCover: false,
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
@@ -377,8 +383,8 @@
 
     function pageToSpread(pg){
       if(pg <= 0) return -1;
-      if(pg >= 29) return -1;
-      return Math.floor((pg - 1) / 2) + 1;
+      if(pg >= 15) return -1;
+      return pg;
     }
 
     function spreadAudioSrc(sp){
@@ -456,8 +462,9 @@
     });
 
     function spreadToPage(sp){
-      if(sp === 0) return 0;
-      return 1 + (sp - 1) * 2;
+      if(sp <= 0) return 0;
+      if(sp >= 15) return 15;
+      return sp;
     }
 
     audio.addEventListener('ended', function(){
@@ -482,7 +489,7 @@
           if(currentSpread !== nextSp) playSpread(nextSp);
         }, 1000);
       } else if(currentSpread === TOTAL_SPREADS - 1){
-        if(pageFlip) pageFlip.flip(29);
+        if(pageFlip) pageFlip.flip(15);
         setTimeout(function(){
           audio.src = CREDITS_SRC;
           audio.load();
