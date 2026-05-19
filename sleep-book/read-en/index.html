@@ -104,8 +104,8 @@
       font-size:.85em; padding:0;
     }
     .page.illust img{
-      width:100%; height:100%; object-fit:cover;
-      display:block;
+      width:100%; height:100%; object-fit:contain;
+      display:block; background:#0d0d2b;
     }
     /* ===== SCENE BACKGROUND ===== */
     #scene-bg{
@@ -291,7 +291,7 @@
           size: 'stretch',
           minWidth: 150, maxWidth: w,
           minHeight: 200, maxHeight: h,
-          showCover: true,
+          showCover: false,
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
