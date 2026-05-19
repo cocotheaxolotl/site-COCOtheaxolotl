@@ -82,7 +82,7 @@
 
     #flipbook-container{
       flex:1; position:relative; overflow:hidden;
-      max-width:1060px; width:100%; margin:0 auto;
+      width:100%; margin:0 auto;
     }
 
     .page{
@@ -114,8 +114,8 @@
       font-size:.85em; padding:0;
     }
     .page.illust img{
-      width:100%; height:100%; object-fit:cover;
-      display:block;
+      width:100%; height:100%; object-fit:contain;
+      display:block; background:#0d0d2b;
     }
     .page .page-wrap{
       display:flex; flex-direction:column;
@@ -295,15 +295,19 @@
     /* ===== FLIPBOOK ===== */
     function initFlipbook(){
       var container = document.getElementById('flipbook-container');
-      var maxW = Math.min(500, window.innerWidth - 40);
-      var maxH = window.innerHeight - 60;
+      var maxW = window.innerWidth - 40;
+      var maxH = window.innerHeight - 100;
       var w, h;
-      // Portrait 3:4 ratio
-      if(maxH / maxW > 4/3){
-        w = maxW; h = Math.round(w * 4 / 3);
+      // Landscape 8:3 ratio for double-page spread (2 pages of 3:4 side by side)
+      var spreadRatio = 3 / 2; // (3/4) * 2 = 1.5
+      if(maxW / maxH > spreadRatio){
+        h = maxH; w = Math.round(h * spreadRatio);
       } else {
-        h = maxH; w = Math.round(h * 3 / 4);
+        w = maxW; h = Math.round(w / spreadRatio);
       }
+      // PageFlip needs per-page width, so divide
+      var pageW = Math.round(w / 2);
+      var pageH = h;
 
       bookPages.forEach(function(p){
         var div = document.createElement('div');
@@ -314,15 +318,15 @@
 
       try{
         pageFlip = new St.PageFlip(container, {
-          width: w, height: h,
+          width: pageW, height: pageH,
           size: 'stretch',
-          minWidth: 280, maxWidth: 600,
-          minHeight: 373, maxHeight: 800,
-          showCover: true,
+          minWidth: 280, maxWidth: pageW,
+          minHeight: 373, maxHeight: pageH,
+          showCover: false,
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
-          usePortrait: true,
+          usePortrait: false,
           startZIndex: 0
         });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));

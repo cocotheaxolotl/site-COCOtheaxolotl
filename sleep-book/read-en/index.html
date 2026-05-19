@@ -104,8 +104,8 @@
       font-size:.85em; padding:0;
     }
     .page.illust img{
-      width:100%; height:100%; object-fit:cover;
-      display:block;
+      width:100%; height:100%; object-fit:contain;
+      display:block; background:#0d0d2b;
     }
     /* ===== SCENE BACKGROUND ===== */
     #scene-bg{
@@ -246,10 +246,18 @@
       if(!area) return;
       var vpW = window.innerWidth;
       var vpH = window.innerHeight;
-      var w = vpW * 0.63;
-      var h = vpH * 0.80;
-      var l = (vpW - w) / 2 - vpW * 0.004;
-      var t = (vpH - h) / 2 + vpH * 0.04;
+      /* Always show double-page spread, ratio 3:2 */
+      var spreadRatio = 3 / 2;
+      var maxW = vpW * 0.95;
+      var maxH = vpH * 0.86;
+      var w, h;
+      if(maxW / maxH > spreadRatio){
+        h = maxH; w = Math.round(h * spreadRatio);
+      } else {
+        w = maxW; h = Math.round(w / spreadRatio);
+      }
+      var l = (vpW - w) / 2;
+      var t = (vpH - h) / 2;
       area.style.left   = l + 'px';
       area.style.top    = t + 'px';
       area.style.width  = w + 'px';
@@ -267,8 +275,8 @@
       positionFlipbook();
 
       var area = document.getElementById('book-area');
-      var w = Math.round(area.offsetWidth / 2);
-      var h = Math.round(area.offsetHeight);
+      var pageW = Math.round(area.offsetWidth / 2);
+      var pageH = Math.round(area.offsetHeight);
 
       bookPages.forEach(function(p){
         var div = document.createElement('div');
@@ -279,15 +287,15 @@
 
       try{
         pageFlip = new St.PageFlip(container, {
-          width: w, height: h,
+          width: pageW, height: pageH,
           size: 'stretch',
-          minWidth: 150, maxWidth: w,
-          minHeight: 200, maxHeight: h,
-          showCover: true,
+          minWidth: 150, maxWidth: pageW,
+          minHeight: 200, maxHeight: pageH,
+          showCover: false,
           mobileScrollSupport: false,
           useMouseEvents: true,
           flippingTime: 700,
-          usePortrait: true,
+          usePortrait: false,
           startZIndex: 0
         });
         pageFlip.loadFromHTML(container.querySelectorAll('.page'));
