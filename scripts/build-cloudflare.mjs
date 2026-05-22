@@ -25,7 +25,6 @@ const excludedDirs = new Set([
   'Lettering COCO',
   'memory',
   'mosaic-api',
-  'mosaic-examples',
   'node_modules',
   'planks_wood_letters',
   'scripts',
