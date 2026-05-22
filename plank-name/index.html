@@ -91,7 +91,7 @@
 <canvas aria-label="Wood plank name result" height="1200" id="c" width="2480"></canvas>
 </div>
 <div class="row">
-<button class="secondary" id="dlBtn"><span data-lang="en">Download PNG</span><span data-lang="fr">Télécharger PNG</span><span data-lang="es">Descargar PNG</span></button>
+<button class="secondary" id="dlBtn" data-email-gate="download"><span data-lang="en">Download PNG</span><span data-lang="fr">Télécharger PNG</span><span data-lang="es">Descargar PNG</span></button>
 <button id="printBtn"><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></button>
 <a class="btn secondary" href="/"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span></a>
 <a class="btn secondary" href="/toy-name/"><span data-lang="en">Toy Name</span><span data-lang="fr">Nom Jouets</span><span data-lang="es">Nombre Juguetes</span></a>
@@ -247,5 +247,6 @@ function showUpgradeModal(){
   function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
   if(!localStorage.getItem('cookies_accepted')){document.getElementById('cookieBanner').style.display='block';}
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>

@@ -86,7 +86,7 @@
 <canvas aria-label="Wood plank name result" height="1200" id="c" width="2480"></canvas>
 </div>
 <div class="row">
-<button class="secondary" id="dlBtn">Télécharger PNG</button>
+<button class="secondary" id="dlBtn" data-email-gate="download">Télécharger PNG</button>
 <button id="printBtn">Imprimer</button>
 <a class="btn secondary" href="/fr/">Accueil</a>
 <a class="btn secondary" href="/fr/toy-name/">Nom Jouets</a>
@@ -241,5 +241,6 @@ Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous
   function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
   if(!localStorage.getItem('cookies_accepted')){document.getElementById('cookieBanner').style.display='block';}
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>

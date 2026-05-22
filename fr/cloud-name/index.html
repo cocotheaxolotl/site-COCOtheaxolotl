@@ -103,7 +103,7 @@
 <canvas aria-label="Cloud name result" height="1200" id="c" width="2480"></canvas>
 </div>
 <div class="row">
-<button class="secondary" id="dlBtn">Télécharger PNG</button>
+<button class="secondary" id="dlBtn" data-email-gate="download">Télécharger PNG</button>
 <button id="printBtn">Imprimer</button>
 <a class="btn secondary" href="/fr/" style="border:2px solid #5ba3d9;color:#5ba3d9;background:#fff">Accueil</a>
 <a class="btn secondary" href="/fr/bubble-name/" style="border:2px solid #5ba3d9;color:#5ba3d9;background:#fff">Nom en Bulles</a>
@@ -349,5 +349,6 @@ Refuser
     document.getElementById('cookieBanner').style.display='block';
   }
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>

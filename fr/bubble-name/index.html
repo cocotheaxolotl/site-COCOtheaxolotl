@@ -107,7 +107,7 @@
 <canvas aria-label="Printable bubble name" height="3508" id="c" width="2480"></canvas>
 </div>
 <div class="row">
-<button class="secondary" id="dlBtn">Télécharger (A4 PNG)</button>
+<button class="secondary" id="dlBtn" data-email-gate="download">Télécharger (A4 PNG)</button>
 <button id="printBtn">Imprimer</button>
 <a class="btn secondary" href="/fr/" style="border:2px solid #ff69b4;color:#ff69b4;background:#fff">Accueil</a>
 <a class="btn secondary" href="/fr/bubble-lab/" style="border:2px solid #ff69b4;color:#ff69b4;background:#fff">Labo Bulles</a>
@@ -281,5 +281,6 @@ Refuser
     document.getElementById('cookieBanner').style.display='block';
   }
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>
