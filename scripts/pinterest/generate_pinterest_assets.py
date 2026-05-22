@@ -20,36 +20,36 @@ CAMPAIGN = "launch"
 
 
 ITEMS = [
+    ("LIVRES COCO/Coco Can't Sleep Tonight!/coloring Coco can't sleep tonight/9-coloring-chat.png", "Coco and Cat Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/Coco Can't Sleep Tonight!/coloring Coco can't sleep tonight/11-coloring-flamant-rose.png", "Coco and Flamingo Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Walking under starry skies_coloring.png", "Walking Under Starry Skies Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Bedtime warmth between axolotls_coloring.png", "Bedtime Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Axolotls in glowing orbs of joy_coloring.png", "Glowing Orbs Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Axolotls in a joyful meadow_coloring.png", "Joyful Meadow Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Under the starry embrace_coloring.png", "Starry Embrace Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Tender moment under the night sky_coloring.png", "Tender Night Sky Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Axolotl mother and child in sunlight_coloring.png", "Sunlight Axolotl Family Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/A loving hug under the stars_coloring.png", "Loving Hug Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Night under the stars with axolotls_coloring.png", "Axolotls Under the Stars Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Mother and child axolotls in love_coloring.png", "Mother and Child Axolotls Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Joyful axolotls in a meadow_coloring.png", "Happy Axolotls Meadow Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Joyful axolotls in a sunlit meadow_coloring.png", "Sunlit Meadow Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Joyful axolotl under a glowing star_coloring.png", "Glowing Star Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Starry night with a cozy axolotl_coloring.png", "Cozy Starry Night Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/A joyful hug under the stars_coloring_.png", "Joyful Hug Under Stars Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
     ("freebies/i-love-you-more-free-coloring-1.png", "Mother and Baby Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco-kitten_coloring-video.png", "Coco and Kitten Yarn Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco-puppy-coloring.png", "Coco and Puppy Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco-kitten_coloring.png", "Coco and Kitten Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco-christmas.png", "Christmas Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco-and-girl.png", "Coco and Girl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco-and-boy.png", "Coco and Boy Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco et le chaton.png", "Coco and Little Cat Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/underwater-scene.png", "Underwater Coloring Page for Kids", "Free Coloring Pages for Kids", "/freebies/"),
-    ("freebies/axolotl-emotions.png", "Axolotl Emotions Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco_puppy.png", "Cute Puppy Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/coco_rabbit-coloring.png", "Coco Rabbit Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
-    ("freebies/dolphin-coloring-page.png", "Dolphin Coloring Page for Kids", "Free Coloring Pages for Kids", "/freebies/"),
-    ("freebies/dragon-coloring-page/dragon_and_axolotl_freebie.png", "Dragon and Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/dragon-coloring-page/"),
-    ("freebies/unicorn-coloring-page/unicorn_axolotl_freebie_colorin_page.png", "Unicorn and Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/unicorn-coloring-page/"),
-    ("freebies/dinosaur-coloring-page/dinosaur_and_axolotl_coloring_page.png", "Dinosaur and Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/dinosaur-coloring-page/"),
-    ("freebies/dog-coloring-page/dog_and_axolotl-freebie.png", "Dog and Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/dog-coloring-page/"),
-    ("freebies/dolphin-coloring-page/dolphin-coloring-page_freebie.png", "Coco Dolphin Coloring Page", "Axolotl Coloring & Crafts", "/freebies/dolphin-coloring-page/"),
-    ("freebies/bear-coloring-page/bear_freebie.png", "Bear Coloring Page for Kids", "Free Coloring Pages for Kids", "/freebies/bear-coloring-page/"),
-    ("freebies/turtle-coloring-page/turtle_and_axolotl_freebie.png", "Turtle and Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/turtle-coloring-page/"),
-    ("freebies/cat-coloring-page/cat_and_axolotl-freebie.png", "Cat and Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/cat-coloring-page/"),
-    ("freebies/coco-rabbit-cbn-v2.png", "Coco Rabbit Color by Number", "Color by Number", "/freebies/"),
-    ("freebies/coco-rabbit-cbn-v2-full.png", "Rabbit Color by Number Printable", "Color by Number", "/freebies/"),
-    ("freebies/coco-rabbit-cbn.png", "Easy Color by Number for Kids", "Color by Number", "/freebies/"),
-    ("freebies/coco-rabbit-cbn-full.png", "Free Color by Number Activity", "Color by Number", "/freebies/"),
-    ("activity:maze:easy", "Easy Kids Maze Printable", "Kids Mazes Printable", "/maze/"),
-    ("activity:maze:dragon", "Dragon Maze Printable for Kids", "Kids Mazes Printable", "/maze/"),
-    ("activity:dot:axolotl", "Axolotl Dot to Dot Printable", "Dot to Dot Activities", "/dot-to-dot/"),
-    ("activity:dot:ocean", "Ocean Dot to Dot Activity", "Dot to Dot Activities", "/dot-to-dot/"),
-    ("activity:word:ocean", "Ocean Word Search for Kids", "Word Search for Kids", "/word-search/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Mother and baby axolotl under the stars_coloring_.png", "Mother and Baby Stars Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Cheerful axolotl on a sunny path_coloring_.png", "Sunny Path Axolotl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Dreaming under a starry sky_coloring_.png", "Dreaming Starry Sky Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/A mother's love under the stars_coloring_.png", "Mother's Love Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Under the starry night sky_coloring_.png", "Starry Night Sky Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/I love you more/coloring _I_love_you_more/Morning hug in the kitchen_coloring_.png", "Morning Hug Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/Whose egg is this/whose-egg-colored/coloring_image de home page coco pâques_sans_fond.png", "Coco Easter Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/Coco Can't Sleep Tonight!/coloring Coco can't sleep tonight/12-coloring-paresseux.png", "Coco and Sloth Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/Coco Can't Sleep Tonight!/coloring Coco can't sleep tonight/6-coloring-loutre.png", "Coco and Otter Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/Coco Can't Sleep Tonight!/coloring Coco can't sleep tonight/4-coloring-hibou.png", "Coco and Owl Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/Coco Can't Sleep Tonight!/coloring Coco can't sleep tonight/5-coloring-dauphin.png", "Coco and Dolphin Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
+    ("LIVRES COCO/Coco Can't Sleep Tonight!/coloring Coco can't sleep tonight/7-coloriage-koala.png", "Coco and Koala Coloring Page", "Axolotl Coloring & Crafts", "/freebies/"),
 ]
 
 
@@ -138,6 +138,26 @@ def draw_centered(draw: ImageDraw.ImageDraw, y: int, text: str, font_obj: ImageF
     return bbox[3] - bbox[1]
 
 
+def add_site_mark(image: Image.Image) -> Image.Image:
+    marked = image.copy()
+    draw = ImageDraw.Draw(marked)
+    size = max(24, min(46, marked.width // 18))
+    mark_font = font(size, bold=True)
+    text = SITE
+    bbox = draw.textbbox((0, 0), text, font=mark_font)
+    text_w = bbox[2] - bbox[0]
+    text_h = bbox[3] - bbox[1]
+    x = (marked.width - text_w) // 2
+    y = max(12, marked.height - text_h - max(18, marked.height // 35))
+    draw.rounded_rectangle(
+        (x - 18, y - 10, x + text_w + 18, y + text_h + 12),
+        radius=14,
+        fill=(255, 255, 255, 225),
+    )
+    draw.text((x, y), text, font=mark_font, fill=PINK, stroke_width=2, stroke_fill="white")
+    return marked
+
+
 def compose_pin(source: Path, title: str, target: Path) -> None:
     canvas = Image.new("RGB", (1000, 1500), SOFT_BG)
     draw = ImageDraw.Draw(canvas)
@@ -157,6 +177,7 @@ def compose_pin(source: Path, title: str, target: Path) -> None:
     src = ImageOps.contain(src, (720, 735), Image.Resampling.LANCZOS)
     src_bg = Image.new("RGBA", src.size, "white")
     src_bg.alpha_composite(src)
+    src_bg = add_site_mark(src_bg)
 
     paper_draw = ImageDraw.Draw(paper)
     paper_draw.rounded_rectangle((0, 0, 789, 819), radius=18, outline="#f3c4da", width=4)
