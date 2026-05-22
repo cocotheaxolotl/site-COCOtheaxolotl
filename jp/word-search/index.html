@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>単語探し - 子ども向け無料 | Coco the Axolotl</title>
+<meta content="5〜10歳向けの無料単語探し。アホロートルや海の言葉を楽しく見つけよう。" name="description"/>
+<meta content="単語探し - 子ども向け無料 – Coco the Axolotl" property="og:title"/>
+<meta content="5〜10歳向けの無料単語探し。アホロートルや海の言葉を楽しく見つけよう。" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+<link href="/manifest.json" rel="manifest"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root {
+      --pink: #ff69b4;
+      --pink2: #f7c1cc;
+      --bg: #fef6fb;
+      --cell: min(calc((100vw - 48px) / 12), 42px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Baloo 2', sans-serif;
+      background: var(--bg);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      touch-action: none;
+      overflow-x: hidden;
+    }
+    header {
+      width: 100%;
+      background: var(--pink2);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header a { color: #c0186a; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+    header a:hover { text-decoration: underline; }
+    header .sep { color: #c0186a; opacity: 0.4; }
+    h1 { text-align: center; color: var(--pink); font-size: clamp(1.2rem, 5vw, 1.8rem); font-weight: 800; padding: 10px 16px 2px; }
+    .subtitle { text-align: center; color: #b05080; font-size: 0.85rem; margin-bottom: 6px; }
+    #puzzle-selector { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; justify-content: center; padding: 0 16px; }
+    .puzzle-btn { font-family: 'Baloo 2', sans-serif; font-size: 0.85rem; font-weight: 700; padding: 6px 16px; border-radius: 20px; border: 2px solid var(--pink2); background: white; color: #c04080; cursor: pointer; transition: all 0.2s; }
+    .puzzle-btn.active { background: var(--pink); border-color: var(--pink); color: white; }
+    .puzzle-btn:hover:not(.active) { background: var(--pink2); }
+    #grid-container { position: relative; -webkit-user-select: none; user-select: none; touch-action: none; }
+    #grid { display: grid; grid-template-columns: repeat(12, var(--cell)); grid-template-rows: repeat(12, var(--cell)); border: 2px solid var(--pink2); border-radius: 10px; overflow: hidden; background: white; }
+    .cell { width: var(--cell); height: var(--cell); display: flex; align-items: center; justify-content: center; font-size: calc(var(--cell) * 0.44); font-weight: 700; color: #444; border: 1px solid #f0d0e0; cursor: pointer; transition: background 0.1s; }
+    .cell.selecting { background: #ffd6ec; color: var(--pink); }
+    .cell.found { color: white; }
+    .cell.word-0 { background: #ff69b4; } .cell.word-1 { background: #f4a0c8; } .cell.word-2 { background: #e87bbf; }
+    .cell.word-3 { background: #d955a8; } .cell.word-4 { background: #f08fc0; } .cell.word-5 { background: #c94499; }
+    .cell.word-6 { background: #e066b3; } .cell.word-7 { background: #f77dc2; } .cell.word-8 { background: #dc4da6; }
+    #svg-overlay { position: absolute; top: 0; left: 0; pointer-events: none; z-index: 2; }
+    .found-line { stroke-opacity: 0.35; stroke-linecap: round; }
+    #word-list { display: flex; flex-wrap: wrap; gap: 8px 12px; justify-content: center; padding: 12px 16px; max-width: calc(12 * var(--cell) + 4px); }
+    .word-item { font-size: clamp(0.85rem, 3.5vw, 1rem); font-weight: 700; color: #c04080; padding: 4px 12px; border-radius: 20px; background: white; border: 2px solid var(--pink2); transition: all 0.3s; letter-spacing: 0.05em; }
+    .word-item.found { text-decoration: line-through; color: #ccc; border-color: #eee; background: #fafafa; }
+    #win-overlay { display: none; position: fixed; inset: 0; background: rgba(255,200,230,0.92); z-index: 100; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+    #win-overlay.show { display: flex; }
+    .trophy { font-size: 5rem; animation: bounce 0.6s ease infinite alternate; }
+    @keyframes bounce { from { transform: scale(1); } to { transform: scale(1.15); } }
+    #win-overlay h2 { color: #c0186a; font-size: 2rem; font-weight: 800; }
+    #win-overlay p { color: #b05080; font-size: 1.1rem; }
+    .win-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+    .win-btns button { background: var(--pink); color: white; border: none; border-radius: 30px; padding: 12px 28px; font-family: 'Baloo 2', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .win-btns button.secondary { background: white; color: var(--pink); border: 2px solid var(--pink); }
+    .win-btns button:hover { opacity: 0.85; }
+  </style>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "WebApplication",
+    "name":  "子ども向けアホロートル単語探し",
+    "url":  "https://cocotheaxolotl.org/jp/word-search/",
+    "description":  "5〜10歳向けの無料単語探し。アホロートルや海の言葉を楽しく見つけよう。",
+    "applicationCategory":  "EducationalApplication",
+    "operatingSystem":  "Any (web browser)",
+    "isAccessibleForFree":  true,
+    "audience":  {
+                     "@type":  "Audience",
+                     "audienceType":  "Children",
+                     "suggestedMinAge":  5,
+                     "suggestedMaxAge":  10
+                 },
+    "offers":  {
+                   "@type":  "Offer",
+                   "price":  "0",
+                   "priceCurrency":  "USD"
+               },
+    "inLanguage":  "ja",
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Coco the Axolotl",
+                      "url":  "https://cocotheaxolotl.org"
+                  }
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "FAQPage",
+    "mainEntity":  [
+                       {
+                           "@type":  "Question",
+                           "name":  "この単語探しは無料ですか？",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "はい。無料で登録なしでオンラインで遊べます。"
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "対象年齢は？",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "5〜10歳向けで、やさしい単語リストを使っています。"
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "タブレットでも遊べますか？",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "はい。マウス、指、タッチスクリーンで文字をなぞれます。"
+                                              }
+                       }
+                   ]
+}
+</script>
+
+<link rel="canonical" href="https://cocotheaxolotl.org/jp/word-search/"><link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/word-search/"><link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/word-search/"><link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/word-search/"><link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/word-search/"><link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/word-search/"><link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/jp/word-search/"><link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/word-search/">
+</head>
+<body>
+<header>
+<a href="/jp/">🏠 ホーム</a>
+<span class="sep">|</span>
+<a href="/jp/kids-games/">🎮 キッズゲーム</a>
+<span class="sep">|</span>
+<a href="/word-search/">🇬🇧 EN</a>
+<a href="/fr/word-search/">🇫🇷 FR</a>
+<a href="/es/word-search/">🇪🇸 ES</a>
+</header>
+<h1>🔍 アホロートル単語探し</h1>
+<p class="subtitle">5–10 Jahre · Ziehe den Finger, um die Wörter zu finden!</p>
+<div id="puzzle-selector"></div>
+<div id="grid-container">
+<div id="grid"></div>
+<svg id="svg-overlay"></svg>
+</div>
+<div id="word-list"></div>
+<div id="win-overlay">
+<div class="trophy">🏆</div>
+<h2>すごい！</h2>
+<p id="win-msg">全部見つけたね！🌟</p>
+<div class="win-btns">
+<button class="secondary" onclick="resetGame()" type="button">もう一度遊ぶ</button>
+<button id="next-btn" onclick="nextPuzzle()" type="button">次のパズル →</button>
+</div>
+</div>
+<script>
+const PUZZLES = [
+  {
+    title: '🌊 Axolotl',
+    grid: [
+      ['C','O','C','O','F','T','K','P','M','V','N','Z'],
+      ['X','B','D','H','W','L','Q','Z','T','Y','J','A'],
+      ['P','F','M','K','Z','V','J','R','O','S','A','M'],
+      ['T','N','V','Q','G','W','X','B','D','K','H','I'],
+      ['Z','S','C','H','W','I','M','M','E','N','M','S'],
+      ['K','D','V','X','P','T','F','W','N','C','B','Q'],
+      ['M','H','Z','T','K','B','S','P','I','E','L','E'],
+      ['B','P','R','F','G','K','X','W','D','N','L','T'],
+      ['L','Q','I','L','I','E','B','E','K','Z','X','P'],
+      ['E','M','L','N','B','W','D','T','F','H','V','K'],
+      ['U','Z','A','B','Z','S','C','H','W','A','N','Z'],
+      ['W','N','C','K','D','P','M','L','T','B','F','V'],
+    ],
+    words: [
+      { word: 'COCO',     cells: [[0,0],[0,1],[0,2],[0,3]] },
+      { word: 'ROSA',     cells: [[2,7],[2,8],[2,9],[2,10]] },
+      { word: 'SCHWIMMEN',cells: [[4,1],[4,2],[4,3],[4,4],[4,5],[4,6],[4,7],[4,8],[4,9]] },
+      { word: 'SPIELE',   cells: [[6,6],[6,7],[6,8],[6,9],[6,10],[6,11]] },
+      { word: 'AMIS',     cells: [[1,11],[2,11],[3,11],[4,11]] },
+      { word: 'LIEBE',    cells: [[8,3],[8,4],[8,5],[8,6],[8,7]] },
+      { word: 'SCHWANZ',  cells: [[10,5],[10,6],[10,7],[10,8],[10,9],[10,10],[10,11]] },
+      { word: 'LACHEN',   cells: [[7,2],[8,2],[9,2],[10,2],[11,2]] },
+      { word: 'BLAU',     cells: [[7,0],[8,0],[9,0],[10,0]] },
+    ]
+  },
+  {
+    title: '🌊 Ozean',
+    grid: [
+      ['M','E','E','R','P','T','B','N','V','Z','X','W'],
+      ['D','B','X','F','T','N','P','Z','M','V','K','Y'],
+      ['Q','H','L','V','W','E','L','L','E','X','B','F'],
+      ['P','F','Z','E','K','M','N','T','D','B','V','W'],
+      ['X','T','N','M','U','K','D','K','R','A','B','E'],
+      ['V','K','B','D','Z','T','M','P','N','F','H','Q'],
+      ['S','D','X','T','P','N','A','G','E','R','V','B'],
+      ['A','M','Z','K','B','D','T','N','P','X','F','H'],
+      ['N','P','V','N','T','K','M','Z','D','Q','X','F'],
+      ['D','F','M','D','P','S','T','R','A','N','D','T'],
+      ['E','N','K','T','B','M','V','D','Z','P','F','W'],
+      ['F','I','S','C','H','O','N','K','T','B','D','X'],
+    ],
+    words: [
+      { word: 'MEER',    cells: [[0,0],[0,1],[0,2],[0,3]] },
+      { word: 'WELLE',   cells: [[2,4],[2,5],[2,6],[2,7],[2,8]] },
+      { word: 'KRABBE',  cells: [[4,7],[4,8],[4,9],[4,10],[4,11]] },
+      { word: 'SAND',    cells: [[6,0],[7,0],[8,0],[9,0]] },
+      { word: 'BLAU',    cells: [[1,1],[2,2],[3,3],[4,4]] },
+      { word: 'STRAND',  cells: [[9,5],[9,6],[9,7],[9,8],[9,9],[9,10]] },
+      { word: 'FISCH',   cells: [[11,0],[11,1],[11,2],[11,3],[11,4]] },
+    ]
+  },
+  {
+    title: '🐾 Tiere',
+    grid: [
+      ['K','A','T','Z','E','Z','K','P','B','V','N','X'],
+      ['D','F','T','B','Z','P','V','H','U','N','D','N'],
+      ['K','M','X','V','N','T','B','Z','D','P','F','Q'],
+      ['E','N','T','E','M','D','X','M','T','B','V','O'],
+      ['Z','P','T','D','M','B','V','K','N','X','F','U'],
+      ['B','X','K','V','Z','T','P','D','M','N','Q','R'],
+      ['L','O','E','W','E','X','K','B','V','M','Z','S'],
+      ['D','V','P','X','T','M','L','K','B','Z','N','F'],
+      ['M','T','B','K','Z','N','A','D','W','O','L','F'],
+      ['X','D','V','F','T','B','P','M','Z','K','N','T'],
+      ['V','O','G','E','L','U','I','X','T','B','D','K'],
+      ['T','B','X','K','V','D','N','P','M','Z','T','F'],
+    ],
+    words: [
+      { word: 'KATZE',  cells: [[0,0],[0,1],[0,2],[0,3],[0,4]] },
+      { word: 'HUND',   cells: [[1,7],[1,8],[1,9],[1,10]] },
+      { word: 'ENTE',   cells: [[3,0],[3,1],[3,2],[3,3]] },
+      { word: 'OURS',   cells: [[3,11],[4,11],[5,11],[6,11]] },
+      { word: 'LOEWE',  cells: [[6,0],[6,1],[6,2],[6,3],[6,4]] },
+      { word: 'WOLF',   cells: [[8,8],[8,9],[8,10],[8,11]] },
+      { word: 'VOGEL',  cells: [[10,0],[10,1],[10,2],[10,3],[10,4]] },
+    ]
+  }
+];
+
+const WIN_MSGS = ['Du hast sie alle gefunden! 🌟','Du bist ein Star! ⭐','Unglaublich! 🎉','Wie clever! 🦋','Juhu! 🌈'];
+let currentPuzzleIdx = 0, foundWords = new Set(), selecting = false, startCell = null, currentCells = [], cellEls = [];
+
+function loadPuzzle(idx) {
+  currentPuzzleIdx = idx; foundWords = new Set(); selecting = false; startCell = null; currentCells = [];
+  document.getElementById('win-overlay').classList.remove('show');
+  buildGrid(); updatePuzzleButtons();
+}
+function updatePuzzleButtons() {
+  document.querySelectorAll('.puzzle-btn').forEach((btn, i) => btn.classList.toggle('active', i === currentPuzzleIdx));
+  document.getElementById('next-btn').style.display = currentPuzzleIdx >= PUZZLES.length - 1 ? 'none' : '';
+}
+function buildPuzzleSelector() {
+  const sel = document.getElementById('puzzle-selector');
+  PUZZLES.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'puzzle-btn' + (i === currentPuzzleIdx ? ' active' : '');
+    btn.type = 'button'; btn.textContent = p.title;
+    btn.onclick = () => loadPuzzle(i);
+    sel.appendChild(btn);
+  });
+}
+function buildGrid() {
+  const puzzle = PUZZLES[currentPuzzleIdx], grid = document.getElementById('grid');
+  grid.innerHTML = ''; cellEls = [];
+  for(let r = 0; r < 12; r++) {
+    cellEls[r] = [];
+    for(let c = 0; c < 12; c++) {
+      const el = document.createElement('div');
+      el.className = 'cell'; el.textContent = puzzle.grid[r][c];
+      grid.appendChild(el); cellEls[r][c] = el;
+    }
+  }
+  buildWordList(); buildSvg();
+  if(!grid._eventsSet) { setupEvents(); grid._eventsSet = true; }
+}
+function buildWordList() {
+  const wl = document.getElementById('word-list'); wl.innerHTML = '';
+  PUZZLES[currentPuzzleIdx].words.forEach((w, i) => {
+    const el = document.createElement('div');
+    el.className = 'word-item'; el.id = 'word-'+i; el.textContent = w.word; wl.appendChild(el);
+  });
+}
+function buildSvg() {
+  const puzzle = PUZZLES[currentPuzzleIdx], svg = document.getElementById('svg-overlay'), grid = document.getElementById('grid');
+  const w = grid.offsetWidth, h = grid.offsetHeight;
+  svg.setAttribute('width', w); svg.setAttribute('height', h); svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.innerHTML = '';
+  const cs = w/12, colors = ['#ff69b4','#f4a0c8','#e87bbf','#d955a8','#f08fc0','#c94499','#e066b3','#f77dc2','#dc4da6'];
+  puzzle.words.forEach((wd, i) => {
+    if(!foundWords.has(i)) return;
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    const [r1,c1]=wd.cells[0],[r2,c2]=wd.cells[wd.cells.length-1];
+    line.setAttribute('x1',(c1+.5)*cs); line.setAttribute('y1',(r1+.5)*cs);
+    line.setAttribute('x2',(c2+.5)*cs); line.setAttribute('y2',(r2+.5)*cs);
+    line.setAttribute('stroke',colors[i%colors.length]); line.setAttribute('stroke-width',cs*.72);
+    line.setAttribute('class','found-line'); svg.appendChild(line);
+  });
+}
+function getCellFromPoint(x,y) {
+  const rect = document.getElementById('grid').getBoundingClientRect(), cs = rect.width/12;
+  const c = Math.floor((x-rect.left)/cs), r = Math.floor((y-rect.top)/cs);
+  return (r>=0&&r<12&&c>=0&&c<12) ? [r,c] : null;
+}
+function getCellsInLine(r1,c1,r2,c2) {
+  const dr=r2-r1,dc=c2-c1;
+  if(!dr&&!dc) return [[r1,c1]];
+  if(dr&&dc&&Math.abs(dr)!==Math.abs(dc)) {
+    if(Math.abs(dr)>Math.abs(dc)){const a=[],s=dr>0?1:-1;for(let r=r1;r!==r2+s;r+=s)a.push([r,c1]);return a;}
+    else{const a=[],s=dc>0?1:-1;for(let c=c1;c!==c2+s;c+=s)a.push([r1,c]);return a;}
+  }
+  const steps=Math.max(Math.abs(dr),Math.abs(dc)),sr=dr?dr>0?1:-1:0,sc=dc?dc>0?1:-1:0,a=[];
+  for(let i=0;i<=steps;i++)a.push([r1+i*sr,c1+i*sc]);
+  return a;
+}
+function clearSelection() {
+  currentCells.forEach(([r,c])=>{if(cellEls[r]&&cellEls[r][c]&&!cellEls[r][c].classList.contains('found'))cellEls[r][c].classList.remove('selecting');});
+  currentCells=[];
+}
+function updateSelection(cells) {
+  clearSelection(); currentCells=cells;
+  cells.forEach(([r,c])=>{if(!cellEls[r][c].classList.contains('found'))cellEls[r][c].classList.add('selecting');});
+}
+function checkWord(cells) {
+  const puzzle=PUZZLES[currentPuzzleIdx],str=cells.map(([r,c])=>puzzle.grid[r][c]).join(''),rev=str.split('').reverse().join('');
+  for(let i=0;i<puzzle.words.length;i++){
+    if(foundWords.has(i))continue;
+    const t=puzzle.words[i].word;
+    if(str!==t&&rev!==t)continue;
+    const sel=cells.map(([r,c])=>r+','+c).join('|'),fwd=puzzle.words[i].cells.map(([r,c])=>r+','+c).join('|'),bwd=[...puzzle.words[i].cells].reverse().map(([r,c])=>r+','+c).join('|');
+    if(sel===fwd||sel===bwd)return i;
+  }
+  return -1;
+}
+function markFound(idx) {
+  foundWords.add(idx);
+  PUZZLES[currentPuzzleIdx].words[idx].cells.forEach(([r,c])=>{cellEls[r][c].classList.remove('selecting');cellEls[r][c].classList.add('found','word-'+idx);});
+  document.getElementById('word-'+idx).classList.add('found');
+  buildSvg();
+  if(foundWords.size===PUZZLES[currentPuzzleIdx].words.length){
+    document.getElementById('win-msg').textContent=WIN_MSGS[currentPuzzleIdx%WIN_MSGS.length];
+    setTimeout(()=>document.getElementById('win-overlay').classList.add('show'),400);
+  }
+}
+function setupEvents() {
+  const grid = document.getElementById('grid');
+  grid.addEventListener('touchstart',e=>{e.preventDefault();const t=e.touches[0],cell=getCellFromPoint(t.clientX,t.clientY);if(!cell)return;selecting=true;startCell=cell;updateSelection([cell]);},{passive:false});
+  grid.addEventListener('touchmove',e=>{e.preventDefault();if(!selecting)return;const t=e.touches[0],cell=getCellFromPoint(t.clientX,t.clientY);if(!cell)return;updateSelection(getCellsInLine(startCell[0],startCell[1],cell[0],cell[1]));},{passive:false});
+  grid.addEventListener('touchend',e=>{e.preventDefault();if(!selecting)return;selecting=false;const idx=checkWord(currentCells);if(idx>=0)markFound(idx);else clearSelection();currentCells=[];startCell=null;},{passive:false});
+  grid.addEventListener('mousedown',e=>{const cell=getCellFromPoint(e.clientX,e.clientY);if(!cell)return;selecting=true;startCell=cell;updateSelection([cell]);});
+  grid.addEventListener('mousemove',e=>{if(!selecting)return;const cell=getCellFromPoint(e.clientX,e.clientY);if(!cell)return;updateSelection(getCellsInLine(startCell[0],startCell[1],cell[0],cell[1]));});
+  grid.addEventListener('mouseup',()=>{if(!selecting)return;selecting=false;const idx=checkWord(currentCells);if(idx>=0)markFound(idx);else clearSelection();currentCells=[];startCell=null;});
+  document.addEventListener('mouseup',()=>{if(selecting){selecting=false;clearSelection();currentCells=[];startCell=null;}});
+}
+function resetGame(){loadPuzzle(currentPuzzleIdx);}
+function nextPuzzle(){if(currentPuzzleIdx<PUZZLES.length-1)loadPuzzle(currentPuzzleIdx+1);}
+buildPuzzleSelector(); loadPuzzle(0);
+window.addEventListener('resize',buildSvg);
+</script>
+<script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">作家・イラストレーター・KDP出版者の方へ。より高度なクリエイティブツールを <a href="https://univers.studio/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
+</body>
+</html>
