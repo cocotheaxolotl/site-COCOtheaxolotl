@@ -1,21 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crucigrama de Pascua - Gratis para niños | Coco el Ajolote</title>
-  <meta name="description" content="Crucigrama de Pascua gratis para niños de 5 a 7 años. Resuelve pistas sencillas con Coco en una actividad online.">
-  <link rel="canonical" href="https://cocotheaxolotl.org/es/crossword/">
-  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/crossword/">
-  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/crossword/">
-  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/crossword/">
-  <link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/crossword/">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Crucigrama de Pascua - Gratis para niños | Coco el Ajolote</title>
+<meta content="Crucigrama de Pascua gratis para niños de 5 a 7 años. Resuelve pistas sencillas con Coco en una actividad online." name="description"/>
+<link href="https://cocotheaxolotl.org/es/crossword/" rel="canonical"/><link href="https://cocotheaxolotl.org/crossword/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/crossword/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/crossword/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/crossword/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/crossword/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/crossword/" hreflang="x-default" rel="alternate"/>
+
+
+
+
+<link href="/manifest.json" rel="manifest"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Baloo 2', sans-serif; background: linear-gradient(160deg, #fff9e6 0%, #fce4f0 50%, #e8f8e8 100%); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
     header { width: 100%; background: #ff69b4; padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
@@ -133,48 +134,43 @@
 </script>
 </head>
 <body>
-
 <header>
-  <a href="/es/">🏠 Inicio</a>
-  <span class="sep">|</span>
-  <a href="/es/kids-games/">🎮 Juegos</a>
+<a href="/es/">🏠 Inicio</a>
+<span class="sep">|</span>
+<a href="/es/kids-games/">🎮 Juegos</a>
 </header>
-
 <div class="hero">
-  <div class="deco-row">🐰🌸🥚🌼🐣</div>
-  <h1>¡Crucigrama de Pascua!</h1>
-  <p class="subtitle">5–7 años &nbsp;·&nbsp; ¡Toca una pista y escribe las letras!</p>
+<div class="deco-row">🐰🌸🥚🌼🐣</div>
+<h1>¡Crucigrama de Pascua!</h1>
+<p class="subtitle">5–7 años  ·  ¡Toca una pista y escribe las letras!</p>
 </div>
-
 <div id="game">
-  <div class="grid-wrap">
-    <div id="crossword-grid"></div>
-  </div>
-  <div class="clues-section">
-    <h3>➡️ Horizontal</h3>
-    <div id="clues-across"></div>
-  </div>
-  <div class="clues-section">
-    <h3>⬇️ Vertical</h3>
-    <div id="clues-down"></div>
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-reset" onclick="resetGame()">🔄 Reiniciar</button>
-    <button class="btn btn-check" onclick="checkAll()">✔️ ¡Comprobar!</button>
-  </div>
+<div class="grid-wrap">
+<div id="crossword-grid"></div>
 </div>
-
+<div class="clues-section">
+<h3>➡️ Horizontal</h3>
+<div id="clues-across"></div>
+</div>
+<div class="clues-section">
+<h3>⬇️ Vertical</h3>
+<div id="clues-down"></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-reset" onclick="resetGame()">🔄 Reiniciar</button>
+<button class="btn btn-check" onclick="checkAll()">✔️ ¡Comprobar!</button>
+</div>
+</div>
 <div id="win-overlay">
-  <div class="win-emoji">🏆</div>
-  <div class="win-deco">🐰🌸🥚🌼🐣</div>
-  <h2>¡Increíble! ¡Lo lograste! 🎉</h2>
-  <p>¡Resolviste el crucigrama de Pascua! ⭐</p>
-  <div class="win-btns">
-    <button type="button" class="btn-again" onclick="resetGame()">🔄 Jugar de nuevo</button>
-    <button type="button" class="btn-more" onclick="window.location.href='/es/kids-games/'">Más juegos →</button>
-  </div>
+<div class="win-emoji">🏆</div>
+<div class="win-deco">🐰🌸🥚🌼🐣</div>
+<h2>¡Increíble! ¡Lo lograste! 🎉</h2>
+<p>¡Resolviste el crucigrama de Pascua! ⭐</p>
+<div class="win-btns">
+<button class="btn-again" onclick="resetGame()" type="button">🔄 Jugar de nuevo</button>
+<button class="btn-more" onclick="window.location.href='/es/kids-games/'" type="button">Más juegos →</button>
 </div>
-
+</div>
 <script>
 /*
   Cuadrícula ES (6 filas × 6 cols):
@@ -318,10 +314,8 @@ function resetGame() {
 
 buildGrid();buildClues();
 </script>
-
 <script src="/js/lang-switcher.js"></script>
 <script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
-
-  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Eres autor, ilustrador o editor KDP? Explora herramientas creativas mas avanzadas en <a href="https://univers.studio/es/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Eres autor, ilustrador o editor KDP? Explora herramientas creativas mas avanzadas en <a href="https://univers.studio/es/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
 </body>
 </html>

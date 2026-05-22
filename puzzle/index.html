@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) - loads only after consent -->
@@ -17,29 +18,29 @@
   }
   loadAnalytics();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Puzzle Game - Free for Kids | Coco the Axolotl</title>
-<meta name="description" content="Free puzzle game for kids ages 3 to 8. Drag and drop pieces to rebuild a Coco picture in a simple online activity.">
-<meta name="robots" content="index, follow">
-<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#ff69b4">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Coco Puzzle">
-<link rel="canonical" href="https://cocotheaxolotl.org/puzzle/">
-<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/">
-<link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/">
-<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/">
-<meta property="og:title" content="Coco Puzzle Game – Free Interactive Puzzle for Kids">
-<meta property="og:description" content="Drag and drop the pieces to rebuild the Coco picture! Free puzzle game for kids.">
-<meta property="og:image" content="https://cocotheaxolotl.org/coco.png">
-<meta property="og:url" content="https://cocotheaxolotl.org/puzzle/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Coco the Axolotl">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet">
+<meta content="Free puzzle game for kids ages 3 to 8. Drag and drop pieces to rebuild a Coco picture in a simple online activity." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="Coco Puzzle" name="apple-mobile-web-app-title"/>
+<link href="https://cocotheaxolotl.org/puzzle/" rel="canonical"/><link href="https://cocotheaxolotl.org/puzzle/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/puzzle/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/puzzle/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/puzzle/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/puzzle/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/puzzle/" hreflang="x-default" rel="alternate"/>
+
+
+
+<meta content="Coco Puzzle Game – Free Interactive Puzzle for Kids" property="og:title"/>
+<meta content="Drag and drop the pieces to rebuild the Coco picture! Free puzzle game for kids." property="og:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="https://cocotheaxolotl.org/puzzle/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&amp;display=swap" rel="stylesheet"/>
 <style>
   :root{
     --pink:#ff69b4;
@@ -334,69 +335,60 @@
 </script>
 </head>
 <body>
-
 <header>
-  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-    <a class="back" href="/">🏠 Home</a>
-    <a class="back" href="/kids-games/">🎮 Kids Games</a>
-  </div>
-  <h1>🧩 Coco Puzzle</h1>
-  <p>Drag the pieces to rebuild the picture!</p>
+<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+<a class="back" href="/">🏠 Home</a>
+<a class="back" href="/kids-games/">🎮 Kids Games</a>
+</div>
+<h1>🧩 Coco Puzzle</h1>
+<p>Drag the pieces to rebuild the picture!</p>
 </header>
-
 <div class="controls">
-  <button class="btn btn-pink" id="btnShuffle">🔀 Shuffle</button>
-  <button class="btn btn-white" id="btnNewImage">🖼️ New Image</button>
-  <button class="btn btn-outline" id="btnShowOriginal">👁️ Show Original</button>
+<button class="btn btn-pink" id="btnShuffle">🔀 Shuffle</button>
+<button class="btn btn-white" id="btnNewImage">🖼️ New Image</button>
+<button class="btn btn-outline" id="btnShowOriginal">👁️ Show Original</button>
 </div>
-
 <div class="stats">
-  <span id="statMoves">Moves: 0</span>
-  <span id="statTime">Time: 0:00</span>
+<span id="statMoves">Moves: 0</span>
+<span id="statTime">Time: 0:00</span>
 </div>
-
 <div class="puzzle-wrapper">
-  <div id="puzzleGrid"></div>
-  <div class="no-images" id="noImagesMsg" style="display:none">
-    <strong>No images yet!</strong><br><br>
+<div id="puzzleGrid"></div>
+<div class="no-images" id="noImagesMsg" style="display:none">
+<strong>No images yet!</strong><br/><br/>
     Add your images in <code>puzzle/images/</code> and list them in the
-    <code>IMAGES</code> array at the top of <code>puzzle/index.html</code>.<br><br>
+    <code>IMAGES</code> array at the top of <code>puzzle/index.html</code>.<br/><br/>
     Images should be in <strong>9:16 portrait format</strong> (e.g. 900×1600 px).
   </div>
 </div>
-
 <!-- Original image modal -->
 <div id="originalModal">
-  <button class="close-btn" id="btnCloseModal">✕</button>
-  <img id="originalImg" src="" alt="Original puzzle image">
+<button class="close-btn" id="btnCloseModal">✕</button>
+<img alt="Original puzzle image" id="originalImg" src=""/>
 </div>
-
 <!-- Admiration overlay -->
 <div id="admireOverlay">
-  <img id="admireImg" src="" alt="Complete image">
-  <div id="admireCountdown"></div>
+<img alt="Complete image" id="admireImg" src=""/>
+<div id="admireCountdown"></div>
 </div>
-
 <!-- Victory overlay -->
 <div id="victoryOverlay">
-  <div class="victory-box">
-    <div class="emoji">🎉</div>
-    <h2>Puzzle done!</h2>
-    <p>Amazing job! You rebuilt the picture!</p>
-    <div class="final-stats">
-      <span id="victoryMoves"></span>
-      <span id="victoryTime"></span>
-    </div>
-    <button class="btn btn-pink" id="btnVictoryNew" style="margin-right:8px">🖼️ New Image</button>
-    <button class="btn btn-white" id="btnVictoryPlay">🔀 Play again</button>
-  </div>
+<div class="victory-box">
+<div class="emoji">🎉</div>
+<h2>Puzzle done!</h2>
+<p>Amazing job! You rebuilt the picture!</p>
+<div class="final-stats">
+<span id="victoryMoves"></span>
+<span id="victoryTime"></span>
 </div>
-
-  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Are you an author, illustrator or KDP publisher? Explore more advanced creative tools on <a href="https://univers.studio/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<button class="btn btn-pink" id="btnVictoryNew" style="margin-right:8px">🖼️ New Image</button>
+<button class="btn btn-white" id="btnVictoryPlay">🔀 Play again</button>
+</div>
+</div>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Are you an author, illustrator or KDP publisher? Explore more advanced creative tools on <a href="https://univers.studio/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
 <footer>
-  <a href="/">Coco the Axolotl</a> · <a href="/kids-games/">Kids Games</a>
+<a href="/">Coco the Axolotl</a> · <a href="/kids-games/">Kids Games</a>
 </footer>
-
 <script>
 // ═══════════════════════════════════════════════════════
 //  IMAGES LIST — add your filenames here after putting
@@ -839,7 +831,6 @@ fetch('/puzzle/images/index.json')
   .catch(() => {}) // fallback: keep hardcoded list above
   .finally(() => loadNewImage());
 </script>
-
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js");}</script>
 </body>
 </html>

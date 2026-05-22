@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
 <script>
@@ -14,25 +15,25 @@
   }
   loadAnalytics();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
 <title>Blasen platzen lassen – Gratis für Kinder | Coco the Axolotl</title>
-<meta name="description" content="Kostenloses Blasen-Spiel für Kinder von 3 bis 8 Jahren. Tippe auf Blasen, fange Coco und spiele eine einfache Online-Aktivität für Kinder.">
-<meta name="robots" content="index, follow">
-<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#ff69b4">
-<link rel="canonical" href="https://cocotheaxolotl.org/de/bubble-pop/">
-<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/">
-<link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/">
-<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/">
-<meta property="og:title" content="Blasen platzen lassen – Gratis Kinderspiel mit Coco the Axolotl">
-<meta property="og:description" content="Tippe auf die Blasen, bevor sie davonfliegen! Fange Cocos besondere Blase für Bonuspunkte. Gratis Spiel für Kinder von 3–8 Jahren.">
-<meta property="og:image" content="https://cocotheaxolotl.org/coco.png">
-<meta property="og:url" content="https://cocotheaxolotl.org/de/bubble-pop/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Coco the Axolotl">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet">
+<meta content="Kostenloses Blasen-Spiel für Kinder von 3 bis 8 Jahren. Tippe auf Blasen, fange Coco und spiele eine einfache Online-Aktivität für Kinder." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="https://cocotheaxolotl.org/de/bubble-pop/" rel="canonical"/><link href="https://cocotheaxolotl.org/bubble-pop/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/bubble-pop/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/bubble-pop/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/bubble-pop/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/bubble-pop/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/bubble-pop/" hreflang="x-default" rel="alternate"/>
+
+
+
+<meta content="Blasen platzen lassen – Gratis Kinderspiel mit Coco the Axolotl" property="og:title"/>
+<meta content="Tippe auf die Blasen, bevor sie davonfliegen! Fange Cocos besondere Blase für Bonuspunkte. Gratis Spiel für Kinder von 3–8 Jahren." property="og:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="https://cocotheaxolotl.org/de/bubble-pop/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&amp;display=swap" rel="stylesheet"/>
 <style>
   *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
   html, body{
@@ -261,38 +262,33 @@
 </script>
 </head>
 <body>
-
 <div id="gameArea">
-  <div id="seaFloor"></div>
-
-  <!-- HUD -->
-  <div id="hud">
-    <div class="hud-box" id="scoreBox">⭐ <span id="scoreVal">0</span></div>
-    <div class="hud-box" id="timerBox">⏱ <span id="timerVal">60</span>s</div>
-  </div>
-  <a href="/de/kids-games/" id="backBtn">← Spiele</a>
-
-  <!-- Start screen -->
-  <div class="screen" id="startScreen">
-    <img src="/coco.png" class="coco-img" alt="Coco" onerror="this.style.display='none'">
-    <h1>🫧 Blasen platzen lassen!</h1>
-    <p>Tippe jede Blase an, bevor sie entkommt!<br>Fange Cocos Blase für Bonuspunkte!</p>
-    <button class="btn" id="btnStart">▶ Los geht's!</button>
-    <a href="/de/kids-games/" style="color:#fff;font-weight:800;font-size:.9em;text-decoration:none;opacity:.8">← Zurück zu den Spielen</a>
-  </div>
-
-  <!-- Game over screen -->
-  <div class="screen" id="endScreen" style="display:none">
-    <img src="/coco.png" class="coco-img" alt="Coco" onerror="this.style.display='none'">
-    <h1>Zeit abgelaufen! 🎉</h1>
-    <div class="score-big" id="finalScore">0</div>
-    <div class="stars" id="starRating">⭐⭐⭐</div>
-    <p id="endMsg">Erstaunlich!</p>
-    <button class="btn" id="btnReplay">🔄 Nochmal spielen</button>
-    <a href="/de/kids-games/" class="btn btn-secondary" style="text-decoration:none">← Spiele</a>
-  </div>
+<div id="seaFloor"></div>
+<!-- HUD -->
+<div id="hud">
+<div class="hud-box" id="scoreBox">⭐ <span id="scoreVal">0</span></div>
+<div class="hud-box" id="timerBox">⏱ <span id="timerVal">60</span>s</div>
 </div>
-
+<a href="/de/kids-games/" id="backBtn">← Spiele</a>
+<!-- Start screen -->
+<div class="screen" id="startScreen">
+<img alt="Coco" class="coco-img" onerror="this.style.display='none'" src="/coco.png"/>
+<h1>🫧 Blasen platzen lassen!</h1>
+<p>Tippe jede Blase an, bevor sie entkommt!<br/>Fange Cocos Blase für Bonuspunkte!</p>
+<button class="btn" id="btnStart">▶ Los geht's!</button>
+<a href="/de/kids-games/" style="color:#fff;font-weight:800;font-size:.9em;text-decoration:none;opacity:.8">← Zurück zu den Spielen</a>
+</div>
+<!-- Game over screen -->
+<div class="screen" id="endScreen" style="display:none">
+<img alt="Coco" class="coco-img" onerror="this.style.display='none'" src="/coco.png"/>
+<h1>Zeit abgelaufen! 🎉</h1>
+<div class="score-big" id="finalScore">0</div>
+<div class="stars" id="starRating">⭐⭐⭐</div>
+<p id="endMsg">Erstaunlich!</p>
+<button class="btn" id="btnReplay">🔄 Nochmal spielen</button>
+<a class="btn btn-secondary" href="/de/kids-games/" style="text-decoration:none">← Spiele</a>
+</div>
+</div>
 <script>
 const gameArea   = document.getElementById('gameArea');
 const scoreVal   = document.getElementById('scoreVal');
@@ -523,7 +519,6 @@ document.addEventListener('click', ()=>{
 }, {once:true});
 </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js");}</script>
-
-  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Bist du Autor, Illustrator oder KDP-Verleger? Entdecke fortgeschrittenere kreative Tools auf <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Bist du Autor, Illustrator oder KDP-Verleger? Entdecke fortgeschrittenere kreative Tools auf <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
 </body>
 </html>

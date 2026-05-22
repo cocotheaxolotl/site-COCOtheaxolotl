@@ -1,21 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mots croises de Pâques - Gratuit pour enfants | Coco l&#39;Axolotl</title>
-  <meta name="description" content="Mots croises de Pâques gratuits pour enfants de 5 à 7 ans. Résous des devinettes simples avec Coco en ligne.">
-  <link rel="canonical" href="https://cocotheaxolotl.org/fr/crossword/">
-  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/crossword/">
-  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/crossword/">
-  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/crossword/">
-  <link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/crossword/">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mots croises de Pâques - Gratuit pour enfants | Coco l'Axolotl</title>
+<meta content="Mots croises de Pâques gratuits pour enfants de 5 à 7 ans. Résous des devinettes simples avec Coco en ligne." name="description"/>
+<link href="https://cocotheaxolotl.org/fr/crossword/" rel="canonical"/><link href="https://cocotheaxolotl.org/crossword/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/crossword/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/crossword/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/crossword/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/crossword/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/crossword/" hreflang="x-default" rel="alternate"/>
+
+
+
+
+<link href="/manifest.json" rel="manifest"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Baloo 2', sans-serif; background: linear-gradient(160deg, #fff9e6 0%, #fce4f0 50%, #e8f8e8 100%); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
     header { width: 100%; background: #ff69b4; padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
@@ -133,48 +134,43 @@
 </script>
 </head>
 <body>
-
 <header>
-  <a href="/fr/">🏠 Accueil</a>
-  <span class="sep">|</span>
-  <a href="/fr/kids-games/">🎮 Jeux</a>
+<a href="/fr/">🏠 Accueil</a>
+<span class="sep">|</span>
+<a href="/fr/kids-games/">🎮 Jeux</a>
 </header>
-
 <div class="hero">
-  <div class="deco-row">🐰🌸🥚🌼🐣</div>
-  <h1>Mots Croisés de Pâques !</h1>
-  <p class="subtitle">5–7 ans &nbsp;·&nbsp; Tape sur un indice, puis écris les lettres !</p>
+<div class="deco-row">🐰🌸🥚🌼🐣</div>
+<h1>Mots Croisés de Pâques !</h1>
+<p class="subtitle">5–7 ans  ·  Tape sur un indice, puis écris les lettres !</p>
 </div>
-
 <div id="game">
-  <div class="grid-wrap">
-    <div id="crossword-grid"></div>
-  </div>
-  <div class="clues-section">
-    <h3>➡️ Horizontalement</h3>
-    <div id="clues-across"></div>
-  </div>
-  <div class="clues-section">
-    <h3>⬇️ Verticalement</h3>
-    <div id="clues-down"></div>
-  </div>
-  <div class="btn-row">
-    <button class="btn btn-reset" onclick="resetGame()">🔄 Rejouer</button>
-    <button class="btn btn-check" onclick="checkAll()">✔️ Vérifier !</button>
-  </div>
+<div class="grid-wrap">
+<div id="crossword-grid"></div>
 </div>
-
+<div class="clues-section">
+<h3>➡️ Horizontalement</h3>
+<div id="clues-across"></div>
+</div>
+<div class="clues-section">
+<h3>⬇️ Verticalement</h3>
+<div id="clues-down"></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-reset" onclick="resetGame()">🔄 Rejouer</button>
+<button class="btn btn-check" onclick="checkAll()">✔️ Vérifier !</button>
+</div>
+</div>
 <div id="win-overlay">
-  <div class="win-emoji">🏆</div>
-  <div class="win-deco">🐰🌸🥚🌼🐣</div>
-  <h2>Bravo ! Tu as réussi ! 🎉</h2>
-  <p>Tu as résolu les mots croisés de Pâques ! ⭐</p>
-  <div class="win-btns">
-    <button type="button" class="btn-again" onclick="resetGame()">🔄 Rejouer</button>
-    <button type="button" class="btn-more" onclick="window.location.href='/fr/kids-games/'">Plus de jeux →</button>
-  </div>
+<div class="win-emoji">🏆</div>
+<div class="win-deco">🐰🌸🥚🌼🐣</div>
+<h2>Bravo ! Tu as réussi ! 🎉</h2>
+<p>Tu as résolu les mots croisés de Pâques ! ⭐</p>
+<div class="win-btns">
+<button class="btn-again" onclick="resetGame()" type="button">🔄 Rejouer</button>
+<button class="btn-more" onclick="window.location.href='/fr/kids-games/'" type="button">Plus de jeux →</button>
 </div>
-
+</div>
 <script>
 /*
   Grille FR (6 lignes × 6 cols) :
@@ -318,10 +314,8 @@ function resetGame() {
 
 buildGrid();buildClues();
 </script>
-
 <script src="/js/lang-switcher.js"></script>
 <script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
-
-  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Tu es auteur, illustrateur ou editeur KDP ? Decouvre des outils creatifs plus avances sur <a href="https://univers.studio/fr/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Tu es auteur, illustrateur ou editeur KDP ? Decouvre des outils creatifs plus avances sur <a href="https://univers.studio/fr/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
 </body>
 </html>

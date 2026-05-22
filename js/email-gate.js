@@ -65,6 +65,17 @@
       errNet: 'Error de red. Reintenta.',
       close: 'Cerrar'
     },
+    it: {
+      title: 'Prima di scaricare...',
+      sub: 'Lascia la tua email per ricevere il file <strong>+ disegni di Coco gratuiti ogni mese</strong>. Niente spam.',
+      name: 'Nome (facoltativo)',
+      email: 'La tua email',
+      btn: 'Ricevi e scarica',
+      loading: 'Invio...',
+      err: 'Email non valida. Riprova.',
+      errNet: 'Problema di rete. Riprova.',
+      close: 'Chiudi'
+    },
     de: {
       title: 'Bevor du herunterlädst…',
       sub: 'Gib deine E-Mail an, um die Datei zu erhalten <strong>+ kostenlose Coco-Ausmalbilder jeden Monat</strong>. Kein Spam.',

@@ -1,21 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spot the Differences - Free for Kids | Coco the Axolotl</title>
-  <meta name="description" content="Free spot the differences game for kids ages 5 to 7. Find 8 differences between two Coco pictures online.">
-  <link rel="canonical" href="https://cocotheaxolotl.org/spot-the-differences/">
-  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/">
-  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/">
-  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/">
-  <link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Spot the Differences - Free for Kids | Coco the Axolotl</title>
+<meta content="Free spot the differences game for kids ages 5 to 7. Find 8 differences between two Coco pictures online." name="description"/>
+<link href="https://cocotheaxolotl.org/spot-the-differences/" rel="canonical"/><link href="https://cocotheaxolotl.org/spot-the-differences/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/spot-the-differences/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/spot-the-differences/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/spot-the-differences/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/spot-the-differences/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/spot-the-differences/" hreflang="x-default" rel="alternate"/>
+
+
+
+
+<link href="/manifest.json" rel="manifest"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
     :root { --pink: #ff69b4; --pink2: #f7c1cc; --bg: #fef6fb; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Baloo 2', sans-serif; background: var(--bg); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
@@ -136,52 +137,45 @@
 </script>
 </head>
 <body>
-
 <header>
-  <a href="/">🏠 Home</a>
-  <span class="sep">|</span>
-  <a href="/kids-games/">🎮 Kids Games</a>
+<a href="/">🏠 Home</a>
+<span class="sep">|</span>
+<a href="/kids-games/">🎮 Kids Games</a>
 </header>
-
 <h1>🔍 Spot the 8 Differences!</h1>
 <p class="subtitle">Ages 5–7 · Tap the bottom picture to mark a difference</p>
-
 <div id="counter">Found: <span id="found-count">0</span> / 8</div>
-
 <div id="panels">
-  <div class="panel-wrap">
-    <p class="panel-label">⬆️ Reference image</p>
-    <canvas id="canvas-top"></canvas>
-    <button class="zoom-btn" onclick="openZoom('top')" title="Zoom">🔍</button>
-  </div>
-  <div class="panel-wrap" id="bot-wrap">
-    <p class="panel-label">👆 Tap here to find differences!</p>
-    <canvas id="canvas-bot"></canvas>
-    <button class="zoom-btn" onclick="openZoom('bot')" title="Zoom">🔍</button>
-  </div>
+<div class="panel-wrap">
+<p class="panel-label">⬆️ Reference image</p>
+<canvas id="canvas-top"></canvas>
+<button class="zoom-btn" onclick="openZoom('top')" title="Zoom">🔍</button>
 </div>
-
+<div class="panel-wrap" id="bot-wrap">
+<p class="panel-label">👆 Tap here to find differences!</p>
+<canvas id="canvas-bot"></canvas>
+<button class="zoom-btn" onclick="openZoom('bot')" title="Zoom">🔍</button>
+</div>
+</div>
 <div id="zoom-overlay">
-  <div id="zoom-bar">
-    <button type="button" id="btn-zout" onclick="zoomStep(-1)">－</button>
-    <button type="button" id="btn-zin"  onclick="zoomStep(+1)">＋</button>
-    <button type="button" id="btn-zcls" onclick="closeZoom()">✕ Close</button>
-  </div>
-  <div id="zoom-scroll">
-    <img id="zoom-img" alt="">
-  </div>
+<div id="zoom-bar">
+<button id="btn-zout" onclick="zoomStep(-1)" type="button">－</button>
+<button id="btn-zin" onclick="zoomStep(+1)" type="button">＋</button>
+<button id="btn-zcls" onclick="closeZoom()" type="button">✕ Close</button>
 </div>
-
+<div id="zoom-scroll">
+<img alt="" id="zoom-img"/>
+</div>
+</div>
 <div id="win-overlay">
-  <div class="trophy">🏆</div>
-  <h2>Amazing! All 8 found!</h2>
-  <p>You're a star! ⭐</p>
-  <div class="win-btns">
-    <button type="button" class="sec" onclick="resetGame()">Play Again</button>
-    <button type="button" onclick="window.location.href='/kids-games/'">More Games →</button>
-  </div>
+<div class="trophy">🏆</div>
+<h2>Amazing! All 8 found!</h2>
+<p>You're a star! ⭐</p>
+<div class="win-btns">
+<button class="sec" onclick="resetGame()" type="button">Play Again</button>
+<button onclick="window.location.href='/kids-games/'" type="button">More Games →</button>
 </div>
-
+</div>
 <script>
 const IMG_SRC = '/spot-the-differences/spot-the-differences-baking-final.jpg';
 
@@ -385,10 +379,7 @@ window.addEventListener('resize', () => {
   if (img.complete) init();
 });
 </script>
-
-
 <script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
-
-  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Are you an author, illustrator or KDP publisher? Explore more advanced creative tools on <a href="https://univers.studio/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Are you an author, illustrator or KDP publisher? Explore more advanced creative tools on <a href="https://univers.studio/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
 </body>
 </html>

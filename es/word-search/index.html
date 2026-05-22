@@ -1,26 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sopa de letras - Gratis para niños | Coco el Ajolote</title>
-  <meta name="description" content="Sopa de letras gratis para niños de 5 a 10 años. Encuentra palabras de ajolote y océano en una actividad divertida.">
-  <meta property="og:title" content="Sopa de Letras del Ajolote – Coco el Ajolote">
-  <meta property="og:description" content="Juego interactivo de sopa de letras para niños. ¡Desliza el dedo para encontrar las palabras!">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Coco el Ajolote">
-  <link rel="canonical" href="https://cocotheaxolotl.org/es/word-search/">
-  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/word-search/">
-  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/word-search/">
-  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/word-search/">
-  <link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/word-search/">
-  <link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/word-search/">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sopa de letras - Gratis para niños | Coco el Ajolote</title>
+<meta content="Sopa de letras gratis para niños de 5 a 10 años. Encuentra palabras de ajolote y océano en una actividad divertida." name="description"/>
+<meta content="Sopa de Letras del Ajolote – Coco el Ajolote" property="og:title"/>
+<meta content="Juego interactivo de sopa de letras para niños. ¡Desliza el dedo para encontrar las palabras!" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco el Ajolote" property="og:site_name"/>
+<link href="https://cocotheaxolotl.org/es/word-search/" rel="canonical"/><link href="https://cocotheaxolotl.org/word-search/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/word-search/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/word-search/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/word-search/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/word-search/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/word-search/" hreflang="x-default" rel="alternate"/>
+
+
+
+
+
+<link href="/manifest.json" rel="manifest"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
     :root { --pink: #ff69b4; --pink2: #f7c1cc; --bg: #fef6fb; --cell: min(calc((100vw - 48px) / 12), 42px); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Baloo 2', sans-serif; background: var(--bg); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; touch-action: none; overflow-x: hidden; }
@@ -121,38 +122,31 @@
 </script>
 </head>
 <body>
-
 <header>
-  <a href="/es/">🏠 Inicio</a>
-  <span class="sep">|</span>
-  <a href="/es/kids-games/">🎮 Juegos</a>
-  <span class="sep">|</span>
-  <a href="/word-search/">🇬🇧 EN</a>
-  <a href="/fr/word-search/">🇫🇷 FR</a>
+<a href="/es/">🏠 Inicio</a>
+<span class="sep">|</span>
+<a href="/es/kids-games/">🎮 Juegos</a>
+<span class="sep">|</span>
+<a href="/word-search/">🇬🇧 EN</a>
+<a href="/fr/word-search/">🇫🇷 FR</a>
 </header>
-
 <h1>🔍 Sopa de Letras del Ajolote</h1>
 <p class="subtitle">5–7 años · ¡Desliza el dedo para encontrar las palabras!</p>
-
 <div id="puzzle-selector"></div>
-
 <div id="grid-container">
-  <div id="grid"></div>
-  <svg id="svg-overlay"></svg>
+<div id="grid"></div>
+<svg id="svg-overlay"></svg>
 </div>
-
 <div id="word-list"></div>
-
 <div id="win-overlay">
-  <div class="trophy">🏆</div>
-  <h2>¡Bravo!</h2>
-  <p id="win-msg">¡Las encontraste todas! 🌟</p>
-  <div class="win-btns">
-    <button type="button" class="secondary" onclick="resetGame()">Jugar de nuevo</button>
-    <button type="button" id="next-btn" onclick="nextPuzzle()">Siguiente →</button>
-  </div>
+<div class="trophy">🏆</div>
+<h2>¡Bravo!</h2>
+<p id="win-msg">¡Las encontraste todas! 🌟</p>
+<div class="win-btns">
+<button class="secondary" onclick="resetGame()" type="button">Jugar de nuevo</button>
+<button id="next-btn" onclick="nextPuzzle()" type="button">Siguiente →</button>
 </div>
-
+</div>
 <script>
 const PUZZLES = [
   {
@@ -261,7 +255,6 @@ buildPuzzleSelector();loadPuzzle(0);
 window.addEventListener('resize',buildSvg);
 </script>
 <script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
-
-  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Eres autor, ilustrador o editor KDP? Explora herramientas creativas mas avanzadas en <a href="https://univers.studio/es/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Eres autor, ilustrador o editor KDP? Explora herramientas creativas mas avanzadas en <a href="https://univers.studio/es/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
 </body>
 </html>

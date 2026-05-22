@@ -1,26 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wortsuche – Gratis für Kinder | Coco the Axolotl</title>
-  <meta name="description" content="Kostenlose Wortsuche zum Ausdrucken für Kinder von 5 bis 10 Jahren. Finde Wörter zu Axolotl, Ozean und Tieren in einer spielerischen Aktivität.">
-  <meta property="og:title" content="Axolotl Wortsuche – Coco the Axolotl">
-  <meta property="og:description" content="Interaktives Wortsuchspiel für Kinder. Ziehe den Finger, um die Wörter zu finden!">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Coco the Axolotl">
-  <link rel="canonical" href="https://cocotheaxolotl.org/de/word-search/">
-  <link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/word-search/">
-  <link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/word-search/">
-  <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/word-search/">
-  <link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/word-search/">
-  <link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/word-search/">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Wortsuche – Gratis für Kinder | Coco the Axolotl</title>
+<meta content="Kostenlose Wortsuche zum Ausdrucken für Kinder von 5 bis 10 Jahren. Finde Wörter zu Axolotl, Ozean und Tieren in einer spielerischen Aktivität." name="description"/>
+<meta content="Axolotl Wortsuche – Coco the Axolotl" property="og:title"/>
+<meta content="Interaktives Wortsuchspiel für Kinder. Ziehe den Finger, um die Wörter zu finden!" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+<link href="https://cocotheaxolotl.org/de/word-search/" rel="canonical"/><link href="https://cocotheaxolotl.org/word-search/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/word-search/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/word-search/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/word-search/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/word-search/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/word-search/" hreflang="x-default" rel="alternate"/>
+
+
+
+
+
+<link href="/manifest.json" rel="manifest"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
     :root {
       --pink: #ff69b4;
       --pink2: #f7c1cc;
@@ -142,39 +143,32 @@
 </script>
 </head>
 <body>
-
 <header>
-  <a href="/de/">🏠 Startseite</a>
-  <span class="sep">|</span>
-  <a href="/de/kids-games/">🎮 Kinderspiele</a>
-  <span class="sep">|</span>
-  <a href="/word-search/">🇬🇧 EN</a>
-  <a href="/fr/word-search/">🇫🇷 FR</a>
-  <a href="/es/word-search/">🇪🇸 ES</a>
+<a href="/de/">🏠 Startseite</a>
+<span class="sep">|</span>
+<a href="/de/kids-games/">🎮 Kinderspiele</a>
+<span class="sep">|</span>
+<a href="/word-search/">🇬🇧 EN</a>
+<a href="/fr/word-search/">🇫🇷 FR</a>
+<a href="/es/word-search/">🇪🇸 ES</a>
 </header>
-
 <h1>🔍 Axolotl Wortsuche</h1>
 <p class="subtitle">5–10 Jahre · Ziehe den Finger, um die Wörter zu finden!</p>
-
 <div id="puzzle-selector"></div>
-
 <div id="grid-container">
-  <div id="grid"></div>
-  <svg id="svg-overlay"></svg>
+<div id="grid"></div>
+<svg id="svg-overlay"></svg>
 </div>
-
 <div id="word-list"></div>
-
 <div id="win-overlay">
-  <div class="trophy">🏆</div>
-  <h2>Super!</h2>
-  <p id="win-msg">Du hast sie alle gefunden! 🌟</p>
-  <div class="win-btns">
-    <button type="button" class="secondary" onclick="resetGame()">Nochmal spielen</button>
-    <button type="button" id="next-btn" onclick="nextPuzzle()">Nächstes Rätsel →</button>
-  </div>
+<div class="trophy">🏆</div>
+<h2>Super!</h2>
+<p id="win-msg">Du hast sie alle gefunden! 🌟</p>
+<div class="win-btns">
+<button class="secondary" onclick="resetGame()" type="button">Nochmal spielen</button>
+<button id="next-btn" onclick="nextPuzzle()" type="button">Nächstes Rätsel →</button>
 </div>
-
+</div>
 <script>
 const PUZZLES = [
   {
@@ -378,7 +372,6 @@ buildPuzzleSelector(); loadPuzzle(0);
 window.addEventListener('resize',buildSvg);
 </script>
 <script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
-
-  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Bist du Autor, Illustrator oder KDP-Verleger? Entdecke fortgeschrittenere kreative Tools auf <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Bist du Autor, Illustrator oder KDP-Verleger? Entdecke fortgeschrittenere kreative Tools auf <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
 </body>
 </html>
