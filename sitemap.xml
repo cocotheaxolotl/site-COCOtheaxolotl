@@ -753,4 +753,58 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/blog/how-to-teach-colors-to-preschoolers/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/blog/how-to-teach-colors-to-preschoolers/"/>
   </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/maze/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/maze/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/maze/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/maze/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/maze/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/fr/maze/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/maze/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/maze/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/maze/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/maze/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/es/maze/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/maze/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/maze/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/maze/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/maze/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/dot-to-dot/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/dot-to-dot/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/fr/dot-to-dot/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/dot-to-dot/"/>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/es/dot-to-dot/</loc>
+    <lastmod>2026-05-22</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/dot-to-dot/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/dot-to-dot/"/>
+  </url>
 </urlset>
