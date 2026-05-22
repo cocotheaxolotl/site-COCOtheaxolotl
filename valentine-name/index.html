@@ -96,7 +96,7 @@
   </div>
 
   <div class="row">
-    <button class="secondary" id="dlBtn"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
+    <button class="secondary" id="dlBtn" data-email-gate="download"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
     <button id="printBtn"><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></button>
     <a class="btn secondary" href="/valentine/"><span data-lang="en">Valentine Coloring</span><span data-lang="fr">Coloriages Valentine</span><span data-lang="es">Colorear Valentine</span></a>
     <a class="btn secondary" href="/balloon-name/"><span data-lang="en">Balloon Name</span><span data-lang="fr">Nom Ballons</span><span data-lang="es">Nombre Globos</span></a>
@@ -314,5 +314,6 @@ function showUpgradeModal(){
   function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
   if(!localStorage.getItem('cookies_accepted')){document.getElementById('cookieBanner').style.display='block';}
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>

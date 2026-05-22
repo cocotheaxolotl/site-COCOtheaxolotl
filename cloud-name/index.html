@@ -121,7 +121,7 @@
   </div>
 
   <div class="row">
-    <button class="secondary" id="dlBtn"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
+    <button class="secondary" id="dlBtn" data-email-gate="download"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
     <button id="printBtn"><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></button>
     <a class="btn secondary" href="/" style="border:2px solid #5ba3d9;color:#5ba3d9;background:#fff"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span></a>
     <a class="btn secondary" href="/bubble-name/" style="border:2px solid #5ba3d9;color:#5ba3d9;background:#fff"><span data-lang="en">Bubble Name</span><span data-lang="fr">Nom en Bulles</span><span data-lang="es">Nombre Burbujas</span></a>
@@ -353,5 +353,6 @@ function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es'
     document.getElementById('cookieBanner').style.display='block';
   }
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>

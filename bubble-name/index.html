@@ -123,7 +123,7 @@
   </div>
 
   <div class="row">
-    <button class="secondary" id="dlBtn"><span data-lang="en">Download (A4 PNG)</span><span data-lang="fr">T&eacute;l&eacute;charger (A4 PNG)</span><span data-lang="es">Descargar (A4 PNG)</span></button>
+    <button class="secondary" id="dlBtn" data-email-gate="download"><span data-lang="en">Download (A4 PNG)</span><span data-lang="fr">T&eacute;l&eacute;charger (A4 PNG)</span><span data-lang="es">Descargar (A4 PNG)</span></button>
     <button id="printBtn"><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></button>
     <a class="btn secondary" href="/" style="border:2px solid #ff69b4;color:#ff69b4;background:#fff"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span></a>
     <a class="btn secondary" href="/bubble-lab/" style="border:2px solid #ff69b4;color:#ff69b4;background:#fff"><span data-lang="en">Bubble Lab</span><span data-lang="fr">Labo Bulles</span><span data-lang="es">Lab Burbujas</span></a>
@@ -299,5 +299,6 @@ function showUpgradeModal(){
     document.getElementById('cookieBanner').style.display='block';
   }
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>

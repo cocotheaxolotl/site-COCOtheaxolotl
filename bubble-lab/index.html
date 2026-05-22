@@ -460,7 +460,7 @@ COCOTHEAXOLOTL.ORG</textarea>
               <a class="btn ghost small" href="/bubble-name/" title="Simple version"><span data-lang="en">Simple</span><span data-lang="fr">Simple</span><span data-lang="es">Simple</span></a>
             </div>
             <!-- PRINT REMOVED -->
-            <button class="btn primary" id="downloadBtn" type="button"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
+            <button class="btn primary" id="downloadBtn" type="button" data-email-gate="download"><span data-lang="en">Download PNG</span><span data-lang="fr">T&eacute;l&eacute;charger PNG</span><span data-lang="es">Descargar PNG</span></button>
           </div>
         </div>
       </div>
@@ -767,5 +767,6 @@ function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es'
     document.getElementById('cookieBanner').style.display='block';
   }
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>

@@ -86,7 +86,7 @@
 <canvas aria-label="Balloon name result" height="1200" id="c" width="2480"></canvas>
 </div>
 <div class="row">
-<button class="secondary" id="dlBtn">Descargar PNG</button>
+<button class="secondary" id="dlBtn" data-email-gate="download">Descargar PNG</button>
 <button id="printBtn">Imprimir</button>
 <a class="btn secondary" href="/es/">Inicio</a>
 <a class="btn secondary" href="/es/cloud-name/">Nombre Nubes</a>
@@ -228,5 +228,6 @@ Usamos cookies para analizar el tráfico. Al hacer clic en "Aceptar", consientes
   function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
   if(!localStorage.getItem('cookies_accepted')){document.getElementById('cookieBanner').style.display='block';}
 </script>
+<script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>
