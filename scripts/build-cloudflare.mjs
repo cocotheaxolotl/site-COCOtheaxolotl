@@ -51,6 +51,7 @@ const allowedExtensions = new Set([
   '.pdf',
   '.png',
   '.svg',
+  '.ttf',
   '.txt',
   '.webm',
   '.webp',
