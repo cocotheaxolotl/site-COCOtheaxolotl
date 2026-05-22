@@ -64,6 +64,17 @@
       err: 'Email inválido. Inténtalo de nuevo.',
       errNet: 'Error de red. Reintenta.',
       close: 'Cerrar'
+    },
+    de: {
+      title: 'Bevor du herunterlädst…',
+      sub: 'Gib deine E-Mail an, um die Datei zu erhalten <strong>+ kostenlose Coco-Ausmalbilder jeden Monat</strong>. Kein Spam.',
+      name: 'Vorname (optional)',
+      email: 'Deine E-Mail',
+      btn: 'Erhalten und herunterladen',
+      loading: 'Senden…',
+      err: 'Ungültige E-Mail.',
+      errNet: 'Netzwerkfehler.',
+      close: 'Schließen'
     }
   };
 

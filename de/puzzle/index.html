@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<!-- Google tag (gtag.js) - loads only after consent -->
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-6Y0T0Q28E6');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puzzle Spiel – Gratis für Kinder | Coco the Axolotl</title>
+<meta name="description" content="Kostenloses Puzzle-Spiel für Kinder von 3 bis 8 Jahren. Ziehe die Teile per Drag & Drop, um ein Coco-Bild in einer einfachen Online-Aktivität wieder zusammenzusetzen.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ff69b4">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Coco Puzzle">
+<link rel="canonical" href="https://cocotheaxolotl.org/de/puzzle/">
+<link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/">
+<link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/">
+<link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/">
+<meta property="og:title" content="Coco Puzzle Spiel – Gratis interaktives Puzzle für Kinder">
+<meta property="og:description" content="Ziehe die Teile und setze das Coco-Bild wieder zusammen! Kostenloses Puzzle-Spiel für Kinder.">
+<meta property="og:image" content="https://cocotheaxolotl.org/coco.png">
+<meta property="og:url" content="https://cocotheaxolotl.org/de/puzzle/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Coco the Axolotl">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#ff69b4;
+    --pink2:#f7c1cc;
+    --bg:#fef6fb;
+    --card:#fff;
+    --shadow:0 10px 26px rgba(0,0,0,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:'Baloo 2',cursive;
+    background:var(--bg);
+    color:#333;
+    text-align:center;
+    min-height:100vh;
+  }
+
+  /* ── Header ── */
+  header{
+    background:var(--pink2);
+    padding:18px 20px 16px;
+  }
+  header a.back{
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:.9em;
+    opacity:.85;
+    margin-bottom:8px;
+  }
+  header a.back:hover{opacity:1;text-decoration:underline}
+  header h1{
+    font-size:2em;
+    font-weight:800;
+    color:#fff;
+    text-shadow:0 2px 8px rgba(0,0,0,.2);
+    line-height:1.1;
+  }
+  header p{
+    font-size:1em;
+    color:#fff;
+    opacity:.9;
+    margin-top:4px;
+  }
+  .lang-toggle{display:flex;gap:6px;justify-content:center;margin-top:10px}
+  .lang-btn{padding:6px 14px;border-radius:10px;border:2px solid #fff;background:transparent;color:#fff;font-weight:800;cursor:pointer;font-size:.95em;text-decoration:none}
+  .lang-btn.active{background:#fff;color:var(--pink)}
+
+  /* ── Controls bar ── */
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+    padding:18px 16px 10px;
+  }
+  .btn{
+    font-family:'Baloo 2',cursive;
+    font-size:1em;
+    font-weight:800;
+    border:none;
+    border-radius:32px;
+    padding:10px 22px;
+    cursor:pointer;
+    transition:filter .18s, transform .12s;
+  }
+  .btn:hover{filter:brightness(.93);transform:translateY(-1px)}
+  .btn:active{transform:scale(.97)}
+  .btn-pink{background:var(--pink);color:#fff}
+  .btn-white{background:#fff;color:var(--pink);border:2px solid var(--pink)}
+  .btn-outline{background:transparent;color:var(--pink);border:2px solid var(--pink)}
+
+  /* stats */
+  .stats{
+    display:flex;
+    justify-content:center;
+    gap:24px;
+    padding:4px 16px 14px;
+    font-size:1.1em;
+    font-weight:800;
+    color:var(--pink);
+  }
+  .stats span{background:#fff;border-radius:14px;padding:4px 16px;box-shadow:var(--shadow)}
+
+  /* ── Puzzle area ── */
+  .puzzle-wrapper{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:0 16px 40px;
+  }
+
+  /* The puzzle grid */
+  #puzzleGrid{
+    display:grid;
+    /* columns set by JS */
+    gap:3px;
+    background:#e8b4d0;
+    border-radius:16px;
+    padding:6px;
+    box-shadow:var(--shadow);
+    /* width set by JS to fit screen without scrolling */
+    width: min(360px, 92vw);
+    touch-action:none;
+  }
+  .piece{
+    width:100%;
+    /* height set by JS via aspect-ratio */
+    background-size:300% 400%; /* 3 cols × 4 rows default */
+    background-repeat:no-repeat;
+    border-radius:8px;
+    cursor:grab;
+    transition:transform .12s, box-shadow .12s, opacity .12s;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+  .piece:active{cursor:grabbing}
+  .piece.dragging{
+    opacity:.55;
+    transform:scale(1.06);
+    box-shadow:0 8px 24px rgba(255,105,180,.45);
+    z-index:10;
+  }
+  .piece.over{
+    box-shadow:0 0 0 3px var(--pink);
+    transform:scale(1.03);
+  }
+  .piece.solved-flash{
+    animation:solvedFlash .5s ease forwards;
+  }
+  @keyframes solvedFlash{
+    0%{filter:brightness(1)}
+    50%{filter:brightness(1.25) saturate(1.4)}
+    100%{filter:brightness(1)}
+  }
+
+  /* ── Admiration overlay ── */
+  #admireOverlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(254,246,251,.96);
+    z-index:60;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+  }
+  #admireOverlay.show{ display:flex; }
+  #admireOverlay img{
+    max-height:78vh;
+    max-width:84vw;
+    border-radius:20px;
+    box-shadow:0 0 0 5px var(--pink), 0 20px 60px rgba(255,105,180,.45);
+    animation:admireIn .45s cubic-bezier(.34,1.56,.64,1) forwards;
+    object-fit:contain;
+  }
+  #admireCountdown{
+    font-family:'Baloo 2',cursive;
+    font-size:1.3em;
+    font-weight:800;
+    color:var(--pink);
+    opacity:.75;
+  }
+  @keyframes admireIn{
+    from{transform:scale(.82);opacity:0}
+    to  {transform:scale(1);  opacity:1}
+  }
+
+  /* ── Victory overlay ── */
+  #victoryOverlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(255,240,250,.88);
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:16px;
+    animation:fadeIn .4s ease;
+  }
+  #victoryOverlay.show{display:flex}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .victory-box{
+    background:#fff;
+    border-radius:28px;
+    padding:36px 40px;
+    box-shadow:0 20px 60px rgba(255,105,180,.25);
+    max-width:340px;
+    width:90%;
+  }
+  .victory-box .emoji{font-size:3em;line-height:1}
+  .victory-box h2{font-size:1.9em;color:var(--pink);margin:10px 0 6px}
+  .victory-box p{font-size:1em;opacity:.8;margin-bottom:18px}
+  .victory-box .final-stats{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    margin-bottom:20px;
+    font-weight:800;
+    color:var(--pink);
+    font-size:1.05em;
+  }
+
+  /* ── Original image modal ── */
+  #originalModal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:200;
+    align-items:center;
+    justify-content:center;
+  }
+  #originalModal.show{display:flex}
+  #originalModal img{
+    max-height:88vh;
+    max-width:88vw;
+    border-radius:18px;
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+    object-fit:contain;
+  }
+  #originalModal .close-btn{
+    position:absolute;
+    top:18px;right:18px;
+    background:#fff;
+    border:none;
+    border-radius:50%;
+    width:40px;height:40px;
+    font-size:1.4em;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    line-height:40px;
+    text-align:center;
+  }
+
+  /* ── Intro / no images message ── */
+  .no-images{
+    background:#fff;
+    border-radius:18px;
+    padding:36px 28px;
+    margin:30px auto;
+    max-width:420px;
+    box-shadow:var(--shadow);
+    font-size:1em;
+    line-height:1.6;
+    color:#555;
+  }
+  .no-images strong{color:var(--pink)}
+
+  /* ── Footer ── */
+  footer{
+    padding:28px 16px;
+    font-size:.88em;
+    opacity:.7;
+  }
+  footer a{color:var(--pink);text-decoration:none}
+
+  /* ── Responsive ── */
+  @media(max-width:480px){
+    header h1{font-size:1.55em}
+    .btn{font-size:.9em;padding:9px 16px}
+  }
+</style>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "WebApplication",
+    "name":  "Coco Puzzle Spiel",
+    "url":  "https://cocotheaxolotl.org/de/puzzle/",
+    "description":  "Kostenloses Puzzle-Spiel für Kinder von 3 bis 8 Jahren. Ziehe die Teile per Drag & Drop, um ein Coco-Bild in einer einfachen Online-Aktivität wieder zusammenzusetzen.",
+    "applicationCategory":  "EducationalApplication",
+    "operatingSystem":  "Any (web browser)",
+    "isAccessibleForFree":  true,
+    "audience":  {
+                     "@type":  "Audience",
+                     "audienceType":  "Children",
+                     "suggestedMinAge":  3,
+                     "suggestedMaxAge":  8
+                 },
+    "offers":  {
+                   "@type":  "Offer",
+                   "price":  "0",
+                   "priceCurrency":  "USD"
+               },
+    "inLanguage":  "de",
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "Coco the Axolotl",
+                      "url":  "https://cocotheaxolotl.org"
+                  }
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+    <a class="back" href="/de/">🏠 Startseite</a>
+    <a class="back" href="/de/kids-games/">🎮 Kinderspiele</a>
+  </div>
+  <h1>🧩 Coco Puzzle</h1>
+  <p>Ziehe die Teile, um das Bild wieder zusammenzusetzen!</p>
+  <div class="lang-toggle">
+    <a class="lang-btn" href="/puzzle/">EN</a>
+    <a class="lang-btn active" href="/de/puzzle/">DE</a>
+  </div>
+</header>
+
+<div class="controls">
+  <button class="btn btn-pink" id="btnShuffle">🔀 Mischen</button>
+  <button class="btn btn-white" id="btnNewImage">🖼️ Neues Bild</button>
+  <button class="btn btn-outline" id="btnShowOriginal">👁️ Original zeigen</button>
+</div>
+
+<div class="stats">
+  <span id="statMoves">Züge: 0</span>
+  <span id="statTime">Zeit: 0:00</span>
+</div>
+
+<div class="puzzle-wrapper">
+  <div id="puzzleGrid"></div>
+  <div class="no-images" id="noImagesMsg" style="display:none">
+    <strong>Noch keine Bilder!</strong><br><br>
+    Lege deine Bilder in <code>puzzle/images/</code> ab und liste sie im
+    <code>IMAGES</code>-Array oben in <code>puzzle/index.html</code> auf.<br><br>
+    Bilder sollten im <strong>9:16 Hochformat</strong> sein (z. B. 900×1600 px).
+  </div>
+</div>
+
+<!-- Original image modal -->
+<div id="originalModal">
+  <button class="close-btn" id="btnCloseModal">✕</button>
+  <img id="originalImg" src="" alt="Original-Puzzlebild">
+</div>
+
+<!-- Admiration overlay -->
+<div id="admireOverlay">
+  <img id="admireImg" src="" alt="Komplettes Bild">
+  <div id="admireCountdown"></div>
+</div>
+
+<!-- Victory overlay -->
+<div id="victoryOverlay">
+  <div class="victory-box">
+    <div class="emoji">🎉</div>
+    <h2>Puzzle geschafft!</h2>
+    <p>Tolle Arbeit! Du hast das Bild wieder zusammengesetzt!</p>
+    <div class="final-stats">
+      <span id="victoryMoves"></span>
+      <span id="victoryTime"></span>
+    </div>
+    <button class="btn btn-pink" id="btnVictoryNew" style="margin-right:8px">🖼️ Neues Bild</button>
+    <button class="btn btn-white" id="btnVictoryPlay">🔀 Nochmal spielen</button>
+  </div>
+</div>
+
+  <p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Bist du Autor, Illustrator oder KDP-Verleger? Entdecke fortgeschrittenere kreative Tools auf <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" target="_blank" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600">univers.studio &rarr;</a></p>
+<footer>
+  <a href="/de/">Coco the Axolotl</a> · <a href="/de/kids-games/">Kinderspiele</a>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  IMAGES LIST — add your filenames here after putting
+//  the images in the puzzle/images/ folder (9:16 format)
+// ═══════════════════════════════════════════════════════
+let IMAGES = [
+  'axolotl-baby-colored.jpg',
+  'axolotl-bear-colored.jpg',
+  'axolotl-butterfly-colored.jpg',
+  'axolotl-chick-colored.jpg',
+  'axolotl-dinosaur-colored.jpg',
+  'axolotl-dolphin-colored.jpg',
+  'axolotl-dragon-colored.jpg',
+  'axolotl-duck-colored.jpg',
+  'axolotl-elephant-colored.jpg',
+  'axolotl-flamingo-colored.jpg',
+  'axolotl-foal-colored.jpg',
+  'axolotl-fox-colored.jpg',
+  'axolotl-frog-colored.jpg',
+  'axolotl-giraffe-colored.jpg',
+  'axolotl-goodbye-colored.jpg',
+  'axolotl-hedgehog-colored.jpg',
+  'axolotl-highland-colored.jpg',
+  'axolotl-kitten-colored.jpg',
+  'axolotl-koala-colored.jpg',
+  'axolotl-lama-colored.jpg',
+  'axolotl-lamb-colored.jpg',
+  'axolotl-lion-colored.jpg',
+  'axolotl-otter-colored.jpg',
+  'axolotl-owl-colored.jpg',
+  'axolotl-panda-colored.jpg',
+  'axolotl-penguin-colored.jpg',
+  'axolotl-rabbit-colored.jpg',
+  'axolotl-sloth-colored.jpg',
+  'axolotl-turtle-colored.jpg',
+  'axolotl-unicorn-colored.jpg',
+  'axolotl_puffy-colored.jpg',
+  'cchristmas ocean axolotl.jpg',
+  'coco the axolotl and dolphin.jpg',
+  'axolotl redbubble hug me.jpg',
+];
+
+// Grid: 3 columns × 4 rows = 12 pieces (perfect for 9:16)
+const COLS = 3;
+const ROWS = 4;
+const TOTAL = COLS * ROWS;
+
+// ── State ──────────────────────────────────────────────
+let currentImage = '';
+let pieces = [];       // array of indices 0..TOTAL-1, representing current order
+let solved = [];       // solved[i] = true if piece at position i is correct
+let moves = 0;
+let timerInterval = null;
+let elapsedSeconds = 0;
+let dragSrcIndex = null;
+let touchSrcIndex = null;
+let touchStartX = 0;
+let touchStartY = 0;
+
+// ── DOM refs ───────────────────────────────────────────
+const grid         = document.getElementById('puzzleGrid');
+const statMoves    = document.getElementById('statMoves');
+const statTime     = document.getElementById('statTime');
+const noImagesMsg  = document.getElementById('noImagesMsg');
+const originalModal= document.getElementById('originalModal');
+const originalImg  = document.getElementById('originalImg');
+const victoryOverlay=document.getElementById('victoryOverlay');
+const victoryMovesEl=document.getElementById('victoryMoves');
+const victoryTimeEl =document.getElementById('victoryTime');
+
+// ── Helpers ────────────────────────────────────────────
+function imgPath(name){ return '/puzzle/images/' + name; }
+
+function formatTime(s){
+  const m = Math.floor(s/60);
+  const sec = s % 60;
+  return m + ':' + String(sec).padStart(2,'0');
+}
+
+function pickRandomImage(){
+  if(!IMAGES.length) return '';
+  const candidates = IMAGES.filter(i => i !== currentImage);
+  const pool = candidates.length ? candidates : IMAGES;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// ── Timer ──────────────────────────────────────────────
+function startTimer(){
+  stopTimer();
+  elapsedSeconds = 0;
+  updateStatsDisplay();
+  timerInterval = setInterval(()=>{
+    elapsedSeconds++;
+    statTime.textContent = 'Zeit: ' + formatTime(elapsedSeconds);
+  }, 1000);
+}
+function stopTimer(){ clearInterval(timerInterval); timerInterval = null; }
+function updateStatsDisplay(){
+  statMoves.textContent = 'Züge: ' + moves;
+  statTime.textContent  = 'Zeit: '  + formatTime(elapsedSeconds);
+}
+
+// ── Build puzzle ───────────────────────────────────────
+function initPuzzle(imageName){
+  currentImage = imageName;
+  pieces = Array.from({length: TOTAL}, (_,i) => i);
+  moves = 0;
+  updateStatsDisplay();
+  grid.style.gridTemplateColumns = `repeat(${COLS}, 1fr)`;
+
+  // Load image first to get real dimensions → correct piece aspect ratio + grid size
+  const img = new Image();
+  img.onload = function(){
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    // pieceAspect = (imgW/COLS) / (imgH/ROWS) = imgRatio * ROWS / COLS
+    const pieceAspect = imgRatio * ROWS / COLS;
+
+    // Fit grid in visible area without scrolling
+    const maxWFromVW = Math.min(window.innerWidth * 0.92, 360);
+    // Measure actual space used by header + controls + stats
+    const wrapper = document.querySelector('.puzzle-wrapper');
+    const wrapperPadBottom = wrapper ? parseInt(getComputedStyle(wrapper).paddingBottom) : 40;
+    const usedH = ['header','.controls','.stats'].reduce((acc, sel) => {
+      const el = document.querySelector(sel);
+      return acc + (el ? el.offsetHeight : 0);
+    }, 0) + wrapperPadBottom + 16; // 16px extra safety
+    const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const availH = vh - usedH;
+    // gridH = ROWS×pieceH + (ROWS-1)×gap + 2×padding  (gap=3, padding=6)
+    // gridH = ROWS×(gridW/COLS/pieceAspect) + (ROWS-1)×3 + 12
+    // gridAspect = imgRatio → maxWFromVH accounts for internal gaps:
+    const gridPad = (ROWS - 1) * 3 + 12;
+    const maxWFromVH = (availH - gridPad) * imgRatio;
+    const gridW = Math.max(180, Math.min(maxWFromVW, maxWFromVH));
+    grid.style.width  = gridW + 'px';
+
+    renderPieces(pieceAspect);
+  };
+  img.onerror = function(){ renderPieces(0.75); };
+  img.src = imgPath(imageName);
+}
+
+function renderPieces(pieceAspect){
+  if(pieceAspect === undefined) pieceAspect = 0.75;
+  grid.innerHTML = '';
+
+  pieces.forEach((pieceIndex, position)=>{
+    const div = document.createElement('div');
+    div.className = 'piece';
+    div.dataset.position = position;
+    div.dataset.pieceIndex = pieceIndex;
+
+    // Background image positioning
+    const col = pieceIndex % COLS;
+    const row = Math.floor(pieceIndex / COLS);
+    const bgX = (col / (COLS - 1)) * 100;
+    const bgY = (row / (ROWS - 1)) * 100;
+
+    div.style.backgroundImage  = `url('${imgPath(currentImage)}')`;
+    div.style.backgroundSize   = `${COLS * 100}% ${ROWS * 100}%`;
+    div.style.backgroundPosition = `${bgX}% ${bgY}%`;
+    div.style.aspectRatio      = String(pieceAspect);
+
+    // Mouse drag events
+    div.draggable = true;
+    div.addEventListener('dragstart',  onDragStart);
+    div.addEventListener('dragend',    onDragEnd);
+    div.addEventListener('dragover',   onDragOver);
+    div.addEventListener('dragleave',  onDragLeave);
+    div.addEventListener('drop',       onDrop);
+
+    // Touch events
+    div.addEventListener('touchstart', onTouchStart, {passive:false});
+    div.addEventListener('touchmove',  onTouchMove,  {passive:false});
+    div.addEventListener('touchend',   onTouchEnd);
+
+    grid.appendChild(div);
+  });
+}
+
+// ── Shuffle ────────────────────────────────────────────
+function shufflePuzzle(){
+  // Fisher-Yates, ensure not already solved
+  let arr = [...pieces];
+  let attempts = 0;
+  do {
+    for(let i = arr.length-1; i > 0; i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    attempts++;
+  } while(isSolved(arr) && attempts < 10);
+  pieces = arr;
+  moves = 0;
+  startTimer();
+  renderPieces();
+}
+
+function isSolved(arr){
+  return arr.every((v,i) => v === i);
+}
+
+// ── Swap logic ─────────────────────────────────────────
+function swapPieces(posA, posB){
+  if(posA === posB) return;
+  [pieces[posA], pieces[posB]] = [pieces[posB], pieces[posA]];
+  moves++;
+  renderPieces();
+  if(isSolved(pieces)){
+    stopTimer();
+    setTimeout(startAdmiration, 350);
+  }
+}
+
+// ── Mouse drag & drop ──────────────────────────────────
+function onDragStart(e){
+  dragSrcIndex = parseInt(this.dataset.position);
+  this.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+function onDragEnd(e){
+  this.classList.remove('dragging');
+  document.querySelectorAll('.piece.over').forEach(p=>p.classList.remove('over'));
+}
+function onDragOver(e){
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  this.classList.add('over');
+}
+function onDragLeave(e){
+  this.classList.remove('over');
+}
+function onDrop(e){
+  e.preventDefault();
+  this.classList.remove('over');
+  const targetIndex = parseInt(this.dataset.position);
+  if(dragSrcIndex !== null && dragSrcIndex !== targetIndex){
+    swapPieces(dragSrcIndex, targetIndex);
+  }
+  dragSrcIndex = null;
+}
+
+// ── Touch drag & drop ──────────────────────────────────
+let touchClone = null;
+let touchOffX = 0;
+let touchOffY = 0;
+
+function onTouchStart(e){
+  if(e.touches.length !== 1) return;
+  e.preventDefault();
+  const t = e.touches[0];
+  touchSrcIndex = parseInt(this.dataset.position);
+  touchStartX = t.clientX;
+  touchStartY = t.clientY;
+
+  const rect = this.getBoundingClientRect();
+  touchOffX = t.clientX - rect.left;
+  touchOffY = t.clientY - rect.top;
+
+  // Create floating clone
+  touchClone = this.cloneNode(true);
+  touchClone.style.cssText = `
+    position:fixed;
+    width:${rect.width}px;
+    height:${rect.height}px;
+    left:${t.clientX - touchOffX}px;
+    top:${t.clientY - touchOffY}px;
+    opacity:.7;
+    pointer-events:none;
+    z-index:999;
+    border-radius:8px;
+    transform:scale(1.08);
+    box-shadow:0 8px 24px rgba(255,105,180,.5);
+    background-image:${this.style.backgroundImage};
+    background-size:${this.style.backgroundSize};
+    background-position:${this.style.backgroundPosition};
+  `;
+  document.body.appendChild(touchClone);
+  this.style.opacity = '.4';
+}
+
+function onTouchMove(e){
+  if(e.touches.length !== 1 || !touchClone) return;
+  e.preventDefault();
+  const t = e.touches[0];
+  touchClone.style.left = (t.clientX - touchOffX) + 'px';
+  touchClone.style.top  = (t.clientY - touchOffY) + 'px';
+
+  // Highlight target
+  document.querySelectorAll('.piece.over').forEach(p=>p.classList.remove('over'));
+  touchClone.style.display = 'none';
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  touchClone.style.display = '';
+  if(el && el.classList.contains('piece')){
+    el.classList.add('over');
+  }
+}
+
+function onTouchEnd(e){
+  if(!touchClone) return;
+  const t = e.changedTouches[0];
+
+  // Remove clone
+  document.body.removeChild(touchClone);
+  touchClone = null;
+  this.style.opacity = '';
+
+  document.querySelectorAll('.piece.over').forEach(p=>p.classList.remove('over'));
+
+  // Find drop target
+  touchClone = null;
+  const el = document.elementFromPoint(t.clientX, t.clientY);
+  if(el && el.classList.contains('piece')){
+    const targetPos = parseInt(el.dataset.position);
+    if(touchSrcIndex !== null && touchSrcIndex !== targetPos){
+      swapPieces(touchSrcIndex, targetPos);
+    }
+  }
+  touchSrcIndex = null;
+}
+
+// ── Victory ────────────────────────────────────────────
+function playWinChime(){
+  try{
+    const audio = new Audio('/puzzle/win.mp3');
+    audio.volume = 0.7;
+    audio.play().catch(()=>{});
+  }catch(e){}
+}
+
+function startAdmiration(){
+  playWinChime();
+  const overlay   = document.getElementById('admireOverlay');
+  const admireImg = document.getElementById('admireImg');
+  const countdown = document.getElementById('admireCountdown');
+  admireImg.src = imgPath(currentImage);
+  overlay.classList.add('show');
+  let secs = 3;
+  countdown.textContent = '⭐ ' + secs + ' ⭐';
+  const tick = setInterval(() => {
+    secs--;
+    if(secs > 0){
+      countdown.textContent = '⭐ ' + secs + ' ⭐';
+    } else {
+      clearInterval(tick);
+      overlay.classList.remove('show');
+      showVictory();
+    }
+  }, 1000);
+}
+
+function showVictory(){
+  victoryMovesEl.textContent = moves + ' Züge';
+  victoryTimeEl.textContent  = formatTime(elapsedSeconds);
+  victoryOverlay.classList.add('show');
+  launchConfetti();
+}
+function hideVictory(){
+  victoryOverlay.classList.remove('show');
+}
+
+// ── Simple confetti ─────────────────────────────────────
+function launchConfetti(){
+  const colors = ['#ff69b4','#f7c1cc','#ffb347','#87ceeb','#98fb98','#dda0dd'];
+  for(let i=0;i<60;i++){
+    const el = document.createElement('div');
+    const size = 8 + Math.random()*8;
+    el.style.cssText = `
+      position:fixed;
+      width:${size}px;height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      border-radius:${Math.random()>.5?'50%':'3px'};
+      left:${Math.random()*100}vw;
+      top:-10px;
+      z-index:150;
+      pointer-events:none;
+      animation: confettiFall ${1.2+Math.random()*1.4}s ${Math.random()*.8}s ease-in forwards;
+    `;
+    document.body.appendChild(el);
+    el.addEventListener('animationend', ()=>el.remove());
+  }
+}
+// Inject confetti keyframe once
+const styleEl = document.createElement('style');
+styleEl.textContent=`@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}`;
+document.head.appendChild(styleEl);
+
+// ── Buttons ────────────────────────────────────────────
+document.getElementById('btnShuffle').addEventListener('click', ()=>{
+  if(!currentImage) return;
+  hideVictory();
+  shufflePuzzle();
+});
+
+document.getElementById('btnNewImage').addEventListener('click', ()=>{
+  hideVictory();
+  loadNewImage();
+});
+
+document.getElementById('btnShowOriginal').addEventListener('click', ()=>{
+  if(!currentImage) return;
+  originalImg.src = imgPath(currentImage);
+  originalModal.classList.add('show');
+});
+
+document.getElementById('btnCloseModal').addEventListener('click', ()=>{
+  originalModal.classList.remove('show');
+});
+originalModal.addEventListener('click', e=>{
+  if(e.target === originalModal) originalModal.classList.remove('show');
+});
+
+document.getElementById('btnVictoryNew').addEventListener('click', ()=>{
+  hideVictory();
+  loadNewImage();
+});
+document.getElementById('btnVictoryPlay').addEventListener('click', ()=>{
+  hideVictory();
+  shufflePuzzle();
+});
+
+// ── Init ───────────────────────────────────────────────
+function loadNewImage(){
+  if(!IMAGES.length){
+    noImagesMsg.style.display = 'block';
+    grid.style.display = 'none';
+    return;
+  }
+  noImagesMsg.style.display = 'none';
+  grid.style.display = 'grid';
+  const img = pickRandomImage();
+  initPuzzle(img);
+  shufflePuzzle();
+}
+
+// Load image list from index.json (auto-generated by update-images.py)
+fetch('/puzzle/images/index.json')
+  .then(r => r.json())
+  .then(list => { if(Array.isArray(list) && list.length) IMAGES = list; })
+  .catch(() => {}) // fallback: keep hardcoded list above
+  .finally(() => loadNewImage());
+</script>
+
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js");}</script>
+</body>
+</html>
