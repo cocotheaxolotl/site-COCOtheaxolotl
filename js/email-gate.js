@@ -75,7 +75,7 @@
       err: 'Email non valida. Riprova.',
       errNet: 'Problema di rete. Riprova.',
       close: 'Chiudi'
-    },,
+    },
     ja: {
       title: '?????????...',
       sub: '???????????????????????? <strong>+ Coco????????????</strong>?????????????',
@@ -108,6 +108,17 @@
       err: 'Ungültige E-Mail.',
       errNet: 'Netzwerkfehler.',
       close: 'Schließen'
+    },
+    ar: {
+      title: 'قبل التنزيل...',
+      sub: 'اترك بريدك الإلكتروني لتحصل على الملف <strong>+ صفحات تلوين كوكو مجانية كل شهر</strong>. بلا رسائل مزعجة.',
+      name: 'الاسم الأول (اختياري)',
+      email: 'بريدك الإلكتروني',
+      btn: 'استلام وتنزيل',
+      loading: 'جارٍ الإرسال...',
+      err: 'البريد الإلكتروني غير صالح. حاول مرة أخرى.',
+      errNet: 'مشكلة في الشبكة. حاول مرة أخرى.',
+      close: 'إغلاق'
     },
     pt: {
       title: 'Antes de baixar...',

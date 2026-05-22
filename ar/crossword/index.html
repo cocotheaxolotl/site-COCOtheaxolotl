@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>كلمات متقاطعة للربيع - مجانية للأطفال | كوكو الإكسولوتل</title>
+<meta content="كلمات متقاطعة مجانية للربيع للأطفال من 5 إلى 7 سنوات. حل ألغازاً بسيطة أونلاين مع كوكو ويمكن طباعتها." name="description"/>
+
+
+
+
+
+
+<link href="/manifest.json" rel="manifest"/>
+<link href="/favicon.ico" rel="icon"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body{direction:rtl;text-align:right; font-family: 'Baloo 2', sans-serif; background: linear-gradient(160deg, #fff9e6 0%, #fce4f0 50%, #e8f8e8 100%); min-height: 100dvh; display: flex; flex-direction: column; align-items: center; }
+    header { width: 100%; background: #ff69b4; padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
+    header a { color: white; text-decoration: none; font-size: .9rem; font-weight: 700; }
+    header a:hover { text-decoration: underline; }
+    header .sep { color: white; opacity: .5; }
+    .hero { text-align: center; padding: 16px 16px 4px; width: 100%; }
+    .deco-row { font-size: 2rem; letter-spacing: 8px; margin-bottom: 4px; animation: float 3s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    h1 { color: #d6006e; font-size: clamp(1.5rem,6vw,2.2rem); font-weight: 800; text-shadow: 0 2px 0 #ffb3d9; }
+    .subtitle { color: #a0005a; font-size: .9rem; margin-top: 4px; margin-bottom: 16px; }
+    #game { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 0 12px 40px; width: 100%; max-width: 540px; }
+    .grid-wrap { background: white; border-radius: 20px; padding: 14px; box-shadow: 0 6px 24px rgba(214,0,110,.15); border: 3px solid #ffb3d9; }
+    #crossword-grid { display: grid; gap: 4px; }
+    .cell { width: 52px; height: 52px; background: #e8c5e0; border-radius: 8px; position: relative; transition: background .15s; }
+    .cell.white { background: #fffde7; border: 2.5px solid #f9a8d4; cursor: pointer; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,.08); }
+    .cell.white input { position: absolute; inset: 0; width: 100%; height: 100%; border: none; outline: none; background: transparent; font-family: 'Baloo 2', sans-serif; font-size: 1.55rem; font-weight: 800; text-align: center; text-transform: uppercase; color: #7c0048; cursor: pointer; caret-color: transparent; -webkit-user-select: none; user-select: none; padding-top: 8px; }
+    .cell.white.sel { background: #fff3b0; border-color: #f59e0b; }
+    .cell.white.cur { background: #ff69b4; border-color: #d6006e; box-shadow: 0 0 0 3px #ffb3d9; }
+    .cell.white.cur input { color: white; }
+    .cell.white.ok { background: #bbf7d0; border-color: #22c55e; animation: pop .3s ease; }
+    .cell.white.ok input { color: #166534; }
+    .cell.white.wrong { animation: shake .35s ease; }
+    .cell-num { position: absolute; top: 2px; left: 4px; font-size: 0.52rem; font-weight: 800; color: #c0186a; line-height: 1; pointer-events: none; z-index: 2; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+    @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.25)} 100%{transform:scale(1)} }
+    .clues-section { width: 100%; }
+    .clues-section h3 { font-size: 1rem; font-weight: 800; margin-bottom: 8px; color: #7c0048; }
+    .clue-card { display: flex; align-items: center; gap: 10px; background: white; border-radius: 14px; padding: 10px 14px; margin-bottom: 8px; border: 2px solid #f9a8d4; cursor: pointer; transition: border-color .15s, background .15s; box-shadow: 0 2px 8px rgba(214,0,110,.08); }
+    .clue-card:hover { border-color: #ff69b4; background: #fff0f8; }
+    .clue-card.cur { border-color: #ff69b4; background: #ffe4f4; }
+    .clue-card.done { opacity: .45; text-decoration: line-through; }
+    .clue-emoji { font-size: 1.7rem; flex-shrink: 0; }
+    .clue-body { flex: 1; }
+    .clue-num { font-size: .75rem; font-weight: 800; color: #ff69b4; }
+    .clue-text { font-size: .92rem; font-weight: 700; color: #333; line-height: 1.3; }
+    .btn-row { display: flex; gap: 12px; }
+    .btn { border: none; border-radius: 30px; padding: 12px 26px; font-family: 'Baloo 2', sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; transition: transform .1s; }
+    .btn:active { transform: scale(.95); }
+    .btn-reset { background: white; color: #ff69b4; border: 2.5px solid #ff69b4; }
+    .btn-check { background: #ff69b4; color: white; box-shadow: 0 4px 12px rgba(255,105,180,.4); }
+    #win-overlay { display: none; position: fixed; inset: 0; background: rgba(255,220,240,.95); z-index: 100; align-items: center; justify-content: center; flex-direction: column; gap: 14px; }
+    #win-overlay.show { display: flex; }
+    .win-emoji { font-size: 5rem; animation: bounce .55s ease infinite alternate; }
+    @keyframes bounce { from{transform:scale(1) rotate(-5deg)} to{transform:scale(1.2) rotate(5deg)} }
+    #win-overlay h2 { color: #d6006e; font-size: 2rem; font-weight: 800; text-align: center; }
+    #win-overlay p { color: #a0005a; font-size: 1.05rem; text-align: center; }
+    .win-deco { font-size: 1.8rem; letter-spacing: 6px; }
+    .win-btns { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; justify-content: center; }
+    .win-btns button { border: none; border-radius: 30px; padding: 12px 28px; font-family: 'Baloo 2',sans-serif; font-size: 1rem; font-weight: 800; cursor: pointer; }
+    .win-btns .btn-again { background: white; color: #ff69b4; border: 2.5px solid #ff69b4; }
+    .win-btns .btn-more { background: #ff69b4; color: white; }
+    @media (max-width: 380px) { .cell { width: 44px; height: 44px; } .cell.white input { font-size: 1.3rem; } }
+  </style>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "WebApplication",
+    "name":  "كلمات متقاطعة للربيع للأطفال",
+    "url":  "https://cocotheaxolotl.org/ar/crossword/",
+    "description":  "كلمات متقاطعة مجانية للربيع للأطفال من 5 إلى 7 سنوات. حل ألغازاً بسيطة أونلاين مع كوكو ويمكن طباعتها.",
+    "applicationCategory":  "EducationalApplication",
+    "operatingSystem":  "Any (web browser)",
+    "isAccessibleForFree":  true,
+    "audience":  {
+                     "@type":  "Audience",
+                     "audienceType":  "Children",
+                     "suggestedMinAge":  5,
+                     "suggestedMaxAge":  7
+                 },
+    "offers":  {
+                   "@type":  "Offer",
+                   "price":  "0",
+                   "priceCurrency":  "USD"
+               },
+    "inLanguage": "ar",
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "كوكو الإكسولوتل",
+                      "url":  "https://cocotheaxolotl.org"
+                  }
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "FAQPage",
+    "mainEntity":  [
+                       {
+                           "@type":  "Question",
+                           "name":  "Ist dieses Kreuzworträtsel kostenlos?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Ja, das كلمات متقاطعة للربيع ist gratis und kann mit Coco online gespielt werden."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Für welches Alter ist dieses Kreuzworträtsel?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "Es ist für junge Leserinnen und Leser von 5 bis 7 Jahren gedacht, mit kurzen Hinweisen."
+                                              }
+                       },
+                       {
+                           "@type":  "Question",
+                           "name":  "Muss ich ein Konto erstellen?",
+                           "acceptedAnswer":  {
+                                                  "@type":  "Answer",
+                                                  "text":  "لا، لا يلزم التسجيل. يستطيع الأطفال فتح الصفحة واللعب مباشرة."
+                                              }
+                       }
+                   ]
+}
+</script>
+
+
+
+
+
+
+
+<link rel="canonical" href="https://cocotheaxolotl.org/ar/crossword/"><link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/crossword/"><link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/crossword/"><link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/crossword/"><link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/crossword/"><link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/crossword/"><link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/crossword/"><link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/jp/crossword/"><link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/crossword/">
+</head>
+<body>
+<header>
+<a href="/ar/">🏠 الرئيسية</a>
+<span class="sep">|</span>
+<a href="/ar/kids-games/">🎮 ألعاب</a>
+</header>
+<div class="hero">
+<div class="deco-row">🐰🌸🥚🌼🐣</div>
+<h1>كلمات متقاطعة للربيع!</h1>
+<p class="subtitle">5–7 Jahre  ·  Tippe auf einen Hinweis und schreibe die Buchstaben!</p>
+</div>
+<div id="game">
+<div class="grid-wrap">
+<div id="crossword-grid"></div>
+</div>
+<div class="clues-section">
+<h3>➡️ أفقي</h3>
+<div id="clues-across"></div>
+</div>
+<div class="clues-section">
+<h3>⬇️ عمودي</h3>
+<div id="clues-down"></div>
+</div>
+<div class="btn-row">
+<button class="btn btn-reset" onclick="resetGame()">🔄 مرة أخرى</button>
+<button class="btn btn-check" onclick="checkAll()">✔️ تحقق!</button>
+</div>
+</div>
+<div id="win-overlay">
+<div class="win-emoji">🏆</div>
+<div class="win-deco">🐰🌸🥚🌼🐣</div>
+<h2>أحسنت! لقد نجحت! 🎉</h2>
+<p>لقد حللت الكلمات المتقاطعة للربيع! ⭐</p>
+<div class="win-btns">
+<button class="btn-again" onclick="resetGame()" type="button">🔄 مرة أخرى</button>
+<button class="btn-more" onclick="window.location.href='/de/kids-games/'" type="button">ألعاب أكثر ←</button>
+</div>
+</div>
+<script>
+/*
+  DE-Gitter (6 Zeilen × 6 Spalten):
+
+    O S T E R N    → OSTERN
+    ■ ■ U ■ ■ ■
+    P A L M E ■    → PALME
+    ■ ■ P ■ ■ ■
+    B I E N E ■    → BIENE
+    H A S E ■ ■    → HASE
+
+  TULPE läuft senkrecht in Spalte 2 (T,U,L,P,E) und kreuzt die anderen Wörter.
+*/
+
+const ROWS=6, COLS=6;
+
+const WORDS = {
+  across: {
+    1: { cells:[[0,0],[0,1],[0,2],[0,3],[0,4],[0,5]], answer:'OSTERN', emoji:'🐣', clue:"Das Frühlingsfest mit Eiern" },
+    3: { cells:[[2,0],[2,1],[2,2],[2,3],[2,4]],       answer:'PALME',  emoji:'🌴', clue:"Ein hoher Baum am Strand" },
+    4: { cells:[[4,0],[4,1],[4,2],[4,3],[4,4]],       answer:'BIENE',  emoji:'🐝', clue:"Sie macht Honig" },
+    5: { cells:[[5,0],[5,1],[5,2],[5,3]],             answer:'HASE',   emoji:'🐰', clue:"Er bringt die Ostereier" },
+  },
+  down: {
+    2: { cells:[[0,2],[1,2],[2,2],[3,2],[4,2]],       answer:'TULPE',  emoji:'🌷', clue:"Eine schöne Frühlingsblume" },
+  }
+};
+
+const cmap = {};
+function addCell(r,c,letter,num) {
+  const k=r+','+c; if(!cmap[k]) cmap[k]={letter,words:[]}; if(num) cmap[k].num=num;
+}
+addCell(0,0,'O',1); addCell(0,1,'S'); addCell(0,2,'T',2); addCell(0,3,'E'); addCell(0,4,'R'); addCell(0,5,'N');
+addCell(1,2,'U');
+addCell(2,0,'P',3); addCell(2,1,'A'); addCell(2,2,'L'); addCell(2,3,'M'); addCell(2,4,'E');
+addCell(3,2,'P');
+addCell(4,0,'B',4); addCell(4,1,'I'); addCell(4,2,'E'); addCell(4,3,'N'); addCell(4,4,'E');
+addCell(5,0,'H',5); addCell(5,1,'A'); addCell(5,2,'S'); addCell(5,3,'E');
+
+['across','down'].forEach(dir=>{
+  Object.entries(WORDS[dir]).forEach(([num,wd])=>{
+    wd.cells.forEach(([r,c])=>{ const k=r+','+c; if(cmap[k]) cmap[k].words.push({dir,num:+num}); });
+  });
+});
+
+let activeKey=null, activeDir='across', activeNum=null;
+
+function buildGrid() {
+  const grid=document.getElementById('crossword-grid');
+  grid.style.gridTemplateColumns=`repeat(${COLS},52px)`; grid.innerHTML='';
+  for(let r=0;r<ROWS;r++) for(let c=0;c<COLS;c++) {
+    const div=document.createElement('div'); div.className='cell';
+    const k=r+','+c;
+    if(cmap[k]) {
+      div.classList.add('white');
+      if(cmap[k].num){const n=document.createElement('div');n.className='cell-num';n.textContent=cmap[k].num;div.appendChild(n);}
+      const inp=document.createElement('input');
+      inp.type='text';inp.maxLength=2;inp.autocomplete='off';inp.autocorrect='off';inp.autocapitalize='characters';inp.spellcheck=false;
+      cmap[k].el=div;cmap[k].inp=inp;div.appendChild(inp);
+      div.addEventListener('click',()=>onCellClick(r,c));
+      inp.addEventListener('keydown',e=>onKeyDown(e,r,c));
+      inp.addEventListener('input',e=>onInput(e,r,c));
+    }
+    grid.appendChild(div);
+  }
+}
+
+function buildClues() {
+  ['across','down'].forEach(dir=>{
+    const container=document.getElementById('clues-'+dir);container.innerHTML='';
+    Object.entries(WORDS[dir]).forEach(([num,wd])=>{
+      const card=document.createElement('div');card.className='clue-card';card.id='clue-'+dir+'-'+num;
+      card.innerHTML=`<div class="clue-emoji">${wd.emoji}</div><div class="clue-body"><div class="clue-num">${num} ${dir==='across'?'→':'↓'}</div><div class="clue-text">${wd.clue}</div></div>`;
+      card.addEventListener('click',()=>selectWord(+num,dir));
+      container.appendChild(card);
+    });
+  });
+}
+
+function selectWord(num,dir) {
+  activeDir=dir;activeNum=num;
+  const wd=WORDS[dir][num];let target=wd.cells[0];
+  for(const [r,c] of wd.cells){if(!cmap[r+','+c].inp.value){target=[r,c];break;}}
+  activeKey=target[0]+','+target[1];refresh();cmap[activeKey].inp.focus();
+}
+function onCellClick(r,c) {
+  const k=r+','+c;
+  if(activeKey===k){const dirs=[...new Set(cmap[k].words.map(w=>w.dir))];if(dirs.length>1){activeDir=activeDir==='across'?'down':'across';const w=cmap[k].words.find(w=>w.dir===activeDir);if(w)activeNum=w.num;}}
+  else{activeKey=k;const w=cmap[k].words.find(w=>w.dir===activeDir)||cmap[k].words[0];if(w){activeDir=w.dir;activeNum=w.num;}}
+  refresh();cmap[k].inp.focus();
+}
+function onKeyDown(e,r,c) {
+  const k=r+','+c;
+  if(e.key==='Backspace'){e.preventDefault();if(cmap[k].inp.value){cmap[k].inp.value='';cmap[k].el.classList.remove('ok','wrong');}else{move(r,c,-1);}return;}
+  if(e.key==='Enter'){e.preventDefault();move(r,c,1);return;}
+  if(e.key==='ArrowRight'){e.preventDefault();if(activeDir==='across')move(r,c,1);else{activeDir='across';const w=cmap[k].words.find(w=>w.dir==='across');if(w)activeNum=w.num;refresh();}return;}
+  if(e.key==='ArrowLeft') {e.preventDefault();if(activeDir==='across')move(r,c,-1);else{activeDir='across';const w=cmap[k].words.find(w=>w.dir==='across');if(w)activeNum=w.num;refresh();}return;}
+  if(e.key==='ArrowDown') {e.preventDefault();if(activeDir==='down')move(r,c,1);else{activeDir='down';const w=cmap[k].words.find(w=>w.dir==='down');if(w)activeNum=w.num;refresh();}return;}
+  if(e.key==='ArrowUp')   {e.preventDefault();if(activeDir==='down')move(r,c,-1);else{activeDir='down';const w=cmap[k].words.find(w=>w.dir==='down');if(w)activeNum=w.num;refresh();}return;}
+}
+function onInput(e,r,c) {
+  const k=r+','+c;
+  const raw=cmap[k].inp.value.replace(/[^a-zA-ZäöüßÄÖÜ]/g,'').toUpperCase();
+  cmap[k].inp.value=raw?raw[raw.length-1]:'';
+  cmap[k].el.classList.remove('ok','wrong');
+  if(cmap[k].inp.value){if(cmap[k].inp.value===cmap[k].letter)cmap[k].el.classList.add('ok');move(r,c,1);checkWin();}
+}
+function move(r,c,delta) {
+  const wd=WORDS[activeDir][activeNum];if(!wd)return;
+  const idx=wd.cells.findIndex(([cr,cc])=>cr===r&&cc===c);
+  const next=wd.cells[idx+delta];
+  if(next){activeKey=next[0]+','+next[1];refresh();cmap[activeKey].inp.focus();}
+}
+function refresh() {
+  Object.values(cmap).forEach(cd=>cd.el.classList.remove('sel','cur'));
+  document.querySelectorAll('.clue-card').forEach(el=>el.classList.remove('cur'));
+  if(activeNum&&WORDS[activeDir][activeNum])WORDS[activeDir][activeNum].cells.forEach(([r,c])=>cmap[r+','+c].el.classList.add('sel'));
+  if(activeKey&&cmap[activeKey]){cmap[activeKey].el.classList.remove('sel');cmap[activeKey].el.classList.add('cur');}
+  const el=document.getElementById('clue-'+activeDir+'-'+activeNum);if(el)el.classList.add('cur');
+}
+function checkAll() {
+  Object.entries(cmap).forEach(([k,cd])=>{
+    if(!cd.inp.value)return;
+    if(cd.inp.value===cd.letter)cd.el.classList.add('ok');
+    else{cd.inp.value='';cd.el.classList.remove('ok');cd.el.classList.add('wrong');setTimeout(()=>cd.el.classList.remove('wrong'),400);}
+  });checkWin();
+}
+function checkWin() {
+  if(Object.values(cmap).every(cd=>cd.inp.value===cd.letter)){
+    ['across','down'].forEach(dir=>Object.keys(WORDS[dir]).forEach(num=>{const e=document.getElementById('clue-'+dir+'-'+num);if(e)e.classList.add('done');}));
+    setTimeout(()=>document.getElementById('win-overlay').classList.add('show'),500);
+  }
+}
+function resetGame() {
+  Object.values(cmap).forEach(cd=>{cd.inp.value='';cd.el.classList.remove('ok','wrong','sel','cur');});
+  document.querySelectorAll('.clue-card').forEach(el=>el.classList.remove('cur','done'));
+  document.getElementById('win-overlay').classList.remove('show');
+  activeKey=null;activeDir='across';activeNum=null;
+}
+
+buildGrid();buildClues();
+</script>
+<script src="/js/lang-switcher.js"></script>
+<script>if("serviceWorker" in navigator){ navigator.serviceWorker.register("/sw.js"); }</script>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">هل أنت مؤلف أو رسام أو ناشر KDP؟ اكتشف أدوات إبداعية أكثر تقدماً على <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
+</body>
+</html>

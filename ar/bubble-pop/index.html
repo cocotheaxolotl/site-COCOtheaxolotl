@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());gtag('config','G-6Y0T0Q28E6');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
+<title>فرقعة الفقاعات – مجاني للأطفال | كوكو الإكسولوتل</title>
+<meta content="لعبة فقاعات مجانية للأطفال من 3 إلى 8 سنوات. اضغط على الفقاعات، التقط كوكو واستمتع بنشاط أونلاين بسيط للأطفال." name="description"/>
+<meta content="index, follow" name="robots"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+
+
+
+
+<meta content="لعبة فرقعة الفقاعات - لعبة أطفال مجانية مع كوكو الإكسولوتل" property="og:title"/>
+<meta content="اضغط على الفقاعات قبل أن تطير! التقط فقاعة كوكو الخاصة لنقاط إضافية. لعبة مجانية للأطفال من 3 إلى 8 سنوات." property="og:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="https://cocotheaxolotl.org/ar/bubble-pop/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="كوكو الإكسولوتل" property="og:site_name"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&amp;display=swap" rel="stylesheet"/>
+<style>
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+  html, body{direction:rtl;text-align:right;
+    font-family:'Baloo 2',cursive;
+    background:#87ceeb;
+    overflow:hidden;
+    height:100%;
+    width:100%;
+    user-select:none;
+  }
+
+  /* ── Game canvas area ── */
+  #gameArea{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background: linear-gradient(180deg, #87ceeb 0%, #b8e4f9 40%, #d4f1ff 70%, #e8f8ff 100%);
+  }
+
+  /* ── HUD ── */
+  #hud{
+    position:absolute;
+    top:0; left:0; right:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 16px;
+    z-index:20;
+    pointer-events:none;
+  }
+  .hud-box{
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(6px);
+    border-radius:18px;
+    padding:6px 16px;
+    font-size:1.1em;
+    font-weight:800;
+    color:#ff69b4;
+    box-shadow:0 4px 14px rgba(255,105,180,.2);
+    pointer-events:auto;
+  }
+  #timerBox{ color:#5bc8f5; }
+  #timerBox.urgent{ color:#ff4444; animation:pulse .5s ease-in-out infinite alternate; }
+  @keyframes pulse{ from{transform:scale(1)} to{transform:scale(1.1)} }
+
+  /* back link */
+  #backBtn{
+    position:absolute;
+    top:12px; left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,.7);
+    border-radius:18px;
+    padding:5px 14px;
+    font-size:.8em;
+    font-weight:800;
+    color:#ff69b4;
+    text-decoration:none;
+    z-index:21;
+    pointer-events:auto;
+  }
+
+  /* ── Bubbles ── */
+  .bubble{
+    position:absolute;
+    border-radius:50%;
+    cursor:pointer;
+    pointer-events:auto;
+    transition:transform .08s ease;
+    will-change:transform;
+  }
+  .bubble:active{ transform:scale(.92); }
+  .bubble.popping{
+    animation:popAnim .22s ease forwards;
+    pointer-events:none;
+  }
+  @keyframes popAnim{
+    0%  { transform:scale(1);   opacity:1; }
+    60% { transform:scale(1.5); opacity:.6; }
+    100%{ transform:scale(2);   opacity:0; }
+  }
+
+  /* bubble visuals */
+  .bubble-inner{
+    width:100%; height:100%;
+    border-radius:50%;
+    position:relative;
+    overflow:hidden;
+  }
+  /* shine */
+  .bubble-inner::before{
+    content:'';
+    position:absolute;
+    top:12%; left:18%;
+    width:30%; height:22%;
+    background:rgba(255,255,255,.55);
+    border-radius:50%;
+    transform:rotate(-30deg);
+  }
+
+  /* Coco bubble */
+  .bubble.coco .bubble-inner{
+    border:3px solid rgba(255,105,180,.6);
+  }
+  .bubble.coco img{
+    width:90%; height:90%;
+    object-fit:contain;
+    position:absolute;
+    top:5%; left:5%;
+  }
+
+  /* score pop text */
+  .score-pop{
+    position:absolute;
+    font-family:'Baloo 2',cursive;
+    font-weight:800;
+    font-size:1.4em;
+    color:#ff69b4;
+    text-shadow:0 2px 6px rgba(0,0,0,.15);
+    pointer-events:none;
+    animation:scoreRise .7s ease forwards;
+    z-index:30;
+  }
+  @keyframes scoreRise{
+    0%  { opacity:1; transform:translateY(0) scale(1); }
+    100%{ opacity:0; transform:translateY(-60px) scale(1.3); }
+  }
+
+  /* ── Overlay screens ── */
+  .screen{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    z-index:50;
+    background:rgba(135,206,235,.88);
+    backdrop-filter:blur(8px);
+    text-align:center;
+    padding:24px;
+  }
+  .screen h1{ font-size:2.4em; color:#fff; text-shadow:0 3px 10px rgba(0,0,0,.2); line-height:1.1; }
+  .screen p { font-size:1.1em; color:#fff; opacity:.9; }
+  .screen .coco-img{ width:160px; max-width:50vw; filter:drop-shadow(0 6px 18px rgba(0,0,0,.2)); }
+  .btn{
+    font-family:'Baloo 2',cursive;
+    font-size:1.2em;
+    font-weight:800;
+    border:none;
+    border-radius:32px;
+    padding:14px 36px;
+    cursor:pointer;
+    background:#ff69b4;
+    color:#fff;
+    box-shadow:0 6px 20px rgba(255,105,180,.4);
+    transition:filter .15s, transform .1s;
+  }
+  .btn:hover{ filter:brightness(.93); }
+  .btn:active{ transform:scale(.96); }
+  .btn-secondary{ background:#fff; color:#ff69b4; box-shadow:0 4px 12px rgba(0,0,0,.1); }
+
+  .score-big{
+    font-size:4em;
+    font-weight:800;
+    color:#ff69b4;
+    text-shadow:0 4px 16px rgba(255,105,180,.4);
+    line-height:1;
+  }
+  .stars{ font-size:2em; }
+
+  /* decorative sea floor */
+  #seaFloor{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    height:48px;
+    background:linear-gradient(180deg, transparent, rgba(180,230,255,.5));
+    pointer-events:none;
+    z-index:5;
+  }
+
+  /* confetti */
+  .conf{
+    position:absolute;
+    width:10px; height:10px;
+    border-radius:2px;
+    pointer-events:none;
+    z-index:40;
+    animation:confFall 1s ease-in forwards;
+  }
+  @keyframes confFall{
+    0%  { opacity:1; transform:translateY(0) rotate(0deg); }
+    100%{ opacity:0; transform:translateY(80px) rotate(360deg); }
+  }
+</style>
+<script type="application/ld+json">
+{
+    "@context":  "https://schema.org",
+    "@type":  "WebApplication",
+    "name":  "فرقعة الفقاعات",
+    "url":  "https://cocotheaxolotl.org/ar/bubble-pop/",
+    "description":  "لعبة فقاعات مجانية للأطفال من 3 إلى 8 سنوات. اضغط على الفقاعات، التقط كوكو واستمتع بنشاط أونلاين بسيط للأطفال.",
+    "applicationCategory":  "EducationalApplication",
+    "operatingSystem":  "Any (web browser)",
+    "isAccessibleForFree":  true,
+    "audience":  {
+                     "@type":  "Audience",
+                     "audienceType":  "Children",
+                     "suggestedMinAge":  3,
+                     "suggestedMaxAge":  8
+                 },
+    "offers":  {
+                   "@type":  "Offer",
+                   "price":  "0",
+                   "priceCurrency":  "USD"
+               },
+    "inLanguage": "ar",
+    "publisher":  {
+                      "@type":  "Organization",
+                      "name":  "كوكو الإكسولوتل",
+                      "url":  "https://cocotheaxolotl.org"
+                  }
+}
+</script>
+
+
+
+
+
+
+
+<link rel="canonical" href="https://cocotheaxolotl.org/ar/bubble-pop/"><link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"><link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"><link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"><link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"><link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/bubble-pop/"><link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"><link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/jp/bubble-pop/"><link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/">
+</head>
+<body>
+<div id="gameArea">
+<div id="seaFloor"></div>
+<!-- HUD -->
+<div id="hud">
+<div class="hud-box" id="scoreBox">⭐ <span id="scoreVal">0</span></div>
+<div class="hud-box" id="timerBox">⏱ <span id="timerVal">60</span>s</div>
+</div>
+<a href="/ar/kids-games/" id="backBtn">← ألعاب</a>
+<!-- Start screen -->
+<div class="screen" id="startScreen">
+<img alt="Coco" class="coco-img" onerror="this.style.display='none'" src="/coco.png"/>
+<h1>🫧 فرّقع الفقاعات!</h1>
+<p>اضغط على كل فقاعة قبل أن تهرب!<br/>التقط فقاعة كوكو لنقاط إضافية!</p>
+<button class="btn" id="btnStart">▶ ابدأ!</button>
+<a href="/ar/kids-games/" style="color:#fff;font-weight:800;font-size:.9em;text-decoration:none;opacity:.8">← العودة إلى الألعاب</a>
+</div>
+<!-- Game over screen -->
+<div class="screen" id="endScreen" style="display:none">
+<img alt="Coco" class="coco-img" onerror="this.style.display='none'" src="/coco.png"/>
+<h1>انتهى الوقت! 🎉</h1>
+<div class="score-big" id="finalScore">0</div>
+<div class="stars" id="starRating">⭐⭐⭐</div>
+<p id="endMsg">رائع!</p>
+<button class="btn" id="btnReplay">🔄 العب مرة أخرى</button>
+<a class="btn btn-secondary" href="/ar/kids-games/" style="text-decoration:none">← ألعاب</a>
+</div>
+</div>
+<script>
+const gameArea   = document.getElementById('gameArea');
+const scoreVal   = document.getElementById('scoreVal');
+const timerVal   = document.getElementById('timerVal');
+const timerBox   = document.getElementById('timerBox');
+const startScreen= document.getElementById('startScreen');
+const endScreen  = document.getElementById('endScreen');
+const finalScore = document.getElementById('finalScore');
+const starRating = document.getElementById('starRating');
+const endMsg     = document.getElementById('endMsg');
+
+let score = 0;
+let timeLeft = 60;
+let timerInterval = null;
+let spawnInterval = null;
+let running = false;
+let audioCtx = null;
+
+// Bubble colors — each with a clearly distinct note spread over 2 octaves
+const COLORS = [
+  ['rgba(255,182,214,.55)','rgba(255,105,180,.35)', 261.63],  // pink   → Do3  (grave)
+  ['rgba(180,230,255,.55)','rgba(90,180,240,.35)',  392.00],  // blue   → Sol3
+  ['rgba(200,180,255,.55)','rgba(150,100,240,.35)', 523.25],  // purple → Do4  (médium)
+  ['rgba(180,255,220,.55)','rgba(80,200,140,.35)',  783.99],  // mint   → Sol4
+  ['rgba(255,230,150,.55)','rgba(255,180,50,.35)', 1046.50],  // yellow → Do5  (aigu)
+];
+
+function playPop(freq){
+  try {
+    if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    const t = audioCtx.currentTime;
+
+    // Guitar pluck: sawtooth + lowpass filter → warm string sound
+    const osc    = audioCtx.createOscillator();
+    const filter = audioCtx.createBiquadFilter();
+    const gain   = audioCtx.createGain();
+
+    osc.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(freq, t);
+
+    // Filter sweeps down quickly (simulates pluck attack)
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(freq * 8, t);
+    filter.frequency.exponentialRampToValueAtTime(freq * 1.2, t + 0.08);
+    filter.Q.value = 2;
+
+    // Envelope: instant attack, decay like a plucked string
+    gain.gain.setValueAtTime(0.3, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+
+    osc.start(t); osc.stop(t + 0.6);
+  } catch(e){}
+}
+
+function spawnConfetti(x, y, color){
+  const colors = ['#ff69b4','#87ceeb','#dda0dd','#98fb98','#ffd700'];
+  for(let i=0;i<6;i++){
+    const el = document.createElement('div');
+    el.className = 'conf';
+    el.style.cssالنص = `
+      left:${x + (Math.random()-0.5)*40}px;
+      top:${y}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      transform:rotate(${Math.random()*360}deg);
+    `;
+    gameArea.appendChild(el);
+    el.addEventListener('animationend', ()=>el.remove());
+  }
+}
+
+function showScorePop(x, y, pts){
+  const el = document.createElement('div');
+  el.className = 'score-pop';
+  el.textContent = '+' + pts;
+  el.style.left = x + 'px';
+  el.style.top  = y + 'px';
+  gameArea.appendChild(el);
+  el.addEventListener('animationend', ()=>el.remove());
+}
+
+function spawnBubble(){
+  if(!running) return;
+  const W = gameArea.offsetWidth;
+  const H = gameArea.offsetHeight;
+
+  // Random size: small/medium/large/coco
+  const roll = Math.random();
+  const isCoco = roll > 0.88;
+  const size = isCoco ? 72 :
+               roll > 0.65 ? 80 + Math.random()*30 :   // large
+               roll > 0.3  ? 50 + Math.random()*25 :   // medium
+                             30 + Math.random()*18;     // small
+  const pts = isCoco ? 5 :
+              size > 75 ? 1 :
+              size > 55 ? 2 : 3;
+
+  // Speed: smaller = faster
+  const speed = isCoco ? 1.2 : 0.6 + (90 - size) * 0.03;
+  const drift = (Math.random() - 0.5) * 0.4; // slight horizontal drift
+
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble' + (isCoco ? ' coco' : '');
+
+  const x = Math.random() * (W - size);
+  const startY = H + size;
+  let   currentY = startY;
+  let   currentX = x;
+
+  bubble.style.cssالنص = `
+    width:${size}px; height:${size}px;
+    left:${x}px; top:${startY}px;
+  `;
+
+  const inner = document.createElement('div');
+  inner.className = 'bubble-inner';
+
+  if(isCoco){
+    const img = document.createElement('img');
+    img.src = '/coco.png';
+    img.alt = 'Coco';
+    img.style.cssالنص='width:88%;height:88%;object-fit:contain;position:absolute;top:6%;left:6%';
+    inner.style.background = 'radial-gradient(circle at 35% 35%, rgba(255,200,230,.8), rgba(255,105,180,.3))';
+    inner.appendChild(img);
+  } else {
+    const colorIdx = Math.floor(Math.random()*COLORS.length);
+    const [c1, c2] = COLORS[colorIdx];
+    inner.style.background = `radial-gradient(circle at 35% 35%, ${c1}, ${c2})`;
+    inner.style.border = `1.5px solid rgba(255,255,255,.5)`;
+    bubble.dataset.colorIdx = colorIdx;
+  }
+
+  bubble.appendChild(inner);
+  gameArea.appendChild(bubble);
+
+  // Pop handler
+  function pop(e){
+    if(!running) return;
+    e.stopPropagation();
+    bubble.classList.add('popping');
+    clearInterval(moveInt);
+    score += pts;
+    scoreVal.textContent = score;
+    const rect = bubble.getBoundingClientRect();
+    const cx = rect.left + size/2;
+    const cy = rect.top  + size/2;
+    const freq = isCoco ? 1046.50 : COLORS[bubble.dataset.colorIdx][2];
+    playPop(freq);
+    showScorePop(currentX + size/2 - 20, currentY, pts);
+    spawnConfetti(cx, cy);
+    bubble.addEventListener('animationend', ()=>bubble.remove());
+  }
+  bubble.addEventListener('click',      pop);
+  bubble.addEventListener('touchstart', pop, {passive:true});
+
+  // Float upward
+  const moveInt = setInterval(()=>{
+    if(!running){ clearInterval(moveInt); bubble.remove(); return; }
+    currentY -= speed;
+    currentX += drift;
+    bubble.style.top  = currentY + 'px';
+    bubble.style.left = currentX + 'px';
+    if(currentY < -size - 10){
+      clearInterval(moveInt);
+      bubble.remove();
+    }
+  }, 16);
+}
+
+function startGame(){
+  score    = 0;
+  timeLeft = 60;
+  running  = true;
+  scoreVal.textContent = '0';
+  timerVal.textContent = '60';
+  timerBox.classList.remove('urgent');
+
+  startScreen.style.display = 'none';
+  endScreen.style.display   = 'none';
+
+  // Remove leftover bubbles
+  gameArea.querySelectorAll('.bubble').forEach(b=>b.remove());
+
+  // Spawn bubbles
+  spawnBubble(); spawnBubble(); // immediate
+  spawnInterval = setInterval(()=>{
+    spawnBubble();
+    if(timeLeft < 30) spawnBubble(); // faster pace in second half
+  }, 900);
+
+  // Timer
+  timerInterval = setInterval(()=>{
+    timeLeft--;
+    timerVal.textContent = timeLeft;
+    if(timeLeft <= 10) timerBox.classList.add('urgent');
+    if(timeLeft <= 0){
+      clearInterval(timerInterval);
+      clearInterval(spawnInterval);
+      running = false;
+      setTimeout(showEnd, 400);
+    }
+  }, 1000);
+}
+
+function showEnd(){
+  gameArea.querySelectorAll('.bubble').forEach(b=>b.remove());
+  finalScore.textContent = score;
+  // Star rating
+  const stars = score >= 30 ? '⭐⭐⭐' : score >= 15 ? '⭐⭐' : '⭐';
+  const msgs  = score >= 30 ? ['رائع! 🎉','Unglaublich! 🌟','Superstar! 💫'] :
+                score >= 15 ? ['Gut gemacht! 🎊','Tolle Arbeit! 👏','Klasse! 🐠'] :
+                              ['Versuch es weiter! 💪','Du schaffst das! 🫧','Übung macht den Meister!'];
+  starRating.textContent = stars;
+  endMsg.textContent = msgs[Math.floor(Math.random()*msgs.length)];
+  endScreen.style.display = 'flex';
+}
+
+document.getElementById('btnStart').addEventListener('click', startGame);
+document.getElementById('btnReplay').addEventListener('click', ()=>{
+  endScreen.style.display = 'none';
+  startGame();
+});
+
+// Unlock audio on first interaction
+document.addEventListener('click', ()=>{
+  if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+}, {once:true});
+</script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js");}</script>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">هل أنت مؤلف أو رسام أو ناشر KDP؟ اكتشف أدوات إبداعية أكثر تقدماً على <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
+</body>
+</html>
