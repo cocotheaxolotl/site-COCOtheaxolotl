@@ -86,6 +86,17 @@
       err: 'Ungültige E-Mail.',
       errNet: 'Netzwerkfehler.',
       close: 'Schließen'
+    },
+    pt: {
+      title: 'Antes de baixar...',
+      sub: 'Deixe seu email para receber o arquivo <strong>+ desenhos da Coco para colorir grátis todos os meses</strong>. Sem spam.',
+      name: 'Nome (opcional)',
+      email: 'Seu email',
+      btn: 'Receber e baixar',
+      loading: 'Enviando...',
+      err: 'Email inválido. Tente de novo.',
+      errNet: 'Problema de rede. Tente de novo.',
+      close: 'Fechar'
     }
   };
 
