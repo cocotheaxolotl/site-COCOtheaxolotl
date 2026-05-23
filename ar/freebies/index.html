@@ -17,7 +17,7 @@
 <link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/">
 <link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/">
 <link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/">
-<link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/jp/freebies/">
+<link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/">
 <link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/">
 <link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/">
 <link rel="icon" href="/favicon.ico">
@@ -30,8 +30,9 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Baloo 2',system-ui,-apple-system,Segoe UI,Arial,sans-serif;line-height:1.75;text-align:right}
 header{background:var(--pink2);padding:24px 18px;text-align:center}
-.nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-.nav a{color:#b51263;text-decoration:none;font-weight:800;background:#fff;border-radius:999px;padding:7px 14px}
+.nav,.lang-toggle{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.nav a,.lang-btn{color:#b51263;text-decoration:none;font-weight:800;background:#fff;border-radius:999px;padding:7px 14px}
+.lang-btn.active{background:#ff69b4;color:#fff}
 main{max-width:920px;margin:0 auto;padding:34px 18px}
 h1{margin:0;color:#c0186a;font-size:clamp(2rem,5vw,3rem);line-height:1.15}
 h2{color:#c0186a;margin-top:30px}
@@ -50,6 +51,7 @@ footer{text-align:center;color:#666;padding:24px}
 <a href="/ar/freebies/">صفحات التلوين</a>
 <a href="/ar/blog/">المدونة</a>
 </nav>
+<div class="lang-toggle"><a class="lang-btn" href="/freebies/">EN</a><a class="lang-btn" href="/fr/freebies/">FR</a><a class="lang-btn" href="/es/freebies/">ES</a><a class="lang-btn" href="/it/freebies/">IT</a><a class="lang-btn" href="/ja/freebies/">JA</a><a class="lang-btn active" href="/ar/freebies/">AR</a></div>
 <h1>صفحات تلوين مجانية</h1>
 </header>
 <main>
