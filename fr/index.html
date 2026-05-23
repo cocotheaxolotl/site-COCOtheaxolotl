@@ -1183,7 +1183,7 @@ En t'inscrivant, tu acceptes de recevoir notre newsletter.<br/>Désinscription p
         fetch("/api/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: name, email: email, lang: document.documentElement.lang || 'en' })
+          body: JSON.stringify({ name: name, email: email, lang: document.documentElement.lang || 'en', source_url: location.href })
         })
         .then(function(r){ return r.json(); })
         .then(function(data){

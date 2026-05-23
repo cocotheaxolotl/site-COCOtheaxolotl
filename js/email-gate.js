@@ -198,7 +198,7 @@
       fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, name: name, lang: getLang() })
+        body: JSON.stringify({ email: email, name: name, lang: getLang(), source_url: location.href })
       }).then(function (r) {
         if (!r.ok && r.status !== 204) throw new Error('bad');
         markEmailGiven();

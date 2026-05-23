@@ -1094,7 +1094,7 @@ Al suscribirte, aceptas recibir nuestro boletín.<br/>Puedes cancelar en cualqui
         fetch("/api/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: name, email: email, lang: document.documentElement.lang || 'en' })
+          body: JSON.stringify({ name: name, email: email, lang: document.documentElement.lang || 'en', source_url: location.href })
         })
         .then(function(r){ return r.json(); })
         .then(function(data){
