@@ -26,6 +26,8 @@ seo-tracker/data/
 seo-tracker/seo-config.js
 poster-hero.webp
 .vercel
+dist/
+.wrangler/
 
 # Local notes with private access details
 SECRETS-*.local.md
