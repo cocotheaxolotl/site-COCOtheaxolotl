@@ -1,60 +1,62 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1a1a2e">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<meta content="#1a1a2e" name="theme-color"/>
 <title>Coco Coherence | Univers Studio</title>
-<meta name="description" content="Respiration guidée avec Coco. Fonctionne directement sur le site.">
-<link rel="canonical" href="https://univers.studio/fr/coherence/">
+<meta content="Respiration guidée avec Coco. Fonctionne directement sur le site." name="description"/>
+<link href="https://univers.studio/fr/coherence/" rel="canonical"/><link href="https://cocotheaxolotl.org/coherence/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/coherence/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/coherence/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/coherence/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/coherence/" hreflang="x-default" rel="alternate"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,system-ui,sans-serif;background:linear-gradient(160deg,#0e1730 0%,#15203c 45%,#0f3460 100%);color:#fff;min-height:100vh;padding:24px 14px}a{color:inherit;text-decoration:none}.wrap{width:min(1280px,calc(100vw - 28px));margin:0 auto}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:20px}.langs{display:flex;gap:8px;flex-wrap:wrap}.langs a{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);font-weight:700}.langs a.active{background:#ff6b9d}.hero{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start}.copy{width:100%}.copy h1{font-size:clamp(2.1rem,4vw,3.5rem);line-height:1.04;margin:16px 0;max-width:18ch}.eyebrow{display:inline-block;padding:8px 12px;border-radius:999px;background:rgba(255,182,193,.14);border:1px solid rgba(255,182,193,.25);font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}.lead{max-width:80ch;color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:18px}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{padding:14px 18px;border-radius:16px;font-weight:800}.primary{background:linear-gradient(135deg,#ff6b9d,#c44dff)}.secondary{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}.tip{width:min(100%,840px);margin-top:16px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);line-height:1.6;color:rgba(255,255,255,.78)}.app{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:28px;padding:28px;backdrop-filter:blur(12px);overflow:auto}.app-grid{display:grid;grid-template-columns:minmax(270px,320px) minmax(0,1fr);gap:28px;align-items:center}.choices{display:grid;gap:10px}.choice{padding:16px;border-radius:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);cursor:pointer}.choice.active{border-color:rgba(255,182,193,.45);background:rgba(255,182,193,.12)}.choice b{display:block;font-size:1.05rem;line-height:1.25;color:#ffe7f0}.choice span{display:block;font-size:1rem;color:#ffd9e6;margin-top:6px;line-height:1.35}.durations{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.dur-btn{padding:10px 15px;border:none;border-radius:999px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:1rem}.dur-btn.active{background:#ffd9e6;color:#40253a}.play{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;min-height:0;text-align:center;padding:10px 0}.music{padding:12px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.08);color:#fff;cursor:pointer;font-size:1rem}.circle{position:relative;width:320px;height:320px;display:flex;align-items:center;justify-content:center;overflow:visible}.ring,.glow{position:absolute;border-radius:50%;transition-property:transform,box-shadow,border-color;transition-timing-function:ease-in-out}.ring{width:100%;height:100%;border:3px solid rgba(255,182,193,.3)}.glow{width:110%;height:110%;border:1px solid transparent}.ring.inhale{transform:scale(1);border-color:rgba(255,182,193,.6);box-shadow:0 0 40px rgba(255,182,193,.2),inset 0 0 40px rgba(255,182,193,.05)}.glow.inhale{transform:scale(1);box-shadow:0 0 60px rgba(255,182,193,.15)}.ring.hold{border-color:rgba(255,215,120,.5);box-shadow:0 0 35px rgba(255,215,120,.15),inset 0 0 35px rgba(255,215,120,.05)}.glow.hold{box-shadow:0 0 50px rgba(255,215,120,.12)}.ring.exhale{transform:scale(.65);border-color:rgba(147,130,220,.5);box-shadow:0 0 30px rgba(147,130,220,.15),inset 0 0 30px rgba(147,130,220,.05)}.glow.exhale{transform:scale(.65);box-shadow:0 0 40px rgba(147,130,220,.1)}.coco{position:relative;z-index:2;width:360px;transition-property:transform,filter;transition-timing-function:ease-in-out;filter:drop-shadow(0 0 15px rgba(255,182,193,.4))}.coco img{display:block;width:100%;height:auto}.coco.inhale{transform:translateY(-10px) scale(1.14) rotate(-2deg);filter:drop-shadow(0 0 25px rgba(255,182,193,.6))}.coco.hold{transform:translateY(-4px) scale(1.05);filter:drop-shadow(0 0 20px rgba(255,215,120,.5))}.coco.exhale{transform:translateY(12px) scale(.8) rotate(2deg);filter:drop-shadow(0 0 10px rgba(147,130,220,.4))}.coco-heart{position:absolute;left:30%;top:42%;width:40%;height:22%;object-fit:fill;transform-origin:center center;animation:heartbeat 3s ease-in-out infinite}@keyframes heartbeat{0%,100%{transform:scale(1)}8%{transform:scale(1.12)}16%{transform:scale(1)}24%{transform:scale(1.08)}32%{transform:scale(1)}}.count{position:absolute;bottom:18px;font-size:1.35rem;color:#ffe7f0;z-index:4}.instruction{font-size:clamp(1.8rem,3vw,2.3rem);font-weight:400;min-height:46px;line-height:1.2}.timer{font-size:clamp(2.4rem,4.8vw,3.6rem);font-variant-numeric:tabular-nums}.cycles{min-height:24px;color:#ffd9e6;font-size:1rem}.controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.controls button{padding:14px 24px;border:none;border-radius:999px;color:#fff;font-weight:800;cursor:pointer}.start{background:linear-gradient(135deg,#ff6b9d,#c44dff)}.stop{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16)}@media(max-width:920px){.wrap{width:min(100%,760px)}.app{padding:18px}.app-grid{grid-template-columns:1fr;gap:18px}.play{min-height:auto}.circle{width:min(56vw,230px);height:min(56vw,230px)}.coco{width:min(63vw,250px)}.lead,.tip{max-width:100%}}@media(max-width:640px){.top{flex-direction:column;align-items:flex-start}.wrap{width:100%}.copy h1{font-size:clamp(2rem,10vw,3rem);max-width:none}}
 </style>
+
 </head>
 <body>
 <div class="wrap">
-  <div class="top">
-    <a href="/fr/">Univers Studio x Coco</a>
-    <div class="langs"><a href="/coherence/">EN</a><a class="active" href="/fr/coherence/">FR</a><a href="/es/coherence/">ES</a></div>
-  </div>
-  <section class="hero">
-    <div class="copy">
-      <span class="eyebrow">Respirer avec Coco</span>
-      <h1>Un moment de calme, disponible quand tu veux.</h1>
-      <p class="lead">Une page de respiration pour le calme, le sommeil, le stress ou la concentration. Elle tourne directement sur le site, donc elle marche sur iPhone, Android, tablette et ordinateur.</p>
-      <div class="actions"><a class="btn primary" href="#session">Commencer</a><a class="btn secondary" href="/fr/">Retour au site</a></div>
-      <div class="tip">Astuce : sur iPhone, ouvre cette page dans Safari puis ajoute-la à l'écran d'accueil pour l'avoir plus vite.</div>
-    </div>
-    <div class="app" id="session">
-      <div class="app-grid">
-        <div>
-          <div class="choices" id="programSelector">
-            <button class="choice active" data-program="coherence"><b>Cohérence cardiaque</b><span>Rythme équilibré 5 sec / 5 sec.</span></button>
-            <button class="choice" data-program="relax"><b>Se détendre</b><span>Expiration longue pour relâcher.</span></button>
-            <button class="choice" data-program="sleep"><b>Bien dormir</b><span>Ralentir avant le coucher.</span></button>
-            <button class="choice" data-program="focus"><b>Se concentrer</b><span>Redonner de l'élan en douceur.</span></button>
-          </div>
-          <div class="durations" id="durationSelector">
-            <button class="dur-btn" data-minutes="3">3 min</button><button class="dur-btn active" data-minutes="5">5 min</button><button class="dur-btn" data-minutes="7">7 min</button><button class="dur-btn" data-minutes="10">10 min</button>
-          </div>
-        </div>
-        <div class="play">
-          <button class="music" id="musicToggle" type="button">Son</button>
-          <audio id="bgMusic" src="/fr/coherence/bgm.mp3" loop preload="auto"></audio>
-          <audio id="dingSound" src="/fr/coherence/ding.mp3" preload="auto"></audio>
-          <div class="circle">
-            <div class="glow" id="glowRing"></div><div class="ring" id="breathRing"></div>
-            <div class="coco" id="cocoWrapper"><img src="/fr/coherence/coco.png" alt="Coco"></div>
-            <div class="count" id="phaseCountdown"></div>
-          </div>
-          <div class="instruction" id="instruction">Choisis un programme</div>
-          <div class="timer" id="timer">5:00</div>
-          <div class="cycles" id="cycles"></div>
-          <div class="controls" id="controls"><button class="start" id="btnStart" type="button">Commencer</button></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="top">
+<a href="/fr/">Univers Studio x Coco</a>
+<div class="langs"><a href="/coherence/">EN</a><a class="active" href="/fr/coherence/">FR</a><a href="/es/coherence/">ES</a></div>
+</div>
+<section class="hero">
+<div class="copy">
+<span class="eyebrow">Respirer avec Coco</span>
+<h1>Un moment de calme, disponible quand tu veux.</h1>
+<p class="lead">Une page de respiration pour le calme, le sommeil, le stress ou la concentration. Elle tourne directement sur le site, donc elle marche sur iPhone, Android, tablette et ordinateur.</p>
+<div class="actions"><a class="btn primary" href="#session">Commencer</a><a class="btn secondary" href="/fr/">Retour au site</a></div>
+<div class="tip">Astuce : sur iPhone, ouvre cette page dans Safari puis ajoute-la à l'écran d'accueil pour l'avoir plus vite.</div>
+</div>
+<div class="app" id="session">
+<div class="app-grid">
+<div>
+<div class="choices" id="programSelector">
+<button class="choice active" data-program="coherence"><b>Cohérence cardiaque</b><span>Rythme équilibré 5 sec / 5 sec.</span></button>
+<button class="choice" data-program="relax"><b>Se détendre</b><span>Expiration longue pour relâcher.</span></button>
+<button class="choice" data-program="sleep"><b>Bien dormir</b><span>Ralentir avant le coucher.</span></button>
+<button class="choice" data-program="focus"><b>Se concentrer</b><span>Redonner de l'élan en douceur.</span></button>
+</div>
+<div class="durations" id="durationSelector">
+<button class="dur-btn" data-minutes="3">3 min</button><button class="dur-btn active" data-minutes="5">5 min</button><button class="dur-btn" data-minutes="7">7 min</button><button class="dur-btn" data-minutes="10">10 min</button>
+</div>
+</div>
+<div class="play">
+<button class="music" id="musicToggle" type="button">Son</button>
+<audio id="bgMusic" loop="" preload="auto" src="/fr/coherence/bgm.mp3"></audio>
+<audio id="dingSound" preload="auto" src="/fr/coherence/ding.mp3"></audio>
+<div class="circle">
+<div class="glow" id="glowRing"></div><div class="ring" id="breathRing"></div>
+<div class="coco" id="cocoWrapper"><img alt="Coco" src="/fr/coherence/coco.png"/></div>
+<div class="count" id="phaseCountdown"></div>
+</div>
+<div class="instruction" id="instruction">Choisis un programme</div>
+<div class="timer" id="timer">5:00</div>
+<div class="cycles" id="cycles"></div>
+<div class="controls" id="controls"><button class="start" id="btnStart" type="button">Commencer</button></div>
+</div>
+</div>
+</div>
+</section>
 </div>
 <script>
 const programs={coherence:{name:'Cohérence cardiaque',phases:[{text:'Inspire...',duration:5,visual:'inhale'},{text:'Expire...',duration:5,visual:'exhale'}],defaultMinutes:5},relax:{name:'Se détendre',phases:[{text:'Inspire...',duration:4,visual:'inhale'},{text:'Bloque...',duration:2,visual:'hold'},{text:'Expire...',duration:6,visual:'exhale'}],defaultMinutes:5},sleep:{name:'Bien dormir',phases:[{text:'Inspire...',duration:4,visual:'inhale'},{text:'Bloque...',duration:4,visual:'hold'},{text:'Expire...',duration:6,visual:'exhale'}],defaultMinutes:7},focus:{name:'Se concentrer',phases:[{text:'Inspire...',duration:6,visual:'inhale'},{text:'Bloque...',duration:2,visual:'hold'},{text:'Expire...',duration:4,visual:'exhale'}],defaultMinutes:3}};

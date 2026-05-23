@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+ Tag Google (gtag.js): viene caricato solo dopo il consenso
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-6Y0T0Q28E6');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="utf-8"/>
+<meta content="index, follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Creatore gratuito di punto per punto | Coco l Axolotl</title>
+<meta content="Crea un foglio di lavoro punto per punto gratuito per i bambini. Aggiungi punti numerati, visualizza l'anteprima della trama e scarica un'attività PNG." name="description"/>
+<link href="https://cocotheaxolotl.org/it/dot-to-dot/" rel="canonical"/><link href="https://cocotheaxolotl.org/dot-to-dot/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/dot-to-dot/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/dot-to-dot/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/dot-to-dot/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/dot-to-dot/" hreflang="x-default" rel="alternate"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<style>
+:root{--pink:#ff69b4;--pink-dark:#df3f92;--violet:#7c3aed;--mint:#88f7d4;--ink:#262033;--muted:#6f6476;--line:#f3c7dc;--soft:#fff5fa;--paper:#ffffff;--shadow:0 18px 45px rgba(84,35,79,.13)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#fff 0%,#fff5fa 54%,#f8fffb 100%);color:var(--ink)}a{color:inherit}.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:14px clamp(16px,3vw,30px);background:rgba(255,255,255,.94);border-bottom:1px solid #f4d8e7;backdrop-filter:blur(10px)}.brand{display:flex;align-items:center;gap:10px;font-weight:900;text-decoration:none}.logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--pink),#9b7cff 64%,var(--mint));box-shadow:0 8px 20px rgba(255,105,180,.25)}.nav{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.nav a{font-size:14px;font-weight:800;text-decoration:none;color:#6a5870;padding:8px 10px;border-radius:8px}.nav a:hover,.nav a[aria-current="page"]{background:#fff0f7;color:#c52d80}.shell{max-width:1160px;margin:0 auto;padding:32px clamp(16px,4vw,32px) 54px}.hero{text-align:center;margin:10px auto 26px;max-width:850px}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;padding:7px 12px;border:1px solid #ffd5e9;border-radius:999px;background:#fff;color:#b92d79;font-weight:900;font-size:13px}.hero h1{margin:0;font-size:clamp(32px,5vw,58px);line-height:1.02;letter-spacing:0;color:#2a2032}.hero p{margin:14px auto 0;max-width:720px;color:var(--muted);font-size:18px;line-height:1.55;font-weight:650}.tool{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start}.panel,.preview{background:var(--paper);border:1px solid #f6d4e5;border-radius:8px;box-shadow:var(--shadow)}.panel{padding:18px}.panel h2,.preview h2,.faq h2{margin:0 0 12px;font-size:22px;line-height:1.2}.hint{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.45;font-weight:650}label{display:block;margin:14px 0 7px;color:#645466;font-weight:900;font-size:13px}select,input[type="number"],input[type="text"]{width:100%;border:1px solid #ead6e3;border-radius:8px;background:#fff;padding:11px 12px;color:#2c2432;font:inherit;font-weight:750;outline:none}select:focus,input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,105,180,.15)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.checks{margin-top:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:8px;padding:12px 14px;font-weight:950;cursor:pointer;min-height:44px}.btn.primary{background:var(--pink);color:#fff;box-shadow:0 10px 18px rgba(255,105,180,.24)}.btn.secondary{background:#fff0f7;color:#9a2868;border:1px solid #ffc9e3}.btn.ghost{background:#f7fbff;color:#4d5267;border:1px solid #dde8f2}.btn:active{transform:translateY(1px)}.preview{padding:18px}.stage{background:#fff;border:1px solid #f0e3ea;border-radius:8px;padding:12px;overflow:auto}.stage canvas{display:block;max-width:100%;height:auto;margin:auto;background:#fff}.status{margin:12px 0 0;color:#6c6070;font-weight:750;font-size:14px}.univers-promo{margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px}.univers-promo a{color:#7c3aed;font-weight:900;text-decoration:none}.faq{max-width:860px;margin:34px auto 0}.faq details{background:#fff;border:1px solid #f3d4e4;border-radius:8px;margin:10px 0;padding:14px 16px}.faq summary{cursor:pointer;font-weight:900}.faq p{color:var(--muted);line-height:1.55}footer{padding:24px 16px 38px;text-align:center;color:#7b6d80;font-size:14px}footer a{font-weight:800;text-decoration:none;color:#9a2868}@media(max-width:860px){.tool{grid-template-columns:1fr}.nav{gap:2px}.nav a{padding:7px 8px}.row{grid-template-columns:1fr}.hero p{font-size:16px}}
+  </style>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Creatore di unisci i puntini",
+    "description": "Crea una scheda gratuita di unisci i puntini per bambini. Aggiungi punti numerati, guarda l'anteprima del tracciato e scarica un'attivita PNG.",
+    "url": "https://cocotheaxolotl.org/fr/dot-to-dot/",
+    "applicationCategory": "EducationalApplication",
+    "operatingSystem": "Any",
+    "isAccessibleForFree": true,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Coco the Axolotl",
+      "url": "https://cocotheaxolotl.org/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Puis-je creer ma propre forme ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Pose les points a la main pour dessiner un animal, une lettre, un objet ou une image mystere."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "La fiche est-elle imprimable ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui. Le PNG utilise une page blanche au format lettre avec des points numerotes bien lisibles."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Il download richiede un'email?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le bouton principal utilise l email-gate Coco, comme les autres outils imprimables."
+        }
+      }
+    ]
+  }
+]
+  </script>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="/it/"><span aria-hidden="true" class="logo"></span><span>Coco l Axolotl</span></a>
+<nav aria-label="Navigazione principale" class="nav"><a href="/it/kids-games/">Giochi per bambini</a><a href="/it/freebies/">Regali</a><a href="/it/shop/">Negozio</a></nav>
+</header>
+<main class="shell">
+<section class="hero"><p class="eyebrow">Strumento stampabile Coco</p><h1>Punto per connettere il creatore</h1><p>Scegli una forma già pronta, genera un foglio numerato in un clic, quindi scarica un'attività punto per punto per i bambini.</p></section>
+<section aria-label="Punto per connettere il creatore" class="tool"><aside class="panel"><h2>Attività pronta per la stampa</h2><p class="hint">Scegli una forma, genera un modulo già pronto e scaricalo. I clic manuali sono utili solo se desideri aggiungere alcuni punti.</p><label for="shapePreset">Forma</label><select id="shapePreset"><option value="axolotl">Axolotl</option><option value="heart">Cuore</option><option value="star">Stella</option><option value="rocket">Razzo</option><option value="fish">Pescare</option><option value="cat">Gatto</option><option value="duck">Anatra</option><option value="chicken">Pollo</option><option value="rabbit">Coniglio</option><option value="penguin">Pinguino</option><option value="boot">Stivale</option><option value="random">Sorpresa</option></select><label for="worksheetTitle">Titolo del file</label><input id="worksheetTitle" placeholder="Punti per connettere Coco" type="text" value="Axolotl"/><div class="row"><div><label for="dotSize">Dimensione del punto</label><input id="dotSize" max="22" min="6" type="number" value="8"/></div><div><label for="numberSize">Dimensione del numero</label><input id="numberSize" max="34" min="12" type="number" value="18"/></div></div><label class="checks"><input id="previewPath" type="checkbox"/> Mostra correzione</label><div class="actions"><button class="btn secondary" id="generateBtn" type="button">Nuovo foglio pronto</button><button class="btn ghost" id="undoBtn" type="button">Cancellare</button><button class="btn ghost" id="clearBtn" type="button">Cancellare</button><button class="btn ghost" id="solutionBtn" type="button">Scarica la soluzione</button><button class="btn primary" data-email-gate="download" id="downloadBtn" type="button">Scarica PNG</button></div><p class="status" data-empty="Scegli una forma e genera una scheda pronta." data-ready="Pronto: {shape}, {count} punti. Scaricala o aggiungi qualche punto se serve." id="status">Scegli una forma e genera un modulo pronto.</p><script id="shapeLabels" type="application/json">{"axolotl": "Axolotl", "heart": "Cuore", "star": "Stella", "rocket": "Razzo", "fish": "Pesce", "cat": "Gatto", "duck": "Anatra", "chicken": "Gallina", "rabbit": "Lapin", "penguin": "Pinguino", "boot": "Stivale", "custom": "custom"}</script></aside><section class="preview"><h2>Panoramica del foglio</h2><div class="stage"><canvas height="1100" id="dotCanvas" width="850"></canvas></div></section></section>
+<section class="faq"><h2>Domande frequenti</h2><details><summary>Posso creare la mia forma?</summary><p>SÌ. Posiziona i punti a mano per disegnare un animale, una lettera, un oggetto o un'immagine misteriosa.</p></details><details><summary>Il modulo è stampabile?</summary><p>SÌ. Il PNG utilizza una pagina bianca, formato lettera, con punti numerati chiaramente leggibili.</p></details><details><summary>Il download richiede un'e-mail?</summary><p>Il pulsante principale utilizza il portale email Coco, come gli altri strumenti stampabili.</p></details></section>
+<script>
+(function(){
+  const canvas=document.getElementById('dotCanvas'),ctx=canvas.getContext('2d'),title=document.getElementById('worksheetTitle'),shapeSelect=document.getElementById('shapePreset'),dotSize=document.getElementById('dotSize'),numberSize=document.getElementById('numberSize'),previewPath=document.getElementById('previewPath'),status=document.getElementById('status'),dots=[];let currentShape='';
+  const labels=JSON.parse(document.getElementById('shapeLabels').textContent);
+  function star(cx,cy,r1,r2,n){const out=[];for(let i=0;i<n*2;i++){const a=-Math.PI/2+i*Math.PI/n,r=i%2?r2:r1;out.push([cx+Math.cos(a)*r,cy+Math.sin(a)*r]);}out.push(out[0]);return out;}
+  function heart(){const out=[];for(let i=0;i<26;i++){const t=Math.PI*2*i/26,x=16*Math.pow(Math.sin(t),3),y=-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t));out.push([.5+x/40,.47+y/38]);}return out;}
+  const templates={
+    axolotl:[[.50,.22],[.58,.24],[.65,.29],[.69,.37],[.68,.47],[.62,.55],[.54,.59],[.46,.59],[.38,.55],[.32,.47],[.31,.37],[.35,.29],[.42,.24],[.50,.22],[.29,.34],[.20,.28],[.24,.40],[.19,.50],[.31,.44],[.71,.34],[.80,.28],[.76,.40],[.81,.50],[.69,.44],[.44,.66],[.38,.75],[.43,.84],[.50,.88],[.57,.84],[.62,.75],[.56,.66]],
+    fish:[[.22,.50],[.34,.36],[.54,.31],[.72,.39],[.82,.50],[.72,.61],[.54,.69],[.34,.64],[.22,.50],[.18,.39],[.09,.30],[.13,.50],[.09,.70],[.18,.61],[.22,.50]],
+    cat:[[.22,.47],[.27,.30],[.38,.38],[.50,.33],[.62,.38],[.73,.30],[.78,.47],[.75,.62],[.66,.75],[.54,.81],[.46,.81],[.34,.75],[.25,.62],[.22,.47],[.38,.52],[.45,.50],[.50,.56],[.55,.50],[.62,.52],[.50,.66],[.42,.68],[.34,.64],[.30,.60],[.58,.68],[.66,.64],[.70,.60]],
+    duck:[[.25,.55],[.30,.45],[.40,.39],[.53,.40],[.63,.47],[.70,.45],[.78,.49],[.70,.54],[.63,.55],[.58,.65],[.47,.72],[.34,.69],[.26,.62],[.25,.55],[.36,.36],[.32,.29],[.41,.33],[.45,.40],[.50,.49],[.56,.47],[.61,.49]],
+    chicken:[[.50,.27],[.58,.32],[.64,.43],[.62,.56],[.54,.68],[.44,.69],[.35,.60],[.32,.48],[.37,.36],[.50,.27],[.47,.22],[.50,.16],[.54,.22],[.57,.18],[.59,.25],[.70,.43],[.81,.46],[.71,.52],[.41,.69],[.36,.82],[.44,.74],[.54,.69],[.62,.82],[.58,.72]],
+    rabbit:[[.50,.36],[.42,.28],[.38,.14],[.47,.24],[.53,.36],[.60,.24],[.69,.14],[.64,.30],[.56,.38],[.63,.48],[.64,.61],[.56,.74],[.44,.74],[.36,.61],[.37,.48],[.44,.39],[.50,.36],[.43,.52],[.48,.50],[.52,.50],[.57,.52],[.50,.60],[.43,.66],[.57,.66]],
+    penguin:[[.76,.48],[.79,.57],[.78,.66],[.74,.75],[.67,.84],[.58,.90],[.50,.93],[.42,.90],[.33,.84],[.26,.75],[.22,.66],[.21,.57],[.24,.48],[.28,.39],[.33,.31],[.41,.25],[.50,.23],[.59,.25],[.67,.31],[.72,.39],[.76,.48],[.80,.54],[.87,.63],[.80,.72],[.20,.54],[.13,.63],[.20,.72],[.39,.92],[.50,.96],[.61,.92]],
+    boot:[[.22,.86],[.34,.86],[.47,.86],[.58,.89],[.70,.88],[.82,.82],[.86,.72],[.82,.62],[.77,.53],[.72,.44],[.69,.35],[.66,.26],[.60,.18],[.50,.15],[.41,.19],[.36,.29],[.32,.41],[.29,.53],[.26,.65],[.23,.77],[.22,.86],[.18,.71],[.17,.58],[.18,.45],[.21,.33],[.26,.23],[.34,.17],[.44,.14],[.56,.14],[.66,.18]],
+    rocket:[[.50,.20],[.61,.38],[.58,.67],[.50,.80],[.42,.67],[.39,.38],[.50,.20],[.39,.50],[.27,.62],[.41,.62],[.59,.50],[.73,.62],[.59,.62],[.46,.83],[.50,.93],[.54,.83]],
+    heart:heart(),
+    star:star(.5,.50,.31,.14,5)
+  };
+  const pageBox={x0:115,y0:170,w:620,h:760};
+  function sx(x){return pageBox.x0+x*pageBox.w;} function sy(y){return pageBox.y0+y*pageBox.h;}
+  function line(points){ctx.beginPath();points.forEach((p,i)=>{if(i)ctx.lineTo(sx(p[0]),sy(p[1]));else ctx.moveTo(sx(p[0]),sy(p[1]));});ctx.stroke();}
+  function closed(points){ctx.beginPath();points.forEach((p,i)=>{if(i)ctx.lineTo(sx(p[0]),sy(p[1]));else ctx.moveTo(sx(p[0]),sy(p[1]));});ctx.closePath();ctx.stroke();}
+  function ellipse(x,y,rx,ry,fill){ctx.beginPath();ctx.ellipse(sx(x),sy(y),rx*pageBox.w,ry*pageBox.h,0,0,Math.PI*2);fill?ctx.fill():ctx.stroke();}
+  function curve(start,controls){ctx.beginPath();ctx.moveTo(sx(start[0]),sy(start[1]));controls.forEach(c=>ctx.quadraticCurveTo(sx(c[0]),sy(c[1]),sx(c[2]),sy(c[3])));ctx.stroke();}
+  function drawIllustration(key){if(key!=='penguin'&&key!=='boot')return;ctx.save();ctx.strokeStyle='#111';ctx.fillStyle='#111';ctx.lineWidth=5;ctx.lineCap='round';ctx.lineJoin='round';ctx.setLineDash([]);
+    if(key==='penguin'){
+      curve([.32,.35],[[.25,.45,.25,.61],[.25,.82,.49,.89],[.75,.82,.75,.61],[.75,.45,.68,.35]]);
+      ellipse(.50,.68,.18,.22,false);
+      line([[.31,.58],[.22,.66],[.31,.74]]);line([[.69,.58],[.78,.66],[.69,.74]]);
+      ellipse(.42,.44,.045,.06,true);ellipse(.58,.44,.045,.06,true);ctx.fillStyle='#fff';ellipse(.405,.425,.014,.02,true);ellipse(.565,.425,.014,.02,true);ctx.fillStyle='#111';
+      closed([[.45,.52],[.55,.52],[.50,.58]]);curve([.43,.61],[[.50,.66,.57,.61]]);curve([.37,.36],[[.41,.32,.45,.35]]);curve([.55,.35],[[.60,.32,.64,.36]]);
+      line([[.37,.90],[.31,.96],[.46,.93]]);line([[.63,.90],[.69,.96],[.54,.93]]);
+    } else if(key==='boot'){
+      curve([.27,.82],[[.43,.82,.57,.87],[.70,.87,.80,.80]]);
+      line([[.27,.75],[.40,.75],[.56,.78]]);line([[.27,.70],[.39,.70],[.52,.73]]);
+      curve([.36,.72],[[.38,.58,.43,.42],[.49,.26,.58,.18]]);curve([.58,.18],[[.69,.20,.75,.28],[.73,.42,.64,.52],[.58,.63,.62,.75]]);
+      ctx.setLineDash([9,10]);line([[.32,.76],[.45,.76],[.56,.79]]);curve([.44,.68],[[.47,.53,.50,.38],[.55,.25,.61,.20]]);ctx.setLineDash([]);
+      closed([[.50,.43],[.55,.53],[.67,.54],[.58,.62],[.61,.73],[.50,.66],[.39,.73],[.42,.62],[.33,.54],[.45,.53]]);
+      line([[.48,.25],[.36,.26],[.25,.31]]);line([[.57,.27],[.72,.26],[.84,.23]]);
+    }
+    ctx.restore();}
+  function pickShape(){const keys=Object.keys(templates);if(shapeSelect.value!=='random')return shapeSelect.value;const visible=Object.keys(labels).find(k=>labels[k]===title.value);const last=currentShape||visible;const pool=keys.filter(k=>k!==last);return pool[Math.floor(Math.random()*pool.length)]||keys[0];}
+  function loadTemplate(){const key=pickShape();currentShape=key;if(shapeSelect.value==='random')shapeSelect.value=key;dots.length=0;templates[key].forEach(([x,y])=>dots.push({x:sx(x),y:sy(y)}));title.value=labels[key]||title.value;draw(key);}
+  function draw(key, forceSolution){ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.strokeStyle='#f5d5e6';ctx.lineWidth=3;ctx.strokeRect(28,28,canvas.width-56,canvas.height-56);ctx.fillStyle='#262033';ctx.font='900 42px Inter, Arial';ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillText(title.value||title.placeholder,canvas.width/2,90);ctx.fillStyle='#ff69b4';ctx.font='800 18px Inter, Arial';ctx.fillText('Coco the Axolotl',canvas.width/2,132);drawIllustration(key||currentShape);if((previewPath.checked||forceSolution)&&dots.length>1){ctx.strokeStyle='#ff69b4';ctx.lineWidth=9;ctx.setLineDash([18,10]);ctx.beginPath();dots.forEach((d,i)=>{if(i)ctx.lineTo(d.x,d.y);else ctx.moveTo(d.x,d.y);});ctx.stroke();ctx.setLineDash([]);}dots.forEach((d,i)=>{ctx.fillStyle=i===0?'#ff1f1f':'#111';ctx.beginPath();ctx.arc(d.x,d.y,Number(dotSize.value),0,Math.PI*2);ctx.fill();ctx.fillStyle=i===0?'#ff1f1f':'#262033';ctx.font='900 '+Number(numberSize.value)+'px Inter, Arial';ctx.textAlign='center';ctx.textBaseline='middle';const ox=d.x<canvas.width/2?-28:28;const oy=d.y<canvas.height*.55?-20:22;ctx.fillText(String(i+1),d.x+ox,d.y+oy);});const name=labels[key||shapeSelect.value]||labels.custom||'';status.textContent=dots.length?status.dataset.ready.replace('{shape}',name).replace('{count}',dots.length):status.dataset.empty;}
+  function point(evt){const rect=canvas.getBoundingClientRect();return{x:(evt.clientX-rect.left)*canvas.width/rect.width,y:(evt.clientY-rect.top)*canvas.height/rect.height};}
+  canvas.addEventListener('click',evt=>{const p=point(evt);if(p.x<55||p.y<145||p.x>canvas.width-55||p.y>canvas.height-55)return;dots.push(p);draw('custom');});
+  canvas.addEventListener('contextmenu',evt=>{evt.preventDefault();const p=point(evt);let best=-1,dist=Infinity;dots.forEach((d,i)=>{const dd=Math.hypot(d.x-p.x,d.y-p.y);if(dd<dist){dist=dd;best=i;}});if(best>=0&&dist<36){dots.splice(best,1);draw('custom');}});
+  document.getElementById('generateBtn').addEventListener('click',loadTemplate);title.addEventListener('input',()=>draw('custom'));shapeSelect.addEventListener('change',loadTemplate);dotSize.addEventListener('change',()=>draw('custom'));numberSize.addEventListener('change',()=>draw('custom'));previewPath.addEventListener('change',()=>draw('custom'));document.getElementById('undoBtn').addEventListener('click',()=>{dots.pop();draw('custom');});document.getElementById('clearBtn').addEventListener('click',()=>{dots.length=0;draw('custom');});document.getElementById('downloadBtn').addEventListener('click',()=>{draw('custom');const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='coco-dot-to-dot.png';a.click();});document.getElementById('solutionBtn').addEventListener('click',()=>{draw('custom',true);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download='coco-points-a-relier-solution.png';a.click();draw('custom');});loadTemplate();
+})();
+</script>
+</main>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Sei un autore, illustratore o editore KDP? Scopri strumenti creativi più avanzati su <a href="https://univers.studio/fr/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
+<footer><a href="/it/">Coco l Axolotl</a> ? <a href="/it/privacy-policy/">Privacy</a> ? <a href="/it/legal-notice/">Legale</a></footer>
+<script defer="" src="/js/email-gate.js?v=1"></script>
+</body>
+</html>

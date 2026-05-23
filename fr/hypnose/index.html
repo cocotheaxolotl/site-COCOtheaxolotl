@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#09111f">
-  <title>Hypnose guidée - Coco</title>
-  <link rel="icon" type="image/png" href="coco.png">
-  <link rel="apple-touch-icon" href="coco.png">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta content="noindex, nofollow" name="robots"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="#09111f" name="theme-color"/>
+<title>Hypnose guidée - Coco</title>
+<link href="coco.png" rel="icon" type="image/png"/>
+<link href="coco.png" rel="apple-touch-icon"/>
+<style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -470,84 +471,75 @@
       }
     }
   </style>
-</head>
+
+<link href="https://cocotheaxolotl.org/hypnose/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/hypnose/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/hypnose/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/hypnose/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/hypnose/" hreflang="x-default" rel="alternate"/></head>
 <body>
-  <div class="mist"></div>
-  <div class="stars"></div>
-
-  <main class="app">
-    <div class="badge">Séance guidée</div>
-
-    <section class="hero-card">
-      <div class="hero-inner">
-        <div>
-          <div class="eyebrow">Espace de calme</div>
-          <h1>Hypnose</h1>
-          <p class="subtitle">Une ambiance enveloppante, pensée pour un téléphone et une écoute tranquille.</p>
-        </div>
-        <div class="halo-wrap" aria-hidden="true">
-          <div class="halo-ring"></div>
-          <div class="halo-core"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="session-head">
-        <div>
-          <div class="session-label">Programme</div>
-          <div class="session-title">Troubles alimentaires</div>
-          <div class="session-desc">Lecture audio guidée pour accompagner l'apaisement, la reprise de contrôle et l'écoute intérieure.</div>
-        </div>
-        <div class="duration-pill">Audio intégré</div>
-      </div>
-
-      <div class="wave" aria-hidden="true">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-
-      <div class="progress-wrap">
-        <input id="seekBar" type="range" min="0" max="100" value="0" step="1">
-        <div class="times">
-          <span id="currentTime">0:00</span>
-          <span id="remainingTime">-0:00</span>
-        </div>
-      </div>
-
-      <div class="controls">
-        <div class="control-col">
-          <button class="mini-btn" id="back15">-15 s</button>
-          <button class="mini-btn" id="restart">Début</button>
-        </div>
-        <button class="play-btn" id="playPause">Lecture</button>
-        <div class="control-col">
-          <button class="mini-btn" id="forward15">+15 s</button>
-        </div>
-      </div>
-
-      <div class="status" id="status">Prêt à lancer la séance</div>
-    </section>
-
-    <section class="info-grid">
-      <article class="info-card">
-        <div class="info-kicker">Conseil</div>
-        <div class="info-text">Installe-toi dans un endroit calme, avec casque ou écouteur si possible.</div>
-      </article>
-      <article class="info-card">
-        <div class="info-kicker">Sécurité</div>
-        <div class="info-text">N'utilise pas cette séance en conduisant ou pendant une activité qui demande ton attention.</div>
-      </article>
-    </section>
-  </main>
-
-  <audio id="audio" class="native-audio" controls preload="metadata" src="hypnose.mp3?v=prononce-pluss-de-recul"></audio>
-
-  <script>
+<div class="mist"></div>
+<div class="stars"></div>
+<main class="app">
+<div class="badge">Séance guidée</div>
+<section class="hero-card">
+<div class="hero-inner">
+<div>
+<div class="eyebrow">Espace de calme</div>
+<h1>Hypnose</h1>
+<p class="subtitle">Une ambiance enveloppante, pensée pour un téléphone et une écoute tranquille.</p>
+</div>
+<div aria-hidden="true" class="halo-wrap">
+<div class="halo-ring"></div>
+<div class="halo-core"></div>
+</div>
+</div>
+</section>
+<section class="panel">
+<div class="session-head">
+<div>
+<div class="session-label">Programme</div>
+<div class="session-title">Troubles alimentaires</div>
+<div class="session-desc">Lecture audio guidée pour accompagner l'apaisement, la reprise de contrôle et l'écoute intérieure.</div>
+</div>
+<div class="duration-pill">Audio intégré</div>
+</div>
+<div aria-hidden="true" class="wave">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
+<div class="progress-wrap">
+<input id="seekBar" max="100" min="0" step="1" type="range" value="0"/>
+<div class="times">
+<span id="currentTime">0:00</span>
+<span id="remainingTime">-0:00</span>
+</div>
+</div>
+<div class="controls">
+<div class="control-col">
+<button class="mini-btn" id="back15">-15 s</button>
+<button class="mini-btn" id="restart">Début</button>
+</div>
+<button class="play-btn" id="playPause">Lecture</button>
+<div class="control-col">
+<button class="mini-btn" id="forward15">+15 s</button>
+</div>
+</div>
+<div class="status" id="status">Prêt à lancer la séance</div>
+</section>
+<section class="info-grid">
+<article class="info-card">
+<div class="info-kicker">Conseil</div>
+<div class="info-text">Installe-toi dans un endroit calme, avec casque ou écouteur si possible.</div>
+</article>
+<article class="info-card">
+<div class="info-kicker">Sécurité</div>
+<div class="info-text">N'utilise pas cette séance en conduisant ou pendant une activité qui demande ton attention.</div>
+</article>
+</section>
+</main>
+<audio class="native-audio" controls="" id="audio" preload="metadata" src="hypnose.mp3?v=prononce-pluss-de-recul"></audio>
+<script>
     const audio = document.getElementById('audio');
     const playPauseBtn = document.getElementById('playPause');
     const back15Btn = document.getElementById('back15');
@@ -632,22 +624,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<script>
+    function loadAnalytics(){
+      if(localStorage.getItem('cookies_accepted')==='true'){
+        var s=document.createElement('script');
+        s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+        document.head.appendChild(s);
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date());gtag('config','G-6Y0T0Q28E6');
+      }
+    }
+    loadAnalytics();
+  </script>
+<meta charset="utf-8"/>
+<meta content="index, follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#3D3D8E" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<title>🌙 Coco non dorme stanotte! - Racconto serale gratuito - Coco l'Axolotl</title>
+<meta content="Una storia serale rilassante per bambini - Leggi online gratuitamente!" name="description"/>
+<meta content="bedtime story, bedtime stories for kids, free bedtime stories, bedtime stories online, bed storytime, children's bedtime story, read online free, axolotl story for kids" name="keywords"/>
+<meta content="🌙 Coco non dorme stanotte! - Racconto serale gratuito - Coco l'Axolotl" property="og:title"/>
+<meta content="Una storia serale rilassante per bambini - Leggi online gratuitamente!" property="og:description"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="🌙 Coco non dorme stanotte! - Racconto serale gratuito - Coco l'Axolotl" name="twitter:title"/>
+<meta content="Una storia serale rilassante per bambini - Leggi online gratuitamente!" name="twitter:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="https://cocotheaxolotl.org/it/sleep-book/" property="og:url"/>
+<meta content="product" property="og:type"/>
+<link href="https://cocotheaxolotl.org/it/sleep-book/" rel="canonical"/><link href="https://cocotheaxolotl.org/sleep-book/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/sleep-book/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/sleep-book/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/sleep-book/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/sleep-book/" hreflang="x-default" rel="alternate"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Coco non riesce a dormire stanotte!",
+  "author": {
+    "@type": "Person",
+    "name": "Dr. Anita NIRVENA"
+  },
+  "illustrator": {
+    "@type": "Person",
+    "name": "Loopinky"
+  },
+  "bookFormat": "EBook",
+  "numberOfPages": 30,
+  "typicalAgeRange": "3-8",
+  "inLanguage": "it",
+  "description": "Un'avventura prima di andare a dormire: Coco l'Axolotl incontra 9 animali che dormono ciascuno in un modo unico.",
+  "offers": {
+    "@type": "Offer",
+    "price": "2.99",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+}</script>
+<style>
+    header{
+      background: linear-gradient(135deg, #1a1a4e 0%, #3D3D8E 50%, #5c3d8e 100%);
+      padding: 28px 20px 36px;
+      color: #fff;
+    }
+    header h1{ margin:0; font-size:2.2em; }
+    header .subtitle{ margin:8px 0 0; font-size:1.1em; opacity:.85; }
+
+    .lang-toggle{
+      display:inline-flex; gap:0; margin:14px auto 0;
+      border-radius:32px; overflow:hidden; border:2px solid rgba(255,255,255,.5);
+    }
+    .lang-btn{
+      padding:6px 18px; font-family:'Baloo 2',cursive; font-size:.9em;
+      font-weight:800; border:none; cursor:pointer;
+      background:transparent; color:rgba(255,255,255,.7);
+    }
+    .lang-btn.active{ background:rgba(255,255,255,.9); color:#3D3D8E; }
+
+    main{ padding:36px 20px; text-align:center; }
+    p{ max-width:620px; margin:14px auto; line-height:1.6; font-size:1.05em; }
+
+    /* Book showcase */
+    .book-showcase{
+      max-width:380px; margin:30px auto;
+      background: linear-gradient(135deg, #1a1a4e, #2d2d6e);
+      border-radius:20px; padding:30px 20px;
+      box-shadow:0 16px 40px rgba(30,30,80,.25);
+      position:relative; overflow:hidden;
+    }
+    .book-showcase::before{
+      content:''; position:absolute; top:-30px; right:-30px;
+      width:100px; height:100px; border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,200,.3), transparent 70%);
+    }
+    .book-cover{
+      width:220px; max-width:80%; border-radius:10px;
+      box-shadow:0 8px 30px rgba(0,0,0,.4);
+    }
+    .book-cover-placeholder{
+      width:220px; max-width:80%; aspect-ratio:3/4;
+      border-radius:10px; margin:0 auto;
+      background: linear-gradient(135deg, #5c3d8e, #3D3D8E);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.6); font-size:.9em; text-align:center;
+      border:2px dashed rgba(255,255,255,.3);
+      box-shadow:0 8px 30px rgba(0,0,0,.4);
+    }
+    .stars{
+      position:absolute; top:10px; left:10px; right:10px;
+      font-size:1.4em; letter-spacing:4px; opacity:.5;
+    }
+
+    /* Preview flipbook */
+    .preview-section{
+      max-width:700px; margin:40px auto;
+      background:#f0f0ff; border-radius:18px; padding:30px 20px;
+      border:2px solid rgba(61,61,142,.15);
+    }
+    .preview-section h2{ color:#3D3D8E; font-size:1.5em; margin:0 0 10px; }
+    #previewBook{
+      margin:20px auto; display:block;
+    }
+    .page{
+      background:#fff; border:1px solid #ddd; display:flex;
+      align-items:center; justify-content:center;
+      font-family:'Baloo 2',cursive; color:#666; font-size:.9em;
+      text-align:center; padding:16px;
+      user-select:none; overflow:hidden;
+    }
+    .page.cover-page{
+      background: linear-gradient(135deg, #1a1a4e, #3D3D8E);
+      color:#fff; font-weight:800;
+    }
+
+    /* Buy section */
+    .buy-section{
+      max-width:580px; margin:40px auto; padding:30px;
+      background:#fff; border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      border:2px solid rgba(61,61,142,.2);
+    }
+    .buy-section h2{ color:#3D3D8E; margin:0 0 6px; }
+    .price{ font-size:2.4em; font-weight:800; color:#D6006E; margin:10px 0; }
+
+    .button{
+      display:inline-block; margin:10px 8px;
+      padding:16px 36px; border-radius:32px;
+      font-weight:800; font-size:1.05em;
+      font-family:'Baloo 2',cursive;
+      text-decoration:none; cursor:pointer; border:none;
+      transition:filter .15s, transform .12s;
+    }
+    .button:hover{ filter:brightness(.92); transform:translateY(-1px); }
+    .btn-paypal{ background:#0070ba; color:#fff; }
+    .btn-etsy{ background:#F1641E; color:#fff; }
+
+    .paypal-note{ font-size:.8em; opacity:.6; margin-top:8px; }
+
+    /* Features */
+    .features{
+      max-width:700px; margin:40px auto 0;
+      display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;
+    }
+    .feature{
+      background:#fff; border-radius:14px; padding:18px 14px;
+      box-shadow:0 4px 14px rgba(0,0,0,.06);
+      border:1px solid rgba(61,61,142,.1);
+    }
+    .feature .icon{ font-size:2em; margin-bottom:6px; }
+    .feature h3{ margin:0; font-size:.95em; color:#3D3D8E; }
+    .feature p{ margin:6px 0 0; font-size:.8em; opacity:.7; }
+
+    /* Responsive */
+    @media(max-width:600px){
+      header h1{ font-size:1.7em; }
+      .features{ grid-template-columns:1fr; max-width:300px; }
+      .buy-section{ margin:30px 10px; padding:20px 16px; }
+    }
+
+    /* Language visibility */
+    span[data-lang="fr"],
+    [data-lang="fr"],
+    body.fr
+    body.fr span[data-lang="en"],body.fr
+    body.fr
+    body.fr
+    body.es
+    body.es span[data-lang="en"],body.es
+    body.es
+    body.es [data-lang="en"],body.es
+  </style>
+</head>
+<body>
+<header>
+<a class="home-link" href="/it/fr/">
+
+← Casa
+
+</a>
+<h1>
+
+🌙 Coco non dorme stanotte! - Racconto serale gratuito
+
+</h1>
+<p class="subtitle">
+
+Una storia serale rilassante per bambini - Leggi online gratuitamente!
+
+</p>
+<div class="lang-toggle"><a class="lang-btn" href="/sleep-book/">IN</a><a class="lang-btn active" href="/it/sleep-book/">IT</a><a class="lang-btn" href="/es/sleep-book/">ES</a></div>
+</header>
+<main>
+ Vetrina dei libri
+<div class="book-showcase">
+<div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+<div class="book-cover-placeholder">
+
+[ Couverture bientôt ]
+
+</div>
+</div>
+ Descrizione
+<p>
+
+Coco non riesce a dormire! Questo piccolo e curioso axolotl sgattaiola fuori per scoprire come dormono gli altri animali. Dai delfini che dormono con un solo occhio chiuso ai koala che dormono 22 ore al giorno: ogni incontro rivela un affascinante segreto sul sonno. Una magica storia serale con fatti divertenti sul mondo animale! Perfetto come favola della buonanotte online gratuita per bambini dai 3 agli 8 anni.
+
+</p>
+<p style="font-size:.9em; opacity:.7;">
+
+Della Dott.ssa Anita NIIRVENA • Illustrazioni: Loopinky • 3-8 anni • 30 pagine
+
+</p>
+ Caratteristiche
+<div class="features">
+<div class="feature">
+<div class="icon">📖</div>
+<h3>Leggi in linea</h3>
+<p>Sfoglia il libro nel tuo browser</p>
+</div>
+<div class="feature">
+<div class="icon">📱</div>
+<h3>Compatibile con dispositivi mobili</h3>
+<p>Funziona su telefono, tablet e PC</p>
+</div>
+<div class="feature">
+<div class="icon">🧠</div>
+<h3>Educativo</h3>
+<p>9 animali, 9 curiosità sul sonno</p>
+</div>
+</div>
+ Anteprima
+<div class="preview-section">
+<h2>
+
+👀 Anteprima
+
+</h2>
+<p style="font-size:.9em; opacity:.7; margin:0 0 10px;">
+
+Prime 3 pagine: acquista per leggere l'intero libro!
+
+</p>
+<div id="previewBook"></div>
+</div>
+ Sezione Acquista
+<div class="buy-section">
+<h2>
+
+📚 Ottieni il libro completo
+
+</h2>
+<div class="price">2,99 €</div>
+<p style="font-size:.9em; opacity:.7; margin:0 0 16px;">
+
+Accesso immediato: lettura online illimitata
+
+</p>
+ Segnaposto del pulsante Acquista ora PayPal
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:inline-block" target="_top">
+<input name="cmd" type="hidden" value="_s-xclick"/>
+<input name="hosted_button_id" type="hidden" value="YOUR_BUTTON_ID"/>
+<input name="return" type="hidden" value="https://cocotheaxolotl.org/sleep-book/read/?unlock=COCO-DODO-2026"/>
+<button class="button btn-paypal" type="submit">
+
+🔒 Acquista e leggi
+
+</button>
+</form>
+<br/>
+<a class="button btn-etsy" href="https://www.etsy.com/shop/YOUR_ETSY_SHOP" rel="noopener" target="_blank">
+
+Anche su Etsy
+
+</a>
+<p class="paypal-note">
+
+PayPal: accesso immediato. Etsy: riceverai un codice di accesso.
+
+</p>
+</div>
+ Hai già un codice?
+<p style="margin-top:30px;">
+<a href="/sleep-book/read/" style="color:#3D3D8E; font-weight:700;">
+
+🔑 Hai già un codice di accesso? Leggi qui
+
+</a>
+</p>
+<a class="back" href="/it/">
+
+← Ritorno a casa
+
+</a>
+</main>
+<footer>
+<a href="/it/legal-notice/">Avviso legale</a> •
+    <a href="/it/privacy-policy/">politica sulla riservatezza</a> •
+    <a href="https://www.cocotheaxolotl.org">www.cocotheaxolotl.org</a>
+</footer>
+ Bandiera dei biscotti
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px 20px;box-shadow:0 -2px 12px rgba(0,0,0,.1);z-index:999;text-align:center;font-size:.85em;">
+    Utilizziamo i cookie per l'analisi.
+    <a href="/it/privacy-policy/" style="color:#3D3D8E;text-decoration:underline;">politica sulla riservatezza</a>
+<button onclick="acceptCookies()" style="margin-left:12px;padding:8px 20px;background:#3D3D8E;color:#fff;border:none;border-radius:20px;cursor:pointer;font-weight:700;">Accettare</button>
+<button onclick="refuseCookies()" style="margin-left:6px;padding:8px 20px;background:#eee;color:#333;border:none;border-radius:20px;cursor:pointer;">Negato</button>
+</div>
+ StPageFlip per l'anteprima
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+<script>
+    /* Language */
+    );
+      document.documentElement.lang=lang;
+    }
+
+    /* Cookies */
+    function acceptCookies(){localStorage.setItem('cookies_accepted','true');document.getElementById('cookieBanner').style.display='none';loadAnalytics();}
+    function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
+    if(!localStorage.getItem('cookies_accepted'))document.getElementById('cookieBanner').style.display='block';
+
+    /* Preview flipbook */
+    document.addEventListener('DOMContentLoaded', function(){
+      var container = document.getElementById('previewBook');
+      var w = Math.min(260, window.innerWidth - 80);
+      var h = Math.round(w * 4/3);
+
+      var previewPages = [
+        {bg:'linear-gradient(135deg,#1a1a4e,#3D3D8E)',color:'#fff',text:'Coco ne dort\npas ce soir !'},
+        {bg:'#f8f8ff',color:'#333',text:'Ce soir, c\u2019\u00e9tait\nl\u2019heure de dormir.\nMais Coco n\u2019avait\npas du tout sommeil.'},
+        {bg:'#f5f5f5',color:'#aaa',text:'[ Illustration ]\nCoco yeux\ngrands ouverts'},
+        {bg:'#f8f8ff',color:'#333',text:'\u00ab Mais Maman,\nje n\u2019ai pas\nde paupi\u00e8res ! \u00bb'},
+        {bg:'linear-gradient(135deg,#2d2d6e,#5c3d8e)',color:'rgba(255,255,255,.5)',text:'\u2728 Acheter pour lire\nla suite ! \u2728'}
+      ];
+
+      previewPages.forEach(function(p){
+        var div = document.createElement('div');
+        div.className = 'page';
+        div.style.cssText = 'background:'+p.bg+';color:'+p.color+';width:'+w+'px;height:'+h+'px;';
+        div.innerHTML = '<div style="white-space:pre-line;padding:12px;">'+p.text+'</div>';
+        container.appendChild(div);
+      });
+
+      if(typeof St !== 'undefined' && St.PageFlip){
+        var PageFlip = St.PageFlip;
+      } else if(typeof PageFlip === 'undefined' && typeof window.St !== 'undefined'){
+        var PageFlip = window.St.PageFlip;
+      }
+
+      try {
+        var pf = new PageFlip(container, {
+          width: w, height: h,
+          size: 'fixed',
+          showCover: true,
+          mobileScrollSupport: false,
+          useMouseEvents: true,
+          flippingTime: 600
+        });
+        pf.loadFromHTML(container.querySelectorAll('.page'));
+      } catch(e){
+        console.log('PageFlip preview:', e);
+      }
+    });
+  </script>
+</body>
+</html>
