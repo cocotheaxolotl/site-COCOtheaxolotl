@@ -272,7 +272,7 @@
 <div class="screen" id="startScreen">
 <img alt="Coco" class="coco-img" onerror="this.style.display='none'" src="/coco.png"/>
 <h1>🫧 バブルポップ！</h1>
-<p>Tippe jede Blase an, bevor sie entkommt!<br/>Fange Cocos Blase für Bonuspunkte!</p>
+<p>逃げる前に泡をタップしよう！<br/>Cocoの泡をつかまえるとボーナスポイント！</p>
 <button class="btn" id="btnStart">▶ スタート！</button>
 <a href="/ja/kids-games/" style="color:#fff;font-weight:800;font-size:.9em;text-decoration:none;opacity:.8">← ゲームに戻る</a>
 </div>
@@ -499,7 +499,7 @@ function showEnd(){
   const stars = score >= 30 ? '⭐⭐⭐' : score >= 15 ? '⭐⭐' : '⭐';
   const msgs  = score >= 30 ? ['Erstaunlich! 🎉','Unglaublich! 🌟','Superstar! 💫'] :
                 score >= 15 ? ['Gut gemacht! 🎊','Tolle Arbeit! 👏','Klasse! 🐠'] :
-                              ['Versuch es weiter! 💪','Du schaffst das! 🫧','Übung macht den Meister!'];
+                              ['もう一度やってみよう！💪','きっとできるよ！🫧','練習すると上手になるよ！'];
   starRating.textContent = stars;
   endMsg.textContent = msgs[Math.floor(Math.random()*msgs.length)];
   endScreen.style.display = 'flex';

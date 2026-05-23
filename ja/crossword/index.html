@@ -113,7 +113,7 @@
                            "name":  "対象年齢は？",
                            "acceptedAnswer":  {
                                                   "@type":  "Answer",
-                                                  "text":  "Es ist für junge Leserinnen und Leser by 5 bis 7 Jahren gedacht, mit kurzen Hinweisen."
+                                                  "text":  "5〜7歳くらいの子ども向けに、短いヒントで遊べるように作っています。"
                                               }
                        },
                        {
@@ -179,20 +179,20 @@
     B I E N E ■    → BIENE
     H A S E ■ ■    → HASE
 
-  TULPE läuft senkrecht in Spalte 2 (T,U,L,P,E) und kreuzt die anderen Wörter.
+  チューリップは2列目を縦に進み、ほかの言葉と交差します。
 */
 
 const ROWS=6, COLS=6;
 
 const WORDS = {
   across: {
-    1: { cells:[[0,0],[0,1],[0,2],[0,3],[0,4],[0,5]], answer:'OSTERN', emoji:'🐣', clue:"Das Frühlingsfest mit Eiern" },
-    3: { cells:[[2,0],[2,1],[2,2],[2,3],[2,4]],       answer:'PALME',  emoji:'🌴', clue:"Ein hoher Baum am Strand" },
-    4: { cells:[[4,0],[4,1],[4,2],[4,3],[4,4]],       answer:'BIENE',  emoji:'🐝', clue:"Sie macht Honig" },
-    5: { cells:[[5,0],[5,1],[5,2],[5,3]],             answer:'HASE',   emoji:'🐰', clue:"Er bringt die Ostereier" },
+    1: { cells:[[0,0],[0,1],[0,2],[0,3],[0,4],[0,5]], answer:'OSTERN', emoji:'🐣', clue:"卵を楽しむ春のお祭り" },
+    3: { cells:[[2,0],[2,1],[2,2],[2,3],[2,4]],       answer:'PALME',  emoji:'🌴', clue:"海辺にある高い木" },
+    4: { cells:[[4,0],[4,1],[4,2],[4,3],[4,4]],       answer:'BIENE',  emoji:'🐝', clue:"はちみつを作る虫" },
+    5: { cells:[[5,0],[5,1],[5,2],[5,3]],             answer:'HASE',   emoji:'🐰', clue:"イースターエッグを届けてくれる動物" },
   },
   down: {
-    2: { cells:[[0,2],[1,2],[2,2],[3,2],[4,2]],       answer:'TULPE',  emoji:'🌷', clue:"Eine schöne Frühlingsblume" },
+    2: { cells:[[0,2],[1,2],[2,2],[3,2],[4,2]],       answer:'TULPE',  emoji:'🌷', clue:"春に咲くきれいな花" },
   }
 };
 

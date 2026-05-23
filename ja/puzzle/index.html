@@ -352,15 +352,15 @@
 </div>
 <div class="stats">
 <span id="statMoves">Züge: 0</span>
-<span id="statTime">Zeit: 0:00</span>
+<span id="statTime">時間: 0:00</span>
 </div>
 <div class="puzzle-wrapper">
 <div id="puzzleGrid"></div>
 <div class="no-images" id="noImagesMsg" style="display:none">
-<strong>Noch keine Bilder!</strong><br/><br/>
-    Lege deine Bilder in <code>puzzle/images/</code> ab und liste sie im
-    <code>IMAGES</code>-Array oben in <code>puzzle/index.html</code> auf.<br/><br/>
-    Bilder sollten im <strong>9:16 Hochformat</strong> sein (z. B. 900×1600 px).
+<strong>画像がまだありません！</strong><br/><br/>
+    画像を <code>puzzle/images/</code> に入れて、
+    <code>puzzle/index.html</code> 上部の <code>IMAGES</code> 配列に登録してください。<br/><br/>
+    画像は <strong>9:16の縦長</strong> がおすすめです（例：900×1600 px）。
   </div>
 </div>
 <!-- Original image modal -->
@@ -370,7 +370,7 @@
 </div>
 <!-- Admiration overlay -->
 <div id="admireOverlay">
-<img alt="Komplettes Bild" id="admireImg" src=""/>
+<img alt="完成画像" id="admireImg" src=""/>
 <div id="admireCountdown"></div>
 </div>
 <!-- Victory overlay -->
@@ -484,13 +484,13 @@ function startTimer(){
   updateStatsDisplay();
   timerInterval = setInterval(()=>{
     elapsedSeconds++;
-    statTime.textContent = 'Zeit: ' + formatTime(elapsedSeconds);
+    statTime.textContent = '時間: ' + formatTime(elapsedSeconds);
   }, 1000);
 }
 function stopTimer(){ clearInterval(timerInterval); timerInterval = null; }
 function updateStatsDisplay(){
   statMoves.textContent = 'Züge: ' + moves;
-  statTime.textContent  = 'Zeit: '  + formatTime(elapsedSeconds);
+  statTime.textContent  = '時間: '  + formatTime(elapsedSeconds);
 }
 
 // ── Build puzzle ───────────────────────────────────────

@@ -304,7 +304,7 @@
 <script>
 function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':lang==='de'?'de':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
 function showUpgradeModal(){
-  var msgs = {en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.',de:'Du brauchst mehr Credits! Besuche unsere Preisseite zum Upgrade.'};
+  var msgs = {en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.',de:'Du brauchst mehr Credits! Besuche unsere Preisseite zum Upgrade.',ja:'クレジットが足りません。料金ページでアップグレードしてください。'};
   if(confirm(msgs.de)) window.location.href='/pricing/';
 }
 </script>

@@ -27,7 +27,7 @@
 <link href="/icons/icon-192.png" rel="apple-touch-icon"/>
 <title>مرحباً بك في عالم كوكو - لوّن اسمك وصفحات تلوين مجانية - كوكو الإكسولوتل</title>
 <meta content="يقدم كوكو الإكسولوتل أنشطة هادئة للأطفال: صفحات تلوين، مولدات أسماء للتلوين، ألعاب قابلة للطباعة ولحظات إبداعية بلا شاشة." name="description"/>
-<meta content="ausmalbilder, malvorlagen, namen ausmalen, gute nacht geschichten, kostenlose ausmalbilder, weihnachts ausmalbilder, druckbare ausmalbilder, axolotl ausmalbild, namens generator, kinder aktivitäten, malbücher" name="keywords"/>
+<meta content="صفحات تلوين, رسومات للتلوين, تلوين الاسم, قصص قبل النوم, صفحات تلوين مجانية, أنشطة للأطفال, إكسولوتل, كتب تلوين" name="keywords"/>
 <!-- Open Graph -->
 <meta content="مرحباً بك في عالم كوكو - لوّن اسمك وصفحات تلوين مجانية - كوكو الإكسولوتل" property="og:title"/>
 <meta content="يقدم كوكو الإكسولوتل أنشطة هادئة للأطفال: صفحات تلوين، مولدات أسماء للتلوين، ألعاب قابلة للطباعة ولحظات إبداعية بلا شاشة." property="og:description"/>
@@ -834,7 +834,7 @@ Amazon-Autorenseite:
 </p>
 <footer>
         © 2026 كوكو الإكسولوتل —
-        Alle Rechte vorbehalten ·
+        جميع الحقوق محفوظة ·
         <a href="/legal-notice/">إشعار قانوني</a> ·
         <a href="/privacy-policy/">سياسة الخصوصية</a> ·
         <a href="https://www.loopinky.com" target="_blank">خط من Loopinky</a>
@@ -844,22 +844,22 @@ Amazon-Autorenseite:
 <!-- Newsletter Popup -->
 <div class="popup-overlay" id="popupOverlay">
 <div class="popup-box">
-<button aria-label="Close" class="popup-close" id="popupClose">✕</button>
-<h3>💗 2 kostenlose Muttertags-Ausmalbilder!</h3>
-<p class="popup-sub">Gib deinen Namen und deine E-Mail ein, um 2 Muttertags-Ausmalbilder herunterzuladen!</p>
-<img alt="Muttertags-Ausmalbild - كوكو الإكسولوتل" src="/shop/coloring-love-preview.gif" style="max-width:200px;border-radius:12px;border:2px solid #e1bee7"/>
+<button aria-label="إغلاق" class="popup-close" id="popupClose">✕</button>
+<h3>💗 صفحتا تلوين مجانيتان لعيد الأم!</h3>
+<p class="popup-sub">اكتب اسمك وبريدك الإلكتروني لتنزيل صفحتي تلوين لعيد الأم!</p>
+<img alt="صفحة تلوين عيد الأم - كوكو الإكسولوتل" src="/shop/coloring-love-preview.gif" style="max-width:200px;border-radius:12px;border:2px solid #e1bee7"/>
 <form id="popupForm">
-<input id="popupName" placeholder="Dein Vorname" required="" type="text"/>
-<input id="popupEmail" placeholder="Deine E-Mail" required="" type="email"/>
+<input id="popupName" placeholder="اسمك الأول" required="" type="text"/>
+<input id="popupEmail" placeholder="بريدك الإلكتروني" required="" type="email"/>
 <button class="popup-btn" id="popupBtn" type="submit">
 
-Anmelden
+اشترك
 
 </button>
 </form>
 <p class="popup-disclaimer">
 
-Mit deiner Anmeldung erklärst du dich einverstanden, unseren Newsletter zu erhalten.<br/>Abmeldung jederzeit möglich.
+باشتراكك توافق على استلام نشرتنا البريدية.<br/>يمكنك إلغاء الاشتراك في أي وقت.
 
 </p>
 </div>
@@ -1159,7 +1159,7 @@ Mit deiner Anmeldung erklärst du dich einverstanden, unseren Newsletter zu erha
         if(!name || !email) return;
 
         submitBtn.disabled = true;
-        submitBtn.textContent = "Senden...";
+        submitBtn.textContent = "جارٍ الإرسال...";
 
         fetch("/api/subscribe", {
           method: "POST",
@@ -1170,15 +1170,15 @@ Mit deiner Anmeldung erklärst du dich einverstanden, unseren Newsletter zu erha
         .then(function(data){
           if(data.success){
             localStorage.setItem('coco_subscribed','true');
-            form.innerHTML = '<p class="popup-success">Danke! Lade deine 2 kostenlosen Seiten herunter:<br><a href="/freebies/i-love-you-more-free-coloring-1.png" download="i-love-you-more-free-coloring-1.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">Seite 1</a><a href="/freebies/i-love-you-more-free-coloring-2.png" download="i-love-you-more-free-coloring-2.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">Seite 2</a><br><a href="/shop/#i-love-you-more-pack" style="display:inline-block;margin-top:10px;color:#6a1b9a;font-weight:700">Das komplette Paket im المتجر ansehen</a></p>';
+            form.innerHTML = '<p class="popup-success">شكراً! نزّل صفحتيك المجانيتين:<br><a href="/freebies/i-love-you-more-free-coloring-1.png" download="i-love-you-more-free-coloring-1.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">الصفحة 1</a><a href="/freebies/i-love-you-more-free-coloring-2.png" download="i-love-you-more-free-coloring-2.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">الصفحة 2</a><br><a href="/shop/#i-love-you-more-pack" style="display:inline-block;margin-top:10px;color:#6a1b9a;font-weight:700">شاهِد الحزمة الكاملة في المتجر</a></p>';
           } else {
             submitBtn.disabled = false;
-            submitBtn.textContent = "Erneut versuchen";
+            submitBtn.textContent = "حاول مرة أخرى";
           }
         })
         .catch(()=>{
           submitBtn.disabled = false;
-          submitBtn.textContent = "Erneut versuchen";
+          submitBtn.textContent = "حاول مرة أخرى";
         });
       });
     })();
@@ -1188,7 +1188,7 @@ Mit deiner Anmeldung erklärst du dich einverstanden, unseren Newsletter zu erha
 <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
 <p style="margin:0;flex:1;min-width:250px">
 
-Wir verwenden Cookies, um den Datenverkehr zu analysieren. Wenn du auf "موافق" klickst, stimmst du der Verwendung zu.
+نستخدم ملفات تعريف الارتباط لتحليل الزيارات. عند النقر على "موافق" أنت توافق على استخدامها.
 
 <a href="/privacy-policy/" style="color:#ff69b4;margin-left:8px">
 
