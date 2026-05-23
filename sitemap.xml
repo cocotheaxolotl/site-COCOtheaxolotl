@@ -539,7 +539,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
     <priority>0.7</priority>
   </url>
@@ -549,7 +553,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
     <priority>0.7</priority>
   </url>
@@ -559,7 +567,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
     <priority>0.7</priority>
   </url>
@@ -2126,8 +2138,9 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
@@ -2803,12 +2816,16 @@
   <url>
     <loc>https://cocotheaxolotl.org/ja/freebies/</loc>
     <lastmod>2026-05-23</lastmod>
-    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ja/freebies/bear-coloring-page/</loc>
@@ -3756,7 +3773,11 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
     <priority>0.7</priority>
   </url>
@@ -4817,13 +4838,15 @@
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/pt/freebies/</loc>
+    <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
     <priority>0.7</priority>
   </url>
@@ -5168,6 +5191,20 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/valentine/you-are-loved/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/valentine/you-are-loved/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/you-are-loved/"/>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cocotheaxolotl.org/de/freebies/</loc>
+    <lastmod>2026-05-23</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/freebies/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/freebies/"/>
     <priority>0.7</priority>
   </url>
 </urlset>
