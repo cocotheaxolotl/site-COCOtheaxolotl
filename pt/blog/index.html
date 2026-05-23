@@ -1,0 +1,215 @@
+HTML
+<html lang="pt-BR">
+<head>
+ Tag do Google (gtag.js) – carrega somente após consentimento 
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-6Y0T0Q28E6');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="utf-8"/>
+<title>📝 Blog da Coco – Coco, o Axolote</title>
+<meta content="Artigos divertidos sobre axolotes, atividades e páginas para colorir!" name="description"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://cocotheaxolotl.org/pt/blog/" rel="canonical"/><link href="https://cocotheaxolotl.org/blog/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/blog/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/blog/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/blog/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/pt/blog/" hreflang="pt-BR" rel="alternate"/><link href="https://cocotheaxolotl.org/blog/" hreflang="x-default" rel="alternate"/>
+<meta content="📝 Blog da Coco – Coco, o Axolote" property="og:title"/>
+<meta content="Artigos divertidos sobre axolotes, atividades e páginas para colorir!" property="og:description"/>
+<meta content="https://cocotheaxolotl.org/pt/blog/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="📝 Blog da Coco – Coco, o Axolote" name="twitter:title"/>
+<meta content="Artigos divertidos sobre axolotes, atividades e páginas para colorir!" name="twitter:description"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<style>
+header{background:#f7c1cc;padding:32px 20px 20px}
+main{max-width:900px;margin:0 auto;padding:30px 20px 40px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:24px 0}
+.article-card{
+  background:#fff;padding:24px 20px;border-radius:18px;
+  box-shadow:0 6px 16px rgba(0,0,0,.05);
+  border:2px solid rgba(255,105,180,.15);
+  text-align:left;text-decoration:none;color:#333;
+  transition:transform .15s,box-shadow .15s,border-color .15s;
+  display:block;
+}
+.article-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.09);border-color:rgba(255,105,180,.4)}
+.article-card .emoji{font-size:2em;display:block;margin-bottom:8px}
+.article-card h2{margin:0 0 6px;font-size:1.15em;font-weight:800;color:#ff69b4}
+.article-card p{margin:0;font-size:.95em;line-height:1.4;opacity:.8}
+.article-card .read{display:inline-block;margin-top:12px;color:#ff69b4;font-weight:700;font-size:.95em}
+a.back{display:block;margin-top:36px;color:#ff69b4;text-decoration:none;font-weight:800;font-size:1.05em}
+footer{padding:20px;font-size:.85em;opacity:.6}
+
+body.fr 
+body.fr span[data-lang="en"],body.fr 
+body.es 
+body.es span[data-lang="en"],body.es 
+
+body.fr 
+body.fr [data-lang="en"],body.fr 
+body.es 
+body.es [data-lang="en"],body.es 
+/* keep inline card spans working */
+body.fr .article-card 
+body.fr .article-card 
+body.es .article-card 
+body.es .article-card 
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr}
+  header h1{font-size:1.7em}
+}
+</style>
+</head>
+<body>
+<header>
+<a class="home-link" href="/pt/es/">← Página inicial</a>
+<h1>
+
+
+📝 Blog da Coco
+</h1>
+<p>
+
+
+Artigos divertidos sobre axolotes, atividades e páginas para colorir!
+</p>
+<div class="lang-toggle"><a class="lang-btn" href="/blog/">EN</a><a class="lang-btn" href="/fr/blog/">FR</a><a class="lang-btn" href="/es/blog/">ES</a><a class="lang-btn active" href="/pt/blog/">PT</a></div>
+</header>
+<main>
+<div class="grid">
+<a class="article-card" href="/pt/blog/what-is-an-axolotl/">
+<span class="emoji">🦎</span>
+<h2>O que é um Axolote?</h2>
+<p>Tudo o que as crianças precisam saber sobre o anfíbio mais legal: superpoderes, origens e muito mais.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/why-are-axolotls-endangered/">
+<span class="emoji">⚠️</span>
+<h2>Por que eles estão em perigo?</h2>
+<p>Descubra as ameaças que os axolotes enfrentam e como podemos ajudá-los.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/calm-activities-for-kids/">
+<span class="emoji">🧘</span>
+<h2>7 atividades tranquilas para crianças</h2>
+<p>Ideias sem tela para ajudar as crianças a relaxar e se divertir.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/axolotl-coloring-pages-for-kids/">
+<span class="emoji">🎨</span>
+<h2>Desenhos para colorir de Axolote</h2>
+<p>Desenhos fofos para impressão e dicas para a melhor experiência de colorir.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/fun-facts/">
+<span class="emoji">🧠</span>
+<h2>15 fatos curiosos sobre o Axolotl</h2>
+<p>Você sabia que os axolotes podem regenerar o cérebro? 15 fatos incríveis!</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/coloring-tips-for-kids/">
+<span class="emoji">🖍️</span>
+<h2>10 dicas para colorir</h2>
+<p>Truques simples para ajudar seu filho a colorir como um profissional.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/best-coloring-supplies-for-kids/">
+<span class="emoji">✏️</span>
+<h2>Os melhores materiais para colorir</h2>
+<p>Giz de cera, marcadores, lápis de cor – o guia completo por idade.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/benefits-of-coloring-for-children/">
+<span class="emoji">🧠</span>
+<h2>5 benefícios da coloração para crianças</h2>
+<p>Por que colorir alimenta o cérebro – habilidades motoras, concentração, antiestresse.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/bubble-letters-alphabet/">
+<span class="emoji">🫧</span>
+<h2>Alfabeto em letras de bolha A-Z</h2>
+<p>Letras em forma de bolha para impressão gratuita de A a Z, números de 0 a 9 e pontuação! Aprenda a desenhar letras-bolha passo a passo!</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/best-coloring-activities-for-toddlers/">
+<span class="emoji">👶</span>
+<h2>Melhores atividades de colorir para crianças</h2>
+<p>Idéias para colorir para crianças – pintura a dedo, marcadores, adesivos e muito mais.</p>
+<span class="read">Leia →</span>
+</a>
+<a class="article-card" href="/pt/blog/how-to-teach-colors-to-preschoolers/">
+<span class="emoji">🌈</span>
+<h2>Como ensinar cores para crianças em idade pré-escolar</h2>
+<p>8 atividades divertidas para aprender cores — jogos de classificação, caminhadas pelas cores e muito mais!</p>
+<span class="read">Leia →</span>
+</a>
+</div>
+<a class="back" href="/pt/">
+
+
+← Voltar ao topo
+</a>
+</main>
+<footer>© 2026 Coco, o Axolote</footer>
+<script>
+);
+  document.documentElement.lang=lang;
+}
+</script>
+ Banner de cookies GDPR 
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
+<div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<p style="margin:0;flex:1;min-width:250px">
+
+
+Usamos cookies para analisar o tráfego. Ao clicar em “Aceitar”, você concorda com seu uso.
+<a href="/pt/privacy-policy/" style="color:#ff69b4;margin-left:8px">
+
+
+política de Privacidade
+</a>
+</p>
+<div style="display:flex;gap:10px">
+<button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">
+
+
+Aceitar
+</button>
+<button onclick="refuseCookies()" style="padding:10px 20px;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;font-weight:700;cursor:pointer">
+
+
+Declínio
+</button>
+</div>
+</div>
+</div>
+<script>
+  function acceptCookies(){
+    localStorage.setItem('cookies_accepted','true');
+    document.getElementById('cookieBanner').style.display='none';
+    loadAnalytics();
+  }
+  function refuseCookies(){
+    localStorage.setItem('cookies_accepted','false');
+    document.getElementById('cookieBanner').style.display='none';
+  }
+  if(!localStorage.getItem('cookies_accepted')){
+    document.getElementById('cookieBanner').style.display='block';
+  }
+</script>
+</body>
+</html>

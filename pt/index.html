@@ -1,0 +1,1154 @@
+HTML
+<html lang="pt-BR">
+<head>
+ Tag do Google (gtag.js) – carrega somente após consentimento 
+<script>
+    function loadAnalytics(){
+      if(localStorage.getItem('cookies_accepted')==='true'){
+        var s=document.createElement('script');
+        s.async=true;
+        s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+        document.head.appendChild(s);
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date());
+        gtag('config','G-6Y0T0Q28E6');
+      }
+    }
+    loadAnalytics();
+  </script>
+<meta charset="utf-8"/>
+<meta content="index, follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<title>Bem-vindo ao mundo de Coco – Pinte seu nome e páginas para colorir grátis – Coco, o Axolote</title>
+<meta content="Coco o Axolotl oferece atividades tranquilas para crianças: páginas para colorir, geradores de nomes para colorir, jogos e momentos para imprimir..." name="description"/>
+<meta content="páginas para colorir, folhas para colorir, páginas coloridas, folha para colorir, folha para colorir, colorir seu nome, colorir seu nome, nome para colorir, histórias para dormir, histórias para dormir, histórias para dormir gratuitas, páginas para colorir de natal, páginas para colorir gratuitas, páginas para colorir imprimíveis, folhas de livros para colorir, colorir axolotl, gerador de nomes, atividades infantis, livros para colorir" name="keywords"/>
+ Abrir gráfico 
+<meta content="Bem-vindo ao mundo de Coco – Pinte seu nome e páginas para colorir grátis – Coco, o Axolote" property="og:title"/>
+<meta content="Coco o Axolotl oferece atividades tranquilas para crianças: páginas para colorir, geradores de nomes para colorir, jogos e momentos para imprimir..." property="og:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="https://cocotheaxolotl.org/pt/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+<meta content="pt_BR" property="og:locale"/>
+ Cartão do Twitter 
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Bem-vindo ao mundo de Coco – Pinte seu nome e páginas para colorir grátis – Coco, o Axolote" name="twitter:title"/>
+<meta content="Coco o Axolotl oferece atividades tranquilas para crianças: páginas para colorir, geradores de nomes para colorir, jogos e momentos para imprimir..." name="twitter:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" name="twitter:image"/>
+ Canônico 
+<link href="https://cocotheaxolotl.org/pt/" rel="canonical"/><link href="https://cocotheaxolotl.org/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/pt/" hreflang="pt-BR" rel="alternate"/><link href="https://cocotheaxolotl.org/" hreflang="x-default" rel="alternate"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&amp;display=swap" rel="stylesheet"/>
+ Schema.org 
+<script type="application/ld+json">[
+  {
+    "@context": "https://schema.org",
+    "@type": "Site",
+    "name": "Coco, o Axolote",
+    "alternateName": "cocoteaxolote",
+    "url": "https://cocotheaxolotl.org",
+    "description": "O site oficial de Coco, o Axolote – livros para colorir de axolote, páginas para colorir gratuitas, jogos para imprimir, curiosidades e atividades para crianças de 3 a 8 anos.",
+    "publisher": {
+      "@type": "Organização",
+      "name": "Loopinky",
+      "url": "https://www.amazon.com/author/loopinky"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organização",
+    "name": "Coco, o Axolote",
+    "alternateName": "cocoteaxolote",
+    "url": "https://cocotheaxolotl.org",
+    "logo": "https://cocotheaxolotl.org/coco.png",
+    "description": "Coco the Axolotl é uma marca infantil que oferece livros para colorir de axolotl, atividades gratuitas para impressão e conteúdo educacional divertido para crianças de 3 a 8 anos.",
+    "foundingDate": "2024",
+    "sameAs": [
+      "https://www.amazon.com/author/loopinky"
+    ]
+  }
+]</script>
+<style>
+    :root{
+      --pink:#ff69b4;
+      --pink2:#f7c1cc;
+      --bg:#fef6fb;
+      --card:#ffffff;
+      --text:#333;
+      --shadow:0 10px 26px rgba(0,0,0,.08);
+      --border:2px solid rgba(255,105,180,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:'Baloo 2', cursive;
+      background-color:var(--bg);
+      color:var(--text);
+      margin:0;
+      text-align:center;
+    }
+
+    header{
+      background-color:var(--pink2);
+      min-height:100vh;
+      padding:40px 18px 34px;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+    }
+    .header-video{
+      position:absolute;
+      top:0;left:0;
+      width:100%;height:100%;
+      object-fit:cover;
+      z-index:0;
+    }
+
+    h1{ margin:0 0 8px; font-size:2.6em; font-weight:800; position:relative; z-index:2; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.35); }
+    header p{ margin:8px 0 0; font-size:1.5em; font-weight:700; line-height:1.35; position:relative; z-index:2; color:#fff; -webkit-text-stroke: 2px #000; paint-order: stroke fill; text-shadow: 0 0 10px rgba(0,0,0,.6); }
+    .hint{font-size:.95em; opacity:.9}
+
+    /* ===== Header bubbles (FIXED: 2 layers so CSS rise + JS push both work) ===== */
+    .bubblesLayer{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+    }
+    .bubble{
+      position:absolute;
+      bottom:-140px;
+      left:0;
+      width:44px;
+      height:44px;
+      pointer-events:none;
+      will-change: transform;
+      transform: translate3d(0,0,0); /* JS moves THIS */
+    }
+    .bubbleInner{
+      width:100%;
+      height:100%;
+      border:3px solid rgba(0,0,0,.28);
+      border-radius:999px;
+      background: rgba(255,255,255,.10);
+      opacity:.32;
+      box-shadow: 0 10px 24px rgba(0,0,0,.08);
+      will-change: transform;
+      animation: rise linear infinite; /* CSS moves THIS */
+    }
+    @keyframes rise{
+      0%   { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(0, calc(-1 * var(--travel, 820px)), 0); }
+    }
+
+    /* Coco */
+    .axolotl-container{
+      position:relative;
+      display:inline-block;
+      margin:10px auto 8px;
+      cursor:pointer;
+      user-select:none;
+      z-index:2;
+    }
+    .axolotl-img{ display:block; width:840px; max-width:95vw; position:relative; z-index:1; }
+    .gills-img{
+      position:absolute; top:0; left:0; width:420px;
+      z-index:2; pointer-events:none; transform-origin:center;
+    }
+    .axolotl-container:hover .gills-img,
+    .axolotl-container.wiggle .gills-img{
+      animation:gillsMove .55s ease-in-out infinite alternate;
+    }
+    @keyframes gillsMove{
+      0%{ transform:rotate(-2.2deg) translateY(-1px); }
+      100%{ transform:rotate(2.2deg) translateY(1px); }
+    }
+
+    /* ===== Hero layout: fish - Coco - fish ===== */
+    .hero-row{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:0;
+      width:100%;
+      max-width:1100px;
+    }
+    .fish-col{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      flex-shrink:0;
+    }
+
+    /* ===== Fish links ===== */
+    .fish-link{
+      display:flex;
+      align-items:center;
+      text-decoration:none;
+      color:var(--text);
+      cursor:pointer;
+      transition:transform .15s ease;
+    }
+    .fish-link:hover{ transform:scale(1.08); }
+    .fish-link:hover .fish-banner{
+      background:var(--pink);
+      color:#fff;
+      box-shadow:0 4px 18px rgba(255,105,180,.4);
+    }
+
+    /* Left fish point right → toward Coco */
+    .fish-col.left .fish-link{ flex-direction:row-reverse; animation:swimLeft var(--dur,12s) ease-in-out infinite; }
+    /* Right fish point left ← toward Coco, then banner after */
+    .fish-col.right .fish-link{ flex-direction:row; animation:swimRight var(--dur,12s) ease-in-out infinite; }
+
+    .fish-icon{
+      font-size:2.4em;
+      line-height:1;
+      flex-shrink:0;
+    }
+    /* Left fish face right (toward Coco) */
+    .fish-col.left .fish-icon{ transform:scaleX(-1); animation:wiggleFishFlip 1.2s ease-in-out infinite alternate; }
+    /* Right fish face left (toward Coco) */
+    .fish-col.right .fish-icon{ animation:wiggleFish 1.2s ease-in-out infinite alternate; }
+
+    .fish-rope{
+      width:24px;
+      height:2px;
+      background:repeating-linear-gradient(90deg, var(--text) 0 4px, transparent 4px 8px);
+      opacity:.35;
+      flex-shrink:0;
+    }
+
+    .fish-banner{
+      background:#fff;
+      padding:8px 16px;
+      border-radius:8px;
+      font-size:.95em;
+      font-weight:800;
+      white-space:nowrap;
+      box-shadow:0 3px 12px rgba(0,0,0,.1);
+      border:2px solid var(--pink);
+      transition:background .2s ease, color .2s ease, box-shadow .2s ease;
+    }
+
+    @keyframes swimRight{
+      0%,100%{ transform:translateX(-6px); }
+      50%{ transform:translateX(6px); }
+    }
+    @keyframes swimLeft{
+      0%,100%{ transform:translateX(6px); }
+      50%{ transform:translateX(-6px); }
+    }
+    @keyframes wiggleFish{
+      0%{ transform:rotate(-4deg) translateY(-1px); }
+      100%{ transform:rotate(4deg) translateY(1px); }
+    }
+    @keyframes wiggleFishFlip{
+      0%{ transform:scaleX(-1) rotate(-4deg) translateY(-1px); }
+      100%{ transform:scaleX(-1) rotate(4deg) translateY(1px); }
+    }
+
+    /* Scroll arrow */
+    .scroll-arrow{
+      position:relative;
+      z-index:2;
+      margin-top:16px;
+      font-size:1.6em;
+      color:#fff;
+      text-shadow:0 2px 6px rgba(0,0,0,.4);
+      opacity:.8;
+      animation:bounce 1.8s ease-in-out infinite;
+    }
+    @keyframes bounce{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(8px); }
+    }
+
+    /* Main white area */
+    main{
+      position:relative;
+      overflow:hidden;
+      padding:34px 18px 18px;
+    }
+
+    /* White explosive bubbles canvas */
+    #blastCanvas{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:auto;
+    }
+    .content{
+      position:relative;
+      z-index:1;
+      pointer-events:none;
+    }
+    .content a{ pointer-events:auto; }
+
+    h2{ font-size:2.0em; margin:0 0 10px; }
+    .intro{
+      max-width:720px;
+      margin:0 auto 18px;
+      line-height:1.5;
+      opacity:.92;
+    }
+    .seoLine{
+      max-width:900px;
+      margin:0 auto 18px;
+      font-size:14px;
+      opacity:.88;
+      line-height:1.45;
+    }
+
+    .quick-links{
+      max-width:980px;
+      margin:22px auto 0;
+      padding:0 18px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+    .card{
+      display:block;
+      text-decoration:none;
+      background:var(--card);
+      border-radius:18px;
+      padding:18px 18px 16px;
+      box-shadow:var(--shadow);
+      border: var(--border);
+      color:var(--text);
+      text-align:left;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .card:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,105,180,.65);
+      box-shadow:0 14px 30px rgba(0,0,0,.10);
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size:20px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .card p{
+      margin:0;
+      opacity:.85;
+      font-size:14px;
+      line-height:1.35;
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:22px;
+      pointer-events:auto;
+    }
+    .button{
+      display:inline-block;
+      padding:16px 34px;
+      border-radius:32px;
+      font-weight:800;
+      font-size:1.05em;
+      text-decoration:none;
+      border:2px solid var(--pink);
+      transition: filter .12s ease, transform .12s ease, background .12s ease;
+    }
+    .button.primary{ background:var(--pink); color:white; }
+    .button:hover{filter:brightness(.98)}
+    .button:active{transform:translateY(1px)}
+
+    .social{ margin-top:16px; font-size:0.95em; pointer-events:auto; }
+    .social a{ color:var(--pink); text-decoration:none; font-weight:800; }
+
+    .author-link{ margin-top:10px; font-size:0.92em; pointer-events:auto; }
+    .author-link a{ color:var(--pink); text-decoration:none; font-weight:800; }
+
+    footer{
+      margin-top:26px;
+      padding:18px;
+      font-size:0.85em;
+      color:#888;
+      pointer-events:auto;
+    }
+    footer a{color:#777; text-decoration:underline}
+    .floating-coherence{position:fixed;right:14px;bottom:14px;z-index:9998;display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:999px;background:linear-gradient(135deg,#ff69b4,#c44dff);color:#fff;text-decoration:none;font-weight:800;box-shadow:0 16px 34px rgba(196,77,255,.28);border:2px solid rgba(255,255,255,.3)}
+    .floating-coherence small{display:block;font-size:.68em;opacity:.88;line-height:1.1}
+
+    /* ===== Newsletter Popup ===== */
+    .popup-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.45);
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:0;
+      visibility:hidden;
+      transition:opacity .3s ease, visibility .3s ease;
+      padding:18px;
+    }
+    .popup-overlay.active{
+      opacity:1;
+      visibility:visible;
+    }
+    .popup-box{
+      position:relative;
+      background:#fff;
+      border-radius:22px;
+      max-width:380px;
+      width:100%;
+      padding:30px 26px 22px;
+      box-shadow:0 20px 60px rgba(0,0,0,.18);
+      text-align:center;
+      transform:translateY(20px) scale(.96);
+      transition:transform .3s ease;
+      max-height:90vh;
+      overflow-y:auto;
+    }
+    .popup-overlay.active .popup-box{
+      transform:translateY(0) scale(1);
+    }
+    .popup-close{
+      position:absolute;
+      top:12px;
+      right:14px;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      border:none;
+      background:rgba(0,0,0,.06);
+      font-size:18px;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#666;
+      transition:background .15s ease;
+    }
+    .popup-close:hover{
+      background:rgba(0,0,0,.12);
+    }
+    .popup-box h3{
+      font-family:'Baloo 2', cursive;
+      font-size:1.55em;
+      margin:0 0 4px;
+      color:var(--text);
+    }
+    .popup-box .popup-sub{
+      font-size:.95em;
+      opacity:.8;
+      margin:0 0 16px;
+    }
+    .popup-box img{
+      width:100px;
+      margin:0 auto 12px;
+      display:block;
+    }
+    .popup-box input[type="text"],
+    .popup-box input[type="email"]{
+      width:100%;
+      padding:14px 18px;
+      border-radius:30px;
+      border:2px solid #eee;
+      font-family:'Baloo 2', cursive;
+      font-size:1em;
+      outline:none;
+      transition:border-color .2s ease;
+    }
+    .popup-box input[type="text"]:focus,
+    .popup-box input[type="email"]:focus{
+      border-color:var(--pink);
+    }
+    .popup-box input[type="text"]{
+      margin-bottom:10px;
+    }
+    .popup-box .popup-btn{
+      width:100%;
+      padding:14px;
+      margin-top:10px;
+      border-radius:30px;
+      border:none;
+      background:var(--pink);
+      color:#fff;
+      font-family:'Baloo 2', cursive;
+      font-size:1.05em;
+      font-weight:800;
+      cursor:pointer;
+      transition:filter .15s ease, transform .1s ease;
+    }
+    .popup-box .popup-btn:hover{
+      filter:brightness(.92);
+    }
+    .popup-box .popup-btn:active{
+      transform:translateY(1px);
+    }
+    .popup-box .popup-btn:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+    .popup-box .popup-disclaimer{
+      font-size:.78em;
+      opacity:.65;
+      margin:14px 0 0;
+      line-height:1.4;
+    }
+    .popup-box .popup-success{
+      color:#2ecc71;
+      font-weight:800;
+      font-size:1.1em;
+      margin:12px 0;
+    }
+
+    /* ===== Language toggle ===== */
+    .lang-toggle{
+      position:fixed; top:12px; right:12px; z-index:9999;
+      display:inline-flex; gap:0;
+      border-radius:32px; overflow:hidden; border:2px solid rgba(255,105,180,.7);
+      background:rgba(255,255,255,.85); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
+      box-shadow:0 2px 8px rgba(0,0,0,.15);
+    }
+    .lang-btn{
+      padding:5px 14px; font-family:'Baloo 2',cursive; font-size:.85em; font-weight:800;
+      border:none; cursor:pointer; transition:background .2s,color .2s;
+      background:transparent; color:#c0186a; text-decoration:none; display:inline-block;
+    }
+    .lang-btn.active{ background:#ff69b4; color:#fff; }
+
+    /* ===== Language visibility ===== */
+    span[data-lang="fr"],
+    [data-lang="fr"],
+    body.fr 
+    body.fr span[data-lang="en"],body.fr 
+    body.fr 
+    body.fr [data-lang="en"],body.fr 
+    body.es 
+    body.es span[data-lang="en"],body.es 
+    body.es 
+    body.es [data-lang="en"],body.es 
+
+    @media (max-width: 820px){
+      .quick-links{grid-template-columns:1fr}
+      h1{font-size:1.6em}
+      h2{font-size:1.8em}
+      header{padding:20px 4px 24px}
+      .axolotl-img, .gills-img{ width:280px; max-width:90vw; }
+      .hero-row{ flex-wrap:nowrap; gap:0; width:100%; overflow:hidden; padding:0 2px; }
+      .fish-col{ gap:8px; min-width:0; flex:1; }
+      .fish-icon{ font-size:1em; }
+      .fish-banner{ font-size:.55em; padding:3px 5px; }
+      .fish-rope{ display:none; }
+      .fish-col.left .fish-link{ justify-content:flex-start; }
+      .fish-col.right .fish-link{ justify-content:flex-end; }
+    }
+    /* ── Mobile: vertical layout, fish links become pill buttons ── */
+    @media (max-width: 600px){
+      .hero-row{flex-direction:column;align-items:center;gap:12px;width:100%}
+      .fish-col{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;width:100%;order:2}
+      .fish-col.right{order:3}
+      .axolotl-container{order:1}
+      .fish-col.left .fish-link,.fish-col.left .fish-toggle,.fish-col.right .fish-link,.fish-col.right .fish-toggle{animation:none;flex-direction:row}
+      .fish-col.left .fish-icon,.fish-col.right .fish-icon,.fish-col.left .fish-toggle .fish-icon,.fish-col.right .fish-toggle .fish-icon{animation:none;transform:none;font-size:1.1em}
+      .fish-rope{display:none}
+      .fish-banner{font-size:.88em;padding:7px 13px;border-radius:32px}
+      .fish-col.left .fish-dropdown,.fish-col.right .fish-dropdown{right:auto;left:50%;transform:translateX(-50%);top:calc(100% + 6px)}
+      @keyframes dropIn{from{opacity:0;transform:translateX(-50%) translateY(-6px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+    }
+  .us-credit{margin:12px auto 0;max-width:640px;font-size:.88em;line-height:1.5;opacity:.8}.us-credit [data-lang]{display:none}.us-credit a{color:#ff69b4;font-weight:700}.us-flip-credit{margin:10px 0 0;color:#f0e6d3;font-size:.9rem;opacity:.8;text-align:center}.us-flip-credit a{color:#ffd66b;font-weight:700}</style>
+</head>
+<body>
+<header id="heroHeader">
+<video autoplay="" class="header-video" loop="" muted="" playsinline="" poster="/poster-hero.jpg">
+<source src="/hero-bg.mp4" type="video/mp4"/>
+</video>
+<div aria-hidden="true" class="bubblesLayer" id="bubblesLayer"></div>
+<h1>💗 Coco, o Axolote</h1>
+<a class="easter-banner" href="/pt/freebies/#i-love-you-more-freebies" onclick="if(!localStorage.getItem('coco_subscribed')){document.getElementById('popupOverlay').classList.add('active');return false;}">
+<span class="easter-eggs">💗🌷💗</span>
+<span class="easter-msg">Dia das Mães! 2 desenhos grátis!</span>
+<span class="easter-eggs">🌸💌🌸</span>
+</a>
+<style>
+.easter-banner{position:relative;z-index:10;background:rgba(255,255,255,.92);color:#6a1b9a;font-family:'Baloo 2',system-ui;font-weight:800;font-size:1.8em;padding:16px 40px;border-radius:24px;margin:6px auto 14px;display:inline-flex;align-items:center;gap:16px;box-shadow:0 6px 28px rgba(106,27,154,.3),inset 0 0 0 3px #e1bee7;letter-spacing:.5px;animation:easterBounce 2s ease-in-out infinite;text-decoration:none;cursor:pointer;transition:transform .15s}
+.easter-banner:hover{transform:scale(1.05)}
+.easter-eggs{font-size:1.2em}
+.easter-msg{background:linear-gradient(135deg,#e91e63,#9c27b0,#4caf50);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+@keyframes easterBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media(max-width:600px){.easter-banner{font-size:1.2em;padding:12px 24px;gap:10px}}
+@media(max-height:750px){.axolotl-img{width:240px}.easter-banner{font-size:.85em;padding:8px 14px;margin:2px auto 6px}h1{font-size:1.1em;margin-bottom:0}header{padding:4px 4px 6px}.fish-banner{font-size:.65em;padding:3px 7px}.fish-icon{font-size:.8em}.fish-rope{height:6px}.hero-row{gap:2px}.fish-col{gap:2px}.fish-group{margin:1px 0}}
+</style>
+<div class="hero-row">
+ Coluna de peixe à esquerda: conteúdo do site 
+<div class="fish-col left">
+<a class="fish-link" href="/shop/" style="--dur:11s">
+<span class="fish-icon">🐠</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Livros</span>
+</a>
+<a class="fish-link" href="/pt/freebies/" style="--dur:9s">
+<span class="fish-icon">🐡</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Presentes</span>
+</a>
+<a class="fish-link" href="/pt/about-coco/" style="--dur:11s">
+<span class="fish-icon">🫧</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Conheça o Coco</span>
+</a>
+<a class="fish-link" href="/pt/blog/" style="--dur:13s">
+<span class="fish-icon">🐟</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">blog</span>
+</a>
+<a class="fish-link" href="/pt/kids-games/" style="--dur:10s">
+<span class="fish-icon">🐡</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Jogos</span>
+</a>
+<a class="fish-link" href="/pt/bubble-lab/" style="--dur:14s">
+<span class="fish-icon">🐠</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Letras-bolha</span>
+</a>
+ OFFLINE até meados de fevereiro
+        &lt;a href="/coloring/" class="fish-link" style="--dur:11s"&gt;
+          &lt;span class="fish-icon"&gt;🐟&lt;/span&gt;
+          &lt;span class="corda de peixe"&gt;&lt;/span&gt;
+          &lt;span class="fish-banner"&gt;Colorir on-line&lt;/span&gt;
+        &lt;/a&gt;
+        
+<a class="fish-link" href="https://www.amazon.com/dp/B0G4RDNY8Y" rel="noopener" style="--dur:12s" target="_blank">
+<span class="fish-icon">🐟</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Cadernos</span>
+</a>
+<a class="fish-link" href="/pt/shop/" style="--dur:10s">
+<span class="fish-icon">🐠</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Loja</span>
+</a>
+</div>
+ Centro Coco 
+<div aria-label="Coco" class="axolotl-container" id="cocoWiggle">
+<img alt="Coco, o Axolotl, com a mãe no Dia das Mães" class="axolotl-img" src="/mothers-day-coco.webp" style="width:360px;max-width:72vw;max-height:46vh;object-fit:cover;border-radius:22px;box-shadow:0 12px 34px rgba(0,0,0,.18)"/>
+</div>
+ Coluna de peixe à direita: mídias sociais 
+<div class="fish-col right">
+<a class="fish-link" href="https://www.instagram.com/cocotheaxolotl/" rel="noopener" style="--dur:12s" target="_blank">
+<span class="fish-icon">🐠</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Instagram</span>
+</a>
+<a class="fish-link" href="https://www.facebook.com/profile.php?id=61587038682969" rel="noopener" style="--dur:10s" target="_blank">
+<span class="fish-icon">🐡</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Facebook</span>
+</a>
+<a class="fish-link" href="https://www.tiktok.com/@cocotheaxolotl" rel="noopener" style="--dur:13s" target="_blank">
+<span class="fish-icon">🐠</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">TikTok</span>
+</a>
+<a class="fish-link" href="https://www.pinterest.com/cocotheaxolotl/" rel="noopener" style="--dur:11s" target="_blank">
+<span class="fish-icon">🐡</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Pinterest</span>
+</a>
+<a class="fish-link" href="/pt/coherence/" style="--dur:14s">
+<span class="fish-icon">🫧</span>
+<span class="fish-rope"></span>
+<span class="fish-banner">Coco respira<small style="display:block;font-size:.75em;opacity:.8">Coerência cardíaca</small></span>
+</a>
+</div>
+</div>
+<p>
+
+
+O axolote mais fofo e doce 🫧<br/><span class="hint">Clique em uma tag para explorar!</span>
+</p>
+<div class="lang-toggle"><a class="lang-btn" href="/">EN</a><a class="lang-btn" href="/fr/">FR</a><a class="lang-btn" href="/es/">ES</a><a class="lang-btn" href="/de/">DE</a><a class="lang-btn" href="/ja/">JA</a><a class="lang-btn" href="/ar/">AR</a><a class="lang-btn active" href="/pt/">PT</a></div>
+<div aria-hidden="true" class="scroll-arrow">▼</div>
+</header>
+<main id="blastArea">
+<canvas id="blastCanvas"></canvas>
+<div class="content">
+<h2>
+
+
+Bem-vindo ao mundo de Coco – Pinte seu nome e páginas para colorir grátis
+</h2>
+<p class="intro">
+
+
+Coco, o Axolote, oferece atividades tranquilas para crianças: páginas para colorir, geradores de nomes para colorir, jogos para imprimir e momentos criativos sem tela para relaxar, se concentrar e se divertir.
+        Os pais encontrarão páginas para colorir, geradores para colorir seu nome em balões, bolhas, nuvens e muito mais, atividades sem tela e ideias educativas em um ambiente amigável e tranquilo.
+</p>
+<p class="seoLine">
+
+
+Os pais também procuram: <strong>páginas para colorir</strong>, <strong>folhas para colorir</strong>, <strong>pinte seu nome</strong>, <strong>histórias para dormir</strong>, <strong>histórias para dormir grátis</strong>, <strong>desenhos de natal para colorir</strong> e <strong>atividades de colorir</strong>.
+</p>
+<div class="quick-links">
+<a class="card" href="/pt/about-coco/">
+<h3>💗Conheça Coco</h3>
+<p>Conheça Coco, o brincalhão bebê axolote do México! Sua história, amigos e aventuras.</p>
+</a>
+<a class="card" href="/pt/coloring-books/">
+<h3>🎨 Livros e folhas para colorir</h3>
+<p>Páginas para colorir gratuitas e folhas para colorir para imprimir. Atividades relaxantes para momentos tranquilos e sem tela.</p>
+</a>
+<a class="card" href="/sleep-book/read/?unlock=COCO-DODO-2026" style="border-color:rgba(63,81,181,.35)">
+<h3>🌙 Livro animado</h3>
+<p>Coco não consegue dormir! Uma história interativa gratuita com 9 animais e seus segredos para dormir.</p>
+</a>
+<a class="card" href="/pt/kids-games/">
+<h3>🎲 Jogos para crianças</h3>
+<p>Jogos tranquilos projetados para aprender brincando e se concentrando.</p>
+</a>
+<a class="card" href="/pt/learn-about-axolotls/">
+<h3>🦎 Aprenda sobre Axolotes</h3>
+<p>Atividades educativas com curiosidades que estimulam o aprendizado e a curiosidade.</p>
+</a>
+<a class="card" href="/pt/bubble-lab/">
+<h3>🫧 Letras-bolha</h3>
+<p>Atividade para impressão: Crie letras-bolha para colorir em momentos de tranquilidade!</p>
+</a>
+<a class="card" href="/pt/mosaic-examples/" style="border-color:rgba(156,39,176,.35)">
+<h3>🧩 Mosaicos Misteriosos</h3>
+<p>Mosaicos misteriosos grátis para colorir por número! Revele imagens ocultas. Unicórnio, dragão, dinossauro e muito mais!</p>
+</a>
+<a class="card" href="/pt/shop/">
+<h3>🛍️ Loja Coco</h3>
+<p>Etiquetas, camisetas, canecas, capas e muito mais com Cocos! Disponível no Redbubble.</p>
+</a>
+ OFFLINE até meados de fevereiro
+        &lt;a class="cartão" href="/colorir/"&gt;
+          &lt;h3&gt;🖌️ &lt;span data-lang="en"&gt;Colorir Online&lt;/span&gt;&lt;span data-lang="fr"&gt;Colorir online&lt;/span&gt;&lt;span data-lang="es"&gt;Colorir Online&lt;/span&gt;&lt;/h3&gt;
+          &lt;p&gt;&lt;span data-lang="en"&gt;Colorir as páginas da Coco on-line com ferramentas de pincel e preenchimento. Baixe sua criação!&lt;/span&gt;&lt;span data-lang="fr"&gt;Colora as páginas da Coco online com ferramentas pinceau. Baixe sua criação!&lt;/span&gt;&lt;span data-lang="en"&gt;Colorir páginas Coco on-line com ferramentas de pincel. Baixe sua criação!&lt;/span&gt;&lt;/p&gt;
+        &lt;/a&gt;
+        
+</div>
+ APENAS UM BOTÃO 
+<div class="cta-row">
+<a class="button primary amazon-book" data-href-en="https://www.amazon.com/dp/B0FN7FRVV6" data-href-es="https://www.amazon.com/dp/B0GCM24GF7" data-href-fr="https://www.amazon.fr/dp/B0FYMS84MR" href="https://www.amazon.com/dp/B0GCM24GF7" rel="noopener" target="_blank">
+Descubra os livros
+</a>
+</div>
+<div class="social">
+Siga Coco:
+<a href="https://www.instagram.com/cocotheaxolotl/" rel="noopener" target="_blank">Instagram</a> ·
+        <a href="https://www.tiktok.com/@cocotheaxolotl" rel="noopener" target="_blank">TikTok</a> ·
+        <a href="https://www.pinterest.com/cocotheaxolotl/" rel="noopener" target="_blank">Pinterest</a>
+</div>
+<p class="author-link">
+Página do autor na Amazon:
+<a href="https://www.amazon.com/author/loopinky" rel="noopener" target="_blank">amazon.com/author/loopinky</a>
+</p>
+<footer>
+        © 2026 Coco, o Axolote —
+        Todos os direitos reservados ·
+        <a href="/pt/legal-notice/">Aviso Legal</a> ·
+        <a href="/pt/privacy-policy/">política de Privacidade</a> ·
+        <a href="https://www.loopinky.com" target="_blank">Caligrafia de Loopinky</a>
+</footer>
+</div>
+</main>
+ Pop-up do boletim informativo 
+<div class="popup-overlay" id="popupOverlay">
+<div class="popup-box">
+<button aria-label="Fechar" class="popup-close" id="popupClose">✕</button>
+<h3>💗 2 desenhos gratuitos de Dia das Mães!</h3>
+<p class="popup-sub">Digite seu nome e e-mail para baixar 2 desenhos de Dia das Mães!</p>
+<img alt="Desenho Dia das Mães - Coco, o Axolote" src="/shop/coloring-love-preview.gif" style="max-width:200px;border-radius:12px;border:2px solid #e1bee7"/>
+<form id="popupForm">
+<input id="popupName" placeholder="seu nome" required="" type="text"/>
+<input id="popupEmail" placeholder="Seu e-mail" required="" type="email"/>
+<button class="popup-btn" id="popupBtn" type="submit">
+
+
+Inscrever-se
+</button>
+</form>
+<p class="popup-disclaimer">
+
+
+Ao se inscrever, você concorda em receber nossa newsletter.<br/>Você pode cancelar a qualquer momento.
+</p>
+</div>
+</div>
+<script>
+    function rand(min,max){ return min + Math.random()*(max-min); }
+
+    /* ===== Language toggle ===== */
+    );
+      document.documentElement.lang = lang;
+      var placeholders = {
+        en: ['Your first name', 'Enter your email'],
+        fr: ['Ton pr\u00e9nom', 'Ton email'],
+        es: ['Tu nombre', 'Tu email']
+      };
+      var p = placeholders[lang] || placeholders.en;
+      var pn = document.getElementById('popupName');
+      var pe = document.getElementById('popupEmail');
+      if(pn) pn.placeholder = p[0];
+      if(pe) pe.placeholder = p[1];
+      document.querySelectorAll('.amazon-book').forEach(function(a){
+        var href = a.getAttribute('data-href-'+lang);
+        if(href) a.href = href;
+      });
+    }
+    // Set initial placeholders
+    
+    
+
+    /* ===== Gills wiggle on tap (mobile) ===== */
+    const coco = document.getElementById("cocoWiggle");
+    let wiggleT;
+    coco.addEventListener("click", () => {
+      coco.classList.add("wiggle");
+      clearTimeout(wiggleT);
+      wiggleT = setTimeout(() => coco.classList.remove("wiggle"), 1200);
+    }, { passive:true });
+
+    /* =========================================================
+       HEADER BUBBLES (FIXED): CSS rise on inner + JS push on outer
+       ========================================================= */
+    (function headerBubbles(){
+      const layer = document.getElementById("bubblesLayer");
+      const hero  = document.getElementById("heroHeader");
+      const COUNT = 18;
+      const bubbles = [];
+
+      layer.innerHTML = "";
+
+      for(let i=0;i<COUNT;i++){
+        const outer = document.createElement("div");
+        outer.className = "bubble";
+
+        const inner = document.createElement("div");
+        inner.className = "bubbleInner";
+
+        const size = Math.round(rand(18, 64));
+        const left = rand(2, 98);
+        const dur  = rand(7.5, 14.5);
+        const delay= rand(0, 9);
+        const travel = rand(560, 1100);
+
+        outer.style.width = size + "px";
+        outer.style.height = size + "px";
+        outer.style.left = left + "%";
+
+        inner.style.animationDuration = dur + "s";
+        inner.style.animationDelay = (-delay) + "s";
+        inner.style.setProperty("--travel", travel + "px");
+
+        outer.appendChild(inner);
+        layer.appendChild(outer);
+
+        bubbles.push({
+          el: outer,
+          ox: 0, oy: 0,
+          vx: 0, vy: 0,
+          phase: rand(0, Math.PI*2),
+          drift: rand(0.6, 1.4),
+          baseX: 0
+        });
+      }
+
+      let mouse = { x: 0.5, y: 0.5, active:false };
+
+      function setMouse(e){
+        const r = hero.getBoundingClientRect();
+        mouse.x = (e.clientX - r.left) / r.width;
+        mouse.y = (e.clientY - r.top) / r.height;
+        mouse.active = true;
+      }
+      function leaveMouse(){ mouse.active = false; }
+
+      window.addEventListener("mousemove", setMouse, { passive:true });
+      hero.addEventListener("mouseleave", leaveMouse, { passive:true });
+
+      function tick(){
+        const r = hero.getBoundingClientRect();
+        const W = r.width;
+        const H = r.height;
+        const mx = mouse.x * W;
+        const my = mouse.y * H;
+
+        for(const b of bubbles){
+          const t = performance.now();
+
+          // idle wobble
+          b.vx += Math.sin(t*0.0012 + b.phase) * 0.03 * b.drift;
+          b.vy += Math.cos(t*0.0010 + b.phase) * 0.02 * b.drift;
+
+          if(mouse.active){
+            // approximate bubble center from its left% (good enough)
+            const rect = b.el.getBoundingClientRect();
+            const heroRect = hero.getBoundingClientRect();
+            const bx = (rect.left - heroRect.left) + rect.width/2;
+            const by = (rect.top - heroRect.top) + rect.height/2;
+
+            const dx = bx - mx;
+            const dy = by - my;
+            const dist = Math.sqrt(dx*dx + dy*dy) + 0.0001;
+
+            const R = 270; // radius
+            if(dist < R){
+              const tt = 1 - (dist / R);
+              const force = 24 * (tt*tt);  // push (strong)
+              const swirl = 12 * (tt*tt);  // swirl (fun)
+
+              b.vx += (dx / dist) * force;
+              b.vy += (dy / dist) * force;
+
+              b.vx += (-dy / dist) * swirl;
+              b.vy += ( dx / dist) * swirl;
+            }
+          }
+
+          // damping
+          b.vx *= 0.88;
+          b.vy *= 0.88;
+
+          // integrate
+          b.ox += b.vx;
+          b.oy += b.vy;
+
+          // clamp so it stays pretty
+          b.ox = Math.max(-170, Math.min(170, b.ox));
+          b.oy = Math.max(-120, Math.min(120, b.oy));
+
+          b.el.style.transform = `translate3d(${b.ox.toFixed(1)}px, ${b.oy.toFixed(1)}px, 0)`;
+        }
+
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+
+    /* =========================================================
+       WHITE AREA = EXPLOSIVE + RISING BUBBLES (canvas)
+       ========================================================= */
+    (function whiteExplosive(){
+      const area = document.getElementById("blastArea");
+      const canvas = document.getElementById("blastCanvas");
+      const ctx = canvas.getContext("2d");
+
+      function resize(){
+        const r = area.getBoundingClientRect();
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        canvas.width = Math.floor(r.width * dpr);
+        canvas.height = Math.floor(r.height * dpr);
+        canvas.style.width = r.width + "px";
+        canvas.style.height = r.height + "px";
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+
+      const P = [];
+      let mouse = { x:-9999, y:-9999, down:false };
+
+      function spawnRiser(){
+        const r = area.getBoundingClientRect();
+        P.push({
+          x: rand(0, r.width),
+          y: r.height + rand(10, 160),
+          vx: rand(-0.25, 0.25),
+          vy: -rand(0.9, 2.0),
+          rad: rand(10, 26),
+          life: rand(220, 420),
+          lw: rand(2.0, 3.6)
+        });
+      }
+
+      function burst(x,y, power=1){
+        const count = Math.floor(28 + 36*power);
+        for(let i=0;i<count;i++){
+          const a = rand(0, Math.PI*2);
+          const sp = rand(1.8, 7.8) * (0.9 + power);
+          P.push({
+            x, y,
+            vx: Math.cos(a)*sp,
+            vy: Math.sin(a)*sp,
+            rad: rand(6, 16),
+            life: rand(45, 95),
+            lw: rand(2.2, 3.8)
+          });
+        }
+      }
+
+      function pos(e){
+        const r = area.getBoundingClientRect();
+        mouse.x = e.clientX - r.left;
+        mouse.y = e.clientY - r.top;
+      }
+
+      canvas.addEventListener("mousemove", (e)=>pos(e), { passive:true });
+      canvas.addEventListener("mouseleave", ()=>{ mouse.x=-9999; mouse.y=-9999; }, { passive:true });
+      canvas.addEventListener("mousedown", (e)=>{ pos(e); mouse.down=true; burst(mouse.x, mouse.y, 1.2); });
+      window.addEventListener("mouseup", ()=> mouse.down=false, { passive:true });
+      canvas.addEventListener("click", (e)=>{ pos(e); burst(mouse.x, mouse.y, 1.0); });
+
+      function tick(){
+        const r = area.getBoundingClientRect();
+        const W = r.width;
+        const H = r.height;
+
+        ctx.clearRect(0,0,W,H);
+
+        if(P.length < 190 && Math.random() < 0.34){
+          spawnRiser();
+        }
+
+        for(let i=P.length-1;i>=0;i--){
+          const p = P[i];
+
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx*dx + dy*dy) + 0.0001;
+          const R = mouse.down ? 260 : 190;
+
+          if(dist < R){
+            const t = 1 - dist / R;
+            const force = (mouse.down ? 2.0 : 1.1) * (t*t);
+            p.vx += (dx / dist) * (3.3 * force);
+            p.vy += (dy / dist) * (3.3 * force);
+          }
+
+          p.vx *= 0.985;
+          p.vy *= 0.985;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life -= 1;
+
+          ctx.beginPath();
+          ctx.lineWidth = p.lw;
+          ctx.strokeStyle = "rgba(0,0,0,0.22)";
+          ctx.fillStyle = "rgba(255,255,255,0.10)";
+          ctx.arc(p.x, p.y, p.rad, 0, Math.PI*2);
+          ctx.fill();
+          ctx.stroke();
+
+          if(p.life <= 0 || p.y < -260 || p.x < -300 || p.x > W + 300 || p.y > H + 300){
+            P.splice(i,1);
+          }
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      window.addEventListener("resize", resize);
+      window.addEventListener("load", ()=>{ resize(); tick(); });
+    })();
+
+    /* =========================================================
+       NEWSLETTER POPUP
+       ========================================================= */
+    (function newsletterPopup(){
+      const overlay = document.getElementById("popupOverlay");
+      const closeBtn = document.getElementById("popupClose");
+      const form = document.getElementById("popupForm");
+      const nameInput = document.getElementById("popupName");
+      const emailInput = document.getElementById("popupEmail");
+      const submitBtn = document.getElementById("popupBtn");
+
+      // Show popup after 4 seconds (only if not already subscribed)
+      if(!localStorage.getItem('coco_subscribed')){
+        setTimeout(()=>{ overlay.classList.add("active"); }, 4000);
+      }
+
+      function closePopup(){
+        overlay.classList.remove("active");
+      }
+
+      closeBtn.addEventListener("click", closePopup);
+      overlay.addEventListener("click", (e)=>{
+        if(e.target === overlay) closePopup();
+      });
+
+      form.addEventListener("submit", (e)=>{
+        e.preventDefault();
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        if(!name || !email) return;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        fetch("/api/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: name, email: email, lang: document.documentElement.lang || 'en' })
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(data){
+          if(data.success){
+            localStorage.setItem('coco_subscribed','true');
+            form.innerHTML = '<p class="popup-success">¡Gracias! Descarga tus 2 páginas gratis:<br><a href="/freebies/i-love-you-more-free-coloring-1.png" download="i-love-you-more-free-coloring-1.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">Página 1</a><a href="/freebies/i-love-you-more-free-coloring-2.png" download="i-love-you-more-free-coloring-2.png" style="display:inline-block;margin:10px 6px 0;padding:10px 18px;background:#4caf50;color:#fff;border-radius:20px;text-decoration:none;font-weight:700">Página 2</a><br><a href="/shop/#i-love-you-more-pack" style="display:inline-block;margin-top:10px;color:#6a1b9a;font-weight:700">Ver el pack completo en la tienda</a></p>';
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Try again";
+          }
+        })
+        .catch(()=>{
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Try again";
+        });
+      });
+    })();
+  </script>
+ Banner de cookies GDPR 
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
+<div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
+<p style="margin:0;flex:1;min-width:250px">
+
+
+Usamos cookies para analisar o tráfego. Ao clicar em “Aceitar”, você concorda com seu uso.
+<a href="/pt/privacy-policy/" style="color:#ff69b4;margin-left:8px">
+
+
+política de Privacidade
+</a>
+</p>
+<div style="display:flex;gap:10px">
+<button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">
+
+
+Aceitar
+</button>
+<button onclick="refuseCookies()" style="padding:10px 20px;background:transparent;color:#fff;border:2px solid #fff;border-radius:8px;font-weight:700;cursor:pointer">
+
+
+Declínio
+</button>
+</div>
+</div>
+</div>
+<script>
+    function acceptCookies(){
+      localStorage.setItem('cookies_accepted','true');
+      document.getElementById('cookieBanner').style.display='none';
+      loadAnalytics();
+    }
+    function refuseCookies(){
+      localStorage.setItem('cookies_accepted','false');
+      document.getElementById('cookieBanner').style.display='none';
+    }
+    if(!localStorage.getItem('cookies_accepted')){
+      document.getElementById('cookieBanner').style.display='block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+HTML
+<html lang="pt-BR">
+<head>
+<script>
+    function loadAnalytics(){
+      if(localStorage.getItem('cookies_accepted')==='true'){
+        var s=document.createElement('script');
+        s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+        document.head.appendChild(s);
+        window.dataLayer=window.dataLayer||[];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js',new Date());gtag('config','G-6Y0T0Q28E6');
+      }
+    }
+    loadAnalytics();
+  </script>
+<meta charset="utf-8"/>
+<meta content="index, follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#3D3D8E" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<title>🌙 Coco não consegue dormir! – História grátis para dormir – Coco, o Axolote</title>
+<meta content="Uma história relaxante para crianças na hora de dormir - leia online gratuitamente!" name="description"/>
+<meta content="histórias para dormir, histórias para dormir para crianças, histórias para dormir gratuitas, histórias para dormir online, histórias para dormir, histórias para dormir infantis, ler online gratuitamente, história de axolotl para crianças" name="keywords"/>
+<meta content="🌙 Coco não consegue dormir! – História grátis para dormir – Coco, o Axolote" property="og:title"/>
+<meta content="Uma história relaxante para crianças na hora de dormir - leia online gratuitamente!" property="og:description"/>
+<meta content="summary" name="twitter:card"/>
+<meta content="🌙 Coco não consegue dormir! – História grátis para dormir – Coco, o Axolote" name="twitter:title"/>
+<meta content="Uma história relaxante para crianças na hora de dormir - leia online gratuitamente!" name="twitter:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="https://cocotheaxolotl.org/pt/sleep-book/" property="og:url"/>
+<meta content="product" property="og:type"/>
+<link href="https://cocotheaxolotl.org/pt/sleep-book/" rel="canonical"/><link href="https://cocotheaxolotl.org/sleep-book/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/sleep-book/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/sleep-book/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/sleep-book/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/pt/sleep-book/" hreflang="pt-BR" rel="alternate"/><link href="https://cocotheaxolotl.org/sleep-book/" hreflang="x-default" rel="alternate"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "livro",
+  "name": "Coco não consegue dormir esta noite!",
+  "author": {
+    "@type": "pessoa",
+    "name": "Dra. Anita NIRVENA"
+  },
+  "illustrator": {
+    "@type": "pessoa",
+    "name": "Loopinky"
+  },
+  "bookFormat": "e-book",
+  "numberOfPages": 30,
+  "typicalAgeRange": "3-8",
+  "inLanguage": [
+    "em",
+    "franco",
+    "é"
+  ],
+  "description": "Uma aventura para dormir: Coco, o Axolotl, conhece 9 animais que dormem de uma maneira única.",
+  "offers": {
+    "@type": "Oferecer",
+    "price": "2,99",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+}</script>
+<style>
+    header{
+      background: linear-gradient(135deg, #1a1a4e 0%, #3D3D8E 50%, #5c3d8e 100%);
+      padding: 28px 20px 36px;
+      color: #fff;
+    }
+    header h1{ margin:0; font-size:2.2em; }
+    header .subtitle{ margin:8px 0 0; font-size:1.1em; opacity:.85; }
+
+    .lang-toggle{
+      display:inline-flex; gap:0; margin:14px auto 0;
+      border-radius:32px; overflow:hidden; border:2px solid rgba(255,255,255,.5);
+    }
+    .lang-btn{
+      padding:6px 18px; font-family:'Baloo 2',cursive; font-size:.9em;
+      font-weight:800; border:none; cursor:pointer;
+      background:transparent; color:rgba(255,255,255,.7);
+    }
+    .lang-btn.active{ background:rgba(255,255,255,.9); color:#3D3D8E; }
+
+    main{ padding:36px 20px; text-align:center; }
+    p{ max-width:620px; margin:14px auto; line-height:1.6; font-size:1.05em; }
+
+    /* Book showcase */
+    .book-showcase{
+      max-width:380px; margin:30px auto;
+      background: linear-gradient(135deg, #1a1a4e, #2d2d6e);
+      border-radius:20px; padding:30px 20px;
+      box-shadow:0 16px 40px rgba(30,30,80,.25);
+      position:relative; overflow:hidden;
+    }
+    .book-showcase::before{
+      content:''; position:absolute; top:-30px; right:-30px;
+      width:100px; height:100px; border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,200,.3), transparent 70%);
+    }
+    .book-cover{
+      width:220px; max-width:80%; border-radius:10px;
+      box-shadow:0 8px 30px rgba(0,0,0,.4);
+    }
+    .book-cover-placeholder{
+      width:220px; max-width:80%; aspect-ratio:3/4;
+      border-radius:10px; margin:0 auto;
+      background: linear-gradient(135deg, #5c3d8e, #3D3D8E);
+      display:flex; align-items:center; justify-content:center;
+      color:rgba(255,255,255,.6); font-size:.9em; text-align:center;
+      border:2px dashed rgba(255,255,255,.3);
+      box-shadow:0 8px 30px rgba(0,0,0,.4);
+    }
+    .stars{
+      position:absolute; top:10px; left:10px; right:10px;
+      font-size:1.4em; letter-spacing:4px; opacity:.5;
+    }
+
+    /* Preview flipbook */
+    .preview-section{
+      max-width:700px; margin:40px auto;
+      background:#f0f0ff; border-radius:18px; padding:30px 20px;
+      border:2px solid rgba(61,61,142,.15);
+    }
+    .preview-section h2{ color:#3D3D8E; font-size:1.5em; margin:0 0 10px; }
+    #previewBook{
+      margin:20px auto; display:block;
+    }
+    .page{
+      background:#fff; border:1px solid #ddd; display:flex;
+      align-items:center; justify-content:center;
+      font-family:'Baloo 2',cursive; color:#666; font-size:.9em;
+      text-align:center; padding:16px;
+      user-select:none; overflow:hidden;
+    }
+    .page.cover-page{
+      background: linear-gradient(135deg, #1a1a4e, #3D3D8E);
+      color:#fff; font-weight:800;
+    }
+
+    /* Buy section */
+    .buy-section{
+      max-width:580px; margin:40px auto; padding:30px;
+      background:#fff; border-radius:18px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08);
+      border:2px solid rgba(61,61,142,.2);
+    }
+    .buy-section h2{ color:#3D3D8E; margin:0 0 6px; }
+    .price{ font-size:2.4em; font-weight:800; color:#D6006E; margin:10px 0; }
+
+    .button{
+      display:inline-block; margin:10px 8px;
+      padding:16px 36px; border-radius:32px;
+      font-weight:800; font-size:1.05em;
+      font-family:'Baloo 2',cursive;
+      text-decoration:none; cursor:pointer; border:none;
+      transition:filter .15s, transform .12s;
+    }
+    .button:hover{ filter:brightness(.92); transform:translateY(-1px); }
+    .btn-paypal{ background:#0070ba; color:#fff; }
+    .btn-etsy{ background:#F1641E; color:#fff; }
+
+    .paypal-note{ font-size:.8em; opacity:.6; margin-top:8px; }
+
+    /* Features */
+    .features{
+      max-width:700px; margin:40px auto 0;
+      display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;
+    }
+    .feature{
+      background:#fff; border-radius:14px; padding:18px 14px;
+      box-shadow:0 4px 14px rgba(0,0,0,.06);
+      border:1px solid rgba(61,61,142,.1);
+    }
+    .feature .icon{ font-size:2em; margin-bottom:6px; }
+    .feature h3{ margin:0; font-size:.95em; color:#3D3D8E; }
+    .feature p{ margin:6px 0 0; font-size:.8em; opacity:.7; }
+
+    /* Responsive */
+    @media(max-width:600px){
+      header h1{ font-size:1.7em; }
+      .features{ grid-template-columns:1fr; max-width:300px; }
+      .buy-section{ margin:30px 10px; padding:20px 16px; }
+    }
+
+    /* Language visibility */
+    span[data-lang="fr"],
+    [data-lang="fr"],
+    body.fr 
+    body.fr span[data-lang="en"],body.fr 
+    body.fr 
+    body.fr 
+    body.es 
+    body.es span[data-lang="en"],body.es 
+    body.es 
+    body.es [data-lang="en"],body.es 
+  </style>
+</head>
+<body>
+<header>
+<a class="home-link" href="/pt/es/">
+
+
+← Página inicial
+</a>
+<h1>
+
+
+🌙 Coco não consegue dormir! – História grátis para dormir
+</h1>
+<p class="subtitle">
+
+
+Uma história relaxante para crianças na hora de dormir - leia online gratuitamente!
+</p>
+<div class="lang-toggle"><a class="lang-btn" href="/sleep-book/">EN</a><a class="lang-btn" href="/fr/sleep-book/">FR</a><a class="lang-btn" href="/es/sleep-book/">ES</a><a class="lang-btn active" href="/pt/sleep-book/">PT</a></div>
+</header>
+<main>
+ Vitrine de livros 
+<div class="book-showcase">
+<div class="stars">⭐ ⭐ ⭐ ⭐ ⭐</div>
+<div class="book-cover-placeholder">
+
+
+[Capa em breve]
+</div>
+</div>
+ Descrição 
+<p>
+
+
+Coco não consegue dormir! Este curioso axolote foge para descobrir como outros animais dormem. Desde golfinhos que dormem com um olho aberto até coalas que dormem 22 horas por dia – cada encontro revela um segredo fascinante. Uma história mágica para dormir com curiosidades sobre o reino animal! Perfeito como uma história de ninar online gratuita para crianças de 3 a 8 anos.
+</p>
+<p style="font-size:.9em; opacity:.7;">
+
+
+Por Dra. Anita NIRVENA • Ilustrações: Loopinky • 3–8 anos • 30 páginas
+</p>
+ Características 
+<div class="features">
+<div class="feature">
+<div class="icon">📖</div>
+<h3>Leia on-line</h3>
+<p>Navegue pelo livro no seu navegador</p>
+</div>
+<div class="feature">
+<div class="icon">📱</div>
+<h3>Compatível com dispositivos móveis</h3>
+<p>Funciona em celular, tablet e PC</p>
+</div>
+<div class="feature">
+<div class="icon">🧠</div>
+<h3>Educacional</h3>
+<p>9 animais, 9 fatos sobre o sono</p>
+</div>
+</div>
+ Visualização 
+<div class="preview-section">
+<h2>
+
+
+👀 Visualização
+</h2>
+<p style="font-size:.9em; opacity:.7; margin:0 0 10px;">
+
+
+Primeiras 3 páginas – compre para ler o livro inteiro!
+</p>
+<div id="previewBook"></div>
+</div>
+ Seção de compra 
+<div class="buy-section">
+<h2>
+
+
+📚 Obtenha o livro completo
+</h2>
+<div class="price">2,99€</div>
+<p style="font-size:.9em; opacity:.7; margin:0 0 16px;">
+
+
+Acesso instantâneo – leitura online ilimitada
+</p>
+ Espaço reservado para o botão Comprar agora do PayPal 
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="display:inline-block" target="_top">
+<input name="cmd" type="hidden" value="_s-xclique"/>
+<input name="hosted_button_id" type="hidden" value="SEU_BUTTON_ID"/>
+<input name="return" type="hidden" value="https://cocotheaxolotl.org/sleep-book/read/?unlock=COCO-DODO-2026"/>
+<button class="button btn-paypal" type="submit">
+
+
+🔒 Compre e leia
+</button>
+</form>
+<br/>
+<a class="button btn-etsy" href="https://www.etsy.com/shop/YOUR_ETSY_SHOP" rel="noopener" target="_blank">
+
+
+Também no Etsy
+</a>
+<p class="paypal-note">
+
+
+PayPal: acesso instantâneo. Etsy: Você receberá um código de acesso.
+</p>
+</div>
+ Já tem um código? 
+<p style="margin-top:30px;">
+<a href="/sleep-book/read/" style="color:#3D3D8E; font-weight:700;">
+
+
+🔑 Você já tem um código? Leia aqui
+</a>
+</p>
+<a class="back" href="/pt/">
+
+
+← Voltar ao topo
+</a>
+</main>
+<footer>
+<a href="/pt/legal-notice/">Aviso Legal</a> •
+    <a href="/pt/privacy-policy/">política de Privacidade</a> •
+    <a href="https://www.cocotheaxolotl.org">cocotheaxolotl.org</a>
+</footer>
+ bandeira de biscoitos 
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;padding:16px 20px;box-shadow:0 -2px 12px rgba(0,0,0,.1);z-index:999;text-align:center;font-size:.85em;">
+    Usamos cookies para análises.
+    <a href="/pt/privacy-policy/" style="color:#3D3D8E;text-decoration:underline;">política de Privacidade</a>
+<button onclick="acceptCookies()" style="margin-left:12px;padding:8px 20px;background:#3D3D8E;color:#fff;border:none;border-radius:20px;cursor:pointer;font-weight:700;">Aceitar</button>
+<button onclick="refuseCookies()" style="margin-left:6px;padding:8px 20px;background:#eee;color:#333;border:none;border-radius:20px;cursor:pointer;">Recusar</button>
+</div>
+ StPageFlip para visualização 
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+<script>
+    /* Language */
+    );
+      document.documentElement.lang=lang;
+    }
+
+    /* Cookies */
+    function acceptCookies(){localStorage.setItem('cookies_accepted','true');document.getElementById('cookieBanner').style.display='none';loadAnalytics();}
+    function refuseCookies(){localStorage.setItem('cookies_accepted','false');document.getElementById('cookieBanner').style.display='none';}
+    if(!localStorage.getItem('cookies_accepted'))document.getElementById('cookieBanner').style.display='block';
+
+    /* Preview flipbook */
+    document.addEventListener('DOMContentLoaded', function(){
+      var container = document.getElementById('previewBook');
+      var w = Math.min(260, window.innerWidth - 80);
+      var h = Math.round(w * 4/3);
+
+      var previewPages = [
+        {bg:'linear-gradient(135deg,#1a1a4e,#3D3D8E)',color:'#fff',text:'Coco ne dort\npas ce soir !'},
+        {bg:'#f8f8ff',color:'#333',text:'Ce soir, c\u2019\u00e9tait\nl\u2019heure de dormir.\nMais Coco n\u2019avait\npas du tout sommeil.'},
+        {bg:'#f5f5f5',color:'#aaa',text:'[ Illustration ]\nCoco yeux\ngrands ouverts'},
+        {bg:'#f8f8ff',color:'#333',text:'\u00ab Mais Maman,\nje n\u2019ai pas\nde paupi\u00e8res ! \u00bb'},
+        {bg:'linear-gradient(135deg,#2d2d6e,#5c3d8e)',color:'rgba(255,255,255,.5)',text:'\u2728 Acheter pour lire\nla suite ! \u2728'}
+      ];
+
+      previewPages.forEach(function(p){
+        var div = document.createElement('div');
+        div.className = 'page';
+        div.style.cssText = 'background:'+p.bg+';color:'+p.color+';width:'+w+'px;height:'+h+'px;';
+        div.innerHTML = '<div style="white-space:pre-line;padding:12px;">'+p.text+'</div>';
+        container.appendChild(div);
+      });
+
+      if(typeof St !== 'undefined' && St.PageFlip){
+        var PageFlip = St.PageFlip;
+      } else if(typeof PageFlip === 'undefined' && typeof window.St !== 'undefined'){
+        var PageFlip = window.St.PageFlip;
+      }
+
+      try {
+        var pf = new PageFlip(container, {
+          width: w, height: h,
+          size: 'fixed',
+          showCover: true,
+          mobileScrollSupport: false,
+          useMouseEvents: true,
+          flippingTime: 600
+        });
+        pf.loadFromHTML(container.querySelectorAll('.page'));
+      } catch(e){
+        console.log('PageFlip preview:', e);
+      }
+    });
+  </script>
+</body>
+</html>

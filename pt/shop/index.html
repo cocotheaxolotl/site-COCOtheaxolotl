@@ -1,0 +1,263 @@
+HTML
+<html lang="pt-BR">
+<head>
+ Tag do Google (gtag.js) – carrega somente após consentimento 
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-6Y0T0Q28E6');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Loja de Coco – Coco, o Axolote</title>
+<meta content="Adesivos, camisetas, canecas, capas de telefone e muito mais — tudo com Coco, o Axolotl! Disponível no Redbubble." name="description"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<meta content="index, follow" name="robots"/>
+ Canônico 
+<link href="https://cocotheaxolotl.org/pt/shop/" rel="canonical"/><link href="https://cocotheaxolotl.org/shop/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/shop/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/shop/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/shop/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/pt/shop/" hreflang="pt-BR" rel="alternate"/><link href="https://cocotheaxolotl.org/shop/" hreflang="x-default" rel="alternate"/>
+ Abrir gráfico 
+<meta content="Loja de Coco – Coco, o Axolote" property="og:title"/>
+<meta content="Adesivos, camisetas, canecas, capas de telefone e muito mais — tudo com Coco, o Axolotl! Disponível no Redbubble." property="og:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
+<meta content="https://cocotheaxolotl.org/pt/shop/" property="og:url"/>
+<meta content="website" property="og:type"/>
+<meta content="Coco the Axolotl" property="og:site_name"/>
+ Cartão do Twitter 
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Loja de Coco – Coco, o Axolote" name="twitter:title"/>
+<meta content="Adesivos, camisetas, canecas, capas de telefone e muito mais — tudo com Coco, o Axolotl! Disponível no Redbubble." name="twitter:description"/>
+<meta content="https://cocotheaxolotl.org/coco.png" name="twitter:image"/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&amp;display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<style>
+header{background:#f7c1cc;padding:28px 20px;text-align:center}
+h1{margin:0;font-size:2.2em;font-family:'Baloo 2',cursive;color:#d6006e}
+.subtitle{font-size:1.1em;margin-top:6px;color:#8b004a}
+main{max-width:800px;margin:0 auto;padding:36px 20px}
+
+.intro{text-align:center;font-size:1.05em;line-height:1.6;margin-bottom:28px}
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+  gap:16px;
+  margin-bottom:32px;
+}
+.digital-columns{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:24px;
+  align-items:start;
+  margin-bottom:32px;
+}
+.digital-column{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  align-items:center;
+}
+.digital-column-title{
+  font-family:'Baloo 2',cursive;
+  font-size:1.3em;
+  font-weight:800;
+  color:#5c3d8e;
+  margin:0;
+  text-align:center;
+}
+.digital-column .product-card{
+  width:100%;
+  max-width:300px;
+}
+@media(max-width:720px){
+  .digital-columns{grid-template-columns:1fr}
+}
+.shop-card{
+  display:flex;flex-direction:column;align-items:center;
+  text-decoration:none;color:#333;
+  background:#fff;
+  border:2px solid rgba(255,105,180,.3);
+  border-radius:18px;
+  padding:22px 14px 18px;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.shop-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,105,180,.18);
+  border-color:rgba(255,105,180,.6);
+}
+.shop-icon{font-size:2.4em;margin-bottom:8px}
+.shop-label{font-family:'Baloo 2',cursive;font-weight:800;font-size:1em;text-align:center}
+
+.cta-row{text-align:center;margin:32px 0}
+.button{
+  display:inline-block;
+  padding:14px 36px;
+  background:#ff69b4;color:#fff;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:1.15em;
+  border-radius:30px;text-decoration:none;
+  box-shadow:0 4px 16px rgba(255,105,180,.3);
+  transition:background .15s,transform .15s;
+}
+.button:hover{background:#e0559e;transform:translateY(-1px)}
+
+.back{display:block;text-align:center;margin-top:28px;color:#d6006e;font-weight:800;text-decoration:none}
+.back:hover{text-decoration:underline}
+
+.product-card{
+  display:flex;flex-direction:column;align-items:center;
+  background:#fff;
+  border:2px solid rgba(255,105,180,.3);
+  border-radius:18px;
+  padding:22px 18px;
+  text-align:center;
+  transition:transform .15s, box-shadow .15s, border-color .15s;
+}
+.product-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(255,105,180,.18);
+  border-color:rgba(255,105,180,.6);
+}
+.product-name{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.1em;margin:4px 0}
+.product-desc{font-size:.9em;color:#666;line-height:1.4;margin:4px 0 12px}
+.product-price{font-family:'Baloo 2',cursive;font-weight:800;font-size:1.3em;color:#d6006e;margin:0 0 12px}
+.btn-buy{
+  display:inline-block;
+  padding:10px 24px;
+  background:#ff69b4;color:#fff;
+  font-family:'Baloo 2',cursive;font-weight:800;font-size:.95em;
+  border-radius:24px;text-decoration:none;
+  transition:background .15s,transform .15s;
+}
+.btn-buy:hover{background:#e0559e;transform:translateY(-1px)}
+.btn-buy.disabled{background:#c9a8bc;cursor:default;pointer-events:none}
+
+/* Lang */
+[data-lang="fr"],
+span[data-lang="fr"],
+body.fr 
+body.fr 
+body.fr 
+body.fr 
+body.es 
+body.es 
+body.es 
+body.es 
+</style>
+</head>
+<body>
+<header>
+<a class="home-link" href="/pt/es/">← Página inicial</a>
+<h1>
+
+
+A loja de coco
+</h1>
+<p class="subtitle">
+
+
+Produtos adoráveis ​​para fãs do axolotl!
+</p>
+<div class="lang-toggle"><a class="lang-btn" href="/shop/">EN</a><a class="lang-btn" href="/fr/shop/">FR</a><a class="lang-btn" href="/es/shop/">ES</a><a class="lang-btn active" href="/pt/shop/">PT</a></div>
+</header>
+<main>
+<h2 class="section-title">📥 Downloads Digitais</h2>
+<p class="intro">Download instantâneo! Pague uma vez, imprima sempre.</p>
+<h3 style="text-align:center;font-family:'Baloo 2',cursive;font-size:1.4em;color:#5c3d8e;margin-bottom:20px">Te amo mais</h3>
+<div class="digital-columns">
+<section aria-labelledby="ebooks-heading" class="digital-column">
+<h3 class="digital-column-title" id="ebooks-heading">E-books</h3>
+<div class="product-card">
+<img alt="Prévia do livro ilustrado Je t'aime encore plus" loading="lazy" src="/shop/je-taime-encore-plus-ebook-fr-preview.gif" style="width:140px;border-radius:10px;margin-bottom:8px"/>
+<div class="product-name">Je t'aime encore plus – Livro ilustrado FR (PDF)</div>
+<p class="product-desc">O livro ilustrado completo em francês, em PDF de 32 páginas. Não é o pacote de coloração.</p>
+<div class="product-price">6,99€</div>
+<span aria-disabled="true" class="btn-buy disabled" data-download="/shop/je-taime-encore-plus-livre-illustre-fr.pdf">Link da faixa ausente</span>
+</div>
+</section>
+<section aria-labelledby="coloring-heading" class="digital-column">
+<h3 class="digital-column-title" id="coloring-heading">Desenhos para colorir</h3>
+<div class="product-card">
+<img alt="Livro para colorir eu te amo mais" src="/shop/coloring-love-preview.gif" style="width:140px;border-radius:10px;margin-bottom:8px"/>
+<div class="product-name">Eu te amo mais – Livro para colorir (PDF)</div>
+<p class="product-desc">21 adoráveis ​​páginas para colorir celebrando o amor. PDF de alta qualidade, pronto para imprimir.</p>
+<div class="product-price">2,99€</div>
+<a class="btn-buy" href="https://buy.stripe.com/14AdR9fUx9yZgIqeBx6Zy00" rel="noopener" target="_blank">Comprar</a>
+</div>
+</section>
+</div>
+<hr class="section-divider"/>
+<h2 class="section-title">🛍️ Produtos</h2>
+<p class="intro">
+Adesivos, camisetas, canecas, capas de telefone e muito mais — tudo com Coco, o Axolotl! Disponível no Redbubble.
+</p>
+ Incorporação de portfólio Redbubble 
+<div style="text-align:center;margin-bottom:32px">
+<script src="https://www.redbubble.com/assets/external_portfolio.js" type="text/javascript"></script>
+<script id="rb-xzfcxvzx" type="text/javascript">new RBExternalPortfolio('www.redbubble.com', 'cocotheaxolotl', 2, 2).renderIframe();</script>
+</div>
+<div class="shop-grid">
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-stickers&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">✨</span>
+<span class="shop-label">Adesivos</span>
+</a>
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-clothing&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">👕</span>
+<span class="shop-label">Camisetas</span>
+</a>
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-drinkware&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">☕</span>
+<span class="shop-label">Copos</span>
+</a>
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-cases-skins&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">📱</span>
+<span class="shop-label">Capas</span>
+</a>
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-bags&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">👜</span>
+<span class="shop-label">Bolsas</span>
+</a>
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-home-decor&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">🏠</span>
+<span class="shop-label">Decoração</span>
+</a>
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-notebooks&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">📓</span>
+<span class="shop-label">Cadernos</span>
+</a>
+<a class="shop-card" href="https://www.redbubble.com/people/cocotheaxolotl/shop?iaCode=all-kids-clothes&amp;asc=u" rel="noopener" target="_blank">
+<span class="shop-icon">👶</span>
+<span class="shop-label">Crianças</span>
+</a>
+</div>
+<div class="cta-row">
+<a class="button" href="https://www.redbubble.com/people/cocotheaxolotl/shop?asc=u" rel="noopener" target="_blank">
+
+
+Ver todos os produtos
+</a>
+</div>
+<a class="back" href="/pt/">
+
+
+← Voltar ao topo
+</a>
+</main>
+<script>
+);
+  document.documentElement.lang = lang;
+}
+</script>
+</body>
+</html>

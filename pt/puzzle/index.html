@@ -1,8 +1,7 @@
-
-<!DOCTYPE html>
-
+HTML
 <html lang="pt-BR">
 <head>
+ Tag do Google (gtag.js) – carrega somente após consentimento 
 <script>
   function loadAnalytics(){
     if(localStorage.getItem('cookies_accepted')==='true'){
@@ -20,8 +19,8 @@
 </script>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Jogo de quebra-cabeca – Gratis für Kinder | Coco the Axolotl</title>
-<meta content="Jogo de quebra-cabeca gratis para criancas com Coco the Axolotl. Arraste as pecas e monte a imagem." name="description"/>
+<title>Jogo de quebra-cabeça – gratuito para crianças | Coco, o Axolote</title>
+<meta content="Jogo de quebra-cabeça gratuito para crianças de 3 a 8 anos. Arraste e solte as peças para remontar uma imagem de Coco em uma atividade online simples." name="description"/>
 <meta content="index, follow" name="robots"/>
 <link href="/favicon.ico?v=2" rel="icon" type="image/x-icon"/>
 <link href="/manifest.json" rel="manifest"/>
@@ -30,11 +29,10 @@
 <meta content="yes" name="apple-mobile-web-app-capable"/>
 <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
 <meta content="Coco Puzzle" name="apple-mobile-web-app-title"/>
-<link href="https://cocotheaxolotl.org/pt/puzzle/" rel="canonical"/>
-<meta content="Coco Jogo de quebra-cabeca – Gratis interaktives Puzzle für Kinder" property="og:title"/>
-<meta content="Ziehe die Teile und setze das Coco-Bild wieder zusammen! Kostenloses Puzzle-Spiel für Kinder." property="og:description"/>
+<meta content="Coco Puzzle Game – Quebra-cabeça interativo gratuito para crianças" property="og:title"/>
+<meta content="Arraste as peças e monte a imagem da Coco novamente! Jogo de quebra-cabeça grátis para crianças." property="og:description"/>
 <meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
-<meta content="https://cocotheaxolotl.org/de/puzzle/" property="og:url"/>
+<meta content="https://cocotheaxolotl.org/pt/puzzle/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="Coco the Axolotl" property="og:site_name"/>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&amp;display=swap" rel="stylesheet"/>
@@ -175,7 +173,7 @@
     100%{filter:brightness(1)}
   }
 
-  /* ──  ── */
+  /* ── Admiration overlay ── */
   #admireOverlay{
     display:none;
     position:fixed;
@@ -208,7 +206,7 @@
     to  {transform:scale(1);  opacity:1}
   }
 
-  /* ──  ── */
+  /* ── Victory overlay ── */
   #victoryOverlay{
     display:none;
     position:fixed;
@@ -244,7 +242,7 @@
     font-size:1.05em;
   }
 
-  /* ──  ── */
+  /* ── Original image modal ── */
   #originalModal{
     display:none;
     position:fixed;
@@ -306,92 +304,87 @@
 </style>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Coco Jogo de quebra-cabeca",
+  "@type": "Aplicativo Web",
+  "name": "Jogo de quebra-cabeça Coco",
   "url": "https://cocotheaxolotl.org/pt/puzzle/",
-  "description": "Kostenloses Puzzle-Spiel für Kinder von 3 bis 8 Jahren. Ziehe die Teile per Drag & Drop, um ein Coco-Bild in einer einfachen Online-Aktivität wieder zusammenzusetzen.",
-  "applicationCategory": "EducationalApplication",
-  "operatingSystem": "Any (web browser)",
+  "description": "Jogo de quebra-cabeça gratuito para crianças de 3 a 8 anos. Arraste e solte as peças para remontar uma imagem de Coco em uma atividade online simples.",
+  "applicationCategory": "Aplicação Educacional",
+  "operatingSystem": "Qualquer (navegador da web)",
   "isAccessibleForFree": true,
   "audience": {
-    "@type": "Audience",
-    "audienceType": "Children",
+    "@type": "Público",
+    "audienceType": "Crianças",
     "suggestedMinAge": 3,
     "suggestedMaxAge": 8
   },
   "offers": {
-    "@type": "Offer",
+    "@type": "Oferecer",
     "price": "0",
     "priceCurrency": "USD"
   },
-  "inLanguage": "pt-BR",
+  "inLanguage": "de",
   "publisher": {
-    "@type": "Organization",
-    "name": "Coco the Axolotl",
+    "@type": "Organização",
+    "name": "Coco, o Axolote",
     "url": "https://cocotheaxolotl.org"
   }
-}</script><link href="https://cocotheaxolotl.org/puzzle/" hreflang="en" rel="alternate"/>
-<link href="https://cocotheaxolotl.org/fr/puzzle/" hreflang="fr" rel="alternate"/>
-<link href="https://cocotheaxolotl.org/es/puzzle/" hreflang="es" rel="alternate"/>
-<link href="https://cocotheaxolotl.org/de/puzzle/" hreflang="de" rel="alternate"/>
-<link href="https://cocotheaxolotl.org/pt/puzzle/" hreflang="pt-BR" rel="alternate"/>
-<link href="https://cocotheaxolotl.org/puzzle/" hreflang="x-default" rel="alternate"/>
-</head>
+}</script>
+<link href="https://cocotheaxolotl.org/pt/puzzle/" rel="canonical"/><link href="https://cocotheaxolotl.org/puzzle/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/de/puzzle/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/puzzle/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/pt/puzzle/" hreflang="pt-BR" rel="alternate"/><link href="https://cocotheaxolotl.org/puzzle/" hreflang="x-default" rel="alternate"/></head>
 <body>
 <header>
 <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-<a class="back" href="/pt/">🏠 Inicio</a>
+<a class="back" href="/pt/">🏠 Página inicial</a>
 <a class="back" href="/pt/kids-games/">🎮 Jogos infantis</a>
 </div>
-<h1>🧩 Coco Puzzle</h1>
-<p>Arraste as pecas para montar a imagem novamente!</p>
-<div class="lang-toggle">
-<a class="lang-btn" href="/puzzle/">EN</a>
-<a class="lang-btn" href="/de/puzzle/">DE</a><a class="lang-btn active" href="/pt/puzzle/">PT</a>
-</div>
+<h1>🧩 Quebra-cabeça Coco</h1>
+<p>Arraste as peças para montar a imagem novamente!</p>
+<div class="lang-toggle"><a class="lang-btn" href="/puzzle/">EN</a><a class="lang-btn" href="/fr/puzzle/">FR</a><a class="lang-btn" href="/es/puzzle/">ES</a><a class="lang-btn" href="/de/puzzle/">DE</a><a class="lang-btn active" href="/pt/puzzle/">PT</a><a class="lang-btn" href="/it/puzzle/">IT</a><a class="lang-btn" href="/ja/puzzle/">JA</a><a class="lang-btn" href="/ar/puzzle/">AR</a></div>
 </header>
 <div class="controls">
-<button class="btn btn-pink" id="btnShuffle">🔀 Mischen</button>
-<button class="btn btn-white" id="btnNewImage">🖼️ Neues Bild</button>
-<button class="btn btn-outline" id="btnShowOriginal">👁️ Original zeigen</button>
+<button class="btn btn-pink" id="btnShuffle">🔀 Misture</button>
+<button class="btn btn-white" id="btnNewImage">🖼️ Nova foto</button>
+<button class="btn btn-outline" id="btnShowOriginal">👁️ Mostrar original</button>
 </div>
 <div class="stats">
-<span id="statMoves">Züge: 0</span>
-<span id="statTime">Tempo: 0:00</span>
+<span id="statMoves">Trens: 0</span>
+<span id="statTime">Hora: 0:00</span>
 </div>
 <div class="puzzle-wrapper">
 <div id="puzzleGrid"></div>
 <div class="no-images" id="noImagesMsg" style="display:none">
-<strong>Ainda nao ha imagens!</strong><br/><br/>
-    Coloque suas imagens em <code>puzzle/images/</code> e liste-as no array
-    <code>IMAGES</code>no topo de <code>puzzle/index.html</code>  .<br/><br/>
-    As imagens devem estar no formato <strong>vertical 9:16</strong> sein (z. B. 900×1600 px).
+<strong>Ainda não há fotos!</strong><br/><br/>
+    Coloque suas fotos <code>puzzle/images/</code> e liste-os no
+    <code>IMAGES</code>-Array no topo em <code>puzzle/index.html</code> sobre.<br/><br/>
+    As imagens devem estar em <strong>9:16 formato retrato</strong> (por exemplo, 900×1600 px).
   </div>
 </div>
+ Modal de imagem original 
 <div id="originalModal">
 <button class="close-btn" id="btnCloseModal">✕</button>
-<img alt="Original-Puzzlebild" id="originalImg" src=""/>
+<img alt="Imagem original do quebra-cabeça" id="originalImg" src=""/>
 </div>
+ Sobreposição de admiração 
 <div id="admireOverlay">
-<img alt="Komplettes Bild" id="admireImg" src=""/>
+<img alt="Imagem completa" id="admireImg" src=""/>
 <div id="admireCountdown"></div>
 </div>
+ Sobreposição de vitória 
 <div id="victoryOverlay">
 <div class="victory-box">
 <div class="emoji">🎉</div>
-<h2>Quebra-cabeca concluido!</h2>
-<p>Muito bem! Voce montou a imagem novamente!</p>
+<h2>Quebra-cabeça concluído!</h2>
+<p>Ótimo trabalho! Você montou a foto de volta!</p>
 <div class="final-stats">
 <span id="victoryMoves"></span>
 <span id="victoryTime"></span>
 </div>
-<button class="btn btn-pink" id="btnVictoryNew" style="margin-right:8px">🖼️ Neues Bild</button>
-<button class="btn btn-white" id="btnVictoryPlay">🔀 Jogar de novo</button>
+<button class="btn btn-pink" id="btnVictoryNew" style="margin-right:8px">🖼️ Nova foto</button>
+<button class="btn btn-white" id="btnVictoryPlay">🔀 Jogue novamente</button>
 </div>
 </div>
-<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Voce e autor, ilustrador ou editor KDP? Descubra ferramentas criativas mais avancadas em <a href="https://univers.studio/pt/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Você é autor, ilustrador ou editor KDP? Descubra ferramentas criativas mais avançadas <a href="https://univers.studio/pt/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">universo.studio →</a></p>
 <footer>
-<a href="/pt/">Coco the Axolotl</a> · <a href="/pt/kids-games/">Jogos infantis</a>
+<a href="/pt/">Coco, o Axolote</a> · <a href="/pt/kids-games/">Jogos infantis</a>
 </footer>
 <script>
 // ═══════════════════════════════════════════════════════
@@ -491,7 +484,7 @@ function startTimer(){
 }
 function stopTimer(){ clearInterval(timerInterval); timerInterval = null; }
 function updateStatsDisplay(){
-  statMoves.textContent = 'Züge: ' + moves;
+  statMoves.textContent = 'Jogadas: ' + moves;
   statTime.textContent  = 'Tempo: '  + formatTime(elapsedSeconds);
 }
 
@@ -537,7 +530,7 @@ function initPuzzle(imageName){
 
 function renderPieces(pieceAspect){
   if(pieceAspect === undefined) pieceAspect = 0.75;
-  grid.inner = '';
+  grid.innerHTML = '';
 
   pieces.forEach((pieceIndex, position)=>{
     const div = document.createElement('div');
@@ -745,7 +738,7 @@ function startAdmiration(){
 }
 
 function showVictory(){
-  victoryMovesEl.textContent = moves + ' Züge';
+  victoryMovesEl.textContent = moves + ' jogadas';
   victoryTimeEl.textContent  = formatTime(elapsedSeconds);
   victoryOverlay.classList.add('show');
   launchConfetti();

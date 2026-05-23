@@ -1,0 +1,115 @@
+HTML
+<html lang="pt-BR">
+<head>
+ Tag do Google (gtag.js) – carrega somente após consentimento 
+<script>
+  function loadAnalytics(){
+    if(localStorage.getItem('cookies_accepted')==='true'){
+      var s=document.createElement('script');
+      s.async=true;
+      s.src='https://www.googletagmanager.com/gtag/js?id=G-6Y0T0Q28E6';
+      document.head.appendChild(s);
+      window.dataLayer=window.dataLayer||[];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js',new Date());
+      gtag('config','G-6Y0T0Q28E6');
+    }
+  }
+  loadAnalytics();
+</script>
+<meta charset="utf-8"/>
+<meta content="index, follow" name="robots"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gerador de labirinto para impressão grátis | Coco, o Axolote</title>
+<meta content="Crie um labirinto para impressão gratuito para crianças. Escolha a dificuldade, gere uma nova atividade e baixe uma planilha PNG com Coco, o Axolote." name="description"/>
+<link href="https://cocotheaxolotl.org/pt/maze/" rel="canonical"/><link href="https://cocotheaxolotl.org/maze/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/maze/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/maze/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/maze/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/pt/maze/" hreflang="pt-BR" rel="alternate"/><link href="https://cocotheaxolotl.org/maze/" hreflang="x-default" rel="alternate"/>
+<link href="/manifest.json" rel="manifest"/>
+<meta content="#ff69b4" name="theme-color"/>
+<link href="/icons/icon-192.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;650;750;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="/common.css" rel="stylesheet"/>
+<style>
+:root{--pink:#ff69b4;--pink-dark:#df3f92;--violet:#7c3aed;--mint:#88f7d4;--ink:#262033;--muted:#6f6476;--line:#f3c7dc;--soft:#fff5fa;--paper:#ffffff;--shadow:0 18px 45px rgba(84,35,79,.13)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#fff 0%,#fff5fa 54%,#f8fffb 100%);color:var(--ink)}a{color:inherit}.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:14px clamp(16px,3vw,30px);background:rgba(255,255,255,.94);border-bottom:1px solid #f4d8e7;backdrop-filter:blur(10px)}.brand{display:flex;align-items:center;gap:10px;font-weight:900;text-decoration:none}.logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--pink),#9b7cff 64%,var(--mint));box-shadow:0 8px 20px rgba(255,105,180,.25)}.nav{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.nav a{font-size:14px;font-weight:800;text-decoration:none;color:#6a5870;padding:8px 10px;border-radius:8px}.nav a:hover,.nav a[aria-current="page"]{background:#fff0f7;color:#c52d80}.shell{max-width:1160px;margin:0 auto;padding:32px clamp(16px,4vw,32px) 54px}.hero{text-align:center;margin:10px auto 26px;max-width:850px}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;padding:7px 12px;border:1px solid #ffd5e9;border-radius:999px;background:#fff;color:#b92d79;font-weight:900;font-size:13px}.hero h1{margin:0;font-size:clamp(32px,5vw,58px);line-height:1.02;letter-spacing:0;color:#2a2032}.hero p{margin:14px auto 0;max-width:720px;color:var(--muted);font-size:18px;line-height:1.55;font-weight:650}.tool{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start}.panel,.preview{background:var(--paper);border:1px solid #f6d4e5;border-radius:8px;box-shadow:var(--shadow)}.panel{padding:18px}.panel h2,.preview h2,.faq h2{margin:0 0 12px;font-size:22px;line-height:1.2}.hint{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.45;font-weight:650}label{display:block;margin:14px 0 7px;color:#645466;font-weight:900;font-size:13px}select,input[type="number"],input[type="text"]{width:100%;border:1px solid #ead6e3;border-radius:8px;background:#fff;padding:11px 12px;color:#2c2432;font:inherit;font-weight:750;outline:none}select:focus,input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(255,105,180,.15)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.checks{margin-top:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:8px;padding:12px 14px;font-weight:950;cursor:pointer;min-height:44px}.btn.primary{background:var(--pink);color:#fff;box-shadow:0 10px 18px rgba(255,105,180,.24)}.btn.secondary{background:#fff0f7;color:#9a2868;border:1px solid #ffc9e3}.btn.ghost{background:#f7fbff;color:#4d5267;border:1px solid #dde8f2}.btn:active{transform:translateY(1px)}.preview{padding:18px}.stage{background:#fff;border:1px solid #f0e3ea;border-radius:8px;padding:12px;overflow:auto}.stage canvas{display:block;max-width:100%;height:auto;margin:auto;background:#fff}.status{margin:12px 0 0;color:#6c6070;font-weight:750;font-size:14px}.univers-promo{margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px}.univers-promo a{color:#7c3aed;font-weight:900;text-decoration:none}.faq{max-width:860px;margin:34px auto 0}.faq details{background:#fff;border:1px solid #f3d4e4;border-radius:8px;margin:10px 0;padding:14px 16px}.faq summary{cursor:pointer;font-weight:900}.faq p{color:var(--muted);line-height:1.55}footer{padding:24px 16px 38px;text-align:center;color:#7b6d80;font-size:14px}footer a{font-weight:800;text-decoration:none;color:#9a2868}@media(max-width:860px){.tool{grid-template-columns:1fr}.nav{gap:2px}.nav a{padding:7px 8px}.row{grid-template-columns:1fr}.hero p{font-size:16px}}
+  </style>
+<script type="application/ld+json">[
+  {
+    "@context": "https://schema.org",
+    "@type": "Aplicativo Web",
+    "name": "Gerador de labirinto para impressão",
+    "description": "Crie um labirinto para impressão gratuito para crianças. Escolha a dificuldade, gere uma nova atividade e baixe uma planilha PNG com Coco, o Axolote.",
+    "url": "https://cocotheaxolotl.org/pt/maze/",
+    "applicationCategory": "Aplicação Educacional",
+    "operatingSystem": "Qualquer",
+    "isAccessibleForFree": true,
+    "publisher": {
+      "@type": "Organização",
+      "name": "Coco, o Axolote",
+      "url": "https://cocotheaxolotl.org/"
+    },
+    "offers": {
+      "@type": "Oferecer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Página de perguntas frequentes",
+    "mainEntity": [
+      {
+        "@type": "Pergunta",
+        "name": "Posso imprimir o labirinto?",
+        "acceptedAnswer": {
+          "@type": "Responder",
+          "text": "Sim. O download é um PNG de alto contraste destinado à impressão em casa ou na sala de aula."
+        }
+      },
+      {
+        "@type": "Pergunta",
+        "name": "Cada clique cria um novo labirinto?",
+        "acceptedAnswer": {
+          "@type": "Responder",
+          "text": "Sim. Generate Maze cria uma nova atividade aleatória com a dificuldade selecionada."
+        }
+      },
+      {
+        "@type": "Pergunta",
+        "name": "Existe uma solução?",
+        "acceptedAnswer": {
+          "@type": "Responder",
+          "text": "Sim. Use Baixar solução ou ative Mostrar solução antes de imprimir."
+        }
+      }
+    ]
+  }
+]</script>
+</head>
+<body>
+<header class="topbar">
+<a class="brand" href="/pt/"><span aria-hidden="true" class="logo"></span><span>Coco, o Axolote</span></a>
+<nav aria-label="Navegação principal" class="nav"><a href="/pt/kids-games/">Jogos</a><a href="/pt/freebies/">Livre</a><a href="/pt/shop/">Loja</a></nav>
+</header>
+<main class="shell">
+<section class="hero"><p class="eyebrow">Ferramenta para impressão Coco</p><h1>Gerador de labirinto para impressão</h1><p>Crie um bloco de labirinto em segundos e baixe um PNG em preto e branco limpo para casa, aula ou horário de silêncio.</p></section>
+<section aria-label="Gerador de labirinto para impressão" class="tool"><aside class="panel"><h2>Configurações do labirinto</h2><p class="hint">Escolha o tamanho, gere um labirinto e baixe o arquivo. A solução é opcional.</p><label for="difficulty">Dificuldade</label><select id="difficulty"><option value="fácil">Fácil</option><option selected="" value="médio">Média</option><option value="duro">Difícil</option><option value="especialista">Especialista</option></select><label for="shape">Formatar</label><select id="shape"><option selected="" value="quadrado">Quadrado</option><option value="largo">Largo</option><option value="alto">Vertical</option></select><div class="row"><div><label for="cellSize">Tamanho da célula</label><input id="cellSize" max="42" min="16" type="number" value="26"/></div><div><label for="wallWeight">espessura da parede</label><input id="wallWeight" max="7" min="2" type="number" value="3"/></div></div><label class="checks"><input id="showSolution" type="checkbox"/> Mostrar solução</label><div class="actions"><button class="btn secondary" id="generateBtn" type="button">Gerar labirinto</button><button class="btn primary" data-email-gate="download" id="downloadBtn" type="button">Baixar PNG</button><button class="btn ghost" id="solutionBtn" type="button">Baixar solução</button></div><p class="status" data-generated="Listo para generar." id="status">Pronto para gerar.</p></aside><section class="preview"><h2>Vista do labirinto</h2><div class="stage"><canvas height="620" id="mazeCanvas" width="620"></canvas></div></section></section>
+<section class="faq"><h2>Perguntas frequentes</h2><details><summary>Posso imprimir o labirinto?</summary><p>Sim. O download é um PNG de alto contraste destinado à impressão em casa ou na sala de aula.</p></details><details><summary>Cada clique cria um novo labirinto?</summary><p>Sim. Generate Maze cria uma nova atividade aleatória com a dificuldade selecionada.</p></details><details><summary>Existe uma solução?</summary><p>Sim. Use Baixar solução ou ative Mostrar solução antes de imprimir.</p></details></section>
+<script>
+(function(){
+  const canvas=document.getElementById('mazeCanvas'),ctx=canvas.getContext('2d'),difficulty=document.getElementById('difficulty'),shape=document.getElementById('shape'),cellSize=document.getElementById('cellSize'),wallWeight=document.getElementById('wallWeight'),showSolution=document.getElementById('showSolution'),status=document.getElementById('status');
+  let maze=null; const sizes={easy:12,medium:18,hard:24,expert:32};
+  function dims(){const base=sizes[difficulty.value]||18;if(shape.value==='wide')return{cols:Math.round(base*1.35),rows:base};if(shape.value==='tall')return{cols:base,rows:Math.round(base*1.35)};return{cols:base,rows:base};}
+  function index(x,y,cols,rows){return x<0||y<0||x>=cols||y>=rows?-1:y*cols+x;}
+  function solve(cells,cols,rows){const goal=cols*rows-1,queue=[0],prev=new Map([[0,null]]);while(queue.length){const id=queue.shift();if(id===goal)break;const c=cells[id];[[0,-1,0],[1,0,1],[0,1,2],[-1,0,3]].forEach(([dx,dy,w])=>{if(c.walls[w])return;const ni=index(c.x+dx,c.y+dy,cols,rows);if(ni>=0&&!prev.has(ni)){prev.set(ni,id);queue.push(ni);}});}const path=[];let at=goal;while(at!==null&&at!==undefined){path.push(at);at=prev.get(at);}return path.reverse();}
+  function build(){const d=dims(),cells=Array.from({length:d.cols*d.rows},(_,i)=>({x:i%d.cols,y:Math.floor(i/d.cols),walls:[true,true,true,true],seen:false})),stack=[cells[0]];cells[0].seen=true;while(stack.length){const cur=stack[stack.length-1],candidates=[[0,-1,0,2],[1,0,1,3],[0,1,2,0],[-1,0,3,1]].map(([dx,dy,w,ow])=>({cell:cells[index(cur.x+dx,cur.y+dy,d.cols,d.rows)],w,ow})).filter(n=>n.cell&&!n.cell.seen);if(!candidates.length){stack.pop();continue;}const next=candidates[Math.floor(Math.random()*candidates.length)];cur.walls[next.w]=false;next.cell.walls[next.ow]=false;next.cell.seen=true;stack.push(next.cell);}return{cols:d.cols,rows:d.rows,cells,path:solve(cells,d.cols,d.rows)};}
+  function draw(includeSolution){if(!maze)maze=build();const pad=44,size=Number(cellSize.value||26),w=maze.cols*size+pad*2,h=maze.rows*size+pad*2;canvas.width=w;canvas.height=h;ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#222';ctx.lineWidth=Number(wallWeight.value||3);ctx.lineCap='square';maze.cells.forEach(c=>{const x=pad+c.x*size,y=pad+c.y*size;ctx.beginPath();if(c.walls[0]){ctx.moveTo(x,y);ctx.lineTo(x+size,y);}if(c.walls[1]){ctx.moveTo(x+size,y);ctx.lineTo(x+size,y+size);}if(c.walls[2]){ctx.moveTo(x+size,y+size);ctx.lineTo(x,y+size);}if(c.walls[3]){ctx.moveTo(x,y+size);ctx.lineTo(x,y);}ctx.stroke();});ctx.fillStyle='#ff69b4';ctx.font='800 18px Inter, Arial';ctx.fillText('Start',10,pad+7);ctx.fillText('Finish',w-76,h-pad+6);if(includeSolution){ctx.strokeStyle='#ff69b4';ctx.lineWidth=Math.max(3,size*.18);ctx.lineCap='round';ctx.lineJoin='round';ctx.beginPath();maze.path.forEach((id,i)=>{const c=maze.cells[id],x=pad+c.x*size+size/2,y=pad+c.y*size+size/2;if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);});ctx.stroke();}}
+  function generate(){maze=build();draw(showSolution.checked);status.textContent=status.dataset.generated;}function download(includeSolution){draw(includeSolution);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=includeSolution?'coco-maze-solution.png':'coco-maze.png';a.click();draw(showSolution.checked);}document.getElementById('generateBtn').addEventListener('click',generate);document.getElementById('downloadBtn').addEventListener('click',()=>download(false));document.getElementById('solutionBtn').addEventListener('click',()=>download(true));[difficulty,shape,cellSize,wallWeight,showSolution].forEach(el=>el.addEventListener('change',()=>draw(showSolution.checked)));generate();
+})();
+</script>
+</main>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Você é autor, ilustrador ou editor do KDP? Explore ferramentas criativas mais avançadas em <a href="https://univers.studio/pt/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">universo.studio →</a></p>
+<footer><a href="/pt/">Coco, o Axolote</a> ? <a href="/pt/privacy-policy/">Privacidade</a> ? <a href="/pt/legal-notice/">Jurídico</a></footer>
+<script defer="" src="/js/email-gate.js?v=1"></script>
+</body>
+</html>
