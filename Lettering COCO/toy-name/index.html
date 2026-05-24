@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -26,7 +26,7 @@
 <meta content="#ff69b4" name="theme-color"/>
 <link href="/icons/icon-192.png" rel="apple-touch-icon"/>
 <title>Toy Letters Name Generator | Color Your Name with Wooden Toys | Coco the Axolotl</title>
-<meta content="Color your name with wooden toy letters on wheels! Free coloring name generator for kids – type your name, download and print. Colour your name with Coco." name="description"/>
+<meta content="Color your name with wooden toy letters on wheels! Free coloring name generator for kids â€“ type your name, download and print. Colour your name with Coco." name="description"/>
 <meta name="keywords" content="color your name, colour your name, coloring name, toy letters, wooden toys, name generator, kids name coloring"/>
 <link href="https://cocotheaxolotl.org/toy-name/" rel="canonical"/>
 <meta content="Toy Letters Name Generator | Color Your Name | Coco the Axolotl" property="og:title"/>
@@ -72,7 +72,7 @@
 </head>
 <body>
 <header>
-<a class="home-link" href="/"><span data-lang="en">← Home</span><span data-lang="fr">← Accueil</span><span data-lang="es">← Inicio</span></a>
+<a class="home-link" href="/"><span data-lang="en">â† Home</span><span data-lang="fr">â† Accueil</span><span data-lang="es">â† Inicio</span></a>
 <h1><span data-lang="en">Toy Name</span><span data-lang="fr">Nom en Jouets</span><span data-lang="es">Nombre en Juguetes</span></h1>
 <div class="lang-toggle">
 <button class="lang-btn active" onclick="setLang('en')">EN</button>
@@ -81,23 +81,23 @@
 </div>
 </header>
 <main>
-<p><span data-lang="en"><strong>Kids:</strong> type your name to see it in <strong>wooden toy letters on wheels</strong>! Download and share with friends.</span><span data-lang="fr"><strong>Enfants :</strong> tapez votre nom pour le voir en <strong>lettres jouets en bois sur roulettes</strong> ! Téléchargez et partagez avec vos amis.</span><span data-lang="es"><strong>Niños:</strong> escribe tu nombre para verlo en <strong>letras de juguete de madera con ruedas</strong>. ¡Descárgalo y compártelo!</span></p>
+<p><span data-lang="en"><strong>Kids:</strong> type your name to see it in <strong>wooden toy letters on wheels</strong>! Download and share with friends.</span><span data-lang="fr"><strong>Enfants :</strong> tapez votre nom pour le voir en <strong>lettres jouets en bois sur roulettes</strong> ! TÃ©lÃ©chargez et partagez avec vos amis.</span><span data-lang="es"><strong>NiÃ±os:</strong> escribe tu nombre para verlo en <strong>letras de juguete de madera con ruedas</strong>. Â¡DescÃ¡rgalo y compÃ¡rtelo!</span></p>
 <div class="row">
 <input aria-label="Enter your name" id="nameInput" maxlength="12" placeholder="COCO"/>
-<button id="genBtn"><span data-lang="en">Make my name</span><span data-lang="fr">Créer mon nom</span><span data-lang="es">Crear mi nombre</span></button>
+<button id="genBtn"><span data-lang="en">Make my name</span><span data-lang="fr">CrÃ©er mon nom</span><span data-lang="es">Crear mi nombre</span></button>
 </div>
 <p class="loading" id="loadingMsg" style="display:none"><span data-lang="en">Loading toy letters...</span><span data-lang="fr">Chargement des lettres jouets...</span><span data-lang="es">Cargando letras de juguete...</span></p>
 <div class="card">
 <canvas aria-label="Toy name result" height="1200" id="c" width="2480"></canvas>
 </div>
 <div class="row">
-<button class="secondary" id="dlBtn"><span data-lang="en">Download PNG</span><span data-lang="fr">Télécharger PNG</span><span data-lang="es">Descargar PNG</span></button>
+<button class="secondary" id="dlBtn"><span data-lang="en">Download PNG</span><span data-lang="fr">TÃ©lÃ©charger PNG</span><span data-lang="es">Descargar PNG</span></button>
 <button id="printBtn"><span data-lang="en">Print</span><span data-lang="fr">Imprimer</span><span data-lang="es">Imprimir</span></button>
 <a class="btn secondary" href="/"><span data-lang="en">Home</span><span data-lang="fr">Accueil</span><span data-lang="es">Inicio</span></a>
 <a class="btn secondary" href="/plank-name/"><span data-lang="en">Plank Name</span><span data-lang="fr">Nom Planches</span><span data-lang="es">Nombre Madera</span></a>
 <a class="btn secondary" href="/grass-name/"><span data-lang="en">Grass Name</span><span data-lang="fr">Nom Herbe</span><span data-lang="es">Nombre Hierba</span></a>
 </div>
-<p class="small"><span data-lang="en">Tip: download then print or share on social media!</span><span data-lang="fr">Astuce : téléchargez puis imprimez ou partagez sur les réseaux !</span><span data-lang="es">Consejo: descarga y luego imprime o comparte en redes sociales.</span></p>
+<p class="small"><span data-lang="en">Tip: download then print or share on social media!</span><span data-lang="fr">Astuce : tÃ©lÃ©chargez puis imprimez ou partagez sur les rÃ©seaux !</span><span data-lang="es">Consejo: descarga y luego imprime o comparte en redes sociales.</span></p>
 </main>
 <script>
   var canvas = document.getElementById("c");
@@ -200,41 +200,20 @@
     w.document.write('<img src="'+dataUrl+'" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
     w.document.close(); w.focus(); w.print();
   }
-  async function gatedAction(action){
-    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
-    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
-    var result = await CocoAuth.consumeCredit('name_generator','toy');
-    if(!result.ok){
-      if(result.reason==='no_credits') showUpgradeModal();
-      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
-      return;
-    }
-    action();
-    CocoCreditBadge.updateCredits(result.data.remaining);
-  }
-  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  function gatedAction(action){ action(); }
+document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
   document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
   preloadLetters(function(){ draw("COCO"); });
 </script>
-<script src="/js/coco-auth.js"></script>
-<script src="/js/coco-auth-modal.js"></script>
-<script src="/js/coco-credit-badge.js"></script>
-<script>
-function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
-function showUpgradeModal(){
-  var lang=document.documentElement.lang||'en';
-  var msgs={en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
-  if(confirm(msgs[lang]||msgs.en)) window.location.href='/pricing/';
-}
-</script>
+<script>function setLang(lang){document.body.className=lang===\'fr\'?\'fr\':lang===\'es\'?\'es\':\'\';document.querySelectorAll(\'.lang-btn\').forEach(function(b){b.classList.toggle(\'active\',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}</script>
 <!-- RGPD Cookie Banner -->
 <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
 <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
 <p style="margin:0;flex:1;min-width:250px">
 <span data-lang="en">We use cookies to analyze traffic. By clicking "Accept", you consent to our use of cookies.</span>
-<span data-lang="fr">Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez à leur utilisation.</span>
-<span data-lang="es">Usamos cookies para analizar el tráfico. Al hacer clic en "Aceptar", consientes su uso.</span>
-<a href="/privacy-policy/" style="color:#ff69b4;margin-left:8px"><span data-lang="en">Privacy Policy</span><span data-lang="fr">Politique de confidentialité</span><span data-lang="es">Política de privacidad</span></a>
+<span data-lang="fr">Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez Ã  leur utilisation.</span>
+<span data-lang="es">Usamos cookies para analizar el trÃ¡fico. Al hacer clic en "Aceptar", consientes su uso.</span>
+<a href="/privacy-policy/" style="color:#ff69b4;margin-left:8px"><span data-lang="en">Privacy Policy</span><span data-lang="fr">Politique de confidentialitÃ©</span><span data-lang="es">PolÃ­tica de privacidad</span></a>
 </p>
 <div style="display:flex;gap:10px">
 <button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer"><span data-lang="en">Accept</span><span data-lang="fr">Accepter</span><span data-lang="es">Aceptar</span></button>
@@ -249,3 +228,4 @@ function showUpgradeModal(){
 </script>
 </body>
 </html>
+

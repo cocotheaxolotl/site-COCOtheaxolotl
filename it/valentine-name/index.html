@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="it">
 <head>
@@ -35,7 +35,7 @@
 <meta content="Coco the Axolotl" property="og:site_name"/>
 <meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card">
-<meta content="Lettere di San Valentino – Coco the Axolotl" name="twitter:title"/>
+<meta content="Lettere di San Valentino â€“ Coco the Axolotl" name="twitter:title"/>
 <meta content="Disegno gratuito di San Valentino con il tuo nome da stampare per bambini dai 3 ai 10 anni. Scrivi un nome e scarica." name="twitter:description"/>
 <meta content="https://cocotheaxolotl.org/coco.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
@@ -74,7 +74,7 @@
 <link href="https://cocotheaxolotl.org/it/valentine-name/" rel="canonical"/><link href="https://cocotheaxolotl.org/valentine-name/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/valentine-name/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/valentine-name/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/de/valentine-name/" hreflang="de" rel="alternate"/><link href="https://cocotheaxolotl.org/it/valentine-name/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/valentine-name/" hreflang="x-default" rel="alternate"/></head>
 <body>
 <header>
-<a class="home-link" href="/it/">← Home</a>
+<a class="home-link" href="/it/">â† Home</a>
 <h1>Lettere di San Valentino</h1>
 <div class="lang-toggle"><a class="lang-btn" href="/valentine-name/">EN</a><a class="lang-btn" href="/fr/valentine-name/">FR</a><a class="lang-btn" href="/es/valentine-name/">ES</a><a class="lang-btn" href="/de/valentine-name/">DE</a><a class="lang-btn" href="/pt/valentine-name/">PT</a><a class="lang-btn active" href="/it/valentine-name/">IT</a><a class="lang-btn" href="/ja/valentine-name/">JA</a><a class="lang-btn" href="/ar/valentine-name/">AR</a></div>
 </header>
@@ -96,7 +96,7 @@
 <a class="btn secondary" href="/it/">Home</a>
 </div>
 <p class="small">Consiglio: scarica, poi stampa o condividi sui social!</p>
-<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Sei autore, illustratore o editore KDP? Scopri strumenti creativi piu avanzati su <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio →</a></p>
+<p class="cross-promo" style="margin:30px auto;max-width:600px;text-align:center;font-size:14px;color:#666;padding:14px 18px;background:#fff5fa;border-left:3px solid #ff69b4;border-radius:4px">Sei autore, illustratore o editore KDP? Scopri strumenti creativi piu avanzati su <a href="https://univers.studio/de/?utm_source=cocotheaxolotl" rel="noopener" style="color:#7c3aed;text-decoration:none;font-weight:600" target="_blank">univers.studio â†’</a></p>
 </main>
 <script>
   var canvas = document.getElementById("c");
@@ -156,7 +156,7 @@
       var hs = 0.6 + Math.random()*1.2;
       ctx.translate(hx, hy);
       ctx.scale(hs, hs);
-      ctx.fillTesto("❤", 0, 0);
+      ctx.fillTesto("â¤", 0, 0);
       ctx.restore();
     }
     ctx.globalAlpha = 1.0;
@@ -258,32 +258,12 @@
     w.document.write('<img src="'+dataUrl+'" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
     w.document.close(); w.focus(); w.print();
   }
-  async function gatedAction(action){
-    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
-    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
-    var result = await CocoAuth.consumeCredit('name_generator','valentine');
-    if(!result.ok){
-      if(result.reason==='no_credits') showUpgradeModal();
-      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
-      return;
-    }
-    action();
-    CocoCreditBadge.updateCredits(result.data.remaining);
-  }
-  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  function gatedAction(action){ action(); }
+document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
   document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
   preloadLetters(function(){ draw("LOVE"); });
 </script>
-<script src="/js/coco-auth.js"></script>
-<script src="/js/coco-auth-modal.js"></script>
-<script src="/js/coco-credit-badge.js"></script>
-<script>
-function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':lang==='de'?'de':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
-function showUpgradeModal(){
-  var msgs = {en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.',de:'Du brauchst mehr Credits! Besuche unsere Preisseite da Upgrade.'};
-  if(confirm(msgs.de)) window.location.href='/pricing/';
-}
-</script>
+<script>function setLang(lang){document.body.className=lang===\'fr\'?\'fr\':lang===\'es\'?\'es\':\'\';document.querySelectorAll(\'.lang-btn\').forEach(function(b){b.classList.toggle(\'active\',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}</script>
 <!-- RGPD Cookie Banner -->
 <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
 <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
@@ -307,3 +287,4 @@ Usiamo i cookie per analizzare il traffico. Cliccando su "Accetta" acconsenti al
 <script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>
+

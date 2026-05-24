@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
@@ -351,17 +351,6 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic-examples/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic-examples/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic-examples/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/mosaic/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -1225,17 +1214,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/de/mosaic/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/de/puzzle/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
@@ -1402,39 +1380,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/fr/mosaic/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/es/mosaic/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/it/mosaic/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/fr/puzzle/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
@@ -1595,16 +1540,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/kids-games/"/>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/pt/mosaic/</loc>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/pt/mosaic-examples/</loc>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic-examples/"/>
@@ -1741,17 +1676,6 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/kids-games/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/kids-games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/kids-games/"/>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/ja/mosaic/</loc>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ja/mosaic-examples/</loc>
@@ -1922,19 +1846,6 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/kids-games/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/kids-games/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/kids-games/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/ar/mosaic/</loc>
-    <lastmod>2026-05-22</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/mosaic/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/mosaic/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -8023,3 +7934,4 @@
     <priority>0.7</priority>
   </url>
 </urlset>
+

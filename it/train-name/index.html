@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="it">
 <head>
@@ -67,7 +67,7 @@
 </meta></head>
 <body>
 <header>
-<a class="home-link" href="/it/fr/">← Casa</a>
+<a class="home-link" href="/it/fr/">â† Casa</a>
 <h1>Nome in treno</h1>
 <div class="lang-toggle"><a class="lang-btn" href="/train-name/">IN</a><a class="lang-btn active" href="/it/train-name/">IT</a><a class="lang-btn" href="/es/train-name/">ES</a></div>
 </header>
@@ -195,32 +195,12 @@
     w.document.write('<img src="'+dataUrl+'" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
     w.document.close(); w.focus(); w.print();
   }
-  async function gatedAction(action){
-    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
-    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
-    var result = await CocoAuth.consumeCredit('name_generator','train');
-    if(!result.ok){
-      if(result.reason==='no_credits') showUpgradeModal();
-      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
-      return;
-    }
-    action();
-    CocoCreditBadge.updateCredits(result.data.remaining);
-  }
-  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  function gatedAction(action){ action(); }
+document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
   document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
   preloadLetters(function(){ draw("COCO"); });
 </script>
-<script src="/js/coco-auth.js"></script>
-<script src="/js/coco-auth-modal.js"></script>
-<script src="/js/coco-credit-badge.js"></script>
-<script>
-function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
-function showUpgradeModal(){
-  var msgs = {en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
-  if(confirm(msgs.fr)) window.location.href='/pricing/';
-}
-</script>
+<script>function setLang(lang){document.body.className=lang===\'fr\'?\'fr\':lang===\'es\'?\'es\':\'\';document.querySelectorAll(\'.lang-btn\').forEach(function(b){b.classList.toggle(\'active\',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}</script>
  Banner per cookie GDPR
 <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
 <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
@@ -244,3 +224,4 @@ Utilizziamo i cookie per analizzare il traffico. Cliccando su "Accetta", acconse
 <script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>
+

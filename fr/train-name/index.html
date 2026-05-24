@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="fr">
 <head>
@@ -26,18 +26,18 @@
 <meta content="#ff69b4" name="theme-color"/>
 <link href="/icons/icon-192.png" rel="apple-touch-icon"/>
 <title>Nom en train - Gratuit pour enfants | Coco l'Axolotl</title>
-<meta content="Coloriage gratuit de prénom en train à imprimer pour enfants de 3 à 10 ans. Tape un nom et télécharge." name="description"/>
+<meta content="Coloriage gratuit de prÃ©nom en train Ã  imprimer pour enfants de 3 Ã  10 ans. Tape un nom et tÃ©lÃ©charge." name="description"/>
 <meta content="color your name, colour your name, coloring name, train letters, name generator, kids name coloring, train wagons" name="keywords">
 <link href="https://cocotheaxolotl.org/fr/train-name/" rel="canonical"/><link href="https://cocotheaxolotl.org/train-name/" hreflang="en" rel="alternate"/><link href="https://cocotheaxolotl.org/fr/train-name/" hreflang="fr" rel="alternate"/><link href="https://cocotheaxolotl.org/es/train-name/" hreflang="es" rel="alternate"/><link href="https://cocotheaxolotl.org/it/train-name/" hreflang="it" rel="alternate"/><link href="https://cocotheaxolotl.org/train-name/" hreflang="x-default" rel="alternate"/>
-<meta content="Nom en Train – Coco l'Axolotl" property="og:title"/>
-<meta content="Enfants :tapez votre nom pour le voir sur deswagons de train colorés! Téléchargez et partagez avec vos amis." property="og:description"/>
+<meta content="Nom en Train â€“ Coco l'Axolotl" property="og:title"/>
+<meta content="Enfants :tapez votre nom pour le voir sur deswagons de train colorÃ©s! TÃ©lÃ©chargez et partagez avec vos amis." property="og:description"/>
 <meta content="https://cocotheaxolotl.org/fr/train-name/" property="og:url"/>
 <meta content="website" property="og:type"/>
 <meta content="Coco the Axolotl" property="og:site_name"/>
 <meta content="https://cocotheaxolotl.org/coco.png" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Nom en Train – Coco l'Axolotl" name="twitter:title"/>
-<meta content="Enfants :tapez votre nom pour le voir sur deswagons de train colorés! Téléchargez et partagez avec vos amis." name="twitter:description"/>
+<meta content="Nom en Train â€“ Coco l'Axolotl" name="twitter:title"/>
+<meta content="Enfants :tapez votre nom pour le voir sur deswagons de train colorÃ©s! TÃ©lÃ©chargez et partagez avec vos amis." name="twitter:description"/>
 <meta content="https://cocotheaxolotl.org/coco.png" name="twitter:image"/>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&amp;display=swap" rel="stylesheet"/>
 <link href="/common.css" rel="stylesheet"/>
@@ -67,28 +67,28 @@
 </meta></head>
 <body>
 <header>
-<a class="home-link" href="/fr/fr/">← Accueil</a>
+<a class="home-link" href="/fr/fr/">â† Accueil</a>
 <h1>Nom en Train</h1>
 <div class="lang-toggle"><a class="lang-btn" href="/train-name/">EN</a><a class="lang-btn active" href="/fr/train-name/">FR</a><a class="lang-btn" href="/es/train-name/">ES</a></div>
 </header>
 <main>
-<p><strong>Enfants :</strong> tapez votre nom pour le voir sur des <strong>wagons de train colorés</strong> ! Téléchargez et partagez avec vos amis.</p>
+<p><strong>Enfants :</strong> tapez votre nom pour le voir sur des <strong>wagons de train colorÃ©s</strong> ! TÃ©lÃ©chargez et partagez avec vos amis.</p>
 <div class="row">
 <input aria-label="Enter your name" id="nameInput" maxlength="12" placeholder="COCO"/>
-<button id="genBtn">Créer mon nom</button>
+<button id="genBtn">CrÃ©er mon nom</button>
 </div>
 <p class="loading" id="loadingMsg" style="display:none">Chargement des lettres train...</p>
 <div class="card">
 <canvas aria-label="Train name result" height="1200" id="c" width="2480"></canvas>
 </div>
 <div class="row">
-<button class="secondary" data-email-gate="download" id="dlBtn">Télécharger PNG</button>
+<button class="secondary" data-email-gate="download" id="dlBtn">TÃ©lÃ©charger PNG</button>
 <button id="printBtn">Imprimer</button>
 <a class="btn secondary" href="/fr/">Accueil</a>
 <a class="btn secondary" href="/fr/cloud-name/">Nom Nuages</a>
 <a class="btn secondary" href="/fr/grass-name/">Nom Herbe</a>
 </div>
-<p class="small">Astuce : téléchargez puis imprimez ou partagez sur les réseaux !</p>
+<p class="small">Astuce : tÃ©lÃ©chargez puis imprimez ou partagez sur les rÃ©seaux !</p>
 </main>
 <script>
   var canvas = document.getElementById("c");
@@ -195,40 +195,20 @@
     w.document.write('<img src="'+dataUrl+'" style="width:100%;max-width:900px;display:block;margin:0 auto;">');
     w.document.close(); w.focus(); w.print();
   }
-  async function gatedAction(action){
-    if(canDownloadFree()){ recordFreeDownload(); action(); return; }
-    if(!CocoAuth.isLoggedIn()){ showAuthModal(function(){ gatedAction(action); }); return; }
-    var result = await CocoAuth.consumeCredit('name_generator','train');
-    if(!result.ok){
-      if(result.reason==='no_credits') showUpgradeModal();
-      else if(result.reason==='not_logged_in') showAuthModal(function(){ gatedAction(action); });
-      return;
-    }
-    action();
-    CocoCreditBadge.updateCredits(result.data.remaining);
-  }
-  document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
+  function gatedAction(action){ action(); }
+document.getElementById("dlBtn").addEventListener("click", function(){ gatedAction(doDownload); });
   document.getElementById("printBtn").addEventListener("click", function(){ gatedAction(doPrint); });
   preloadLetters(function(){ draw("COCO"); });
 </script>
-<script src="/js/coco-auth.js"></script>
-<script src="/js/coco-auth-modal.js"></script>
-<script src="/js/coco-credit-badge.js"></script>
-<script>
-function setLang(lang){document.body.className=lang==='fr'?'fr':lang==='es'?'es':'';document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('active',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}
-function showUpgradeModal(){
-  var msgs = {en:'You need more credits! Visit our pricing page to upgrade.',fr:'Vous avez besoin de plus de crédits ! Visitez notre page tarifs.',es:'¡Necesitas más créditos! Visita nuestra página de precios.'};
-  if(confirm(msgs.fr)) window.location.href='/pricing/';
-}
-</script>
+<script>function setLang(lang){document.body.className=lang===\'fr\'?\'fr\':lang===\'es\'?\'es\':\'\';document.querySelectorAll(\'.lang-btn\').forEach(function(b){b.classList.toggle(\'active\',b.textContent===lang.toUpperCase())});document.documentElement.lang=lang}</script>
 <!-- RGPD Cookie Banner -->
 <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:16px 20px;z-index:99999;font-family:system-ui,sans-serif;font-size:14px">
 <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px">
 <p style="margin:0;flex:1;min-width:250px">
 
-Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez à leur utilisation.
+Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous consentez Ã  leur utilisation.
 
-<a href="/fr/privacy-policy/" style="color:#ff69b4;margin-left:8px">Politique de confidentialité</a>
+<a href="/fr/privacy-policy/" style="color:#ff69b4;margin-left:8px">Politique de confidentialitÃ©</a>
 </p>
 <div style="display:flex;gap:10px">
 <button onclick="acceptCookies()" style="padding:10px 20px;background:#ff69b4;color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer">Accepter</button>
@@ -244,3 +224,4 @@ Nous utilisons des cookies pour analyser le trafic. En cliquant "Accepter", vous
 <script src="/js/email-gate.js?v=1"></script>
 </body>
 </html>
+
