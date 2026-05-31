@@ -42,33 +42,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=cocotheaxolotl --branch=${{ github.ref_name }}
-
-      - name: Purge removed freebies from Cloudflare cache
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
-          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
-        run: |
-          set -euo pipefail
-          zone_id="${CLOUDFLARE_ZONE_ID:-${CF_ZONE_ID:-}}"
-          if [ -z "$zone_id" ]; then
-            zone_id="$(curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-              "https://api.cloudflare.com/client/v4/zones?name=cocotheaxolotl.org" \
-              | python3 -c "import sys,json; data=json.load(sys.stdin); result=data.get('result') or []; print(result[0]['id'] if result else '')")"
-          fi
-          if [ -z "$zone_id" ]; then
-            zone_id="$(curl -fsS -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-              "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/cocotheaxolotl/domains" \
-              | python3 -c "import sys,json; data=json.load(sys.stdin); result=data.get('result') or []; domain=next((d for d in result if d.get('name') in ('cocotheaxolotl.org','www.cocotheaxolotl.org')), {}); print(domain.get('zone_tag') or domain.get('zone_id') or '')")"
-          fi
-          if [ -z "$zone_id" ]; then
-            echo "::error::Cloudflare zone id was not found. Add CLOUDFLARE_ZONE_ID or CF_ZONE_ID as a repository secret."
-            exit 1
-          fi
-          pack_file="$(printf '%s-%s-%s-%s-%s.%s' coco dot to dot pack pdf)"
-          preview_file="$(printf '%s-%s-%s-%s-%s.%s' coco dot to dot preview gif)"
-          curl -fsS -X POST "https://api.cloudflare.com/client/v4/zones/$zone_id/purge_cache" \
-            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
-            -H "Content-Type: application/json" \
-            --data "{\"files\":[\"https://cocotheaxolotl.org/freebies/$pack_file\",\"https://cocotheaxolotl.org/freebies/$preview_file\",\"https://www.cocotheaxolotl.org/freebies/$pack_file\",\"https://www.cocotheaxolotl.org/freebies/$preview_file\"]}"
