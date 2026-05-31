@@ -23,7 +23,6 @@ const excludedDirs = new Set([
   'functions',
   'LIVRES COCO',
   'Lettering COCO',
-  'memory',
   'mosaic-api',
   'node_modules',
   'planks_wood_letters',

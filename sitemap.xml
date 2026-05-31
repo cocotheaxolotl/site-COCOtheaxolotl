@@ -148,8 +148,6 @@
     <loc>https://cocotheaxolotl.org/bubble-pop/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/"/>
@@ -364,8 +362,6 @@
     <loc>https://cocotheaxolotl.org/puzzle/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/"/>
@@ -375,8 +371,6 @@
     <loc>https://cocotheaxolotl.org/spot-the-differences/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/spot-the-differences/"/>
@@ -415,81 +409,65 @@
   <url>
     <loc>https://cocotheaxolotl.org/fr/balloon-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/es/balloon-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/fr/grass-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/grass-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/es/grass-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/grass-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/fr/toy-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/toy-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/es/toy-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/toy-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/fr/train-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/train-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/train-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/train-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/train-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/es/train-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/train-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/train-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/train-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/train-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -778,7 +756,6 @@
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/install/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/install/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/install/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/install/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/install/"/>
     <priority>0.7</priority>
@@ -788,7 +765,6 @@
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/install/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/install/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/install/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/install/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/install/"/>
     <priority>0.7</priority>
@@ -1140,8 +1116,6 @@
     <loc>https://cocotheaxolotl.org/de/bubble-pop/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/"/>
@@ -1217,8 +1191,6 @@
     <loc>https://cocotheaxolotl.org/de/puzzle/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/"/>
@@ -1228,8 +1200,6 @@
     <loc>https://cocotheaxolotl.org/de/spot-the-differences/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/spot-the-differences/"/>
@@ -1281,33 +1251,9 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/fr/bubble-pop/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/es/bubble-pop/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/it/bubble-pop/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/"/>
@@ -1380,66 +1326,18 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/fr/puzzle/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/es/puzzle/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/it/puzzle/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/fr/spot-the-differences/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/es/spot-the-differences/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/spot-the-differences/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/it/spot-the-differences/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/spot-the-differences/"/>
@@ -1493,8 +1391,6 @@
     <loc>https://cocotheaxolotl.org/pt/bubble-pop/</loc>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/bubble-pop/"/>
@@ -1563,8 +1459,6 @@
     <loc>https://cocotheaxolotl.org/pt/puzzle/</loc>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/puzzle/"/>
@@ -1573,8 +1467,6 @@
     <loc>https://cocotheaxolotl.org/pt/spot-the-differences/</loc>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/spot-the-differences/"/>
@@ -1626,8 +1518,6 @@
     <loc>https://cocotheaxolotl.org/ja/bubble-pop/</loc>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/bubble-pop/"/>
@@ -1703,8 +1593,6 @@
     <loc>https://cocotheaxolotl.org/ja/puzzle/</loc>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/puzzle/"/>
@@ -1714,8 +1602,6 @@
     <loc>https://cocotheaxolotl.org/ja/spot-the-differences/</loc>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/spot-the-differences/"/>
@@ -1787,8 +1673,6 @@
     <loc>https://cocotheaxolotl.org/ar/bubble-pop/</loc>
     <lastmod>2026-05-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/bubble-pop/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/bubble-pop/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/bubble-pop/"/>
@@ -1878,8 +1762,6 @@
     <loc>https://cocotheaxolotl.org/ar/puzzle/</loc>
     <lastmod>2026-05-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/puzzle/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/puzzle/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/puzzle/"/>
@@ -1891,8 +1773,6 @@
     <loc>https://cocotheaxolotl.org/ar/spot-the-differences/</loc>
     <lastmod>2026-05-22</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/spot-the-differences/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/spot-the-differences/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/spot-the-differences/"/>
@@ -2010,7 +1890,6 @@
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/install/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/install/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/install/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/install/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/install/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/install/"/>
@@ -2021,14 +1900,11 @@
   <url>
     <loc>https://cocotheaxolotl.org/ar/hypnose/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/hypnose/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2296,7 +2172,6 @@
     <loc>https://cocotheaxolotl.org/ar/valentine/cake/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/cake/"/>
@@ -2361,7 +2236,6 @@
     <loc>https://cocotheaxolotl.org/ar/valentine/heart-letter/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/heart-letter/"/>
@@ -2386,53 +2260,45 @@
   <url>
     <loc>https://cocotheaxolotl.org/ar/balloon-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ar/grass-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/grass-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ar/toy-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/toy-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ar/train-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/train-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/train-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/train-name/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://cocotheaxolotl.org/de/train-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/train-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/train-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/train-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -2605,11 +2471,9 @@
     <loc>https://cocotheaxolotl.org/ja/balloon-name/</loc>
     <lastmod>2026-05-23</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ja/blog/</loc>
@@ -2849,21 +2713,16 @@
     <loc>https://cocotheaxolotl.org/ja/grass-name/</loc>
     <lastmod>2026-05-23</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/grass-name/"/>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ja/hypnose/</loc>
     <lastmod>2026-05-23</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/hypnose/"/>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ja/install/</loc>
@@ -2871,7 +2730,6 @@
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/install/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/install/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/install/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/install/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/install/"/>
   </url>
@@ -3003,21 +2861,17 @@
     <loc>https://cocotheaxolotl.org/ja/toy-name/</loc>
     <lastmod>2026-05-23</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/toy-name/"/>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ja/train-name/</loc>
     <lastmod>2026-05-23</lastmod>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/train-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/train-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/train-name/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/train-name/"/>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/ja/valentine/</loc>
@@ -3044,7 +2898,6 @@
     <lastmod>2026-05-23</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/cake/"/>
@@ -3094,7 +2947,6 @@
     <lastmod>2026-05-23</lastmod>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
@@ -3120,23 +2972,11 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/balloon-name/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/it/balloon-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -3784,63 +3624,25 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/grass-name/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/grass-name/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/it/grass-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/grass-name/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/hypnose/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/hypnose/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/fr/hypnose/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/hypnose/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/es/hypnose/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/hypnose/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/it/hypnose/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/hypnose/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -3855,21 +3657,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/es/install/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/install/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/install/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/install/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/install/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/install/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/it/install/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/install/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/install/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/install/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/install/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/install/"/>
     <priority>0.7</priority>
@@ -4149,43 +3940,19 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cocotheaxolotl.org/toy-name/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/toy-name/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://cocotheaxolotl.org/it/toy-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/toy-name/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/train-name/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/train-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cocotheaxolotl.org/it/train-name/</loc>
     <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/train-name/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/train-name/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/train-name/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/train-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -4232,17 +3999,6 @@
     <loc>https://cocotheaxolotl.org/valentine/cake/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/fr/valentine/cake/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/cake/"/>
@@ -4252,7 +4008,6 @@
     <loc>https://cocotheaxolotl.org/es/valentine/cake/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/cake/"/>
@@ -4262,7 +4017,6 @@
     <loc>https://cocotheaxolotl.org/it/valentine/cake/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/cake/"/>
@@ -4432,17 +4186,6 @@
     <loc>https://cocotheaxolotl.org/valentine/heart-letter/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cocotheaxolotl.org/fr/valentine/heart-letter/</loc>
-    <lastmod>2026-05-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
@@ -4452,7 +4195,6 @@
     <loc>https://cocotheaxolotl.org/es/valentine/heart-letter/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
@@ -4462,7 +4204,6 @@
     <loc>https://cocotheaxolotl.org/it/valentine/heart-letter/</loc>
     <lastmod>2026-05-23</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
@@ -4539,7 +4280,6 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/balloon-name/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/balloon-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/balloon-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -4828,7 +4568,6 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/grass-name/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/grass-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/grass-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -4838,7 +4577,6 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/hypnose/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/hypnose/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/hypnose/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -5018,7 +4756,6 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/toy-name/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/toy-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/toy-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -5029,7 +4766,6 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/train-name/"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://cocotheaxolotl.org/ar/train-name/"/>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://cocotheaxolotl.org/pt/train-name/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocotheaxolotl.org/train-name/"/>
     <priority>0.7</priority>
   </url>
   <url>
@@ -5047,7 +4783,6 @@
   <url>
     <loc>https://cocotheaxolotl.org/pt/valentine/cake/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/cake/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/cake/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/valentine/cake/"/>
@@ -5107,7 +4842,6 @@
   <url>
     <loc>https://cocotheaxolotl.org/pt/valentine/heart-letter/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://cocotheaxolotl.org/valentine/heart-letter/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://cocotheaxolotl.org/fr/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://cocotheaxolotl.org/es/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://cocotheaxolotl.org/it/valentine/heart-letter/"/>
     <xhtml:link rel="alternate" hreflang="ja" href="https://cocotheaxolotl.org/ja/valentine/heart-letter/"/>
