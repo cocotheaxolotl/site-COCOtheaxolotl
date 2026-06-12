@@ -56,6 +56,7 @@ export async function onRequestPost({ request, env }) {
   const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
   const lang = normalizeText(body.lang, 10);
   const sourceUrl = typeof body.source_url === 'string' ? body.source_url.slice(0, 500) : '';
+  const file = typeof body.file === 'string' ? body.file.slice(0, 300) : '';
   if (!email) return json({ error: 'Email required' }, { status: 400, headers: cors });
   if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return json({ error: 'Invalid email' }, { status: 400, headers: cors });
@@ -72,7 +73,13 @@ export async function onRequestPost({ request, env }) {
       headers: { 'api-key': apiKey, 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email,
-        attributes: { FIRSTNAME: name || '', LANG: lang || 'en', SOURCE_URL: sourceUrl, SOURCE: 'site' },
+        attributes: {
+          FIRSTNAME: name || '',
+          LANG: lang || 'en',
+          SOURCE_URL: sourceUrl,
+          SOURCE: 'site',
+          ...(file ? { LAST_DOWNLOAD: file, LAST_DOWNLOAD_AT: new Date().toISOString() } : {}),
+        },
         listIds: [listId],
         updateEnabled: true,
       }),

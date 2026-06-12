@@ -10,6 +10,7 @@
   window.__usEmailGateLoaded = true;
 
   var GATE_KEY = 'us_email_given';
+  var EMAIL_KEY = 'us_email';
 
   function isLoggedIn() {
     try {
@@ -20,11 +21,39 @@
   function hasGivenEmail() {
     return localStorage.getItem(GATE_KEY) === '1';
   }
-  function markEmailGiven() {
-    try { localStorage.setItem(GATE_KEY, '1'); } catch (e) {}
+  function getStoredEmail() {
+    try { return localStorage.getItem(EMAIL_KEY) || ''; } catch (e) { return ''; }
+  }
+  function markEmailGiven(email) {
+    try {
+      localStorage.setItem(GATE_KEY, '1');
+      if (email) localStorage.setItem(EMAIL_KEY, email);
+    } catch (e) {}
   }
   function shouldGate() {
     return !(isLoggedIn() || hasGivenEmail());
+  }
+
+  function fileFromElement(el) {
+    if (!el) return '';
+    var name = el.getAttribute && (el.getAttribute('data-download-name') || el.getAttribute('download'));
+    if (name) return String(name).slice(0, 300);
+    var href = el.getAttribute && el.getAttribute('href');
+    if (!href) return '';
+    return String(href).split('?')[0].split('#')[0].slice(0, 300);
+  }
+
+  function trackDownload(file) {
+    var email = getStoredEmail();
+    if (!email || !file) return;
+    try {
+      fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, lang: getLang(), source_url: location.href, file: file }),
+        keepalive: true,
+      }).catch(function () {});
+    } catch (e) {}
   }
 
   function getLang() {
@@ -145,12 +174,16 @@
     document.head.appendChild(s);
   }
 
-  window.__usEmailGateOpen = function(onSuccess) {
-    if (!shouldGate()) { onSuccess && onSuccess(); return; }
-    openModal(onSuccess);
+  window.__usEmailGateOpen = function(onSuccess, file) {
+    if (!shouldGate()) {
+      if (file) trackDownload(file);
+      onSuccess && onSuccess();
+      return;
+    }
+    openModal(onSuccess, file);
   };
 
-  function openModal(onSuccess) {
+  function openModal(onSuccess, file) {
     injectCss();
     var t = tr();
     var ov = document.createElement('div');
@@ -198,10 +231,10 @@
       fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, name: name, lang: getLang(), source_url: location.href })
+        body: JSON.stringify({ email: email, name: name, lang: getLang(), source_url: location.href, file: file || '' })
       }).then(function (r) {
         if (!r.ok && r.status !== 204) throw new Error('bad');
-        markEmailGiven();
+        markEmailGiven(email);
         close();
         try { onSuccess(); } catch (e) {}
       }).catch(function () {
@@ -215,20 +248,26 @@
     inputName.addEventListener('keydown',  function (e) { if (e.key === 'Enter') submit(); });
   }
 
-  window.usEmailGate = function (cb) {
+  window.usEmailGate = function (cb, file) {
     if (typeof cb !== 'function') cb = function () {};
-    if (!shouldGate()) { cb(); return; }
-    openModal(cb);
+    if (!shouldGate()) { if (file) trackDownload(file); cb(); return; }
+    openModal(cb, file);
   };
 
   document.addEventListener('click', function (e) {
-    if (!shouldGate()) return;
     var el = e.target && e.target.closest ? e.target.closest('[data-email-gate]') : null;
     if (!el) return;
     if (el.dataset && el.dataset.usEgDone === '1') return;
 
     var action = el.getAttribute('data-email-gate') || '';
     if (!/(download|export|save)/i.test(action)) return;
+
+    var file = fileFromElement(el);
+
+    if (!shouldGate()) {
+      if (file) trackDownload(file);
+      return; // let the click through
+    }
 
     e.preventDefault();
     e.stopPropagation();
@@ -238,6 +277,17 @@
       try { if (el.dataset) el.dataset.usEgDone = '1'; } catch (er) {}
       el.click();
       setTimeout(function () { try { if (el.dataset) delete el.dataset.usEgDone; } catch (er) {} }, 1000);
-    });
+    }, file);
+  }, true);
+
+  // Track any download click for users who already provided their email,
+  // even on links that don't have a [data-email-gate] gate.
+  document.addEventListener('click', function (e) {
+    if (!getStoredEmail()) return;
+    var el = e.target && e.target.closest ? e.target.closest('a[download], a[href$=".pdf"]') : null;
+    if (!el) return;
+    if (el.hasAttribute('data-email-gate')) return; // gated handler already covers these
+    var file = fileFromElement(el);
+    if (file) trackDownload(file);
   }, true);
 })();
